@@ -1176,7 +1176,7 @@ function oppList(st){
 }
 function fanHtml(cards){
   var o='';
-  ['S','H','C','D'].forEach(function(s){
+  ['S','H','D','C'].forEach(function(s){
     cards.filter(function(c){return c[0]===s}).map(function(c){return +c.slice(1)}).sort(function(a,b){return b-a}).forEach(function(n){
       o+='<div class="cd'+(s==='H'||s==='D'?' r':'')+'" data-s="'+SYM[s]+'"><b>'+(RK[n]||n)+'</b><i>'+SYM[s]+'</i></div>';
     });
