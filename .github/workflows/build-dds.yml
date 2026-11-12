@@ -25,19 +25,19 @@ jobs:
         with:
           repository: dds-bridge/dds
           ref: develop
-          path: /tmp/dds
+          path: dds-source
 
       - name: Install Bazelisk
         uses: bazelbuild/setup-bazelisk@v3
 
       - name: Build official DDS browser module
-        working-directory: /tmp/dds
+        working-directory: dds-source
         run: ./web/update_wasm.sh
 
       - name: Copy generated browser runtime
         run: |
           mkdir -p dds-runtime
-          cp /tmp/dds/web/dds_web_wasm.js dds-runtime/
+          cp dds-source/web/dds_web_wasm.js dds-runtime/
           cp /tmp/dds/web/dds_web_wasm_bin.js dds-runtime/
           cp /tmp/dds/web/patch_web_wasm.py dds-runtime/
 
