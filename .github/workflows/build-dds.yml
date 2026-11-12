@@ -1,0 +1,55 @@
+name: Build local DDS WebAssembly
+
+on:
+  push:
+    branches:
+      - feature/two-player-dds
+    paths-ignore:
+      - "dds-runtime/**"
+      - ".github/workflows/build-dds.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-dds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out bidding trainer
+        uses: actions/checkout@v4
+        with:
+          ref: feature/two-player-dds
+
+      - name: Check out official DDS source
+        uses: actions/checkout@v4
+        with:
+          repository: dds-bridge/dds
+          ref: develop
+          path: /tmp/dds
+
+      - name: Install Bazelisk
+        uses: bazelbuild/setup-bazelisk@v3
+
+      - name: Build official DDS browser module
+        working-directory: /tmp/dds
+        run: ./web/update_wasm.sh
+
+      - name: Copy browser runtime into the trainer
+        run: |
+          mkdir -p dds-runtime
+          cp /tmp/dds/web/dds_mvp_wasm.js dds-runtime/
+          cp /tmp/dds/web/dds_mvp_wasm_bin.js dds-runtime/
+          cp /tmp/dds/web/patch_mvp_wasm.py dds-runtime/ 2>/dev/null || true
+
+      - name: Commit generated runtime
+        run: |
+          if git diff --quiet -- dds-runtime; then
+            echo "DDS runtime is already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dds-runtime
+          git commit -m "Build local DDS WebAssembly runtime"
+          git push
