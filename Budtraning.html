@@ -799,7 +799,8 @@ function judgeComplete(st){
     }
     // Presentationsordning: budets bedömning först, därefter varför och sedan systemförklaring.
     var hand=H(st.hands[b.s]);
-     item={nr:item.nr,plats:item.plats,bud:item.bud,bedomning:item.bedomning,battre:item.battre||'',hp:hand.hp,htp:hand.htp(null),langd:hand.L};
+     var suit=isBid(item.bud)?st_(item.bud):null;
+    item={nr:item.nr,plats:item.plats,bud:item.bud,bedomning:item.bedomning,battre:item.battre||'',hp:hand.hp,htp:suit?hand.htp(suit):hand.hp,langd:hand.L};
     items.push(item);
   }
   var status=structural.ended?'Budgivningen är avslutad.':bids.length?'Budgivningen är inte avslutad – inväntar fler bud.':'Ingen budgivning registrerad.';
