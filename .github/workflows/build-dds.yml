@@ -35,12 +35,11 @@ jobs:
         working-directory: /tmp/dds
         run: ./web/update_wasm.sh
 
-      - name: Copy browser runtime into the trainer
+      - name: Copy generated browser runtime
         run: |
           mkdir -p dds-runtime
-          cp /tmp/dds/web/dds_mvp_wasm.js dds-runtime/
-          cp /tmp/dds/web/dds_mvp_wasm_bin.js dds-runtime/
-          cp /tmp/dds/web/patch_mvp_wasm.py dds-runtime/ 2>/dev/null || true
+          cp /tmp/dds/web/dds_web_wasm.js dds-runtime/
+          cp /tmp/dds/web/dds_web_wasm_bin.js dds-runtime/
 
       - name: Commit generated runtime
         run: |
