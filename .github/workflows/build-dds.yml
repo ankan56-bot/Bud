@@ -1,11 +1,6 @@
 name: Build local DDS WebAssembly
 
 on:
-  push:
-    branches:
-      - feature/two-player-dds
-    paths-ignore:
-      - "dds-runtime/**"
   workflow_dispatch:
 
 permissions:
@@ -38,8 +33,8 @@ jobs:
         run: |
           mkdir -p dds-runtime
           cp dds-source/web/dds_web_wasm.js dds-runtime/
-          cp /tmp/dds/web/dds_web_wasm_bin.js dds-runtime/
-          cp /tmp/dds/web/patch_web_wasm.py dds-runtime/
+          cp dds-source/web/dds_web_wasm_bin.js dds-runtime/
+          cp dds-source/web/patch_web_wasm.py dds-runtime/
 
       - name: Commit generated runtime
         run: |
