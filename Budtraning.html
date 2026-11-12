@@ -715,7 +715,7 @@ function verdictOf(node,act){
   var o={bedomning:'ej_täckt',motivering:node.why||'',forklaring:expandedMeaning(short,node.conv||'övrigt',act),konvention:node.conv||'övrigt',battre:''};
   if(!node.exp){o.bedomning='ej_täckt';o.motivering=node.why;return o}
   if(act===node.exp){o.bedomning='rätt';return o}
-  if(node.alt&&node.alt.indexOf(act)>=0){o.bedomning='valfritt';o.battre=txt(node.exp)+' är huvudbudet.';return o}
+  if(node.alt&&node.alt.indexOf(act)>=0){o.bedomning='valfritt';o.battre=txt(node.exp);return o}
   o.bedomning=node.soft?'valfritt':'fel';
   o.battre=txt(node.exp);
   if(node.soft)o.motivering='Dokumentet är inte exakt här, men huvudbudet är '+txt(node.exp)+'. '+node.why;
