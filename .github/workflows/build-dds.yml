@@ -6,7 +6,6 @@ on:
       - feature/two-player-dds
     paths-ignore:
       - "dds-runtime/**"
-      - ".github/workflows/build-dds.yml"
   workflow_dispatch:
 
 permissions:
