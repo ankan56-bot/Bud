@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Budträning – Nordisk standard</title>
+<style>
+:root{--bg:#e6ede8;--panel:#fbfaf6;--ink:#16241f;--mu:#58706a;--line:#c9d5cd;--rs:#b3261e;--fa:#14513f;--fb:#0a3328;--brass:#b8902f;--hint:rgba(20,81,63,.09);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07201b;--panel:#0f2f27;--ink:#efeadc;--mu:#9bb5aa;--line:#1f4a3e;--rs:#ff8d83;--brass:#d5ad55;--hint:rgba(255,255,255,.05)}}
+:root[data-theme="dark"]{--bg:#07201b;--panel:#0f2f27;--ink:#efeadc;--mu:#9bb5aa;--line:#1f4a3e;--rs:#ff8d83;--brass:#d5ad55;--hint:rgba(255,255,255,.05)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,"SF Pro Text",system-ui,sans-serif;min-height:100dvh;touch-action:manipulation;-webkit-user-select:none;user-select:none;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+.serif,h1,.status,.brand,.hb,.ac,.lv button,.st button,.cd,.rv .h{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+#app{min-height:100dvh;display:flex;flex-direction:column}
+button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;min-height:44px;padding:0 16px;cursor:pointer;touch-action:manipulation}
+button:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+button.pri{background:var(--fa);color:#f6f1e2;border-color:var(--fa);font-weight:600}
+button.sm{min-height:38px;font-size:14px;padding:0 12px}
+button:disabled{opacity:.3;cursor:default}
+.mu{color:var(--mu);font-size:14px}
+.red{color:var(--rs)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.status{font-size:21px;font-weight:600;margin:0 0 10px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:600}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,var(--fa),var(--fb));color:#f4efe0;font-size:20px}
+.chip{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:14px;color:var(--mu)}
+.chip.hi{color:var(--ink);font-weight:600}
+.main{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);gap:16px;padding:16px 18px 22px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:1fr}}
+.table{border-radius:30px;background:radial-gradient(120% 110% at 50% 38%,var(--fa),var(--fb));box-shadow:inset 0 0 0 2px rgba(213,173,85,.6),inset 0 0 0 10px rgba(0,0,0,.18),0 14px 32px rgba(0,0,0,.25);padding:22px;min-height:580px;display:grid;grid-template-columns:104px 1fr 104px;grid-template-rows:auto 1fr auto;gap:10px;color:#f1ecdc}
+.table.end{grid-template-columns:150px 1fr 150px}
+.seatT{grid-column:1/4;grid-row:1;justify-self:center}.seatL{grid-column:1;grid-row:2;align-self:center}.seatR{grid-column:3;grid-row:2;align-self:center}
+.center{grid-column:2;grid-row:2;display:grid;place-items:center;text-align:center;align-content:center;gap:6px}
+.mine{grid-column:1/4;grid-row:3;display:flex;flex-direction:column;align-items:center;gap:8px}
+.table .red{color:#ff9d93}
+.seat{display:flex;flex-direction:column;align-items:center;gap:6px;padding:9px 12px;border-radius:18px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.12)}
+.seat.turn{border-color:#d5ad55;box-shadow:0 0 0 3px rgba(213,173,85,.4)}
+.seat .nm,.nm{font-weight:600}
+.seat small{opacity:.75;font-size:12px}
+.lc{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:18px;min-height:24px}
+.dl{display:inline-block;margin-left:6px;background:#d5ad55;color:#1b1608;border-radius:6px;padding:0 6px;font-weight:700;font-size:12px}
+.bks{display:flex}.bk{width:15px;height:23px;border-radius:3px;margin-left:-9px;border:1px solid #f1ecdc;background:repeating-linear-gradient(45deg,#7b2a2a 0 3px,#963636 3px 6px)}.bk:first-child{margin-left:0}
+.hb{font-size:64px;line-height:1;font-weight:600}.hb small{font-size:26px}
+.hl{opacity:.85;font-size:15px}
+.fan{display:flex;justify-content:center;padding:6px 0 2px}
+.cd{position:relative;width:66px;height:98px;border-radius:10px;background:#fbf8ef;color:#171717;box-shadow:0 2px 7px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.08);margin-left:-30px;padding:6px 7px;font-weight:700;line-height:1;display:flex;flex-direction:column}
+.cd:first-child{margin-left:0}.cd b{font-size:25px}.cd i{font-style:normal;font-size:30px;margin-top:2px}.cd.r{color:#c0262d}
+.cd::after{content:attr(data-s);position:absolute;right:6px;bottom:4px;font-size:46px}
+@media (min-width:1100px){.cd{width:78px;height:114px;margin-left:-34px}.cd b{font-size:28px}.cd i{font-size:34px}.cd::after{font-size:54px}}
+.ghost{background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.22)}
+.eh{padding:8px 10px;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.1);min-width:130px}.eh.us{border-color:rgba(213,173,85,.6)}
+.eh b{display:block;margin-bottom:2px}.table .hand div{font-size:15px;white-space:nowrap}
+.side{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:14px;margin:0}
+.card p{margin:4px 0}
+.ascroll{max-height:250px;overflow:auto}
+.aud{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center}
+.ah{font-size:13px;color:var(--mu);padding-bottom:4px;border-bottom:2px solid var(--line)}.ah.us{border-bottom-color:var(--brass);color:var(--ink);font-weight:600}
+.ac{min-height:42px;border-radius:10px;display:grid;place-items:center;font-size:23px;font-weight:600;background:var(--hint)}
+.ac.pass{font:14px/1 -apple-system,system-ui,sans-serif;color:var(--mu);background:transparent;border:1px dashed var(--line)}
+.ac.cur{outline:2px dashed var(--brass);color:var(--mu)}
+.lv{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.st{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}.ops{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;margin-top:8px}
+.lv button{min-height:58px;font-size:27px;font-weight:700;padding:0}.st button{min-height:66px;font-size:34px;padding:0}
+.lv button.on,.st button.on{background:var(--fa);color:#fff;border-color:var(--fa)}.st button.on .red{color:#ffb3ab}
+.st .nt{font-size:23px;font-weight:700}
+.ops button{min-height:58px;font-weight:700;font-size:18px;color:#fff;border:0}
+.ops [data-o="P"]{background:#2e8b57}.ops [data-o="X"]{background:#c0392b}.ops [data-o="XX"]{background:#2c6fb0}
+.wait{text-align:center;padding:26px 14px}
+.rv{border-left:6px solid var(--line)}.rv .h{font-size:19px;font-weight:700}
+.rv.ok{border-left-color:#2e8b57;background:rgba(46,139,87,.13)}.rv.fel{border-left-color:#d24a3a;background:rgba(210,74,58,.14)}.rv.mid{border-left-color:#c9962b;background:rgba(201,150,43,.15)}
+.review-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}.review-item{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px}.review-item .top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}.review-item .tag{font-size:12px;font-weight:700;border-radius:999px;padding:4px 9px;background:var(--line)}.review-item.ok .tag{background:rgba(46,139,87,.2)}.review-item.fel .tag{background:rgba(210,74,58,.2)}.review-item.mid .tag{background:rgba(201,150,43,.2)}.review-item p{margin:6px 0}.review-item b{color:var(--ink)}.review-secondary{margin-top:12px;border-top:1px solid var(--line);padding-top:12px}
+.hero{max-width:1000px;margin:0 auto;padding:30px 22px;width:100%}
+.hero h1{font-size:46px;margin:0 0 4px;font-weight:600}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mode,.seatpick{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:20px;min-height:120px;border-radius:20px;color:var(--ink);background:var(--panel);border:2px solid var(--line)}.mode.on,.seatpick.on{color:#f4efe0;border-color:transparent;background:linear-gradient(150deg,var(--fa),var(--fb));box-shadow:inset 0 0 0 2px rgba(213,173,85,.5)}
+.mode b,.seatpick b{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:26px}
+.mode span,.seatpick span{opacity:.85;font-size:15px}
+.foc{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.ft{min-height:52px;text-align:left;line-height:1.25}.ft.on{background:var(--fa);color:#fff;border-color:var(--fa);font-weight:600}
+.hero .card{margin-top:14px}
+@media (max-width:700px){.modes{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"><div class="card mu">Laddar …</div></div>
+<script>
+/* Rättningsmotor för Nordisk standard (2012-08-22). Ingen AI. Regler lästa från dokumentet.
+   Rattning.judge({hands:{N,E,S,W:['S14','H9',...]}, dealer:'N', bids:[{s:'N',c:'1N',e:'...'}]})
+   -> {items:[{nr,plats,bud,konvention,forklaring,bedomning,battre,motivering}], summary}
+   Bud: '1C'..'7N' (N = sang), 'P', 'X', 'XX'. Bedömning: rätt | fel | valfritt | ej_täckt. */
+var Rattning=(function(){
+var SU=['C','D','H','S'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},NAME={N:'Norr',E:'Öst',S:'Syd',W:'Väst'};
+function side(s){return s==='N'||s==='S'?0:1}
+function partner(s){return {N:'S',S:'N',E:'W',W:'E'}[s]}
+function isBid(c){return /^[1-7][CDHSN]$/.test(c)}
+function lv(c){return +c[0]}function st_(c){return c[1]}
+function rk(c){return lv(c)*5+'CDHSN'.indexOf(c[1])}
+function txt(c){return c==='P'?'Pass':(c==='X'||c==='XX')?c:c[0]+SYM[c[1]]}
+function maj(s){return s==='H'||s==='S'}
+function lowest(s,above){for(var l=1;l<=7;l++){var c=l+s;if(!above||rk(c)>rk(above))return c}return null}
+function jump(s,above){var c=lowest(s,above);return c&&lv(c)<7?(lv(c)+1)+s:null}
+function H(cards){
+  var L={C:0,D:0,H:0,S:0},hp=0,top={C:[],D:[],H:[],S:[]},aces=0;
+  cards.forEach(function(k){var n=+k.slice(1),s=k[0];L[s]++;top[s].push(n);if(n>=11)hp+=n-10;if(n===14)aces++});
+  var sh=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');
+  var o={L:L,hp:hp,top:top,aces:aces,shape:sh,bal:['4333','4432','5332'].indexOf(sh)>=0};
+  o.htp=function(t){var x=hp;SU.forEach(function(s){if(s!==t){var n=L[s];x+=n===0?3:n===1?2:n===2?1:0}});return x};
+  o.has=function(s,n){return top[s].indexOf(n)>=0};
+  o.stop=function(s){return o.has(s,14)||(o.has(s,13)&&L[s]>=2)||(o.has(s,12)&&L[s]>=3)||(o.has(s,11)&&L[s]>=4)};
+  o.good=function(s){var t=top[s],c=[14,13,12].filter(function(n){return t.indexOf(n)>=0}).length,d=[14,13,12,11,10].filter(function(n){return t.indexOf(n)>=0}).length;return c>=2||d>=3};
+  // Bra färg för 11 hp-öppning enligt användarens precisering: 6 kort + 3 honnörer eller 7 kort + 2 honnörer. Honnörer = A, K, Q, J; 10 räknas som mellankort.
+  o.goodForEleven=function(s){var n=L[s],hon=[14,13,12,11].filter(function(r){return top[s].indexOf(r)>=0}).length;return (n===6&&hon>=3)||(n===7&&hon>=2)};
+  o.longest=function(){return Math.max(L.C,L.D,L.H,L.S)};
+  o.singles=function(){return SU.filter(function(s){return L[s]<=1})};
+  return o;
+}
+/* Nod: {exp:kod|null, alt:[], why:'', means:function(kod), conv:'', soft:bool} */
+function T(m){return function(c){return m[c]||null}}
+function ok(c,last){return c==='P'||c==='X'||c==='XX'||(isBid(c)&&(!last||rk(c)>rk(last)))}
+function NC(why,means,conv){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt'}}
+
+/* ---------- ÖPPNING ---------- */
+function openingNode(h){
+  var hp=h.hp,L=h.L,m=h.longest(),exp,alt=[],why;
+  var cs=SU.filter(function(s){return L[s]===m}),pick;
+  if(m>=5){pick=cs[cs.length-1];if(cs.length>1&&pick==='S'&&cs.indexOf('C')>=0)alt.push('1C')}
+  else{var f=SU.filter(function(s){return L[s]===4});pick=f[0]}
+  var one='1'+pick;
+  if(hp>=12&&hp<=21&&L.H>=5&&L.C>=4){exp='2C';why=hp+' htp med minst 5 hjärter och 4 klöver: naturlig tvåfärgsöppning 2♣ enligt avsnitt D.'}
+  else if(h.bal&&hp>=22&&hp<=27){exp='2C';why='Balanserad med '+hp+' hp: 2♣ (22-24 balanserad, starkare via 2♣).'}
+  else if(h.bal&&hp>=20&&hp<=21){exp='2N';why='Balanserad 20-21 hp öppnas 2NT.'}
+  else if(h.bal&&hp>=15&&hp<=17){exp='1N';why='Balanserad (fördelning '+h.shape+') med 15-17 hp öppnas 1NT.'}
+  else if(hp>=22){exp='2C';why=hp+' hp är utgångskrav: öppna 2♣.'}
+  else if(hp>=20){exp='2C';alt=[one];why=hp+' hp obalanserad är starkare än 1 i färg (12-19): 2♣, utgångskrav.'}
+  else if(hp>=12){exp=one;why=hp+' hp med längsta färgen '+SYM[pick]+' ('+L[pick]+' kort): 1 i färg (12-19 hp).'}
+  else if(hp===11&&h.goodForEleven(pick)){exp=one;alt=['P'];why='11 hp med bra färg: 6 kort och minst 3 honnörer eller 7 kort och minst 2 honnörer. 1 i färg är tillåtet; pass är också möjligt.'}
+  else if(hp>=6&&hp<=10&&m>=6){
+    if(m===6&&pick!=='C'){exp='2'+pick;why='6-10 hp och exakt 6-korts '+SYM[pick]+': svag tvåa.'}
+    else if(m===6){exp='P';why='Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass.'}
+    else if(m===7){exp='3'+pick;alt=['4'+pick];why='7-korts färg med 6-10 hp: spärrbud 3 i färg (ta hänsyn till zoner).'}
+    else {exp='4'+pick;alt=['3'+pick];why='8-korts färg med 6-10 hp: spärrbud 4 i färg (ta hänsyn till zoner).'}
+  }
+  else{exp='P';why=hp+' hp räcker inte för öppning (12+, 11 med 6 kort + 3 honnörer eller 7 kort + 2 honnörer) och ingen spärrhand.'}
+  return {exp:exp,alt:alt,why:why,conv:'öppning',means:function(c){
+    if(c==='P')return 'Pass: under 12 hp (11 hp kräver 6 kort + 3 honnörer eller 7 kort + 2 honnörer), ingen spärrhand.';
+    if(c==='1N')return '15-17 hp, balanserad (även 5-korts högfärg).';
+    if(c==='2C')return (hp>=12&&hp<=21&&L.H>=5&&L.C>=4)?'12-21 htp, minst 5 hjärter och 4 klöver: tvåfärgsöppning.':'Utgångskrav, eller 22-24 hp balanserad.';
+    if(c==='2N')return '20-21 hp, balanserad.';
+    if(/^2[DHS]$/.test(c))return '6-10 hp, exakt 6-korts '+SYM[c[1]]+'.';
+    if(/^3[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 7-korts färg.';
+    if(/^4[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 8-korts färg.';
+    if(/^1[CDHS]$/.test(c))return '12-19 hp, 4+ färg (11 hp endast med 6 kort + 3 honnörer eller 7 kort + 2 honnörer).';
+    return null}};
+}
+
+/* ---------- SVAR PÅ 1 I FÄRG ---------- */
+function resp1(h,oc){
+  var o=st_(oc),hp=h.hp,L=h.L,M=maj(o),sup=L[o]>=4,htp=sup?h.htp(o):hp,exp,why,alt=[];
+  var cand=SU.filter(function(s){return s!==o&&rk('1'+s)>rk(oc)&&L[s]>=4});
+  function pickBest(cs){var b=cs[0];cs.forEach(function(s){if(L[s]>L[b])b=s});return b}
+  var means=function(c){
+    if(c==='P')return 'Pass: under 6 hp.';
+    if(c==='1N')return '6-10 hp, förnekar 4-korts stöd och 4-korts färg som kan bjudas på 1-nivå.';
+    if(c==='2N')return 'Stenberg: 13+ htp, 4+ stöd, utgångskrav.';
+    if(isBid(c)&&st_(c)===o){var l=lv(c);
+      if(l===2)return '6-9 htp, 4+ stöd.';
+      if(l===3)return '10-12 htp, 4+ stöd.';
+      if(l===4)return M?'Spärrbud, max 12 htp, bra stöd och svitad hand.':'Spärrbud, max 9 htp, bra stöd och svitad hand.'}
+    if(isBid(c)&&st_(c)!=='N'&&st_(c)!==o){var lo=lowest(st_(c),oc),l2=lv(c);
+      if(c===lo&&l2===1)return '1 över 1: 6+ hp, 4+ färg, rondkrav (partnern får inte passa).';
+      if(c===lo&&l2===2)return '2 över 1: 11+ hp, 4+ färg, rondkrav (partnern får inte passa).';
+      if(l2>lv(lo))return 'Dubbelhopp i ny färg: renons i färgen, 4+ stöd och 13+ htp.'}
+    return null};
+  if(M&&sup){
+    if(htp<6){exp='P';why='Bara '+htp+' htp med stöd: för svag för att svara.'}
+    else if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i högfärgen: 2 i färgen (6-9).'}
+    else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (10-12).'}
+    else{exp='2N';why=htp+' htp med 4+ stöd: Stenberg 2NT (13+).'}
+  }else if(hp<6&&(!sup||htp<6)){exp='P';why='Under 6 hp: pass.'}
+  else if(!M&&sup&&cand.some(maj)){var cm=cand.filter(maj);exp=lowest(pickBest(cm),oc);why='Stöd i lågfärg men egen 4+ högfärg: visa högfärgen först (sök högfärg).';
+    if(cm.length>1&&L[cm[0]]===L[cm[1]])alt.push(lowest(cm[0]===pickBest(cm)?cm[1]:cm[0],oc))}
+  else if(!M&&sup){
+    if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen.'}
+    else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen.'}
+    else{exp='2N';why=htp+' htp med 4+ stöd: Stenberg 2NT.'}
+  }
+  else if(cand.length){var b=pickBest(cand);exp=lowest(b,oc);why='6+ hp och en 4+ färg som kan bjudas på 1-nivå: 1 över 1.';
+    cand.forEach(function(s){if(s!==b&&L[s]===L[b])alt.push(lowest(s,oc))})}
+  else if(hp<=10){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
+  else{var c2=SU.filter(function(s){return s!==o&&L[s]>=4});
+    if(c2.length){var b2=pickBest(c2);exp=lowest(b2,oc);why=hp+' hp och 4+ färg: 2 över 1 (11+, rondkrav).'}
+    else{return {exp:null,alt:[],why:hp+' hp utan färg att visa: dokumentet beskriver inte detta bud.',means:means,conv:'svar'}}}
+  return {exp:exp,alt:alt,why:why,means:means,conv:htp>=13&&exp==='2N'?'Stenberg':'svar'};
+}
+
+/* ---------- 1NT / 2NT-STRUKTUR ---------- */
+function ntResp(h,k){
+  var hp=h.hp,L=h.L,b=2+k,Hs=maj,exp,why,alt=[],soft=false;
+  var lo=k?5:8,gl=k?5:10;
+  var c2=(b)+'C',d2=(b)+'D',h2=(b)+'H',s2=(b)+'S',n2=(b)+'N';
+  var means=function(c){
+    if(c==='P')return 'Pass: dåliga kort utan färg att visa.';
+    if(c===c2)return 'Fråga efter 4-korts högfärg (Stayman). Bör själv ha någon 4-högfärg.';
+    if(c===d2)return 'Överföring: minst 5-korts ♥.';
+    if(c===h2)return 'Överföring: minst 5-korts ♠.';
+    if(!k&&c==='2S')return 'Dåliga kort med minst 6-korts lågfärg (eller 5-5 i lågfärgerna). Vill hellre spela 3 i lågfärg.';
+    if(!k&&c==='2N')return 'Naturlig invit med balanserad hand utan 4-korts högfärg.';
+    if(!k&&(c==='3C'||c==='3D'))return 'Invit med bra 6+ lågfärg.';
+    if(c==='3N')return 'Slutbud (utgång i sang).';
+    return null};
+  var conv='1NT-svar';
+  if(L.H>=5&&L.S>=5){exp=h2;alt=[d2];why='5-5 i högfärgerna: överföring till ♠ (och sedan 3♥ som invit).';conv='överföring'}
+  else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring ('+(M==='H'?d2:h2).replace(/^(\d)(.)/,function(_,a,b){return a+SYM[b]})+').';conv='överföring'}
+  else if(hp>=lo&&(L.H===4||L.S===4)){exp=c2;why='4-korts högfärg och '+hp+' hp: Stayman.';conv='Stayman';soft=!!k}
+  else if(hp>=lo&&hp<gl&&!k){exp='2N';why=hp+' hp, balanserad utan 4-korts högfärg: invit 2NT.'}
+  else if(hp>=gl){exp=n2;why=hp+' hp utan högfärgsfit att söka: 3NT.';soft=!!k}
+  else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){exp='2S';why='Dåliga kort med lång lågfärg: 2♠ (relä till 3 i lågfärg).'}
+  else{exp='P';why=hp+' hp utan färg att visa: pass.'}
+  if(k&&exp&&exp!=='P'||k)soft=true;
+  return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
+}
+function ntOpener(h,k,r){
+  var L=h.L,hp=h.hp,b=2+k,c2=b+'C',d2=b+'D',h2=b+'H',s2=b+'S',exp,why,alt=[],soft=false,conv='1NT-system';
+  var means=function(c){
+    if(r===c2){if(c===b+'D')return 'Ingen 4+ högfärg.';if(c===b+'H')return '4-5 korts ♥ (kan ha 4-4 i högfärg).';if(c===b+'S')return '4-5 korts ♠.'}
+    if(r===d2){if(c===h2)return 'Fullföljer överföringen (visar 2+ ♥).';if(c===(b+1)+'H')return 'Max och 4+ ♥: kan bjuda 3♥ i stället för 2♥.'}
+    if(r===h2){if(c===s2)return 'Fullföljer överföringen.';if(c===(b+1)+'S')return 'Max och 4+ ♠: kan bjuda 3♠ i stället.'}
+    if(!k&&r==='2S'){if(c==='2N')return 'Längre ♦ än ♣ eller lika längd i lågfärg.';if(c==='3C')return 'Längre ♣ än ♦.'}
+    if(c==='P')return 'Pass (slutbud).';
+    return null};
+  if(r===c2){conv='Stayman';exp=L.H>=4?h2:L.S>=4?s2:d2;
+    why=L.H>=4?'4+ ♥ (även 4-4 i högfärg): 2♥.':L.S>=4?'4+ ♠ utan ♥: 2♠.':'Ingen 4-korts högfärg: 2♦.';
+    if(L.H>=4&&L.S>=5)alt=[s2]}
+  else if(r===d2||r===h2){conv='överföring';var M=r===d2?'H':'S';
+    if(hp>=17&&L[M]>=4&&!k){exp=(b+1)+M;alt=[b+M];why='Max (17 hp) och 4+ '+SYM[M]+': får bjuda 3 i färgen, men 2 i färgen är det vanliga.'}
+    else{exp=b+M;why='Fullföljer överföringen.'}}
+  else if(!k&&r==='2S'){conv='1NT-svar';exp=L.C>L.D?'3C':'2N';why=L.C>L.D?'Längre ♣ än ♦: 3♣.':'Längre ♦ än ♣ eller lika: 2NT.'}
+  else if(!k&&(r==='3C'||r==='3D')){var m=r[1];exp=[14,13,12].some(function(n){return h.has(m,n)})?'3N':'P';soft=true;
+    why=exp==='P'?'Passar med små kort (xx/xxx) i stödet.':'Topphonnör i färgen: söker 3NT.'}
+  else if(r==='3N'||(!k&&r==='2N'&&false)){exp='P';why='Slutbud: pass.'}
+  else return {exp:null,alt:[],why:'Öppnarens svar på detta bud beskrivs inte i dokumentet.',means:means,conv:conv};
+  return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
+}
+function stay2(h,reply){
+  var hp=h.hp,L=h.L,M=reply==='2H'?'H':reply==='2S'?'S':null,exp,why,alt=[];
+  var means=function(c){
+    if(/^3[HS]$/.test(c))return 'Invit: 3 i öppnarens visade högfärg.';
+    if(c==='2N')return 'Invit; efter Stayman visar sang att man har 4♠ (annars hade man bjudit högfärgen).';
+    if(c==='3N')return 'Utgång i sang; efter Stayman visar det 4♠ (eller ingen fit).';
+    if(c==='4H'||c==='4S')return 'Slutbud i högfärgen.';
+    return null};
+  if(M&&L[M]>=4){exp=hp>=10?'4'+M:'3'+M;why='Fit i '+SYM[M]+' med '+hp+' hp: '+(hp>=10?'utgång 4':'invit 3')+SYM[M]+'.'}
+  else{
+    var five=L.H>=5?'H':L.S>=5?'S':null;
+    if(reply==='2D'&&five&&!h.bal&&hp>=10){exp='3'+five;why='Utgångsstyrka och obalanserad hand med 5-högfärg: 2♣ och sedan 3 i högfärgen.'}
+    else{exp=hp>=10?'3N':'2N';why=hp>=10?'Ingen fit: utgång 3NT.':'Ingen fit: invit 2NT.'}
+  }
+  return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
+}
+function transfer2(h,M){
+  var L=h.L,hp=h.hp,exp,why,alt=[];
+  var means=function(c){
+    if(c==='P')return '0-7 hp med minst 5 kort i överföringsfärgen: svagt slutbud.';
+    if(c==='2N')return '8-9 hp och exakt 5 kort i överföringsfärgen: invit.';
+    if(c==='3'+M)return '8-9 hp och minst 6 kort i överföringsfärgen: invit.';
+    if(c==='3N')return '10-15 hp och exakt 5 kort i överföringsfärgen: utgång i sang.';
+    if(c==='4'+M)return '10-15 hp och minst 6 kort i överföringsfärgen: utgång i högfärgen.';
+    return null};
+  if(hp<=7){exp='P';why=hp+' hp och minst 5 '+SYM[M]+': pass efter fullföljd överföring (0-7 hp).'}
+  else if(hp<=9){if(L[M]>=6){exp='3'+M;why='8-9 hp och minst 6 '+SYM[M]+': invit med 3 i högfärgen.'}else{exp='2N';why='8-9 hp och exakt 5 '+SYM[M]+': invit med 2NT.'}}
+  else if(hp<=15){if(L[M]>=6){exp='4'+M;why='10-15 hp och minst 6 '+SYM[M]+': utgång 4'+SYM[M]+'.'}else{exp='3N';why='10-15 hp och exakt 5 '+SYM[M]+': utgång 3NT.'}}
+  else{return {exp:null,alt:[],why:hp+' hp: fortsättning över 15 hp beskrivs inte i tabellen på sidan 61.',means:means,conv:'överföring'};}
+  return {exp:exp,alt:alt,why:why,means:means,conv:'överföring'};
+}
+function ntOpener3(h,k1,k2,k3){ // 1NT - 2C - 2x - 2N/3N  (öppnarens tredje bud)
+  var L=h.L,hp=h.hp;
+  if(k1==='2C'&&k2==='2H'&&(k3==='2N'||k3==='3N')){
+    var means=function(c){if(c==='3S')return 'Minimum med 4-4 i högfärg: 3♠ (invit godtas ej).';if(c==='4S')return 'Max med 4-4 i högfärg: 4♠.';return null};
+    if(L.S>=4){var e=k3==='3N'?'4S':(hp>=17?'4S':'3S');return {exp:e,alt:k3==='3N'?['P']:[],why:'Partnern har 4♠ (bjöd Stayman och sedan sang) och du har 4♠: '+(e==='4S'?'4♠.':'3♠ med minimum.'),means:means,conv:'Stayman',soft:true}}
+    return {exp:null,alt:[],why:'Utan ♠-fit anger dokumentet inget om hur invit besvaras.',means:means,conv:'Stayman'};
+  }
+  return NC('Fortsättningen beskrivs inte i dokumentet.');
+}
+
+/* ---------- 2♣-ÖPPNING ---------- */
+function resp2c(h){
+  var hp=h.hp,L=h.L,exp,why,alt=[];
+  var means=function(c){
+    if(c==='2D')return 'Om handen inte passar för 2 i högfärg eller 3 i lågfärg (en variant är att alltid svara 2♦).';
+    if(c==='2H'||c==='2S')return '6+ hp och bra 5+ '+SYM[c[1]]+'.';
+    if(c==='3C'||c==='3D')return '6+ hp och bra 6+ lågfärg.';
+    return null};
+  if(hp<6){exp='2D';why='Under 6 hp: 2♦.'}
+  else{
+    var mj=['H','S'].filter(function(s){return L[s]>=5&&h.good(s)}).sort(function(a,b){return L[b]-L[a]||(b==='S'?1:-1)});
+    var mn=['C','D'].filter(function(s){return L[s]>=6&&h.good(s)});
+    if(mj.length){exp='2'+mj[0];alt=['2D'];why='6+ hp och bra 5+ '+SYM[mj[0]]+': 2 i högfärgen (en variant: alltid 2♦).'}
+    else if(mn.length){exp='3'+mn[0];alt=['2D'];why='6+ hp och bra 6+ lågfärg: 3 i färgen (en variant: alltid 2♦).'}
+    else{exp='2D';why='Handen passar inte för 2 i högfärg eller 3 i lågfärg: 2♦.'}
+  }
+  return {exp:exp,alt:alt,why:why,means:means,conv:'2♣-system'};
+}
+function reb2c(h,r){
+  var L=h.L,hp=h.hp,exp,why;
+  var means=function(c){
+    if(r!=='2D')return null;
+    if(c==='2H'||c==='2S')return 'Utgångskrav, 5+ '+SYM[c[1]]+'.';
+    if(c==='2N')return '22-24 hp, jämn hand.';
+    if(c==='3C'||c==='3D')return 'Utgångskrav, 5+ '+SYM[c[1]]+'.';
+    if(c==='3N')return '25-27 hp, jämn hand.';
+    return null};
+  if(r!=='2D')return {exp:null,alt:[],why:'Öppnarens fortsättning efter ett positivt svar beskrivs inte i dokumentet.',means:means,conv:'2♣-system'};
+  if(h.bal&&hp<=24){exp='2N';why=hp+' hp jämn: 2NT (22-24).'}
+  else if(h.bal){exp='3N';why=hp+' hp jämn: 3NT (25-27).'}
+  else{var mj=['H','S'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]||(b==='S'?1:-1)});
+    var mn=['C','D'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]});
+    if(mj.length){exp='2'+mj[0];why='5+ '+SYM[mj[0]]+': 2 i högfärgen (utgångskrav).'}
+    else if(mn.length){exp='3'+mn[0];why='5+ '+SYM[mn[0]]+': 3 i lågfärgen (utgångskrav).'}
+    else return {exp:null,alt:[],why:'Obalanserad hand utan 5-korts färg: dokumentet anger inte budet.',means:means,conv:'2♣-system'}}
+  return {exp:exp,alt:[],why:why,means:means,conv:'2♣-system',soft:false};
+}
+function resp2c2(h,rb,mine){
+  var hp=h.hp,L=h.L,exp,why,alt=[];
+  var near={'2H':'2S','2S':'2N','3C':'3D','3D':'3H'}[rb];
+  var means=function(c){
+    if(c===near)return 'Herbertavslag: närmsta bud visar 0-5 hp och ej trumfstöd (säger inget om färgen).';
+    if(c==='3'+rb[1]&&maj(rb[1])&&rb[0]==='2')return '6+ hp och 3+ stöd.';
+    if(c==='4'+rb[1]&&rb[0]==='2')return '0-5 hp med stöldvärde och 4+ stöd.';
+    if(c==='3N')return '6+ hp, jämn hand.';
+    if((c==='3H'||c==='3S')&&rb[0]==='3')return '6+ hp och 4+ färg.';
+    if(c==='4'+rb[1]&&rb[0]==='3')return '6+ hp, 3+ stöd och slamintresserad.';
+    if(c==='5'+rb[1]&&rb[0]==='3')return '0-5 hp med stöldvärde och bra trumfstöd.';
+    if(isBid(c)&&rb[0]==='2'&&st_(c)!==rb[1])return '6+ hp och 5+ färg.';
+    return null};
+  if(!near)return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'2♣-system'};
+  var T_=rb[1],single=h.singles().length>0;
+  if(rb[0]==='2'){
+    if(hp<=5){
+      if(L[T_]>=4&&single){exp='4'+T_;alt=[near];why='0-5 hp med 4+ stöd och stöldvärde (singel/renons): 4 i färgen.'}
+      else{exp=near;why='0-5 hp utan stödvärde: Herbertavslag (närmsta bud).'}
+    }else if(L[T_]>=3){exp='3'+T_;why='6+ hp och 3+ stöd: 3 i färgen.'}
+    else{var ns=SU.filter(function(s){return s!==T_&&L[s]>=5}).sort(function(a,b){return L[b]-L[a]})[0];
+      if(ns){exp=lowest(ns,rb);why='6+ hp och 5+ '+SYM[ns]+': ny färg.'}
+      else if(h.bal){exp='3N';why='6+ hp och jämn hand: 3NT.'}
+      else return {exp:null,alt:[],why:'Dokumentet anger inte budet för denna hand.',means:means,conv:'2♣-system'}}
+  }else{
+    var m_=T_;
+    if(hp<=5){
+      if(L[m_]>=4&&single){exp='5'+m_;alt=[near];why='0-5 hp med stöldvärde och bra trumfstöd: 5 i färgen.'}
+      else{exp=near;why='0-5 hp: Herbertavslag (närmsta bud).'}
+    }else if(L[m_]>=3){exp='4'+m_;why='6+ hp och 3+ stöd: 4 i färgen (slamintresse).'}
+    else{var mj=['H','S'].filter(function(s){return L[s]>=4}).sort(function(a,b){return L[b]-L[a]||(a==='H'?-1:1)})[0];
+      if(mj){exp='3'+mj;why='6+ hp och 4+ '+SYM[mj]+': 3 i färgen.'}
+      else if(h.bal){exp='3N';why='6+ hp och jämn hand: 3NT.'}
+      else return {exp:null,alt:[],why:'Dokumentet anger inte budet för denna hand.',means:means,conv:'2♣-system'}}
+  }
+  return {exp:exp,alt:alt,why:why,means:means,conv:'Herbert'};
+}
+
+/* ---------- SVAG TVÅA ---------- */
+function resp2w(h,oc){
+  var o=st_(oc),L=h.L,hp=h.hp;
+  var means=function(c){
+    if(c==='3'+o)return 'Spärrhöjning, 3+ stöd, ej invit.';
+    if(c==='3N')return 'Slutbud.';
+    if(c==='2N')return 'Invitbud med 2+ stöd.';
+    if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&lv(c)===2)return '5+ färg, krav till minst 3 i öppningsfärgen.';
+    return null};
+  if(L[o]>=3&&hp<=8)return {exp:'3'+o,alt:[],why:'3+ stöd och bara '+hp+' hp: spärrhöjning 3 i färgen.',means:means,conv:'svag tvåa',soft:true};
+  if(L[o]<3&&hp<=8)return {exp:'P',alt:[],why:'Svag hand utan stöd: pass.',means:means,conv:'svag tvåa',soft:true};
+  return {exp:null,alt:[],why:'Dokumentet anger inga poänggränser för detta svar.',means:means,conv:'svag tvåa'};
+}
+function open2w(h,oc,r){
+  var o=st_(oc),hp=h.hp;
+  var means=function(c){if(r==='2N'){if(c==='3'+o||c==='3D'||c==='3H')return 'Ombud: 6-8 hp.';if(c==='3N'||c==='4'+o)return '9-10 hp.'}if(r==='3'+o){if(c==='P')return 'Pass med minimum.';if(c==='4'+o)return 'Accepterar inviten med maximum.'}return null};
+  if(r==='2N'){var e=hp<=8?'3'+o:'3N';return {exp:e,alt:hp>=9&&maj(o)?['4'+o]:[],why:hp<=8?'6-8 hp: ombud (3 i färgen).':'9-10 hp: 3NT/4 i högfärg.',means:means,conv:'svag tvåa',soft:true}}
+  if(r==='3'+o){var game=o==='D'?'5D':'4'+o;var accept=hp>=9;return {exp:accept?game:'P',alt:[],why:'Invitbud efter svag tvåöppning. Öppningshanden har '+hp+' hp; '+(accept?'maximal öppningsstyrka och accepterar inviten.':'inte maximal öppningsstyrka och passar.'),means:means,conv:'invit efter svag tvåa',soft:false};}
+  return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'svag tvåa'};
+}
+
+/* ---------- ÖPPNARENS ANDRA BUD EFTER 1 I FÄRG ---------- */
+function reb1(h,oc,r){
+  var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false;
+  var means=function(c){
+    if(r==='2N'){var Ma=maj(o);
+      if(c==='3N')return '12-14 hp, balanserad hand.';
+      if(c==='3'+o)return 'Extra styrka, 15+ htp, ingen singel.';
+      if(isBid(c)&&lv(c)===3)return 'Visar singel i '+SYM[c[1]]+'.';return null}
+    if(rs===o&&lv(r)===2){if(c==='4'+o)return '20+ htp: utgång.';if(c==='3'+o)return '17-19 htp, naturlig invit utan singelton.';if(isBid(c)&&lv(c)===3)return '17-19 htp med singel i den bjudna färgen (negativt invitbud).';if(c==='P')return 'Pass: högst 16 htp.'}
+    if(rs!==o&&rs!=='N'&&c===lv(r)+1+rs)return 'Trumfstöd, lägsta höjning: 12-16 htp.';
+    if(rs!==o&&rs!=='N'&&c===(lv(r)+2)+rs)return 'Trumfstöd, enkelhopp: 17-19 htp.';
+    if(isBid(c)&&st_(c)===o&&rs!==o)return 'Egen färg ('+(lv(c)===lv(lowest(o,r))?'lägsta nivå: 12-16 htp, 6+ kort eller 5+ om svagare än reverse':'hopp: 17-19 htp, 6+ kort')+').';
+    if(c==='1N'||c==='2N'&&lv(r)===1&&r!=='1N')return c==='1N'?'12-14 hp, balanserad (NT på lägsta nivå).':'18-19 hp, balanserad (hopp i NT).';
+    if(r==='1N'&&c==='2N')return '18-19 hp, balanserad (2NT när partnern bjöd 1NT).';
+    if(r==='1N'&&c==='P')return 'Pass: 12-14 balanserad.';
+    if(isBid(c)&&st_(c)!=='N'&&st_(c)!==o&&st_(c)!==rs)return 'Andra färg: lägsta nivå 12-17 hp (5-4), hopp 18+ htp, eller reverse 18+.';
+    return null};
+  if(r==='2N'){
+    var sg=h.singles().filter(function(s){return L[s]===1&&s!==o});
+    if(h.bal&&hp<=14){exp='3N';why='12-14 hp balanserad: 3NT.'}
+    else if(sg.length){var s1=sg[0];exp='3'+s1;why='Singel i '+SYM[s1]+': visa den på 3-nivå.';if(sg.length>1)alt=sg.slice(1).map(function(s){return '3'+s});soft=true}
+    else if(h.htp(o)>=15){exp='3'+o;why=h.htp(o)+' htp utan singel: 3 i färgen (extra styrka).'}
+    else return {exp:null,alt:[],why:'Minimum utan singel och obalanserad: dokumentet anger inte budet.',means:means,conv:'Stenberg'};
+    return {exp:exp,alt:alt,why:why,means:means,conv:'Stenberg',soft:soft};
+  }
+  if(rs===o){
+    if(lv(r)===2&&maj(o)){var t=h.htp(o);
+      if(t>=20){exp='4'+o;why=t+' htp: utgång.'}
+      else if(t>=17){var sg2=h.singles().filter(function(s){return L[s]<=1&&s!==o});
+        if(sg2.length){exp=lowest(sg2[0],r);alt=['3'+o];why=t+' htp med singel: ny färg 17-19 (negativt invitbud).'}
+        else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (invit).'}}
+      else{exp='P';why=t+' htp: högst 16, pass.'}
+      return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
+    return {exp:null,alt:[],why:'Fortsättningen efter denna höjning beskrivs inte i dokumentet.',means:means,conv:'trumfstöd'};
+  }
+  var low=function(s){return lowest(s,r)};
+  var sup=rs!=='N'&&L[rs]>=4;
+  var side4=SU.filter(function(s){return s!==o&&L[s]>=4});
+  if(sup){var tp=h.htp(rs);
+    if(tp<=16){exp=low(rs);why='4+ stöd i '+SYM[rs]+' och '+tp+' htp: lägsta höjning (12-16).'}
+    else if(tp<=19){exp=jump(rs,r);why=tp+' htp med stöd: enkelhopp (17-19).'}
+    else if(maj(rs)){exp='4'+rs;why=tp+' htp: hopp till utgång (20+).'}
+    else return {exp:null,alt:[],why:'Med 20+ htp och lågfärgsstöd ska man först undersöka 3NT; dokumentet anger inte budet.',means:means,conv:'öppnarens 2:a bud'};
+    soft=false;
+  }else if(L[o]>=6&&!SU.some(function(s){return s!==o&&L[s]>=4})){
+    if(hp<=16){exp=low(o);why='Egen 6+ färg utan sidofärg: lägsta nivå (12-16).'}
+    else if(hp<=19){exp=jump(o,r);why='Egen 6+ färg: enkelhopp (17-19).'}
+    else if(maj(o)){exp='4'+o;why='Egen 6+ högfärg, 20+: utgång.'}
+    else return NC('Dokumentet anger inte budet för denna hand.',means);
+  }else if(h.bal){
+    if(r==='1N'){if(hp<=14){exp='P';why='Balanserad 12-14: pass efter partnerns 1NT.'}else if(hp<=19&&hp>=18){exp='2N';why='Balanserad 18-19: 2NT.'}else return NC('Dokumentet anger inte budet för denna styrka.',means)}
+    else if(hp<=14){exp=low('N');why='Balanserad 12-14: NT på lägsta nivå.'}
+    else if(hp>=18&&hp<=19){exp=jump('N',r);why='Balanserad 18-19: hopp i NT.'}
+    else return NC('Dokumentet anger inte budet för balanserad hand med '+hp+' hp i denna situation.',means);
+  }else{
+    var s2=side4.filter(function(s){return s!==rs&&L[o]+L[s]>=9}).sort(function(a,b){return L[b]-L[a]})[0];
+    if(s2){var x=low(s2),rev=rk(s2+'')>0&&SU.indexOf(s2)>SU.indexOf(o)&&lv(x)===2&&lv(r)===1;
+      if(rev){if(h.htp(s2)>=18||hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+.'}else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}else return NC('Dokumentet anger inte budet.',means)}
+      else if(hp>=18){exp=jump(s2,r);why='Hopp i andra färgen: 18+ htp med minst 5-4.'}
+      else{exp=x;why='Andra färgen på lägsta nivå: 12-17 hp med 5-4.'}
+    }else if(L[o]>=5){exp=low(o);why='Bjuder om första färgen (5+ kort).';soft=true}
+    else return NC('Dokumentet anger inte budet för denna hand.',means);
+  }
+  return {exp:exp,alt:alt,why:why,means:means,conv:'öppnarens 2:a bud',soft:soft};
+}
+
+/* ---------- RKC ---------- */
+function rkcTrumpFromAuction(bids,sideWanted){
+  var ours=bids.filter(function(x){return side(x.s)===sideWanted&&isBid(x.c)});
+  // Stenberg: öppning 1 i färg följd av partnerns 2NT fastställer öppningsfärgen.
+  for(var i=0;i<ours.length;i++){
+    if(/^1[CDHS]$/.test(ours[i].c)){
+      var opener=ours[i].s, suit=ours[i].c[1];
+      for(var j=i+1;j<ours.length;j++){
+        if(ours[j].s!==opener&&ours[j].c==='2N')return suit;
+      }
+    }
+  }
+  // Färg som båda spelarna har bjudit naturligt.
+  var by={};ours.forEach(function(x){if(x.c[1]!=='N'){by[x.c[1]]=by[x.c[1]]||{};by[x.c[1]][x.s]=1}});
+  var fits=SU.filter(function(k){return by[k]&&by[k].N&&by[k].S});
+  if(fits.length===1)return fits[0];
+  // Överföring efter 1NT: partnerns överföringsbud fastställer högfärgen.
+  if(ours.some(function(x){return x.c==='1N'})){
+    if(ours.some(function(x){return x.c==='2D'})&&ours.some(function(x){return x.c==='2H'}))return 'H';
+    if(ours.some(function(x){return x.c==='2H'})&&ours.some(function(x){return x.c==='2S'}))return 'S';
+  }
+  return null;
+}
+function rkcReply(h,T_){
+  var kc=h.aces+(T_&&h.has(T_,13)?1:0),q=!!(T_&&h.has(T_,12)),vd=h.singles().some(function(s){return h.L[s]===0}),exp,why;
+  var means=function(c){
+    if(T_){
+      if(c==='5C')return '0 eller 3 ess (av 5, inklusive trumfkungen).';
+      if(c==='5D')return '1 eller 4 ess (av 5, inklusive trumfkungen).';
+      if(c==='5H')return '2 ess utan trumfdam.';
+      if(c==='5S')return '2 ess med trumfdam.';
+      if(c==='5N')return '3 ess och någon renons.';
+    }else{
+      if(c==='5C')return '0 eller 4 ess (av 4).';
+      if(c==='5D')return '1 ess.';
+      if(c==='5H')return '2 ess.';
+      if(c==='5S')return '3 ess.';
+    }
+    return null;
+  };
+  if(!T_){
+    exp=kc===0||kc===4?'5C':kc===1?'5D':kc===2?'5H':'5S';
+    why=kc+' ess av 4 (ingen trumf fastställd): '+txt(exp)+'. Kungar räknas inte.';
+  }else if(kc===0||kc===3){exp=kc===3&&vd?'5N':'5C';why=kc+' ess inklusive trumfkungen'+(kc===3&&vd?' och renons: 5NT.':': 5♣.');}
+  else if(kc===1||kc===4){exp='5D';why=kc+' ess inklusive trumfkungen: 5♦.';}
+  else{exp=q?'5S':'5H';why='2 ess '+(q?'med':'utan')+' trumfdam.';}
+  return {exp:exp,alt:[],why:why,means:means,conv:'RKC'};
+}
+/* ---------- INKLIV / DUBBLING ---------- */
+function overcall(h,ob,last){
+  var hp=h.hp,L=h.L,os=ob[1],lvl=lv(ob),exp,why,alt=[];
+  var means=function(c){
+    if(c==='X')return 'Upplysningsdubbling: 12+ hp och minst 3 kort i objudna färger, eller 17+ hp.';
+    if(c==='1N')return 'Inkliv 1NT: 15-17 hp och håll i öppningsfärgen.';
+    if(c==='P')return 'Pass.';
+    if(isBid(c)&&c[1]!=='N'){var lo=lowest(c[1],ob);
+      if(c===lo)return 'Enkelt inkliv: 12-17 hp, 5+ färg'+(lv(c)===1&&maj(c[1])?' (1 i högfärg: 10+ hp och bra 5+färg)':'')+'.';
+      if(lv(c)===lv(lo)+1)return 'Hoppande inkliv: 6-10 hp och 6+ färg.'}
+    if(c==='2N')return 'Försvar mot spärr: 16-18 hp balanserad.';
+    return null};
+  if(lvl>=2&&c0(ob)){ // försvar mot svaga spärröppningar
+    var un=SU.filter(function(s){return s!==os});var tk=hp>=12&&un.every(function(s){return L[s]>=3})&&L[os]<=2;
+    if(tk||hp>=17){exp='X';why='Mot spärröppning: dubbling = upplysningsdubbling eller 17+.'}
+    else if(h.bal&&hp>=16&&hp<=18&&ok('2N',last)){exp='2N';why='16-18 balanserad: 2NT.'}
+    else{exp='P';why='Ingen dubblingshand: pass.'}
+    return {exp:exp,alt:alt,why:why,means:means,conv:'dubbling',soft:true};
+  }
+  var un2=SU.filter(function(s){return s!==os});
+  var takeout=hp>=12&&un2.every(function(s){return L[s]>=3})&&L[os]<=2;
+  var five=un2.filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]||(SU.indexOf(b)-SU.indexOf(a))})[0];
+  var okOver=function(s){var x=lowest(s,ob);return lv(x)<=2&&(lv(x)>1||hp>=10&&h.good(s)||!maj(s)&&hp>=12)&&(hp>=12&&hp<=17||(lv(x)===1&&maj(s)&&hp>=10&&h.good(s)))};
+  if(hp>=17&&(takeout||true)&&h.bal===false&&hp>=17&&five===undefined&&!takeout){exp='X';why='17+ hp: dubbling visar alla fördelningar.'}
+  else if(hp>=15&&hp<=17&&h.bal&&h.stop(os)&&ok('1N',ob)&&lvl===1){exp='1N';why='15-17 hp balanserad med håll i '+SYM[os]+': 1NT.';if(takeout)alt.push('X')}
+  else if(takeout&&!(five&&okOver(five))){exp='X';why='12+ hp med minst 3 kort i objudna färger och kort i '+SYM[os]+': upplysningsdubbling.'}
+  else if(five&&okOver(five)){exp=lowest(five,ob);why=hp+' hp och 5+ '+SYM[five]+': enkelt inkliv.';if(takeout)alt.push('X')}
+  else if(hp>=6&&hp<=10&&un2.some(function(s){return L[s]>=6})){var s6=un2.filter(function(s){return L[s]>=6})[0];exp=jump(s6,ob);why='6-10 hp och 6+ '+SYM[s6]+': hoppande inkliv.'}
+  else{exp='P';why='Ingen inklivshand ('+hp+' hp): pass.'}
+  return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
+}
+function c0(ob){return lv(ob)>=2}
+function respOvercall(h,oc,last,ob){
+  var s=st_(oc),os=ob?ob[1]:null,L=h.L,hp=h.hp,exp,why;
+  var means=function(c){
+    if(c==='1N')return '8-10 hp, balanserad, håll i öppningsfärgen.';if(c==='2N')return '11-13 hp, balanserad, bra håll.';if(c==='3N')return '14+ hp, balanserad, bra håll.';
+    if(isBid(c)&&c[1]===s){var d=lv(c)-lv(oc);return d===1?'Enkel höjning: 6-9 hp, 3-korts stöd.':d===2?'Dubbel höjning: 6-9 hp, 4-korts stöd.':'Trippel höjning: 6-9 hp, 5-korts stöd.'}
+    if(isBid(c)&&c[1]===os)return 'Överbud (deras färg): 10+ hp och 3+ stöd.';
+    if(isBid(c)&&c[1]!=='N')return lv(c)>lv(lowest(c[1],last))?'Hopp i ny färg: 14+ hp, bra 6+ färg, utgångskrav.':'Ny färg: 8+ hp, 5+ färg, rondkrav (10+ hp om budet är på 2-nivå).';
+    if(c==='P')return 'Pass.';return null};
+  if(L[s]>=3&&hp<=9&&hp>=6){var t=L[s]>=5?3:L[s]>=4?2:1;var e=(lv(oc)+t)+s;if(ok(e,last)&&lv(e)<=4){exp=e;why=L[s]+' kort stöd och '+hp+' hp: '+(t===1?'enkel':t===2?'dubbel':'trippel')+' höjning.'}}
+  if(!exp&&L[s]>=3&&hp>=10&&os){exp=lowest(os,last);why='10+ hp och 3+ stöd: överbud i deras färg.'}
+  // Fortsatt NT-svar efter inkliv är inte fullständigt specificerat i källfilen.
+  return {exp:exp||null,alt:[],why:why||'Dokumentet anger inte budet för denna hand.',means:means,conv:'inkliv',soft:true};
+}
+function respDouble(h,ob,last){
+  var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[];
+  var un=SU.filter(function(s){return s!==os});
+  var means=function(c){
+    if(c==='1N')return '6-9 hp och håll i öppningsfärgen.';if(c==='2N')return '10-12 hp och håll i öppningsfärgen.';if(c==='3N')return '13+ hp och håll i öppningsfärgen.';
+    if(c==='P')return 'Pass: bara med många kort i öppningsfärgen.';
+    if(isBid(c)&&c[1]===os)return 'Överbud: 10+ hp, krav så länge nya färger bjuds.';
+    if(isBid(c)&&c[1]!=='N'){var lo=lowest(c[1],ob);return c===lo?'Färg på lägsta nivå: 0-7 hp (i värsta fall 3-korts färg).':lv(c)===lv(lo)+1?(lv(c)>=3?'Hopp till 3-läget: 10-12 htp och helst 5+ färg.':'Hopp i färg: 8-9 htp, 4+ färg.'):null}
+    return null};
+  var best=un.slice().sort(function(a,b){return L[b]-L[a]||SU.indexOf(b)-SU.indexOf(a)})[0];
+  if(L[os]>=5&&h.good(os)){exp='P';why='Många kort i öppningsfärgen: pass är rätt.'}
+  else if(hp<=7){exp=lowest(best,ob);why='0-7 hp: färg på lägsta nivå ('+SYM[best]+').'}
+  else if(hp<=9){if(L[best]>=4){exp=jump(best,ob);why='8-9 htp och 4+ färg: hopp i färg.'}else if(h.stop(os)&&ok('1N',ob)){exp='1N';why='6-9 hp med håll: 1NT.'}else exp=lowest(best,ob)}
+  else if(hp<=12){if(L[best]>=5&&lv(lowest(best,ob))<3){exp=(3)+best;alt=[lowest(os,ob)];why='10-12 htp och 5+ färg: hopp till 3-läget.'}else if(h.bal&&h.stop(os)){exp='2N';alt=[lowest(os,ob)];why='10-12 hp med håll: 2NT.'}else{exp=lowest(os,ob);why='10+ hp: överbud i deras färg (krav).'}}
+  else{if(h.bal&&h.stop(os)){exp='3N';alt=[lowest(os,ob)];why='13+ hp med håll: 3NT.'}else{exp=lowest(os,ob);why='10+ hp: överbud i deras färg (krav).'}}
+  return {exp:exp,alt:alt,why:why||'',means:means,conv:'dubbling',soft:true};
+}
+
+/* ---------- SVARSHANDENS ANDRA BUD EFTER 1NT-SVAR ---------- */
+function respAfter1NT(h,opening,rebid,act){
+  var hp=h.hp,L=h.L, suit=isBid(act)?st_(act):null;
+  var isOpeningSuit=suit&&suit===st_(opening);
+  var lowestNewSuit=suit&&lowest(suit,rebid)===act;
+  var means=function(c){
+    if(isBid(c)&&c[0]==='3'&&st_(c)!=='N'&&L[st_(c)]>=6&&hp>=6&&hp<=9){
+      if(st_(c)!==st_(opening)&&lowest(st_(c),rebid)===c)
+        return 'Svarshandens andra färgbud på lägsta nivå efter 1NT: 6-9 hp och minst 6-korts färg. Undantag från krav på ny färg.';
+      if(st_(c)===st_(opening)&&c==='3'+st_(opening))
+        return 'Svarshandens andra bud i öppningsfärgen enligt dokumentets exempel: 6-9 hp och minst 6-korts färg. Undantag från krav på ny färg.';
+    }
+    return null;
+  };
+  // Källans två exempel: 1♠–1NT / 2♦–3♣ och 1♥–1NT / 2♣–3♥.
+  // För annan färg krävs lägsta möjliga bud över öppnarens återbud;
+  // i öppningsfärgen följs dokumentets uttryckliga 3-nivåexempel.
+  var allowed=hp>=6&&hp<=9&&suit&&L[suit]>=6&&lv(act)===3&&
+    ((isOpeningSuit&&act==='3'+suit)||(!isOpeningSuit&&lowestNewSuit));
+  if(allowed){
+    return {exp:act,alt:[],why:hp+' hp och 6+ '+SYM[suit]+': bjud färgen på lägsta nivå i andra budronden. Budet är inte krav.',means:means,conv:'svar efter 1NT',soft:false};
+  }
+  return NC('Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet.',means,'svar efter 1NT');
+}
+
+/* ---------- TVÅFÄRGSHAND 5+ hjärter / 4+ klöver (sidan D) ---------- */
+function twoSuitResponse(h){
+  var L=h.L,hp=h.hp,exp=null,why='',means=function(c){
+    if(c==='2H'||c==='2S')return '6-9 hp, 2-3 kort i hjärter respektive 6+ kort i spader: svagt.';
+    if(c==='2N')return '10-12 hp och ruterhåll: invit.';
+    if(c==='3C')return '10-12 hp och 4+ klöver: invit.';
+    if(c==='3H')return '10-12 hp och 3 hjärter: invit.';
+    if(c==='3N')return '13-17 hp och ruterhåll.';
+    if(c==='4H')return '13-17 htp och 3 hjärter.';
+    if(c==='2D')return 'Fjärde färg: utgångskrav, 13+ hp; visar inte ruter utan söker oftast håll för sang.';
+    return null;
+  };
+  if(hp>=13&&L.D>=4){exp='2D';why=hp+' hp och ruter som fjärde färg: utgångskrav (13+ hp).';}
+  else if(hp>=13&&hp<=17&&L.H===3){exp='4H';why=hp+' htp och 3 hjärter: 4♥.';}
+  else if(hp>=13&&hp<=17&&h.stop('D')){exp='3N';why=hp+' hp och ruterhåll: 3NT.';}
+  else if(hp>=10&&hp<=12&&L.H===3){exp='3H';why=hp+' htp och 3 hjärter: invit 3♥.';}
+  else if(hp>=10&&hp<=12&&L.C>=4){exp='3C';why=hp+' hp och 4+ klöver: invit 3♣.';}
+  else if(hp>=10&&hp<=12&&h.stop('D')){exp='2N';why=hp+' hp och ruterhåll: invit 2NT.';}
+  else if(hp>=6&&hp<=9&&L.S>=6){exp='2S';why=hp+' hp och 6+ spader: svagt 2♠.';}
+  else if(hp>=6&&hp<=9&&L.H>=2&&L.H<=3){exp='2H';why=hp+' hp och 2-3 hjärter: svagt 2♥.';}
+  else{return {exp:null,alt:[],why:'Handen passar inte tydligt i något av svaren som anges på sidan D.',means:means,conv:'tvåfärgshand'};}
+  return {exp:exp,alt:[],why:why,means:means,conv:'tvåfärgshand'};
+}
+/* ---------- DISPATCH ---------- */
+function lastBidCode(prior){var l=null;prior.forEach(function(x){if(isBid(x.c))l=x.c});return l}
+function nodeFor(st,i){
+  var b=st.bids[i],me=b.s,pt=partner(me),prior=st.bids.slice(0,i),h=H(st.hands[me]);
+  var last=lastBidCode(prior);
+  var ours=prior.filter(function(x){return side(x.s)===side(me)&&x.c!=='P'});
+  var opp=prior.filter(function(x){return side(x.s)!==side(me)&&x.c!=='P'});
+  var iFirst=ours.length?prior.indexOf(ours[0]):-1;
+  var oppBefore=opp.filter(function(x){return iFirst<0||prior.indexOf(x)<iFirst});
+  var oppAfter=opp.filter(function(x){return iFirst>=0&&prior.indexOf(x)>iFirst});
+  var nc=function(w){return NC(w)};
+  if(!ours.length){
+    if(!opp.length)return openingNode(h);
+    if(opp.length===1&&isBid(opp[0].c)){var ob=opp[0].c;if(ob==='1N'||ob==='2C')return nc('Försvar mot '+txt(ob)+'-öppning beskrivs inte i dokumentet.');return overcall(h,ob,last)}
+    return nc('Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.');
+  }
+  for(var k=1;k<ours.length;k++)if(ours[k].s===ours[k-1].s)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
+  if(ours[ours.length-1].s!==pt)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
+  var d=ours.length,opener=ours[0].s===me,f=ours[0].c;
+  // RKC: 4NT-frågan och partnerns svar bedöms mot hela den tidigare auktionen.
+  var trumpForSide=rkcTrumpFromAuction(prior,side(me));
+  if(b.c==='4N'){
+    return {exp:'4N',alt:[],why:trumpForSide?'Essfråga (RKC) med '+SYM[trumpForSide]+' som fastställd trumf.':'Essfråga (RKC), ingen trumf fastställd: fyra ess räknas.',means:function(c){return c==='4N'?'Essfråga (RKC).':null},conv:'RKC'};
+  }
+  var partnerAsk=prior.slice().reverse().filter(function(x){return x.s===pt&&x.c==='4N'})[0];
+  if(partnerAsk){return rkcReply(h,rkcTrumpFromAuction(prior,side(me)));}
+  if(oppBefore.length){
+    if(d===1&&!oppAfter.length&&oppBefore.length===1){
+      if(f==='X')return respDouble(h,oppBefore[0].c,last);
+      if(f==='1N')return ntResp(h,0);
+      if(isBid(f))return respOvercall(h,f,last,oppBefore[0].c);
+    }
+    return nc('Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.');
+  }
+  if(oppAfter.length){
+    return nc('Motståndarna lade sig i efter er öppning. Dokumentet beskriver bara 1NT-störning (ny färg på 2-nivå naturlig, dubbling = upplysning).');
+  }
+  var c1=f,fs=c1[1];
+  if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
+    // Svarshandens andra bud efter 1NT: ny färg på lägsta nivå är undantag från krav.
+    if(c1==='1N'&&!opener&&d===2){
+      var opening=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&/^1[CDHS]$/.test(x.c)})[0];
+      var openerRebid=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&x!==opening}).slice(-1)[0];
+      if(opening&&openerRebid)return respAfter1NT(h,opening.c,openerRebid.c,b.c);
+    }
+    if(!opener&&d===1)return ntResp(h,k);
+    if(opener&&d===2)return ntOpener(h,k,ours[1].c);
+    if(!opener&&d===3&&!k){var m1=ours[1].c,rep=ours[2].c;
+      if(m1==='2C')return stay2(h,rep);
+      if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
+      if(m1==='2H'&&rep==='2S')return transfer2(h,'S');
+      if(m1==='2S'&&rep==='2N'){var mc=h.L.C>=h.L.D?'3C':'3D';return {exp:mc,alt:[],why:'Bjud din långa lågfärg på 3-nivå som slutbud.',means:T({'3C':'Slutbud i ♣.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
+      if(m1==='2S'&&rep==='3C'){var e=h.L.C>=h.L.D?'P':'3D';return {exp:e,alt:[],why:e==='P'?'Du har ♣ som lågfärg: pass.':'Du har ♦ som lågfärg: 3♦.',means:T({P:'Slutbud: pass.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
+    }
+    if(opener&&d===4&&!k)return ntOpener3(h,ours[1].c,ours[2].c,ours[3].c);
+    return nc('Fortsättningen i 1NT/2NT-systemet beskrivs inte i dokumentet.');
+  }
+  if(c1==='2C'){
+    if(!opener&&d===1){var oh=H(st.hands[pt]);if(oh.hp>=12&&oh.hp<=21&&oh.L.H>=5&&oh.L.C>=4)return twoSuitResponse(h);return resp2c(h); }
+    if(opener&&d===2)return reb2c(h,ours[1].c);
+    if(!opener&&d===3){var rb=ours[2].c;if(rb==='2N')return ntResp(h,1);return resp2c2(h,rb,ours[1].c)}
+    return nc('Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.');
+  }
+  if(/^2[DHS]$/.test(c1)){
+    if(!opener&&d===1)return resp2w(h,c1);
+    if(opener&&d===2)return open2w(h,c1,ours[1].c);
+    return nc('Fortsättningen efter svag tvåa beskrivs inte i dokumentet.');
+  }
+  if(/^1[CDHS]$/.test(c1)){
+    // Sekvens: 1 i färg – 1NT – öppnarens återbud – SHs andra bud.
+    if(!opener&&d===3&&ours[1].c==='1N')
+      return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
+    if(!opener&&d===1)return resp1(h,c1);
+    if(opener&&d===2)return reb1(h,c1,ours[1].c);
+    return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
+  }
+  return nc('Spärröppningar (3-nivå eller högre): dokumentet beskriver inga svar.');
+}
+/* Mer utförlig hjälptext. Innehållet bygger på Nordisk standard 2012-08-22.
+   Texten skiljer budets systembetydelse från skälet till att handen ska välja budet. */
+function expandedMeaning(short,conv,act){
+  var extra={
+    'öppning':'Öppningsbudet beskriver öppningshandens styrka och fördelning så att partnern kan avgöra om sidan ska spela delkontrakt, invitera eller söka utgång/slam. Honnörspoäng räknas: ess 4, kung 3, dam 2 och knekt 1. Handens fördelning och färgkvalitet vägs också in.',
+    'svar':'Svarshanden beskriver sin styrka och fördelning. En ny färg på 1-nivån visar minst 6 hp och minst 4 kort samt är rondkrav. En ny färg på 2-nivån visar minst 11 hp och minst 4 kort samt är rondkrav. Stöd visas enligt nivåerna för stödpoäng/trumfpoäng.',
+    'Stenberg':'Stenberg 2NT visar minst 13 htp och minst 4 korts stöd i öppningsfärgen. Det är utgångskrav: paret ska alltså inte stanna under utgång. Öppnaren beskriver därefter extra styrka eller singelton enligt färgen som bjuds.',
+    'Stayman':'Stayman är högfärgsfråga efter sangöppning. 2♣ frågar efter 4-korts högfärg; öppnaren svarar 2♦ utan 4+ högfärg, 2♥ med 4–5 hjärter och 2♠ med 4–5 spader. Svarshanden bör själv ha en 4-korts högfärg eller slamintresse enligt sekvensen.',
+    'överföring':'Överföringsbudet visar minst 5 kort i den angivna högfärgen. Efter öppnarens fullföljande: 0-7 hp passar; 8-9 hp bjuder 2NT med exakt 5 kort eller 3 i högfärgen med minst 6 kort (invit); 10-15 hp bjuder 3NT med exakt 5 kort eller 4 i högfärgen med minst 6 kort.',
+    'tvåfärgshand':'Öppningshanden har minst 5+4 kort i två färger men har inte preciserat styrkan. En ny färg från svarshanden får därför inte passas. På sidan D visas 1♥ med 4+ hjärter och 2♣ med minst 5 hjärter och 4 klöver; styrkeintervallet är enligt användarens rättelse 12-21 htp. Svar efter 2♣: 2♥/2♠ är svagt (6-9 hp); 2NT är invit med 10-12 hp och ruterhåll; 3♣ är invit med 10-12 hp och 4+ klöver; 3♥ är invit med 10-12 hp och 3 hjärter; 3NT visar 13-17 hp och ruterhåll; 4♥ visar 13-17 htp och 3 hjärter. Fjärde färg är utgångskrav (13+ hp) och visar inte färgen.',
+    '1NT-svar':'Efter 1NT används systemets särskilda svar: Stayman för att hitta högfärgsfit, överföring med minst 5-korts högfärg, naturlig invit med balanserad hand eller slutbud. Efter motståndarnas inkliv gäller inte Stayman/överföringar enligt dokumentet.',
+    '2♣-system':'Öppning 2♣ är utgångskrav eller minst 22 hp med balanserad hand. Svarshanden visar positiv hand med minst 6 hp och bra långfärg, annars används 2♦ som avslag/relä. Fortsättningen beskriver öppnarens hand och ska leda till minst utgång.',
+    'Herbert':'Herbertavslag är det närmaste tillgängliga budet efter 2♣–2♦. Det visar 0–5 hp och säger i sig inget om den färg som bjuds. Stöd och stöldvärde kan i stället visas med höjning enligt dokumentets särskilda regler.',
+    'svag tvåa':'En svag tvåöppning visar 6–10 hp och exakt 6 kort i ♦ eller högfärg. Svarshanden kan höja spärrande med stöd och svag hand, bjuda 2NT som invit eller bjuda 3 i samma färg som invit. Efter 3 i samma färg passar öppningshanden med minimum och går till 4♥/4♠ eller 5♦ med maximum. 2♣ omfattas inte av denna regel.',
+    'öppnarens 2:a bud':'Öppnarens andra bud preciserar styrka och fördelning efter svarshandens första bud. Stöd i partnerns färg visas med lägsta höjning 12–16 htp, enkelhopp 17–19 htp och hopp till utgång vid 20+ htp i högfärg. Egen färg, andra färg och sangbud visar i stället längd, styrka eller balanserad hand enligt systemet.',
+    'RKC':'RKC är essfråga. När trumf är fastställd räknas fyra ess plus trumfkungen som femte ess; utan fastställd trumf räknas endast de fyra essen. Svaren 5♣, 5♦, 5♥ och 5♠ anger antal nyckelkort enligt tabellen i dokumentet. Trumfdamen och renons kan därefter beskrivas.',
+    'inkliv':'Ett inkliv visar normalt 12–17 hp och minst 5 kort i färgen. 1NT-inkliv visar 15–17 hp och håll i öppningsfärgen. Hoppande inkliv visar 6–10 hp och minst 6 kort. Efter inkliv beskriver svarshanden stöd, egen färg eller sanghåll enligt de angivna styrkeintervallen.',
+    'dubbling':'Upplysningsdubbling visar normalt minst 12 hp och minst 3 kort i de objudna färgerna, eller 17+ hp oavsett fördelning. Partnern ska välja sin längsta färg direkt; en ny färg från dubblaren senare visar stark hand om dubblaren saknar stöd.',
+    'svar efter 1NT':'Efter 1 i färg–1NT och öppnarens återbud finns ett uttryckligt undantag: svarshandens andra färgbud kan vara 6–9 hp och minst 6 kort, utan att vara krav, enligt exemplen i dokumentet.'
+  };
+  var detail=extra[conv]||'Budets betydelse ska läsas tillsammans med den föregående budgivningen. Poänggränserna och färglängderna i Nordisk standard gäller för just den beskrivna sekvensen; samma budkod kan därför betyda något annat i en annan sekvens.';
+  return short ? short+'\n\n'+detail : detail;
+}
+function verdictOf(node,act){
+  var short=node.means(act)||'Budet ingår inte i dokumentets system i den här situationen.';
+  var o={bedomning:'ej_täckt',motivering:node.why||'',forklaring:expandedMeaning(short,node.conv||'övrigt',act),konvention:node.conv||'övrigt',battre:''};
+  if(!node.exp){o.bedomning='ej_täckt';o.motivering=node.why;return o}
+  if(act===node.exp){o.bedomning='rätt';return o}
+  if(node.alt&&node.alt.indexOf(act)>=0){o.bedomning='valfritt';o.battre=txt(node.exp)+' är huvudbudet.';return o}
+  o.bedomning=node.soft?'valfritt':'fel';
+  o.battre=txt(node.exp);
+  if(node.soft)o.motivering='Dokumentet är inte exakt här, men huvudbudet är '+txt(node.exp)+'. '+node.why;
+  return o;
+}
+function judge(st){
+  var items=[],r=0,f=0,v=0,n=0;
+  st.bids.forEach(function(b,i){
+    if(side(b.s)===1){
+      if(b.c!=='P')items.push({nr:i+1,plats:NAME[b.s],bud:txt(b.c),konvention:'motståndare',forklaring:b.e||'Motståndarens bud (robot).',bedomning:'rätt',battre:'',motivering:''});
+      return;
+    }
+    var node;try{node=nodeFor(st,i)}catch(e){node=NC('Kunde inte bedöma budet ('+e.message+').')}
+    var v_=verdictOf(node,b.c);
+    var it={nr:i+1,plats:NAME[b.s],bud:txt(b.c)};for(var k in v_)it[k]=v_[k];
+    if(it.bedomning==='rätt')r++;else if(it.bedomning==='fel')f++;else if(it.bedomning==='valfritt')v++;else n++;
+    items.push(it);
+  });
+  return {items:items,summary:'Rätt '+r+' · Fel '+f+' · Valfritt '+v+' · Ej täckt '+n+' (Norr och Syd).'};
+}
+/* ---------- AUKTIONSMOTOR: HELA SEK VENSEN ---------- */
+function nextSeat(s){return {N:'E',E:'S',S:'W',W:'N'}[s]}
+function validSeat(s){return s==='N'||s==='E'||s==='S'||s==='W'}
+function validateAuction(st){
+  var bids=st.bids||[], dealer=validSeat(st.dealer)?st.dealer:(bids.length?bids[0].s:null);
+  var errors=[], contract=null, contractSide=null, doubled=0, consecutivePasses=0, ended=false, expected=dealer;
+  for(var i=0;i<bids.length;i++){
+    var b=bids[i]||{}, c=b.c, seat=b.s;
+    if(ended){errors.push({index:i,message:'Bud efter att budgivningen redan avslutats.'});continue}
+    if(!validSeat(seat)){errors.push({index:i,message:'Okänd spelare/plats.'});continue}
+    if(expected&&seat!==expected)errors.push({index:i,message:'Fel turordning: '+seat+' skulle inte bjuda nu; förväntad spelare är '+expected+'.'});
+    expected=nextSeat(seat);
+    if(c==='P'){
+      consecutivePasses++;
+      if((!contract&&consecutivePasses===4)||(contract&&consecutivePasses===3))ended=true;
+      continue;
+    }
+    consecutivePasses=0;
+    if(isBid(c)){
+      if(contract&&rk(c)<=rk(contract))errors.push({index:i,message:'Budet '+txt(c)+' är inte högre än föregående kontraktsbud '+txt(contract)+'.'});
+      contract=c;contractSide=side(seat);doubled=0;
+      continue;
+    }
+    if(c==='X'){
+      if(!contract)errors.push({index:i,message:'Dubbling kräver ett föregående kontraktsbud.'});
+      else if(side(seat)===contractSide)errors.push({index:i,message:'Man får inte dubbla sin egen sidas kontraktsbud.'});
+      else if(doubled!==0)errors.push({index:i,message:'Kontraktet är redan dubblat eller redubblat.'});
+      else doubled=1;
+      continue;
+    }
+    if(c==='XX'){
+      if(!contract||doubled!==1)errors.push({index:i,message:'Redubbling kräver att motståndarna har dubblat det aktuella kontraktet.'});
+      else if(side(seat)!==contractSide)errors.push({index:i,message:'Endast sidan som bjöd kontraktet får redubbla.'});
+      else doubled=2;
+      continue;
+    }
+    errors.push({index:i,message:'Okänt budkod: '+c+'.'});
+  }
+  var contractText=contract?txt(contract)+(doubled===1?' dubblat':doubled===2?' redubblat':''):'Inget kontrakt';
+  return {valid:errors.length===0,errors:errors,ended:ended,contract:contract,contractSide:contractSide,doubled:doubled,contractText:contractText,dealer:dealer};
+}
+function judgeComplete(st){
+  var structural=validateAuction(st), items=[],right=0,wrong=0,optional=0,uncovered=0;
+  var bids=st.bids||[];
+  for(var i=0;i<bids.length;i++){
+    var b=bids[i], item={nr:i+1,plats:NAME[b.s]||b.s,bud:txt(b.c)};
+    var issue=null;
+    for(var j=0;j<structural.errors.length;j++)if(structural.errors[j].index===i){issue=structural.errors[j].message;break}
+    if(issue){
+      item.konvention='budordning';item.forklaring='Budet kan inte bedömas som en giltig del av auktionen.';
+      item.bedomning='fel';item.battre='';item.motivering=issue;wrong++;
+    }else if(side(b.s)===1){
+      item.konvention='motståndare';item.forklaring=b.e|| (b.c==='P'?'Motståndaren passar.':'Motståndarens bud (robot).');
+      item.bedomning='rätt';item.battre='';item.motivering='Motståndarens bud visas som kontext och poängsätts inte.';
+    }else{
+      var node;
+      try{node=nodeFor(st,i)}catch(e){node=NC('Kunde inte bedöma budet ('+e.message+').')}
+      var v=verdictOf(node,b.c);
+      for(var k in v)item[k]=v[k];
+      if(item.bedomning==='rätt')right++;else if(item.bedomning==='fel')wrong++;else if(item.bedomning==='valfritt')optional++;else uncovered++;
+    }
+    // Presentationsordning: budets bedömning först, därefter varför och sedan systemförklaring.
+    item={nr:item.nr,plats:item.plats,bud:item.bud,bedomning:item.bedomning,motivering:item.motivering||'',forklaring:item.forklaring||'',konvention:item.konvention||'',battre:item.battre||''};
+    items.push(item);
+  }
+  var status=structural.ended?'Budgivningen är avslutad.':bids.length?'Budgivningen är inte avslutad – inväntar fler bud.':'Ingen budgivning registrerad.';
+  return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
+}
+return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'2.5-page61-transfer-pageD-two-suiter-12hp'};
+})();
+if(typeof module!=='undefined')module.exports=Rattning;
+
+// Exporteras både som global variabel i webbläsare och som CommonJS-modul (Node/Claude Code).
+if (typeof module !== 'undefined' && module.exports) module.exports = Rattning;
+if (typeof window !== 'undefined') window.Rattning = Rattning;
+
+</script>
+<script>
+(function(){
+var SU=['C','D','H','S','N'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},RK={14:'E',13:'K',12:'D',11:'Kn',10:'T'};
+var SEATS=['N','E','S','W'],NAME={N:'Norr',E:'Öst',S:'Syd',W:'Väst'};
+var app=document.getElementById('app');
+var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random;
+try{seat=localStorage.getItem('bt_seat')}catch(e){}
+try{showHp=localStorage.getItem('bt_hp')==='1'}catch(e){}
+
+var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: lå=♣/♦, hö=♥/♠, hp: E4 K3 D2 Kn1; stödpoäng vid stöd eller egen 6+färg/5-5: renons 3, singel 2, dubbelton 1; htp=hp+stp. Balanserad hand: 4333, 4432, 5332.\n"+
+"ÖPPNING: 1 i färg 12-19 hp, 4+färg (11 hp om bra 5+färg). 1NT 15-17 hp balanserad (även 5hö332). 2♣ utgångskrav eller 22-24 balanserad. 2♦/2♥/2♠ 6-10 hp exakt 6-korts färg (med 11 hp och 6-färg öppna 1 i färgen). 2NT 20-21 balanserad. 3 i färg spärr 6-10 hp 7-kort. 4 i färg spärr 8-kort. Färgval: längsta färgen; två 5-kort: högsta; två eller tre 4-kort: lägsta.\n"+
+"SVAR PÅ 1 I FÄRG: 1NT 6-10 hp, förnekar 4-korts stöd och 4-korts färg på 1-nivå. 1 över 1: 6+ hp 4+färg rondkrav. 2 över 1: 11+ hp 4+färg rondkrav. Stöd 4+ i lå: 2 lå 6-9 htp, 3 lå 10-12 htp, 4 lå spärr max 9 htp, 2NT 13+ htp Stenberg utgångskrav. Stöd 4+ i hö: 2 hö 6-9, 3 hö 10-12, 4 hö spärr max 12, 2NT 13+ Stenberg. Dubbelhopp i ny färg: renons i färgen, 4+stöd, 13+ htp. Har man stöd i lå och 4+hö bjuds högfärg först. Högfärgsstöd visas alltid.\n"+
+"STENBERG 2NT i hö (ÖH): 3 hö extra styrka 15+ htp ingen singel; 3 lå singel i den bjudna lågfärgen; 3 andra hö singel i andra högfärgen; 3NT 12-14 hp balanserad. Stenberg i lå: 3 lå 15+ htp ingen singel; 3 andra lå singel i andra lågfärgen; 3 hö singel i högfärgen; 3NT 12-14 balanserad.\n"+
+"ÖPPNINGSHANDENS ANDRA BUD: trumfstöd 4+: lägsta höjning 12-16 htp, enkelhopp 17-19, hopp till utgång 20+. Egen 6+färg utan sidofärg: lägsta nivå 12-16, enkelhopp 17-19, hopp till utgång (hö) 20+. Balanserad: NT på lägsta nivå 12-14 (bjöd partnern 1NT passar man), hopp i NT 18-19. Tvåfärgshand: andra färgen på lägsta nivå 12-17 om bara 5-4 (svarshanden får passa med 6-7 hp och stöd); hopp i andra färgen 18+ htp minst 5-4; stigande (reverse) budgivning 18+ och minst 5-4. Efter 1 hö–2 hö: 3 hö 17-19 htp naturlig invit utan singel; ny färg 17-19 htp med singel i bjuden färg.\n"+
+"FORTSATT BUDGIVNING: ny färg är krav en rond (utgångskrav om på 3-nivå). Fjärde färg söker håll i den bjudna färgen. Undantag: svarshandens färg på lägsta nivå efter att ha bjudit 1NT är ej krav (6-9 hp, 6+färg).\n"+
+"ÖPPNING 2♦/2♥/2♠ (6-10 hp, 6-kort): ny färg 5+ krav till minst 3 i öppningsfärgen; 3 i öppningsfärgen spärrhöjning 3+stöd ej invit; 3NT slutbud; hopp renons slaminvit; 2NT invit med 2+stöd; ombudsbud på 3-nivå 6-8 hp; 3NT/4 hö 9-10 hp.\n"+
+"ÖPPNING 1NT (15-17): 2♣ Stayman (fråga efter 4-korts hö, bör ha egen 4-hö); 2♦ överföring ♥ (5+); 2♥ överföring ♠ (5+); 2♠ dåliga kort 6+lå (vill spela 3 lå, ÖH bjuder 2NT eller 3♣ efter längd); 2NT naturlig invit balanserad utan 4-korts hö; 3 lå invit bra 6+lå; 3NT slutbud. Svar på Stayman: 2♦ ingen 4+hö; 2♥ 4-5 korts ♥ (kan ha 4-4 i hö); 2♠ 4-5 korts ♠. Efter Stayman: 2NT och 3 i ÖH:s hö är invit; ny färg ukrav naturligt (5+hö eller 4+lå); med utgångsstyrka och 5-hö obalanserad bjuds 2♣ och sedan 3 hö. Efter överföring (2♦→2♥): pass dåliga kort 5+♥; 2NT invit jämn exakt 5♥; 3♥ invit 6+; 2♠ rondkrav 5♥+4♠; 3 lå ukrav 5♥+4+lå; 3NT välj utgång jämn exakt 5♥; 4 lå kontroll/slamintresse; 4♥ slutbud; 4NT RKC. Samma för ♠. Överföring: ÖH bjuder färgen nästan alltid (3 i färgen med max och 4+stöd). Efter motståndarbud över 1NT gäller inte Stayman/överföring: ny färg på 2-nivå naturlig invit 5+, på 3-nivå utgångskrav 5+; dubbling upplysning (minst invit, 3+ i objudna).\n"+
+"ÖPPNING 2NT (20-21 balanserad; 22-24/25-27 via 2♣): som efter 1NT en nivå högre (3♣ Stayman, 3♦/3♥ överföringar, 3NT slutbud).\n"+
+"ÖPPNING 2♣ (utgångskrav eller minst 22 balanserad): svar 2 hö = 6+hp bra 5+hö; 3 lå = 6+hp bra 6+lå; 2♦ om handen inte passar (variant: alltid 2♦). Efter 2♣–2♦: 2 hö ukrav 5+hö; 2NT 22-24 jämn; 3 lå ukrav 5+lå; 3NT 25-27 jämn. Efter 2♣–2 hö/3 lå: närmsta bud 0-5 hp och ej trumfstöd (Herbertavslag); 3 hö 6+hp och 3+stöd; 4 hö 0-5 hp stöldvärde 4+stöd; ny färg 6+hp 5+färg; 3NT 6+hp jämn.\n"+
+"SLAM: RKC 4NT med trumf fastställd: 5♣ 0 eller 3 ess (av 5), 5♦ 1 eller 4, 5♥ 2 ess utan trumfdam, 5♠ 2 ess med trumfdam, 5NT 3 ess och renons. Ej fastställd trumf (4 ess): 5♣ 0 eller 4, 5♦ 1, 5♥ 2, 5♠ 3. Kontrollbud: ny färg på 4-nivå efter fastställd trumf visar slamintresse och kontroll (E/K eller renons/singel).\n"+
+"INKLIV: enkelt inkliv 12-17 hp (inkliv 1 hö: 10+hp och bra 5+färg). 1NT-inkliv 15-17 med håll i öppningsfärgen. Hoppande inkliv 6-10 hp 6+färg. Svar på inkliv: 1NT 8-10 balanserad med håll; 2NT 11-13 bra håll; 3NT 14+ bra håll; enkel höjning 6-9 hp 3-kort stöd; dubbel höjning 6-9 4-kort; trippel höjning 6-9 5-kort; ny färg 8+ 5+färg rondkrav (10+ om 2-nivå); hopp i ny färg 14+ bra 6+färg utgångskrav; överbud (deras färg) 10+ hp 3+stöd. Hoppinkliv 2 hö: 6-10 hp bra 6-kort, fortsättning som efter öppning 2 hö.\n"+
+"UPPLYSNINGSDUBBLING (D): 12+ hp och minst 3 kort i objudna färger, eller 17+ alla fördelningar. Utan stöd som bjuder egen färg/NT efter dubbling: 18+ hp. Svar: 1NT 6-9 hp håll i öppningsfärgen; 2NT 10-12 håll; 3NT 13+ håll; färg på lägsta nivå 0-7 hp (i värsta fall 3-kort); hopp i färg 8-9 htp 4+färg; hopp till 3-läget 10-12 htp helst 5+färg; överbud 10+ hp krav; pass bara med många kort i öppningsfärgen. Försvar mot spärröppningar (2 och högre): D = UD eller 17+ hp; 2NT 16-18 balanserad; överbud = hållfråga.";
+
+function side(s){return s==='N'||s==='S'?0:1}
+function isBot(s){return s==='E'||s==='W'}
+function partner(s){return SEATS[(SEATS.indexOf(s)+2)%4]}
+function rank(c){return (+c[0])*5+SU.indexOf(c[1])}
+function isBid(c){return c!=='P'&&c!=='X'&&c!=='XX'}
+function txt(c){return c==='P'?'Pass':c==='X'||c==='XX'?c:c[0]+SYM[c[1]]}
+function fmt(c){if(c==='P')return 'Pass';if(!isBid(c))return c;var s=c[1];return '<span class="'+(s==='H'||s==='D'?'red':'')+'">'+c[0]+SYM[s]+'</span>'}
+function esc(s){return String(s==null?'':s).replace(/[&<>]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[m]})}
+function shuffleDeal(){
+  var d=[],i,j,s=['S','H','D','C'];
+  for(i=0;i<4;i++)for(j=2;j<=14;j++)d.push(s[i]+j);
+  for(i=d.length-1;i>0;i--){j=Math.floor(rng()*(i+1));var t=d[i];d[i]=d[j];d[j]=t}
+  return {N:d.slice(0,13),E:d.slice(13,26),S:d.slice(26,39),W:d.slice(39)};
+}
+function turn(st){return SEATS[(SEATS.indexOf(st.dealer)+st.bids.length)%4]}
+function ctx(st){
+  var r={lb:null,lbS:null,dbl:0,dblS:null};
+  st.bids.forEach(function(b){
+    if(isBid(b.c)){r.lb=b.c;r.lbS=b.s;r.dbl=0;r.dblS=null}
+    else if(b.c==='X'){r.dbl=1;r.dblS=b.s}
+    else if(b.c==='XX'){r.dbl=2}
+  });
+  return r;
+}
+function ended(st){
+  var b=st.bids;if(!b.length)return false;
+  var any=b.some(function(x){return x.c!=='P'});
+  if(!any)return b.length>=4;
+  return b.length>=4&&b.slice(-3).every(function(x){return x.c==='P'});
+}
+function legal(st,c,s){
+  var x=ctx(st);
+  if(c==='P')return true;
+  if(c==='X')return !!x.lb&&x.dbl===0&&side(x.lbS)!==side(s);
+  if(c==='XX')return x.dbl===1&&side(x.dblS)!==side(s);
+  return !x.lb||rank(c)>rank(x.lb);
+}
+function hpOf(h){var p=0;h.forEach(function(k){var n=+k.slice(1);if(n>=11)p+=n-10});return p}
+function maxLen(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return Math.max(L.S,L.H,L.D,L.C)}
+function nsOk(d){var a=hpOf(d.N),b=hpOf(d.S);return a+b>=22&&Math.max(a,b)>=12}
+function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
+function oppBorder(h){var p=hpOf(h);return p>=10&&p<=11&&maxLen(h)>=5}
+var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','RKC (essfråga i högfärg)'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (störd)']];
+function focLabel(f){for(var i=0;i<FOC.length;i++)if(FOC[i][0]===f)return FOC[i][1];return ''}
+function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return L}
+function isBal(L){var s=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');return s==='4333'||s==='4432'||s==='5332'}
+function htpWith(h,su){var L=shapeOf(h),t=hpOf(h);['S','H','D','C'].forEach(function(x){if(x!==su){var n=L[x];t+=n===0?3:n===1?2:n===2?1:0}});return t}
+function focusOk(d,f){
+  var pr=[['N','S'],['S','N']],i,a,b,La,Lb,M;
+  if(f==='tva')return hpOf(d.N)>=22||hpOf(d.S)>=22;
+  function anyP(fn){return fn(d.N,d.S)||fn(d.S,d.N)}
+  var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
+  if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=30&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})}
+  if(f==='invit')return tot>=23&&tot<=25&&mx>=12&&mn>=8&&mn<=11;
+  if(f==='trumf')return anyP(function(a,b){var La=shapeOf(a),Lb=shapeOf(b),h=hpOf(a);return h>=12&&h<=19&&['S','H','D','C'].some(function(m){return La[m]>=5&&Lb[m]>=4&&htpWith(b,m)>=6&&htpWith(b,m)<=12})});
+  if(f==='sang')return anyP(function(a,b){var Lb=shapeOf(b),h=hpOf(a),g=hpOf(b);return isBal(shapeOf(a))&&((h>=15&&h<=17&&g>=8&&g<=12)||(h>=20&&h<=21&&g>=4&&g<=10))&&Lb.H<4&&Lb.S<4});
+  if(f==='tvafarg')return anyP(function(a,b){var L=shapeOf(a),v=[L.S,L.H,L.D,L.C].sort(function(x,y){return y-x}),h=hpOf(a);return h>=12&&h<=19&&v[0]>=5&&v[1]>=4&&hpOf(b)>=6});
+  if(f==='svag')return anyP(function(a,b){var L=shapeOf(a),h=hpOf(a);return h>=6&&h<=10&&(L.D===6||L.H===6||L.S===6||Math.max(L.S,L.H,L.D,L.C)>=7)&&hpOf(b)>=12});
+  if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['H','S'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9});
+  if(f==='nt'||f==='stenberg'){
+    for(i=0;i<2;i++){
+      a=d[pr[i][0]];b=d[pr[i][1]];La=shapeOf(a);Lb=shapeOf(b);
+      if(f==='nt'&&hpOf(a)>=15&&hpOf(a)<=17&&isBal(La)&&hpOf(b)>=8&&(Lb.H>=4||Lb.S>=4))return true;
+      if(f==='stenberg'){['H','S'].forEach(function(m){if(hpOf(a)>=12&&hpOf(a)<=19&&La[m]>=5&&Lb[m]>=4&&htpWith(b,m)>=13)M=true});['C','D'].forEach(function(m){var mx=Math.max(La.S,La.H,La.D,La.C);if(hpOf(a)>=12&&hpOf(a)<=19&&La[m]>=4&&La[m]===mx&&La.H<5&&La.S<5&&Lb[m]>=4&&Lb.H<4&&Lb.S<4&&htpWith(b,m)>=13)M=true})}
+    }
+    return !!M;
+  }
+  return nsOk(d);
+}
+function dubDeal(){
+  var v=rng()<.5?'A':'B',d,i,SU4=['S','H','D','C'];
+  for(i=0;i<4000;i++){
+    d=shuffleDeal();
+    if(v==='A'){
+      var dl=['E','W'][Math.floor(rng()*2)],op=botCall({mode:'stord',hands:d,dealer:dl,bids:[]},dl).c;
+      if(!/^1[CDHS]$/.test(op))continue;
+      var ds=SEATS[(SEATS.indexOf(dl)+1)%4],L=shapeOf(d[ds]);
+      if(hpOf(d[ds])>=12&&L[op[1]]<=2&&SU4.every(function(m){return m===op[1]||L[m]>=3})){d.dealer=dl;return d}
+    }else{
+      var dl2=['N','S'][Math.floor(rng()*2)],ol=SEATS[(SEATS.indexOf(dl2)+1)%4],h=d[dl2],hh=hpOf(h),Lo=shapeOf(d[ol]);
+      var sh=SU4.filter(function(m){return Lo[m]<=2}).length;
+      if(hh>=12&&hh<=19&&!(isBal(shapeOf(h))&&hh>=15&&hh<=17)&&hpOf(d[ol])>=12&&sh===1&&Math.max(Lo.S,Lo.H,Lo.D,Lo.C)<=4){d.dealer=dl2;return d}
+    }
+  }
+  return shuffleDeal();
+}
+function biasedDeal(mode,focus){
+  if(focus==='dubbling')return dubDeal();
+  var f=rng()<0.8||focus==='inkliv'?oppClear:oppBorder,d,i;
+  var oppCond=mode==='stord'&&(!focus||focus==='alla'||focus==='inkliv');
+  for(i=0;i<4000;i++){
+    d=shuffleDeal();if(!focusOk(d,focus))continue;
+    if(!oppCond||f(d.E)||f(d.W))return d;
+  }
+  return shuffleDeal();
+}
+function R(c,e){return {c:c,e:e}}
+function botCall(st,seat){
+  if(st.mode==='ostord')return R('P');
+  var h=st.hands[seat],hp=hpOf(h),L={S:0,H:0,D:0,C:0},c=ctx(st),sd=side(seat);
+  h.forEach(function(k){L[k[0]]++});
+  var shape=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');
+  var bal=shape==='4333'||shape==='4432'||shape==='5332';
+  var order=['C','D','H','S'],s,i,x;
+  function lowest(su){for(var l=1;l<=7;l++){var y=l+su;if(!c.lb||rank(y)>rank(c.lb))return y}}
+  var mb=st.bids.filter(function(b){return isBid(b.c)&&b.s===seat}).length;
+  var pb=st.bids.filter(function(b){return isBid(b.c)&&b.s===partner(seat)});
+  var all=st.bids,myIdx=-1;all.forEach(function(b,i){if(b.s===seat&&isBid(b.c)&&myIdx<0)myIdx=i});
+  if(mb){
+    var pAfter=all.filter(function(b,i){return i>myIdx&&b.s===partner(seat)&&isBid(b.c)});
+    var htpFor=function(su){var t=hp;for(var q=0;q<4;q++)if(order[q]!==su){var n=L[order[q]];t+=n===0?3:n===1?2:n===2?1:0}return t};
+    if(mb===1&&pAfter.length){
+      var pS=pAfter[0].c[1],mS=all[myIdx].c[1];
+      if(pS!=='N'&&L[pS]>=4){var ht=htpFor(pS);if(ht>=12){x=lowest(pS);if(ht>=17&&ht<=19&&+x[0]<=3)x=(+x[0]+1)+pS;if(ht<=19&&+x[0]<=4)return R(x,'Stöd i svarshandens färg, '+ht+' htp ('+(ht<=16?'lägsta höjning 12-16':'enkelhopp 17-19')+')')}}
+      if(mS!=='N'&&L[mS]>=6&&hp<=16){x=lowest(mS);if(+x[0]<=3)return R(x,'Egen 6+färg på lägsta nivå, 12-16 htp')}
+      if(bal&&hp>=12&&hp<=14){x=lowest('N');if(+x[0]<=2)return R(x,'NT på lägsta nivå, 12-14 hp balanserad')}
+      return R('P');
+    }
+    if(mb===1&&!pAfter.length&&pb.length&&c.lb&&side(c.lbS)!==sd){
+      var ps3=pb[0].c[1];
+      if(ps3!=='N'&&L[ps3]>=4){var h3=htpFor(ps3);if(h3>=8){x=lowest(ps3);if(+x[0]<=3)return R(x,'Konkurrens: stöd i partnerns färg, '+h3+' htp')}}
+    }
+    return R('P');
+  }
+  if(pb.length){
+    var pc=pb[0].c,ps=pc[1];
+    if(ps!=='N'&&L[ps]>=4){
+      var htp=hp;for(i=0;i<4;i++)if(order[i]!==ps){var n=L[order[i]];htp+=n===0?3:n===1?2:n===2?1:0}
+      var tg=null,lv=+pc[0];
+      if(htp>=13&&(ps==='H'||ps==='S'))tg='4'+ps;else if(htp>=10)tg=(lv+2)+ps;else if(htp>=6)tg=(lv+1)+ps;
+      if(tg&&+tg[0]<=5&&legal(st,tg,seat))return R(tg,'Stöd i partnerns färg, '+htp+' htp (6-9 enkel, 10-12 hopp, 13+ utgång i hö)');
+    }
+    if(hp>=6){
+      var bs=null;for(i=3;i>=0;i--){s=order[i];if(s!==ps&&L[s]>=4&&(!bs||L[s]>L[bs]))bs=s}
+      if(bs){x=lowest(bs);if(+x[0]===1||(+x[0]===2&&hp>=11))return R(x,'Ny färg, 4+kort, '+(+x[0]===1?'6+ hp (1 över 1)':'11+ hp (2 över 1)')+', rondkrav')}
+      if(hp<=10&&ps!=='N'&&L[ps]<4){x='1N';if(legal(st,x,seat))return R(x,'6-10 hp, förnekar 4-korts stöd och egen färg på 1-nivå')}
+    }
+    return R('P','För svag för att svara (under 6 hp) eller inget passande bud');
+  }
+  if(!c.lb){
+    if(hp>=15&&hp<=17&&bal)return R('1N','15-17 hp, balanserad');
+    if(hp>=12){
+      var m=Math.max(L.S,L.H,L.D,L.C),ps2=null;
+      if(m>=5){for(i=3;i>=0;i--)if(L[order[i]]===m){ps2=order[i];break}}
+      else{for(i=0;i<4;i++)if(L[order[i]]===m){ps2=order[i];break}}
+      return R('1'+ps2,'12-19 hp, 4+färg');
+    }
+    if(hp>=6&&hp<=10){
+      for(i=1;i<4;i++)if(L[order[i]]===6)return R('2'+order[i],'6-10 hp, exakt 6-korts färg (svag tvåa)');
+      for(i=0;i<4;i++)if(L[order[i]]>=7)return R('3'+order[i],'Spärrbud, 6-10 hp, 7-korts färg');
+    }
+    return R('P');
+  }
+  if(side(c.lbS)!==sd&&c.dbl===0&&c.lb[1]!=='N'){
+    var ls=c.lb[1],lvl=+c.lb[0];
+    if(hp>=12&&hp<=17){
+      var best=null;for(i=0;i<4;i++){s=order[i];if(s!==ls&&L[s]>=5&&(!best||L[s]>=L[best]))best=s}
+      if(best){x=lowest(best);if(+x[0]<=2)return R(x,'Enkelt inkliv, 12-17 hp, 5+färg')}
+    }
+    if(hp>=15&&hp<=17&&bal&&L[ls]>=3&&lvl===1)return R('1N','Inkliv 1NT, 15-17 hp, håll i öppningsfärgen');
+    if(hp>=12&&lvl<=2){
+      var okd=L[ls]<=2;for(i=0;i<4;i++)if(order[i]!==ls&&L[order[i]]<3)okd=false;
+      if(okd)return R('X','Upplysningsdubbling, 12+ hp, minst 3 kort i objudna färger');
+    }
+    if(hp>=6&&hp<=10&&lvl===1){
+      for(i=0;i<4;i++){s=order[i];if(s!==ls&&L[s]>=6){x=lowest(s);var j=(+x[0]+1)+s;if(+j[0]<=3)return R(j,'Hoppande inkliv, 6-10 hp, 6+färg')}}
+    }
+  }
+  return R('P');
+}
+function advance(st){
+  var g=0;
+  while(!ended(st)&&isBot(turn(st))&&g++<30){var s=turn(st),r=botCall(st,s);st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c})}
+  return st;
+}
+function newDeal(no,mode,focus,seed){
+  rng=mulberry(seed);
+  if(focus==='dubbling')mode='stord';
+  var hd=biasedDeal(mode,focus),dl=hd.dealer;delete hd.dealer;
+  if(!dl)dl=(focus&&focus!=='alla'&&focus!=='inkliv')?['N','S'][Math.floor(rng()*2)]:SEATS[Math.floor(rng()*4)];
+  return advance({id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0});
+}
+function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:(st.rep||0)+1,h:[]})}
+function handHtml(cards){
+  var out='';
+  ['S','H','D','C'].forEach(function(s){
+    var v=cards.filter(function(c){return c[0]===s}).map(function(c){return +c.slice(1)}).sort(function(a,b){return b-a});
+    out+='<div class="'+(s==='H'||s==='D'?'red':'')+'">'+SYM[s]+' '+(v.length?v.map(function(n){return RK[n]||n}).join(' '):'–')+'</div>';
+  });
+  return '<div class="hand">'+out+'</div>';
+}
+function handText(cards){
+  return ['S','H','D','C'].map(function(s){
+    var v=cards.filter(function(c){return c[0]===s}).map(function(c){return +c.slice(1)}).sort(function(a,b){return b-a});
+    return SYM[s]+' '+(v.length?v.map(function(n){return RK[n]||n}).join(' '):'-');
+  }).join(' | ');
+}
+function contractText(st){
+  var x=ctx(st);if(!x.lb)return 'Alla passade';
+  return 'Slutkontrakt: '+fmt(x.lb)+(x.dbl===1?' X':x.dbl===2?' XX':'')+' ('+NAME[x.lbS]+' bjöd först kontraktets slutbud)';
+}
+function auctionHtml(st,end){
+  var pad=SEATS.indexOf(st.dealer),h='<div class="aud">',i;
+  SEATS.forEach(function(s){h+='<div class="ah'+(side(s)===0?' us':'')+'">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</div>'});
+  for(i=0;i<pad;i++)h+='<div></div>';
+  st.bids.forEach(function(b){h+=b.c==='P'?'<div class="ac pass">Pass</div>':'<div class="ac">'+fmt(b.c)+'</div>'});
+  if(!end)h+='<div class="ac cur">…</div>';
+  return h+'</div>';
+}
+var savedFlag=false,copied=false,room='',rev=0,es=null,connState='offline',sender=Math.random().toString(36).slice(2,8);
+try{room=localStorage.getItem('bt_room')||''}catch(e){}
+function newSeed(){return Math.floor(Math.random()*1000000000)}
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function pack(st){
+  if(!st||!st.hands)return {menu:true,no:(st&&st.no)||0,mode:modeSel,focus:focusSel};
+  return {no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:st.rep||0,h:st.bids.filter(function(b){return !isBot(b.s)}).map(function(b){return b.s+b.c})};
+}
+function build(m){
+  var st=newDeal(m.no,m.mode,m.focus,m.seed);st.rep=m.rep||0;
+  (m.h||[]).forEach(function(x){var s=x[0],c=x.slice(1);if(ended(st)||turn(st)!==s||!legal(st,c,s))return;st.bids.push({s:s,c:c});advance(st)});
+  return st;
+}
+function adopt(p){
+  if(p.menu){state={menu:true,no:p.no};modeSel=p.mode||'stord';focusSel=p.focus||'alla'}
+  else state=build(p);
+  clr();render();
+}
+function topic(){return 'budtraning-'+room.toLowerCase().replace(/[^a-z0-9]/g,'')}
+function send(m){
+  if(!room)return;
+  try{fetch('https://ntfy.sh/'+topic(),{method:'POST',body:JSON.stringify(m)}).catch(function(){})}catch(e){}
+}
+function connect(){
+  if(es){try{es.close()}catch(e){}}
+  if(!room)return;
+  connState='ansluter';
+  try{
+    es=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');
+    es.onopen=function(){connState='online';if(state)render()};
+    es.onerror=function(){connState='offline';if(state)render()};
+    es.onmessage=function(ev){
+      try{var o=JSON.parse(ev.data);if(o.event&&o.event!=='message')return;var m=JSON.parse(o.message);
+        if(m.from===sender||!(m.v>rev))return;rev=m.v;adopt(m.st)}catch(e){}
+    };
+  }catch(e){connState='offline'}
+}
+function save(st){state=st;rev++;render();send({v:rev,from:sender,st:pack(st)})}
+function makeCode(){try{return btoa(unescape(encodeURIComponent(JSON.stringify({v:rev,st:pack(state)}))))}catch(e){return ''}}
+function applyCode(c){try{var o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(o&&o.st){if(o.v>rev)rev=o.v;adopt(o.st);return true}}catch(e){}return false}
+function copyText(t,done){
+  function ok(){copied=true;render();setTimeout(function(){copied=false;render()},1800)}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){fallback()});return}}catch(e){}
+  fallback();
+  function fallback(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');ok()}catch(e){prompt('Kopiera texten:',t)}document.body.removeChild(ta)}
+}
+function reviewPrompt(st){
+  var auc=st.bids.map(function(b,i){return (i+1)+'. '+NAME[b.s]+': '+txt(b.c)+(b.e?' [robotens avsikt: '+b.e+']':'')}).join('\n');
+  return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Spelarna är Norr och Syd (partners); Öst och Väst är enkla robotar vars bud inte ska bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. För varje bud av Norr och Syd (och Öst/Västs bud som inte är pass, kort): förklara vad budet visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
+}
+function reviewHtml(st){
+  var result;
+  try{result=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]})}catch(e){result={items:[],summary:'Rättningsmotorn kunde inte köras: '+e.message,auction:{errors:[]}}}
+  var h='<div class="card"><p class="status">Automatisk rättning</p><p class="mu">Regelbaserad genomgång enligt den inlagda Nordiska standarden. Bud som saknar täckning i reglerna markeras som ej bedömbara.</p>';
+  h+='<p><b>'+esc(result.summary||'')+'</b></p>';
+  if(result.auction&&result.auction.errors&&result.auction.errors.length){h+='<div class="review-item fel"><b>Budgivningskontroll</b><ul>'+result.auction.errors.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}
+  h+='<div class="review-list">';
+  (result.items||[]).forEach(function(it){
+    var cls=it.bedomning==='rätt'?'ok':it.bedomning==='fel'?'fel':'mid';
+    var label=it.bedomning==='rätt'?'RÄTT':it.bedomning==='fel'?'FEL':it.bedomning==='valfritt'?'VALFRITT':'EJ BEDÖMBART';
+    h+='<article class="review-item '+cls+'"><div class="top"><b>'+esc(it.nr+'. '+it.plats+' · '+it.bud)+'</b><span class="tag">'+label+'</span></div>';
+    if(it.motivering)h+='<p><b>Varför?</b> '+esc(it.motivering)+'</p>';
+    if(it.forklaring)h+='<p><b>Budets betydelse:</b> '+esc(it.forklaring)+'</p>';
+    if(it.konvention)h+='<p class="mu"><b>Område:</b> '+esc(it.konvention)+'</p>';
+    if(it.battre)h+='<p><b>Bättre bud:</b> '+esc(it.battre)+'</p>';
+    h+='</article>';
+  });
+  h+='</div><div class="review-secondary"><p class="status">Fördjupad AI-analys</p><p class="mu">Kopiera rättningsunderlaget och klistra in det i Claude eller annan AI för en friare, djupare analys. Den automatiska rättningen ovan finns kvar som första bedömning.</p><button id="xp" class="sm">'+(copied?'Kopierat ✓':'Kopiera rättningsunderlag till AI')+'</button></div></div>';
+  return h;
+}
+function connLabel(){return 'Rum '+room+' · '+connState}
+function roomScreen(){
+  app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
+  var inp=document.getElementById('rc');
+  document.getElementById('rg').onclick=function(){var c='',a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';for(var i=0;i<6;i++)c+=a[Math.floor(Math.random()*a.length)];inp.value=c};
+  document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}room=v;try{localStorage.setItem('bt_room',room)}catch(e){}connect();render()};
+}
+function loadSaved(){try{return JSON.parse(localStorage.getItem('bt_saved')||'[]')}catch(e){return []}}
+function putSaved(l){try{localStorage.setItem('bt_saved',JSON.stringify(l))}catch(e){}}
+function saveDeal(){
+  if(!state||!state.hands)return;
+  var st=state,l=loadSaved(),p=pack(st);p.id='d'+Date.now();p.savedAt=new Date().toISOString().slice(0,10);
+  l.unshift(p);putSaved(l.slice(0,40));
+  savedFlag=true;render();setTimeout(function(){savedFlag=false;render()},1800);
+}
+function savedHtml(){
+  var l=loadSaved();if(!l.length)return '';
+  var h='<div class="card"><p class="status">Sparade givar (på den här enheten)</p>';
+  l.forEach(function(s){
+    h+='<div style="border-top:1px solid var(--line);padding:8px 0"><div class="mu">Giv '+esc(s.no)+' · '+(s.mode==='ostord'?'ostört':'störd')+' · '+esc(s.savedAt)+'</div><div class="row" style="margin-top:6px"><button data-play="'+esc(s.id)+'">Spela om</button>'+((s.h&&s.h.length)?'<button data-show="'+esc(s.id)+'">Visa budgivning</button>':'')+'<button data-del="'+esc(s.id)+'" class="mu">Ta bort</button></div></div>';
+  });
+  return h+'</div>';
+}
+function attachSaved(){
+  function find(id){return loadSaved().filter(function(s){return s.id===id})[0]}
+  Array.prototype.forEach.call(app.querySelectorAll('[data-play]'),function(b){b.onclick=function(){var s=find(b.getAttribute('data-play'));if(s){clr();var q=JSON.parse(JSON.stringify(s));q.h=[];q.rep=(q.rep||0)+1;save(build(q))}}});
+  Array.prototype.forEach.call(app.querySelectorAll('[data-show]'),function(b){b.onclick=function(){var s=find(b.getAttribute('data-show'));if(s){clr();save(build(s))}}});
+  Array.prototype.forEach.call(app.querySelectorAll('[data-del]'),function(b){b.onclick=function(){var id=b.getAttribute('data-del');putSaved(loadSaved().filter(function(s){return s.id!==id}));render()}});
+}
+var score={},hintText='',hintBusy=false,showHp=false,focusSel='alla';
+function mySeat(st){if(seat!=='X')return seat;var t=turn(st);return (t==='N'||t==='S')?t:'N'}
+function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))return st.bids[i].s;return null}
+function submitCall(st,me,c){
+  var nb=st.bids.concat([{s:me,c:c}]);clr();
+  save(advance({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0}));
+  
+}
+function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s))return seat==='X'||st.bids[i].s===seat}return false}
+function undoBid(){
+  var st=state,i;
+  for(i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))break;
+  if(i<0||(seat!=='X'&&st.bids[i].s!==seat))return;
+  clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
+}
+function hpInfo(h){
+  var L=shapeOf(h);
+  return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('-')+(isBal(L)?' · balanserad':' · obalanserad');
+}
+function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
+function setSeat(s){if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
+
+var pickL=null,pickS=null,pickO=null;
+function clr(){pickL=null;pickS=null;pickO=null;hintText=''}
+function curPick(){return pickO||(pickL&&pickS?pickL+pickS:null)}
+function oppList(st){
+  var l=st.bids.filter(function(b){return side(b.s)===1&&b.c!=='P'&&b.e});
+  if(!l.length)return '';
+  return '<p class="mu" style="margin:10px 0 2px"><b>Motståndarnas bud (robotens avsikt)</b></p>'+l.map(function(b){return '<p style="margin:2px 0">'+NAME[b.s]+' '+fmt(b.c)+' – '+esc(b.e)+'</p>'}).join('');
+}
+function fanHtml(cards){
+  var o='';
+  ['S','H','C','D'].forEach(function(s){
+    cards.filter(function(c){return c[0]===s}).map(function(c){return +c.slice(1)}).sort(function(a,b){return b-a}).forEach(function(n){
+      o+='<div class="cd'+(s==='H'||s==='D'?' r':'')+'" data-s="'+SYM[s]+'"><b>'+(RK[n]||n)+'</b><i>'+SYM[s]+'</i></div>';
+    });
+  });
+  return '<div class="fan">'+o+'</div>';
+}
+function seatHtml(st,s,rel){
+  var lc=null;st.bids.forEach(function(b){if(b.s===s)lc=b.c});
+  return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span><small>'+rel+'</small><span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc">'+(lc?fmt(lc):'&nbsp;')+'</span></div>';
+}
+function endHand(st,s){return '<div class="eh'+(side(s)===0?' us':'')+'"><b>'+NAME[s]+'</b>'+handHtml(st.hands[s])+'</div>'}
+function handBlock(st,me){
+  return '<div class="row"><span class="nm">'+NAME[me]+(seat==='X'?' · på tur':' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'</div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">'+(showHp?'Dölj poäng':'Visa poäng')+'</button>'+(showHp?'<span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span>':'')+'</div>';
+}
+function render(){
+  if(!room){roomScreen();return}
+  if(!seat){
+    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Vem sitter vid den här enheten?</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Norr</b><span>Du spelar Norr på den här enheten.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd på den här enheten.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Båda på en enhet</b><span>Du spelar både Norr och Syd på den här enheten.</span></button></div></div>';
+    document.getElementById('sN').onclick=function(){setSeat('N')};
+    document.getElementById('sS').onclick=function(){setSeat('S')};
+    document.getElementById('sX').onclick=function(){setSeat('X')};
+    return;
+  }
+  if(!state||!state.hands){
+    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:20px">Välj budgivning</p><div class="modes"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Störd budgivning</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><p class="status" style="margin-top:24px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div><div style="margin-top:16px"><button id="go2" class="pri" style="width:100%;min-height:60px;font-size:20px">Starta träning</button></div>'+savedHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
+    var no=(state&&state.no)||0;
+    var b1=document.getElementById('m1'),b2=document.getElementById('m2');
+    b1.onclick=function(){setSel('stord',focusSel);b1.classList.add('on');b2.classList.remove('on')};
+    document.getElementById('go2').onclick=function(){clr();save(newDeal(no+1,modeSel,focusSel,newSeed()))};
+    b2.onclick=function(){setSel('ostord',focusSel);b2.classList.add('on');b1.classList.remove('on')};
+    document.getElementById('sw').onclick=function(){setSeat(null)};
+    document.getElementById('rm').onclick=function(){room='';try{localStorage.removeItem('bt_room')}catch(e){}if(es)es.close();connState='offline';render()};
+    Array.prototype.forEach.call(app.querySelectorAll('[data-f]'),function(b){b.onclick=function(){setSel(modeSel,b.getAttribute('data-f'));Array.prototype.forEach.call(app.querySelectorAll('[data-f]'),function(c){c.classList.toggle('on',c===b)})}});
+    attachSaved();
+    return;
+  }
+  var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
+  var base='S',pos={l:'W',t:'N',r:'E'},x=ctx(st);
+  function rel(s){return s===partner(me)?'Partner':'Motstånd'}
+  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Störd')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+(savedFlag?'Sparad ✓':'Spara given')+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
+  var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
+  if(end){
+    h+='<section class="table end"><div class="seatT">'+endHand(st,pos.t)+'</div><div class="seatL">'+endHand(st,pos.l)+'</div><div class="center">'+hbx+'</div><div class="seatR">'+endHand(st,pos.r)+'</div><div class="mine">'+endHand(st,base)+'</div></section>';
+  }else{
+    h+='<section class="table"><div class="seatT">'+(pos.t===me?handBlock(st,me):seatHtml(st,pos.t,rel(pos.t)))+'</div><div class="seatL">'+seatHtml(st,pos.l,rel(pos.l))+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatHtml(st,pos.r,rel(pos.r))+'</div><div class="mine">'+(base===me?handBlock(st,me):seatHtml(st,base,rel(base)))+'</div></section>';
+  }
+  h+='<aside class="side"><div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><p class="status" style="margin:0">Budgivning</p>'+(canUndo(st)?'<button id="undo" class="sm">Ångra mitt senaste bud</button>':'')+'</div><div class="ascroll">'+auctionHtml(st,end)+'</div></div>';
+  if(end){
+    h+='<div class="card"><p class="status">'+contractText(st)+'</p>'+oppList(st)+'<div class="row" style="margin-top:12px"><button id="rp">Spela om given</button><button id="nd" class="pri">Ny giv</button></div></div>'+reviewHtml(st);
+  }else if(mine){
+    h+='<div class="card"><p class="status">'+(seat==='X'?NAME[me]+' bjuder':'Din tur att bjuda')+'</p><div class="lv">';
+    for(var l=1;l<=7;l++){var okL=SU.some(function(s){return legal(st,l+s,me)});h+='<button data-l="'+l+'" '+(okL?'':'disabled ')+(pickL===l?'class="on"':'')+'>'+l+'</button>'}
+    h+='</div><div class="st">';
+    SU.forEach(function(s){var okS=pickL?legal(st,pickL+s,me):true;h+='<button data-s="'+s+'" '+(okS?'':'disabled ')+(pickS===s?'class="on"':'')+'><span class="'+(s==='H'||s==='D'?'red':'')+(s==='N'?' nt':'')+'">'+SYM[s]+'</span></button>'});
+    h+='</div><div class="ops"><button data-o="P">Pass</button><button data-o="X" '+(legal(st,'X',me)?'':'disabled')+'>X</button><button data-o="XX" '+(legal(st,'XX',me)?'':'disabled')+'>XX</button></div></div>';
+  }else{
+    h+='<div class="card wait"><p class="status">Väntar på '+NAME[t]+'</p><p class="mu">Budet visas här så fort det är lagt.</p></div>';
+  }
+  h+='</aside></main>';
+  app.innerHTML=h;
+  document.getElementById('sw').onclick=function(){setSeat(null)};
+  var cb=document.getElementById('cpb');if(cb)cb.onclick=function(){var c=makeCode();try{navigator.clipboard.writeText(c)}catch(e){}var q=prompt('Din spelkod är kopierad. Klistra in partnerns kod här för att synka manuellt (lämna tomt för att avbryta):','');if(q&&!applyCode(q))alert('Koden gick inte att läsa.')};
+  var xb=document.getElementById('xp');if(xb)xb.onclick=function(){copyText(reviewPrompt(st))};
+  var fb=document.getElementById('fsb');if(fb)fb.onclick=function(){try{var d=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(d.requestFullscreen||d.webkitRequestFullscreen).call(d)}}catch(e){}};
+  document.getElementById('md').onclick=function(){clr();setSel(st.mode||'stord',st.focus||'alla');save({menu:true,no:st.no})};
+  document.getElementById('sv').onclick=saveDeal;
+  var hb=document.getElementById('hpb');if(hb)hb.onclick=function(){showHp=!showHp;try{localStorage.setItem('bt_hp',showHp?'1':'0')}catch(e){}render()};
+  var un=document.getElementById('undo');if(un)un.onclick=undoBid;
+  var nd=document.getElementById('nd');if(nd)nd.onclick=function(){clr();save(newDeal(st.no+1,st.mode,st.focus,newSeed()))};
+  var rp=document.getElementById('rp');if(rp)rp.onclick=function(){clr();save(replay(st))};
+  Array.prototype.forEach.call(app.querySelectorAll('[data-l]'),function(b){
+    b.onclick=function(){pickL=+b.getAttribute('data-l');pickO=null;if(pickS&&!legal(st,pickL+pickS,me))pickS=null;if(pickS){submitCall(st,me,pickL+pickS);return}render()};
+  });
+  Array.prototype.forEach.call(app.querySelectorAll('[data-s]'),function(b){
+    b.onclick=function(){pickS=b.getAttribute('data-s');pickO=null;if(pickL&&!legal(st,pickL+pickS,me))pickL=null;if(pickL){submitCall(st,me,pickL+pickS);return}render()};
+  });
+  Array.prototype.forEach.call(app.querySelectorAll('[data-o]'),function(b){
+    b.onclick=function(){var o=b.getAttribute('data-o');if(legal(st,o,me)){submitCall(st,me,o);return}pickO=o;pickL=null;pickS=null;render()};
+  });
+  var go=document.getElementById('go');
+  if(go)go.onclick=function(){
+    var c=curPick();if(!c||!legal(st,c,me))return;
+    var nb=st.bids.concat([{s:me,c:c}]);clr();
+    save(advance({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0}));
+    
+  };
+}
+
+if(room)connect();
+render();
+})();
+</script>
+</body>
+</html>
