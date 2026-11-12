@@ -40,6 +40,7 @@ jobs:
           mkdir -p dds-runtime
           cp /tmp/dds/web/dds_web_wasm.js dds-runtime/
           cp /tmp/dds/web/dds_web_wasm_bin.js dds-runtime/
+          cp /tmp/dds/web/patch_web_wasm.py dds-runtime/
 
       - name: Commit generated runtime
         run: |
@@ -48,7 +49,7 @@ jobs:
             exit 0
           fi
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+users.noreply.github.com"
           git add dds-runtime
           git commit -m "Build local DDS WebAssembly runtime"
           git push
