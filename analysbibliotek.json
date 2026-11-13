@@ -1,0 +1,362 @@
+{
+  "version": "0.1.0",
+  "description": "Första fristående prototypen för länkade budträd. Analysen är förberedd och körs utan AI-anrop.",
+  "conventions": {
+    "ntOpening": "1NT = 15–17 hp, balanserad hand",
+    "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
+    "rkc": "RKC 1430 med 5 nyckelkort; 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam",
+    "jacoby": "2NT efter 1 i högfärg är Jacoby 2NT; öppnarens 3♣ visar singel/renons i klöver enligt denna prototyps överenskommelse"
+  },
+  "trees": [
+    {
+      "id": "T01_RKC_HJARTER",
+      "title": "4NT med överenskommen trumf – RKC",
+      "tags": [
+        "4NT",
+        "RKC",
+        "hjärter",
+        "slam"
+      ],
+      "conditions": [
+        "Hjärter är överenskommen trumf",
+        "Paret spelar RKC 1430",
+        "1♥–2NT är Jacoby 2NT; 3♣ visar singel/renons i klöver"
+      ],
+      "root": "t01_n0",
+      "nodes": [
+        {
+          "id": "t01_n0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass"
+          ],
+          "meaning": "Jacoby 2NT etablerar hjärter som trumf och visar starkt stöd. 3♣ visar singel/renons i klöver enligt den angivna överenskommelsen.",
+          "analysis": "Paret har hittat hjärter som trumf och har slamintresse. Norrs 3♣ beskriver klöverfördelningen. Syd kan nu undersöka nyckelkorten med 4NT RKC.",
+          "branches": [
+            {
+              "call": "4NT",
+              "next": "t01_n1",
+              "label": "Frågar efter nyckelkort"
+            }
+          ]
+        },
+        {
+          "id": "t01_n1",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 eftersom hjärter är överenskommen trumf.",
+          "analysis": "Budet frågar efter de fem nyckelkorten: fyra ess och hjärterkung. Det är inte en kvantitativ invit i denna auktion.",
+          "branches": [
+            {
+              "call": "5♣",
+              "next": "t01_n2",
+              "label": "0 eller 3 nyckelkort"
+            },
+            {
+              "call": "5♦",
+              "next": "t01_n3",
+              "label": "1 eller 4 nyckelkort"
+            },
+            {
+              "call": "5♥",
+              "next": "t01_n4",
+              "label": "2 utan hjärterdam"
+            },
+            {
+              "call": "5♠",
+              "next": "t01_n5",
+              "label": "2 med hjärterdam"
+            }
+          ]
+        },
+        {
+          "id": "t01_n2",
+          "sequence": [
+            "…",
+            "5♣"
+          ],
+          "meaning": "Svar 5♣ visar 0 eller 3 nyckelkort enligt RKC 1430.",
+          "analysis": "Svarshanden måste bedöma om paret saknar för många nyckelkort. Nästa bud kan vara signoff i 5♥ eller slamförsök om övrig information gör storslam realistisk.",
+          "branches": [
+            {
+              "call": "5♥",
+              "next": null,
+              "label": "Stanna i utgång"
+            },
+            {
+              "call": "6♥",
+              "next": null,
+              "label": "Lilla slammet – kräver tillräckliga nyckelkort och kontroll"
+            }
+          ]
+        },
+        {
+          "id": "t01_n3",
+          "sequence": [
+            "…",
+            "5♦"
+          ],
+          "meaning": "Svar 5♦ visar 1 eller 4 nyckelkort.",
+          "analysis": "Paret har ett nyckelkort mer än vid 5♣-svaret, men måste fortfarande avgöra om ett nyckelkort saknas. Fortsättningen beror på vem som har frågat och parets kontrollbud.",
+          "branches": [
+            {
+              "call": "5♥",
+              "next": null,
+              "label": "Signoff"
+            },
+            {
+              "call": "6♥",
+              "next": null,
+              "label": "Lilla slammet om nyckelkorten räcker"
+            }
+          ]
+        },
+        {
+          "id": "t01_n4",
+          "sequence": [
+            "…",
+            "5♥"
+          ],
+          "meaning": "Svar 5♥ visar två nyckelkort utan hjärterdam.",
+          "analysis": "Två nyckelkort finns, men trumfdamen saknas. Paret bör normalt stanna i 5♥ om trumfdamen är nödvändig för slam.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Stanna i 5♥"
+            },
+            {
+              "call": "6♥",
+              "next": null,
+              "label": "Endast med tillräcklig kompletterande information"
+            }
+          ]
+        },
+        {
+          "id": "t01_n5",
+          "sequence": [
+            "…",
+            "5♠"
+          ],
+          "meaning": "Svar 5♠ visar två nyckelkort med hjärterdam.",
+          "analysis": "Alla nyckelkort kan finnas på plats. Paret kan undersöka sidokontroller eller gå vidare till 6♥ om inga två snabba förlorare finns i en sidofärg.",
+          "branches": [
+            {
+              "call": "6♥",
+              "next": null,
+              "label": "Lilla slammet"
+            },
+            {
+              "call": "7♥",
+              "next": null,
+              "label": "Storslam – kräver mycket starkt underlag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T02_KVANTITATIV_4NT",
+      "title": "4NT utan överenskommen trumf – kvantitativ invit",
+      "tags": [
+        "4NT",
+        "sang",
+        "kvantitativ",
+        "slam"
+      ],
+      "conditions": [
+        "Öppningsbudet 2NT visar 20–21 hp och balanserad hand",
+        "Svarshanden har balanserad hand och cirka 11–12 hp",
+        "Ingen trumffärg är överenskommen"
+      ],
+      "root": "t02_n0",
+      "nodes": [
+        {
+          "id": "t02_n0",
+          "sequence": [
+            "2NT"
+          ],
+          "meaning": "2NT visar 20–21 hp och balanserad hand.",
+          "analysis": "Paret spelar sang utan överenskommen trumffärg. Svarshanden kan bjuda 4NT kvantitativt för att fråga om öppnaren har maximum.",
+          "branches": [
+            {
+              "call": "4NT",
+              "next": "t02_n1",
+              "label": "Kvantitativ invit"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Slutbud med svagare svarshand"
+            }
+          ]
+        },
+        {
+          "id": "t02_n1",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är en invit till 6NT, inte essfråga. Svarshanden visar slamintresse med balanserad hand.",
+          "analysis": "Öppnaren väger sin hand inom intervallet 20–21 hp och bedömer kontroller, femkortsfärger och honnörernas placering. Med minimum passar öppnaren; med maximum och bra värden accepterar öppnaren.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Minimum – avslår inviten och stannar i 4NT"
+            },
+            {
+              "call": "6NT",
+              "next": null,
+              "label": "Maximum och lämpliga värden – accepterar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T03_OVERFORING_PASS",
+      "title": "Överföring till hjärter – svag hand, pass före 4NT",
+      "tags": [
+        "1NT",
+        "överföring",
+        "hjärter",
+        "pass",
+        "delkontrakt"
+      ],
+      "conditions": [
+        "Norr öppnar 1NT = 15–17 hp",
+        "Syd har minst fem hjärter och svag hand, normalt 0–7 hp",
+        "Paret spelar överföringar"
+      ],
+      "root": "t03_n0",
+      "nodes": [
+        {
+          "id": "t03_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ är överföring till hjärter och ber Syd att spela minst 2♥.",
+          "analysis": "Syd har en svag hand med fem eller fler hjärter. Målet är att hitta ett bättre delkontrakt än 1NT. Syd har inte invit- eller utgångsstyrka.",
+          "branches": [
+            {
+              "call": "2♥",
+              "next": "t03_n1",
+              "label": "Öppnaren accepterar överföringen"
+            }
+          ]
+        },
+        {
+          "id": "t03_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Öppnaren fullföljer överföringen till hjärter.",
+          "analysis": "Syd har nu visat sin färg och kan passa med svag hand. Det finns ingen anledning att gå vidare mot 4NT eller utgång när styrkan saknas.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Slutbud 2♥ – svag hand, signoff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T04_INVIT_2NT_PASS",
+      "title": "Sanginvit avslås – pass före 4NT",
+      "tags": [
+        "1NT",
+        "invit",
+        "2NT",
+        "pass",
+        "delkontrakt"
+      ],
+      "conditions": [
+        "Norr öppnar 1NT = 15–17 hp",
+        "Syd har balanserad hand med cirka 8–9 hp",
+        "Ingen högfärgsfit har konstaterats"
+      ],
+      "root": "t04_n0",
+      "nodes": [
+        {
+          "id": "t04_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT är en invit till 3NT och visar normalt cirka 8–9 hp efter 1NT 15–17.",
+          "analysis": "Syd har tillräckligt för att invitera men inte för att kräva utgång. Norr bedömer sin hand och accepterar med maximum eller passar med minimum.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Minimum – inviten avslås, slutbud 2NT"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Maximum – inviten accepteras"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "T05_HJARTERFIT_PASS",
+      "title": "Hjärterfit – stanna i 2♥",
+      "tags": [
+        "1H",
+        "höjning",
+        "hjärterfit",
+        "pass",
+        "delkontrakt"
+      ],
+      "conditions": [
+        "Norr öppnar 1♥ med normal öppningsstyrka",
+        "Syd har tre- eller fyrkorts hjärterstöd och cirka 6–9 hp",
+        "Paret använder enkel höjning som begränsad svarshand"
+      ],
+      "root": "t05_n0",
+      "nodes": [
+        {
+          "id": "t05_n0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ visar stöd och en begränsad hand, normalt cirka 6–9 hp i detta förenklade system.",
+          "analysis": "Syd visar hjärterstöd men inte invitstyrka. Norr har minimum och ingen anledning att fortsätta. Pass är därför ett aktivt och korrekt slutbeslut.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Slutbud 2♥ – ingen utgångsinvit"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
