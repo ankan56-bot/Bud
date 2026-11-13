@@ -1,5 +1,5 @@
 {
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Utökat fristående bibliotek med budträd, handprofiler och korta sammanhängande analyser. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -2912,6 +2912,676 @@
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T29_1H_1S_KONKURRENS",
+      "title": "Svar efter 1♥ – (1♠)",
+      "tags": [
+        "konkurrensbudgivning",
+        "överbud",
+        "stöd",
+        "svarshand"
+      ],
+      "conditions": [
+        "Öppnaren visar minst fem hjärter",
+        "Motståndaren gör ett naturligt 1♠-överbud",
+        "Cue-bid 2♠ används som invit eller bättre med hjärterstöd",
+        "Hoppstöd 3♥ används spärrande enligt parets överenskommelse"
+      ],
+      "root": "t29_1h_1s_konkurrens_n0",
+      "nodes": [
+        {
+          "id": "t29_1h_1s_konkurrens_n0",
+          "sequence": [
+            "1♥",
+            "1♠"
+          ],
+          "meaning": "Motståndarna har ingripit i öppningsbudgivningen. Svarshanden ska välja bud utifrån trumfstöd, styrka och färglängd.",
+          "analysis": "Börja med att klassificera handen som jämn fördelning, tvåfärgshand, enfärgshand eller trumfstöd. Värdera därefter honnörsstyrka, färglängd och eventuell stopper i motståndarnas färg. Cue-bid som stödvisande invit och hoppstöd som spärr är systemöverenskommelser och ska vara kända av paret.",
+          "branches": [
+            {
+              "call": "2♥",
+              "next": "t29_1h_1s_konkurrens_n1",
+              "label": "Enkel höjning – 3+ hjärter, cirka 6–9 hp"
+            },
+            {
+              "call": "2♠",
+              "next": "t29_1h_1s_konkurrens_n2",
+              "label": "Cue-bid – invit eller bättre med hjärterstöd"
+            },
+            {
+              "call": "3♥",
+              "next": "t29_1h_1s_konkurrens_n3",
+              "label": "Hoppstöd – svag spärrhand"
+            },
+            {
+              "call": "1NT",
+              "next": "t29_1h_1s_konkurrens_n4",
+              "label": "Sang – jämn hand med spaderstopper"
+            },
+            {
+              "call": "2♦",
+              "next": "t29_1h_1s_konkurrens_n5",
+              "label": "Egen färg – ruter"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          }
+        },
+        {
+          "id": "t29_1h_1s_konkurrens_n1",
+          "sequence": [
+            "1♥",
+            "1♠",
+            "2♥"
+          ],
+          "meaning": "Enkel höjning till 2♥",
+          "analysis": "Svarshanden har minst trekortsstöd och begränsad styrka. 2♥ visar stöd utan att lova invitstyrka. En egen färg väljs bort eftersom trumfstödet är prioriterat och handen inte har tillräcklig styrka för ett starkare bud.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst trekortsstöd i hjärter, cirka 6–9 hp"
+          }
+        },
+        {
+          "id": "t29_1h_1s_konkurrens_n2",
+          "sequence": [
+            "1♥",
+            "1♠",
+            "2♠"
+          ],
+          "meaning": "Cue-bid i motståndarnas färg",
+          "analysis": "2♠ är ett stödvisande cue-bid enligt den angivna överenskommelsen. Det visar minst invitstyrka och hjärterstöd. Budet är inte ett naturligt spaderbud; svarshanden använder motståndarnas färg för att visa en stark höjning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst trekortsstöd i hjärter och cirka 10+ hp"
+          }
+        },
+        {
+          "id": "t29_1h_1s_konkurrens_n3",
+          "sequence": [
+            "1♥",
+            "1♠",
+            "3♥"
+          ],
+          "meaning": "Spärrande hoppstöd till 3♥",
+          "analysis": "Svarshanden har lång hjärterfit men begränsad honnörsstyrka. Hoppet till 3♥ är spärrande och beskriver främst trumflängd, inte invitstyrka. 2♥ skulle undersälja den spärrande effekten; cue-bid kräver starkare stödhand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Normalt fyrkortsstöd i hjärter och cirka 0–6 hp"
+          }
+        },
+        {
+          "id": "t29_1h_1s_konkurrens_n4",
+          "sequence": [
+            "1♥",
+            "1♠",
+            "1NT"
+          ],
+          "meaning": "Naturligt 1NT-svar",
+          "analysis": "Svarshanden har en jämn hand utan tillräckligt hjärterstöd och med håll i spader. 1NT beskriver handen bättre än ett konstlat stöd- eller cue-bid. Utan spaderstopper bör sang undvikas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Cirka 6–10 hp, jämn hand, normalt högst två hjärter och spaderstopper"
+          }
+        },
+        {
+          "id": "t29_1h_1s_konkurrens_n5",
+          "sequence": [
+            "1♥",
+            "1♠",
+            "2♦"
+          ],
+          "meaning": "Naturligt färgbud i ruter",
+          "analysis": "Svarshanden har en egen ruterfärg och tillräcklig styrka för att introducera en ny färg på tvåläget. Budet visar färglängd och spelstyrka. Hjärterstöd väljs bort eftersom handen inte har stöd eller fördelning som motiverar höjning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fem ruter och cirka 10+ hp; budet är forcing en rond enligt denna överenskommelse"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T30_1S_2H_KONKURRENS",
+      "title": "Svar efter 1♠ – (2♥)",
+      "tags": [
+        "konkurrensbudgivning",
+        "överbud",
+        "stöd",
+        "svarshand"
+      ],
+      "conditions": [
+        "Öppnaren visar minst fem spader",
+        "Motståndaren gör ett naturligt 2♥-överbud",
+        "Cue-bid 3♥ används som invit eller bättre med spaderstöd",
+        "3♠ är spärrande hoppstöd enligt parets överenskommelse"
+      ],
+      "root": "t30_1s_2h_konkurrens_n0",
+      "nodes": [
+        {
+          "id": "t30_1s_2h_konkurrens_n0",
+          "sequence": [
+            "1♠",
+            "2♥"
+          ],
+          "meaning": "Motståndarna har ingripit i öppningsbudgivningen. Svarshanden ska välja bud utifrån trumfstöd, styrka och färglängd.",
+          "analysis": "Börja med att klassificera handen som jämn fördelning, tvåfärgshand, enfärgshand eller trumfstöd. Värdera därefter honnörsstyrka, färglängd och eventuell stopper i motståndarnas färg. Cue-bid som stödvisande invit och hoppstöd som spärr är systemöverenskommelser och ska vara kända av paret.",
+          "branches": [
+            {
+              "call": "2♠",
+              "next": "t30_1s_2h_konkurrens_n1",
+              "label": "Enkel höjning – 3+ spader, cirka 6–9 hp"
+            },
+            {
+              "call": "3♥",
+              "next": "t30_1s_2h_konkurrens_n2",
+              "label": "Cue-bid – invit eller bättre med spaderstöd"
+            },
+            {
+              "call": "3♠",
+              "next": "t30_1s_2h_konkurrens_n3",
+              "label": "Hoppstöd – svag spärrhand"
+            },
+            {
+              "call": "2NT",
+              "next": "t30_1s_2h_konkurrens_n4",
+              "label": "Sang – jämn hand med hjärterstopper"
+            },
+            {
+              "call": "3♣",
+              "next": "t30_1s_2h_konkurrens_n5",
+              "label": "Egen färg – klöver"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          }
+        },
+        {
+          "id": "t30_1s_2h_konkurrens_n1",
+          "sequence": [
+            "1♠",
+            "2♥",
+            "2♠"
+          ],
+          "meaning": "Enkel höjning till 2♠",
+          "analysis": "Svarshanden har minst trekortsstöd och begränsad styrka. 2♠ visar en enkel konkurrenshöjning. En egen färg väljs bort eftersom trumfstödet är tydligt och handen saknar styrka för en starkare invit.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst trekortsstöd i spader, cirka 6–9 hp"
+          }
+        },
+        {
+          "id": "t30_1s_2h_konkurrens_n2",
+          "sequence": [
+            "1♠",
+            "2♥",
+            "3♥"
+          ],
+          "meaning": "Stödvisande cue-bid i hjärter",
+          "analysis": "3♥ använder motståndarnas färg för att visa en stark spaderhöjning. Det är en överenskommelse och inte ett naturligt hjärterbud. Svarshanden har minst invitstyrka och vill undersöka spaderutgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst trekortsstöd i spader och cirka 10+ hp"
+          }
+        },
+        {
+          "id": "t30_1s_2h_konkurrens_n3",
+          "sequence": [
+            "1♠",
+            "2♥",
+            "3♠"
+          ],
+          "meaning": "Spärrande hoppstöd till 3♠",
+          "analysis": "Svarshanden har lång spaderfit men svag honnörsstyrka. 3♠ är spärrande och beskriver främst trumflängd. Cue-bid väljs bort eftersom handen saknar invitstyrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Normalt fyrkortsstöd i spader och cirka 0–6 hp"
+          }
+        },
+        {
+          "id": "t30_1s_2h_konkurrens_n4",
+          "sequence": [
+            "1♠",
+            "2♥",
+            "2NT"
+          ],
+          "meaning": "Naturligt 2NT-svar",
+          "analysis": "Svarshanden har en jämn hand med håll i hjärter och utan spaderstöd. 2NT beskriver sangorienterad styrka. Utan hjärterstopper är sangbudet olämpligt; med spaderstöd prioriteras i stället stödvisande bud.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Cirka 10–12 hp, jämn hand, hjärterstopper och normalt högst två spader"
+          }
+        },
+        {
+          "id": "t30_1s_2h_konkurrens_n5",
+          "sequence": [
+            "1♠",
+            "2♥",
+            "3♣"
+          ],
+          "meaning": "Naturligt färgbud i klöver",
+          "analysis": "Svarshanden har en egen lång klöverfärg och tillräcklig styrka för ett tvålägesbud. Budet visar färglängd och spelstyrka. Spaderhöjning väljs bort om svarshanden saknar stöd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T31_1D_1S_KONKURRENS",
+      "title": "Svar efter 1♦ – (1♠)",
+      "tags": [
+        "konkurrensbudgivning",
+        "överbud",
+        "stöd",
+        "svarshand"
+      ],
+      "conditions": [
+        "Öppnaren visar minst fyra ruter",
+        "Motståndaren gör ett naturligt 1♠-överbud",
+        "Cue-bid 2♠ visar stark ruterstödhand enligt parets överenskommelse",
+        "Hoppstöd 3♦ är spärrande"
+      ],
+      "root": "t31_1d_1s_konkurrens_n0",
+      "nodes": [
+        {
+          "id": "t31_1d_1s_konkurrens_n0",
+          "sequence": [
+            "1♦",
+            "1♠"
+          ],
+          "meaning": "Motståndarna har ingripit i öppningsbudgivningen. Svarshanden ska välja bud utifrån trumfstöd, styrka och färglängd.",
+          "analysis": "Börja med att klassificera handen som jämn fördelning, tvåfärgshand, enfärgshand eller trumfstöd. Värdera därefter honnörsstyrka, färglängd och eventuell stopper i motståndarnas färg. Cue-bid som stödvisande invit och hoppstöd som spärr är systemöverenskommelser och ska vara kända av paret.",
+          "branches": [
+            {
+              "call": "2♦",
+              "next": "t31_1d_1s_konkurrens_n1",
+              "label": "Enkel höjning – 4+ ruter, cirka 6–9 hp"
+            },
+            {
+              "call": "2♠",
+              "next": "t31_1d_1s_konkurrens_n2",
+              "label": "Cue-bid – invit eller bättre med ruterstöd"
+            },
+            {
+              "call": "3♦",
+              "next": "t31_1d_1s_konkurrens_n3",
+              "label": "Hoppstöd – svag spärrhand"
+            },
+            {
+              "call": "1NT",
+              "next": "t31_1d_1s_konkurrens_n4",
+              "label": "Sang – jämn hand med spaderstopper"
+            },
+            {
+              "call": "2♣",
+              "next": "t31_1d_1s_konkurrens_n5",
+              "label": "Egen färg – klöver"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          }
+        },
+        {
+          "id": "t31_1d_1s_konkurrens_n1",
+          "sequence": [
+            "1♦",
+            "1♠",
+            "2♦"
+          ],
+          "meaning": "Enkel höjning till 2♦",
+          "analysis": "Svarshanden har fyrkortsstöd i öppningsfärgen och begränsad styrka. 2♦ är en naturlig konkurrenshöjning. En sanginvit väljs bort om handen saknar spaderstopper.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fyrkortsstöd i ruter, cirka 6–9 hp"
+          }
+        },
+        {
+          "id": "t31_1d_1s_konkurrens_n2",
+          "sequence": [
+            "1♦",
+            "1♠",
+            "2♠"
+          ],
+          "meaning": "Stödvisande cue-bid i spader",
+          "analysis": "Cue-bidet visar en stark ruterstödhand enligt parets överenskommelse. Det är inte ett naturligt spaderbud. Med invitstyrka eller mer används motståndarnas färg för att beskriva stödet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fyrkortsstöd i ruter och cirka 10+ hp"
+          }
+        },
+        {
+          "id": "t31_1d_1s_konkurrens_n3",
+          "sequence": [
+            "1♦",
+            "1♠",
+            "3♦"
+          ],
+          "meaning": "Spärrande hoppstöd till 3♦",
+          "analysis": "Svarshanden har lång ruterkort och svag hand. Hoppet till 3♦ är spärrande. Ett cue-bid skulle felaktigt antyda invitstyrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fem ruter och cirka 0–6 hp"
+          }
+        },
+        {
+          "id": "t31_1d_1s_konkurrens_n4",
+          "sequence": [
+            "1♦",
+            "1♠",
+            "1NT"
+          ],
+          "meaning": "Naturligt 1NT-svar",
+          "analysis": "Svarshanden har jämn fördelning och håll i spader. 1NT visar en naturlig sanghand. Utan spaderstopper bör svarshanden undvika sang; med gott ruterstöd väljs en höjning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Cirka 6–10 hp, jämn hand, spaderstopper och begränsat ruterstöd"
+          }
+        },
+        {
+          "id": "t31_1d_1s_konkurrens_n5",
+          "sequence": [
+            "1♦",
+            "1♠",
+            "2♣"
+          ],
+          "meaning": "Naturligt färgbud i klöver",
+          "analysis": "Svarshanden visar en egen lång klöverfärg med tillräcklig styrka för ett tvålägesbud. Ruterstöd väljs bort om handen saknar stöd; sang väljs bort om spader saknar stopper.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T32_1C_1H_KONKURRENS",
+      "title": "Svar efter 1♣ – (1♥)",
+      "tags": [
+        "konkurrensbudgivning",
+        "överbud",
+        "stöd",
+        "svarshand"
+      ],
+      "conditions": [
+        "Öppnaren visar minst tre klöver eller längre enligt systemet",
+        "Motståndaren gör ett naturligt 1♥-överbud",
+        "Cue-bid 2♥ visar stark klöverhöjning enligt parets överenskommelse",
+        "3♣ är spärrande hoppstöd"
+      ],
+      "root": "t32_1c_1h_konkurrens_n0",
+      "nodes": [
+        {
+          "id": "t32_1c_1h_konkurrens_n0",
+          "sequence": [
+            "1♣",
+            "1♥"
+          ],
+          "meaning": "Motståndarna har ingripit i öppningsbudgivningen. Svarshanden ska välja bud utifrån trumfstöd, styrka och färglängd.",
+          "analysis": "Börja med att klassificera handen som jämn fördelning, tvåfärgshand, enfärgshand eller trumfstöd. Värdera därefter honnörsstyrka, färglängd och eventuell stopper i motståndarnas färg. Cue-bid som stödvisande invit och hoppstöd som spärr är systemöverenskommelser och ska vara kända av paret.",
+          "branches": [
+            {
+              "call": "2♣",
+              "next": "t32_1c_1h_konkurrens_n1",
+              "label": "Enkel höjning – 4+ klöver, cirka 6–9 hp"
+            },
+            {
+              "call": "2♥",
+              "next": "t32_1c_1h_konkurrens_n2",
+              "label": "Cue-bid – invit eller bättre med klöverstöd"
+            },
+            {
+              "call": "3♣",
+              "next": "t32_1c_1h_konkurrens_n3",
+              "label": "Hoppstöd – svag spärrhand"
+            },
+            {
+              "call": "1♠",
+              "next": "t32_1c_1h_konkurrens_n4",
+              "label": "Egen färg – spader på enläget"
+            },
+            {
+              "call": "1NT",
+              "next": "t32_1c_1h_konkurrens_n5",
+              "label": "Sang – jämn hand med hjärterstopper"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          }
+        },
+        {
+          "id": "t32_1c_1h_konkurrens_n1",
+          "sequence": [
+            "1♣",
+            "1♥",
+            "2♣"
+          ],
+          "meaning": "Enkel höjning till 2♣",
+          "analysis": "Svarshanden har klöverstöd och begränsad styrka. 2♣ är en naturlig konkurrenshöjning. En egen färg väljs bort när trumfstödet är tillräckligt och handen saknar starkare ambition.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fyrkortsstöd i klöver, cirka 6–9 hp"
+          }
+        },
+        {
+          "id": "t32_1c_1h_konkurrens_n2",
+          "sequence": [
+            "1♣",
+            "1♥",
+            "2♥"
+          ],
+          "meaning": "Stödvisande cue-bid i hjärter",
+          "analysis": "2♥ används som stödvisande cue-bid enligt parets överenskommelse. Det visar en stark klöverhöjning, inte en naturlig hjärterfärg. Med invitstyrka eller mer vill svarshanden undersöka klöverutgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fyrkortsstöd i klöver och cirka 10+ hp"
+          }
+        },
+        {
+          "id": "t32_1c_1h_konkurrens_n3",
+          "sequence": [
+            "1♣",
+            "1♥",
+            "3♣"
+          ],
+          "meaning": "Spärrande hoppstöd till 3♣",
+          "analysis": "Svarshanden har lång klöverfit och svag honnörsstyrka. Hoppet är spärrande och syftar till att försvåra motståndarnas budgivning. Cue-bid väljs bort eftersom handen inte har invitstyrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Normalt femkortsstöd i klöver och cirka 0–6 hp"
+          }
+        },
+        {
+          "id": "t32_1c_1h_konkurrens_n4",
+          "sequence": [
+            "1♣",
+            "1♥",
+            "1♠"
+          ],
+          "meaning": "Naturligt färgbud i spader",
+          "analysis": "Svarshanden visar spader naturligt på enläget. Budet är normalt forcing en rond och prioriteras framför sang när en egen högfärg kan beskrivas. Stöd i klöver väljs bort om svarshanden har en längre och mer lovande egen färg.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fyrkortsspader och cirka 6+ hp; forcing en rond"
+          }
+        },
+        {
+          "id": "t32_1c_1h_konkurrens_n5",
+          "sequence": [
+            "1♣",
+            "1♥",
+            "1NT"
+          ],
+          "meaning": "Naturligt 1NT-svar",
+          "analysis": "Svarshanden har en jämn hand utan lämpligt klöverstöd eller egen färg att visa. Hjärterstoppern gör sangbudet möjligt. Utan stopper är 1NT mindre lämpligt.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Cirka 6–10 hp, jämn hand och hjärterstopper"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T33_1H_DBL_SVAR",
+      "title": "Svar efter 1♥ – (Dbl)",
+      "tags": [
+        "konkurrensbudgivning",
+        "överbud",
+        "stöd",
+        "svarshand"
+      ],
+      "conditions": [
+        "Öppnaren visar minst fem hjärter",
+        "Motståndaren gör ett takeout-dubbling",
+        "Redubbling visar normalt 10+ hp och ingen tydlig trumffit",
+        "Enkel höjning visar 3+ hjärter; hoppstöd är spärrande enligt parets överenskommelse"
+      ],
+      "root": "t33_1h_dbl_svar_n0",
+      "nodes": [
+        {
+          "id": "t33_1h_dbl_svar_n0",
+          "sequence": [
+            "1♥",
+            "Dbl"
+          ],
+          "meaning": "Motståndarna har ingripit i öppningsbudgivningen. Svarshanden ska välja bud utifrån trumfstöd, styrka och färglängd.",
+          "analysis": "Börja med att klassificera handen som jämn fördelning, tvåfärgshand, enfärgshand eller trumfstöd. Värdera därefter honnörsstyrka, färglängd och eventuell stopper i motståndarnas färg. Cue-bid som stödvisande invit och hoppstöd som spärr är systemöverenskommelser och ska vara kända av paret.",
+          "branches": [
+            {
+              "call": "Redbl",
+              "next": "t33_1h_dbl_svar_n1",
+              "label": "10+ hp – styrka, normalt utan hjärterfit"
+            },
+            {
+              "call": "2♥",
+              "next": "t33_1h_dbl_svar_n2",
+              "label": "Enkel höjning – 3+ hjärter, cirka 6–9 hp"
+            },
+            {
+              "call": "3♥",
+              "next": "t33_1h_dbl_svar_n3",
+              "label": "Hoppstöd – svag spärrhand"
+            },
+            {
+              "call": "1♠",
+              "next": "t33_1h_dbl_svar_n4",
+              "label": "Egen färg – spader"
+            },
+            {
+              "call": "1NT",
+              "next": "t33_1h_dbl_svar_n5",
+              "label": "Sang – jämn hand utan hjärterstöd"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          }
+        },
+        {
+          "id": "t33_1h_dbl_svar_n1",
+          "sequence": [
+            "1♥",
+            "Dbl",
+            "Redbl"
+          ],
+          "meaning": "Redubbling efter takeout-dubbling",
+          "analysis": "Redubbling visar att svarshanden har styrka och vill straffa motståndarna om de fortsätter konkurrera. Handen saknar normalt tydligt hjärterstöd. Det är inte ett trumfstödjande bud; en enkel höjning väljs i stället med fit.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst cirka 10 hp, normalt utan tre- eller fyrkortsstöd i hjärter"
+          }
+        },
+        {
+          "id": "t33_1h_dbl_svar_n2",
+          "sequence": [
+            "1♥",
+            "Dbl",
+            "2♥"
+          ],
+          "meaning": "Enkel höjning till 2♥ efter dubbling",
+          "analysis": "Svarshanden har trumfstöd och begränsad styrka. 2♥ visar en naturlig konkurrenshöjning. Redubbling väljs bort eftersom handen inte har den styrka och fördelning som krävs.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst trekortsstöd i hjärter, cirka 6–9 hp"
+          }
+        },
+        {
+          "id": "t33_1h_dbl_svar_n3",
+          "sequence": [
+            "1♥",
+            "Dbl",
+            "3♥"
+          ],
+          "meaning": "Spärrande hoppstöd till 3♥",
+          "analysis": "Svarshanden har lång trumffit och svag honnörsstyrka. 3♥ är spärrande enligt parets överenskommelse och visar inte invitstyrka. Redubbling är olämplig med en så svag stödhand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Normalt fyrkortsstöd i hjärter och cirka 0–6 hp"
+          }
+        },
+        {
+          "id": "t33_1h_dbl_svar_n4",
+          "sequence": [
+            "1♥",
+            "Dbl",
+            "1♠"
+          ],
+          "meaning": "Naturligt färgbud i spader",
+          "analysis": "Svarshanden har en egen spaderfärg och tillräcklig styrka för att bjuda på enläget. Budet visar färglängd. Hjärterhöjning väljs bort om svarshanden saknar trumfstöd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Minst fem spader och cirka 6+ hp"
+          }
+        },
+        {
+          "id": "t33_1h_dbl_svar_n5",
+          "sequence": [
+            "1♥",
+            "Dbl",
+            "1NT"
+          ],
+          "meaning": "Naturligt 1NT-svar",
+          "analysis": "Svarshanden har en jämn hand utan hjärterfit. 1NT beskriver styrka och fördelning bättre än en konstlad stödvisning. Med tydlig hjärterfit prioriteras i stället höjning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med normal öppningsstyrka",
+            "responder": "Cirka 6–10 hp, jämn hand, normalt utan trekortsstöd i hjärter"
           }
         }
       ]
