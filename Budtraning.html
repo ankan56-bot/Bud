@@ -65,6 +65,7 @@ button:disabled{opacity:.3;cursor:default}
 .ah{font-size:13px;color:var(--mu);padding-bottom:4px;border-bottom:2px solid var(--line)}.ah.us{border-bottom-color:var(--brass);color:var(--ink);font-weight:600}
 .ac{min-height:42px;border-radius:10px;display:grid;place-items:center;font-size:23px;font-weight:600;background:var(--hint)}
 .ac.pass{font:14px/1 -apple-system,system-ui,sans-serif;color:var(--mu);background:transparent;border:1px dashed var(--line)}
+.ac-wrap{min-width:0;text-align:center;display:flex;flex-direction:column;gap:3px;align-items:stretch}.ac-wrap .ac{width:100%}.ac-meaning{font:11px/1.2 -apple-system,system-ui,sans-serif;color:var(--mu);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px;padding:0 2px}
 .ac.cur{outline:2px dashed var(--brass);color:var(--mu)}
 .lv{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.st{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}.ops{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;margin-top:8px}
 .lv button{min-height:58px;font-size:27px;font-weight:700;padding:0}.st button{min-height:66px;font-size:34px;padding:0}
@@ -275,11 +276,29 @@ function contractText(st){
   var x=ctx(st);if(!x.lb)return 'Alla passade';
   return 'Slutkontrakt: '+fmt(x.lb)+(x.dbl===1?' X':x.dbl===2?' XX':'')+' ('+NAME[x.lbS]+' bjöd först kontraktets slutbud)';
 }
+function bidMeaning(st,b,i){
+  if(b.e)return b.e;
+  if(b.c==='P')return 'Avstår från att bjuda i den här budrundan.';
+  if(b.c==='X')return 'Upplysnings- eller straffdubbling beroende på läget.';
+  if(b.c==='XX')return 'Redubbling – höjer poänginsatsen efter motståndarnas dubbling.';
+  try{
+    var node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:st.bids},i);
+    if(node&&node.means){
+      var meaning=node.means(b.c);
+      if(meaning)return meaning;
+    }
+    if(node&&node.why)return node.why;
+  }catch(e){}
+  return 'Budets betydelse beror på den tidigare budgivningen.';
+}
 function auctionHtml(st,end){
   var pad=SEATS.indexOf(st.dealer),h='<div class="aud">',i;
   SEATS.forEach(function(s){h+='<div class="ah'+(side(s)===0?' us':'')+'">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</div>'});
   for(i=0;i<pad;i++)h+='<div></div>';
-  st.bids.forEach(function(b){h+=b.c==='P'?'<div class="ac pass">Pass</div>':'<div class="ac">'+fmt(b.c)+'</div>'});
+  st.bids.forEach(function(b,i){
+    var pass=b.c==='P';
+    h+='<div class="ac-wrap"><div class="ac'+(pass?' pass':'')+'">'+(pass?'Pass':fmt(b.c))+'</div><div class="ac-meaning">'+esc(bidMeaning(st,b,i))+'</div></div>';
+  });
   if(!end)h+='<div class="ac cur">…</div>';
   return h+'</div>';
 }
