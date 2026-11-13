@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Utökat fristående bibliotek med budträd, handprofiler och korta sammanhängande analyser. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -1116,6 +1116,661 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "10–15 hp, jämn fördelning, ingen fyrkortshögfärg att undersöka"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T19",
+      "title": "Överföring till hjärter – invit med femkortsfärg",
+      "tags": [
+        "3♥",
+        "3NT",
+        "4♥",
+        "Pass"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♦ överför till hjärter; 2♥ fullföljer överföringen",
+        "Svarshanden har minst fem hjärter och cirka 8–9 hp",
+        "Efter 2NT väljer öppnaren mellan pass, 3♥, 3NT och 4♥"
+      ],
+      "root": "t19_0",
+      "nodes": [
+        {
+          "id": "t19_0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "Överföring till hjärter – invit med femkortsfärg",
+          "analysis": "Svarshanden har cirka 8–9 hp och minst fem hjärter. Öppnaren måste väga samman styrka, honnörskvalitet och trumfstöd. 3♥ visar att öppnaren föredrar hjärter med stöd; 3NT är alternativet när sanghanden är bättre än trumfhanden.",
+          "branches": [
+            {
+              "call": "3♥",
+              "next": "t19_1",
+              "label": "3♥ – accepterar med hjärterstöd"
+            },
+            {
+              "call": "3NT",
+              "next": "t19_2",
+              "label": "3NT – accepterar utan lämpligt trumfstöd"
+            },
+            {
+              "call": "4♥",
+              "next": "t19_3",
+              "label": "4♥ – maximum med starkt hjärterstöd"
+            },
+            {
+              "call": "Pass",
+              "next": "t19_4",
+              "label": "Pass – minimum, inviten avslås"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          }
+        },
+        {
+          "id": "t19_1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ – accepterar med hjärterstöd",
+          "analysis": "Öppnaren har tillräcklig styrka för att acceptera inviten och minst trekortsstöd i hjärter. Svarshanden kan passa med nedre delen av inviten eller gå till 4♥ med extra fördelning och goda honnörer. Sang väljs bort eftersom en fungerande högfärgsfit är känd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          }
+        },
+        {
+          "id": "t19_2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT – accepterar utan lämpligt trumfstöd",
+          "analysis": "Öppnaren accepterar inviten men saknar lämpligt hjärterstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♥ väljs bort eftersom en säker trumffit inte är etablerad.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          }
+        },
+        {
+          "id": "t19_3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "4♥ – maximum med starkt hjärterstöd",
+          "analysis": "Öppnaren har maximum och starkt hjärterstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♥. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          }
+        },
+        {
+          "id": "t19_4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Pass – minimum, inviten avslås",
+          "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem hjärter; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T20",
+      "title": "Överföring till spader – invit med femkortsfärg",
+      "tags": [
+        "3♠",
+        "3NT",
+        "4♠",
+        "Pass"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♥ överför till spader; 2♠ fullföljer överföringen",
+        "Svarshanden har minst fem spader och cirka 8–9 hp",
+        "Efter 2NT väljer öppnaren mellan pass, 3♠, 3NT och 4♠"
+      ],
+      "root": "t20_0",
+      "nodes": [
+        {
+          "id": "t20_0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "Överföring till spader – invit med femkortsfärg",
+          "analysis": "Svarshanden har cirka 8–9 hp och minst fem spader. Öppnaren väger samman styrka, honnörskvalitet och trumfstöd. 3♠ visar att öppnaren föredrar spader med stöd; 3NT är alternativet när sanghanden är bättre.",
+          "branches": [
+            {
+              "call": "3♠",
+              "next": "t20_1",
+              "label": "3♠ – accepterar med spaderstöd"
+            },
+            {
+              "call": "3NT",
+              "next": "t20_2",
+              "label": "3NT – accepterar utan lämpligt trumfstöd"
+            },
+            {
+              "call": "4♠",
+              "next": "t20_3",
+              "label": "4♠ – maximum med starkt spaderstöd"
+            },
+            {
+              "call": "Pass",
+              "next": "t20_4",
+              "label": "Pass – minimum, inviten avslås"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          }
+        },
+        {
+          "id": "t20_1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ – accepterar med spaderstöd",
+          "analysis": "Öppnaren har tillräcklig styrka för att acceptera inviten och minst trekortsstöd i spader. Svarshanden kan passa med nedre delen av inviten eller gå till 4♠ med extra fördelning och goda honnörer. Sang väljs bort eftersom en fungerande högfärgsfit är känd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          }
+        },
+        {
+          "id": "t20_2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT – accepterar utan lämpligt trumfstöd",
+          "analysis": "Öppnaren accepterar inviten men saknar lämpligt spaderstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♠ väljs bort eftersom en säker trumffit inte är etablerad.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          }
+        },
+        {
+          "id": "t20_3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "4♠ – maximum med starkt spaderstöd",
+          "analysis": "Öppnaren har maximum och starkt spaderstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♠. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          }
+        },
+        {
+          "id": "t20_4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Pass – minimum, inviten avslås",
+          "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem spader; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T21",
+      "title": "Färgprov efter 1♥–2♥ – hjärterfit",
+      "tags": [
+        "3♣",
+        "3♦",
+        "3♠",
+        "4♥"
+      ],
+      "conditions": [
+        "1♥ visar minst fem hjärter",
+        "2♥ är en begränsad höjning med normalt 6–9 hp och minst tre hjärter",
+        "3♣/3♦/3♠ används som färgprov enligt parets överenskommelse",
+        "Svarshanden bedömer hjälp i provfärgen"
+      ],
+      "root": "t21_0",
+      "nodes": [
+        {
+          "id": "t21_0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Färgprov efter 1♥–2♥ – hjärterfit",
+          "analysis": "Svarshanden har normalt 6–9 hp och minst trekortsstöd. Öppnaren har tillägg och undersöker utgångschansen genom ett färgprov. Provfärgen pekar ut var öppnaren behöver hjälp. En direkt 4♥ kräver en hand där öppnaren anser att utgången är tillräckligt stark utan ytterligare undersökning.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t21_1",
+              "label": "Färgprov i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t21_2",
+              "label": "Färgprov i ruter"
+            },
+            {
+              "call": "3♠",
+              "next": "t21_3",
+              "label": "Färgprov i spader"
+            },
+            {
+              "call": "4♥",
+              "next": "t21_4",
+              "label": "Direkt utgång i hjärter"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t21_1",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "Färgprov i klöver",
+          "analysis": "Öppnaren provar klöver för att se om svarshanden har honnörshjälp, korthet eller annan användbar fördelning. Svarshanden kan avböja med 3♥ eller acceptera med 4♥. Trumffit är redan känd, så sang är inte huvudalternativet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t21_2",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "Färgprov i ruter",
+          "analysis": "Öppnaren provar ruter av samma skäl: svarshanden bedömer sina värden i provfärgen och antalet förlorare. Svaga ruter talar för att stanna i 3♥; god hjälp kan motivera 4♥.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t21_3",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Färgprov i spader",
+          "analysis": "Öppnaren provar spader. Svarshanden värderar spaderhonnörer, korthet och förlorare innan beslut om utgång. Färgprovet är en överenskommelse som paret måste ha etablerat.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t21_4",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "Direkt utgång i hjärter",
+          "analysis": "Öppnaren bedömer att tilläggsstyrkan och trumfstödet räcker för 4♥ direkt. Färgprov hoppas över eftersom öppnaren anser sig kunna värdera handen utan ytterligare information.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T22",
+      "title": "Färgprov efter 1♠–2♠ – spaderfit",
+      "tags": [
+        "3♣",
+        "3♦",
+        "3♥",
+        "4♠"
+      ],
+      "conditions": [
+        "1♠ visar minst fem spader",
+        "2♠ är en begränsad höjning med normalt 6–9 hp och minst tre spader",
+        "3♣/3♦/3♥ används som färgprov enligt parets överenskommelse",
+        "Svarshanden bedömer hjälp i provfärgen"
+      ],
+      "root": "t22_0",
+      "nodes": [
+        {
+          "id": "t22_0",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "Färgprov efter 1♠–2♠ – spaderfit",
+          "analysis": "Svarshanden har normalt 6–9 hp och minst trekortsstöd. Öppnaren har tillägg och undersöker utgångschansen genom ett färgprov. Provfärgen pekar ut var öppnaren behöver hjälp. Direkt 4♠ kräver en hand där öppnaren anser att utgången är tillräckligt stark utan ytterligare undersökning.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t22_1",
+              "label": "Färgprov i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t22_2",
+              "label": "Färgprov i ruter"
+            },
+            {
+              "call": "3♥",
+              "next": "t22_3",
+              "label": "Färgprov i hjärter"
+            },
+            {
+              "call": "4♠",
+              "next": "t22_4",
+              "label": "Direkt utgång i spader"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem spader, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t22_1",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "Färgprov i klöver",
+          "analysis": "Öppnaren provar klöver för att se om svarshanden har honnörshjälp, korthet eller användbar fördelning. Svarshanden kan avböja med 3♠ eller acceptera med 4♠. Sang är inte huvudalternativet eftersom trumffit är känd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem spader, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t22_2",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "Färgprov i ruter",
+          "analysis": "Öppnaren provar ruter. Svarshanden bedömer honnörer, korthet och förlorare i provfärgen. Svaga ruter talar för att stanna i 3♠; god hjälp kan motivera utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem spader, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t22_3",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Färgprov i hjärter",
+          "analysis": "Öppnaren provar hjärter för att undersöka om svarshanden kan täcka förlorare där. Färgprovet är systemberoende och ska vara överenskommet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem spader, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          }
+        },
+        {
+          "id": "t22_4",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Direkt utgång i spader",
+          "analysis": "Öppnaren bedömer att tilläggsstyrkan och spaderstödet räcker för 4♠ direkt. Färgprov hoppas över eftersom öppnaren anser sig kunna värdera handen utan ytterligare information.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem spader, öppningsstyrka med tillägg",
+            "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T23",
+      "title": "Stayman efter 2NT – undersök högfärgsfit",
+      "tags": [
+        "3♦",
+        "3♥",
+        "3♠",
+        "3NT"
+      ],
+      "conditions": [
+        "2NT visar 20–21 hp och jämn fördelning",
+        "Paret spelar Stayman även efter 2NT; 3♣ frågar efter fyrkortshögfärg",
+        "Svarshanden har utgångsstyrka och fyrkortshögfärg eller jämn hand",
+        "Svarssätt efter 3♣ måste vara överenskommet"
+      ],
+      "root": "t23_0",
+      "nodes": [
+        {
+          "id": "t23_0",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "Stayman efter 2NT – undersök högfärgsfit",
+          "analysis": "Öppnaren har 20–21 hp och jämn fördelning. Svarshanden har utgångsstyrka och undersöker om paret har en gemensam högfärgsfit. 3♣ är Stayman; direkt 3NT riskerar att missa en 4–4-fit.",
+          "branches": [
+            {
+              "call": "3♦",
+              "next": "t23_1",
+              "label": "3♦ – ingen fyrkortshögfärg"
+            },
+            {
+              "call": "3♥",
+              "next": "t23_2",
+              "label": "3♥ – visar fyra hjärter"
+            },
+            {
+              "call": "3♠",
+              "next": "t23_3",
+              "label": "3♠ – visar fyra spader"
+            },
+            {
+              "call": "3NT",
+              "next": "t23_4",
+              "label": "3NT – balanserad hand utan högfärgsfit"
+            }
+          ],
+          "handProfile": {
+            "opener": "20–21 hp, jämn fördelning",
+            "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          }
+        },
+        {
+          "id": "t23_1",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ – ingen fyrkortshögfärg",
+          "analysis": "Öppnaren förnekar fyrkortshögfärg. Svarshanden med jämn hand väljer 3NT. Högfärg väljs bort eftersom ingen 4–4-fit har hittats och svarshanden saknar egen lång trumffärg.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20–21 hp, jämn fördelning",
+            "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          }
+        },
+        {
+          "id": "t23_2",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ – visar fyra hjärter",
+          "analysis": "Öppnaren visar minst fyra hjärter. Med fyra hjärter hos svarshanden finns en 4–4-fit; svarshanden kan gå till 4♥ med utgångsstyrka. 3NT väljs bort när trumffitten ger bättre kontroll.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20–21 hp, jämn fördelning",
+            "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          }
+        },
+        {
+          "id": "t23_3",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ – visar fyra spader",
+          "analysis": "Öppnaren visar minst fyra spader. Med fyra spader hos svarshanden finns en 4–4-fit; svarshanden kan gå till 4♠ med utgångsstyrka. 3NT väljs bort när trumffitten ger bättre kontroll.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20–21 hp, jämn fördelning",
+            "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          }
+        },
+        {
+          "id": "t23_4",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT – balanserad hand utan högfärgsfit",
+          "analysis": "Om parets överenskommelse tillåter 3NT som balanserat svar utan fyrkortshögfärg, beskriver det en jämn hand där högfärgsfit saknas. 3NT blir slutbud med utgångsstyrka; högfärg väljs bort eftersom ingen gemensam fit har visats.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20–21 hp, jämn fördelning",
+            "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
           }
         }
       ]
