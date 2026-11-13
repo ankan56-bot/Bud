@@ -6,6 +6,8 @@ on:
       - feature/two-player-dds
     paths:
       - '.github/workflows/build-dds.yml'
+      - 'Budtraning.html'
+      - 'dds-integration.js'
   workflow_dispatch:
 
 permissions:
