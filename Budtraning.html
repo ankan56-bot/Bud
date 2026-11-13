@@ -195,7 +195,7 @@ function themeDealer(d,f){
     if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a});return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6;}
     if(f==='trumf')return hp>=12&&hp<=19&&['S','H','D','C'].some(function(m){return L[m]>=5&&P[m]>=4&&htpWith(p,m)>=6&&htpWith(p,m)<=12;});
     if(f==='stenberg')return hp>=12&&hp<=19&&(['H','S'].some(function(m){return L[m]>=5&&P[m]>=4&&htpWith(p,m)>=13;})||(['C','D'].some(function(m){return L[m]>=4&&L[m]===Math.max(L.S,L.H,L.D,L.C)&&L.H<5&&L.S<5&&P[m]>=4&&P.H<4&&P.S<4&&htpWith(p,m)>=13;})));
-    if(f==='inkliv')return (hp>=12&&hp<=19&&Math.max(L.S,L.H,L.D,L.C)>=5)||(hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6);
+    if(f==='inkliv')return (hp>=12&&hp<=19)||(hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6);
     return false;
   }
   for(var i=0;i<seats.length;i++)if(qualifies(seats[i]))return seats[i];
@@ -205,7 +205,7 @@ function themeDealer(d,f){
 }
 function dubDeal(){
   var v=rng()<.5?'A':'B',d,i,SU4=['S','H','D','C'];
-  for(i=0;i<4000;i++){
+  for(i=0;i<20000;i++){
     d=shuffleDeal();
     if(v==='A'){
       var dl=['E','W'][Math.floor(rng()*2)],op=botCall({mode:'stord',hands:d,dealer:dl,bids:[]},dl).c;
@@ -218,7 +218,7 @@ function dubDeal(){
       if(hh>=12&&hh<=19&&!(isBal(shapeOf(h))&&hh>=15&&hh<=17)&&hpOf(d[ol])>=12&&sh===1&&Math.max(Lo.S,Lo.H,Lo.D,Lo.C)<=4){d.dealer=dl2;return d}
     }
   }
-  return shuffleDeal();
+  throw new Error('Kunde inte skapa en giv för temat dubbling efter 20 000 försök.');
 }
 function biasedDeal(mode,focus){
   if(focus==='dubbling')return dubDeal();
