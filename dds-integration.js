@@ -28,26 +28,20 @@ function pbn(hands){
  return "N:"+["N","E","S","W"].map(one).join(" ");
 }
 function score(level,strain,tricks,doubled){
- var target=level+6, made=tricks-target, mult=doubled===2?4:doubled===1?2:1;
+ var target=level+6, made=tricks-target;
+ if(made<0){
+  var down=-made,pen=doubled===0?50*down:(down===1?100:down===2?300:down===3?500:800+300*(down-4));
+  return -pen*(doubled===2?2:1);
+ }
  var per=strain==="C"||strain==="D"?20:30;
  var points=strain==="N"?40+30*(level-1):per*level;
- var contractPoints=points*mult, score=contractPoints;
- if(contractPoints>=100)score+=300;else score+=50;
- if(level===6)score+=500;
- if(level===7)score+=1000;
- if(doubled===1)score+=50;else if(doubled===2)score+=100;
- if(made>0){
-  if(doubled===0)score+=made*(strain==="C"||strain==="D"?20:30);
-  else score+=made*(doubled===2?200:100);
- }else if(made<0){
-  var down=-made;
-  if(doubled===0)score-=50*down;
-  else{
-   var pen=down===1?100:down===2?300:down===3?500:800+300*(down-4);
-   score-=pen*(doubled===2?2:1);
-  }
- }
- return score;
+ var contractPoints=points*(doubled===2?4:doubled===1?2:1), total=contractPoints;
+ total+=contractPoints>=100?300:50;
+ if(level===6)total+=500;
+ if(level===7)total+=1000;
+ if(doubled===1)total+=50;else if(doubled===2)total+=100;
+ if(made>0)total+=made*(doubled===0?(strain==="C"||strain==="D"?20:30):doubled===1?100:200);
+ return total;
 }
 function contractText(code){return code?code[0]+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[code[1]]||code[1]):"pass"}
 function calcTable(module,hands){
@@ -78,13 +72,13 @@ function run(st){
     });
    });
    var auction=window.Rattning.validateAuction(st),actual="";
-   if(auction.contract&&auction.contractSide===0){
+   if(auction.contract){
     var strain=auction.contract[1],declarer=null;
-    for(var i=0;i<st.bids.length;i++){var b=st.bids[i];if((b.s==="N"||b.s==="S")&&b.c&&b.c[1]===strain&&/^[1-7]/.test(b.c)){declarer=b.s;break}}
+    for(var i=0;i<st.bids.length;i++){var b=st.bids[i];if((auction.contractSide===0?(b.s==="N"||b.s==="S"):(b.s==="E"||b.s==="W"))&&b.c&&b.c[1]===strain&&/^[1-7]/.test(b.c)){declarer=b.s;break}}
     if(declarer){
      var level=+auction.contract[0],tricks=t[idx[strain]*4+seatIdx[declarer]],diff=tricks-(level+6);
      var made=diff>=0?"går hem"+(diff?" med "+diff+" övertrick":""):"går bet med "+(-diff)+" undertrick";
-     var actualScore=score(level,strain,tricks,auction.doubled);
+     var actualScore=score(level,strain,tricks,auction.doubled)*(auction.contractSide===0?1:-1);
      actual='<p><b>Er slutkontrakt:</b> '+contractText(auction.contract)+' av '+(declarer==="N"?"Norr":"Syd")+' – '+tricks+' stick, '+made+'.</p><p class="mu">Beräknad score utan zon: '+actualScore+' poäng för Nord/Syd.</p>';
     }
    }
