@@ -817,6 +817,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = Rattning;
 if (typeof window !== 'undefined') window.Rattning = Rattning;
 
 </script>
+<script src="dds-integration.js"></script>
 <script>
 (function(){
 var SU=['C','D','H','S','N'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},RK={14:'E',13:'K',12:'D',11:'Kn',10:'T'};
@@ -1104,6 +1105,7 @@ function reviewHtml(st){
   try{result=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]})}catch(e){result={items:[],summary:'Rättningsmotorn kunde inte köras: '+e.message,auction:{errors:[]}}}
   var h='<div class="card"><p class="status">Automatisk rättning</p><p class="mu">Regelbaserad genomgång enligt den inlagda Nordiska standarden. Bud som saknar täckning i reglerna markeras som ej bedömbara.</p>';
   h+='<p><b>'+esc(result.summary||'')+'</b></p>';
+  h+='<div id="dds-review" class="review-secondary"><p class="status">Dubbel-dummy-analys</p><p class="mu">Väntar på DDS…</p></div>';
   if(result.auction&&result.auction.errors&&result.auction.errors.length){h+='<div class="review-item fel"><b>Budgivningskontroll</b><ul>'+result.auction.errors.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}
   h+='<div class="review-list">';
   (result.items||[]).forEach(function(it){
@@ -1244,6 +1246,7 @@ function render(){
   }
   h+='</aside></main>';
   app.innerHTML=h;
+  if(end&&window.runDdsReview)window.runDdsReview(st);
   document.getElementById('sw').onclick=function(){setSeat(null)};
   var cb=document.getElementById('cpb');if(cb)cb.onclick=function(){var c=makeCode();try{navigator.clipboard.writeText(c)}catch(e){}var q=prompt('Din spelkod är kopierad. Klistra in partnerns kod här för att synka manuellt (lämna tomt för att avbryta):','');if(q&&!applyCode(q))alert('Koden gick inte att läsa.')};
   var xb=document.getElementById('xp');if(xb)xb.onclick=function(){copyText(reviewPrompt(st))};
