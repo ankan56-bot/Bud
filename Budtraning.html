@@ -195,7 +195,7 @@ function themeDealer(d,f){
     if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a});return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6;}
     if(f==='trumf')return hp>=12&&hp<=19&&['S','H','D','C'].some(function(m){return L[m]>=5&&P[m]>=4&&htpWith(p,m)>=6&&htpWith(p,m)<=12;});
     if(f==='stenberg')return hp>=12&&hp<=19&&(['H','S'].some(function(m){return L[m]>=5&&P[m]>=4&&htpWith(p,m)>=13;})||(['C','D'].some(function(m){return L[m]>=4&&L[m]===Math.max(L.S,L.H,L.D,L.C)&&L.H<5&&L.S<5&&P[m]>=4&&P.H<4&&P.S<4&&htpWith(p,m)>=13;})));
-    if(f==='inkliv')return (hp>=12&&hp<=19)||(hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6);
+    if(f==='inkliv')return hp>=12||(hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6);
     return false;
   }
   for(var i=0;i<seats.length;i++)if(qualifies(seats[i]))return seats[i];
