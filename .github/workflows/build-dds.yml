@@ -41,6 +41,7 @@ jobs:
           cp dds-source/web/dds_web_wasm.js dds-runtime/
           cp dds-source/web/dds_web_wasm.wasm dds-runtime/
           cp dds-source/web/dds_web_wasm_bin.js dds-runtime/
+          cp dds-source/web/coi-serviceworker.js ./coi-serviceworker.js
           test -s dds-runtime/dds_web_wasm.js
           test -s dds-runtime/dds_web_wasm.wasm
           test -s dds-runtime/dds_web_wasm_bin.js
@@ -50,7 +51,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dds-runtime
+          git add dds-runtime coi-serviceworker.js
           if git diff --cached --quiet; then
             echo "DDS runtime is already up to date"
             exit 0
