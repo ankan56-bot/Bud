@@ -22,7 +22,7 @@ function loadDds(){
 }
 function pbn(hands){
  function one(seat){return ["S","H","D","C"].map(function(s){
-  var cards=hands[seat].filter(function(c){return c[0]===s}).map(function(c){return RANKS[+c.slice(1)]||String(+c.slice(1)]).sort(function(a,b){return "AKQJT98765432".indexOf(a)-"AKQJT98765432".indexOf(b)});
+  var cards=hands[seat].filter(function(c){return c[0]===s}).map(function(c){return RANKS[+c.slice(1)]||String(+c.slice(1))).sort(function(a,b){return "AKQJT98765432".indexOf(a)-"AKQJT98765432".indexOf(b)});
   return cards.length?cards.join(""):"-";
  }).join(".")}
  return "N:"+["N","E","S","W"].map(one).join(" ");
@@ -43,8 +43,7 @@ function score(level,strain,tricks,doubled){
   var down=-made;
   if(doubled===0)score-=50*down;
   else{
-   var pen=down===1?100:300+200*Math.min(2,down-2)+300*Math.max(0,down-3);
-   if(down===2)pen=300; if(down===3)pen=500;
+   var pen=down===1?100:down===2?300:down===3?500:800+300*(down-4);
    score-=pen*(doubled===2?2:1);
   }
  }
