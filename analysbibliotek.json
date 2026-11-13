@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "description": "Första fristående prototypen för länkade budträd. Analysen är förberedd och körs utan AI-anrop.",
+  "version": "0.2.0",
+  "description": "Utökat fristående bibliotek med länkade budträd. Varje scenario anger systemförutsättningar och handprofiler; exempel utan fullständiga kortlistor är intervallbaserade.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -334,7 +334,7 @@
             "2NT"
           ],
           "meaning": "2NT är en invit till 3NT och visar normalt cirka 8–9 hp efter 1NT 15–17.",
-          "analysis": "Syd har tillräckligt för att invitera men inte för att kräva utgång. Norr bedömer sin hand och accepterar med maximum eller passar med minimum.",
+          "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har cirka 8–9 hp och också jämn fördelning. Ingen femkortshögfärg eller trumffit finns, så högfärg väljs bort och 2NT blir en invit till 3NT. Öppnaren passar med minimum och accepterar med maximum och lämpliga honnörer.",
           "branches": [
             {
               "call": "Pass",
@@ -346,7 +346,11 @@
               "next": null,
               "label": "Maximum – inviten accepteras"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+          }
         }
       ]
     },
@@ -383,6 +387,312 @@
               "label": "Slutbud 2♥ – ingen utgångsinvit"
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "T06_STAYMAN_INGEN_HOGFARG",
+      "title": "Stayman – ingen högfärg hittas, sanginvit",
+      "tags": [
+        "1NT",
+        "Stayman",
+        "högfärg",
+        "invit",
+        "sang"
+      ],
+      "conditions": [
+        "1NT visar 15–17 hp och jämn fördelning",
+        "Paret spelar Stayman där 2♣ frågar efter fyrkortshögfärg",
+        "Svarshanden har invitstyrka och jämn hand utan egen femkortshögfärg"
+      ],
+      "root": "t06_n0",
+      "nodes": [
+        {
+          "id": "t06_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ är Stayman och frågar efter fyrkortshögfärg.",
+          "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har normalt minst invitstyrka och undersöker först om det finns en hjärter- eller spaderfit. Sang väljs inte bort ännu; Stayman används för att kontrollera högfärgerna.",
+          "branches": [
+            {
+              "call": "2♦",
+              "next": "t06_n1",
+              "label": "Ingen fyrkortshögfärg"
+            },
+            {
+              "call": "2♥",
+              "next": null,
+              "label": "Öppnaren visar fyrkortshjärter – annan fortsättning krävs"
+            },
+            {
+              "call": "2♠",
+              "next": null,
+              "label": "Öppnaren visar fyrkortsspader – annan fortsättning krävs"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+          }
+        },
+        {
+          "id": "t06_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ visar att öppnaren saknar fyrkortshögfärg.",
+          "analysis": "Öppnaren har visat en jämn 1NT-hand utan fyrkortshjärter eller fyrkortsspader. En högfärgsfit kan därför inte etableras på den här vägen. Med en jämn invit hand fortsätter svarshanden med 2NT i stället för att leta efter ett färgkontrakt.",
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t06_n2",
+              "label": "Invit till 3NT"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, högfärgerna saknar fyrkortsstöd",
+            "responder": "8–9 hp, jämn fördelning"
+          }
+        },
+        {
+          "id": "t06_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT är en invit till 3NT.",
+          "analysis": "Svarshanden har cirka 8–9 hp och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Minimum – inviten avslås, slutbud 2NT"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Maximum – inviten accepteras"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "8–9 hp, jämn fördelning"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T07_OVERFORING_HJARTER",
+      "title": "Överföring till hjärter – svag enfärgshand",
+      "tags": [
+        "1NT",
+        "överföring",
+        "hjärter",
+        "svag hand",
+        "delkontrakt"
+      ],
+      "conditions": [
+        "1NT visar 15–17 hp och jämn fördelning",
+        "2♦ överför till hjärter",
+        "Svarshanden har minst fem hjärter och svag styrka"
+      ],
+      "root": "t07_n0",
+      "nodes": [
+        {
+          "id": "t07_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ är överföring till hjärter.",
+          "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har en enfärgshand med minst fem hjärter och svag styrka, normalt 0–7 hp. Spader väljs bort eftersom hjärter är den längre färgen. Överföringen gör att den starkare handen blir spelförare.",
+          "branches": [
+            {
+              "call": "2♥",
+              "next": "t07_n1",
+              "label": "Öppnaren fullföljer överföringen"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "0–7 hp, enfärgshand, minst fem hjärter"
+          }
+        },
+        {
+          "id": "t07_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Öppnaren accepterar överföringen.",
+          "analysis": "Hjärter är nu etablerad som tänkt trumffärg. Svarshanden har inte invitstyrka och har redan beskrivit sin hand som svag med minst fem hjärter. Det finns ingen anledning att undersöka utgång; pass avslutar budgivningen i 2♥.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Slutbud 2♥ – svag hand"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "0–7 hp, minst fem hjärter"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T08_OVERFORING_SPADER",
+      "title": "Överföring till spader – svag enfärgshand",
+      "tags": [
+        "1NT",
+        "överföring",
+        "spader",
+        "svag hand",
+        "delkontrakt"
+      ],
+      "conditions": [
+        "1NT visar 15–17 hp och jämn fördelning",
+        "2♥ överför till spader",
+        "Svarshanden har minst fem spader och svag styrka"
+      ],
+      "root": "t08_n0",
+      "nodes": [
+        {
+          "id": "t08_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ är överföring till spader.",
+          "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har en svag enfärgshand med minst fem spader. Hjärter väljs bort eftersom spader är den längre färgen. Överföringen gör att öppnaren blir spelförare.",
+          "branches": [
+            {
+              "call": "2♠",
+              "next": "t08_n1",
+              "label": "Öppnaren fullföljer överföringen"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "0–7 hp, enfärgshand, minst fem spader"
+          }
+        },
+        {
+          "id": "t08_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "Öppnaren accepterar överföringen.",
+          "analysis": "Svarshanden har visat en svag hand med spader som enda längre färg. Det finns varken styrka för invit eller skäl att söka sang. Pass är därför slutbudet.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Slutbud 2♠ – svag hand"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "0–7 hp, minst fem spader"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T09_1NT_DIREKT_3NT",
+      "title": "Direkt 3NT – jämn hand med utgångsstyrka",
+      "tags": [
+        "1NT",
+        "3NT",
+        "jämn fördelning",
+        "utgång"
+      ],
+      "conditions": [
+        "1NT visar 15–17 hp och jämn fördelning",
+        "Svarshanden har cirka 10–15 hp och jämn fördelning",
+        "Ingen högfärgsfit eller lång färg som bör undersökas först"
+      ],
+      "root": "t09_n0",
+      "nodes": [
+        {
+          "id": "t09_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT är slutbud med tillräcklig sammanlagd styrka och jämn fördelning.",
+          "analysis": "Öppnaren har 15–17 hp och en jämn hand. Svarshanden har en jämn hand med cirka 10–15 hp, vilket normalt ger tillräcklig styrka för sangutgång. Högfärg väljs bort eftersom ingen femkortsfärg eller känd fit finns. En lång lågfärg behöver inte undersökas när handen passar för sang och styrkan räcker till utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "10–15 hp, jämn fördelning, ingen femkortshögfärg"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T10_1H_ENKEL_HOJNING",
+      "title": "Enkel höjning av hjärter – begränsad hand med trumfstöd",
+      "tags": [
+        "1♥",
+        "trumfstöd",
+        "höjning",
+        "delkontrakt"
+      ],
+      "conditions": [
+        "Öppnaren visar minst fem hjärter med 1♥",
+        "Svarshanden har tre- eller fyrkorts hjärterstöd och cirka 6–9 hp",
+        "Enkel höjning är begränsad och inte invit i parets system"
+      ],
+      "root": "t10_n0",
+      "nodes": [
+        {
+          "id": "t10_n0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ visar hjärterstöd och en begränsad svarshand.",
+          "analysis": "Öppnaren har en enfärgshand eller tvåfärgshand med minst fem hjärter och öppningsstyrka. Svarshanden har trumfstöd och cirka 6–9 hp. Sang väljs bort eftersom paret har hittat en högfärgsfit, och en annan färg behöver inte introduceras med en begränsad hand. Öppnaren passar med minimum; med extra styrka krävs en annan fortsättning än enkel höjning.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Minimum – slutbud 2♥"
+            },
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "Endast om öppnaren har tillägg och systemet tillåter fortsatt invit"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningsstyrka, minst fem hjärter",
+            "responder": "6–9 hp, trumfstöd med minst tre hjärter"
+          }
         }
       ]
     }
