@@ -1,5 +1,5 @@
 {
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Utökat fristående bibliotek med budträd, handprofiler och korta sammanhängande analyser. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -1192,7 +1192,18 @@
           ],
           "meaning": "3♥ – accepterar med hjärterstöd",
           "analysis": "Öppnaren har tillräcklig styrka för att acceptera inviten och minst trekortsstöd i hjärter. Svarshanden kan passa med nedre delen av inviten eller gå till 4♥ med extra fördelning och goda honnörer. Sang väljs bort eftersom en fungerande högfärgsfit är känd.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Inviten avslås – stanna i 2NT"
+            },
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Svarshanden har övre invitstyrka och går till utgång"
+            }
+          ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
@@ -1213,7 +1224,13 @@
           ],
           "meaning": "3NT – accepterar utan lämpligt trumfstöd",
           "analysis": "Öppnaren accepterar inviten men saknar lämpligt hjärterstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♥ väljs bort eftersom en säker trumffit inte är etablerad.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "3NT blir slutbud"
+            }
+          ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
@@ -1234,7 +1251,13 @@
           ],
           "meaning": "4♥ – maximum med starkt hjärterstöd",
           "analysis": "Öppnaren har maximum och starkt hjärterstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♥. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "4♥ blir slutbud"
+            }
+          ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
@@ -1335,7 +1358,18 @@
           ],
           "meaning": "3♠ – accepterar med spaderstöd",
           "analysis": "Öppnaren har tillräcklig styrka för att acceptera inviten och minst trekortsstöd i spader. Svarshanden kan passa med nedre delen av inviten eller gå till 4♠ med extra fördelning och goda honnörer. Sang väljs bort eftersom en fungerande högfärgsfit är känd.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Inviten avslås – stanna i 2NT"
+            },
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "Svarshanden har övre invitstyrka och går till utgång"
+            }
+          ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
@@ -1356,7 +1390,13 @@
           ],
           "meaning": "3NT – accepterar utan lämpligt trumfstöd",
           "analysis": "Öppnaren accepterar inviten men saknar lämpligt spaderstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♠ väljs bort eftersom en säker trumffit inte är etablerad.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "3NT blir slutbud"
+            }
+          ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
@@ -1377,7 +1417,13 @@
           ],
           "meaning": "4♠ – maximum med starkt spaderstöd",
           "analysis": "Öppnaren har maximum och starkt spaderstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♠. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "4♠ blir slutbud"
+            }
+          ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
@@ -1470,7 +1516,18 @@
           ],
           "meaning": "Färgprov i klöver",
           "analysis": "Öppnaren provar klöver för att se om svarshanden har honnörshjälp, korthet eller annan användbar fördelning. Svarshanden kan avböja med 3♥ eller acceptera med 4♥. Trumffit är redan känd, så sang är inte huvudalternativet.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "Svarshanden avböjer färgprovet – stanna på 3♥"
+            },
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Svarshanden accepterar färgprovet – utgång"
+            }
+          ],
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
@@ -1487,7 +1544,18 @@
           ],
           "meaning": "Färgprov i ruter",
           "analysis": "Öppnaren provar ruter av samma skäl: svarshanden bedömer sina värden i provfärgen och antalet förlorare. Svaga ruter talar för att stanna i 3♥; god hjälp kan motivera 4♥.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "Svarshanden avböjer färgprovet – stanna på 3♥"
+            },
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Svarshanden accepterar färgprovet – utgång"
+            }
+          ],
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
@@ -1504,7 +1572,18 @@
           ],
           "meaning": "Färgprov i spader",
           "analysis": "Öppnaren provar spader. Svarshanden värderar spaderhonnörer, korthet och förlorare innan beslut om utgång. Färgprovet är en överenskommelse som paret måste ha etablerat.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "Svarshanden avböjer färgprovet – stanna på 3♥"
+            },
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Svarshanden accepterar färgprovet – utgång"
+            }
+          ],
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
@@ -1593,7 +1672,18 @@
           ],
           "meaning": "Färgprov i klöver",
           "analysis": "Öppnaren provar klöver för att se om svarshanden har honnörshjälp, korthet eller användbar fördelning. Svarshanden kan avböja med 3♠ eller acceptera med 4♠. Sang är inte huvudalternativet eftersom trumffit är känd.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3♠",
+              "next": null,
+              "label": "Svarshanden avböjer färgprovet – stanna på 3♠"
+            },
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "Svarshanden accepterar färgprovet – utgång"
+            }
+          ],
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
@@ -1610,7 +1700,18 @@
           ],
           "meaning": "Färgprov i ruter",
           "analysis": "Öppnaren provar ruter. Svarshanden bedömer honnörer, korthet och förlorare i provfärgen. Svaga ruter talar för att stanna i 3♠; god hjälp kan motivera utgång.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3♠",
+              "next": null,
+              "label": "Svarshanden avböjer färgprovet – stanna på 3♠"
+            },
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "Svarshanden accepterar färgprovet – utgång"
+            }
+          ],
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
@@ -1627,7 +1728,18 @@
           ],
           "meaning": "Färgprov i hjärter",
           "analysis": "Öppnaren provar hjärter för att undersöka om svarshanden kan täcka förlorare där. Färgprovet är systemberoende och ska vara överenskommet.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3♠",
+              "next": null,
+              "label": "Svarshanden avböjer färgprovet – stanna på 3♠"
+            },
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "Svarshanden accepterar färgprovet – utgång"
+            }
+          ],
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
@@ -1682,22 +1794,17 @@
             {
               "call": "3♦",
               "next": "t23_1",
-              "label": "3♦ – ingen fyrkortshögfärg"
+              "label": "Ingen fyrkortshögfärg"
             },
             {
               "call": "3♥",
               "next": "t23_2",
-              "label": "3♥ – visar fyra hjärter"
+              "label": "Visar fyra hjärter"
             },
             {
               "call": "3♠",
               "next": "t23_3",
-              "label": "3♠ – visar fyra spader"
-            },
-            {
-              "call": "3NT",
-              "next": "t23_4",
-              "label": "3NT – balanserad hand utan högfärgsfit"
+              "label": "Visar fyra spader"
             }
           ],
           "handProfile": {
@@ -1716,7 +1823,13 @@
           ],
           "meaning": "3♦ – ingen fyrkortshögfärg",
           "analysis": "Öppnaren förnekar fyrkortshögfärg. Svarshanden med jämn hand väljer 3NT. Högfärg väljs bort eftersom ingen 4–4-fit har hittats och svarshanden saknar egen lång trumffärg.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "3NT",
+              "next": "t23_4",
+              "label": "Jämn hand – sangutgång"
+            }
+          ],
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
@@ -1733,7 +1846,18 @@
           ],
           "meaning": "3♥ – visar fyra hjärter",
           "analysis": "Öppnaren visar minst fyra hjärter. Med fyra hjärter hos svarshanden finns en 4–4-fit; svarshanden kan gå till 4♥ med utgångsstyrka. 3NT väljs bort när trumffitten ger bättre kontroll.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Utgång med 4–4-fit"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Sang endast om svarshanden saknar hjärterstöd"
+            }
+          ],
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
@@ -1750,7 +1874,18 @@
           ],
           "meaning": "3♠ – visar fyra spader",
           "analysis": "Öppnaren visar minst fyra spader. Med fyra spader hos svarshanden finns en 4–4-fit; svarshanden kan gå till 4♠ med utgångsstyrka. 3NT väljs bort när trumffitten ger bättre kontroll.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "Utgång med 4–4-fit"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Sang endast om svarshanden saknar spaderstöd"
+            }
+          ],
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
@@ -1763,10 +1898,12 @@
             "Pass",
             "3♣",
             "Pass",
+            "3♦",
+            "Pass",
             "3NT"
           ],
-          "meaning": "3NT – balanserad hand utan högfärgsfit",
-          "analysis": "Om parets överenskommelse tillåter 3NT som balanserat svar utan fyrkortshögfärg, beskriver det en jämn hand där högfärgsfit saknas. 3NT blir slutbud med utgångsstyrka; högfärg väljs bort eftersom ingen gemensam fit har visats.",
+          "meaning": "Svarshanden avslutar i 3NT efter att öppnaren förnekat fyrkortshögfärg.",
+          "analysis": "Stayman har inte hittat någon högfärgsfit. Med jämn hand och utgångsstyrka väljer svarshanden 3NT. Högfärgskontrakt väljs bort eftersom öppnaren har förnekat fyrkortshögfärg och svarshanden saknar egen lång trumffärg.",
           "branches": [],
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
