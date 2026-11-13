@@ -4,7 +4,7 @@
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
-    "rkc": "RKC 1430 med 5 nyckelkort; 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam",
+    "rkc": "RKC 1430 med 5 nyckelkort; 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam",
     "jacoby": "2NT efter 1 i högfärg är Jacoby 2NT; öppnarens 3♣ visar singel/renons i klöver enligt denna prototyps överenskommelse"
   },
   "trees": [
@@ -61,12 +61,12 @@
             {
               "call": "5♣",
               "next": "t01_n2",
-              "label": "0 eller 3 nyckelkort"
+              "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♦",
               "next": "t01_n3",
-              "label": "1 eller 4 nyckelkort"
+              "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♥",
@@ -83,11 +83,18 @@
         {
           "id": "t01_n2",
           "sequence": [
-            "…",
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
             "5♣"
           ],
-          "meaning": "Svar 5♣ visar 0 eller 3 nyckelkort enligt RKC 1430.",
-          "analysis": "Svarshanden måste bedöma om paret saknar för många nyckelkort. Nästa bud kan vara signoff i 5♥ eller slamförsök om övrig information gör storslam realistisk.",
+          "meaning": "Svar 5♣ visar 1 eller 4 nyckelkort enligt RKC 1430.",
+          "analysis": "Svarshanden visar 1 eller 4 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt utifrån egna nyckelkort. Om ett nyckelkort saknas bör paret normalt stanna i 5♥; om alla finns kan 6♥ vara aktuellt.",
           "branches": [
             {
               "call": "5♥",
@@ -104,11 +111,18 @@
         {
           "id": "t01_n3",
           "sequence": [
-            "…",
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
             "5♦"
           ],
-          "meaning": "Svar 5♦ visar 1 eller 4 nyckelkort.",
-          "analysis": "Paret har ett nyckelkort mer än vid 5♣-svaret, men måste fortfarande avgöra om ett nyckelkort saknas. Fortsättningen beror på vem som har frågat och parets kontrollbud.",
+          "meaning": "Svar 5♦ visar 0 eller 3 nyckelkort enligt RKC 1430.",
+          "analysis": "Svarshanden visar 0 eller 3 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt. Om svaret innebär noll nyckelkort finns normalt inget slam; med tre kan slam vara möjligt beroende på egna nyckelkort.",
           "branches": [
             {
               "call": "5♥",
@@ -125,7 +139,14 @@
         {
           "id": "t01_n4",
           "sequence": [
-            "…",
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
             "5♥"
           ],
           "meaning": "Svar 5♥ visar två nyckelkort utan hjärterdam.",
@@ -146,7 +167,14 @@
         {
           "id": "t01_n5",
           "sequence": [
-            "…",
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
             "5♠"
           ],
           "meaning": "Svar 5♠ visar två nyckelkort med hjärterdam.",
