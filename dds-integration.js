@@ -79,11 +79,11 @@ function run(st){
      var level=+auction.contract[0],tricks=t[idx[strain]*4+seatIdx[declarer]],diff=tricks-(level+6);
      var made=diff>=0?"går hem"+(diff?" med "+diff+" övertrick":""):"går bet med "+(-diff)+" undertrick";
      var actualScore=score(level,strain,tricks,auction.doubled)*(auction.contractSide===0?1:-1);
-     actual='<p><b>Er slutkontrakt:</b> '+contractText(auction.contract)+' av '+({N:"Norr",E:"Öst",S:"Syd",W:"Väst"}[declarer])+' – '+tricks+' stick, '+made+'.</p><p class="mu">Beräknad score utan zon: '+actualScore+' poäng för Nord/Syd.</p>';
+     actual='<p><b>Du bjöd:</b> '+contractText(auction.contract)+'</p>';
     }
    }
-   var bestHtml=best?'<p><b>Bästa teoretiska bud:</b> '+best.level+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[best.strain])+' av '+(best.declarer==="N"?"Norr":"Syd")+' – '+best.tricks+' stick.</p><p class="mu">Score utan zon: '+best.score+' poäng.</p>':'<p>Inget kontrakt på Nord/Syds sida kan gå hem.</p>';
-   var out='<p class="status">Dubbel-dummy-analys</p>'+bestHtml+actual+'<p class="mu">Beräknat med DDS i webbläsaren. Ingen zon/vulnerabilitet används.</p>';
+   var bestHtml=best?'<p><b>Bästa teoretiska bud:</b> '+best.level+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[best.strain])+'</p>':'<p><b>Bästa teoretiska bud:</b> inget hemgångskontrakt</p>';
+   var out=bestHtml+actual;
    resultCache[key]=out;box.innerHTML=out;
   }catch(e){box.innerHTML='<p class="status">DDS-analys kunde inte köras</p><p class="mu">'+String(e.message||e).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})+'</p>'}
  })();
