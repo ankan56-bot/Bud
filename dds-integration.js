@@ -22,7 +22,7 @@ function loadDds(){
 }
 function pbn(hands){
  function one(seat){return ["S","H","D","C"].map(function(s){
-  var cards=hands[seat].filter(function(c){return c[0]===s}).map(function(c){return RANKS[+c.slice(1)]||String(+c.slice(1))).sort(function(a,b){return "AKQJT98765432".indexOf(a)-"AKQJT98765432".indexOf(b)});
+  var cards=hands[seat].filter(function(c){return c[0]===s}).map(function(c){return RANKS[+c.slice(1)]||String(+c.slice(1)).sort(function(a,b){return "AKQJT98765432".indexOf(a)-"AKQJT98765432".indexOf(b)});
   return cards.length?cards.join(""):"-";
  }).join(".")}
  return "N:"+["N","E","S","W"].map(one).join(" ");
