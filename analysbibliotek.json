@@ -1,5 +1,5 @@
 {
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Utökat fristående bibliotek med budträd, handprofiler och korta sammanhängande analyser. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -1908,6 +1908,1010 @@
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T24_STAYMAN_HJARTER_INVIT",
+      "title": "Stayman hittar hjärterfit – invit till 4♥",
+      "tags": [
+        "1NT",
+        "Stayman",
+        "2♥",
+        "3♥",
+        "4♥",
+        "invit"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♣ är Stayman",
+        "2♥ visar minst fyra hjärter",
+        "Svarshanden har fyrkortsstöd; 3-nivån är invit och 4-nivån utgång"
+      ],
+      "root": "t24_stayman_hjarter_invit_n0",
+      "nodes": [
+        {
+          "id": "t24_stayman_hjarter_invit_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Öppnaren visar fyrkortsfärg i hjärter efter Stayman.",
+          "analysis": "Svarshanden har fyrkortsstöd och invitstyrka. Efter öppnarens svar passar motståndaren innan svarshanden väljer mellan invit och direkt utgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t24_stayman_hjarter_invit_n1",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t24_stayman_hjarter_invit_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass"
+          ],
+          "meaning": "Budgivningen går vidare efter motståndarens pass.",
+          "analysis": "Svarshanden har cirka 8–9 hp och inviterar med höjningen på treläget. Med minst cirka 10 hp kan svarshanden i stället bjuda utgång direkt.",
+          "branches": [
+            {
+              "call": "3♥",
+              "next": "t24_stayman_hjarter_invit_n2",
+              "label": "Invit med fyrkortsstöd"
+            },
+            {
+              "call": "4♥",
+              "next": "t24_stayman_hjarter_invit_n6",
+              "label": "Direkt utgång med utgångsstyrka"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t24_stayman_hjarter_invit_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Svarshanden inviterar till 4♥.",
+          "analysis": "Invitbudet visar fyrkortsstöd och cirka 8–9 hp. Motståndarna passar normalt innan öppnaren fattar beslut.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t24_stayman_hjarter_invit_n3",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t24_stayman_hjarter_invit_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass"
+          ],
+          "meaning": "Öppnaren ska nu ta ställning till inviten.",
+          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med utgång på maximum eller goda spelvärden.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t24_stayman_hjarter_invit_n4",
+              "label": "Avslår inviten"
+            },
+            {
+              "call": "4♥",
+              "next": "t24_stayman_hjarter_invit_n5",
+              "label": "Accepterar inviten"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t24_stayman_hjarter_invit_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "3♥ blir slutbud.",
+          "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Den kända 4–4-fitten gör högfärgen till rätt trumf, men styrkan räcker inte för utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t24_stayman_hjarter_invit_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "4♥ blir slutbud.",
+          "analysis": "Öppnaren har maximum eller goda spelvärden och accepterar inviten. Den gemensamma 4–4-fitten gör högfärgen till rätt trumf.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t24_stayman_hjarter_invit_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "Svarshanden går direkt till 4♥.",
+          "analysis": "Svarshanden har utgångsstyrka och fyrkortsstöd. Stayman har hittat en 4–4-fit, så direkt utgång i högfärgen är normalt bättre än sang.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "responder": "Fyra hjärter, minst cirka 10 hp"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T25_STAYMAN_SPADER_INVIT",
+      "title": "Stayman hittar spaderfit – invit till 4♠",
+      "tags": [
+        "1NT",
+        "Stayman",
+        "2♠",
+        "3♠",
+        "4♠",
+        "invit"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♣ är Stayman",
+        "2♠ visar minst fyra spader",
+        "Svarshanden har fyrkortsstöd; 3-nivån är invit och 4-nivån utgång"
+      ],
+      "root": "t25_stayman_spader_invit_n0",
+      "nodes": [
+        {
+          "id": "t25_stayman_spader_invit_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "Öppnaren visar fyrkortsfärg i spader efter Stayman.",
+          "analysis": "Svarshanden har fyrkortsstöd och invitstyrka. Efter öppnarens svar passar motståndaren innan svarshanden väljer mellan invit och direkt utgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t25_stayman_spader_invit_n1",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t25_stayman_spader_invit_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass"
+          ],
+          "meaning": "Budgivningen går vidare efter motståndarens pass.",
+          "analysis": "Svarshanden har cirka 8–9 hp och inviterar med höjningen på treläget. Med minst cirka 10 hp kan svarshanden i stället bjuda utgång direkt.",
+          "branches": [
+            {
+              "call": "3♠",
+              "next": "t25_stayman_spader_invit_n2",
+              "label": "Invit med fyrkortsstöd"
+            },
+            {
+              "call": "4♠",
+              "next": "t25_stayman_spader_invit_n6",
+              "label": "Direkt utgång med utgångsstyrka"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t25_stayman_spader_invit_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Svarshanden inviterar till 4♠.",
+          "analysis": "Invitbudet visar fyrkortsstöd och cirka 8–9 hp. Motståndarna passar normalt innan öppnaren fattar beslut.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t25_stayman_spader_invit_n3",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t25_stayman_spader_invit_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass"
+          ],
+          "meaning": "Öppnaren ska nu ta ställning till inviten.",
+          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med utgång på maximum eller goda spelvärden.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t25_stayman_spader_invit_n4",
+              "label": "Avslår inviten"
+            },
+            {
+              "call": "4♠",
+              "next": "t25_stayman_spader_invit_n5",
+              "label": "Accepterar inviten"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t25_stayman_spader_invit_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "3♠ blir slutbud.",
+          "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Den kända 4–4-fitten gör högfärgen till rätt trumf, men styrkan räcker inte för utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t25_stayman_spader_invit_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "4♠ blir slutbud.",
+          "analysis": "Öppnaren har maximum eller goda spelvärden och accepterar inviten. Den gemensamma 4–4-fitten gör högfärgen till rätt trumf.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t25_stayman_spader_invit_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Svarshanden går direkt till 4♠.",
+          "analysis": "Svarshanden har utgångsstyrka och fyrkortsstöd. Stayman har hittat en 4–4-fit, så direkt utgång i högfärgen är normalt bättre än sang.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "responder": "Fyra spader, minst cirka 10 hp"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T26_STAYMAN_INGEN_HOGFARG_INVIT",
+      "title": "Stayman – ingen högfärg, sanginvit",
+      "tags": [
+        "1NT",
+        "Stayman",
+        "2♦",
+        "2NT",
+        "3NT",
+        "invit"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♣ är Stayman; 2♦ förnekar fyrkortshögfärg",
+        "Svarshanden har jämn hand utan fyrkortshögfärg och cirka 8–9 hp",
+        "2NT är invit; 3NT är utgång"
+      ],
+      "root": "t26_n0",
+      "nodes": [
+        {
+          "id": "t26_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "Öppnaren förnekar fyrkortshögfärg.",
+          "analysis": "Efter Stayman visar 2♦ ingen fyrkortshögfärg. Motståndaren passar; svarshanden väljer sedan sanginvit med 2NT eller direkt 3NT med utgångsstyrka.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t26_n1",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning, ingen fyrkortshögfärg",
+            "responder": "Jämn hand, ingen fyrkortshögfärg"
+          }
+        },
+        {
+          "id": "t26_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass"
+          ],
+          "meaning": "Svarshanden väljer nivå efter styrkan.",
+          "analysis": "Med cirka 8–9 hp inviterar svarshanden med 2NT. Med utgångsstyrka bjuder svarshanden 3NT direkt.",
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t26_n2",
+              "label": "Invit med cirka 8–9 hp"
+            },
+            {
+              "call": "3NT",
+              "next": "t26_n5",
+              "label": "Direkt utgång"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "Cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          }
+        },
+        {
+          "id": "t26_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "Svarshanden inviterar till 3NT.",
+          "analysis": "2NT visar cirka 8–9 hp. Motståndarna passar normalt innan öppnaren avgör om handen har maximum eller goda honnörsvärden.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t26_n3",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "Cirka 8–9 hp, jämn fördelning"
+          }
+        },
+        {
+          "id": "t26_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass"
+          ],
+          "meaning": "Öppnaren ska ta ställning till sanginviten.",
+          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med 3NT på maximum eller med bra honnörskvalitet.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t26_n4",
+              "label": "Avslår inviten"
+            },
+            {
+              "call": "3NT",
+              "next": "t26_n6",
+              "label": "Accepterar inviten"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "Cirka 8–9 hp, jämn fördelning"
+          }
+        },
+        {
+          "id": "t26_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "2NT blir slutbud.",
+          "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Ingen högfärgsfit har hittats och paret stannar i 2NT.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15 hp eller svaga spelvärden",
+            "responder": "Cirka 8–9 hp, jämn fördelning"
+          }
+        },
+        {
+          "id": "t26_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Svarshanden går direkt till 3NT.",
+          "analysis": "Svarshanden har utgångsstyrka och jämn fördelning. Öppnaren har förnekat fyrkortshögfärg, så 3NT är det naturliga slutbudet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "Minst cirka 10 hp, jämn fördelning"
+          }
+        },
+        {
+          "id": "t26_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren accepterar inviten med 3NT.",
+          "analysis": "Öppnaren har maximum eller goda honnörsvärden. Stayman har inte hittat någon högfärgsfit, så 3NT är rätt kontraktstyp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "16–17 hp eller motsvarande goda spelvärden",
+            "responder": "Cirka 8–9 hp, jämn fördelning"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T27_OVERFORING_HJARTER_SEXKORT_INVIT",
+      "title": "Överföring till hjärter – sexkortsfärg och invit",
+      "tags": [
+        "1NT",
+        "2♦",
+        "2♥",
+        "3♥",
+        "3NT",
+        "4♥",
+        "invit"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♦ överför till hjärter; öppnaren fullföljer med 2♥",
+        "Svarshanden har minst sex hjärter och cirka 8–9 hp",
+        "3♥ efter fullföljd överföring är invit; öppnaren väljer slutbud"
+      ],
+      "root": "t27_overforing_hjarter_sexkort_invit_n0",
+      "nodes": [
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Öppnaren fullföljer överföringen.",
+          "analysis": "Svarshanden har minst sex hjärter och cirka 8–9 hp. Efter fullföljd överföring inviterar svarshanden med 3♥. Motståndaren passar innan svarshanden väljer invit eller direkt utgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t27_overforing_hjarter_sexkort_invit_n1",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass"
+          ],
+          "meaning": "Svarshanden väljer nivå efter styrkan.",
+          "analysis": "Med cirka 8–9 hp och sexkortsfärg inviterar svarshanden med 3♥. Med utgångsstyrka kan svarshanden gå direkt till 4♥.",
+          "branches": [
+            {
+              "call": "3♥",
+              "next": "t27_overforing_hjarter_sexkort_invit_n2",
+              "label": "Invit med sexkortsfärg"
+            },
+            {
+              "call": "4♥",
+              "next": "t27_overforing_hjarter_sexkort_invit_n6",
+              "label": "Direkt utgång"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Svarshanden inviterar till utgång i hjärter.",
+          "analysis": "Inviten visar minst sexkortsfärg och cirka 8–9 hp. Motståndarna passar normalt innan öppnaren väljer att avslå eller acceptera.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t27_overforing_hjarter_sexkort_invit_n3",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass"
+          ],
+          "meaning": "Öppnaren ska ta ställning till inviten.",
+          "analysis": "Med minimum avslår öppnaren med pass. Med tillräckliga värden men utan trumfstöd kan öppnaren välja 3NT. Med tillräckliga värden och minst trekortsstöd väljs högfärgsutgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t27_overforing_hjarter_sexkort_invit_n4",
+              "label": "Avslår inviten"
+            },
+            {
+              "call": "3NT",
+              "next": "t27_overforing_hjarter_sexkort_invit_n5",
+              "label": "Accepterar utan trumfstöd"
+            },
+            {
+              "call": "4♥",
+              "next": "t27_overforing_hjarter_sexkort_invit_n7",
+              "label": "Accepterar med trumfstöd"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "3♥ blir slutbud.",
+          "analysis": "Öppnaren har minimum eller olämpliga värden för utgång. Den långa trumffärgen är etablerad, men styrkan räcker inte för utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15 hp eller svaga spelvärden",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren accepterar inviten utan trumfstöd.",
+          "analysis": "Öppnaren har tillräckliga värden för utgång men saknar minst trekortsstöd i högfärgen. Med jämn hand blir 3NT alternativet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "Svarshanden går direkt till 4♥.",
+          "analysis": "Svarshanden har utgångsstyrka och minst sexkortsfärg. Öppnaren har visat 15–17 hp; direkt utgång är rimlig när svarshanden har tillräcklig styrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "Minst sex hjärter, normalt minst cirka 10 hp"
+          }
+        },
+        {
+          "id": "t27_overforing_hjarter_sexkort_invit_n7",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "4♥ blir slutbud.",
+          "analysis": "Öppnaren accepterar inviten med tillräcklig styrka och minst trekortsstöd. Den gemensamma minst niokortsfärgen gör högfärgen till bättre kontrakt än 3NT.",
+          "branches": [],
+          "handProfile": {
+            "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
+            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T28_OVERFORING_SPADER_SEXKORT_INVIT",
+      "title": "Överföring till spader – sexkortsfärg och invit",
+      "tags": [
+        "1NT",
+        "2♥",
+        "2♠",
+        "3♠",
+        "3NT",
+        "4♠",
+        "invit"
+      ],
+      "conditions": [
+        "1NT = 15–17 hp och jämn fördelning",
+        "2♥ överför till spader; öppnaren fullföljer med 2♠",
+        "Svarshanden har minst sex spader och cirka 8–9 hp",
+        "3♠ efter fullföljd överföring är invit; öppnaren väljer slutbud"
+      ],
+      "root": "t28_overforing_spader_sexkort_invit_n0",
+      "nodes": [
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "Öppnaren fullföljer överföringen.",
+          "analysis": "Svarshanden har minst sex spader och cirka 8–9 hp. Efter fullföljd överföring inviterar svarshanden med 3♠. Motståndaren passar innan svarshanden väljer invit eller direkt utgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t28_overforing_spader_sexkort_invit_n1",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass"
+          ],
+          "meaning": "Svarshanden väljer nivå efter styrkan.",
+          "analysis": "Med cirka 8–9 hp och sexkortsfärg inviterar svarshanden med 3♠. Med utgångsstyrka kan svarshanden gå direkt till 4♠.",
+          "branches": [
+            {
+              "call": "3♠",
+              "next": "t28_overforing_spader_sexkort_invit_n2",
+              "label": "Invit med sexkortsfärg"
+            },
+            {
+              "call": "4♠",
+              "next": "t28_overforing_spader_sexkort_invit_n6",
+              "label": "Direkt utgång"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Svarshanden inviterar till utgång i spader.",
+          "analysis": "Inviten visar minst sexkortsfärg och cirka 8–9 hp. Motståndarna passar normalt innan öppnaren väljer att avslå eller acceptera.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t28_overforing_spader_sexkort_invit_n3",
+              "label": "Motståndaren passar"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass"
+          ],
+          "meaning": "Öppnaren ska ta ställning till inviten.",
+          "analysis": "Med minimum avslår öppnaren med pass. Med tillräckliga värden men utan trumfstöd kan öppnaren välja 3NT. Med tillräckliga värden och minst trekortsstöd väljs högfärgsutgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t28_overforing_spader_sexkort_invit_n4",
+              "label": "Avslår inviten"
+            },
+            {
+              "call": "3NT",
+              "next": "t28_overforing_spader_sexkort_invit_n5",
+              "label": "Accepterar utan trumfstöd"
+            },
+            {
+              "call": "4♠",
+              "next": "t28_overforing_spader_sexkort_invit_n7",
+              "label": "Accepterar med trumfstöd"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "3♠ blir slutbud.",
+          "analysis": "Öppnaren har minimum eller olämpliga värden för utgång. Den långa trumffärgen är etablerad, men styrkan räcker inte för utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15 hp eller svaga spelvärden",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren accepterar inviten utan trumfstöd.",
+          "analysis": "Öppnaren har tillräckliga värden för utgång men saknar minst trekortsstöd i högfärgen. Med jämn hand blir 3NT alternativet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Svarshanden går direkt till 4♠.",
+          "analysis": "Svarshanden har utgångsstyrka och minst sexkortsfärg. Öppnaren har visat 15–17 hp; direkt utgång är rimlig när svarshanden har tillräcklig styrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, jämn fördelning",
+            "responder": "Minst sex spader, normalt minst cirka 10 hp"
+          }
+        },
+        {
+          "id": "t28_overforing_spader_sexkort_invit_n7",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "4♠ blir slutbud.",
+          "analysis": "Öppnaren accepterar inviten med tillräcklig styrka och minst trekortsstöd. Den gemensamma minst niokortsfärgen gör högfärgen till bättre kontrakt än 3NT.",
+          "branches": [],
+          "handProfile": {
+            "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
+            "responder": "Minst sex spader, cirka 8–9 hp för invit"
           }
         }
       ]
