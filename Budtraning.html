@@ -184,6 +184,25 @@ function focusOk(d,f){
   }
   return nsOk(d);
 }
+function themeDealer(d,f){
+  var seats=['N','S'];
+  function qualifies(seat){
+    var h=d[seat],p=d[partner(seat)],L=shapeOf(h),P=shapeOf(p),hp=hpOf(h),ph=hpOf(p);
+    if(f==='nt')return hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4);
+    if(f==='sang')return ((hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4))||(hp>=20&&hp<=21&&isBal(L)&&ph>=4&&ph<=10&&P.H<4&&P.S<4));
+    if(f==='tva')return hp>=22;
+    if(f==='svag')return hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6;
+    if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a});return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6;}
+    if(f==='trumf')return hp>=12&&hp<=19&&['S','H','D','C'].some(function(m){return L[m]>=5&&P[m]>=4&&htpWith(p,m)>=6&&htpWith(p,m)<=12;});
+    if(f==='stenberg')return hp>=12&&hp<=19&&(['H','S'].some(function(m){return L[m]>=5&&P[m]>=4&&htpWith(p,m)>=13;})||(['C','D'].some(function(m){return L[m]>=4&&L[m]===Math.max(L.S,L.H,L.D,L.C)&&L.H<5&&L.S<5&&P[m]>=4&&P.H<4&&P.S<4&&htpWith(p,m)>=13;})));
+    if(f==='inkliv')return (hp>=12&&hp<=19&&Math.max(L.S,L.H,L.D,L.C)>=5)||(hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6);
+    return false;
+  }
+  for(var i=0;i<seats.length;i++)if(qualifies(seats[i]))return seats[i];
+  if(f==='alla')return SEATS[Math.floor(rng()*SEATS.length)];
+  if(f==='rkc'||f==='slam'||f==='invit')return hpOf(d.N)>=hpOf(d.S)?'N':'S';
+  return seats[Math.floor(rng()*seats.length)];
+}
 function dubDeal(){
   var v=rng()<.5?'A':'B',d,i,SU4=['S','H','D','C'];
   for(i=0;i<4000;i++){
@@ -234,7 +253,7 @@ function newDeal(no,mode,focus,seed){
   rng=mulberry(seed);
   if(focus==='dubbling')mode='stord';
   var hd=biasedDeal(mode,focus),dl=hd.dealer;delete hd.dealer;
-  if(!dl)dl=(focus&&focus!=='alla'&&focus!=='inkliv')?['N','S'][Math.floor(rng()*2)]:SEATS[Math.floor(rng()*4)];
+  if(!dl)dl=themeDealer(hd,focus||'alla');
   return advance({id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0});
 }
 function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:(st.rep||0)+1,h:[]})}
