@@ -685,13 +685,41 @@
             },
             {
               "call": "3♥",
-              "next": null,
+              "next": "t10_n1",
               "label": "Endast om öppnaren har tillägg och systemet tillåter fortsatt invit"
             }
           ],
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem hjärter",
             "responder": "6–9 hp, trumfstöd med minst tre hjärter"
+          }
+        },
+        {
+          "id": "t10_n1",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Öppnaren visar tillägg efter den begränsade höjningen.",
+          "analysis": "Svarshanden har visat en begränsad hand med hjärterstöd. Öppnaren kan invitera vidare med tillägg, men svarshanden behöver inte acceptera utan tillräckliga värden. Pass stannar i 3♥; 4♥ väljs när svarshanden har övre delen av sin visade styrka eller fördelningsvärden som motiverar utgång.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Svarshanden avböjer – 3♥ blir slutbud"
+            },
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Svarshanden accepterar – utgång i 4♥"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningsstyrka med tillägg, minst fem hjärter",
+            "responder": "Begränsad höjning, 6–9 hp, tre- eller fyrkorts hjärterstöd"
           }
         }
       ]
@@ -815,13 +843,34 @@
             },
             {
               "call": "4♥",
-              "next": null,
+              "next": "t13_n1",
               "label": "Maximum och bra trumfstöd – inviten accepteras"
             }
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "8–9 hp, jämn fördelning, fyrkortshjärter"
+          }
+        },
+        {
+          "id": "t13_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "Öppnaren accepterar invitbudet och går till utgång.",
+          "analysis": "Svarshanden har visat en invit med hjärterstöd efter Stayman. Öppnaren har maximum inom 1NT-intervallet och tillräckligt bra stöd eller sidovärden för att acceptera. Med minimum hade öppnaren passat på 3♥.",
+          "branches": [],
+          "handProfile": {
+            "opener": "16–17 hp, fyra hjärter eller lämpliga stödvärden enligt parets överenskommelse",
+            "responder": "Cirka 8–9 hp och minst fyra hjärter"
           }
         }
       ]
@@ -859,13 +908,30 @@
             },
             {
               "call": "4♥",
-              "next": null,
+              "next": "t14_n1",
               "label": "Tillägg – inviten accepteras"
             }
           ],
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem hjärter",
             "responder": "10–12 hp, minst fyra hjärter, trumfstöd"
+          }
+        },
+        {
+          "id": "t14_n1",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "Öppnaren accepterar inviten med tillägg.",
+          "analysis": "Svarshanden har visat en invitstyrka och hjärterstöd. Öppnaren har tillräckliga tillägg för att gå till utgång. Med minimum passar öppnaren i 3♥.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand med tillägg och minst fem hjärter",
+            "responder": "Invitstyrka enligt parets system, normalt 10–12 hp, med hjärterstöd"
           }
         }
       ]
@@ -903,13 +969,41 @@
             },
             {
               "call": "3♠",
-              "next": null,
+              "next": "t15_n1",
               "label": "Med tydliga tillägg och enligt parets fortsättningsmetod"
             }
           ],
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem spader",
             "responder": "6–9 hp, minst tre spader, trumfstöd"
+          }
+        },
+        {
+          "id": "t15_n1",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Öppnaren inviterar till 4♠ med 3♠.",
+          "analysis": "Svarshanden har visat en begränsad spaderhöjning med minst trekortsstöd. Öppnaren visar tillägg genom att bjuda 3♠. Svarshanden passar med minimum och accepterar med bättre styrka eller extra fördelningsvärden. 4♠ är slutbud när utgången bedöms ha rimliga chanser.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Minimum – stanna i 3♠"
+            },
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "Inviten accepteras – 4♠"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem spader och tillägg utöver öppningsminimum",
+            "responder": "6–9 hp, minst tre spader"
           }
         }
       ]
