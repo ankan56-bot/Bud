@@ -67,7 +67,7 @@ function run(st){
      var tricks=t[idx[strain]*4+seatIdx[declarer]];
      for(var level=1;level<=7;level++)if(tricks>=level+6){
       var sc=score(level,strain,tricks,0);
-      if(!best||sc>best.score)best={level:level,strain:strain,declarer:declarer,tricks:tricks,score:sc};
+      if(!best||level>best.level||(level===best.level&&sc>best.score))best={level:level,strain:strain,declarer:declarer,tricks:tricks,score:sc};
      }
     });
    });
@@ -82,7 +82,7 @@ function run(st){
      actual='<p><b>Er slutkontrakt:</b> '+contractText(auction.contract)+' av '+({N:"Norr",E:"Öst",S:"Syd",W:"Väst"}[declarer])+' – '+tricks+' stick, '+made+'.</p><p class="mu">Beräknad score utan zon: '+actualScore+' poäng för Nord/Syd.</p>';
     }
    }
-   var bestHtml=best?'<p><b>Bästa möjliga kontrakt för Nord/Syd:</b> '+best.level+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[best.strain])+' av '+(best.declarer==="N"?"Norr":"Syd")+' – '+best.tricks+' stick.</p><p class="mu">Score utan zon: '+best.score+' poäng.</p>':'<p>Inget kontrakt på Nord/Syds sida kan gå hem.</p>';
+   var bestHtml=best?'<p><b>Bästa teoretiska bud:</b> '+best.level+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[best.strain])+' av '+(best.declarer==="N"?"Norr":"Syd")+' – '+best.tricks+' stick.</p><p class="mu">Score utan zon: '+best.score+' poäng.</p>':'<p>Inget kontrakt på Nord/Syds sida kan gå hem.</p>';
    var out='<p class="status">Dubbel-dummy-analys</p>'+bestHtml+actual+'<p class="mu">Beräknat med DDS i webbläsaren. Ingen zon/vulnerabilitet används.</p>';
    resultCache[key]=out;box.innerHTML=out;
   }catch(e){box.innerHTML='<p class="status">DDS-analys kunde inte köras</p><p class="mu">'+String(e.message||e).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})+'</p>'}
