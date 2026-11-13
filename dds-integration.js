@@ -79,7 +79,7 @@ function run(st){
      var level=+auction.contract[0],tricks=t[idx[strain]*4+seatIdx[declarer]],diff=tricks-(level+6);
      var made=diff>=0?"går hem"+(diff?" med "+diff+" övertrick":""):"går bet med "+(-diff)+" undertrick";
      var actualScore=score(level,strain,tricks,auction.doubled)*(auction.contractSide===0?1:-1);
-     actual='<p><b>Er slutkontrakt:</b> '+contractText(auction.contract)+' av '+(declarer==="N"?"Norr":"Syd")+' – '+tricks+' stick, '+made+'.</p><p class="mu">Beräknad score utan zon: '+actualScore+' poäng för Nord/Syd.</p>';
+     actual='<p><b>Er slutkontrakt:</b> '+contractText(auction.contract)+' av '+({N:"Norr",E:"Öst",S:"Syd",W:"Väst"}[declarer])+' – '+tricks+' stick, '+made+'.</p><p class="mu">Beräknad score utan zon: '+actualScore+' poäng för Nord/Syd.</p>';
     }
    }
    var bestHtml=best?'<p><b>Bästa möjliga kontrakt för Nord/Syd:</b> '+best.level+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[best.strain])+' av '+(best.declarer==="N"?"Norr":"Syd")+' – '+best.tricks+' stick.</p><p class="mu">Score utan zon: '+best.score+' poäng.</p>':'<p>Inget kontrakt på Nord/Syds sida kan gå hem.</p>';
