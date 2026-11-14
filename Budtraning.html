@@ -376,7 +376,7 @@ function dubDeal(){
     }else{
       var dl2=['N','S'][Math.floor(rng()*2)],ol=SEATS[(SEATS.indexOf(dl2)+1)%4],h=d[dl2],hh=hpOf(h),Lo=shapeOf(d[ol]);
       var sh=SU4.filter(function(m){return Lo[m]<=2}).length;
-      var opening2=themedOpening(d,dl2),double2=opening2&&/^1[CDHS]$/.test(opening2.exp||'')?themedResponse(d,dl2,opening2.exp):null;
+      var opening2=themedOpening(d,dl2),double2=opening2&&/^1[CDHS]$/.test(opening2.exp||'')?themedOvercall(d,dl2,opening2.exp):null;
       if(hh>=12&&hh<=19&&!(isBal(shapeOf(h))&&hh>=15&&hh<=17)&&hpOf(d[ol])>=12&&sh===1&&Math.max(Lo.S,Lo.H,Lo.D,Lo.C)<=4&&double2&&double2.exp==='X'){d.dealer=dl2;return d}
     }
   }
