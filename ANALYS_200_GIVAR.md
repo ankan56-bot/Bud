@@ -50,3 +50,16 @@ Inga direkta konflikter med de fastställda öppningsreglerna hittades i detta p
 - Utöka återbud efter 1NT-svar.
 - Definiera fortsättning efter spärröppningar och spärrhöjningar.
 - Därefter köra om hela 200-givstestet och jämföra antal rätt/fel/valfritt/ej täckt.
+
+
+## Första implementationen av bokreglerna
+
+Efter första täckningspasset har bokens fyra handtyper för svarshandens andra bud efter öppnarens återbud implementerats i `rattningsmotor.js` (v5.3):
+- öppnaren visar stöd i svarshandens färg,
+- öppnaren visar balanserad hand,
+- öppnaren visar minst sex kort i egen färg,
+- öppnaren visar två färger.
+
+Poänggränserna är anpassade till systemets gemensamma beräkning: 26 spelpoäng i högfärg, 28 i lågfärg och 26 honnörspoäng i sang. Fördelningspoäng räknas bara i färg med minst åtta gemensamma trumfkort. Bokens intervall har alltså inte kopierats direkt.
+
+**Viktigt:** Kodändringen är gjord, men de 200 givarna har ännu inte körts om efter ändringen. Täckningssiffrorna ovan är baslinjen från v5.2 och ska inte läsas som ett resultat för v5.3. Nästa steg är regressionstest av nya grenar och tidigare godkända budsekvenser.
