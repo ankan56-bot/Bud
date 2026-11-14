@@ -364,11 +364,13 @@ function dubDeal(){
       var dl=['E','W'][Math.floor(rng()*2)],op=botCall({mode:'stord',hands:d,dealer:dl,bids:[]},dl).c;
       if(!/^1[CDHS]$/.test(op))continue;
       var ds=SEATS[(SEATS.indexOf(dl)+1)%4],L=shapeOf(d[ds]);
-      if(hpOf(d[ds])>=12&&L[op[1]]<=2&&SU4.every(function(m){return m===op[1]||L[m]>=3})){d.dealer=dl;return d}
+      var doubleNode=themedResponse(d,dl,op);
+      if(hpOf(d[ds])>=12&&L[op[1]]<=2&&SU4.every(function(m){return m===op[1]||L[m]>=3})&&doubleNode&&doubleNode.exp==='X'){d.dealer=dl;return d}
     }else{
       var dl2=['N','S'][Math.floor(rng()*2)],ol=SEATS[(SEATS.indexOf(dl2)+1)%4],h=d[dl2],hh=hpOf(h),Lo=shapeOf(d[ol]);
       var sh=SU4.filter(function(m){return Lo[m]<=2}).length;
-      if(hh>=12&&hh<=19&&!(isBal(shapeOf(h))&&hh>=15&&hh<=17)&&hpOf(d[ol])>=12&&sh===1&&Math.max(Lo.S,Lo.H,Lo.D,Lo.C)<=4){d.dealer=dl2;return d}
+      var opening2=themedOpening(d,dl2),double2=opening2&&/^1[CDHS]$/.test(opening2.exp||'')?themedResponse(d,dl2,opening2.exp):null;
+      if(hh>=12&&hh<=19&&!(isBal(shapeOf(h))&&hh>=15&&hh<=17)&&hpOf(d[ol])>=12&&sh===1&&Math.max(Lo.S,Lo.H,Lo.D,Lo.C)<=4&&double2&&double2.exp==='X'){d.dealer=dl2;return d}
     }
   }
   throw new Error('Kunde inte skapa en giv för temat dubbling efter 20 000 försök.');
