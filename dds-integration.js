@@ -62,7 +62,8 @@ function render(st,table,zone){
  var box=document.getElementById("dds-review");if(!box)return;
  var vulNS=zone==='ns'||zone==='both',vulEW=zone==='ew'||zone==='both';var ev=evaluate(table,vulNS),actual=currentContract(st,table,vulNS,vulEW),b=ev.best;
  var h='<p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Zon: <select id="dds-vul" class="sm"><option value="none" '+(zone==='none'?'selected':'')+'>Ingen zon</option><option value="ns" '+(zone==='ns'?'selected':'')+'>Nord–Syd i zon</option><option value="ew" '+(zone==='ew'?'selected':'')+'>Öst–Väst i zon</option><option value="both" '+(zone==='both'?'selected':'')+'>Båda i zon</option></select></p>';
- h+='<section class="review-item ok"><b>Bästa kontrakt för Nord–Syd enligt DDS</b><p style="font-size:24px;font-weight:700">'+esc(b.contract)+'</p><p>'+esc(b.declarer==="N"?"Norr":"Syd")+' som spelförare · '+b.tricks+' stick · beräknad score '+b.score+' poäng ('+(vulNS?'i zon':'ozon')+').</p></section>';
+ var bestLabel=b.tricks-(b.level+6)>0?(b.tricks-(b.level+6))+NAMES[b.strain]:b.contract;
+  h+='<section class="review-item ok"><b>Bästa teoretiska kontrakt</b><p style="font-size:24px;font-weight:700">'+esc(bestLabel)+'</p><p>'+esc(b.declarer==="N"?"Norr":"Syd")+' som spelförare · '+b.tricks+' stick · beräknad score '+b.score+' poäng ('+(vulNS?'i zon':'ozon')+').</p></section>';
  if(actual){h+='<section class="review-item '+(actual.side===0&&actual.delta>=0?'ok':actual.side===0?'fel':'mid')+'"><b>Det faktiska slutkontraktet</b><p>'+esc(actual.contract)+' · '+actual.tricks+' stick ('+(actual.delta>=0?actual.delta+' över':' '+(-actual.delta)+' bet')+') · NS-score '+actual.scoreNS+'.</p></section>'}
  box.innerHTML=h;
  var sel=document.getElementById("dds-vul");if(sel)sel.onchange=function(){render(st,table,sel.value)};
