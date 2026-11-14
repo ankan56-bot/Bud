@@ -44,7 +44,7 @@ button:disabled{opacity:.3;cursor:default}
 .seat.turn{border-color:#d5ad55;box-shadow:0 0 0 3px rgba(213,173,85,.4)}
 .seat .nm,.nm{font-weight:600}
 .seat small{opacity:.75;font-size:12px}
-.lc{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:18px;min-height:24px}
+.lc{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:18px;min-height:24px}.lc.latest{display:inline-grid;place-items:center;min-width:58px;min-height:38px;padding:3px 10px;border-radius:9px;background:#f7f2e6;color:#17241e;font-size:22px;font-weight:700;box-shadow:0 3px 9px rgba(0,0,0,.35);border:2px solid #d5ad55}.lc.latest.pass{font:700 15px/1 -apple-system,system-ui,sans-serif;letter-spacing:.3px}
 .dl{display:inline-block;margin-left:6px;background:#d5ad55;color:#1b1608;border-radius:6px;padding:0 6px;font-weight:700;font-size:12px}
 .bks{display:flex}.bk{width:15px;height:23px;border-radius:3px;margin-left:-9px;border:1px solid #f1ecdc;background:repeating-linear-gradient(45deg,#7b2a2a 0 3px,#963636 3px 6px)}.bk:first-child{margin-left:0}
 .hb{font-size:64px;line-height:1;font-weight:600}.hb small{font-size:26px}
@@ -99,7 +99,7 @@ button:disabled{opacity:.3;cursor:default}
 var SU=['C','D','H','S','N'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},RK={14:'E',13:'K',12:'D',11:'Kn',10:'T'};
 var SEATS=['N','E','S','W'],NAME={N:'Norr',E:'Öst',S:'Syd',W:'Väst'};
 var app=document.getElementById('app');
-var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random;
+var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random,botTimer=null;
 try{showHp=localStorage.getItem('bt_hp')==='1'}catch(e){}
 
 var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: lå=♣/♦, hö=♥/♠, hp: E4 K3 D2 Kn1; stödpoäng vid stöd eller egen 6+färg/5-5: renons 3, singel 2, dubbelton 1; htp=hp+stp. Balanserad hand: 4333, 4432, 5332.\n"+
@@ -315,7 +315,7 @@ function newDeal(no,mode,focus,seed){
   if(focus==='dubbling')mode='stord';
   var hd=biasedDeal(mode,focus),dl=hd.dealer;delete hd.dealer;
   if(!dl)dl=themeDealer(hd,focus||'alla');
-  return advance({id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0});
+  return {id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0};
 }
 function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:(st.rep||0)+1,h:[]})}
 function handHtml(cards){
@@ -398,7 +398,24 @@ function connect(){
     };
   }catch(e){connState='offline'}
 }
-function save(st){state=st;rev++;render();send({v:rev,from:sender,st:pack(st)})}
+function scheduleBot(){
+  if(botTimer){clearTimeout(botTimer);botTimer=null}
+  var st=state;
+  if(!st||!st.hands||ended(st)||!isBot(turn(st)))return;
+  botTimer=setTimeout(function(){
+    botTimer=null;
+    if(state!==st||ended(st)||!isBot(turn(st)))return;
+    var s=turn(st),r=botCall(st,s);
+    st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c});
+    rev++;render();send({v:rev,from:sender,st:pack(st)});
+    scheduleBot();
+  },500);
+}
+function save(st){
+  if(botTimer){clearTimeout(botTimer);botTimer=null}
+  state=st;rev++;render();send({v:rev,from:sender,st:pack(st)});
+  scheduleBot();
+}
 function makeCode(){try{return btoa(unescape(encodeURIComponent(JSON.stringify({v:rev,st:pack(state)}))))}catch(e){return ''}}
 function applyCode(c){try{var o=JSON.parse(decodeURIComponent(escape(atob(c.trim()))));if(o&&o.st){if(o.v>rev)rev=o.v;adopt(o.st);return true}}catch(e){}return false}
 function copyText(t,done){
@@ -472,7 +489,7 @@ function mySeat(st){if(seat!=='X')return seat;var t=turn(st);return (t==='N'||t=
 function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))return st.bids[i].s;return null}
 function submitCall(st,me,c){
   var nb=st.bids.concat([{s:me,c:c}]);clr();
-  save(advance({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0}));
+  save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
   
 }
 function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s))return seat==='X'||st.bids[i].s===seat}return false}
@@ -507,10 +524,10 @@ function fanHtml(cards){
   return '<div class="fan">'+o+'</div>';
 }
 function seatHtml(st,s,rel){
-  var lc=null;st.bids.forEach(function(b){if(b.s===s)lc=b.c});
-  return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span><small>'+rel+'</small><span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc">'+(lc?fmt(lc):'&nbsp;')+'</span></div>';
-}
-function endHand(st,s){return '<div class="eh'+(side(s)===0?' us':'')+'"><b>'+NAME[s]+'</b>'+handHtml(st.hands[s])+'</div>'}
+   var lc=null,last=-1;st.bids.forEach(function(b,i){if(b.s===s){lc=b.c;last=i}});
+   var latest=last===st.bids.length-1,pass=lc==='P';
+   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span><small>'+rel+'</small><span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
+ }
 function handBlock(st,me){
   return '<div class="row"><span class="nm">'+NAME[me]+(seat==='X'?' · på tur':' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'</div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">'+(showHp?'Dölj poäng':'Visa poäng')+'</button>'+(showHp?'<span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span>':'')+'</div>';
 }
@@ -584,7 +601,7 @@ function render(){
   if(go)go.onclick=function(){
     var c=curPick();if(!c||!legal(st,c,me))return;
     var nb=st.bids.concat([{s:me,c:c}]);clr();
-    save(advance({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0}));
+    save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
     
   };
 }
