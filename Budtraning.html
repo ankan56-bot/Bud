@@ -368,8 +368,11 @@ function reviewHtml(st){
         '<span style="color:#222">♠ '+it.langd.S+'</span> · <span style="color:#c33">♥ '+it.langd.H+'</span> · '+
         '<span style="color:#c33">♦ '+it.langd.D+'</span> · <span style="color:#222">♣ '+it.langd.C+'</span></p>';
     }
-    if(it.bedomning==='fel'&&it.battre)h+='<p><b>Alternativt bud:</b> '+esc(it.battre)+'</p>';
+    if(it.handtyp)h+='<p><b>Handtyp:</b> '+esc(it.handtyp)+'</p>';
+    if(it.bedomning==='fel'&&it.battre)h+='<p><b>Rekommenderat bud:</b> '+esc(it.battre)+'</p>';
     else if(it.bedomning==='valfritt'&&it.battre)h+='<p><b>Huvudalternativ:</b> '+esc(it.battre)+'</p>';
+    if(it.motivering)h+='<p>'+esc(it.motivering)+'</p>';
+    if(it.forklaring)h+='<p class="mu">'+esc(it.forklaring)+'</p>';
     h+='</article>';
   });
   h+='</div><div class="review-secondary"><p class="status">Fördjupad AI-analys</p><p class="mu">Kopiera rättningsunderlaget och klistra in det i Claude eller annan AI för en friare, djupare analys. Den automatiska rättningen ovan finns kvar som första bedömning.</p><button id="xp" class="sm">'+(copied?'Kopierat ✓':'Kopiera rättningsunderlag till AI')+'</button></div></div>';
