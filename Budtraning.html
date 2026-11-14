@@ -223,10 +223,11 @@ function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});re
 function isBal(L){var s=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');return s==='4333'||s==='4432'||s==='5332'}
 function htpWith(h,su){var L=shapeOf(h),t=hpOf(h);['S','H','D','C'].forEach(function(x){if(x!==su){var n=L[x];t+=n===0?3:n===1?2:n===2?1:0}});return t}
 function themedOpening(d,opener){
-  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[]},0)}catch(e){return null}
+  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:'P'}]},0)}catch(e){return null}
 }
 function themedResponse(d,opener,opening){
-  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening}]},1)}catch(e){return null}
+  var responder=SEATS[(SEATS.indexOf(opener)+1)%4];
+  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:responder,c:'P'}]},1)}catch(e){return null}
 }
 function validInklivScenario(d,dealer){
   var open=themedOpening(d,dealer);
