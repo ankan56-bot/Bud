@@ -218,7 +218,7 @@ function nsOk(d){var a=hpOf(d.N),b=hpOf(d.S);return a+b>=22&&Math.max(a,b)>=12}
 function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
 function oppBorder(h){var p=hpOf(h);return p>=10&&p<=11&&maxLen(h)>=5}
 function oppMustPass(h){var p=hpOf(h);return p<=10&&!(p>=6&&p<=10&&maxLen(h)>=6)}
-var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','RKC (essfråga i högfärg)'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (störd)']];
+var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','RKC (essfråga i högfärg)'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (alla bjuder)']];
 function focLabel(f){for(var i=0;i<FOC.length;i++)if(FOC[i][0]===f)return FOC[i][1];return ''}
 function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return L}
 function isBal(L){var s=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');return s==='4333'||s==='4432'||s==='5332'}
@@ -608,7 +608,7 @@ function savedHtml(){
   var l=loadSaved();if(!l.length)return '';
   var h='<div class="card"><p class="status">Sparade givar (på den här enheten)</p>';
   l.forEach(function(s){
-    h+='<div style="border-top:1px solid var(--line);padding:8px 0"><div class="mu">Giv '+esc(s.no)+' · '+(s.mode==='ostord'?'ostört':'störd')+' · '+esc(s.savedAt)+'</div><div class="row" style="margin-top:6px"><button data-play="'+esc(s.id)+'">Spela om</button>'+((s.h&&s.h.length)?'<button data-show="'+esc(s.id)+'">Visa budgivning</button>':'')+'<button data-del="'+esc(s.id)+'" class="mu">Ta bort</button></div></div>';
+    h+='<div style="border-top:1px solid var(--line);padding:8px 0"><div class="mu">Giv '+esc(s.no)+' · '+(s.mode==='ostord'?'ostört':'alla bjuder')+' · '+esc(s.savedAt)+'</div><div class="row" style="margin-top:6px"><button data-play="'+esc(s.id)+'">Spela om</button>'+((s.h&&s.h.length)?'<button data-show="'+esc(s.id)+'">Visa budgivning</button>':'')+'<button data-del="'+esc(s.id)+'" class="mu">Ta bort</button></div></div>';
   });
   return h+'</div>';
 }
@@ -690,7 +690,7 @@ function render(){
   var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
   var base='S',pos={l:'W',t:'N',r:'E'},x=ctx(st);
   function rel(s){return s===partner(me)?'Partner':''}
-  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Störd')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+(savedFlag?'Sparad ✓':'Spara given')+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
+  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+(savedFlag?'Sparad ✓':'Spara given')+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
   h+='<div class="board-column">';
   if(end){
