@@ -76,7 +76,7 @@ button:disabled{opacity:.3;cursor:default}
 .hl{opacity:.85;font-size:15px}
 .fan{display:flex;justify-content:center;padding:6px 0 2px}
 .cd{position:relative;width:66px;height:98px;border-radius:10px;background:#fbf8ef;color:#171717;box-shadow:0 2px 7px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.08);margin-left:-30px;padding:6px 7px;font-weight:700;line-height:1;display:flex;flex-direction:column;flex:0 0 66px}
-.cd:first-child{margin-left:0}.cd.lowmark::before{content:"";position:absolute;right:2px;top:10px;bottom:10px;width:2px;background:#111;border-radius:2px;z-index:2}.cd b{font-size:25px}.cd i{position:relative;top:-2px;font-style:normal;font-size:30px;margin-top:2px}.cd.r{color:#c0262d}
+.cd:first-child{margin-left:0}.cd b{font-size:25px}.cd i{position:relative;top:-2px;font-style:normal;font-size:30px;margin-top:2px}.cd.r{color:#c0262d}
 .cd::after{content:attr(data-s);position:absolute;right:6px;bottom:7px;font-size:46px}
 .table:not(.end) .cd[data-s="♠"] i,.table:not(.end) .cd[data-s="♦"] i{top:-2px}.table:not(.end) .cd[data-s="♠"]::after,.table:not(.end) .cd[data-s="♦"]::after{bottom:7px}
 .table:not(.end) .cd[data-s="♥"] i,.table:not(.end) .cd[data-s="♣"] i{top:-6px}.table:not(.end) .cd[data-s="♥"]::after,.table:not(.end) .cd[data-s="♣"]::after{bottom:11px}
@@ -728,8 +728,8 @@ function undoBid(){
   clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
 }
 function hpInfo(h){
-  var L=shapeOf(h),p=handPoints(h);
-  return p.hp+' hp / '+p.htp+' htp · '+[L.S,L.H,L.D,L.C].join('-')+(isBal(L)?' · balanserad':' · obalanserad');
+  var L=shapeOf(h);
+  return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].join('-');
 }
 function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
 function setSeat(s){if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
@@ -745,10 +745,8 @@ function oppList(st){
 function fanHtml(cards){
   var o='';
   ['S','H','D','C'].forEach(function(s){
-    var ranks=cards.filter(function(c){return c[0]===s}).map(function(c){return +c.slice(1)}).sort(function(a,b){return b-a});
-    ranks.forEach(function(n,i){
-      var lowmark=(s!=='C'&&i===ranks.length-1)?' lowmark':'';
-      o+='<div class="cd'+(s==='H'||s==='D'?' r':'')+lowmark+'" data-s="'+SYM[s]+'"><b>'+(RK[n]||n)+'</b><i>'+SYM[s]+'</i></div>';
+    cards.filter(function(c){return c[0]===s}).map(function(c){return +c.slice(1)}).sort(function(a,b){return b-a}).forEach(function(n){
+      o+='<div class="cd'+(s==='H'||s==='D'?' r':'')+'" data-s="'+SYM[s]+'"><b>'+(RK[n]||n)+'</b><i>'+SYM[s]+'</i></div>';
     });
   });
   return '<div class="fan">'+o+'</div>';
