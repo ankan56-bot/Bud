@@ -67,6 +67,12 @@ function buildReport(st,ruleResult,ddsResult){
   if(best.level>=6&&(!actual||actual.side!==0||actual.contract!==best.contract)){
    findings.push("DDS hittar dessutom ett teoretiskt slamkontrakt ("+best.contract+"). Slamfrågan måste bedömas mot vad budgivningen faktiskt visade, inte enbart mot de dolda korten.");
   }
+  if(actual&&actual.side===0&&fits.length&&actual.strain!=="N"&&!fits.some(x=>x.suit===actual.strain)){
+   findings.push("Efterhandskontrollen visar minst en åttakortsfit ("+fits.map(x=>x.name+" "+x.total).join(", ")+"), medan slutkontraktet spelades i en annan färg. Det kan vara en missad trumffärg, men budsekvensen måste visa om paret hade möjlighet att upptäcka den.");
+  }
+  if(actual&&actual.side===0&&actual.delta<0){
+   findings.push("Det faktiska Nord–Syd-kontraktet går bet enligt DDS. Det är ett överkontrakt i efterhand; om budgivningen borde ha stannat lägre avgörs av den information paret hade.");
+  }
   if(actual&&actual.side===0&&best.score>actual.scoreNS){
    findings.push("Det teoretiskt bästa kontraktet ger "+(best.score-actual.scoreNS)+" fler poäng än det faktiska slutkontraktet enligt vald zon. Skillnaden är en jämförelse av korten efter given, inte automatiskt ett konstaterat budfel.");
   }
@@ -85,7 +91,7 @@ function escapeHtml(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&
 function render(report){
  let h='<section class="review-item"><b>Analysbiblioteket</b>';
  if(report.library){
-  h+='<p><b>'+escapeHtml(report.library.title)+'</b></p>';
+  h+='<p><b>'+escapeHtml(report.library.title)+'</b></p><p class="mu">Biblioteksträff: kontrollera att förutsättningarna nedan stämmer. Bibliotekstexten kompletterar men ersätter aldrig rättningsmotorns bedömning.</p>';
   if(report.library.conditions.length)h+='<p class="mu">Förutsättningar: '+report.library.conditions.map(escapeHtml).join(" · ")+'</p>';
   if(report.library.meaning)h+='<p>'+escapeHtml(report.library.meaning)+'</p>';
   if(report.library.analysis)h+='<p>'+escapeHtml(report.library.analysis)+'</p>';
