@@ -242,12 +242,67 @@ function bidHandFacts(hand,call){
   if(s==='N')return hp+' hp · fördelning '+[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('-');
   return hp+' hp';
 }
+// Strategisk komplettering för roboten. Körs bara när rättningsnyckeln saknar
+// ett uttryckligt beslut; ändrar inte Rattning eller spelarens rättning.
+function strategicBotFallback(st,botSeat,node){
+  var hand=st.hands[botSeat],L=shapeOf(hand),hp=hpOf(hand),pt=partner(botSeat);
+  var own=st.bids.filter(function(b){return b.s===botSeat&&isBid(b.c)});
+  var partnerBids=st.bids.filter(function(b){return b.s===pt&&isBid(b.c)});
+  var last=ctx(st).lb;
+  function lowestLegal(s){
+    for(var lev=1;lev<=7;lev++){var c=lev+s;if(legal(st,c,botSeat))return c}
+    return null;
+  }
+  // 15-17 balanserat efter partners 1NT-svar: invitera med 2NT.
+  if(own.length===1&&/^1[CDHS]$/.test(own[0].c)&&partnerBids.length===1&&partnerBids[0].c==='1N'&&
+     hp>=15&&hp<=17&&isBal(L)){
+    if(legal(st,'2N',botSeat))return {c:'2N',why:'Balanserad 15-17 hp efter partners 1NT: invit till 3NT.'};
+  }
+  // Stark hand med lågfärgsstöd: välj sang med jämn hand och håll,
+  // annars lågfärgsutgång. Detta är robotens spelval, inte ny rättningsregel.
+  if(own.length&&partnerBids.length){
+    var pSuit=null;
+    for(var i=partnerBids.length-1;i>=0;i--)if(/^[1-3][CD]$/.test(partnerBids[i].c)){pSuit=partnerBids[i].c[1];break}
+    if(pSuit&&L[pSuit]>=4&&htpWith(hand,pSuit)>=20){
+      var stops=['S','H','D','C'].every(function(s){return s===pSuit||hand.some(function(k){return k[0]===s&&+k.slice(1)>=11})});
+      if(isBal(L)&&stops&&legal(st,'3N',botSeat))return {c:'3N',why:'20+ htp med lågfärgsstöd: balanserad hand och håll i sidofärgerna, väljer 3NT.'};
+      var game='5'+pSuit;
+      if(legal(st,game,botSeat))return {c:game,why:'20+ htp med minst 4-korts lågfärgsstöd: väljer lågfärgsutgång när 3NT inte bedöms lämpligt.'};
+    }
+  }
+  // Tvåfärgsvisning från partnern: sök först 8-korts högfärgsfit,
+  // därefter lågfärgsfit. Om ingen fit är känd, visa ändå preferens.
+  if(partnerBids.length>=2){
+    var shown=[];
+    partnerBids.forEach(function(b){
+      if(/^[1-4][CDHS]$/.test(b.c)){
+        var s=b.c[1];
+        if(shown.indexOf(s)<0)shown.push(s);
+      }
+    });
+    if(shown.length>=2){
+      var first=shown[0],second=shown[1];
+      var pref=[first,second].sort(function(a,b){
+        var fitA=L[a]+(a===first?5:4),fitB=L[b]+(b===first?5:4);
+        var majA=(a==='H'||a==='S')?1:0,majB=(b==='H'||b==='S')?1:0;
+        return (majB-majA)||(fitB-fitA)||('SHDC'.indexOf(a)-'SHDC'.indexOf(b));
+      });
+      var fit=pref.filter(function(s){return L[s]+(s===first?5:4)>=8});
+      var chosen=(fit.length?fit[0]:pref[0]);
+      var bid=lowestLegal(chosen);
+      if(bid)return {c:bid,why:(fit.length?'Partnerns två visade färger: väljer känd minst 8-korts fit i ':'Partnerns två visade färger: visar preferens för ')+({S:'♠',H:'♥',D:'♦',C:'♣'}[chosen])+'.'};
+    }
+  }
+  return null;
+}
+function botSeatForMode(st,humanSeat){return humanSeat==='N'?'S':humanSeat==='S'?'N':'X'}
 function botCall(st,seat){
-  if(st.mode==='ostord')return R('P');
+  if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(seat)!==side(botSeatForMode(st,seat))))return R('P');
   var trial=st.bids.concat([{s:seat,c:'P'}]);
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
-  var call=node&&node.exp,why=node&&node.why||'Enligt rättningsnyckeln v4.9';
+  var strategic=(!node||!node.exp)?strategicBotFallback(st,seat,node):null;
+  var call=strategic&&strategic.c||node&&node.exp,why=strategic&&strategic.why||node&&node.why||'Enligt rättningsnyckeln v4.9';
   if(call&&legal(st,call,seat))return R(call,bidHandFacts(st.hands[seat],call)+' · '+why);
   return R('P',node&&node.why?'Rättningsnyckeln saknar ett säkert bud här: '+node.why:'Pass enligt rättningsnyckeln v4.9');
 }
