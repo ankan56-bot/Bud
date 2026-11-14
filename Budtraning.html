@@ -246,7 +246,10 @@ function focusOk(d,f){
       var opener=pr[i][0],responder=pr[i][1],oh=hpOf(d[opener]);
       var opening=themedOpening(d,opener),suit=opening&&/^1[CDHS]$/.test(opening.exp||'')?opening.exp[1]:null;
       if(!suit||oh<12||oh>19||shapeOf(d[opener])[suit]<(f==='trumf'?5:4)||shapeOf(d[responder])[suit]<4)continue;
-      if(f==='trumf'&&htpWith(d[responder],suit)>=6&&htpWith(d[responder],suit)<=12)return true;
+      if(f==='trumf'){
+        var supportResponse=themedResponse(d,opener,opening.exp);
+        if(supportResponse&&supportResponse.exp&&supportResponse.exp[1]===suit&&supportResponse.exp[0]>='2'&&supportResponse.exp[0]<='3')return true;
+      }
       if(f==='stenberg'){
         var response=themedResponse(d,opener,opening.exp);
         if(response&&response.exp==='2N'&&response.conv==='Stenberg')return true;
@@ -286,7 +289,9 @@ function themeDealer(d,f){
     if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}),op=themedOpening(d,seat);return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6&&op&&/^1[CDHS]$/.test(op.exp||'');}
     if(f==='trumf'){
       var op=themedOpening(d,seat),su=op&&/^1[CDHS]$/.test(op.exp||'')?op.exp[1]:null;
-      return !!(su&&hp>=12&&hp<=19&&L[su]>=5&&P[su]>=4&&htpWith(p,su)>=6&&htpWith(p,su)<=12);
+      if(!su||hp<12||hp>19||L[su]<5||P[su]<4)return false;
+      var supportResponse=themedResponse(d,seat,op.exp);
+      return !!(supportResponse&&supportResponse.exp&&supportResponse.exp[1]===su&&supportResponse.exp[0]>='2'&&supportResponse.exp[0]<='3');
     }
     if(f==='stenberg'){
       var op2=themedOpening(d,seat),su2=op2&&/^1[CDHS]$/.test(op2.exp||'')?op2.exp[1]:null;
