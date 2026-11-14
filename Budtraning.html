@@ -295,15 +295,14 @@ function strategicBotFallback(st,botSeat,node){
   }
   return null;
 }
-function botSeatForMode(st,humanSeat){return humanSeat==='N'?'S':humanSeat==='S'?'N':'X'}
-function botCall(st,seat){
+function botCall(st,botSeat){
   if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(botSeat)!==side(seat)))return R('P');
-  var trial=st.bids.concat([{s:seat,c:'P'}]);
+  var trial=st.bids.concat([{s:botSeat,c:'P'}]);
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
-  var strategic=(!node||!node.exp)?strategicBotFallback(st,seat,node):null;
+  var strategic=(!node||!node.exp)?strategicBotFallback(st,botSeat,node):null;
   var call=strategic&&strategic.c||node&&node.exp,why=strategic&&strategic.why||node&&node.why||'Enligt rättningsnyckeln v4.9';
-  if(call&&legal(st,call,seat))return R(call,bidHandFacts(st.hands[seat],call)+' · '+why);
+  if(call&&legal(st,call,botSeat))return R(call,bidHandFacts(st.hands[botSeat],call)+' · '+why);
   return R('P',node&&node.why?'Rättningsnyckeln saknar ett säkert bud här: '+node.why:'Pass enligt rättningsnyckeln v4.9');
 }
 function advance(st){
