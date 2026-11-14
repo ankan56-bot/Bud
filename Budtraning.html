@@ -394,7 +394,9 @@ function slamNtOpener(d){
 }
 function slamNtDeal(){
   var wantFit=rng()<.5,d;
-  for(var i=0;i<20000;i++){
+  // Utan 8-kortsfit är betydligt ovanligare när paret har 33+ hp.
+  // Ge den grenen fler försök så att slumpmässiga frön inte ger falska fel.
+  for(var i=0;i<100000;i++){
     d=shuffleDeal();
     if(!slamNtOpener(d))continue;
     var fit=['S','H','D','C'].some(function(s){return shapeOf(d.N)[s]+shapeOf(d.S)[s]>=8});
