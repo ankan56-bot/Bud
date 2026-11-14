@@ -45,17 +45,29 @@ function ruleSummary(result){
 }
 function buildReport(st,ruleResult,ddsResult){
  const match=findMatch(global.BudAnalysLibrary||{trees:[]},st.bids);
- const fits=fitSummary(st.hands),rules=ruleSummary(ruleResult);
- const report={
-  version:"1.0.0",
+ const fits=fitSummary(st.hands),rules=ruleSummary(ruleResult),findings=[];
+ const actual=ddsResult&&ddsResult.actual,best=ddsResult&&ddsResult.best;
+ if(best){
+  const game=best.strain==="N"?best.level>=3:(best.strain==="S"||best.strain==="H"?best.level>=4:best.level>=5);
+  if(game&&(!actual||actual.side!==0||actual.scoreNS<best.score)){
+   findings.push("DDS visar att "+best.contract+" kan ge "+best.tricks+" stick för Nord–Syd. Det är ett teoretiskt efterhandsfacit; det visar inte i sig att paret kunde bjuda kontraktet utifrån den information som fanns under budgivningen.");
+  }
+  if(best.level>=6&&(!actual||actual.side!==0||actual.contract!==best.contract)){
+   findings.push("DDS hittar dessutom ett teoretiskt slamkontrakt ("+best.contract+"). Slamfrågan måste bedömas mot vad budgivningen faktiskt visade, inte enbart mot de dolda korten.");
+  }
+  if(actual&&actual.side===0&&best.score>actual.scoreNS){
+   findings.push("Det teoretiskt bästa kontraktet ger "+(best.score-actual.scoreNS)+" fler poäng än det faktiska slutkontraktet enligt vald zon. Skillnaden är en jämförelse av korten efter given, inte automatiskt ett konstaterat budfel.");
+  }
+ }
+ return {
+  version:"1.0.1",
   source:"Rattningsmotor v"+((global.Rattning&&global.Rattning.version)||"?")+" + analysbibliotek",
   ruleErrors:rules.errors,uncovered:rules.uncovered,optional:rules.optional,
-  fits:fits,
+  fits:fits,theoreticalFindings:findings,
   library:match?{treeId:match.tree.id,title:match.tree.title,conditions:match.tree.conditions||[],sequence:match.node.sequence||[],meaning:match.node.meaning||"",analysis:match.node.analysis||"",exact:match.exact}:null,
   dds:ddsResult||null,
   knowledgeBoundary:"DDS använder samtliga fyra händer. En spelare under budgivningen känner bara till sin egen hand och informationen som partnerns och motståndarnas bud lagligen visar. Därför är DDS-facit en efterhandsjämförelse, inte automatiskt ett bud som paret kunde känna till."
  };
- return report;
 }
 function escapeHtml(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function render(report){
@@ -68,6 +80,7 @@ function render(report){
   h+='<p class="mu">'+(report.library.exact?"Sekvensen matchar ett komplett biblioteksavsnitt.":"Biblioteket matchar en del av budsekvensen; fortsättningen är inte täckt av just detta avsnitt.")+'</p>';
  }else h+='<p class="mu">Ingen specifik sekvens i biblioteket matchade. Rättningsmotorns egna regler och rekommendationer gäller fortfarande.</p>';
  h+='</section>';
+ if(report.theoreticalFindings.length){h+='<section class="review-item"><b>Teoretisk kontraktsjämförelse</b>'+report.theoreticalFindings.map(x=>'<p>'+escapeHtml(x)+'</p>').join("")+'</section>'}
  if(report.fits.length){
   h+='<section class="review-item"><b>Färganpassningar som finns i given</b><p class="mu">Detta är en efterhandskontroll av de faktiska korten, inte information som paret automatiskt hade under budgivningen.</p><p>'+report.fits.map(x=>escapeHtml(x.name+" "+x.total+" kort ("+x.north+"–"+x.south+")")).join(" · ")+'</p></section>';
  }
@@ -85,7 +98,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.0",loadLibrary,findMatch,buildReport,analyze,
+ version:"1.0.1",loadLibrary,findMatch,buildReport,analyze,
  normalizeSequence
 };
 })(typeof window!=="undefined"?window:globalThis);
