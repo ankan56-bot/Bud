@@ -241,12 +241,24 @@ function focusOk(d,f){
   var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
   if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=30&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})}
   if(f==='invit')return tot>=23&&tot<=25&&mx>=12&&mn>=8&&mn<=11;
-  if(f==='trumf')return anyP(function(a,b){var La=shapeOf(a),Lb=shapeOf(b),h=hpOf(a);return h>=12&&h<=19&&['S','H','D','C'].some(function(m){return La[m]>=5&&Lb[m]>=4&&htpWith(b,m)>=6&&htpWith(b,m)<=12})});
+  if(f==='trumf'||f==='stenberg'){
+    for(i=0;i<2;i++){
+      var opener=pr[i][0],responder=pr[i][1],oh=hpOf(d[opener]);
+      var opening=themedOpening(d,opener),suit=opening&&/^1[CDHS]$/.test(opening.exp||'')?opening.exp[1]:null;
+      if(!suit||oh<12||oh>19||shapeOf(d[opener])[suit]<(f==='trumf'?5:4)||shapeOf(d[responder])[suit]<4)continue;
+      if(f==='trumf'&&htpWith(d[responder],suit)>=6&&htpWith(d[responder],suit)<=12)return true;
+      if(f==='stenberg'){
+        var response=themedResponse(d,opener,opening.exp);
+        if(response&&response.exp==='2N'&&response.conv==='Stenberg')return true;
+      }
+    }
+    return false;
+  }
   if(f==='sang')return anyP(function(a,b){var Lb=shapeOf(b),h=hpOf(a),g=hpOf(b);return isBal(shapeOf(a))&&((h>=15&&h<=17&&g>=8&&g<=12)||(h>=20&&h<=21&&g>=4&&g<=10))&&Lb.H<4&&Lb.S<4});
   if(f==='tvafarg')return anyP(function(a,b){var L=shapeOf(a),v=[L.S,L.H,L.D,L.C].sort(function(x,y){return y-x}),h=hpOf(a);return h>=12&&h<=19&&v[0]>=5&&v[1]>=4&&hpOf(b)>=6});
   if(f==='svag')return anyP(function(a,b){var L=shapeOf(a),h=hpOf(a);return h>=6&&h<=10&&(L.D===6||L.H===6||L.S===6||Math.max(L.S,L.H,L.D,L.C)>=7)&&hpOf(b)>=12});
   if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['H','S'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9});
-  if(f==='nt'||f==='stenberg'){
+  if(f==='nt'){
     for(i=0;i<2;i++){
       a=d[pr[i][0]];b=d[pr[i][1]];La=shapeOf(a);Lb=shapeOf(b);
       if(f==='nt'&&hpOf(a)>=15&&hpOf(a)<=17&&isBal(La)&&hpOf(b)>=8&&(Lb.H>=4||Lb.S>=4))return true;
