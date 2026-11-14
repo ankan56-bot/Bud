@@ -23,8 +23,8 @@ function treeCompatible(tree){
  // Explicitly reject prototype passages that contradict the authoritative
  // correction engine's Stenberg convention or the partnership's RKC 1430.
  if(/Jacoby/i.test(text))return false;
- if(/5♣\\s*(?:=|:|visar)\\s*0\\s*(?:eller|\\/)\\s*3/i.test(text))return false;
- if(/5♦\\s*(?:=|:|visar)\\s*1\\s*(?:eller|\\/)\\s*4/i.test(text))return false;
+ if(text.includes("5♣=0")||text.includes("5♣ = 0")||text.includes("5♣ visar 0"))return false;
+ if(text.includes("5♦=1")||text.includes("5♦ = 1")||text.includes("5♦ visar 1"))return false;
  return true;
 }
 function findMatch(lib,bids){
