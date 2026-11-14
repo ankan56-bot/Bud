@@ -95,19 +95,27 @@ function render(report){
   if(report.library.conditions.length)h+='<p>Förutsättningar: '+report.library.conditions.map(escapeHtml).join(" · ")+'</p>';
   if(report.library.meaning)h+='<p>'+escapeHtml(report.library.meaning)+'</p>';
   if(report.library.analysis)h+='<p>'+escapeHtml(report.library.analysis)+'</p>';
- 
  }
  h+='</section>';
- if(report.theoreticalFindings.length){h+='<section class="review-item"><b>Teoretisk kontraktsjämförelse</b>'+report.theoreticalFindings.map(x=>'<p>'+escapeHtml(x)+'</p>').join("")+'</section>'}
- if(report.fits.length){
-  h+='<section class="review-item"><b>Färganpassningar som finns i given</b><p>'+report.fits.map(x=>escapeHtml(x.name+" "+x.total+" kort ("+x.north+"–"+x.south+")")).join(" · ")+'</p></section>';
- }
  if(report.ruleErrors.length){
   h+='<section class="review-item fel"><b>Rättningsmotorns avvikelser</b>';
   report.ruleErrors.forEach(x=>{h+='<p>Bud '+x.nr+' ('+escapeHtml(x.seat)+'): '+escapeHtml(x.bid)+(x.suggested?' · förslag '+escapeHtml(x.suggested):'')+(x.reason?' — '+escapeHtml(x.reason):'')+'</p>'});
   h+='</section>';
  }
- 
+ if(report.dds&&Array.isArray(report.dds.table)&&report.dds.table.length>=20){
+  const strains=[["S","♠"],["H","♥"],["D","♦"],["C","♣"],["N","NT"]];
+  const seats=["N","E","S","W"];
+  h+='<section class="review-item dds-matrix"><b>DDS – optimala stick i alla spelfärger</b><p class="mu">Maximalt antal stick med respektive spelare som spelförare och varje färg som trumf eller sang.</p><div class="matrix-scroll"><table><thead><tr><th>Spelfärg</th><th>Norr</th><th>Öst</th><th>Syd</th><th>Väst</th></tr></thead><tbody>';
+  strains.forEach(function(strain,i){
+   h+='<tr><th>'+strain[1]+'</th>';
+   seats.forEach(function(seat,j){h+='<td>'+report.dds.table[i*4+j]+'</td>'});
+   h+='</tr>';
+  });
+  h+='</tbody></table></div></section>';
+ }
+ if(report.fits.length){
+  h+='<section class="review-item"><b>Färganpassningar som finns i given</b><p>'+report.fits.map(x=>escapeHtml(x.name+" "+x.total+" kort ("+x.north+"–"+x.south+")")).join(" · ")+'</p></section>';
+ }
  return h;
 }
 async function analyze(st,ruleResult,ddsResult){
