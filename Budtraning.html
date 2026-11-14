@@ -34,14 +34,14 @@ button:disabled{opacity:.3;cursor:default}
 .chip.hi{color:var(--ink);font-weight:600}
 .main{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);gap:16px;padding:16px 18px 22px;align-items:start}
 .board-column{min-width:0;display:flex;flex-direction:column;gap:14px}
-.table.end{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(150px,1fr);grid-template-rows:auto 1fr auto;min-height:480px;align-items:center}
-.table.end .hand-seat{min-width:0;padding:9px 10px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.12);font-size:13px}
-.table.end .hand-seat b{display:block;text-align:center;margin-bottom:5px}
-.table.end .north{grid-column:1/4;grid-row:1;justify-self:center;width:min(100%,460px)}
+.table.end{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto 1fr auto;min-height:480px;align-items:center}
+.table.end .hand-seat{min-width:0;width:100%;box-sizing:border-box;padding:12px 10px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.12);font-size:15px}
+.table.end .hand-seat b{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;margin:0 0 7px;white-space:nowrap}
+.table.end .north{grid-column:2;grid-row:1;justify-self:stretch;width:100%}
 .table.end .west{grid-column:1;grid-row:2;align-self:center}
 .table.end .center{grid-column:2;grid-row:2}
 .table.end .east{grid-column:3;grid-row:2;align-self:center}
-.table.end .south{grid-column:1/4;grid-row:3;justify-self:center;width:min(100%,460px)}
+.table.end .south{grid-column:2;grid-row:3;justify-self:stretch;width:100%}
 .table.end .hand{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .table.end .hand-seat{font-size:16px;padding:12px 14px}
 .table.end .hand-seat .hand>div{white-space:nowrap;line-height:1.35;font-size:1em}
@@ -58,7 +58,7 @@ button:disabled{opacity:.3;cursor:default}
 .dds-matrix tbody th{text-align:left}
 .dds-matrix td{font-weight:700;font-size:18px}
 
-@media(max-width:520px){.table.end{padding:12px;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(72px,.8fr);min-height:420px;gap:6px}.table.end .hand-seat{font-size:11px;padding:6px 4px}.table.end .hb{font-size:42px}.table.end .hl{font-size:12px}}
+@media(max-width:520px){.table.end{padding:12px;grid-template-columns:repeat(3,minmax(0,1fr));min-height:420px;gap:6px}.table.end .hand-seat{font-size:12px;padding:8px 4px}.table.end .hand-seat b{font-size:11px;gap:3px}.table.end .hb{font-size:42px}.table.end .hl{font-size:12px}}
 
 @media (max-width:860px){.main{grid-template-columns:1fr}}
 .table{border-radius:30px;background:radial-gradient(120% 110% at 50% 38%,var(--fa),var(--fb));box-shadow:inset 0 0 0 2px rgba(213,173,85,.6),inset 0 0 0 10px rgba(0,0,0,.18),0 14px 32px rgba(0,0,0,.25);padding:22px;min-height:580px;display:grid;grid-template-columns:104px 1fr 104px;grid-template-rows:auto 1fr auto;gap:10px;color:#f1ecdc}
@@ -196,6 +196,12 @@ function legal(st,c,s){
   return !x.lb||rank(c)>rank(x.lb);
 }
 function hpOf(h){var p=0;h.forEach(function(k){var n=+k.slice(1);if(n>=11)p+=n-10});return p}
+function handPoints(h){
+ var L=shapeOf(h),hp=hpOf(h),eligible=['S','H','D','C'].filter(function(s){return L[s]>=6||(L[s]===5&&Object.keys(L).some(function(t){return t!==s&&L[t]===5}))});
+ var htp=hp;
+ eligible.forEach(function(s){htp=Math.max(htp,htpWith(h,s))});
+ return {hp:hp,htp:htp};
+}
 function maxLen(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return Math.max(L.S,L.H,L.D,L.C)}
 function nsOk(d){var a=hpOf(d.N),b=hpOf(d.S);return a+b>=22&&Math.max(a,b)>=12}
 function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
@@ -600,7 +606,8 @@ function render(){
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
   h+='<div class="board-column">';
   if(end){
-    h+='<section class="table end"><div class="hand-seat north"><b>Norr</b>'+handHtml(st.hands.N)+'</div><div class="hand-seat west"><b>Väst</b>'+handHtml(st.hands.W)+'</div><div class="center">'+hbx+'</div><div class="hand-seat east"><b>Öst</b>'+handHtml(st.hands.E)+'</div><div class="hand-seat south"><b>Syd</b>'+handHtml(st.hands.S)+'</div></section>';
+    function seatHand(seat,label){var p=handPoints(st.hands[seat]);return '<div class="hand-seat '+({N:'north',S:'south',E:'east',W:'west'}[seat])+'"><b>'+label+' ('+p.hp+' hp / '+p.htp+' htp)</b>'+handHtml(st.hands[seat])+'</div>'}
+    h+='<section class="table end">'+seatHand('N','Norr')+seatHand('W','Väst')+'<div class="center">'+hbx+'</div>'+seatHand('E','Öst')+seatHand('S','Syd')+'</section>';
     h+='<div id="dds-review" class="card dds-panel"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   }else{
     h+='<section class="table"><div class="seatT">'+(pos.t===me?handBlock(st,me):seatHtml(st,pos.t,rel(pos.t)))+'</div><div class="seatL">'+seatHtml(st,pos.l,rel(pos.l))+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatHtml(st,pos.r,rel(pos.r))+'</div><div class="mine">'+(base===me?handBlock(st,me):seatHtml(st,base,rel(base)))+'</div></section>';
