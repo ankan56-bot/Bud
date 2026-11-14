@@ -847,7 +847,7 @@ var Rattning = (function(){
          ours[3].c[1]!==s2 && ours[3].c[1]!=='N'){
          var s3 = ours[3].c[1];
          if (h.stop(s3)) {
-             if (hp <= 14) return {exp:'2N', alt:[], why:'Håll i fjärde färgen, minimum: 2NT.', conv:'Fjärde färg'};
+             if (h.hp <= 14) return {exp:'2N', alt:[], why:'Håll i fjärde färgen, minimum: 2NT.', conv:'Fjärde färg'};
              return {exp:'3N', alt:[], why:'Håll i fjärde färgen, maximum: 3NT.', conv:'Fjärde färg'};
          }
          if (h.L[s2] >= 3) return {exp:lowest(s2, b.c), alt:[], why:'Trumfstöd i partnerns första färg.', conv:'Fjärde färg'};
