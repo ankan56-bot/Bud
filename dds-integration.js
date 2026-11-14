@@ -46,7 +46,7 @@ function index(strain,declarer){return STRAINS.indexOf(strain)*4+["N","E","S","W
 function evaluate(table,vul){
  var candidates=[];
  ["N","S"].forEach(function(declarer){STRAINS.forEach(function(strain){var tricks=table[index(strain,declarer)];for(var level=1;level<=7;level++){var sc=score(level,strain,tricks,0,vul);candidates.push({level,strain,declarer,tricks,score:sc,contract:textContract(level,strain)})}})});
- candidates.sort((a,b)=>b.score-a.score||b.tricks-a.tricks||a.level-b.level);
+ candidates.push({level:0,strain:null,declarer:null,tricks:0,score:0,contract:"Pass"});candidates.sort((a,b)=>b.score-a.score||b.tricks-a.tricks||a.level-b.level);
  return {best:candidates[0],candidates,table};
 }
 function currentContract(st,table,vulNS,vulEW){
