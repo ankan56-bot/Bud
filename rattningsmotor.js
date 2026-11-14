@@ -1199,7 +1199,10 @@ var Rattning = (function(){
     var total=trump==='N'?totalHcp:partnershipPoints(a,p,trump);
     var threshold=trump==='N'?26:(maj(trump)?26:28);
     var gameLevel=trump==='N'?3:(maj(trump)?4:5);
-    var gameReached=st_(currentContract)===trump&&lv(currentContract)>=gameLevel;
+    var currentSuit=st_(currentContract),currentLevel=lv(currentContract);
+    var gameReached=(currentSuit==='N'&&currentLevel>=3)||
+      (maj(currentSuit)&&currentLevel>=4)||
+      (!maj(currentSuit)&&currentSuit!=='N'&&currentLevel>=5);
     var slamTarget='6'+trump;
 
     if(total>=33&&lv(currentContract)<6&&rk(slamTarget)>rk(currentContract)){
@@ -1293,7 +1296,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.4'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.5'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
