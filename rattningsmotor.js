@@ -442,6 +442,9 @@ var Rattning = (function(){
           else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (invit).'}}
         else{exp='P';why=t+' htp: högst 15, pass.'}
         return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
+      if(!maj(o)&&lv(r)>=2&&h.hp<=14){
+        return {exp:'P',alt:[],why:'Öppnaren har minimum eller normal styrka efter partnerns lågfärgshöjning. Pass tills vidare; starkare fortsättning kräver ytterligare stöd eller styrka.',means:means,conv:'trumfstöd'};
+      }
       return {exp:null,alt:[],why:'Fortsättningen efter denna höjning beskrivs inte i dokumentet.',means:means,conv:'trumfstöd'};
     }
     var low=function(s){return lowest(s,r)};
@@ -669,6 +672,9 @@ var Rattning = (function(){
     if(allowed){
       return {exp:act,alt:[],why:hp+' hp och 6+ '+SYM[suit]+': bjud färgen på lägsta nivå i andra budronden. Budet är inte krav.',means:means,conv:'svar efter 1NT',soft:false};
     }
+    if(hp<=9){
+      return {exp:'P',alt:[],why:hp+' hp och ingen egen 6-kortsfärg att återbjuda: pass efter öppnarens återbud.',means:function(c){return c==='P'?'Pass med svag hand efter 1NT-svar.':null},conv:'svar efter 1NT'};
+    }
     return NC('Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet.',means,'svar efter 1NT');
   }
 
@@ -712,7 +718,7 @@ var Rattning = (function(){
     }
 
     // C. Öppnaren har visat minst sex kort i sin egen färg.
-    if(rb===first&&oh.L[first]>=6){
+    if(rb===first&&oh.L[first]>=5){
       fit= L[first]+oh.L[first];
       if(fit>=8){
         total=partnershipPoints(h,oh,first);threshold=maj(first)?26:28;
@@ -1222,7 +1228,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.8'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.9'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
