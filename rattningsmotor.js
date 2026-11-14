@@ -43,6 +43,23 @@ var Rattning = (function(){
     return o;
   }
 
+  // Gemensam spelstyrka: honnörspoäng alltid; fördelningspoäng och
+  // trumflängdsbonus endast i färgkontrakt med minst 8 gemensamma trumfkort.
+  // Sang värderas enbart med honnörspoäng.
+  function partnershipPoints(a,p,trump){
+    var total=a.hp+p.hp;
+    if(!trump||trump==='N')return total;
+    var fit=a.L[trump]+p.L[trump];
+    if(fit<8)return total;
+    [a,p].forEach(function(h){
+      SU.forEach(function(s){
+        if(s!==trump){var n=h.L[s];total+=n===0?3:n===1?2:n===2?1:0;}
+      });
+    });
+    if(fit===9)total+=1;else if(fit>=10)total+=2;
+    return total;
+  }
+
   function T(m){return function(c){return m[c]||null}}
   function ok(c,last){return c==='P'||c==='X'||c==='XX'||(isBid(c)&&(!last||rk(c)>rk(last)))}
   function NC(why,means,conv){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt'}}
@@ -922,41 +939,40 @@ var Rattning = (function(){
 
   // Övergripande kontroll av missad utgång och slam vid pass på egen sida.
   // Trösklarna är vägledande: välj först högfärgsfit, därefter sang eller lågfärg.
-  function missedGameOrSlam(st, bids, i, currentContract, currentSide){
+  // Missad utgång/slam: 26 poäng i högfärg, 28 i lågfärg,
+  // 26 hp i sang utan fit. Fördelningspoäng räknas bara med fastställd trumf.
+  function missedGameOrSlam(st,bids,i,currentContract,currentSide){
     var b=bids[i];
-    if(!b || b.c!=='P' || side(b.s)!==0 || currentSide!==0 || !currentContract) return null;
-    var pt=partner(b.s), a=H(st.hands[b.s]), p=H(st.hands[pt]);
-    var total=a.hp+p.hp;
+    if(!b||b.c!=='P'||side(b.s)!==0||currentSide!==0||!currentContract)return null;
+    var pt=partner(b.s),a=H(st.hands[b.s]),p=H(st.hands[pt]);
     var majors=['H','S'].filter(function(x){return a.L[x]+p.L[x]>=8;});
     majors.sort(function(x,y){return (a.L[y]+p.L[y])-(a.L[x]+p.L[x]);});
     var minors=['C','D'].filter(function(x){return a.L[x]+p.L[x]>=8;});
     minors.sort(function(x,y){return (a.L[y]+p.L[y])-(a.L[x]+p.L[x]);});
     var balanced=a.bal&&p.bal;
-    var gameReached=(st_(currentContract)==='N'&&lv(currentContract)>=3) ||
-      (maj(st_(currentContract))&&lv(currentContract)>=4) ||
+    var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
+    var total=partnershipPoints(a,p,trump);
+    var gameReached=(st_(currentContract)==='N'&&lv(currentContract)>=3)||
+      (maj(st_(currentContract))&&lv(currentContract)>=4)||
       (!maj(st_(currentContract))&&st_(currentContract)!=='N'&&lv(currentContract)>=5);
-
-    // 33+ hp innebär att slam ska undersökas, inte att slam alltid är säkert.
-    if(total>=33 && lv(currentContract)<6){
+    if(total>=33&&lv(currentContract)<6){
       var slamTarget=majors.length?'6'+majors[0]:(balanced?'6N':minors.length?'6'+minors[0]:'6N');
       if(rk(slamTarget)<=rk(currentContract)){
         var alternatives=['6N','6H','6S','6C','6D'];
         slamTarget=alternatives.filter(function(x){return rk(x)>rk(currentContract);})[0]||null;
       }
       if(!slamTarget)return null;
-      return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' hp. Med 33+ hp ska slam undersökas. Val av trumf/sang beror på fit och fördelning; pass under lillslam avslutar för tidigt.'};
+      var basis=trump==='N'?'sang, endast honnörspoäng':'trumfkontrakt med fördelningspoäng och trumflängdsbonus';
+      return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas. Val av trumf/sang beror på fit och fördelning; pass under lillslam avslutar för tidigt.'};
     }
-    // Utgångströskel efter trumf/handtyp:
-    // 26+ hp med minst 8-korts högfärgsfit, 28+ hp med minst 8-korts lågfärgsfit.
-    // Utan fit används 27+ hp som riktmärke för sang.
-    var gameThreshold = majors.length ? 26 : (minors.length ? 28 : 26);
-    if(total>=gameThreshold && !gameReached){
-      var preferredGame=majors.length?'4'+majors[0]:(minors.length?'5'+minors[0]:'3N');
-      var gameChoices=[preferredGame,'3N','4H','4S','5C','5D'];
-      var gameTarget=gameChoices.filter(function(x,j,arr){return arr.indexOf(x)===j&&rk(x)>rk(currentContract);})[0];
-      if(!gameTarget)return null;
-      var thresholdText=majors.length?'26+ hp med högfärgsfit':(minors.length?'28+ hp med lågfärgsfit':'26+ hp utan färgfit, med sang som riktmärke');
-      return {target:gameTarget,why:'Partnerskapets sammanlagda styrka är '+total+' hp. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
+    var threshold=trump==='N'?26:(maj(trump)?26:28);
+    if(total>=threshold&&!gameReached){
+      var preferred=trump==='N'?'3N':(maj(trump)?'4'+trump:'5'+trump);
+      var choices=[preferred,'3N','4H','4S','5C','5D'];
+      var target=choices.filter(function(x,j,arr){return arr.indexOf(x)===j&&rk(x)>rk(currentContract);})[0];
+      if(!target)return null;
+      var thresholdText=trump==='N'?'26+ hp utan färgfit; sang räknas enbart med honnörspoäng':(maj(trump)?'26+ spelpoäng med minst 8-korts högfärgsfit':'28+ spelpoäng med minst 8-korts lågfärgsfit');
+      return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
     }
     return null;
   }
@@ -1032,7 +1048,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.0'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.1'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
