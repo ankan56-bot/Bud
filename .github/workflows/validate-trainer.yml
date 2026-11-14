@@ -11,8 +11,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Check correction engine syntax
-        run: node --check rattningsmotor.js
+      - name: Check JavaScript syntax
+        run: |
+          node --check rattningsmotor.js
+          node --check dds-integration.js
+          node --check analysmotor.js
+      - name: Validate analysis library JSON
+        run: node -e "const x=require('./analysbibliotek.json'); if(!Array.isArray(x.trees)||!x.trees.length) throw new Error('Analysis library is empty'); console.log(x.version + ': ' + x.trees.length + ' trees')"
       - name: Check inline application scripts
         run: |
           python3 - <<'PY'
@@ -41,5 +46,20 @@ jobs:
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
-          grep -q 'if(st.mode===.ostord.)return R(.P.)' Budtraning.html
+          grep -q "if(st.mode==='ostord'&&" Budtraning.html
+          grep -q 'dds-integration.js' Budtraning.html
+          grep -q 'analysmotor.js' Budtraning.html
           grep -q 'rattningsmotor.js' Budtraning.html
+
+      - name: Smoke test offline analysis engine
+        run: |
+          node - <<'NODE'
+          const A = require('./analysmotor.js');
+          const lib = require('./analysbibliotek.json');
+          if (A.version !== '1.0.2') throw new Error('Unexpected analysis engine version');
+          const incompatible = lib.trees.find(t => t.id === 'T01_RKC_HJARTER');
+          if (A.treeCompatible(incompatible)) throw new Error('Jacoby prototype must not override Stenberg rules');
+          const hit = A.findMatch(lib, [{c:'1N'},{c:'P'},{c:'2D'},{c:'P'},{c:'2H'},{c:'P'}]);
+          if (!hit) throw new Error('Analysis library sequence matching failed');
+          console.log('Offline analysis engine OK; matched ' + hit.tree.id);
+          NODE
