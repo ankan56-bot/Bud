@@ -129,6 +129,15 @@ button:disabled{opacity:.3;cursor:default}
 .hero .card{margin-top:14px}.brand-art{display:block;width:min(100%,520px);height:auto;max-height:390px;object-fit:contain;margin:0 auto 12px}.hero.start{padding-top:12px}.start-button{min-height:76px!important;font-size:24px!important;width:100%;box-shadow:0 8px 22px rgba(0,0,0,.14)}.mode-grid{margin-top:10px}
 @media (max-width:700px){.modes{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Completed deal: identical hand-card widths and centered North/South */
+.table.end{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.table.end .north,.table.end .south{grid-column:2!important;width:100%!important;max-width:none!important;justify-self:stretch!important}
+.table.end .west{grid-column:1!important}
+.table.end .east{grid-column:3!important}
+.table.end .hand-seat{width:100%;box-sizing:border-box}
+.table.end .hand-seat b{display:flex;justify-content:center;align-items:center;white-space:nowrap}
+@media(max-width:520px){.table.end{grid-template-columns:repeat(3,minmax(0,1fr))!important}.table.end .hand-seat{font-size:12px;padding:8px 4px}.table.end .hand-seat b{font-size:11px}}
 </style>
 </head>
 <body>
