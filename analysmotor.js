@@ -18,11 +18,23 @@ function loadLibrary(){
  if(!libraryPromise)libraryPromise=fetch("analysbibliotek.json").then(r=>{if(!r.ok)throw new Error("Analysbiblioteket kunde inte läsas ("+r.status+").");return r.json()});
  return libraryPromise;
 }
+function treeCompatible(tree){
+ const text=JSON.stringify(tree||{});
+ // Explicitly reject prototype passages that contradict the authoritative
+ // correction engine's Stenberg convention or the partnership's RKC 1430.
+ if(/Jacoby/i.test(text))return false;
+ if(/5♣\\s*(?:=|:|visar)\\s*0\\s*(?:eller|\\/)\\s*3/i.test(text))return false;
+ if(/5♦\\s*(?:=|:|visar)\\s*1\\s*(?:eller|\\/)\\s*4/i.test(text))return false;
+ return true;
+}
 function findMatch(lib,bids){
  const q=normalizeSequence((bids||[]).map(b=>callText(b.c))),hits=[];
- for(const tree of lib.trees||[])for(const node of tree.nodes||[]){
-  const seq=normalizeSequence(node.sequence||[]);
-  if(seq.length<=q.length&&seq.every((v,i)=>v==="…"||v===q[i]))hits.push({tree,node,length:seq.length,exact:seq.length===q.length});
+ for(const tree of lib.trees||[]){
+  if(!treeCompatible(tree))continue;
+  for(const node of tree.nodes||[]){
+   const seq=normalizeSequence(node.sequence||[]);
+   if(seq.length<=q.length&&seq.every((v,i)=>v==="…"||v===q[i]))hits.push({tree,node,length:seq.length,exact:seq.length===q.length});
+  }
  }
  hits.sort((a,b)=>b.length-a.length);
  return hits[0]||null;
@@ -98,7 +110,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.1",loadLibrary,findMatch,buildReport,analyze,
+ version:"1.0.2",loadLibrary,findMatch,treeCompatible,buildReport,analyze,
  normalizeSequence
 };
 })(typeof window!=="undefined"?window:globalThis);
