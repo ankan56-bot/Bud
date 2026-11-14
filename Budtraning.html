@@ -42,7 +42,7 @@ button:disabled{opacity:.3;cursor:default}
 .table.end .center{grid-column:2;grid-row:2}
 .table.end .east{grid-column:3;grid-row:2;align-self:center}
 .table.end .south{grid-column:2;grid-row:3;justify-self:stretch;width:100%}
-.table.end .hand{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.table.end .hand{display:flex;flex-direction:column;align-items:flex-start;gap:4px}.table.end .hand>div{padding-bottom:3px;border-bottom:2px solid rgba(213,173,85,.7)}.table.end .hand>div:last-child{border-bottom:0}
 .table.end .hand-seat{font-size:16px;padding:12px 14px}
 .table.end .hand-seat .hand>div{white-space:nowrap;line-height:1.35;font-size:1em}
 .table.end .north,.table.end .south{width:min(100%,560px)}
@@ -79,10 +79,10 @@ button:disabled{opacity:.3;cursor:default}
 .hl{opacity:.85;font-size:15px}
 .fan{display:flex;justify-content:center;padding:6px 0 2px}
 .cd{position:relative;width:66px;height:98px;border-radius:10px;background:#fbf8ef;color:#171717;box-shadow:0 2px 7px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.08);margin-left:-30px;padding:6px 7px;font-weight:700;line-height:1;display:flex;flex-direction:column;flex:0 0 66px}
-.cd:first-child{margin-left:0}.cd b{font-size:25px}.cd i{font-style:normal;font-size:30px;margin-top:2px}.cd.r{color:#c0262d}
-.cd::after{content:attr(data-s);position:absolute;right:6px;bottom:4px;font-size:46px}
-.cd[data-s="♠"] i,.cd[data-s="♦"] i{transform:translateY(-3px)}.cd[data-s="♠"]::after,.cd[data-s="♦"]::after{transform:translateY(-3px)}
-.cd[data-s="♥"] i,.cd[data-s="♣"] i{transform:translateY(-7px)}.cd[data-s="♥"]::after,.cd[data-s="♣"]::after{transform:translateY(-7px)}
+.cd:first-child{margin-left:0}.cd b{font-size:25px}.cd i{position:relative;top:-2px;font-style:normal;font-size:30px;margin-top:2px}.cd.r{color:#c0262d}
+.cd::after{content:attr(data-s);position:absolute;right:6px;bottom:7px;font-size:46px}
+.cd[data-s="♠"] i,.cd[data-s="♦"] i{top:-2px}.cd[data-s="♠"]::after,.cd[data-s="♦"]::after{bottom:7px}
+.cd[data-s="♥"] i,.cd[data-s="♣"] i{top:-6px}.cd[data-s="♥"]::after,.cd[data-s="♣"]::after{bottom:11px}
 @media (min-width:1100px){.cd{width:78px;height:114px;flex-basis:78px;margin-left:-34px}.cd b{font-size:28px}.cd i{font-size:34px}.cd::after{font-size:54px}}
 @media (max-width:600px){
  .main{display:flex;flex-direction:column;padding:8px;gap:10px}.main>.table,.main>.side{width:100%;min-width:0}
@@ -218,7 +218,7 @@ function nsOk(d){return true}
 function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
 function oppBorder(h){var p=hpOf(h);return p>=10&&p<=11&&maxLen(h)>=5}
 function oppMustPass(d){var e=hpOf(d.E),w=hpOf(d.W);return e<=9&&w<=9&&e+w<=17}
-var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','RKC (essfråga i högfärg)'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (alla bjuder)']];
+var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','Essfråga (RKC) – alla färger'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (alla bjuder)']];
 function focLabel(f){for(var i=0;i<FOC.length;i++)if(FOC[i][0]===f)return FOC[i][1];return ''}
 function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return L}
 function isBal(L){var s=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');return s==='4333'||s==='4432'||s==='5332'}
@@ -280,7 +280,7 @@ function focusOk(d,f){
     var opSeat=a===d.N?'N':'S',opening=themedOpening(d,opSeat);
     return hpOf(a)>=6&&hpOf(a)<=10&&hpOf(b)>=12&&opening&&/^[234][CDHS]$/.test(opening.exp||'');
   });
-  if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['H','S'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9});
+  if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['S','H','D','C'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9});
   if(f==='nt'){
     for(i=0;i<2;i++){
       a=d[pr[i][0]];b=d[pr[i][1]];La=shapeOf(a);Lb=shapeOf(b);
