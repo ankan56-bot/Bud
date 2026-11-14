@@ -851,7 +851,7 @@ var Rattning = (function(){
              return {exp:'3N', alt:[], why:'Håll i fjärde färgen, maximum: 3NT.', conv:'Fjärde färg'};
          }
          if (h.L[s2] >= 3) return {exp:lowest(s2, b.c), alt:[], why:'Trumfstöd i partnerns första färg.', conv:'Fjärde färg'};
-         if (h.L[s1] >= 6) return {exp:lowest(s1, b.c), alt:[], why:'Bjuder om egen färg.', conv:'Fjärde färg'};
+         if (h.L[s1] >= 5) return {exp:lowest(s1, b.c), alt:[], why:'Ingen lämplig preferens; bjuder om egen femkortsfärg.', conv:'Fjärde färg'};
          return {exp:lowest(s2, b.c), alt:[], why:'Preferens till partnerns första färg.', conv:'Fjärde färg'};
       }
     }
