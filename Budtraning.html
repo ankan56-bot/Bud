@@ -215,7 +215,7 @@ function nsOk(d){return true}
 function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
 function oppBorder(h){var p=hpOf(h);return p>=10&&p<=11&&maxLen(h)>=5}
 function oppMustPass(d){var e=hpOf(d.E),w=hpOf(d.W);return e<=9&&w<=9&&e+w<=17}
-var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','Essfråga (RKC) – alla färger'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (alla bjuder)']];
+var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','Essfråga (RKC) – alla färger'],['slam','Slambudgivning i färg (kontrollbud och RKC)'],['slamnt','Slambudgivning i sang'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (alla bjuder)']];
 function focLabel(f){for(var i=0;i<FOC.length;i++)if(FOC[i][0]===f)return FOC[i][1];return ''}
 function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return L}
 function isBal(L){var s=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');return s==='4333'||s==='4432'||s==='5332'}
@@ -258,6 +258,7 @@ function focusOk(d,f){
   function anyP(fn){return fn(d.N,d.S)||fn(d.S,d.N)}
   var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
   if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=29&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})&&!!naturalFitOpener(d,8)}
+  if(f==='slamnt')return slamNtOpener(d)!==null;
   if(f==='invit')return anyP(function(a,b){
     var opSeat=a===d.N?'N':'S',L=shapeOf(a),P=shapeOf(b),h=hpOf(a),r=hpOf(b),opening=themedOpening(d,opSeat);
     if(!(h>=15&&h<=17&&isBal(L)&&r>=8&&r<=9&&isBal(P)&&P.H<4&&P.S<4&&opening&&opening.exp==='1N'))return false;
@@ -310,6 +311,7 @@ function themeDealer(d,f){
     var h=d[seat],p=d[partner(seat)],L=shapeOf(h),P=shapeOf(p),hp=hpOf(h),ph=hpOf(p);
     if(f==='nt')return hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4);
     if(f==='sang')return ((hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4))||(hp>=20&&hp<=21&&isBal(L)&&ph>=4&&ph<=10&&P.H<4&&P.S<4));
+    if(f==='slamnt')return slamNtOpener(d)===seat;
     if(f==='invit'){
       var inviteOpen=themedOpening(d,seat),invitePartner=shapeOf(p);
       if(!(hp>=15&&hp<=17&&isBal(L)&&ph>=8&&ph<=9&&isBal(invitePartner)&&invitePartner.H<4&&invitePartner.S<4&&inviteOpen&&inviteOpen.exp==='1N'))return false;
@@ -345,6 +347,7 @@ function themeDealer(d,f){
   var candidates=seats.filter(qualifies);
   if(candidates.length)return candidates[Math.floor(rng()*candidates.length)];
   if(f==='alla')return seats[Math.floor(rng()*seats.length)];
+  if(f==='slamnt')return slamNtOpener(d)||seats[0];
   if(f==='rkc'||f==='slam'){
     var naturalOpener=naturalFitOpener(d,f==='rkc'?9:8);
     if(naturalOpener)return naturalOpener;
@@ -375,8 +378,29 @@ function dubDeal(){
   }
   throw new Error('Kunde inte skapa en giv för temat dubbling efter 20 000 försök.');
 }
+function slamNtOpener(d){
+  var total=hpOf(d.N)+hpOf(d.S);
+  if(total<33)return null;
+  var seats=['N','S'];
+  for(var i=0;i<seats.length;i++){
+    var op=seats[i],p=partner(op),h=hpOf(d[op]),ph=hpOf(d[p]),L=shapeOf(d[op]);
+    if(isBal(L)&&((h>=15&&h<=17&&ph>=16)||(h>=20&&h<=21&&ph>=12)))return op;
+  }
+  return null;
+}
+function slamNtDeal(){
+  var wantFit=rng()<.5,d;
+  for(var i=0;i<20000;i++){
+    d=shuffleDeal();
+    if(!slamNtOpener(d))continue;
+    var fit=['S','H','D','C'].some(function(s){return shapeOf(d.N)[s]+shapeOf(d.S)[s]>=8});
+    if(fit===wantFit){d.dealer=slamNtOpener(d);return d;}
+  }
+  throw new Error('Kunde inte skapa en sangslamgiv med '+(wantFit?'8-kortsfit':'utan 8-kortsfit')+'.');
+}
 function biasedDeal(mode,focus){
   if(focus==='dubbling')return dubDeal();
+  if(focus==='slamnt')return slamNtDeal();
   var f=rng()<0.8||focus==='inkliv'?oppClear:oppBorder,d,i;
   // Temagivarna ska inte dessutom kräva två starka motståndare:
   // det gör flera teman matematiskt omöjliga (t.ex. 2♣ och slam).
@@ -414,6 +438,7 @@ window.BudThemeDiagnostics=function(samples){
           if(mode==='ostord'&&!oppMustPass(deal.hands))throw new Error('Motståndarna kan bjuda i ostört läge');
           if(focus==='rkc'&&!naturalFitOpener(deal.hands,9))throw new Error('Saknar naturlig öppning och 9-korts stödsekvens');
           if(focus==='slam'&&!naturalFitOpener(deal.hands,8))throw new Error('Saknar naturlig öppning och 8-korts stödsekvens');
+          if(focus==='slamnt'&&(hpOf(deal.hands.N)+hpOf(deal.hands.S)<=32||!slamNtOpener(deal.hands)))throw new Error('Sangslamgiv saknar 33 hp eller naturlig sangöppnare');
           ok++;
         }catch(e){error=String(e&&e.message||e);break}
       }
@@ -421,7 +446,17 @@ window.BudThemeDiagnostics=function(samples){
       report.push(row);if(error)failures.push(row);
     });
   });
-  return {ok:failures.length===0,antalTester:report.length,antalGivar:report.reduce(function(n,x){return n+x.provade},0),resultat:report,fel:failures};
+  var slamNtStats={antal:0,over32:0,med8Fit:0};
+  for(var k=0;k<100;k++){
+    try{var sd=newDeal(k+1,'stord','slamnt',(104729*(k+1)+7919)>>>0),sh=sd.hands;
+      slamNtStats.antal++;if(hpOf(sh.N)+hpOf(sh.S)>32)slamNtStats.over32++;
+      if(['S','H','D','C'].some(function(su){return shapeOf(sh.N)[su]+shapeOf(sh.S)[su]>=8}))slamNtStats.med8Fit++;
+    }catch(e){failures.push({tema:'slamnt-statistik',lage:'stord',resultat:'FEL',fel:String(e&&e.message||e)});break;}
+  }
+  slamNtStats.over32Andel=slamNtStats.antal?slamNtStats.over32/slamNtStats.antal:0;
+  slamNtStats.fitAndel=slamNtStats.antal?slamNtStats.med8Fit/slamNtStats.antal:0;
+  if(slamNtStats.over32Andel<.75||slamNtStats.fitAndel<.35||slamNtStats.fitAndel>.65)failures.push({tema:'slamnt-statistik',lage:'100 givars stickprov',resultat:'FEL',fel:'Fördelningen ligger utanför målen'});
+  return {ok:failures.length===0,antalTester:report.length,antalGivar:report.reduce(function(n,x){return n+x.provade},0),sangslam:slamNtStats,resultat:report,fel:failures};
 };
 
 function R(c,e){return {c:c,e:e}}
