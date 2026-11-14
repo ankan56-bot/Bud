@@ -283,7 +283,7 @@ function focusOk(d,f){
       a=d[pr[i][0]];b=d[pr[i][1]];La=shapeOf(a);Lb=shapeOf(b);
       if(hpOf(a)>=15&&hpOf(a)<=17&&isBal(La)&&hpOf(b)>=8&&(Lb.H>=4||Lb.S>=4))return true;
     }
-    return !!M;
+    return false;
   }
   if(f==='inkliv')return validInklivScenario(d,'E')||validInklivScenario(d,'W');
   return nsOk(d);
@@ -356,18 +356,20 @@ function dubDeal(){
 function biasedDeal(mode,focus){
   if(focus==='dubbling')return dubDeal();
   var f=rng()<0.8||focus==='inkliv'?oppClear:oppBorder,d,i;
-  var oppCond=mode==='stord';
+  // Temagivarna ska inte dessutom kräva två starka motståndare:
+  // det gör flera teman matematiskt omöjliga (t.ex. 2♣ och slam).
+  // "Alla bjuder" betyder att motståndarna får bjuda, inte att båda måste kunna öppna.
+  var oppCond=mode==='stord'&&(focus==='alla'||focus==='inkliv');
   var quietCond=mode==='ostord';
+  function modeOk(x){return (!oppCond||(f(x.E)&&f(x.W)))&&(!quietCond||oppMustPass(x))}
   for(i=0;i<20000;i++){
-    d=shuffleDeal();if(!focusOk(d,focus))continue;
-    if((!oppCond||(f(d.E)&&f(d.W)))&&(!quietCond||oppMustPass(d))){
-      if(focus==='alla'&&rng()>Math.exp(0.133*(hpOf(d.N)+hpOf(d.S)-40)))continue;
-      return d;
-    }
+    d=shuffleDeal();if(!focusOk(d,focus)||!modeOk(d))continue;
+    if(focus==='alla'&&rng()>Math.exp(0.133*(hpOf(d.N)+hpOf(d.S)-40)))continue;
+    return d;
   }
   if(focus&&focus!=='alla'){
-    for(i=0;i<20000;i++){d=shuffleDeal();if(focusOk(d,focus))return d;}
-    throw new Error('Kunde inte skapa en giv som uppfyller temat '+focLabel(focus)+'.');
+    for(i=0;i<20000;i++){d=shuffleDeal();if(focusOk(d,focus)&&modeOk(d))return d;}
+    throw new Error('Kunde inte skapa en giv som uppfyller temat '+focLabel(focus)+' i valt läge. Prova det andra budgivningsläget.');
   }
   return d||shuffleDeal();
 }
