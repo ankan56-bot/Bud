@@ -217,6 +217,7 @@ function maxLen(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});ret
 function nsOk(d){var a=hpOf(d.N),b=hpOf(d.S);return a+b>=22&&Math.max(a,b)>=12}
 function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
 function oppBorder(h){var p=hpOf(h);return p>=10&&p<=11&&maxLen(h)>=5}
+function oppMustPass(h){var p=hpOf(h);return p<=10&&!(p>=6&&p<=10&&maxLen(h)>=6)}
 var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','RKC (essfråga i högfärg)'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (störd)']];
 function focLabel(f){for(var i=0;i<FOC.length;i++)if(FOC[i][0]===f)return FOC[i][1];return ''}
 function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return L}
@@ -245,7 +246,7 @@ function focusOk(d,f){
   if(f==='tva')return hpOf(d.N)>=22||hpOf(d.S)>=22;
   function anyP(fn){return fn(d.N,d.S)||fn(d.S,d.N)}
   var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
-  if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=30&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})}
+  if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=29&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})}
   if(f==='invit')return anyP(function(a,b){
     var opSeat=a===d.N?'N':'S',L=shapeOf(a),P=shapeOf(b),h=hpOf(a),r=hpOf(b),opening=themedOpening(d,opSeat);
     if(!(h>=15&&h<=17&&isBal(L)&&r>=8&&r<=9&&isBal(P)&&P.H<4&&P.S<4&&opening&&opening.exp==='1N'))return false;
@@ -358,10 +359,11 @@ function dubDeal(){
 function biasedDeal(mode,focus){
   if(focus==='dubbling')return dubDeal();
   var f=rng()<0.8||focus==='inkliv'?oppClear:oppBorder,d,i;
-  var oppCond=mode==='stord'&&(!focus||focus==='alla'||focus==='inkliv');
+  var oppCond=mode==='stord';
+  var quietCond=mode==='ostord';
   for(i=0;i<20000;i++){
     d=shuffleDeal();if(!focusOk(d,focus))continue;
-    if(!oppCond||f(d.E)||f(d.W))return d;
+    if((!oppCond||(f(d.E)&&f(d.W)))&&(!quietCond||(oppMustPass(d.E)&&oppMustPass(d.W))))return d;
   }
   if(focus&&focus!=='alla'){
     for(i=0;i<20000;i++){d=shuffleDeal();if(focusOk(d,focus))return d;}
