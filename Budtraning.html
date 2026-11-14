@@ -229,6 +229,11 @@ function themedResponse(d,opener,opening){
   var responder=SEATS[(SEATS.indexOf(opener)+1)%4];
   try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:responder,c:'P'}]},1)}catch(e){return null}
 }
+function themedRebid(d,opener,opening,response){
+  var responder=SEATS[(SEATS.indexOf(opener)+1)%4];
+  if(!response||!response.exp||response.exp==='P')return null;
+  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:responder,c:response.exp},{s:opener,c:'P'}]},2)}catch(e){return null}
+}
 function validInklivScenario(d,dealer){
   var open=themedOpening(d,dealer);
   if(!open||!/^1[CDHS]$/.test(open.exp||''))return false;
@@ -241,7 +246,12 @@ function focusOk(d,f){
   function anyP(fn){return fn(d.N,d.S)||fn(d.S,d.N)}
   var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
   if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=30&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})}
-  if(f==='invit')return tot>=23&&tot<=25&&mx>=12&&mn>=8&&mn<=11;
+  if(f==='invit')return anyP(function(a,b){
+    var opSeat=a===d.N?'N':'S',L=shapeOf(a),P=shapeOf(b),h=hpOf(a),r=hpOf(b),opening=themedOpening(d,opSeat);
+    if(!(h>=15&&h<=17&&isBal(L)&&r>=8&&r<=9&&isBal(P)&&P.H<4&&P.S<4&&opening&&opening.exp==='1N'))return false;
+    var response=themedResponse(d,opSeat,opening.exp);
+    return !!(response&&response.exp==='2N');
+  });
   if(f==='trumf'||f==='stenberg'){
     for(i=0;i<2;i++){
       var opener=pr[i][0],responder=pr[i][1],oh=hpOf(d[opener]);
@@ -261,7 +271,9 @@ function focusOk(d,f){
   if(f==='sang')return anyP(function(a,b){var Lb=shapeOf(b),h=hpOf(a),g=hpOf(b);return isBal(shapeOf(a))&&((h>=15&&h<=17&&g>=8&&g<=12)||(h>=20&&h<=21&&g>=4&&g<=10))&&Lb.H<4&&Lb.S<4});
   if(f==='tvafarg')return anyP(function(a,b){
     var opSeat=a===d.N?'N':'S',L=shapeOf(a),v=[L.S,L.H,L.D,L.C].sort(function(x,y){return y-x}),h=hpOf(a),opening=themedOpening(d,opSeat);
-    return h>=12&&h<=19&&v[0]>=5&&v[1]>=4&&hpOf(b)>=6&&opening&&/^1[CDHS]$/.test(opening.exp||'');
+    if(!(h>=12&&h<=19&&v[0]>=5&&v[1]>=4&&hpOf(b)>=6&&opening&&/^1[CDHS]$/.test(opening.exp||'')))return false;
+    var response=themedResponse(d,opSeat,opening.exp),rebid=themedRebid(d,opSeat,opening.exp,response);
+    return !!(rebid&&rebid.exp&&/^[2-3][CDHS]$/.test(rebid.exp)&&rebid.exp[1]!==opening.exp[1]);
   });
   if(f==='svag')return anyP(function(a,b){
     var opSeat=a===d.N?'N':'S',opening=themedOpening(d,opSeat);
@@ -284,9 +296,20 @@ function themeDealer(d,f){
     var h=d[seat],p=d[partner(seat)],L=shapeOf(h),P=shapeOf(p),hp=hpOf(h),ph=hpOf(p);
     if(f==='nt')return hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4);
     if(f==='sang')return ((hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4))||(hp>=20&&hp<=21&&isBal(L)&&ph>=4&&ph<=10&&P.H<4&&P.S<4));
+    if(f==='invit'){
+      var inviteOpen=themedOpening(d,seat),invitePartner=shapeOf(p);
+      if(!(hp>=15&&hp<=17&&isBal(L)&&ph>=8&&ph<=9&&isBal(invitePartner)&&invitePartner.H<4&&invitePartner.S<4&&inviteOpen&&inviteOpen.exp==='1N'))return false;
+      var inviteResponse=themedResponse(d,seat,inviteOpen.exp);
+      return !!(inviteResponse&&inviteResponse.exp==='2N');
+    }
     if(f==='tva')return hp>=22;
     if(f==='svag'){var weakOpen=themedOpening(d,seat);return hp>=6&&hp<=10&&weakOpen&&/^[234][CDHS]$/.test(weakOpen.exp||'');}
-    if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}),op=themedOpening(d,seat);return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6&&op&&/^1[CDHS]$/.test(op.exp||'');}
+    if(f==='tvafarg'){
+      var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}),op=themedOpening(d,seat);
+      if(!(hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6&&op&&/^1[CDHS]$/.test(op.exp||'')))return false;
+      var resp=themedResponse(d,seat,op.exp),rebid=themedRebid(d,seat,op.exp,resp);
+      return !!(rebid&&rebid.exp&&/^[2-3][CDHS]$/.test(rebid.exp)&&rebid.exp[1]!==op.exp[1]);
+    }
     if(f==='trumf'){
       var op=themedOpening(d,seat),su=op&&/^1[CDHS]$/.test(op.exp||'')?op.exp[1]:null;
       if(!su||hp<12||hp>19||L[su]<5||P[su]<4)return false;
