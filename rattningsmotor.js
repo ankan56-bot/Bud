@@ -943,6 +943,19 @@ var Rattning = (function(){
       if(!opener&&d===1)return resp2c(h);
       if(opener&&d===2)return reb2c(h,ours[1].c);
       if(!opener&&d===3){var rb=ours[2].c;if(rb==='2N')return ntResp(h,1);return resp2c2(h,rb,ours[1].c)}
+      // Efter 2♣–2♦–3♣–3♦ är 3♦ Herbertavslag.
+      // Öppningshanden ska då välja sin bästa sidofärg, inte passa.
+      if(opener&&d===4&&ours[1].c==='2D'&&ours[2].c==='3C'&&ours[3].c==='3D'){
+        var sideSuits=['H','S','D'].filter(function(s){return h.L[s]>=4;});
+        sideSuits.sort(function(a,b){
+          if(h.L[b]!==h.L[a])return h.L[b]-h.L[a];
+          if(h.good(b)!==h.good(a))return h.good(b)?1:-1;
+          return ['H','S','D'].indexOf(a)-['H','S','D'].indexOf(b);
+        });
+        var best=sideSuits[0]||'C';
+        var rebid=sideSuits.length?'3'+best:'4C';
+        return {exp:rebid,alt:[],why:'3♦ är Herbertavslag efter 3♣. Öppningshanden väljer sin bästa sidofärg ('+(sideSuits.length?SYM[best]:'ingen sidofärg med 4+ kort; återbud i ♣')+') och får inte passa.',means:function(c){return c===rebid?'Öppningshandens färgval efter Herbertavslag.':null},conv:'2♣-system / Herbert'};
+      }
       return nc('Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.');
     }
     if(/^2[DHS]$/.test(c1)){
@@ -1296,7 +1309,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.5'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.6'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
