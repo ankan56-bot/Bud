@@ -1,0 +1,70 @@
+name: Validate bridge trainer
+on:
+  push:
+    branches: [feature/two-player-dds]
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check JavaScript syntax
+        run: |
+          node --check rattningsmotor.js
+          node --check dds-integration.js
+          node --check analysmotor.js
+      - name: Validate analysis library JSON
+        run: |
+          node - <<'NODE'
+          const x = require('./analysbibliotek.json');
+          if (!Array.isArray(x.trees) || !x.trees.length) throw new Error('Analysis library is empty');
+          console.log(x.version + ': ' + x.trees.length + ' trees');
+          NODE
+      - name: Check inline application scripts
+        run: |
+          python3 - <<'PY'
+          import pathlib, re
+          html = pathlib.Path("Budtraning.html").read_text(encoding="utf-8")
+          scripts = re.findall(r'<script(?![^>]*\\bsrc=)[^>]*>(.*?)</script>', html, re.I | re.S)
+          if not scripts:
+              raise SystemExit("No inline application script found")
+          for i, script in enumerate(scripts):
+              pathlib.Path(f"/tmp/inline-{i}.js").write_text(script, encoding="utf-8")
+          print(f"Found {len(scripts)} inline script(s)")
+          PY
+          for file in /tmp/inline-*.js; do node --check "$file"; done
+      - name: Smoke test correction engine exports
+        run: |
+          node - <<'NODE'
+          const R = require('./rattningsmotor.js');
+          if (typeof R.judge !== 'function' || typeof R.nodeFor !== 'function' || typeof R.validateAuction !== 'function') {
+            throw new Error('Correction engine exports are incomplete');
+          }
+          const hand = ['S14','S13','S12','S11','S10','H14','H13','H12','H11','D14','D13','C14','C13'];
+          const result = R.nodeFor({hands:{N:hand},dealer:'N',bids:[{s:'N',c:'P'}]},0);
+          if (!result || !result.exp) throw new Error('Opening decision-tree smoke test failed');
+          console.log('Correction engine v' + R.version + ': opening recommendation ' + result.exp);
+          NODE
+      - name: Check application wiring
+        run: |
+          grep -q 'Rattning.nodeFor' Budtraning.html
+          grep -q "if(st.mode==='ostord'&&" Budtraning.html
+          grep -q 'dds-integration.js' Budtraning.html
+          grep -q 'analysmotor.js' Budtraning.html
+          grep -q 'rattningsmotor.js' Budtraning.html
+
+      - name: Smoke test offline analysis engine
+        run: |
+          node - <<'NODE'
+          const A = require('./analysmotor.js');
+          const lib = require('./analysbibliotek.json');
+          if (A.version !== '1.0.2') throw new Error('Unexpected analysis engine version');
+          const incompatible = lib.trees.find(t => t.id === 'T01_RKC_HJARTER');
+          if (A.treeCompatible(incompatible)) throw new Error('Jacoby prototype must not override Stenberg rules');
+          const hit = A.findMatch(lib, [{c:'1N'},{c:'P'},{c:'2D'},{c:'P'},{c:'2H'},{c:'P'}]);
+          if (!hit) throw new Error('Analysis library sequence matching failed');
+          console.log('Offline analysis engine OK; matched ' + hit.tree.id);
+          NODE

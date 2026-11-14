@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test av analysbibliotek</title>
+<style>
+:root{color-scheme:light dark;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{max-width:850px;margin:0 auto;padding:20px;line-height:1.45}h1{font-size:1.5rem}.muted{opacity:.7}.card{border:1px solid #8886;border-radius:12px;padding:14px;margin:14px 0}.seq{font-weight:700;font-size:1.05rem}.branch{padding:9px;margin:7px 0;background:#8881;border-radius:8px}.tag{display:inline-block;padding:3px 8px;border-radius:20px;background:#8882;font-size:.8rem;margin:2px}select{font:inherit;padding:9px;max-width:100%;width:100%}button{font:inherit;padding:8px 12px;margin:5px 4px 5px 0;border-radius:8px;border:1px solid #888;background:transparent}#status{font-size:.9rem}
+</style></head><body>
+<h1>Analysbibliotek – testmodul</h1><p class="muted">Fristående prototyp. Ingen AI används och huvudappen påverkas inte.</p>
+<div id="status">Laddar bibliotek…</div><label for="tree">Välj budträd</label><select id="tree"></select><div id="content"></div>
+<script src="analysmotor.js"></script><script>
+(async function(){
+ const status=document.getElementById("status"),sel=document.getElementById("tree"),out=document.getElementById("content");
+ try{
+  const res=await fetch("analysbibliotek.json");if(!res.ok)throw new Error("Kunde inte läsa analysbibliotek.json ("+res.status+")");
+  const lib=await res.json();status.textContent=lib.trees.length+" budträd inlästa · version "+lib.version;
+  lib.trees.forEach(t=>{const o=document.createElement("option");o.value=t.id;o.textContent=t.title;sel.appendChild(o);});
+  function render(){
+   const t=BudAnalys.getTree(lib,sel.value);if(!t)return;
+   out.innerHTML="";
+   const head=document.createElement("section");head.className="card";
+   head.innerHTML="<h2>"+t.title+"</h2><p><b>Förutsättningar</b></p>"+t.conditions.map(x=>"<div>• "+x+"</div>").join("")+"<p>"+t.tags.map(x=>'<span class="tag">'+x+"</span>").join("")+"</p>";
+   out.appendChild(head);
+   t.nodes.forEach(n=>{
+    const c=document.createElement("section");c.className="card";
+    c.innerHTML='<div class="seq">'+(n.sequence||[]).join(" – ")+'</div><p><b>Betydelse:</b> '+n.meaning+'</p><p><b>Analys:</b> '+n.analysis+'</p>';
+    (n.branches||[]).forEach(b=>{const d=document.createElement("div");d.className="branch";d.textContent=b.call+" → "+b.label+(b.next?" (länk: "+b.next+")":" (slutgren)");c.appendChild(d);});
+    out.appendChild(c);
+   });
+  }
+  sel.addEventListener("change",render);render();
+ }catch(e){status.textContent="Fel: "+e.message;}
+})();
+</script></body></html>
