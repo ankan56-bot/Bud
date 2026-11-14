@@ -55,7 +55,7 @@ function currentContract(st,table,vulNS,vulEW){
  for(var i=0;i<st.bids.length;i++){var b=st.bids[i];if((auc.contractSide===0?(b.s==="N"||b.s==="S"):(b.s==="E"||b.s==="W"))&&b.c&&b.c[1]===strain&&/^[1-7]/.test(b.c)){declarer=b.s;break}}
  if(!declarer)return null;
  var tricks=table[index(strain,declarer)],level=+auc.contract[0],contractVul=auc.contractSide===0?vulNS:vulEW,sc=score(level,strain,tricks,auc.doubled,contractVul)*(auc.contractSide===0?1:-1);
- return {contract:textContract(level,strain),declarer,tricks,required:level+6,delta:tricks-level-6,scoreNS:sc,side:auc.contractSide};
+ return {contract:textContract(level,strain),strain:strain,declarer,tricks,required:level+6,delta:tricks-level-6,scoreNS:sc,side:auc.contractSide};
 }
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function render(st,table,zone){
