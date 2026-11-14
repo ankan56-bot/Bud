@@ -95,3 +95,60 @@ Föreslagen auktion: Syd 1♥, Väst pass, Norr 1♠, Öst pass, Syd 2NT (Stenbe
 - Norrs 4♠ är en möjlig signoff med svag hand och mycket lång spader; fortsättningen är inte fullständigt täckt.
 
 **Samlad slutsats för giv 6–15:** Flera fortsättningar efter inkliv, dubblingar och konkurrensbud är ej täckta. Två konkreta konflikter har identifierats: (1) 2-nivåinkliv med 5 kort trots systemkrav på 6 kort, (2) motorn väljer splinter framför Stenberg trots 13+ htp och 4+ stöd. Giv 11 kräver särskild slamfortsättning. Inga kodfiler har ändrats.
+
+
+## Giv 16–25 – separat dokumentation av tio nya givar
+
+**Status:** AI-föreslagna auktioner har jämförts med rättningsmotor 5.2. Varje giv dokumenteras separat. Inga kodändringar utförda. "Ej täckt" betyder att motorn inte kan avgöra fortsättningen med nuvarande regler; det betyder inte automatiskt att budet är fel.
+
+### Giv 16 – balanserad 21 hp
+AI:s första förslag 2♣–2♦–2♠–4♠ var felaktigt enligt systemet. Handen har 21 hp och balanserad 5-3-3-2-fördelning; korrekt öppning är **2NT** enligt intervallet 20–21. Motorn bekräftar 2NT och avvisar 2♣. Svarshandens fortsättning efter 2NT behöver bedömas separat. Denna giv ska inte användas som exempel på stark 2♣.
+
+### Giv 17 – stark 2♣, balanserad 22 hp
+Föreslagen auktion: Norr pass, Öst pass, Syd 2♣, Väst pass, Norr 2♦, Öst pass, Syd 2NT.
+- Motorn godkänner pass, 2♣, obligatoriskt 2♦ och 2NT (22–24 balanserad).
+- Motorn föreslår därefter 5♦ i stället för pass med svarshandens 2 hp. Detta behöver granskas manuellt: 2NT-återbudet visar den starka balanserade handen, men svarshanden är mycket svag. Motorns generella spelpoängs-/utgångsbedömning kan vara för aggressiv här.
+- Separat testfall för fortsättning efter 2♣–2♦–2NT.
+
+### Giv 18 – 1♦ och svagt inkliv
+Öst öppnar 1♦ med 17 hp och 5 ruter. Syd har 6 hp och 5 hjärter. AI:s första förslag 1♥ som inkliv bedöms av motorn som valfritt men med pass som huvudbud. Denna hand ska dokumenteras som exempel på att femkortsfärg inte räcker utan erforderlig inklivsstyrka. Efter pass runt är öppningen avslutad; ingen konstlad fortsättning ska läggas till.
+
+### Giv 19 – konkurrensbudgivning med 1♥-inkliv
+Föreslagen auktion: Syd 1♦, Väst 1♥, Norr pass, Öst pass, Syd 1♠, därefter pass runt.
+- Motorn godkänner öppningen 1♦ och registrerar 1♥ som motståndarbud. Fortsättningen efter inklivet är ej täckt.
+- Syds 1♠ visar sin fyrkortsfärg efter öppning och konkurrens. Behöver fler jämförbara exempel innan regel byggs.
+
+### Giv 20 – pass och enkel öppning
+Föreslagen auktion: Väst pass, Norr pass, Öst 1♦, Syd pass, Väst pass, Norr pass.
+- Motorn godkänner samtliga bedömda pass och Östs 1♦.
+- Enkel öppning med pass runt; inget nytt systemkrav identifierat.
+
+### Giv 21 – 1♥ följt av 2♣-inkliv
+Föreslagen auktion: Norr pass, Öst 1♥, Syd 2♣, Väst pass, Norr pass, Öst 2♥, därefter pass runt.
+- Motorn godkänner 1♥, Syds 2♣-inkliv (15 hp och minst fem klöver) och Östs 2♥-återbud.
+- Pass från Norr och Syd i konkurrenssituationen är ej täckta. Behåll som separat test av återbud efter inkliv.
+
+### Giv 22 – 1♠ och hoppande klöverinkliv
+Korrigerad kandidatsekvens: Öst 1♠, Syd 3♣, Väst pass, Norr X.
+- Syd har 8 hp och sex klöver; motorn anger 3♣ som huvudbud (hoppande inkliv).
+- Norr har 12 hp och fördelning som passar för upplysningsdubbling; motorn anger X som huvudbud i stället för 2♠.
+- Östs och Syds fortsättning efter dubblingen är ännu inte fastställd. Tidigare AI-förslag med pass/2♠/pass gav flera valfria avvikelser och ersätts av detta bättre testscenario.
+
+### Giv 23 – 1♥ och pass runt
+Föreslagen auktion: Syd pass, Väst pass, Norr 1♥, Öst pass, Syd pass, Väst pass.
+- Motorn godkänner pass och öppningen 1♥.
+- Motorn bedömer att Syds pass missar 4♥: dess beräkning anger 27 spelpoäng och minst åttakorts hjärterfit. Detta är ett konkret test av svarshandens höjning/utgångsbedömning. Kontrollera manuellt om poängberäkningen och 4♥-rekommendationen stämmer med systemets exakta spelpoängsdefinition.
+
+### Giv 24 – 1♣ och hoppande hjärterinkliv
+Korrigerad kandidatsekvens: Väst pass, Norr pass, Öst 1♣, Syd 2♥, Väst pass, Norr 2♠, Öst 2♣.
+- Syd har 9 hp och sex hjärter; motorn anger 2♥ som huvudbud (hoppande inkliv) snarare än 1♥.
+- Norrs 2♠-svar efter inklivet är ej täckt. Östs 2♣-återbud är naturligt och godkänt.
+- Testfall för hoppande inkliv med sexkortsfärg och måttlig styrka.
+
+### Giv 25 – 1♥ och konkurrens med ruter
+Föreslagen kandidatsekvens: Norr 1♥, Öst pass, Syd 2♦, Väst pass, Norr 4♥.
+- Norr har 12 hp och sjukortig hjärter. Syd har 12 hp, fem ruter och tre hjärter. Motorns poängbedömning anger 4♥ som bästa slutmål (30 spelpoäng och minst åttakorts hjärterfit).
+- Motorn markerade Syds ursprungliga pass som fel och föreslog 4♥ som bästa teoretiska kontrakt. Själva inklivet 2♦ och fortsättningen behöver verifieras manuellt innan de blir fasta systemregler.
+- Separat testfall för att inte missa utgång när öppnaren har lång högfärg och svarshanden har stöd.
+
+**Samlad observation giv 16–25:** Nya testområden är svar efter 2NT, svaga inkliv, hoppande inkliv, upplysningsdubbling efter hoppande inkliv, svar/återbud efter konkurrensbud samt utgångsbedömning med lång högfärg. Giv 16 visar vikten av att skilja balanserad 20–21 från stark 2♣. Giv 17 och 23 kräver manuell kontroll av motorns spelpoängsberäkning. Inga kodfiler har ändrats.
