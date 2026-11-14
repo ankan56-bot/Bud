@@ -760,7 +760,7 @@ function handBlock(st,me){
   var lc=null,last=-1;
   st.bids.forEach(function(b,i){if(b.s===me){lc=b.c;last=i}});
   var latest=last===st.bids.length-1,pass=lc==='P';
-  return '<div class="row"><span class="nm">'+NAME[me]+(seat==='X'?' · på tur':' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'<span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">Dölj poäng</button><span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span></div>';
+  return '<div class="row"><span class="nm">'+NAME[me]+(seat==='X'?' · på tur':' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'<span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">'+(showHp?'Dölj poäng':'Visa poäng')+'</button>'+(showHp?'<span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span>':'')+'</div>';
 }
 function render(){
   if(!room){roomScreen();return}
@@ -817,7 +817,7 @@ function render(){
   var fb=document.getElementById('fsb');if(fb)fb.onclick=function(){try{var d=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(d.requestFullscreen||d.webkitRequestFullscreen).call(d)}}catch(e){}};
   document.getElementById('md').onclick=function(){clr();setSel(st.mode||'stord',st.focus||'alla');save({menu:true,no:st.no})};
   document.getElementById('sv').onclick=saveDeal;
-  var hb=document.getElementById('hpb');if(hb)hb.onclick=function(){showHp=!showHp;try{localStorage.setItem('bt_hp',showHp?'1':'0')}catch(e){}if(showHp){render();return}var row=hb.parentNode;row.innerHTML='<button id="hpb" class="sm ghost">Visa poäng</button>';document.getElementById('hpb').onclick=function(){showHp=true;try{localStorage.setItem('bt_hp','1')}catch(e){}render()}};
+  var hb=document.getElementById('hpb');if(hb)hb.onclick=function(){showHp=!showHp;try{localStorage.setItem('bt_hp',showHp?'1':'0')}catch(e){}render()};
   var un=document.getElementById('undo');if(un)un.onclick=undoBid;
   var nd=document.getElementById('nd');if(nd)nd.onclick=function(){clr();save(newDeal(st.no+1,st.mode,st.focus,newSeed()))};
   var rp=document.getElementById('rp');if(rp)rp.onclick=function(){clr();save(replay(st))};
