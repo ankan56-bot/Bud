@@ -795,6 +795,32 @@ var Rattning = (function(){
     var d=ours.length,opener=ours[0].s===me,f=ours[0].c;
     var c1=f,fs=c1[1]; // Deklareras nu här för att undvika bugg
 
+    // Slut på en naturlig preferens till öppningsfärgen.
+    if(b.c==='P'&&opener&&d>=4&&isBid(ours[3].c)&&
+       st_(ours[3].c)===st_(ours[0].c)&&lv(ours[3].c)===2){
+      return {exp:'P',alt:[],why:'Svarshanden har valt preferens till öppningsfärgen på 2-nivån. Pass är slutbud om inte den separata utgångs-/slamkontrollen visar tillräcklig styrka.',means:function(c){return c==='P'?'Pass efter preferens till öppningsfärgen.':null},conv:'preferens'};
+    }
+
+    // Svarshandens invit efter öppnarens 1NT-återbud.
+    if(b.c==='P'&&opener&&d===4&&ours[2].c==='1N'&&ours[3].c==='2N'){
+      var inviteTotal=h.hp+H(st.hands[pt]).hp;
+      if(h.hp<14)return {exp:'P',alt:[],why:'Öppnaren har minimum i 1NT-återbudet. Pass på svarshandens 2NT-invit.',means:function(c){return c==='P'?'Pass med minimum efter 2NT-invit.':null},conv:'invit i sang'};
+      return {exp:'3N',alt:[],why:'Öppnaren har maximum i 1NT-återbudet och accepterar 2NT-inviten med 3NT.',means:function(c){return c==='3N'?'Utgång i sang efter accepterad invit.':null},conv:'invit i sang'};
+    }
+    if(b.c==='P'&&opener&&d===4&&ours[2].c==='1N'&&/^3[HS]$/.test(ours[3].c)){
+      var invitedSuit=st_(ours[3].c),invitedPartner=H(st.hands[pt]);
+      var invitedFit=h.L[invitedSuit]+invitedPartner.L[invitedSuit];
+      var invitedPoints=partnershipPoints(h,invitedPartner,invitedSuit);
+      if(invitedFit>=8&&invitedPoints<26)return {exp:'P',alt:[],why:'Svarshanden har inviterat med 3 i högfärg, men paret når inte 26 gemensamma spelpoäng. Pass.',means:function(c){return c==='P'?'Pass på invit när 26-poängsgränsen inte nås.':null},conv:'invit i högfärg'};
+      if(invitedFit>=8&&invitedPoints>=26)return {exp:'4'+invitedSuit,alt:[],why:invitedFit+'-korts fit och '+invitedPoints+' gemensamma spelpoäng: acceptera inviten till utgång.',means:function(c){return c==='4'+invitedSuit?'Accepterar invit till utgång.':null},conv:'invit i högfärg'};
+    }
+
+    // Öppnarens pass efter partnerns invitativa höjning i egen lågfärg.
+    if(b.c==='P'&&opener&&d>=4&&/^3[CD]$/.test(ours[3].c)&&
+       st_(ours[3].c)===st_(ours[2].c)){
+      return {exp:'P',alt:[],why:'Partnerns 3-nivåhöjning i lågfärg är invitativ. Pass med minimum; utgångskontrollen fångar 28+ spelpoäng.',means:function(c){return c==='P'?'Pass med minimum efter lågfärgsinvit.':null},conv:'trumfstöd'};
+    }
+
     var trumpForSide=rkcTrumpFromAuction(prior,side(me));
     if(b.c==='4N'){
       if(trumpForSide){
@@ -1228,7 +1254,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.9'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.0'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
