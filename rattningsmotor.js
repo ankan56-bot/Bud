@@ -947,7 +947,7 @@ var Rattning = (function(){
     });
     if(highest&&rk(node.exp)<=rk(highest)){
       var rejected=node.exp;
-      var priorMeans=node.means;
+      var priorMeans=typeof node.means==='function'?node.means:null;
       return {
         exp:'P',
         alt:[],
@@ -997,7 +997,7 @@ var Rattning = (function(){
   }
 
   function verdictOf(node,act){
-    var short=node.means(act)||'Budet ingår inte i dokumentets system i den här situationen.';
+    var short=(typeof node.means==='function'?node.means(act):null)||'Budet ingår inte i dokumentets system i den här situationen.';
     var o={bedomning:'ej_täckt',motivering:node.why||'',forklaring:expandedMeaning(short,node.conv||'övrigt',act),konvention:node.conv||'övrigt',battre:''};
     if(!node.exp){o.bedomning='ej_täckt';o.motivering=node.why;return o}
     if(act===node.exp){o.bedomning='rätt';return o}
@@ -1071,33 +1071,53 @@ var Rattning = (function(){
     var b=bids[i];
     if(!b||b.c!=='P'||side(b.s)!==0||currentSide!==0||!currentContract)return null;
     var pt=partner(b.s),a=H(st.hands[b.s]),p=H(st.hands[pt]);
-    var majors=['H','S'].filter(function(x){return a.L[x]+p.L[x]>=8;});
-    majors.sort(function(x,y){return (a.L[y]+p.L[y])-(a.L[x]+p.L[x]);});
-    var minors=['C','D'].filter(function(x){return a.L[x]+p.L[x]>=8;});
-    minors.sort(function(x,y){return (a.L[y]+p.L[y])-(a.L[x]+p.L[x]);});
-    var balanced=a.bal&&p.bal;
-    var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
-    var total=partnershipPoints(a,p,trump);
-    var gameReached=(st_(currentContract)==='N'&&lv(currentContract)>=3)||
-      (maj(st_(currentContract))&&lv(currentContract)>=4)||
-      (!maj(st_(currentContract))&&st_(currentContract)!=='N'&&lv(currentContract)>=5);
-    if(total>=33&&lv(currentContract)<6){
-      var slamTarget=majors.length?'6'+majors[0]:(balanced?'6N':minors.length?'6'+minors[0]:'6N');
-      if(rk(slamTarget)<=rk(currentContract)){
-        var alternatives=['6N','6H','6S','6C','6D'];
-        slamTarget=alternatives.filter(function(x){return rk(x)>rk(currentContract);})[0]||null;
+    var totalHcp=a.hp+p.hp;
+
+    // Räkna bara en färgfit som är visad naturligt i auktionen.
+    // Konstgjorda bud som Stayman, överföring och 2♦-väntan efter 2♣
+    // får inte skapa en påhittad trumf eller fördelningspoäng.
+    function naturalSuitCall(index){
+      var call=bids[index],c=call&&call.c;
+      if(!call||!isBid(c)||c[1]==='N')return false;
+      var prev=null;
+      for(var z=index-1;z>=0;z--)if(isBid(bids[z].c)){prev=bids[z].c;break;}
+      if(prev==='1N'&&['2C','2D','2H'].indexOf(c)>=0)return false;
+      if(prev==='2N'&&c==='3C')return false;
+      if(prev==='2C'&&c==='2D'){
+        var first=null;
+        for(var q=0;q<index;q++)if(isBid(bids[q].c)){first=bids[q].c;break;}
+        if(first==='2C')return false;
       }
-      if(!slamTarget)return null;
-      var basis=trump==='N'?'sang, endast honnörspoäng':'trumfkontrakt med fördelningspoäng och trumflängdsbonus';
-      return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas. Val av trumf/sang beror på fit och fördelning; pass under lillslam avslutar för tidigt.'};
+      return true;
     }
+    var shown={C:false,D:false,H:false,S:false};
+    for(var si=0;si<i;si++){
+      if(side(bids[si].s)===0&&naturalSuitCall(si))shown[st_(bids[si].c)]=true;
+    }
+    var majors=['H','S'].filter(function(x){return shown[x]&&a.L[x]+p.L[x]>=8;});
+    majors.sort(function(x,y){return (a.L[y]+p.L[y])-(a.L[x]+p.L[x]);});
+    var minors=['C','D'].filter(function(x){return shown[x]&&a.L[x]+p.L[x]>=8;});
+    minors.sort(function(x,y){return (a.L[y]+p.L[y])-(a.L[x]+p.L[x]);});
+
+    var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
+    var total=trump==='N'?totalHcp:partnershipPoints(a,p,trump);
     var threshold=trump==='N'?26:(maj(trump)?26:28);
+    var gameLevel=trump==='N'?3:(maj(trump)?4:5);
+    var gameReached=st_(currentContract)===trump&&lv(currentContract)>=gameLevel;
+    var slamTarget='6'+trump;
+
+    if(total>=33&&lv(currentContract)<6&&rk(slamTarget)>rk(currentContract)){
+      var basis=trump==='N'?'sang, endast honnörspoäng':'naturligt visad '+SYM[trump]+'-fit med fördelningspoäng';
+      return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt.'};
+    }
     if(total>=threshold&&!gameReached){
-      var preferred=trump==='N'?'3N':(maj(trump)?'4'+trump:'5'+trump);
-      var choices=[preferred,'3N','4H','4S','5C','5D'];
-      var target=choices.filter(function(x,j,arr){return arr.indexOf(x)===j&&rk(x)>rk(currentContract);})[0];
+      var target=trump==='N'?'3N':(maj(trump)?'4'+trump:'5'+trump);
+      if(rk(target)<=rk(currentContract)){
+        var choices=trump==='N'?['3N']:maj(trump)?['4H','4S','3N']:['5C','5D','3N'];
+        target=choices.filter(function(x){return rk(x)>rk(currentContract);})[0]||null;
+      }
       if(!target)return null;
-      var thresholdText=trump==='N'?'26+ hp utan färgfit; sang räknas enbart med honnörspoäng':(maj(trump)?'26+ spelpoäng med minst 8-korts högfärgsfit':'28+ spelpoäng med minst 8-korts lågfärgsfit');
+      var thresholdText=trump==='N'?'26+ honnörspoäng i sang':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
       return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
     }
     return null;
@@ -1177,7 +1197,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.6'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.7'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
