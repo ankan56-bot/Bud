@@ -450,7 +450,7 @@ function advance(st){
 }
 function newDeal(no,mode,focus,seed){
   rng=mulberry(seed);
-  if(focus==='dubbling')mode='stord';
+  if(focus==='dubbling'||focus==='inkliv')mode='stord';
   var hd=biasedDeal(mode,focus),dl=hd.dealer;delete hd.dealer;
   if(!dl)dl=themeDealer(hd,focus||'alla');
   return {id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0};
