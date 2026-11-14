@@ -1,6 +1,6 @@
 {
-  "version": "0.5.3",
-  "description": "Utökat fristående bibliotek med budträd, handprofiler och korta sammanhängande analyser. Systemberoende sekvenser anges i respektive förutsättningar.",
+  "version": "0.5.4",
+  "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -3586,5 +3586,21 @@
         }
       ]
     }
-  ]
+  ],
+  "valuationRules": {
+    "trumpFitBonus": {
+      "description": "Tillägg för gemensam trumflängd när en trumffärg är överenskommen.",
+      "eightCards": "8 kort: grundfit, ingen extra bonus.",
+      "nineCards": "+1 fördelningspoäng vid 9 gemensamma trumfkort.",
+      "tenOrMoreCards": "+2 fördelningspoäng vid 10 eller fler gemensamma trumfkort."
+    },
+    "shortSuitPoints": {
+      "description": "Stöd-/fördelningspoäng för kortfärger när paret spelar färgkontrakt med överenskommen trumf och handen har trumfstöd.",
+      "void": "+3 poäng.",
+      "singleton": "+2 poäng.",
+      "doubleton": "+1 poäng.",
+      "counting": "Dessa är fördelnings-/stödpoäng och inte honnörspoäng. Räkna kortfärgspoäng endast i färgkontrakt med överenskommen trumf; korthet i trumffärgen ger inte kortfärgspoäng."
+    },
+    "noTrumpRestriction": "I sang (NT) räknas inga fördelnings- eller stöldpoäng för renons, singel eller dubbelton. Trumflängdsbonus för 9 eller 10+ gemensamma kort gäller inte i sang."
+  }
 }
