@@ -745,7 +745,7 @@ var Rattning = (function(){
 
   /* ––––– DISPATCH ––––– */
   function lastBidCode(prior){var l=null;prior.forEach(function(x){if(isBid(x.c))l=x.c});return l}
-  function nodeFor(st,i){
+  function nodeForRaw(st,i){
     var b=st.bids[i],me=b.s,pt=partner(me),prior=st.bids.slice(0,i),h=H(st.hands[me]);
     var last=lastBidCode(prior);
     var ours=prior.filter(function(x){return side(x.s)===side(me)&&x.c!=='P'});
@@ -931,6 +931,41 @@ var Rattning = (function(){
       return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
     }
     return nc('Okänd budgivning.');
+  }
+
+
+  // Säkerhetskontroll: rekommendationen får aldrig ligga på eller under
+  // det högsta kontraktsbud som redan har lagts i auktionen.
+  // Om partnern redan har nått den föreslagna nivån ska svaret vara pass,
+  // inte ett olagligt återbud eller ett upprepat kontraktsbud.
+  function nodeFor(st,i){
+    var node=nodeForRaw(st,i);
+    if(!node||!node.exp||!isBid(node.exp))return node;
+    var highest=null;
+    (st.bids||[]).slice(0,i).forEach(function(x){
+      if(x&&isBid(x.c)&&(!highest||rk(x.c)>rk(highest)))highest=x.c;
+    });
+    if(highest&&rk(node.exp)<=rk(highest)){
+      var rejected=node.exp;
+      var priorMeans=node.means;
+      return {
+        exp:'P',
+        alt:[],
+        why:'Det ursprungliga förslaget '+txt(rejected)+' är inte längre lagligt eftersom kontraktsbudet '+txt(highest)+' redan har lagts. Passas i stället; budmotorn får inte rekommendera ett lägre eller upprepat kontraktsbud.',
+        means:function(c){
+          if(c==='P')return 'Pass när partnerns eller motståndarnas tidigare kontraktsbud redan ligger över det föreslagna budet.';
+          return priorMeans?priorMeans(c):null;
+        },
+        conv:node.conv||'budordning',
+        soft:false
+      };
+    }
+    if(node.alt&&node.alt.length){
+      node.alt=node.alt.filter(function(c){
+        return !isBid(c)||!highest||rk(c)>rk(highest);
+      });
+    }
+    return node;
   }
 
   function expandedMeaning(short,conv,act){
