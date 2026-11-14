@@ -791,7 +791,7 @@ function render(){
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
   h+='<div class="board-column">';
   if(end){
-    function seatHand(seat,label){var p=handPoints(st.hands[seat]);return '<div class="hand-seat '+({N:'north',S:'south',E:'east',W:'west'}[seat])+'"><b>'+label+' ('+p.hp+' hp / '+p.htp+' htp)</b>'+handHtml(st.hands[seat])+'</div>'}
+    function seatHand(seat,label){var p=handPoints(st.hands[seat]);return '<div class="hand-seat '+({N:'north',S:'south',E:'east',W:'west'}[seat])+'"><b>'+label+' ('+p.hp+' hp)</b>'+handHtml(st.hands[seat])+'</div>'}
     h+='<section class="table end">'+seatHand('N','Norr')+seatHand('W','Väst')+'<div class="center">'+hbx+'</div>'+seatHand('E','Öst')+seatHand('S','Syd')+'</section>';
     h+='<div id="dds-review" class="card dds-panel"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   }else{
