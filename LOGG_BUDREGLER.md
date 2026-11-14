@@ -137,7 +137,9 @@ Korrigerad kandidatsekvens: Öst 1♠, Syd 3♣, Väst pass, Norr X.
 ### Giv 23 – 1♥ och pass runt
 Föreslagen auktion: Syd pass, Väst pass, Norr 1♥, Öst pass, Syd pass, Väst pass.
 - Motorn godkänner pass och öppningen 1♥.
-- Motorn bedömer att Syds pass missar 4♥: dess beräkning anger 27 spelpoäng och minst åttakorts hjärterfit. Detta är ett konkret test av svarshandens höjning/utgångsbedömning. Kontrollera manuellt om poängberäkningen och 4♥-rekommendationen stämmer med systemets exakta spelpoängsdefinition.
+- Norrs öppningshand har 11 hp och sexkorts hjärter. Den ryms inom systemets undantag för 11 hp med bra lång färg. En öppning på 1-tricksnivån får enligt systemet ha högst 19 hp; starkare händer ska öppnas enligt 2♣-/2NT-reglerna.
+- Syds svar ska bedömas utifrån svarshandens styrka och den sammanlagda spelstyrkan: tillräckliga värden för utgång ska leda till utgång, medan starkare sammanlagda värden ska leda till slamundersökning. Det går därför inte att slå fast 4♥ enbart utifrån motorns uppgift om 27 spelpoäng.
+- Testfallet ska kontrollera att svarshanden skiljer mellan utgång och slam utifrån öppnarens möjliga styrka (högst 19 hp) och sina egna värden. Ingen generell automatisk 4♥-regel fastställs här.
 
 ### Giv 24 – 1♣ och hoppande hjärterinkliv
 Korrigerad kandidatsekvens: Väst pass, Norr pass, Öst 1♣, Syd 2♥, Väst pass, Norr 2♠, Öst 2♣.
