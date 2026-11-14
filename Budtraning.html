@@ -526,7 +526,7 @@ function curPick(){return pickO||(pickL&&pickS?pickL+pickS:null)}
 function oppList(st){
   var l=st.bids.filter(function(b){return side(b.s)===1&&b.c!=='P'&&b.e});
   if(!l.length)return '';
-  return '<p class="mu" style="margin:8px 0 0"><b>Öst/Väst:</b> '+l.map(function(b){var why=(b.e||'').replace(/^.*?·\\s*/,'').trim();if(why.length>95)why=why.slice(0,92)+'…';return NAME[b.s]+' '+fmt(b.c)+(why?' – '+esc(why):'')}).join(' · ')+'</p>';
+  return '<p class="mu" style="margin:8px 0 0"><b>Öst/Väst:</b> '+l.map(function(b){var parts=(b.e||'').split(' · '),why=(parts.length>2?parts.slice(2):parts.slice(1)).join(' · ').trim();if(why.length>95)why=why.slice(0,92)+'…';return NAME[b.s]+' '+fmt(b.c)+(why?' – '+esc(why):'')}).join(' · ')+'</p>';
 }
 function fanHtml(cards){
   var o='';
