@@ -238,12 +238,26 @@ function validInklivScenario(d,dealer){
   var over=themedResponse(d,dealer,open.exp);
   return !!(over&&over.exp&&over.exp!=='P'&&(/^[1-7][CDHSN]$/.test(over.exp)||over.exp==='X'));
 }
+function naturalFitOpener(d,minFit){
+  var seats=['N','S'];
+  for(var i=0;i<seats.length;i++){
+    var op=seats[i],res=partner(op),opening=themedOpening(d,op);
+    if(!opening||!/^1[CDHS]$/.test(opening.exp||''))continue;
+    var suit=opening.exp[1];
+    if(shapeOf(d[op])[suit]+shapeOf(d[res])[suit]<minFit||shapeOf(d[res])[suit]<4)continue;
+    var response=themedResponse(d,op,opening.exp);
+    if(response&&response.exp&&response.exp!=='P'&&
+       ((/^[23][CDHS]$/.test(response.exp)&&response.exp[1]===suit)||
+        (response.exp==='2N'&&response.conv==='Stenberg')))return op;
+  }
+  return null;
+}
 function focusOk(d,f){
   var pr=[['N','S'],['S','N']],i,a,b,La,Lb;
   if(f==='tva')return hpOf(d.N)>=22||hpOf(d.S)>=22;
   function anyP(fn){return fn(d.N,d.S)||fn(d.S,d.N)}
   var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
-  if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=29&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})}
+  if(f==='slam'){var LN=shapeOf(d.N),LS=shapeOf(d.S);return tot>=29&&['S','H','D','C'].some(function(m){return LN[m]+LS[m]>=8})&&!!naturalFitOpener(d,8)}
   if(f==='invit')return anyP(function(a,b){
     var opSeat=a===d.N?'N':'S',L=shapeOf(a),P=shapeOf(b),h=hpOf(a),r=hpOf(b),opening=themedOpening(d,opSeat);
     if(!(h>=15&&h<=17&&isBal(L)&&r>=8&&r<=9&&isBal(P)&&P.H<4&&P.S<4&&opening&&opening.exp==='1N'))return false;
@@ -275,9 +289,11 @@ function focusOk(d,f){
   });
   if(f==='svag')return anyP(function(a,b){
     var opSeat=a===d.N?'N':'S',opening=themedOpening(d,opSeat);
-    return hpOf(a)>=6&&hpOf(a)<=10&&hpOf(b)>=12&&opening&&/^[234][CDHS]$/.test(opening.exp||'');
+    if(!(hpOf(a)>=6&&hpOf(a)<=10&&hpOf(b)>=12&&opening&&/^[234][CDHS]$/.test(opening.exp||'')))return false;
+    var response=themedResponse(d,opSeat,opening.exp);
+    return !!(response&&response.exp);
   });
-  if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['S','H','D','C'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9});
+  if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['S','H','D','C'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9})&&!!naturalFitOpener(d,9);
   if(f==='nt'){
     for(i=0;i<2;i++){
       a=d[pr[i][0]];b=d[pr[i][1]];La=shapeOf(a);Lb=shapeOf(b);
@@ -329,6 +345,10 @@ function themeDealer(d,f){
   var candidates=seats.filter(qualifies);
   if(candidates.length)return candidates[Math.floor(rng()*candidates.length)];
   if(f==='alla')return seats[Math.floor(rng()*seats.length)];
+  if(f==='rkc'||f==='slam'){
+    var naturalOpener=naturalFitOpener(d,f==='rkc'?9:8);
+    if(naturalOpener)return naturalOpener;
+  }
   if(f==='rkc'||f==='slam'||f==='invit'){
     var n=hpOf(d.N),south=hpOf(d.S);
     if(n===south)return seats[Math.floor(rng()*seats.length)];
@@ -373,6 +393,35 @@ function biasedDeal(mode,focus){
   }
   return d||shuffleDeal();
 }
+
+// Körbar diagnostik: anropa window.BudThemeDiagnostics(25) i webbläsarens konsol.
+// Kontrollerar att samtliga teman kan generera givarna och att givarna klarar
+// samma temavillkor som används av träningsläget.
+window.BudThemeDiagnostics=function(samples){
+  samples=Math.max(1,Math.min(200,+samples||25));
+  var report=[],failures=[];
+  FOC.forEach(function(item){
+    var focus=item[0],modes=(focus==='dubbling'||focus==='inkliv')?['stord']:['stord','ostord'];
+    modes.forEach(function(mode){
+      var ok=0,error=null;
+      for(var i=0;i<samples;i++){
+        try{
+          var seed=(7919*(i+1)+focus.length*104729+(mode==='ostord'?17:0))>>>0;
+          var deal=newDeal(i+1,mode,focus,seed);
+          if(!focusOk(deal.hands,focus))throw new Error('Giv uppfyller inte temavillkoret');
+          if(mode==='ostord'&&!oppMustPass(deal.hands))throw new Error('Motståndarna kan bjuda i ostört läge');
+          if(focus==='rkc'&&!naturalFitOpener(deal.hands,9))throw new Error('Saknar naturlig öppning och 9-korts stödsekvens');
+          if(focus==='slam'&&!naturalFitOpener(deal.hands,8))throw new Error('Saknar naturlig öppning och 8-korts stödsekvens');
+          ok++;
+        }catch(e){error=String(e&&e.message||e);break}
+      }
+      var row={tema:focus,lage:mode,provade:ok,antal:samples,resultat:error?'FEL':'OK',fel:error};
+      report.push(row);if(error)failures.push(row);
+    });
+  });
+  return {ok:failures.length===0,antalTester:report.length,antalGivar:report.reduce(function(n,x){return n+x.provade},0),resultat:report,fel:failures};
+};
+
 function R(c,e){return {c:c,e:e}}
 function bidHandFacts(hand,call){
   var hp=hpOf(hand),L=shapeOf(hand),s=call&&call.length>1?call[1]:null;
