@@ -297,7 +297,7 @@ function strategicBotFallback(st,botSeat,node){
 }
 function botSeatForMode(st,humanSeat){return humanSeat==='N'?'S':humanSeat==='S'?'N':'X'}
 function botCall(st,seat){
-  if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(seat)!==side(botSeatForMode(st,seat))))return R('P');
+  if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(botSeatForMode(st,seat))!==side(seat)))return R('P');
   var trial=st.bids.concat([{s:seat,c:'P'}]);
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
