@@ -223,19 +223,23 @@ function htpWith(h,su){var L=shapeOf(h),t=hpOf(h);['S','H','D','C'].forEach(func
 function themedOpening(d,opener){
   try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:'P'}]},0)}catch(e){return null}
 }
+function themedOvercall(d,opener,opening){
+  var overcaller=SEATS[(SEATS.indexOf(opener)+1)%4];
+  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:overcaller,c:'P'}]},1)}catch(e){return null}
+}
 function themedResponse(d,opener,opening){
-  var responder=SEATS[(SEATS.indexOf(opener)+1)%4];
-  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:responder,c:'P'}]},1)}catch(e){return null}
+  var overcaller=SEATS[(SEATS.indexOf(opener)+1)%4],responder=partner(opener);
+  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:overcaller,c:'P'},{s:responder,c:'P'}]},2)}catch(e){return null}
 }
 function themedRebid(d,opener,opening,response){
-  var responder=SEATS[(SEATS.indexOf(opener)+1)%4];
+  var overcaller=SEATS[(SEATS.indexOf(opener)+1)%4],responder=partner(opener);
   if(!response||!response.exp||response.exp==='P')return null;
-  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:responder,c:response.exp},{s:opener,c:'P'}]},2)}catch(e){return null}
+  try{return Rattning.nodeFor({hands:d,dealer:opener,bids:[{s:opener,c:opening},{s:overcaller,c:'P'},{s:responder,c:response.exp},{s:overcaller,c:'P'},{s:opener,c:'P'}]},4)}catch(e){return null}
 }
 function validInklivScenario(d,dealer){
   var open=themedOpening(d,dealer);
   if(!open||!/^1[CDHS]$/.test(open.exp||''))return false;
-  var over=themedResponse(d,dealer,open.exp);
+  var over=themedOvercall(d,dealer,open.exp);
   return !!(over&&over.exp&&over.exp!=='P'&&(/^[1-7][CDHSN]$/.test(over.exp)||over.exp==='X'));
 }
 function naturalFitOpener(d,minFit){
@@ -367,7 +371,7 @@ function dubDeal(){
       var dl=['E','W'][Math.floor(rng()*2)],op=botCall({mode:'stord',hands:d,dealer:dl,bids:[]},dl).c;
       if(!/^1[CDHS]$/.test(op))continue;
       var ds=SEATS[(SEATS.indexOf(dl)+1)%4],L=shapeOf(d[ds]);
-      var doubleNode=themedResponse(d,dl,op);
+      var doubleNode=themedOvercall(d,dl,op);
       if(hpOf(d[ds])>=12&&L[op[1]]<=2&&SU4.every(function(m){return m===op[1]||L[m]>=3})&&doubleNode&&doubleNode.exp==='X'){d.dealer=dl;return d}
     }else{
       var dl2=['N','S'][Math.floor(rng()*2)],ol=SEATS[(SEATS.indexOf(dl2)+1)%4],h=d[dl2],hh=hpOf(h),Lo=shapeOf(d[ol]);
