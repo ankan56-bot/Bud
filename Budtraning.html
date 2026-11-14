@@ -52,7 +52,7 @@ button:disabled{opacity:.3;cursor:default}
 .fan{display:flex;justify-content:center;padding:6px 0 2px}
 .cd{position:relative;width:66px;height:98px;border-radius:10px;background:#fbf8ef;color:#171717;box-shadow:0 2px 7px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.08);margin-left:-30px;padding:6px 7px;font-weight:700;line-height:1;display:flex;flex-direction:column}
 .cd:first-child{margin-left:0}.cd b{font-size:25px}.cd i{font-style:normal;font-size:30px;margin-top:2px}.cd.r{color:#c0262d}
-.cd::after{content:attr(data-s);position:absolute;right:6px;bottom:4px;font-size:46px}
+.cd::after{content:attr(data-s);position:absolute;right:6px;bottom:4px;font-size:46px}.cd[data-s="♥"] i,.cd[data-s="♣"] i{transform:translateY(-2px)}.cd[data-s="♥"]::after,.cd[data-s="♣"]::after{transform:translateY(-2px)}
 @media (min-width:1100px){.cd{width:78px;height:114px;margin-left:-34px}.cd b{font-size:28px}.cd i{font-size:34px}.cd::after{font-size:54px}}
 .ghost{background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.22)}
 .eh{padding:8px 10px;border-radius:14px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.1);min-width:130px}.eh.us{border-color:rgba(213,173,85,.6)}
@@ -65,7 +65,7 @@ button:disabled{opacity:.3;cursor:default}
 .ah{font-size:13px;color:var(--mu);padding-bottom:4px;border-bottom:2px solid var(--line)}.ah.us{border-bottom-color:var(--brass);color:var(--ink);font-weight:600}
 .ac{min-height:42px;border-radius:10px;display:grid;place-items:center;font-size:23px;font-weight:600;background:var(--hint)}
 .ac.pass{font:14px/1 -apple-system,system-ui,sans-serif;color:var(--mu);background:transparent;border:1px dashed var(--line)}
-.ac-wrap{min-width:0;text-align:center;display:flex;flex-direction:column;gap:3px;align-items:stretch}.ac-wrap .ac{width:100%}.ac-meaning{font:11px/1.2 -apple-system,system-ui,sans-serif;color:var(--mu);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px;padding:0 2px}
+.ac-wrap{min-width:0;text-align:center}.ac-wrap .ac{width:100%}
 .ac.cur{outline:2px dashed var(--brass);color:var(--mu)}
 .lv{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.st{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px}.ops{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;margin-top:8px}
 .lv button{min-height:58px;font-size:27px;font-weight:700;padding:0}.st button{min-height:66px;font-size:34px;padding:0}
@@ -80,12 +80,12 @@ button:disabled{opacity:.3;cursor:default}
 .hero{max-width:1000px;margin:0 auto;padding:30px 22px;width:100%}
 .hero h1{font-size:46px;margin:0 0 4px;font-weight:600}
 .modes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.mode,.seatpick{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:20px;min-height:120px;border-radius:20px;color:var(--ink);background:var(--panel);border:2px solid var(--line)}.mode.on,.seatpick.on{color:#f4efe0;border-color:transparent;background:linear-gradient(150deg,var(--fa),var(--fb));box-shadow:inset 0 0 0 2px rgba(213,173,85,.5)}
-.mode b,.seatpick b{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:26px}
+.mode,.seatpick{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:15px 18px;min-height:88px;border-radius:20px;color:var(--ink);background:var(--panel);border:2px solid var(--line)}.mode.on,.seatpick.on{color:#f4efe0;border-color:transparent;background:linear-gradient(150deg,var(--fa),var(--fb));box-shadow:inset 0 0 0 2px rgba(213,173,85,.5)}
+.mode b,.seatpick b{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:23px}
 .mode span,.seatpick span{opacity:.85;font-size:15px}
 .foc{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
 .ft{min-height:52px;text-align:left;line-height:1.25}.ft.on{background:var(--fa);color:#fff;border-color:var(--fa);font-weight:600}
-.hero .card{margin-top:14px}
+.hero .card{margin-top:14px}.brand-art{display:block;width:min(100%,520px);height:auto;max-height:390px;object-fit:contain;margin:0 auto 12px}.hero.start{padding-top:12px}.start-button{min-height:76px!important;font-size:24px!important;width:100%;box-shadow:0 8px 22px rgba(0,0,0,.14)}.mode-grid{margin-top:10px}
 @media (max-width:700px){.modes{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -358,7 +358,7 @@ function auctionHtml(st,end){
   for(i=0;i<pad;i++)h+='<div></div>';
   st.bids.forEach(function(b,i){
     var pass=b.c==='P';
-    h+='<div class="ac-wrap"><div class="ac'+(pass?' pass':'')+'">'+(pass?'Pass':fmt(b.c))+'</div><div class="ac-meaning">'+esc(bidMeaning(st,b,i))+'</div></div>';
+    h+='<div class="ac-wrap"><div class="ac'+(pass?' pass':'')+'">'+(pass?'Pass':fmt(b.c))+'</div></div>';
   });
   if(!end)h+='<div class="ac cur">…</div>';
   return h+'</div>';
@@ -433,9 +433,9 @@ function reviewPrompt(st){
 function reviewHtml(st){
   var result;
   try{result=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]})}catch(e){result={items:[],summary:'Rättningsmotorn kunde inte köras: '+e.message,auction:{errors:[]}}}
-  var h='<div class="card"><p class="status">Automatisk rättning</p><p class="mu">Regelbaserad genomgång enligt den inlagda Nordiska standarden. Bud som saknar täckning i reglerna markeras som ej bedömbara.</p>';
+  var h='<div class="card"><p class="status">Automatisk rättning</p>';
   h+='<p><b>'+esc(result.summary||'')+'</b></p>';
-  h+='<div id="dds-review" class="review-secondary"><p class="status">Dubbel-dummy-analys</p><p class="mu">Väntar på DDS…</p></div>';
+  h+='<div id="dds-review" class="review-secondary"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   if(result.auction&&result.auction.errors&&result.auction.errors.length){h+='<div class="review-item fel"><b>Budgivningskontroll</b><ul>'+result.auction.errors.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}
   h+='<div class="review-list">';
   (result.items||[]).forEach(function(it){
@@ -443,15 +443,13 @@ function reviewHtml(st){
     var label=it.bedomning==='rätt'?'RÄTT':it.bedomning==='fel'?'FEL':it.bedomning==='valfritt'?'VALFRITT':'EJ BEDÖMBART';
     h+='<article class="review-item '+cls+'"><div class="top"><b>'+esc(it.nr+'. '+it.plats+' · '+it.bud)+'</b><span class="tag">'+label+'</span></div>';
     if(it.hp!==undefined){
-      h+='<p class="mu">'+it.hp+' hp'+(it.htp!==it.hp?' / '+it.htp+' htp':'')+' · '+
-        '<span style="color:#222">♠ '+it.langd.S+'</span> · <span style="color:#c33">♥ '+it.langd.H+'</span> · '+
-        '<span style="color:#c33">♦ '+it.langd.D+'</span> · <span style="color:#222">♣ '+it.langd.C+'</span></p>';
+      h+='<p class="mu">'+it.hp+' hp'+(it.htp!==it.hp?' / '+it.htp+' htp':'')+' <b>('+[it.langd.S,it.langd.H,it.langd.D,it.langd.C].join(' ')+')</b></p>';
     }
-    if(it.handtyp)h+='<p><b>Handtyp:</b> '+esc(it.handtyp)+'</p>';
+    if(it.handtyp)h+='<p><b>Handtyp:</b> '+esc(it.handtyp)+'</p>';if(it.trumfstod)h+='<p><b>Trumfstöd:</b> '+esc(it.trumfstod)+'</p>';
     if(it.bedomning==='fel'&&it.battre)h+='<p><b>Rekommenderat bud:</b> '+esc(it.battre)+'</p>';
     else if(it.bedomning==='valfritt'&&it.battre)h+='<p><b>Huvudalternativ:</b> '+esc(it.battre)+'</p>';
     if(it.motivering)h+='<p>'+esc(it.motivering)+'</p>';
-    if(it.forklaring)h+='<p class="mu">'+esc(it.forklaring)+'</p>';
+ 
     h+='</article>';
   });
   h+='</div></div>';
@@ -459,7 +457,7 @@ function reviewHtml(st){
 }
 function connLabel(){return 'Rum '+room+' · '+connState}
 function roomScreen(){
-  app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
+  app.innerHTML='<div class="hero start"><img class="brand-art" src="assets/jonas-bridge-logo.jpg" alt="Jonas Bridge budgivning – Nordisk standard"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
   var inp=document.getElementById('rc');
   document.getElementById('rg').onclick=function(){var c='',a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';for(var i=0;i<6;i++)c+=a[Math.floor(Math.random()*a.length)];inp.value=c};
   document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}room=v;try{localStorage.setItem('bt_room',room)}catch(e){}connect();render()};
@@ -543,7 +541,7 @@ function render(){
     return;
   }
   if(!state||!state.hands){
-    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:20px">Välj budgivning</p><div class="modes"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Störd budgivning</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><p class="status" style="margin-top:24px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div><div style="margin-top:16px"><button id="go2" class="pri" style="width:100%;min-height:60px;font-size:20px">Starta träning</button></div>'+savedHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
+    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Störd budgivning</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
     var no=(state&&state.no)||0;
     var b1=document.getElementById('m1'),b2=document.getElementById('m2');
     b1.onclick=function(){setSel('stord',focusSel);b1.classList.add('on');b2.classList.remove('on')};
