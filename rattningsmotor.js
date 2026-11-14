@@ -981,6 +981,25 @@ var Rattning = (function(){
         try{node=nodeFor(st,i)}catch(e){node=NC('Kunde inte bedöma budet ('+e.message+').')}
         var v=verdictOf(node,b.c);
         for(var k in v)item[k]=v[k];
+
+        // Återhämtning efter tidigare felbud: behåll handanalysen och peka ut
+        // den första avvikelsen i stället för att låta följdbuden se ut som
+        // om handen/analysen saknas.
+        if(!node.exp){
+          var firstDeviation=null;
+          for(var ri=0;ri<items.length;ri++){
+            var prev=items[ri];
+            if((prev.plats==='Norr'||prev.plats==='Syd') && prev.bedomning==='fel' && prev.battre){
+              firstDeviation=prev;break;
+            }
+          }
+          if(firstDeviation){
+            item.konvention='avvikelse efter tidigare felbud';
+            item.motivering='Handen är fortfarande identifierad och analyserad, men den fortsatta budsekvensen kan inte bedömas säkert efter avvikelsen vid bud '+firstDeviation.nr+'. Där rekommenderades '+firstDeviation.battre+'. Rätta först det budet; därefter kan fortsättningen bedömas på nytt.';
+            item.forklaring='Följdbudet ligger utanför den förväntade budvägen eftersom ett tidigare bud avvek. Detta betyder inte att handen saknas i systemet.';
+            item.battre=firstDeviation.battre;
+          }
+        }
         var missed=missedGameOrSlam(st,bids,i,contractBefore,sideBefore);
         if(missed){
           item.bedomning='fel';item.battre=txt(missed.target);item.konvention='missad utgång/slam';
@@ -991,15 +1010,29 @@ var Rattning = (function(){
       }
       if(isBid(b.c)){runningContract=b.c;runningSide=side(b.s);}
       var hand=H(st.hands[b.s]);
+      var partnerHand=H(st.hands[partner(b.s)]);
       var suit=isBid(b.c)?st_(b.c):null;
+      var agreed=null;
+      for(var ai=i;ai>=0;ai--){
+        if(bids[ai].s===b.s && isBid(bids[ai].c) && bids[ai].c[1]!=='N'){agreed=bids[ai].c[1];break;}
+      }
       item.hp=hand.hp;item.htp=suit?hand.htp(suit):hand.hp;item.langd=hand.L;
+      if(agreed && hand.L[agreed]+partnerHand.L[agreed]>=8){
+        item.handtyp='Trumfstöd ('+SYM[agreed]+')';
+      }else{
+        var lens=[hand.L.C,hand.L.D,hand.L.H,hand.L.S].sort(function(a,b){return b-a});
+        if(hand.bal)item.handtyp='Jämn fördelning ('+hand.shape+')';
+        else if(lens[0]>=6)item.handtyp='Enfärgshand';
+        else if(lens[0]>=5&&lens[1]>=4)item.handtyp='Tvåfärgshand';
+        else item.handtyp='Obalanserad hand';
+      }
       items.push(item);
     }
     var status=structural.ended?'Budgivningen är avslutad.':bids.length?'Budgivningen är inte avslutad – inväntar fler bud.':'Ingen budgivning registrerad.';
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'4.9'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.0'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
