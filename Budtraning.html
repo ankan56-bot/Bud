@@ -371,6 +371,7 @@ function pack(st){
 }
 function build(m){
   var st=newDeal(m.no,m.mode,m.focus,m.seed);st.rep=m.rep||0;
+  advance(st);
   (m.h||[]).forEach(function(x){var s=x[0],c=x.slice(1);if(ended(st)||turn(st)!==s||!legal(st,c,s))return;st.bids.push({s:s,c:c});advance(st)});
   return st;
 }
