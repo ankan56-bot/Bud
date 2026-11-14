@@ -119,4 +119,5 @@ global.BudAnalys={
  version:"1.0.2",loadLibrary,findMatch,treeCompatible,buildReport,analyze,
  normalizeSequence
 };
+if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
 })(typeof window!=="undefined"?window:globalThis);
