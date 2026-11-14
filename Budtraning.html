@@ -255,8 +255,14 @@ function focusOk(d,f){
     return false;
   }
   if(f==='sang')return anyP(function(a,b){var Lb=shapeOf(b),h=hpOf(a),g=hpOf(b);return isBal(shapeOf(a))&&((h>=15&&h<=17&&g>=8&&g<=12)||(h>=20&&h<=21&&g>=4&&g<=10))&&Lb.H<4&&Lb.S<4});
-  if(f==='tvafarg')return anyP(function(a,b){var L=shapeOf(a),v=[L.S,L.H,L.D,L.C].sort(function(x,y){return y-x}),h=hpOf(a);return h>=12&&h<=19&&v[0]>=5&&v[1]>=4&&hpOf(b)>=6});
-  if(f==='svag')return anyP(function(a,b){var L=shapeOf(a),h=hpOf(a);return h>=6&&h<=10&&(L.D===6||L.H===6||L.S===6||Math.max(L.S,L.H,L.D,L.C)>=7)&&hpOf(b)>=12});
+  if(f==='tvafarg')return anyP(function(a,b){
+    var opSeat=a===d.N?'N':'S',L=shapeOf(a),v=[L.S,L.H,L.D,L.C].sort(function(x,y){return y-x}),h=hpOf(a),opening=themedOpening(d,opSeat);
+    return h>=12&&h<=19&&v[0]>=5&&v[1]>=4&&hpOf(b)>=6&&opening&&/^1[CDHS]$/.test(opening.exp||'');
+  });
+  if(f==='svag')return anyP(function(a,b){
+    var opSeat=a===d.N?'N':'S',opening=themedOpening(d,opSeat);
+    return hpOf(a)>=6&&hpOf(a)<=10&&hpOf(b)>=12&&opening&&/^[234][CDHS]$/.test(opening.exp||'');
+  });
   if(f==='rkc')return hpOf(d.N)+hpOf(d.S)>=31&&['H','S'].some(function(m){return shapeOf(d.N)[m]+shapeOf(d.S)[m]>=9});
   if(f==='nt'){
     for(i=0;i<2;i++){
@@ -276,8 +282,8 @@ function themeDealer(d,f){
     if(f==='nt')return hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4);
     if(f==='sang')return ((hp>=15&&hp<=17&&isBal(L)&&ph>=8&&(P.H>=4||P.S>=4))||(hp>=20&&hp<=21&&isBal(L)&&ph>=4&&ph<=10&&P.H<4&&P.S<4));
     if(f==='tva')return hp>=22;
-    if(f==='svag')return hp>=6&&hp<=10&&Math.max(L.S,L.H,L.D,L.C)>=6;
-    if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a});return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6;}
+    if(f==='svag'){var weakOpen=themedOpening(d,seat);return hp>=6&&hp<=10&&weakOpen&&/^[234][CDHS]$/.test(weakOpen.exp||'');}
+    if(f==='tvafarg'){var v=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}),op=themedOpening(d,seat);return hp>=12&&hp<=19&&v[0]>=5&&v[1]>=4&&ph>=6&&op&&/^1[CDHS]$/.test(op.exp||'');}
     if(f==='trumf'){
       var op=themedOpening(d,seat),su=op&&/^1[CDHS]$/.test(op.exp||'')?op.exp[1]:null;
       return !!(su&&hp>=12&&hp<=19&&L[su]>=5&&P[su]>=4&&htpWith(p,su)>=6&&htpWith(p,su)<=12);
