@@ -80,7 +80,15 @@ function run(st){
  var box=document.getElementById("dds-review");if(!box)return;
  var key=JSON.stringify([st.hands,st.bids,st.dealer]);
  box.innerHTML='<p class="status">Dubbel-dummy-analys</p><p class="mu">DDS räknar stick i alla fem spelfärgerna för både Norr och Syd…</p>';
- (async function(){try{var table=cache[key];if(!table){var m=await loadDds();table=calcTable(m,st.hands);cache[key]=table}render(st,table,"none")}catch(e){box.innerHTML='<p class="status">DDS-analys kunde inte köras</p><p class="mu">'+esc(e.message||e)+'</p>'}})();
+ (async function(){try{var table=cache[key];if(!table){var m=await loadDds();table=calcTable(m,st.hands);cache[key]=table}render(st,table,"none")}catch(e){
+  box.innerHTML='<p class="status">DDS-analys kunde inte köras</p><p class="mu">'+esc(e.message||e)+'</p>';
+  // Biblioteks- och regelanalysen är fristående och ska visas även om DDS inte kan starta.
+  if(window.BudAnalys&&window.Rattning){
+   window.BudAnalys.analyze(st,window.Rattning.judge(st),null).then(function(r){
+    var target=document.getElementById("dds-review");if(target)target.insertAdjacentHTML("beforeend",'<div class="review-secondary"><p class="status">Regelbaserad efteranalys</p>'+r.html+'</div>');
+   }).catch(function(err){var target=document.getElementById("dds-review");if(target)target.insertAdjacentHTML("beforeend",'<p class="mu">Analysbiblioteket kunde inte läsas: '+esc(err.message)+'</p>')});
+  }
+ }})();
 }
 window.runDdsReview=run;
 })();
