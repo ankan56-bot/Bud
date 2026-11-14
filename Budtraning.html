@@ -512,7 +512,7 @@ function curPick(){return pickO||(pickL&&pickS?pickL+pickS:null)}
 function oppList(st){
   var l=st.bids.filter(function(b){return side(b.s)===1&&b.c!=='P'&&b.e});
   if(!l.length)return '';
-  return '<p class="mu" style="margin:10px 0 2px"><b>Motståndarnas bud (robotens avsikt)</b></p>'+l.map(function(b){return '<p style="margin:2px 0">'+NAME[b.s]+' '+fmt(b.c)+' – '+esc(b.e)+'</p>'}).join('');
+  return '<p class="mu" style="margin:8px 0 0"><b>Öst/Väst:</b> '+l.map(function(b){return NAME[b.s]+' '+fmt(b.c)}).join(' · ')+'</p>';
 }
 function fanHtml(cards){
   var o='';
@@ -526,7 +526,7 @@ function fanHtml(cards){
 function seatHtml(st,s,rel){
    var lc=null,last=-1;st.bids.forEach(function(b,i){if(b.s===s){lc=b.c;last=i}});
    var latest=last===st.bids.length-1,pass=lc==='P';
-   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span><small>'+rel+'</small><span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
+   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+'<span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
  }
 function handBlock(st,me){
   return '<div class="row"><span class="nm">'+NAME[me]+(seat==='X'?' · på tur':' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'</div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">'+(showHp?'Dölj poäng':'Visa poäng')+'</button>'+(showHp?'<span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span>':'')+'</div>';
@@ -555,7 +555,7 @@ function render(){
   }
   var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
   var base='S',pos={l:'W',t:'N',r:'E'},x=ctx(st);
-  function rel(s){return s===partner(me)?'Partner':'Motstånd'}
+  function rel(s){return s===partner(me)?'Partner':''}
   var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Störd')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+(savedFlag?'Sparad ✓':'Spara given')+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
   if(end){
