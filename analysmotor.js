@@ -105,7 +105,7 @@ function render(report){
  if(report.dds&&Array.isArray(report.dds.table)&&report.dds.table.length>=20){
   const strains=[["S","♠"],["H","♥"],["D","♦"],["C","♣"],["N","NT"]];
   const seats=["N","E","S","W"];
-  h+='<section class="review-item dds-matrix"><b>DDS – optimala stick i alla spelfärger</b><p class="mu">Maximalt antal stick med respektive spelare som spelförare och varje färg som trumf eller sang.</p><div class="matrix-scroll"><table><thead><tr><th>Spelfärg</th><th>Norr</th><th>Öst</th><th>Syd</th><th>Väst</th></tr></thead><tbody>';
+  h+='<section class="review-item dds-matrix"><b>Optimala stick i alla spelfärger</b><p class="mu">Maximalt antal stick med respektive spelare som spelförare och varje färg som trumf eller sang.</p><div class="matrix-scroll"><table><thead><tr><th>Spelfärg</th><th>Norr</th><th>Öst</th><th>Syd</th><th>Väst</th></tr></thead><tbody>';
   strains.forEach(function(strain,i){
    h+='<tr><th>'+strain[1]+'</th>';
    seats.forEach(function(seat,j){h+='<td>'+report.dds.table[i*4+j]+'</td>'});
