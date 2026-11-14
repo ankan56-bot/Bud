@@ -45,6 +45,14 @@ button:disabled{opacity:.3;cursor:default}
 .table.end .hand{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 8px}
 .table.end .hand>div{white-space:nowrap}
 .dds-panel{min-width:0}
+.dds-matrix{margin-top:12px}
+.matrix-scroll{overflow-x:auto}
+.dds-matrix table{width:100%;border-collapse:collapse;text-align:center;font-variant-numeric:tabular-nums}
+.dds-matrix th,.dds-matrix td{padding:8px 10px;border-bottom:1px solid var(--line)}
+.dds-matrix thead th{font-size:13px;color:var(--mu)}
+.dds-matrix tbody th{text-align:left}
+.dds-matrix td{font-weight:700;font-size:18px}
+
 @media(max-width:520px){.table.end{padding:12px;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(72px,.8fr);min-height:420px;gap:6px}.table.end .hand-seat{font-size:11px;padding:6px 4px}.table.end .hb{font-size:42px}.table.end .hl{font-size:12px}}
 
 @media (max-width:860px){.main{grid-template-columns:1fr}}
