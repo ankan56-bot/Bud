@@ -1002,7 +1002,7 @@ var Rattning = (function(){
     // Om rålogiken annars skulle passa (eller saknar täckning), kontrollera
     // om partnerskapet har nått utgångs- eller slamnivå.
     var priorPartnershipCalls=st&&st.bids?st.bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===side(st.bids[i].s)}).length:0;
-    if(st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'&&priorPartnershipCalls>=2&&
+    if(st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P')){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
@@ -1011,7 +1011,9 @@ var Rattning = (function(){
           sideBefore=side(st.bids[ci].s);
         }
       }
-      var missed=missedGameOrSlam(st,st.bids,i,contractBefore,sideBefore);
+      var analysisBids=st.bids.slice();
+      analysisBids[i]={s:st.bids[i].s,c:'P'};
+      var missed=missedGameOrSlam(st,analysisBids,i,contractBefore,sideBefore);
       if(missed){
         node={
           exp:missed.target,
@@ -1288,7 +1290,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.2'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.3'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
