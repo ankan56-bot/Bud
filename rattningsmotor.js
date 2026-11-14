@@ -940,7 +940,7 @@ var Rattning = (function(){
   // Övergripande kontroll av missad utgång och slam vid pass på egen sida.
   // Trösklarna är vägledande: välj först högfärgsfit, därefter sang eller lågfärg.
   // Missad utgång/slam: 26 poäng i högfärg, 28 i lågfärg,
-  // 26 hp i sang utan fit. Fördelningspoäng räknas bara med fastställd trumf.
+  // 25 hp i sang utan fit. Fördelningspoäng räknas bara med fastställd trumf.
   function missedGameOrSlam(st,bids,i,currentContract,currentSide){
     var b=bids[i];
     if(!b||b.c!=='P'||side(b.s)!==0||currentSide!==0||!currentContract)return null;
@@ -965,13 +965,13 @@ var Rattning = (function(){
       var basis=trump==='N'?'sang, endast honnörspoäng':'trumfkontrakt med fördelningspoäng och trumflängdsbonus';
       return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas. Val av trumf/sang beror på fit och fördelning; pass under lillslam avslutar för tidigt.'};
     }
-    var threshold=trump==='N'?26:(maj(trump)?26:28);
+    var threshold=trump==='N'?25:(maj(trump)?26:28);
     if(total>=threshold&&!gameReached){
       var preferred=trump==='N'?'3N':(maj(trump)?'4'+trump:'5'+trump);
       var choices=[preferred,'3N','4H','4S','5C','5D'];
       var target=choices.filter(function(x,j,arr){return arr.indexOf(x)===j&&rk(x)>rk(currentContract);})[0];
       if(!target)return null;
-      var thresholdText=trump==='N'?'26+ hp utan färgfit; sang räknas enbart med honnörspoäng':(maj(trump)?'26+ spelpoäng med minst 8-korts högfärgsfit':'28+ spelpoäng med minst 8-korts lågfärgsfit');
+      var thresholdText=trump==='N'?'25+ hp utan färgfit; sang räknas enbart med honnörspoäng':(maj(trump)?'26+ spelpoäng med minst 8-korts högfärgsfit':'28+ spelpoäng med minst 8-korts lågfärgsfit');
       return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
     }
     return null;
@@ -1048,7 +1048,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.1'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.2'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
