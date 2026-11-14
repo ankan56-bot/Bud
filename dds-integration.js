@@ -49,29 +49,29 @@ function evaluate(table,vul){
  candidates.sort((a,b)=>b.score-a.score||b.tricks-a.tricks||a.level-b.level);
  return {best:candidates[0],candidates,table};
 }
-function currentContract(st,table,vul){
+function currentContract(st,table,vulNS,vulEW){
  var auc=window.Rattning.validateAuction(st);if(!auc.contract)return null;
  var strain=auc.contract[1],declarer=null;
  for(var i=0;i<st.bids.length;i++){var b=st.bids[i];if((auc.contractSide===0?(b.s==="N"||b.s==="S"):(b.s==="E"||b.s==="W"))&&b.c&&b.c[1]===strain&&/^[1-7]/.test(b.c)){declarer=b.s;break}}
  if(!declarer)return null;
- var tricks=table[index(strain,declarer)],level=+auc.contract[0],sc=score(level,strain,tricks,auc.doubled,vul)*(auc.contractSide===0?1:-1);
+ var tricks=table[index(strain,declarer)],level=+auc.contract[0],contractVul=auc.contractSide===0?vulNS:vulEW,sc=score(level,strain,tricks,auc.doubled,contractVul)*(auc.contractSide===0?1:-1);
  return {contract:textContract(level,strain),declarer,tricks,required:level+6,delta:tricks-level-6,scoreNS:sc,side:auc.contractSide};
 }
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function render(st,table,vul){
+function render(st,table,zone){
  var box=document.getElementById("dds-review");if(!box)return;
- var ev=evaluate(table,vul),actual=currentContract(st,table,vul),b=ev.best;
- var h='<p class="status">DDS – dubbel-dummy-facit</p><p class="mu">Zon: <select id="dds-vul" class="sm"><option value="none" '+(!vul?'selected':'')+'>Ingen zon</option><option value="ns" '+(vul?'selected':'')+'>Nord–Syd i zon</option></select></p>';
- h+='<section class="review-item ok"><b>Bästa kontrakt för Nord–Syd enligt DDS</b><p style="font-size:24px;font-weight:700">'+esc(b.contract)+'</p><p>'+esc(b.declarer==="N"?"Norr":"Syd")+' som spelförare · '+b.tricks+' stick · beräknad score '+b.score+' poäng ('+(vul?'i zon':'ozon')+').</p></section>';
+ var vulNS=zone==='ns'||zone==='both',vulEW=zone==='ew'||zone==='both';var ev=evaluate(table,vulNS),actual=currentContract(st,table,vulNS,vulEW),b=ev.best;
+ var h='<p class="status">DDS – dubbel-dummy-facit</p><p class="mu">Zon: <select id="dds-vul" class="sm"><option value="none" '+(zone==='none'?'selected':'')+'>Ingen zon</option><option value="ns" '+(zone==='ns'?'selected':'')+'>Nord–Syd i zon</option><option value="ew" '+(zone==='ew'?'selected':'')+'>Öst–Väst i zon</option><option value="both" '+(zone==='both'?'selected':'')+'>Båda i zon</option></select></p>';
+ h+='<section class="review-item ok"><b>Bästa kontrakt för Nord–Syd enligt DDS</b><p style="font-size:24px;font-weight:700">'+esc(b.contract)+'</p><p>'+esc(b.declarer==="N"?"Norr":"Syd")+' som spelförare · '+b.tricks+' stick · beräknad score '+b.score+' poäng ('+(vulNS?'i zon':'ozon')+').</p></section>';
  if(actual){h+='<section class="review-item '+(actual.side===0&&actual.delta>=0?'ok':actual.side===0?'fel':'mid')+'"><b>Det faktiska slutkontraktet</b><p>'+esc(actual.contract)+' · '+actual.tricks+' stick ('+(actual.delta>=0?actual.delta+' över':' '+(-actual.delta)+' bet')+') · NS-score '+actual.scoreNS+'.</p></section>'}
  h+='<p><b>Alla möjliga stick – Norr/Syd som spelförare</b></p><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;text-align:center">';
  h+='<div class="mu">Färg</div><div class="mu">Norr</div><div class="mu">Syd</div><div class="mu">Bästa nivå</div><div class="mu">Score</div>';
  STRAINS.forEach(function(s){var nt=table[index(s,"N")],stx=table[index(s,"S")],pick=ev.candidates.filter(x=>x.strain===s).sort((a,b)=>b.score-a.score)[0];h+='<div style="padding:6px;background:var(--bg);border-radius:6px">'+NAMES[s]+'</div><div style="padding:6px;background:var(--bg);border-radius:6px">'+nt+'</div><div style="padding:6px;background:var(--bg);border-radius:6px">'+stx+'</div><div style="padding:6px;background:var(--bg);border-radius:6px">'+pick.contract+'</div><div style="padding:6px;background:var(--bg);border-radius:6px">'+pick.score+'</div>'});
  h+='</div><p class="mu" style="margin-top:10px">DDS använder alla fyra händer. Det här är det teoretiska facit efter given – inte information som spelarna hade under budgivningen. Zonvalet påverkar poängberäkningen.</p>';
  box.innerHTML=h;
- var sel=document.getElementById("dds-vul");if(sel)sel.onchange=function(){render(st,table,sel.value==="ns")};
+ var sel=document.getElementById("dds-vul");if(sel)sel.onchange=function(){render(st,table,sel.value)};
  if(window.BudAnalys&&window.Rattning){
-  window.BudAnalys.analyze(st,window.Rattning.judge(st),{best:b,actual:actual,vulnerable:vul,table:table}).then(function(r){
+  window.BudAnalys.analyze(st,window.Rattning.judge(st),{best:b,actual:actual,vulnerable:zone,table:table}).then(function(r){
    var target=document.getElementById("dds-review");if(target)target.insertAdjacentHTML("beforeend",'<div class="review-secondary"><p class="status">Samlad budanalys</p>'+r.html+'</div>');
   }).catch(function(e){var target=document.getElementById("dds-review");if(target)target.insertAdjacentHTML("beforeend",'<p class="mu">Analysbiblioteket kunde inte läsas: '+esc(e.message)+'</p>')});
  }
@@ -80,7 +80,7 @@ function run(st){
  var box=document.getElementById("dds-review");if(!box)return;
  var key=JSON.stringify([st.hands,st.bids,st.dealer]);
  box.innerHTML='<p class="status">Dubbel-dummy-analys</p><p class="mu">DDS räknar stick i alla fem spelfärgerna för både Norr och Syd…</p>';
- (async function(){try{var table=cache[key];if(!table){var m=await loadDds();table=calcTable(m,st.hands);cache[key]=table}render(st,table,false)}catch(e){box.innerHTML='<p class="status">DDS-analys kunde inte köras</p><p class="mu">'+esc(e.message||e)+'</p>'}})();
+ (async function(){try{var table=cache[key];if(!table){var m=await loadDds();table=calcTable(m,st.hands);cache[key]=table}render(st,table,"none")}catch(e){box.innerHTML='<p class="status">DDS-analys kunde inte köras</p><p class="mu">'+esc(e.message||e)+'</p>'}})();
 }
 window.runDdsReview=run;
 })();
