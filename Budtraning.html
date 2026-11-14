@@ -236,13 +236,19 @@ function biasedDeal(mode,focus){
   return d||shuffleDeal();
 }
 function R(c,e){return {c:c,e:e}}
+function bidHandFacts(hand,call){
+  var hp=hpOf(hand),L=shapeOf(hand),s=call&&call.length>1?call[1]:null;
+  if(s&&'SHDC'.indexOf(s)>=0)return hp+' hp · '+L[s]+' kort i '+({S:'♠',H:'♥',D:'♦',C:'♣'}[s]);
+  if(s==='N')return hp+' hp · fördelning '+[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('-');
+  return hp+' hp';
+}
 function botCall(st,seat){
   if(st.mode==='ostord')return R('P');
   var trial=st.bids.concat([{s:seat,c:'P'}]);
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
-  var call=node&&node.exp;
-  if(call&&legal(st,call,seat))return R(call,node.why||'Enligt rättningsnyckeln v4.9');
+  var call=node&&node.exp,why=node&&node.why||'Enligt rättningsnyckeln v4.9';
+  if(call&&legal(st,call,seat))return R(call,bidHandFacts(st.hands[seat],call)+' · '+why);
   return R('P',node&&node.why?'Rättningsnyckeln saknar ett säkert bud här: '+node.why:'Pass enligt rättningsnyckeln v4.9');
 }
 function advance(st){
