@@ -17,7 +17,12 @@ jobs:
           node --check dds-integration.js
           node --check analysmotor.js
       - name: Validate analysis library JSON
-        run: node -e "const x=require('./analysbibliotek.json'); if(!Array.isArray(x.trees)||!x.trees.length) throw new Error('Analysis library is empty'); console.log(x.version + ': ' + x.trees.length + ' trees')"
+        run: |
+          node - <<'NODE'
+          const x = require('./analysbibliotek.json');
+          if (!Array.isArray(x.trees) || !x.trees.length) throw new Error('Analysis library is empty');
+          console.log(x.version + ': ' + x.trees.length + ' trees');
+          NODE
       - name: Check inline application scripts
         run: |
           python3 - <<'PY'
