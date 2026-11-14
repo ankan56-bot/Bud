@@ -33,6 +33,20 @@ button:disabled{opacity:.3;cursor:default}
 .chip{display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line);font-size:14px;color:var(--mu)}
 .chip.hi{color:var(--ink);font-weight:600}
 .main{flex:1;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,1fr);gap:16px;padding:16px 18px 22px;align-items:start}
+.board-column{min-width:0;display:flex;flex-direction:column;gap:14px}
+.table.end{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(150px,1fr);grid-template-rows:auto 1fr auto;min-height:480px;align-items:center}
+.table.end .hand-seat{min-width:0;padding:9px 10px;border-radius:14px;background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.12);font-size:13px}
+.table.end .hand-seat b{display:block;text-align:center;margin-bottom:5px}
+.table.end .north{grid-column:1/4;grid-row:1;justify-self:center;width:min(100%,460px)}
+.table.end .west{grid-column:1;grid-row:2;align-self:center}
+.table.end .center{grid-column:2;grid-row:2}
+.table.end .east{grid-column:3;grid-row:2;align-self:center}
+.table.end .south{grid-column:1/4;grid-row:3;justify-self:center;width:min(100%,460px)}
+.table.end .hand{display:flex;flex-wrap:wrap;justify-content:center;gap:3px 8px}
+.table.end .hand>div{white-space:nowrap}
+.dds-panel{min-width:0}
+@media(max-width:520px){.table.end{padding:12px;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(72px,.8fr);min-height:420px;gap:6px}.table.end .hand-seat{font-size:11px;padding:6px 4px}.table.end .hb{font-size:42px}.table.end .hl{font-size:12px}}
+
 @media (max-width:860px){.main{grid-template-columns:1fr}}
 .table{border-radius:30px;background:radial-gradient(120% 110% at 50% 38%,var(--fa),var(--fb));box-shadow:inset 0 0 0 2px rgba(213,173,85,.6),inset 0 0 0 10px rgba(0,0,0,.18),0 14px 32px rgba(0,0,0,.25);padding:22px;min-height:580px;display:grid;grid-template-columns:104px 1fr 104px;grid-template-rows:auto 1fr auto;gap:10px;color:#f1ecdc}
 .table.end{grid-template-columns:150px 1fr 150px}
@@ -449,7 +463,6 @@ function reviewHtml(st){
   try{result=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]})}catch(e){result={items:[],summary:'Rättningsmotorn kunde inte köras: '+e.message,auction:{errors:[]}}}
   var h='<div class="card"><p class="status">Automatisk rättning</p>';
   h+='<p><b>'+esc(result.summary||'')+'</b></p>';
-  h+='<div id="dds-review" class="review-secondary"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   if(result.auction&&result.auction.errors&&result.auction.errors.length){h+='<div class="review-item fel"><b>Budgivningskontroll</b><ul>'+result.auction.errors.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}
   h+='<div class="review-list">';
   (result.items||[]).forEach(function(it){
@@ -572,12 +585,14 @@ function render(){
   function rel(s){return s===partner(me)?'Partner':''}
   var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Störd')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+(savedFlag?'Sparad ✓':'Spara given')+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
+  h+='<div class="board-column">';
   if(end){
-    h+='<section class="table end"><div class="center">'+hbx+'</div></section>';
+    h+='<section class="table end"><div class="hand-seat north"><b>Norr</b>'+handHtml(st.hands.N)+'</div><div class="hand-seat west"><b>Väst</b>'+handHtml(st.hands.W)+'</div><div class="center">'+hbx+'</div><div class="hand-seat east"><b>Öst</b>'+handHtml(st.hands.E)+'</div><div class="hand-seat south"><b>Syd</b>'+handHtml(st.hands.S)+'</div></section>';
+    h+='<div id="dds-review" class="card dds-panel"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   }else{
     h+='<section class="table"><div class="seatT">'+(pos.t===me?handBlock(st,me):seatHtml(st,pos.t,rel(pos.t)))+'</div><div class="seatL">'+seatHtml(st,pos.l,rel(pos.l))+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatHtml(st,pos.r,rel(pos.r))+'</div><div class="mine">'+(base===me?handBlock(st,me):seatHtml(st,base,rel(base)))+'</div></section>';
   }
-  h+='<aside class="side"><div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><p class="status" style="margin:0">Budgivning</p>'+(canUndo(st)?'<button id="undo" class="sm">Ångra mitt senaste bud</button>':'')+'</div><div class="ascroll">'+auctionHtml(st,end)+'</div></div>';
+  h+='</div><aside class="side"><div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><p class="status" style="margin:0">Budgivning</p>'+(canUndo(st)?'<button id="undo" class="sm">Ångra mitt senaste bud</button>':'')+'</div><div class="ascroll">'+auctionHtml(st,end)+'</div></div>';
   if(end){
     h+='<div class="card"><p class="status">'+contractText(st)+'</p>'+oppList(st)+'<div class="row" style="margin-top:12px"><button id="rp">Spela om given</button><button id="nd" class="pri">Ny giv</button></div></div>'+reviewHtml(st);
   }else if(mine){
