@@ -91,23 +91,23 @@ function escapeHtml(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&
 function render(report){
  let h='<section class="review-item"><b>Analysbiblioteket</b>';
  if(report.library){
-  h+='<p><b>'+escapeHtml(report.library.title)+'</b></p><p class="mu">Biblioteksträff: kontrollera att förutsättningarna nedan stämmer. Bibliotekstexten kompletterar men ersätter aldrig rättningsmotorns bedömning.</p>';
-  if(report.library.conditions.length)h+='<p class="mu">Förutsättningar: '+report.library.conditions.map(escapeHtml).join(" · ")+'</p>';
+  h+='<p><b>'+escapeHtml(report.library.title)+'</b></p>';
+  if(report.library.conditions.length)h+='<p>Förutsättningar: '+report.library.conditions.map(escapeHtml).join(" · ")+'</p>';
   if(report.library.meaning)h+='<p>'+escapeHtml(report.library.meaning)+'</p>';
   if(report.library.analysis)h+='<p>'+escapeHtml(report.library.analysis)+'</p>';
-  h+='<p class="mu">'+(report.library.exact?"Sekvensen matchar ett komplett biblioteksavsnitt.":"Biblioteket matchar en del av budsekvensen; fortsättningen är inte täckt av just detta avsnitt.")+'</p>';
- }else h+='<p class="mu">Ingen specifik sekvens i biblioteket matchade. Rättningsmotorns egna regler och rekommendationer gäller fortfarande.</p>';
+ 
+ }
  h+='</section>';
  if(report.theoreticalFindings.length){h+='<section class="review-item"><b>Teoretisk kontraktsjämförelse</b>'+report.theoreticalFindings.map(x=>'<p>'+escapeHtml(x)+'</p>').join("")+'</section>'}
  if(report.fits.length){
-  h+='<section class="review-item"><b>Färganpassningar som finns i given</b><p class="mu">Detta är en efterhandskontroll av de faktiska korten, inte information som paret automatiskt hade under budgivningen.</p><p>'+report.fits.map(x=>escapeHtml(x.name+" "+x.total+" kort ("+x.north+"–"+x.south+")")).join(" · ")+'</p></section>';
+  h+='<section class="review-item"><b>Färganpassningar som finns i given</b><p>'+report.fits.map(x=>escapeHtml(x.name+" "+x.total+" kort ("+x.north+"–"+x.south+")")).join(" · ")+'</p></section>';
  }
  if(report.ruleErrors.length){
   h+='<section class="review-item fel"><b>Rättningsmotorns avvikelser</b>';
   report.ruleErrors.forEach(x=>{h+='<p>Bud '+x.nr+' ('+escapeHtml(x.seat)+'): '+escapeHtml(x.bid)+(x.suggested?' · förslag '+escapeHtml(x.suggested):'')+(x.reason?' — '+escapeHtml(x.reason):'')+'</p>'});
   h+='</section>';
  }
- h+='<section class="review-item"><b>Så ska facit tolkas</b><p class="mu">'+escapeHtml(report.knowledgeBoundary)+'</p></section>';
+ 
  return h;
 }
 async function analyze(st,ruleResult,ddsResult){
