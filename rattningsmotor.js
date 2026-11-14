@@ -826,6 +826,17 @@ var Rattning = (function(){
       return nc('Fortsättningen efter spärrbud beskrivs inte i dokumentet.');
     }
     if(/^1[CDHS]$/.test(c1)){
+      // Efter 1♦–1♥–2♠ är 2♠ öppnarens reverse och SH ska
+      // höja till 4♠ med minst 8-korts fit och 26+ gemensamma spelpoäng.
+      if(!opener&&d===2&&c1==='1H'&&b.c==='4S'){
+        var partnerCalls=prior.filter(function(x){return x.s===pt&&x.c!=='P'&&isBid(x.c)});
+        var partnerRebid=partnerCalls.length>1?partnerCalls[1].c:null;
+        var ph=H(st.hands[pt]),fitS=h.L.S+ph.L.S;
+        var totalS=partnershipPoints(h,ph,'S');
+        if(partnerRebid==='2S'&&fitS>=8&&totalS>=26){
+          return {exp:'4S',alt:[],why:'Reverse 1♦–1♥–2♠. Minst 8-korts spaderfit och '+totalS+' gemensamma spelpoäng (26+): SH ska bjuda 4♠.',means:function(c){return c==='4S'?'Utgång i ♠: minst 8-korts fit och 26+ gemensamma spelpoäng.':null},conv:'reverse och utgång'};
+        }
+      }
       if(!opener&&d===3&&ours[1].c==='1N')
         return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
       if(!opener&&d===1)return resp1(h,c1);
