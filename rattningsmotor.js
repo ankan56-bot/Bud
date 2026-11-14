@@ -990,8 +990,11 @@ var Rattning = (function(){
         item.konvention='budordning';item.forklaring='Budet kan inte bedömas som en giltig del av auktionen.';
         item.bedomning='fel';item.battre='';item.motivering=issue;wrong++;
       }else if(side(b.s)===1){
-        item.konvention='motståndare';item.forklaring=b.e|| (b.c==='P'?'Motståndaren passar.':'Motståndarens bud (robot).');
-        item.bedomning='rätt';item.battre='';item.motivering='Motståndarens bud visas som kontext och poängsätts inte.';
+        // Motståndarnas pass är redan tydliga i budgivningen; visa ingen tom rättningspost.
+        if(b.c!=='P'){
+          item.konvention='motståndare';item.forklaring=b.e||'Motståndarens bud (robot).';
+          item.bedomning='rätt';item.battre='';item.motivering='Motståndarens bud visas som kontext och poängsätts inte.';
+        }
       }else{
         var node;
         try{node=nodeFor(st,i)}catch(e){node=NC('Kunde inte bedöma budet ('+e.message+').')}
@@ -1042,7 +1045,7 @@ var Rattning = (function(){
         else if(lens[0]>=5&&lens[1]>=4)item.handtyp='Tvåfärgshand';
         else item.handtyp='Obalanserad hand';
       }
-      items.push(item);
+      if(!(side(b.s)===1&&b.c==='P'))items.push(item);
     }
     var status=structural.ended?'Budgivningen är avslutad.':bids.length?'Budgivningen är inte avslutad – inväntar fler bud.':'Ingen budgivning registrerad.';
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
