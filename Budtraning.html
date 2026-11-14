@@ -9,6 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Budträning – Nordisk standard</title>
+<link rel="preload" as="image" href="bridge-brand-transparent.png" fetchpriority="high">
 <style>
 :root{--bg:#e6ede8;--panel:#fbfaf6;--ink:#16241f;--mu:#58706a;--line:#c9d5cd;--rs:#b3261e;--fa:#14513f;--fb:#0a3328;--brass:#b8902f;--hint:rgba(20,81,63,.09);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07201b;--panel:#0f2f27;--ink:#efeadc;--mu:#9bb5aa;--line:#1f4a3e;--rs:#ff8d83;--brass:#d5ad55;--hint:rgba(255,255,255,.05)}}
@@ -125,7 +126,7 @@ button:disabled{opacity:.3;cursor:default}
 .mode span,.seatpick span{opacity:.85;font-size:15px}
 .foc{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
 .ft{min-height:52px;text-align:left;line-height:1.25}.ft.on{background:var(--fa);color:#fff;border-color:var(--fa);font-weight:600}
-.hero .card{margin-top:14px}.brand-art{display:block;width:min(100%,520px);height:auto;max-height:390px;object-fit:contain;margin:0 auto 6px}.hero.start{padding-top:12px}.hero.start h1{margin-top:.33em}.start-button{min-height:76px!important;font-size:24px!important;width:100%;box-shadow:0 8px 22px rgba(0,0,0,.14)}.mode-grid{margin-top:10px}
+.hero .card{margin-top:14px}.brand-art{display:block;width:min(100%,520px);height:auto;max-height:390px;object-fit:contain;margin:0 auto 6px}.hero.start{padding-top:12px}.hero.start h1{margin-top:.33em}.hero.start .brand-art{height:260px;max-height:none;width:min(100%,520px);object-fit:contain}@media(max-width:520px){.hero.start .brand-art{height:220px}}.start-button{min-height:76px!important;font-size:24px!important;width:100%;box-shadow:0 8px 22px rgba(0,0,0,.14)}.mode-grid{margin-top:10px}
 @media (max-width:700px){.modes{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
@@ -685,7 +686,7 @@ function reviewHtml(st){
 }
 function connLabel(){return 'Rum '+room+' · '+connState}
 function roomScreen(){
-  app.innerHTML='<div class="hero start"><img class="brand-art" src="bridge-brand-transparent.png" alt="Jonas Bridge budgivning – Nordisk standard"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
+  app.innerHTML='<div class="hero start"><img class="brand-art" src="bridge-brand-transparent.png" alt="Jonas Bridge budgivning – Nordisk standard" fetchpriority="high" loading="eager" decoding="sync"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
   var inp=document.getElementById('rc');
   document.getElementById('rg').onclick=function(){var c='',a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';for(var i=0;i<6;i++)c+=a[Math.floor(Math.random()*a.length)];inp.value=c};
   document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}room=v;try{localStorage.setItem('bt_room',room)}catch(e){}connect();render()};
