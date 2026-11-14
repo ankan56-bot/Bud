@@ -64,6 +64,13 @@ function render(st,table,zone){
  var h='<p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Zon: <select id="dds-vul" class="sm"><option value="none" '+(zone==='none'?'selected':'')+'>Ingen zon</option><option value="ns" '+(zone==='ns'?'selected':'')+'>Nord–Syd i zon</option><option value="ew" '+(zone==='ew'?'selected':'')+'>Öst–Väst i zon</option><option value="both" '+(zone==='both'?'selected':'')+'>Båda i zon</option></select></p>';
  h+='<section class="review-item ok"><b>Bästa kontrakt för Nord–Syd enligt DDS</b><p style="font-size:24px;font-weight:700">'+esc(b.contract)+'</p><p>'+esc(b.declarer==="N"?"Norr":"Syd")+' som spelförare · '+b.tricks+' stick · beräknad score '+b.score+' poäng ('+(vulNS?'i zon':'ozon')+').</p></section>';
  if(actual){h+='<section class="review-item '+(actual.side===0&&actual.delta>=0?'ok':actual.side===0?'fel':'mid')+'"><b>Det faktiska slutkontraktet</b><p>'+esc(actual.contract)+' · '+actual.tricks+' stick ('+(actual.delta>=0?actual.delta+' över':' '+(-actual.delta)+' bet')+') · NS-score '+actual.scoreNS+'.</p></section>'}
+ h+='<section class="review-item dds-matrix"><b>DDS – optimala stick i alla spelfärger</b><p class="mu">Maximalt antal stick med respektive spelare som spelförare och varje färg som trumf eller sang.</p><div class="matrix-scroll"><table><thead><tr><th>Spelfärg</th><th>Norr</th><th>Öst</th><th>Syd</th><th>Väst</th></tr></thead><tbody>';
+ STRAINS.forEach(function(strain){
+  h+='<tr><th>'+NAMES[strain]+'</th>';
+  ["N","E","S","W"].forEach(function(declarer){h+='<td>'+table[index(strain,declarer)]+'</td>'});
+  h+='</tr>';
+ });
+ h+='</tbody></table></div></section>';
  box.innerHTML=h;
  var sel=document.getElementById("dds-vul");if(sel)sel.onchange=function(){render(st,table,sel.value)};
  if(window.BudAnalys&&window.Rattning){
