@@ -839,7 +839,12 @@ var Rattning = (function(){
         return NC('Tredje färg kräver minst 10 hp.', null, 'Tredje färg');
       }
 
-      if(d===4 && opener && ours[2].c === '2'+s1 && isBid(ours[3].c) && ours[3].c[1]!==s1 && ours[3].c[1]!==s2 && ours[3].c[1]!=='N'){
+      var openerShowsTwoSuits = isBid(ours[2].c) &&
+        ours[2].c[1] !== s1 && ours[2].c[1] !== 'N' &&
+        H(st.hands[pt]).L[s1] >= 4 && H(st.hands[pt]).L[ours[2].c[1]] >= 4;
+      if(d===4 && opener && (ours[2].c === '2'+s1 || openerShowsTwoSuits) &&
+         isBid(ours[3].c) && ours[3].c[1]!==s1 &&
+         ours[3].c[1]!==s2 && ours[3].c[1]!=='N'){
          var s3 = ours[3].c[1];
          if (h.stop(s3)) {
              if (hp <= 14) return {exp:'2N', alt:[], why:'Håll i fjärde färgen, minimum: 2NT.', conv:'Fjärde färg'};
