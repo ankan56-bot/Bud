@@ -65,7 +65,7 @@ var Rattning = (function(){
   function NC(why,means,conv){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt'}}
 
   /* ––––– ÖPPNING ––––– */
-  function openingNode(h){
+  function openingNode(h, fourthHandAfterThreePasses){
     var hp=h.hp,L=h.L,m=h.longest(),exp,alt=[],why;
     var cs=SU.filter(function(s){return L[s]===m}),pick;
 
@@ -89,7 +89,7 @@ var Rattning = (function(){
     else if(hp>=22){exp='2C';why=hp+' hp är utgångskrav: öppna 2♣.'}
     else if(hp>=20){exp='2C';alt=[one];why=hp+' hp obalanserad är starkare än 1 i färg (12-19): 2♣, utgångskrav.'}
     else if(hp>=12){exp=one;why=hp+' hp med längsta färgen '+SYM[pick]+' ('+L[pick]+' kort): 1 i färg (12-19 hp).'}
-    else if(hp===11&&h.goodForEleven(pick)){exp=one;alt=['P'];why='11 hp med bra färg: 6 kort och minst 3 honnörer eller 7 kort och minst 2 honnörer. 1 i färg är tillåtet; pass är också möjligt.'}
+    else if(hp===11&&(fourthHandAfterThreePasses||h.goodForEleven(pick))){exp=one;alt=['P'];why=fourthHandAfterThreePasses?'Fjärde hand efter tre pass: 11 hp räcker för öppning utan särskilt färgkvalitetskrav.':'11 hp med bra färg: 6 kort och minst 3 honnörer eller 7 kort och minst 2 honnörer. 1 i färg är tillåtet; pass är också möjligt.'}
     else if(hp>=6&&hp<=10&&m>=6){
       if(m===6&&pick!=='C'&&h.goodForWeakTwo(pick)){exp='2'+pick;why='6-10 hp och exakt 6-korts '+SYM[pick]+' med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa.'}
       else if(m===6&&pick!=='C'&&!h.goodForWeakTwo(pick)){exp='P';why='6-10 hp och 6-korts '+SYM[pick]+' men för dålig färgkvalitet för svag tvåa: pass.'}
@@ -684,7 +684,7 @@ var Rattning = (function(){
     var oppAfter=opp.filter(function(x){return iFirst>=0&&prior.indexOf(x)>iFirst});
     var nc=function(w){return NC(w)};
     if(!ours.length){
-      if(!opp.length)return openingNode(h);
+      if(!opp.length){var fourthHandAfterThreePasses=prior.length===3&&prior.every(function(x){return x.c==='P'});return openingNode(h,fourthHandAfterThreePasses);}
       if(opp.length===1&&isBid(opp[0].c)){var ob=opp[0].c;if(ob==='1N'||ob==='2C')return nc('Försvar mot '+txt(ob)+'-öppning beskrivs inte i dokumentet.');return overcall(h,ob,last)}
       return nc('Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.');
     }
