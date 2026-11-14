@@ -749,6 +749,31 @@ var Rattning = (function(){
     var b=st.bids[i],me=b.s,pt=partner(me),prior=st.bids.slice(0,i),h=H(st.hands[me]);
     var last=lastBidCode(prior);
     var ours=prior.filter(function(x){return side(x.s)===side(me)&&x.c!=='P'});
+    var lastCall=null,firstCall=null;
+    for(var li=prior.length-1;li>=0;li--)if(isBid(prior[li].c)){lastCall=prior[li];break;}
+    for(var fi=0;fi<prior.length;fi++)if(isBid(prior[fi].c)){firstCall=prior[fi];break;}
+
+    // När partnern redan har bjudit utgång är pass normalt slutbud.
+    // Rättningsmotorns separata utgångs-/slamkontroll kan fortfarande
+    // föreslå vidare bud om styrkan motiverar slam.
+    if(b.c==='P'&&lastCall&&side(lastCall.s)===side(me)){
+      var ls=st_(lastCall.c),ll=lv(lastCall.c);
+      var partnerHasGame=(ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5);
+      if(partnerHasGame)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+    }
+
+    // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
+    if(b.c==='P'&&firstCall&&/^2[CDHS]$/.test(firstCall.c)&&
+       prior.some(function(x){return x.c==='2N'&&side(x.s)===side(me)})&&
+       lastCall&&lastCall.c==='3'+st_(firstCall.c)&&side(lastCall.s)===side(me)){
+      return {exp:'P',alt:[],why:'2NT-frågan har fått svaret 3 i öppningsfärgen, vilket visar minimum efter svag tvåa. Pass är slutbud utan ytterligare invitstyrka.',means:function(c){return c==='P'?'Pass efter minimumsvar på 2NT-fråga.':null},conv:'svag tvåa'};
+    }
+
+    // Efter partnerns spärröppning på 3-nivån är pass standard med en
+    // hand som inte når utgång; game-kontrollen ovan fångar starkare händer.
+    if(b.c==='P'&&firstCall&&/^3[CDHS]$/.test(firstCall.c)&&ours.length===1){
+      return {exp:'P',alt:[],why:'Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång.',means:function(c){return c==='P'?'Pass efter partnerns spärröppning.':null},conv:'spärr'};
+    }
     var opp=prior.filter(function(x){return side(x.s)!==side(me)&&x.c!=='P'});
     var iFirst=ours.length?prior.indexOf(ours[0]):-1;
     var oppBefore=opp.filter(function(x){return iFirst<0||prior.indexOf(x)<iFirst});
@@ -1197,7 +1222,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.7'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.8'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
