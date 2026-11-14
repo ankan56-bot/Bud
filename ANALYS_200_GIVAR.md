@@ -76,3 +76,24 @@ Kontrollerat utan ytterligare ändring:
 - Öppningsgränserna 1NT 15–17, 2NT 20–21 och 1 i färg 12–19 har inte ändrats.
 
 Kvar att verifiera i regressionstest: de nya invitnivåerna 22–25 i högfärg och 24–27 i lågfärg är kodtolkningar av bokprincipen, inte uttryckligen tidigare fastställda systemtrösklar. De ska jämföras med tidigare godkända givar innan de betraktas som slutgiltiga. Ingen regressionstestkörning är gjord ännu.
+
+
+## Invitgränstest av v5.3 – 2026-11-14
+
+Kört syntetiska gränsfall direkt mot `Rattning.nodeFor()`, med korrekt normalisering av honnörskort till 14/13/12/11/10. Detta är isolerade beslutstester, inte regressionstest av de 200 givarna.
+
+**Högfärgsfit, 8 kort, öppnare 13 hp:**
+- 22–23 gemensamma honnörspoäng gav 24–25 gemensamma spelpoäng och rekommendationen 3 i trumffärgen (invit).
+- Från 24 gemensamma honnörspoäng gav 26+ spelpoäng och rekommendationen utgång.
+
+**Lågfärgsfit, 8 kort, öppnare 13 hp:**
+- 21 gemensamma honnörspoäng gav 23 spelpoäng och pass.
+- 22–25 gemensamma honnörspoäng gav 24–27 spelpoäng och 3 i lågfärgen (invit).
+- Utgångsgränsen 28 spelpoäng är oförändrad.
+
+**Balanserat återbud utan majorfit:**
+- 21 gemensamma honnörspoäng: pass.
+- 22–25 gemensamma honnörspoäng: 2NT (invit).
+- 26 gemensamma honnörspoäng: 3NT (utgång).
+
+**Slutsats:** De isolerade gränstesterna följer de avsedda intervallen. Ingen ändring av poänggränserna behövs efter detta test. Fortsatt kontroll av budval och handtyper sker i regressionstestet.
