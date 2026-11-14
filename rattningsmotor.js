@@ -1142,7 +1142,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.3'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'5.4'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
