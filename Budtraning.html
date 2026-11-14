@@ -214,10 +214,10 @@ function handPoints(h){
  return {hp:hp,htp:htp};
 }
 function maxLen(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return Math.max(L.S,L.H,L.D,L.C)}
-function nsOk(d){var a=hpOf(d.N),b=hpOf(d.S);return a+b>=22&&Math.max(a,b)>=12}
+function nsOk(d){return true}
 function oppClear(h){var p=hpOf(h),m=maxLen(h);return (p>=12&&m>=5)||(p>=6&&p<=10&&m>=6)}
 function oppBorder(h){var p=hpOf(h);return p>=10&&p<=11&&maxLen(h)>=5}
-function oppMustPass(h){var p=hpOf(h);return p<=10&&!(p>=6&&p<=10&&maxLen(h)>=6)}
+function oppMustPass(d){var e=hpOf(d.E),w=hpOf(d.W);return e<=9&&w<=9&&e+w<=17}
 var FOC=[['alla','Alla slags givar'],['nt','1NT, Stayman och överföringar'],['stenberg','Stenberg 2NT (stöd i hög- och lågfärg)'],['tva','2♣-öppning (starka givar)'],['rkc','RKC (essfråga i högfärg)'],['slam','Slambudgivning (kontrollbud och RKC)'],['trumf','Trumfstöd (stödbud i färg)'],['sang','Sanghänder (1NT/2NT och svar)'],['invit','Inviter (invit eller utgång)'],['tvafarg','Tvåfärgshänder (andra bud)'],['svag','Svaga öppningar och spärrbud'],['dubbling','Upplysningsdubbling (dubbla och svara, alltid störd)'],['inkliv','Inkliv och dubbling (alla bjuder)']];
 function focLabel(f){for(var i=0;i<FOC.length;i++)if(FOC[i][0]===f)return FOC[i][1];return ''}
 function shapeOf(h){var L={S:0,H:0,D:0,C:0};h.forEach(function(k){L[k[0]]++});return L}
@@ -363,7 +363,10 @@ function biasedDeal(mode,focus){
   var quietCond=mode==='ostord';
   for(i=0;i<20000;i++){
     d=shuffleDeal();if(!focusOk(d,focus))continue;
-    if((!oppCond||(f(d.E)&&f(d.W)))&&(!quietCond||(oppMustPass(d.E)&&oppMustPass(d.W))))return d;
+    if((!oppCond||(f(d.E)&&f(d.W)))&&(!quietCond||oppMustPass(d))){
+      if(focus==='alla'&&rng()>Math.exp(0.133*(hpOf(d.N)+hpOf(d.S)-40)))continue;
+      return d;
+    }
   }
   if(focus&&focus!=='alla'){
     for(i=0;i<20000;i++){d=shuffleDeal();if(focusOk(d,focus))return d;}
