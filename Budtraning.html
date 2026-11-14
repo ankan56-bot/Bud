@@ -235,7 +235,7 @@ function validInklivScenario(d,dealer){
   return !!(over&&over.exp&&over.exp!=='P'&&(/^[1-7][CDHSN]$/.test(over.exp)||over.exp==='X'));
 }
 function focusOk(d,f){
-  var pr=[['N','S'],['S','N']],i,a,b,La,Lb,M;
+  var pr=[['N','S'],['S','N']],i,a,b,La,Lb;
   if(f==='tva')return hpOf(d.N)>=22||hpOf(d.S)>=22;
   function anyP(fn){return fn(d.N,d.S)||fn(d.S,d.N)}
   var tot=hpOf(d.N)+hpOf(d.S),mn=Math.min(hpOf(d.N),hpOf(d.S)),mx=Math.max(hpOf(d.N),hpOf(d.S));
@@ -270,8 +270,7 @@ function focusOk(d,f){
   if(f==='nt'){
     for(i=0;i<2;i++){
       a=d[pr[i][0]];b=d[pr[i][1]];La=shapeOf(a);Lb=shapeOf(b);
-      if(f==='nt'&&hpOf(a)>=15&&hpOf(a)<=17&&isBal(La)&&hpOf(b)>=8&&(Lb.H>=4||Lb.S>=4))return true;
-      if(f==='stenberg'){['H','S'].forEach(function(m){if(hpOf(a)>=12&&hpOf(a)<=19&&La[m]>=5&&Lb[m]>=4&&htpWith(b,m)>=13)M=true});['C','D'].forEach(function(m){var mx=Math.max(La.S,La.H,La.D,La.C);if(hpOf(a)>=12&&hpOf(a)<=19&&La[m]>=4&&La[m]===mx&&La.H<5&&La.S<5&&Lb[m]>=4&&Lb.H<4&&Lb.S<4&&htpWith(b,m)>=13)M=true})}
+      if(hpOf(a)>=15&&hpOf(a)<=17&&isBal(La)&&hpOf(b)>=8&&(Lb.H>=4||Lb.S>=4))return true;
     }
     return !!M;
   }
