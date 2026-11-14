@@ -515,7 +515,7 @@ function undoBid(){
 }
 function hpInfo(h){
   var L=shapeOf(h);
-  return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('-')+(isBal(L)?' · balanserad':' · obalanserad');
+  return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].join('-')+(isBal(L)?' · balanserad':' · obalanserad');
 }
 function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
 function setSeat(s){if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
