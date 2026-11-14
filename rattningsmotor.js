@@ -1001,7 +1001,9 @@ var Rattning = (function(){
     // Samma poänggränser ska styra både rekommendationen och rättningen.
     // Om rålogiken annars skulle passa (eller saknar täckning), kontrollera
     // om partnerskapet har nått utgångs- eller slamnivå.
-    if(st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'){
+    var priorPartnershipCalls=st&&st.bids?st.bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===side(st.bids[i].s)}).length:0;
+    if(st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'&&priorPartnershipCalls>=2&&
+       (!node||!node.exp||node.exp==='P')){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
         if(st.bids[ci]&&isBid(st.bids[ci].c)){
@@ -1151,7 +1153,15 @@ var Rattning = (function(){
   function missedGameOrSlam(st,bids,i,currentContract,currentSide){
     var b=bids[i];
     if(!b||b.c!=='P'||side(b.s)!==0||currentSide!==0||!currentContract)return null;
+    var priorNS=bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===0;});
+    if(priorNS.length<2)return null;
     var pt=partner(b.s),a=H(st.hands[b.s]),p=H(st.hands[pt]);
+    // Efter en fullföljd överföring är pass med 0-8 hp uttryckligen tillåtet.
+    var firstContract=priorNS.length?priorNS[0].c:null;
+    var lastPrior=priorNS[priorNS.length-1],beforeLast=null;
+    for(var ti=priorNS.length-2;ti>=0;ti--){beforeLast=priorNS[ti];break;}
+    if(firstContract==='1N'&&beforeLast&&lastPrior&&
+       ((beforeLast.c==='2D'&&lastPrior.c==='2H')||(beforeLast.c==='2H'&&lastPrior.c==='2S'))&&a.hp<=8)return null;
     var totalHcp=a.hp+p.hp;
 
     // Räkna bara en färgfit som är visad naturligt i auktionen.
@@ -1278,7 +1288,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.1'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.2'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
