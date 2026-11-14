@@ -254,7 +254,7 @@ function R(c,e){return {c:c,e:e}}
 function bidHandFacts(hand,call){
   var hp=hpOf(hand),L=shapeOf(hand),s=call&&call.length>1?call[1]:null;
   if(s&&'SHDC'.indexOf(s)>=0)return hp+' hp · '+L[s]+' kort i '+({S:'♠',H:'♥',D:'♦',C:'♣'}[s]);
-  if(s==='N')return hp+' hp · fördelning '+[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('-');
+  if(s==='N')return hp+' hp · fördelning '+[L.S,L.H,L.D,L.C].join('-');
   return hp+' hp';
 }
 // Strategisk komplettering för roboten. Körs bara när rättningsnyckeln saknar
