@@ -174,3 +174,16 @@ D. Öppnaren har visat två färger (5–4 eller längre).
 - Vid tvåfärgshand används svag preferens, invit med mellanstyrka och fjärde färg som utgångskrav med 13+ hp när den är tillgänglig.
 
 **Avgränsning:** Detta är en första konsekvent kodtolkning av bokens principer, inte en ordagrann kopia av dess poängtabeller. Den behöver nu regressionstestas mot de 200 givarna och tidigare godkända exempel. Bokens regler har inte fått företräde framför uttryckliga tidigare systembeslut.
+
+
+## Konfliktkontroll före regressionstest – 2026-11-14
+
+Vid granskning av v5.3 hittades en kvarvarande avvikelse från den fastställda sanggränsen: den övergripande kontrollen för missad utgång använde 25 hp i sang utan fit. Detta stod i konflikt med systemets beslutade gräns 26 hp. Felet är korrigerat i `rattningsmotor.js` (commit `031fd77`): både tröskel, förklaring och kommentar använder nu 26 hp.
+
+Kontrollerat utan ytterligare ändring:
+- Särregeln efter 1 i färg–1NT, inklusive 6–9 hp och 6+ kort, körs före den nya generella bokregeln och behåller därmed sin prioritet.
+- Stenberg 2NT med 13+ htp och 4+ stöd ligger kvar i svarsfunktionen.
+- Reverse-/fjärde-färg-logiken ligger kvar separat från den nya generella återbudsbedömningen.
+- Öppningsgränserna 1NT 15–17, 2NT 20–21 och 1 i färg 12–19 har inte ändrats.
+
+Kvar att verifiera i regressionstest: de nya invitnivåerna 22–25 i högfärg och 24–27 i lågfärg är kodtolkningar av bokprincipen, inte uttryckligen tidigare fastställda systemtrösklar. De ska jämföras med tidigare godkända givar innan de betraktas som slutgiltiga. Ingen regressionstestkörning är gjord ännu.
