@@ -154,3 +154,23 @@ Föreslagen kandidatsekvens: Norr 1♥, Öst pass, Syd 2♦, Väst pass, Norr 4�
 - Separat testfall för att inte missa utgång när öppnaren har lång högfärg och svarshanden har stöd.
 
 **Samlad observation giv 16–25:** Nya testområden är svar efter 2NT, svaga inkliv, hoppande inkliv, upplysningsdubbling efter hoppande inkliv, svar/återbud efter konkurrensbud samt utgångsbedömning med lång högfärg. Giv 16 visar vikten av att skilja balanserad 20–21 från stark 2♣. Giv 17 och 23 kräver manuell kontroll av motorns spelpoängsberäkning. Inga kodfiler har ändrats.
+
+
+## Bokregler – svarshandens andra bud efter öppnarens återbud (s. 32–33)
+
+**Status:** Implementerat i rättningsmotorn v5.3. Samma beslutsträd används av budförslag och rättning via `Rattning.nodeFor()`.
+
+Bokens fyra handtyper har lagts in som struktur:
+A. Öppnaren har visat stöd i svarshandens färg.
+B. Öppnaren har visat en balanserad hand.
+C. Öppnaren har visat en enfärgshand med minst sex kort.
+D. Öppnaren har visat två färger (5–4 eller längre).
+
+**Poänganpassning till vårt system:**
+- Bokens exakta intervall har inte kopierats rakt av.
+- I trumf används vår gemensamma spelpoängsberäkning: fördelningspoäng endast vid minst åtta gemensamma trumfkort; utgångsgräns 26 i högfärg och 28 i lågfärg.
+- I sang används endast gemensamma honnörspoäng och 26-poängsgränsen.
+- Invitnivå används som mellanläge under utgångsgränsen.
+- Vid tvåfärgshand används svag preferens, invit med mellanstyrka och fjärde färg som utgångskrav med 13+ hp när den är tillgänglig.
+
+**Avgränsning:** Detta är en första konsekvent kodtolkning av bokens principer, inte en ordagrann kopia av dess poängtabeller. Den behöver nu regressionstestas mot de 200 givarna och tidigare godkända exempel. Bokens regler har inte fått företräde framför uttryckliga tidigare systembeslut.
