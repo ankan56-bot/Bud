@@ -32,7 +32,7 @@ var Rattning = (function(){
     cards.forEach(function(k){var n=+k.slice(1),s=k[0];L[s]++;top[s].push(n);if(n>=11)hp+=n-10;if(n===14)aces++;if(n===13)kings++;});
     var sh=[L.S,L.H,L.D,L.C].sort(function(a,b){return b-a}).join('');
     var o={L:L,hp:hp,top:top,aces:aces,kings:kings,shape:sh,bal:['4333','4432','5332'].indexOf(sh)>=0};
-    o.htp=function(t){var x=hp;SU.forEach(function(s){if(s!==t){var n=L[s];x+=n===0?3:n===1?2:n===2?1:0}});return x};
+    o.htp=function(t){if(!t||t==='N')return hp;var x=hp;SU.forEach(function(s){if(s!==t){var n=L[s];x+=n===0?3:n===1?2:n===2?1:0}});return x};
     o.has=function(s,n){return top[s].indexOf(n)>=0};
     o.stop=function(s){return o.has(s,14)||(o.has(s,13)&&L[s]>=2)||(o.has(s,12)&&L[s]>=3)||(o.has(s,11)&&L[s]>=4)};
     o.good=function(s){var t=top[s],c=[14,13,12].filter(function(n){return t.indexOf(n)>=0}).length,d=[14,13,12,11,10].filter(function(n){return t.indexOf(n)>=0}).length;return c>=2||d>=3};
