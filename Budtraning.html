@@ -94,6 +94,7 @@ button:disabled{opacity:.3;cursor:default}
 <div id="app"><div class="card mu">Laddar …</div></div>
 <script src="rattningsmotor.js"></script>
 <script src="dds-integration.js"></script>
+<script src="analysmotor.js"></script>
 <script>
 (function(){
 var SU=['C','D','H','S','N'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},RK={14:'E',13:'K',12:'D',11:'Kn',10:'T'};
@@ -453,7 +454,7 @@ function reviewHtml(st){
     if(it.forklaring)h+='<p class="mu">'+esc(it.forklaring)+'</p>';
     h+='</article>';
   });
-  h+='</div><div class="review-secondary"><p class="status">Fördjupad AI-analys</p><p class="mu">Kopiera rättningsunderlaget och klistra in det i Claude eller annan AI för en friare, djupare analys. Den automatiska rättningen ovan finns kvar som första bedömning.</p><button id="xp" class="sm">'+(copied?'Kopierat ✓':'Kopiera rättningsunderlag till AI')+'</button></div></div>';
+  h+='</div></div>';
   return h;
 }
 function connLabel(){return 'Rum '+room+' · '+connState}
@@ -581,7 +582,6 @@ function render(){
   if(end&&window.runDdsReview)window.runDdsReview(st);
   document.getElementById('sw').onclick=function(){setSeat(null)};
   var cb=document.getElementById('cpb');if(cb)cb.onclick=function(){var c=makeCode();try{navigator.clipboard.writeText(c)}catch(e){}var q=prompt('Din spelkod är kopierad. Klistra in partnerns kod här för att synka manuellt (lämna tomt för att avbryta):','');if(q&&!applyCode(q))alert('Koden gick inte att läsa.')};
-  var xb=document.getElementById('xp');if(xb)xb.onclick=function(){copyText(reviewPrompt(st))};
   var fb=document.getElementById('fsb');if(fb)fb.onclick=function(){try{var d=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(d.requestFullscreen||d.webkitRequestFullscreen).call(d)}}catch(e){}};
   document.getElementById('md').onclick=function(){clr();setSel(st.mode||'stord',st.focus||'alla');save({menu:true,no:st.no})};
   document.getElementById('sv').onclick=saveDeal;
