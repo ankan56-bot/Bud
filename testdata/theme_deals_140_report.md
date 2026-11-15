@@ -7,21 +7,20 @@
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
 - Rättningsmotor: version 7.3.
-- Rättningsmotor Git-blob SHA: `ac8e58ae13245e7d4a34722b373053c977bb6f82`.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
-- 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Dubbling och inkliv genereras som störda.
-- Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`. Generatorn registrerar den exakta Git-blob-hashen för den rättningsmotor som användes.
+- 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Stenberg och trumfstöd är ostörda för att isolera respektive konvention; dubbling och inkliv genereras som störda.
+- Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`.
 
-## Rättningsutfall – engine 7.3
+## Aktuellt rättningsutfall
 
 | Bedömning | Antal |
 |---|---:|
-| Rätt | 590 |
+| Rätt | 594 |
 | Fel | 0 |
 | Valfritt | 0 |
-| Ej täckt | 43 |
+| Ej täckt | 37 |
 
-De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grundsystemets nuvarande rättningsnyckel inte ger ett entydigt facit. De ska analyseras innan kompletterande regler föreslås.
+De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grundsystemets nuvarande rättningsnyckel inte ger ett entydigt facit. De ska analyseras mot källsystemet innan kompletterande regler föreslås.
 
 ## Resultat per tema
 
@@ -29,68 +28,46 @@ De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grun
 |---|---:|---:|---:|---:|
 | Alla slags givar | 10 | 92 | 6 | 0 |
 | 1NT, Stayman och överföringar | 10 | 100 | 0 | 0 |
-| Stenberg 2NT (stöd i hög- och lågfärg) | 10 | 91 | 2 | 0 |
-| 2♣-öppning (starka givar) | 10 | 112 | 0 | 0 |
-| Essfråga (RKC) – alla färger | 10 | 118 | 0 | 0 |
-| Slambudgivning i färg (kontrollbud och RKC) | 10 | 87 | 2 | 0 |
+| Stenberg 2NT | 10 | 94 | 0 | 0 |
+| 2♣-öppning | 10 | 112 | 0 | 0 |
+| Essfråga (RKC) | 10 | 118 | 0 | 0 |
+| Slambudgivning i färg | 10 | 87 | 2 | 0 |
 | Slambudgivning i sang | 10 | 100 | 0 | 0 |
-| Trumfstöd (stödbud i färg) | 10 | 74 | 5 | 0 |
-| Sanghänder (1NT/2NT och svar) | 10 | 84 | 0 | 0 |
-| Inviter (invit eller utgång) | 10 | 66 | 0 | 0 |
-| Tvåfärgshänder (andra bud) | 10 | 98 | 4 | 0 |
+| Trumfstöd | 10 | 78 | 1 | 0 |
+| Sanghänder | 10 | 84 | 0 | 0 |
+| Inviter | 10 | 66 | 0 | 0 |
+| Tvåfärgshänder | 10 | 98 | 4 | 0 |
 | Svaga öppningar och spärrbud | 10 | 58 | 0 | 0 |
-| Upplysningsdubbling (dubbla och svara, alltid störd) | 10 | 68 | 15 | 0 |
-| Inkliv och dubbling (alla bjuder) | 10 | 54 | 9 | 0 |
+| Upplysningsdubbling | 10 | 68 | 15 | 0 |
+| Inkliv och dubbling | 10 | 54 | 9 | 0 |
+| **Totalt** | **140** | **1 151** | **37** | **0** |
+
+## Tolkning av temagivarna som stresstest
+
+Målet är att varje tema på sikt ska innehålla ungefär:
+- 6–7 typiska givare som prövar normal, tydligt systemenlig budgivning.
+- 3–4 gränsfall som prövar modellens förmåga att hantera svårare avvägningar, nära beslutströsklar och konkurrerande budalternativ.
+
+Gränsfall betyder inte att systemreglerna blir flexibla eller ändras. Samma dokumenterade regler gäller i samtliga givare. Klassificeringen beskriver testets svårighetsgrad, inte en alternativ regel eller ett tillåtet regelbrott.
+
+Klassificering ska göras per tema utifrån de faktiska beslutspunkterna i given. Exempelvis kan 1NT-temat innehålla gränsfall i svarshandens val mellan Stayman, överföring, invit och utgång även om öppningshanden alltid uppfyller det absoluta kravet 15–17 hp och balanserad. En 14-hp, 18-hp eller obalanserad 1NT-öppning ska däremot inte märkas som ett giltigt gränsfall.
+
+I den aktuella versionen är endast 1NT-temats öppningsvillkor klassificerade maskinellt. Övriga teman är ännu `unclassified`. Vi ska inte skriva in en 7/3-fördelning som om den redan vore verifierad. Nästa steg är att granska beslutspunkterna tema för tema och välja verkliga typiska respektive gränsnära situationer.
 
 ## Analys av ej täckta budpositioner
 
-Samtliga 43 ej täckta bedömningar är pass i den genererade referensauktionen. Det beror på att referensgeneratorn väljer pass när rättningsmotorn saknar ett säkert budförslag. Det betyder inte att passen har bevisats vara rätt eller fel.
-
-| Orsak enligt rättningsmotorn | Antal |
-|---|---:|
-| Motståndarna lade sig i – fortsättningen ej beskriven | 12 |
-| Motståndarna har lagt sig i – fortsättningen ej beskriven | 8 |
-| Motståndarna har bjudit flera gånger | 4 |
-| Öppnarens återbud efter partnerns pass och motståndarnas inkliv | 9 |
-| Svar efter inkliv på nivå/situation utan uttrycklig svarstabell | 6 |
-| Handen uppfyller inget uttryckligt svarsvillkor i tabellen på s. 7 | 3 |
-| Öppnarens tredje bud efter 1 i färg, svar och återbud | 1 |
-| **Totalt** | **43** |
-
-### Effekt av källstyrd ändring i version 7.1
-
-Nordisk standard, sida 7, anger att svar efter 1-högfärgs-/1-ruterinkliv ska följa en särskild tabell. Den nya implementationen har:
-- infört stödhöjningar med 6–9 hp och 3/4/5-kortsstöd;
-- infört 1NT 8–10, 2NT 11–13 och 3NT 14+ med balanserad hand och håll;
-- infört ny färg med 8+ hp på 1-nivån och 10+ hp på 2-nivån, minst fem kort och rondkrav;
-- infört hopp i ny färg med 14+ hp, bra 6+ färg och utgångskrav;
-- infört överbud med 10+ hp och 3+ stöd;
-- lämnat andra inklivsnivåer ej täckta i stället för att ärva fel svarstabell;
-- beskrivit betydelsen av svar efter hoppande 2-högfärgsinkliv enligt svag-två-strukturen, men inte valt mellan 2NT-invit, spärrhöjning och ny färg eftersom källan saknar numerisk prioritering;
-- beskrivit 18+-betydelsen när en upplysningsdubblare utan stöd återbjuder egen färg/NT, utan att välja vilket återbud som ska användas.
-
-Ett tidigare ej täckt testfall, `inkliv-05`, har nu korrekt rekommendation 4♥: 8 hp och femkortsstöd efter partnerns 1♥-inkliv. Ett tidigare felaktigt lågt stöd-bud (4 hp med fyrkortsstöd) har tagits bort; källan anger 6–9 hp.
+Samtliga 37 ej täckta bedömningar ska behandlas som granskningspunkter, inte automatiskt som fel. Referensgeneratorn väljer pass när rättningsmotorn saknar ett säkert budförslag. Därför behöver dessa positioner granskas separat innan de kan användas som facit för en AI-modell.
 
 ## Viktig metodbegränsning
 
-Referensauktionen skapas deterministiskt med befintlig rättningsmotor och träningssidans Öst/Väst-logik. Den är användbar för att hitta täckningsluckor och testa reproducerbarhet, men den är inte en oberoende expertbudgivning eller ett självständigt facit. Att rättningsmotorn godkänner ett bud i denna baslinje bevisar därför inte att motorn är strategiskt optimal.
+Referensauktionen skapas deterministiskt med befintlig rättningsmotor och träningssidan Öst/Väst-logik. Den är användbar för att hitta täckningsluckor och testa reproducerbarhet, men den är inte en oberoende expertbudgivning eller ett självständigt facit. Att rättningsmotorn godkänner ett bud i denna baslinje bevisar därför inte att motorn är strategiskt optimal.
 
-Alla givares `caseType` är tills vidare `unclassified`. Fördelningen 7 typiska/3 gränsnära ska inte hävdas förrän givarna har granskats och klassificerats.
+AI-analyser som senare läggs till i analysbiblioteket ska granskas mot källsystemet och får inte behandla den genererade referensauktionen som oberoende facit. Analysen ska skilja mellan:
+1. information som spelaren faktiskt hade vid budtillfället;
+2. systemets dokumenterade krav och betydelser;
+3. alternativa bud som var rimliga utifrån tillgänglig information;
+4. efterhandsinformation från de dolda händerna och eventuell DDS-analys.
 
-## Körning
+## Senaste verifiering
 
-```bash
-node testdata/generate-theme-deals.js
-node --test testdata/theme-deals.test.js
-node --test testdata/auction-dispatch.test.js
-node --test testdata/overcall-responses.test.js
-node --test testdata/unresolved-system-gaps.test.js
-node --test testdata/analysis-library-match.test.js
-node --test testdata/hand-conditions.test.js
-node --test testdata/hand-profile-conditions.test.js
-node --test testdata/seat-view.test.js
-node --test testdata/player-roles.test.js
-node --test testdata/dds-runtime.test.js
-```
-
-Senaste fullständiga verifiering: GitHub Actions körning `43665028981` – samtliga steg godkända, inklusive deterministisk regenerering, inklivstester, skyddstester för ej täckta luckor och DDS-paketering.
+GitHub Actions workflow `Theme deal regression`, körning `43694533178`, för commit `d98765e49905d5c99cf0874581001fe15160be72`: **success**. Testjobbet `theme-deals` slutfördes utan fel.
