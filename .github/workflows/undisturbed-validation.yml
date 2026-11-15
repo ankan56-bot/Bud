@@ -26,8 +26,10 @@ jobs:
         run: node tests/supplementary-logic.test.js
       - name: Verify all fixed undisturbed deals
         run: node tests/ostord-coverage.test.js
-      - name: Run 100-deal undisturbed stress test
+      - name: Run first 100-deal undisturbed stress test
         run: node tests/ostord-100.test.js
+      - name: Run independent second 100-deal undisturbed stress test
+        run: node tests/ostord-100-second.test.js
       - name: Upload undisturbed verification reports
         uses: actions/upload-artifact@v4
         with:
@@ -35,6 +37,7 @@ jobs:
           path: |
             testdata/ostord_validation_latest.json
             testdata/ostord_100_validation_latest.json
+            testdata/ostord_200_validation_latest.json
 
   stress-100:
     runs-on: ubuntu-latest
@@ -47,9 +50,13 @@ jobs:
           node-version: 20
       - name: Generate and verify 100 undisturbed deals
         run: node tests/ostord-100.test.js
-      - name: Upload 100-deal verification report
+      - name: Generate and verify second independent 100 deals
+        run: node tests/ostord-100-second.test.js
+      - name: Upload 200-deal verification reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ostord-100-validation
-          path: testdata/ostord_100_validation_latest.json
+          name: ostord-200-validation
+          path: |
+            testdata/ostord_100_validation_latest.json
+            testdata/ostord_200_validation_latest.json
