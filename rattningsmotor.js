@@ -615,10 +615,13 @@ var Rattning = (function(){
     // Nordisk standard s. 7 ger en svarstabell för inkliv på 1-nivån
     // (1 högfärg eller 1 ruter). Andra inklivsnivåer har egna/otillräckliga
     // källregler och får inte ärva denna tabell.
-    var weakMajorHonors=[14,13,12,11].filter(function(n){return h.has(s,n)}).length;
-    var weakMajorIntermediates=[10,9,8].filter(function(n){return h.has(s,n)}).length;
-    var goodJumpMajor=L[s]>=6&&(weakMajorHonors>=2||(weakMajorHonors>=1&&weakMajorIntermediates>=2));
-    if(lv(oc)===2&&maj(s)&&/^1[CDHS]$/.test(ob||'')&&s!==os&&hp>=6&&hp<=10&&goodJumpMajor){
+    var goodJumpMajor=false;
+    if(lv(oc)===2&&maj(s)&&/^1[CDHS]$/.test(ob||'')&&s!==os){
+      var weakMajorHonors=[14,13,12,11].filter(function(n){return h.has(s,n)}).length;
+      var weakMajorIntermediates=[10,9,8].filter(function(n){return h.has(s,n)}).length;
+      goodJumpMajor=L[s]>=6&&(weakMajorHonors>=2||(weakMajorHonors>=1&&weakMajorIntermediates>=2));
+    }
+    if(goodJumpMajor&&hp>=6&&hp<=10){
       // Ett hoppande 2-högfärgsinkliv följer svag-två-strukturen. Källan
       // anger budens betydelse men inte styrkegränsen mellan invit och spärr.
       var weakTwoMeaning=function(c){
