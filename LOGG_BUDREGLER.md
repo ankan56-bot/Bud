@@ -762,3 +762,6 @@ Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen
 - Extra RKC-säkerhet: handen med alla fem nyckelkort (fyra ess + trumfkungen) har inget uttryckligt svar i den dokumenterade 1430-tabellen. Motorn lämnar nu detta fall ej täckt i stället för att felaktigt klassificera det som två nyckelkort. Två ytterligare tester täcker detta för både hjärter och spader.
 - RKC-testsviten omfattar nu 16 kontroller, inklusive naturligt etablerad fit efter 1M–2M och Stenbergfit efter 1M–2NT.
 - Rättningsmotorn uppdaterad till v7.5.
+
+- Ytterligare test avslöjade att den generella reservkontrollen för missad utgång kunde skriva över ett korrekt ej täckt RKC-fall och föreslå 6M. Den kontrollen är nu avstängd i RKC-kontext, så 1430-svar och ej definierade fortsättningar inte överskrivs av generisk poänglogik.
+- Rättningsmotorn uppdaterad till v7.6.
