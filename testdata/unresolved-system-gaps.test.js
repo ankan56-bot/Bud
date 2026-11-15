@@ -57,3 +57,23 @@ test("jump 2-major overcall explains weak-two calls without inventing their prio
   assert.match(result.means("2N") || "", /invitbud.*2\+ stöd/i);
   assert.match(result.means("3H") || "", /ny färg.*5\+ kort.*krav/i);
 });
+
+test("18+ no-support takeout-double rebid meaning is explained without choosing a call", () => {
+  const hands = {
+    N: ["S14","S13","S12","S11","H13","H12","H9","D14","D11","D9","D7","C9","C6"],
+    S: ["C13","C12","C9","C8","C7","D9","D8","D7","H8","H6","H5","S6","S4"],
+    E: [],
+    W: []
+  };
+  const bids = [
+    { s: "W", c: "1H" },
+    { s: "N", c: "X" },
+    { s: "E", c: "P" },
+    { s: "S", c: "1C" },
+    { s: "W", c: "P" },
+    { s: "N", c: "2N" }
+  ];
+  const result = Rattning.nodeFor({ hands, dealer: "W", bids }, 5);
+  assert.equal(result?.exp || null, null);
+  assert.match(result.means("2N") || "", /18\+ hp/);
+});
