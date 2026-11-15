@@ -412,7 +412,7 @@ var Rattning = (function(){
       return null};
     if(r==='2N'){exp=hp<=8?'3'+o:'4'+o;alt=hp>=9&&maj(o)?['3N']:[];why=hp<=8?'6-8 hp: minimum, 3 i färgen.':'9-10 hp: maximum, 4 i färgen.';return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:true}}
     if(r==='3'+o){exp=hp<=8?'P':'4'+o;alt=[];why=hp<=8?'6-8 hp: pass.':'9-10 hp: maximum, utgång 4 i färgen.';return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};}
-    if(isBid(r)&&r[1]!==o&&r[1]!=='N'&&L[r[1]]>=5){
+    if(isBid(r)&&r[1]!==o&&r[1]!=='N'){
       return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa'};
     }
     return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'svag tvåa'};
