@@ -1,6 +1,6 @@
 {
-  "version": "0.5.8",
-  "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.8 förtydligar 4-4-4-1 som exempel i stödåterbudet efter 1♥–1♠ och undviker dubbla sekvensnoder.",
+  "version": "0.5.9",
+  "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.9 dokumenterar och korrigerar 4-4-4-1-öppnarens återbud efter partnerns 1NT.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -5086,12 +5086,33 @@
             "Pass",
             "1NT"
           ],
-          "meaning": "1NT efter 1♥–1♠ – balanserat minimumåterbud",
-          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
-          "branches": [],
+          "meaning": "1NT efter 1♥–1♠ – balanserad öppnare eller specialfall 4-4-4-1",
+          "analysis": "Med en vanlig balanserad hand visar 1NT 12–14 hp. Men en 4-4-4-1-hand är inte balanserad och får inte klassificeras som ett vanligt 1NT-återbud. Efter öppning i en fyrkortsfärg och partnerns 1NT gäller specialregeln: med 12–17 hp kan öppnaren bjuda en annan fyrkortsfärg på 2-nivån trots att färgen bara innehåller fyra kort; öppnaren får också passa 1NT. Med 18–19 hp bjuder öppnaren 2NT. Exempel: 4♠-4♥-4♦-1♣ öppnar 1♥ enligt öppningsprioriteten. Efter 1♠–1NT visar öppnaren 2♦ med 12–17 hp (alternativt pass) och 2NT med 18–19 hp.",
+          "branches": [
+            {
+              "call": "2♣",
+              "next": null,
+              "label": "12–17 hp, om klöver är den andra fyrkortsfärgen och lägsta möjliga bud"
+            },
+            {
+              "call": "2♦",
+              "next": null,
+              "label": "12–17 hp, om ruter är den andra fyrkortsfärgen och lägsta möjliga bud"
+            },
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "12–17 hp – tillåtet alternativ, stanna i 1NT"
+            },
+            {
+              "call": "2NT",
+              "next": null,
+              "label": "18–19 hp"
+            }
+          ],
           "handProfile": {
-            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
-            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+            "opener": "4-4-4-1, alltså fyra kort i tre färger och singel i den fjärde. Efter partnerns 1NT: 12–17 hp = bjud den lägsta möjliga andra fyrkortsfärgen på 2-nivån trots fyrkortslängd; pass är också tillåtet. 18–19 hp = 2NT.",
+            "responder": "Partnern har svarat 1NT. Öppnarens specialåterbud beskriver 4-4-4-1 och ska inte tolkas som ett normalt femkortsfärgsbud."
           }
         },
         {
@@ -5211,6 +5232,43 @@
           "handProfile": {
             "opener": "Minst 13 STP, 4+ spaderstöd och singel/renons i ruter (i detta exempel).",
             "responder": "Svarshanden har visat minst fyra spader; öppnarens splinter fastställer spaderfit och visar korthet i ruter."
+          }
+        },
+        {
+          "id": "t39_4441_after_1nt",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1NT",
+            "Pass"
+          ],
+          "meaning": "4-4-4-1 efter partnerns 1NT – specialåterbud",
+          "analysis": "Öppnaren har 4-4-4-1: fyra kort i tre färger och singel i den fjärde. Öppningen gjordes i en fyrkortsfärg enligt öppningsprioriteten. När svarshanden bjuder 1NT ska öppnaren inte behandla handen som balanserad. Med 12–17 hp bjuds den lägsta möjliga andra fyrkortsfärgen på 2-nivån trots att den bara har fyra kort. Pass på 1NT är också tillåtet. Med 18–19 hp bjuds 2NT. Exempel: 4♠-4♥-4♦-1♣ öppnar 1♥; efter 1NT bjuds 2♦ med 12–17 hp eller 2NT med 18–19 hp. Pass är också ett alternativ med 12–17 hp.",
+          "branches": [
+            {
+              "call": "2♣",
+              "next": null,
+              "label": "12–17 hp – om klöver är den lägsta möjliga andra fyrkortsfärgen"
+            },
+            {
+              "call": "2♦",
+              "next": null,
+              "label": "12–17 hp – om ruter är den lägsta möjliga andra fyrkortsfärgen"
+            },
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "12–17 hp – tillåtet att stanna i 1NT"
+            },
+            {
+              "call": "2NT",
+              "next": null,
+              "label": "18–19 hp"
+            }
+          ],
+          "handProfile": {
+            "opener": "Exakt 4-4-4-1. 12–17 hp: bjud lägsta möjliga andra fyrkortsfärg på 2-nivån, trots endast fyra kort; pass är också tillåtet. 18–19 hp: 2NT.",
+            "responder": "Har svarat 1NT. Detta är ett särskilt återbud för 4-4-4-1 och inte ett vanligt balanserat återbud."
           }
         }
       ]
