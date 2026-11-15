@@ -794,12 +794,19 @@ var Rattning = (function(){
     return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
   function respDouble(h,ob,last){
-    var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[],un=SU.filter(function(s){return s!=='N'&&s!==os;});
-    var best=un.slice().sort(function(a,b){
-      if(L[b]!==L[a])return L[b]-L[a];
-      return SU.indexOf(b)-SU.indexOf(a);
-    })[0];
-    var bestLen=best?L[best]:0,bestHtp=best?h.htp(best):hp;
+    var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[],un=SU.filter(function(s){return s!==os;});
+    function rankedSuits(list){
+      return list.sort(function(a,b){
+        if(L[b]!==L[a])return L[b]-L[a];
+        if(h.htp(b)!==h.htp(a))return h.htp(b)-h.htp(a);
+        return SU.indexOf(b)-SU.indexOf(a);
+      });
+    }
+    var cheapest=un.map(function(s){return {s:s,bid:lowest(s,ob)};})
+      .filter(function(x){return x.bid&&L[x.s]>=3;})
+      .sort(function(a,b){return rk(a.bid)-rk(b.bid);})[0];
+    var jump8=rankedSuits(un.filter(function(s){var p=h.htp(s);return L[s]>=4&&p>=8&&p<=9;}))[0];
+    var jump10=rankedSuits(un.filter(function(s){var p=h.htp(s);return L[s]>=5&&p>=10&&p<=12;}))[0];
     var means=function(c){
       if(c==='1N')return '6-9 hp, balanserad hand och håll i öppningsfärgen.';
       if(c==='2N')return '10-12 hp, balanserad hand och håll i öppningsfärgen.';
@@ -823,27 +830,27 @@ var Rattning = (function(){
       exp='P';why='Minst 5 kort och bra kvalitet i öppningsfärgen: straffpass.';
     }
     // Naturliga sangsvar med håll och balanserad hand.
-    else if(h.bal&&h.stop(os)&&hp>=6&&hp<=9){
+    else if(h.stop(os)&&hp>=6&&hp<=9){
       exp='1N';why=hp+' hp, balanserad hand med håll: 1NT.';
     }
-    else if(h.bal&&h.stop(os)&&hp>=10&&hp<=12){
+    else if(h.stop(os)&&hp>=10&&hp<=12){
       exp='2N';why=hp+' hp, balanserad hand med håll: 2NT.';
     }
-    else if(h.bal&&h.stop(os)&&hp>=13){
+    else if(h.stop(os)&&hp>=13){
       exp='3N';why=hp+' hp, balanserad hand med håll: 3NT.';
     }
     // 0-7 hp: billigaste färg, även med bara tre kort.
-    else if(hp<=7&&best&&bestLen>=3){
-      exp=lowest(best,ob);why=hp+' hp: billigaste objudna färg ('+SYM[best]+'), även med 3 kort.';
+    else if(hp<=7&&cheapest){
+      exp=cheapest.bid;why=hp+' hp: billigaste objudna färg ('+SYM[cheapest.s]+'), även med 3 kort.';
     }
-    // 8-9 HTP: hopp i 4+-färg.
-    else if(best&&bestLen>=4&&bestHtp>=8&&bestHtp<=9){
-      var j=jump(best,ob);
-      if(j&&ok(j,ob)){exp=j;why=bestHtp+' htp och '+bestLen+' kort i '+SYM[best]+': hopp i färgen.';}
+    // 8-9 HTP: välj den bästa av alla objudna 4+-färger som uppfyller gränsen.
+    else if(jump8){
+      var j=jump(jump8,ob);
+      if(j&&ok(j,ob)){exp=j;why=h.htp(jump8)+' htp och '+L[jump8]+' kort i '+SYM[jump8]+': hopp i färgen.';}
     }
-    // 10-12 HTP: hopp till 3-nivån, helst med 5+ kort.
-    if(!exp&&best&&bestLen>=5&&bestHtp>=10&&bestHtp<=12&&ok('3'+best,ob)){
-      exp='3'+best;why=bestHtp+' htp och '+bestLen+' kort i '+SYM[best]+': hopp till 3-nivån.';
+    // 10-12 HTP: välj en 5+-färg som faktiskt uppfyller HTP-gränsen.
+    if(!exp&&jump10&&ok('3'+jump10,ob)){
+      exp='3'+jump10;why=h.htp(jump10)+' htp och '+L[jump10]+' kort i '+SYM[jump10]+': hopp till 3-nivån.';
     }
     // 10+ hp: överbud är krav när inget lämpligare svar har visats.
     if(!exp&&hp>=10){
@@ -1531,7 +1538,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'6.8'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'6.9'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
