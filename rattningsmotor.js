@@ -425,8 +425,8 @@ var Rattning = (function(){
     var means=function(c){
       if(c===reverseBid&&reverseBid)return 'Reverse: 18+ HPS och minst 5-4 i öppningsfärgen och den nya färgen. HPS räknas enligt reglerna för egen 6+-färg eller 5-5, utan krav på fastställd trumf.';
       if(r==='2N'){var Ma=maj(o);
-        if(c==='3N')return '12-15 hp, jämn hand utan 3-korts stöd.';
-        if(c==='3'+o)return '16+ stp, stark hand.';
+        if(c==='3N')return '12-14 hp, balanserad hand.';
+        if(c==='3'+o)return '15+ htp utan singel: extra styrka.';
         if(isBid(c)&&lv(c)===3)return 'Singel i '+SYM[c[1]]+' (12-15 hp).';return null}
       if(c===splBid && hp>=13) return 'Splinter: singel/renons i '+SYM[splSuit]+' och 13+ stp.';
       if(rs===o&&lv(r)===2){if(c==='4'+o)return '20+ htp: utgång.';if(c==='3'+o)return '17-19 htp, naturlig invit.';if(isBid(c)&&lv(c)===3)return '17-19 htp med singel i den bjudna färgen.';if(c==='P')return 'Pass: 13-15 stp.'}
@@ -441,10 +441,10 @@ var Rattning = (function(){
 
     if(r==='2N'){
       var sg=h.singles().filter(function(s){return L[s]===1&&s!==o});
-      if(h.htp(o)>=16){exp='3'+o;why=h.htp(o)+' htp utan singel: 3 i färgen (16+ stp).';}
+      if(h.htp(o)>=15){exp='3'+o;why=h.htp(o)+' htp utan singel: 3 i färgen (15+).';}
       else if(sg.length){var s1=sg[0];exp='3'+s1;why='Singel i '+SYM[s1]+': visa den på 3-nivå.';if(sg.length>1)alt=sg.slice(1).map(function(s){return '3'+s});soft=true}
-      else if(h.bal||h.htp(o)<=15){exp='3N';why='12-15 hp, jämn hand eller utan singel: 3NT.'}
-      else return {exp:null,alt:[],why:'Minimum utan singel och obalanserad: dokumentet anger inte budet.',means:means,conv:'Stenberg'};
+      else if(h.bal&&h.hp>=12&&h.hp<=14){exp='3N';why=h.hp+' hp, balanserad hand utan singel: 3NT.'}
+      else return {exp:null,alt:[],why:'Efter Stenberg: utan 15+ htp, singel eller balanserad 12-14 hp anger dokumentet inte budet.',means:means,conv:'Stenberg'};
       return {exp:exp,alt:alt,why:why,means:means,conv:'Stenberg',soft:soft};
     }
     if(rs===o){
