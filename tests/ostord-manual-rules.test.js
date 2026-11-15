@@ -79,5 +79,6 @@ const report = {
   result: 'passed'
 };
 fs.mkdirSync('testdata', { recursive: true });
-fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\\n');
+fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\n');
+assert.equal(JSON.parse(fs.readFileSync('testdata/ostord_manual_rules_latest.json', 'utf8')).result, 'passed');
 console.log('Manual undisturbed hand rules and detailed node analysis passed (3 deals).');
