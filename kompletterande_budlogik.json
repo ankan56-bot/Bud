@@ -218,7 +218,7 @@
           }
         },
         "balanced": true,
-        "notes": "Cirka 6–10 hp, jämn hand och normalt utan trekortsstöd i hjärter."
+        "notes": "Cirka 6–10 hp, jämn hand och normalt utan trekortsstöd i hjärter. Överlapp med 1S vid fem spader är inte avgjord."
       },
       "alternatives": [
         {
@@ -239,7 +239,8 @@
       "approvalStatus": "unreviewed",
       "notes": [
         "Kompletterande analys, aldrig en grundsystemregel.",
-        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning.",
+        "Överlapp kan uppstå med 1S när handen är jämn och har fem spader. Analysbiblioteket anger ingen uttrycklig prioritetsregel; kandidaten får därför inte väljas automatiskt."
       ],
       "recommendation": "1N",
       "rationale": "Naturligt sangsvar med jämn hand och utan tydlig hjärterfit."
