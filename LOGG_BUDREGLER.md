@@ -604,3 +604,64 @@ Analysbibliotekets befintliga träd T29–T32 har nu också omvandlats till stru
 Det kompletterande lagret innehåller nu **25 kandidater** (5 efter 1♥–Dbl och 20 efter fyra naturliga inklivsekvenser). Alla är fortfarande `unreviewed` och får inte skriva över grundsystemet. Matcharen kontrollerar nu även stoppare med samma grundprincip som rättningsmotorn (E, Kx, Qxx, Jxxx).
 
 Testerna omfattar nu **15 fall** för det kompletterande lagret. De kontrollerar bland annat stöd, färglängd, styrka, jämn fördelning, stoppare och att sangbud utan stoppare inte matchar.
+
+
+## Konkurrensbudgivning och Stenberg – fördjupad revision 2026-11-15
+
+Den här omgången har fortsatt enbart med punkterna 1 och 2 i utvecklingsplanen. Spelmotorn där Syd spelar mot en människa är uttryckligen pausad; fokus ligger på att få Öst/Väst-roboten och den gemensamma rättningsmotorn stabila först.
+
+### A. Konkurrensbudgivning – regler som saknas i REF ska inte godkännas
+
+- Negativ dubbling efter en naturlig färgöppning fanns tidigare klassad som grundsystemregel. Den regeln finns inte i REF. Motorn markerar nu sekvensen som ej täckt i stället för att automatiskt godkänna dubblingen.
+- En öppnares dubbling efter motståndarinkliv och partnerpass (reopening-/stöddubbling) är inte heller definierad i REF. Den godkänns inte längre som en automatisk stöddubbling.
+- Efter motståndarinkliv över 1NT kontrolleras nu 5+ kort innan ett naturligt färgbud ens kan övervägas. Exakt invit-/utgångsstyrka för dessa färgbud är inte numeriskt definierad i REF, så motorn markerar dem som ej täckta i stället för att godkänna varje faktiskt bud.
+- Upplysningsdubbling efter 1NT kräver 3+ kort i samtliga objudna färger. Eftersom den exakta styrkegränsen för ”minst invit” saknas i REF lämnas den automatiska rekommendationen ej täckt.
+- Svar efter upplysningsdubbling: 0–7 hp ska bjuda den billigaste objudna färgen, även med bara tre kort. Motorn valde tidigare den längsta färgen; detta är rättat.
+- 1NT/2NT/3NT efter upplysningsdubbling kräver håll och respektive hp-intervall. REF anger inte ett separat krav på balanserad hand, så det extra balanskravet är borttaget.
+- För 8–9 respektive 10–12 HTP söks nu bland alla objudna färger som faktiskt uppfyller både poäng- och längdvillkoren, i stället för att bara kontrollera den längsta färgen.
+
+### B. Öppnarens andra bud efter 1M–2M
+
+- En void är inte en singel. 17–19 HTP utan någon singleton ska ge 3M-invit; motorn räknade tidigare void som singel och kunde visa fel sidofärg.
+- En singleton i exakt en sidofärg visas på 3-nivån.
+- Om handen har singleton i flera sidofärger anger REF ingen prioritet. Råmotorn lämnar då situationen ej täckt i stället för att välja första färgen i intern färgordning.
+- 20+ HTP ger utgång; 16 HTP stannar på passnivå enligt befintliga gränstester.
+
+### C. Stenberg
+
+- Stenberg 2NT med 13+ HTP och 4+ stöd har fortsatt prioritet framför splinter.
+- En singleton visas på 3-nivån före 15+ HTP-återbudet i öppningsfärgen.
+- 15+ HTP utan singleton visas med 3M.
+- 12–14 hp balanserad hand visas med 3NT.
+- Obalanserad minimumhand utan singleton lämnas ej täckt.
+- Flera singletonfärger utan angiven prioritet lämnas ej täckta i råmotorn. Den separata kontrollen för 26+ gemensamma spelpoäng kan fortfarande föreslå utgång när Stenberg är utgångskrav.
+
+### D. Svaga tvåöppningar – korrigerade svar och återbud
+
+- Ny färg med 5+ kort är krav till minst 3 i öppningsfärgen; det tidigare påhittade 15 hp-kravet är borttaget.
+- 2NT är invit med 9–10 hp och minst 2 korts stöd.
+- 3 i öppningsfärgen är spärrande med 3+ stöd, inte en invit.
+- Svag hand utan stöd eller egen 5+ färg passar.
+- Efter 2NT-invit visar öppnaren 6–8 hp med 3 i öppningsfärgen; med 9–10 hp blir det 4 i högfärg eller 3NT efter lågfärgsöppning. Ett felaktigt 4♦-återbud efter 2♦ är därmed borttaget.
+- Om svarshanden bjuder en ny färg är öppnarens exakta återbud inte specificerat i REF. Motorn godkänner inte pass men hittar inte på ett nytt bud.
+
+### E. Testdata och verifiering
+
+Fyra tidigare svaga-två-givare uppfyllde inte längre temavillkoren när den felaktiga gamla svarshöjningen togs bort. De har ersatts deterministiskt med nya seeds:
+- svag-02: 93000000
+- svag-05: 93000001
+- svag-09: 93000002
+- svag-10: 93000003
+
+Samtliga 140 testgivare är åter validerade: 52 unika kort, 13 kort per hand, tema- och lägesvillkor uppfyllda.
+
+Aktuell motor: **7.0**.
+- Grundsystemets regressionstester: **73/73**.
+- Kompletterande matchartester: **15/15**.
+- 140/140 auktioner avslutade och godkända av auktionsvalidatorn.
+- 0 undantag, 0 olagliga kontraktsrekommendationer.
+- 605 bedömda N/S-turer: 533 täckta, 72 ej täckta (**88,1 %**).
+- Ostörd budgivning: 170/170 täckt (**100 %**).
+- Störd budgivning: 363/435 täckt (**83,4 %**).
+
+Täckningsprocenten är inte direkt jämförbar med föregående baslinje eftersom fyra testgivare har bytts ut efter att deras gamla svaga-två-svar inte längre uppfyllde REF. De kvarvarande luckorna är huvudsakligen konkurrensfortsättningar som inte finns i REF; de ska inte fyllas med gissningar.
