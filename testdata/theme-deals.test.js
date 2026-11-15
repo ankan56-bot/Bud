@@ -29,7 +29,7 @@ test("all stored reference auctions pass the current structural validator", () =
   const { Rattning } = loadRuntime();
   for (const deal of stored.deals) {
     const result = Rattning.validateAuction({ hands: deal.hands, dealer: deal.dealer, bids: deal.bids });
-    assert.deepEqual(result.errors, [], deal.id);
+    assert.equal(JSON.stringify(result.errors), "[]", deal.id);
   }
 });
 
@@ -39,7 +39,7 @@ test("fixed seeds reproduce the stored hands and auctions", () => {
   for (let i = 0; i < stored.deals.length; i++) {
     assert.equal(regenerated.deals[i].id, stored.deals[i].id);
     assert.equal(regenerated.deals[i].seed, stored.deals[i].seed);
-    assert.deepEqual(regenerated.deals[i].hands, stored.deals[i].hands, stored.deals[i].id);
-    assert.deepEqual(regenerated.deals[i].bids, stored.deals[i].bids, stored.deals[i].id);
+    assert.equal(JSON.stringify(regenerated.deals[i].hands), JSON.stringify(stored.deals[i].hands), stored.deals[i].id);
+    assert.equal(JSON.stringify(regenerated.deals[i].bids), JSON.stringify(stored.deals[i].bids), stored.deals[i].id);
   }
 });
