@@ -22,7 +22,7 @@ test("dataset contains exactly 140 valid deals, 10 for each of 14 themes", () =>
     for (const seat of ["N", "E", "S", "W"]) assert.equal(deal.hands[seat].length, 13, deal.id);
     assert.equal(deal.checks.themeCondition, true, deal.id);
     assert.equal(deal.checks.auctionErrors, 0, deal.id);
-    assert.equal(deal.checks.opening1NTValidated, true, deal.id);
+    assert.equal(deal.checks.openingNTValidated, true, deal.id);
   }
 });
 
@@ -85,5 +85,21 @@ test("the NT theme only contains a genuine 15-17 HCP balanced opener", () => {
     const sorted = [shape.S, shape.H, shape.D, shape.C].sort((a, b) => b - a).join("");
     assert.ok(api.hpOf(hand) >= 15 && api.hpOf(hand) <= 17, deal.id);
     assert.ok(["4333", "4432", "5332"].includes(sorted), deal.id);
+  }
+});
+
+
+test("every first-bid 1NT or 2NT opening meets its exact range and shape", () => {
+  const { api } = loadRuntime();
+  for (const deal of stored.deals) {
+    const firstBid = deal.bids.find(bid => bid.c !== "P");
+    if (!firstBid || !["1N", "2N"].includes(firstBid.c)) continue;
+    const hand = deal.hands[firstBid.s];
+    const hcp = api.hpOf(hand);
+    const shape = api.shapeOf(hand);
+    const sorted = [shape.S, shape.H, shape.D, shape.C].sort((a, b) => b - a).join("");
+    const range = firstBid.c === "1N" ? [15, 17] : [20, 21];
+    assert.ok(hcp >= range[0] && hcp <= range[1], deal.id + ": " + firstBid.c + " with " + hcp + " HCP");
+    assert.ok(["4333", "4432", "5332"].includes(sorted), deal.id + ": " + sorted);
   }
 });
