@@ -39,6 +39,7 @@ test("all 25 competitive leaf nodes use valid structured responder conditions", 
         assert.ok(c, node.id + " missing handConditions");
         assert.equal(c.schemaVersion, 1);
         assert.equal(c.seat, "responder");
+        assert.equal(c.authority, "analysis_only");
         if (c.hcp) {
           assert.ok(Number.isFinite(c.hcp.min));
           if (c.hcp.max !== undefined) assert.ok(c.hcp.max >= c.hcp.min);
