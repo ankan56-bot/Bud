@@ -341,17 +341,19 @@
     "regressionBaseline": "same fixed deals for every motor version",
     "status": "baseline_run",
     "baselinePath": "testdata/temagivare_140_baseline.json",
-    "baselineEngineBlobSha": "3ae5ca795280c5266ac86d256a8ff3eee79ff75e",
+    "baselineEngineBlobSha": "d035263a5423078a0cb54dc3301a888b6281e330",
     "baselineSummary": {
-      "nsTurns": 590,
-      "covered": 515,
-      "uncovered": 75,
-      "coveragePercent": 87.3,
+      "nsTurns": 596,
+      "covered": 522,
+      "uncovered": 74,
+      "coveragePercent": 87.6,
       "ostordCoveragePercent": 100,
-      "stordCoveragePercent": 82,
+      "stordCoveragePercent": 82.5,
       "exceptions": 0,
       "illegalRecommendations": 0,
-      "completedAuctions": 140
+      "completedAuctions": 140,
+      "previousCoveragePercent": 87.3,
+      "previousUncovered": 75
     }
   },
   "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
