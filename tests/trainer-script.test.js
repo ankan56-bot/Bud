@@ -92,7 +92,10 @@ test("room readiness counts distinct valid seat owners, not raw presence records
   assert.ok(start >= 0 && end > start, "room seat ownership helpers should exist");
   const source = html.slice(start, end);
   function ready(count, players) {
-    const context = { SEATS: ["N", "E", "S", "W"], roomPlayers: players, roomConfig: { count } };
+    const now = 1_800_000_000_000;
+    Object.values(players).forEach(p => { if (p.at == null) p.at = now; });
+    const context = { SEATS: ["N", "E", "S", "W"], roomPlayers: players, roomConfig: { count },
+      playerId: "self", Date: { now: () => now } };
     vm.runInNewContext(source, context);
     return context.roomReady();
   }
@@ -105,6 +108,8 @@ test("room readiness counts distinct valid seat owners, not raw presence records
     "a duplicate seat claim must not count as a third player");
   assert.equal(ready(3, { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" } }), true);
   assert.equal(ready(4, { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" }, d: { seat: "W" } }), true);
+  assert.equal(ready(2, { a: { seat: "N", at: now - 60_000 }, b: { seat: "S", at: now } }), false,
+    "expired participants must not keep seats or make the room appear ready");
 });
 
 
