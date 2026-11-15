@@ -1,6 +1,6 @@
 {
   "version": "0.6.3",
-  "description": "Analysbibliotek med 43 budträd. Utökat och kvalitetssäkrat 1NT-budgivningen fram till 4NT; svaren efter 4NT lämnas till nästa utvecklingsetapp.",
+  "description": "Analysbibliotek med 43 budträd och 264 noder. 1NT-budgivningen utökad och kvalitetssäkrad fram till 4NT; svaren efter 4NT lämnas till nästa utvecklingsetapp.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -371,7 +371,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen. Exakt hjärterlängd/stöd är inte uttryckligen lovat.",
+            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen och visar minst två hjärter enligt motorns betydelse. Tillsammans med svarshandens 5+ hjärter blir fitten minst sju kort, men inte nödvändigtvis åtta.",
             "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
@@ -685,7 +685,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen. Exakt hjärterlängd/stöd är inte uttryckligen lovat.",
+            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen och visar minst två hjärter enligt motorns betydelse. Tillsammans med svarshandens 5+ hjärter blir fitten minst sju kort, men inte nödvändigtvis åtta.",
             "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
@@ -805,7 +805,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, balanserad 1NT-hand; 2♠ fullföljer den artificiella överföringen. Exakt spaderlängd/stöd är inte uttryckligen lovat.",
+            "opener": "15–17 hp, balanserad 1NT-hand; 2♠ fullföljer den artificiella överföringen och visar minst två spader enligt motorns betydelse. Tillsammans med svarshandens 5+ spader blir fitten minst sju kort, men inte nödvändigtvis åtta.",
             "responder": "Minst fem spader; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
@@ -6676,7 +6676,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 med hjärter som trumf efter fullföljd hjärteröverföring.",
-          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Systemlucka att bevaka: den artificiella överföringsaccepten lovar inte uttryckligen 2+ kort i trumffärgen, medan motorn ändå tolkar 4NT som RKC i färgen. Ingen 8-kortsfitkontroll görs i denna sekvens. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två hjärter i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i hjärter. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt hjärteröverföringen.",
             "responder": "Minst fem hjärter och slamintresse; 4NT används som RKC om den vägen väljs."
@@ -6695,7 +6695,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 med spader som trumf efter fullföljd spaderöverföring.",
-          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Systemlucka att bevaka: den artificiella överföringsaccepten lovar inte uttryckligen 2+ kort i trumffärgen, medan motorn ändå tolkar 4NT som RKC i färgen. Ingen 8-kortsfitkontroll görs i denna sekvens. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två spader i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i spader. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen.",
             "responder": "Minst fem spader och slamintresse; 4NT används som RKC om den vägen väljs."
