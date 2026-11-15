@@ -549,17 +549,15 @@ var Rattning = (function(){
       return null;
     };
     if (T_) {
-        if (r === '5N') {
-            if (h.has(T_, 12)) {
-                if (h.kings >= 3) { exp = '7'+T_; why = 'Trumfdamen och alla kungar finns: Storslam.'; }
-                else { exp = '6'+T_; why = 'Trumfdamen finns, men kungar saknas: Lillslam.'; }
-            } else {
-                exp = '6'+T_; why = 'Trumfdamen saknas: Lillslam.';
-            }
+        // Nordisk standard s. 7 beskriver svarskoderna och vissa
+        // renonsvisningar, men ger inte en fullständig fortsättningsstege
+        // för frågeställaren efter samtliga 5-lägessvar. Gissa därför inte.
+        if (/^5[CDHSN]$/.test(r)) {
+            return NC('Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.', means, 'Blackwood 5 ess');
         } else if (r === '6'+T_ || r === '7'+T_) {
             exp = 'P'; why = 'Slutbud.';
         } else {
-            exp = '6'+T_; why = 'Lillslam.';
+            return NC('Fortsättningen efter detta RKC-svar är inte uttryckligen fastställd i Nordisk standard s. 7.', means, 'Blackwood 5 ess');
         }
     } else {
         // I fyr-essvarianten är 5NT svaret som visar alla fyra ess.
