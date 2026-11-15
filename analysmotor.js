@@ -65,6 +65,13 @@ function handMatches(conditions,hand){
  }
  if(conditions.balanced===true&&!stats.balanced)return false;
  if(conditions.balanced===false&&stats.balanced)return false;
+ (conditions.stoppers||[]).forEach(function(suit){
+  const suited=(hand||[]).filter(c=>c[0]===suit),ranks=suited.map(c=>+c.slice(1));
+  const has=(rank)=>ranks.includes(rank);
+  const stopped=has(14)||(has(13)&&suited.length>=2)||(has(12)&&suited.length>=3)||(has(11)&&suited.length>=4);
+  if(!stopped)stats.stopperMismatch=true;
+ });
+ if(stats.stopperMismatch)return false;
  return true;
 }
 function findSupplementary(logic,bids,hands,seat){
