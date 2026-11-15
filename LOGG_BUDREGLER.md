@@ -425,3 +425,28 @@ Tio nya regressionstester täcker stödhöjningar, 1NT/2NT/3NT, ny färg på 1- 
 - 0 krascher och 0 olagliga kontraktsbud.
 
 Baslinjefilen har uppdaterats med aktuell motorversion och samtliga kvarvarande luckor. Att totalprocenten bara ökar marginellt beror på att nya korrekta svar förändrar auktionernas fortsättning och därmed blottlägger andra ännu ej beskrivna konkurrenssekvenser. De nya buden är inte tillagda enbart för att höja täckningsprocenten; de följer systemunderlaget.
+
+
+## Svar på upplysningsdubbling – gränser korrigerade
+
+Jämförelsen mot den uttryckliga UD-regeln visade att `respDouble()` hade flera felaktiga intervall och saknade rätt budprioritering. Den är nu uppdaterad:
+- 1NT 6–9 hp med håll.
+- 2NT 10–12 hp med håll.
+- 3NT 13+ hp med håll.
+- 0–7 hp: färg på lägsta nivå, även med bara 3 kort.
+- 8–9 HTP: hopp i färg med 4+ kort.
+- 10–12 HTP: hopp till 3-nivån, helst 5+ kort.
+- 10+ hp: överbud i motståndarnas färg, krav.
+- Straffpass endast med lång och bra färg i öppningsfärgen.
+
+Åtta nya regressionstester täcker dessa svar. Den totala testsviten omfattar nu **38 fall**, samtliga passerar.
+
+### Uppdaterad 140-givarsbaslinje
+
+- 522/595 turer täckta (**87,7 %**), 73 ej täckta.
+- Ostört: 174/174 (**100 %**).
+- Stört: 348/421 (**82,7 %**).
+- 140/140 auktioner avslutade.
+- 0 krascher och 0 olagliga kontraktsbud.
+
+Dubblingstemat ligger fortfarande på 47,1 %. Granskningen av kvarvarande exempel visar att många luckor gäller **dubblerarens återbud efter partnerns färgsvar** eller **fortsättningen när motståndarna dubblar vår öppning**. Dessa fortsättningar är inte definierade i den aktuella UD-regeln; de ska därför inte fyllas med antaganden.
