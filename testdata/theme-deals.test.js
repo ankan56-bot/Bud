@@ -26,6 +26,13 @@ test("dataset contains exactly 140 valid deals, 10 for each of 14 themes", () =>
   }
 });
 
+test("manifest source metadata matches the generated dataset and correction engine", () => {
+  const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "temagivare_manifest.json"), "utf8"));
+  assert.equal(manifest.generation.rulesEngineVersion, stored.source.rulesEngineVersion);
+  assert.equal(manifest.generation.rulesEngineBlobSha, stored.source.rulesEngineBlobSha);
+  assert.equal(manifest.generation.generatorBlobSha, stored.source.generatorBlobSha);
+});
+
 test("all stored reference auctions pass the current structural validator", () => {
   const { Rattning } = loadRuntime();
   for (const deal of stored.deals) {
