@@ -6,7 +6,7 @@ on:
       - work/undisturbed-validation
   pull_request:
     branches:
-      - main
+      - work/hps-reverse-audit
 
 jobs:
   verify:
