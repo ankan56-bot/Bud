@@ -858,7 +858,7 @@ function assessReverse(shape, honors) {
 // Two side singletons after 1H-2H have no documented priority.
 {
   const item = assessOpenerRebid(
-    { C: 1, D: 1, H: 4, S: 7 },
+    { C: 1, D: 1, H: 6, S: 5 },
     { H: [14, 13], S: [14, 12] },
     '3C'
   );
