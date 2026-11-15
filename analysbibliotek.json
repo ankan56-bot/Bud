@@ -1,6 +1,6 @@
 {
-  "version": "0.5.4",
-  "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
+  "version": "0.5.5",
+  "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Grundsystemets Stenberg och återbud efter 1M–2M är uppdaterade enligt den aktuella rättningsmotorn.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -3582,6 +3582,642 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Cirka 6–10 hp, jämn hand, normalt utan trekortsstöd i hjärter"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T34_STENBERG_2NT",
+      "title": "Stenberg 2NT – öppnarens återbud",
+      "tags": [
+        "Stenberg",
+        "2NT",
+        "trumfstöd",
+        "singleton",
+        "utgång"
+      ],
+      "conditions": [
+        "Svarshanden har 13+ HTP och minst fyra korts stöd i öppningsfärgen.",
+        "2NT är Stenberg och utgångskrav.",
+        "Öppnarens återbud styrs av HTP, balans och singleton i sidofärg.",
+        "Void räknas inte som singleton; flera singletonfärger utan prioritet lämnas utan automatisk rekommendation."
+      ],
+      "root": "t34_h_n0",
+      "nodes": [
+        {
+          "id": "t34_h_n0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass"
+          ],
+          "meaning": "Öppnaren beskriver sin hand efter Stenberg 2NT.",
+          "analysis": "Svarshanden har visat 13+ HTP och minst fyrkortsstöd i hjärter. Öppnaren väljer återbud efter den egna handens HTP och fördelning. En enda singleton i sidofärg visas på 3-nivån. Utan singleton visar 15+ HTP 3♥; en balanserad hand med 12–14 hp visar 3NT; 20+ HTP går direkt till utgång. Void ska inte räknas som singleton.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t34_h_c",
+              "label": "Exakt en singleton i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t34_h_d",
+              "label": "Exakt en singleton i ruter"
+            },
+            {
+              "call": "3♠",
+              "next": "t34_h_s",
+              "label": "Exakt en singleton i spader"
+            },
+            {
+              "call": "3♥",
+              "next": "t34_h_3h",
+              "label": "15+ HTP utan singleton"
+            },
+            {
+              "call": "3NT",
+              "next": "t34_h_3nt",
+              "label": "12–14 hp, balanserad utan singleton"
+            },
+            {
+              "call": "4♥",
+              "next": "t34_h_4h",
+              "label": "20+ HTP – utgång"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med 12+ HTP; återbudet avgörs av singleton, balans och styrka",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_h_c",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar exakt en singleton i klöver.",
+          "analysis": "Öppnaren visar sin enda singleton i klöver. En void ska inte behandlas som singleton. Om handen har fler än en singleton saknas prioritet i systemunderlaget och detta bud ska inte väljas automatiskt.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i klöver",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_h_d",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ visar exakt en singleton i ruter.",
+          "analysis": "Öppnaren visar sin enda singleton i ruter. Flera singletonfärger saknar angiven prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i ruter",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_h_s",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar exakt en singleton i spader.",
+          "analysis": "Öppnaren visar sin enda singleton i spader. Flera singletonfärger saknar angiven prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i spader",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_h_3h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar 15+ HTP utan singleton.",
+          "analysis": "Öppnaren har minst 15 HTP och ingen singleton i sidofärg. Detta är ett styrkebesked inom Stenbergsekvensen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15+ HTP, ingen singleton i sidofärg",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_h_3nt",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT visar 12–14 hp och balanserad hand utan singleton.",
+          "analysis": "Öppnaren har en balanserad hand med 12–14 hp och ingen singleton. Sang visas i stället för att välja en godtycklig sidofärg.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad, ingen singleton",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_h_4h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "4♥ visar 20+ HTP – utgång.",
+          "analysis": "Öppnaren har minst 20 HTP och går direkt till utgång i den överenskomna trumffärgen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20+ HTP",
+            "responder": "13+ HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t34_s_n0",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass"
+          ],
+          "meaning": "Öppnaren beskriver sin hand efter Stenberg 2NT.",
+          "analysis": "Samma struktur gäller efter 1♠–2NT: exakt en singleton i sidofärg visas på 3-nivån; 15+ HTP utan singleton ger 3♠; 12–14 hp balanserad utan singleton ger 3NT; 20+ HTP ger 4♠. Flera singletonfärger saknar prioritet.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t34_s_c",
+              "label": "Exakt en singleton i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t34_s_d",
+              "label": "Exakt en singleton i ruter"
+            },
+            {
+              "call": "3♥",
+              "next": "t34_s_h",
+              "label": "Exakt en singleton i hjärter"
+            },
+            {
+              "call": "3♠",
+              "next": "t34_s_3s",
+              "label": "15+ HTP utan singleton"
+            },
+            {
+              "call": "3NT",
+              "next": "t34_s_3nt",
+              "label": "12–14 hp, balanserad utan singleton"
+            },
+            {
+              "call": "4♠",
+              "next": "t34_s_4s",
+              "label": "20+ HTP – utgång"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningshand med 12+ HTP; återbudet avgörs av singleton, balans och styrka",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t34_s_c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar exakt en singleton i klöver.",
+          "analysis": "Öppnaren visar sin enda singleton i klöver. Flera singletonfärger saknar angiven prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i klöver",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t34_s_d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ visar exakt en singleton i ruter.",
+          "analysis": "Öppnaren visar sin enda singleton i ruter. Flera singletonfärger saknar angiven prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i ruter",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t34_s_h",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar exakt en singleton i hjärter.",
+          "analysis": "Öppnaren visar sin enda singleton i hjärter. Flera singletonfärger saknar angiven prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i hjärter",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t34_s_3s",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar 15+ HTP utan singleton.",
+          "analysis": "Öppnaren har minst 15 HTP och ingen singleton i sidofärg.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15+ HTP, ingen singleton i sidofärg",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t34_s_3nt",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT visar 12–14 hp och balanserad hand utan singleton.",
+          "analysis": "Öppnaren har en balanserad hand med 12–14 hp och ingen singleton.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad, ingen singleton",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t34_s_4s",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "4♠ visar 20+ HTP – utgång.",
+          "analysis": "Öppnaren har minst 20 HTP och går direkt till utgång i den överenskomna trumffärgen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20+ HTP",
+            "responder": "13+ HTP, minst fyra spader"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T35_OPENER_REBID_AFTER_1M_2M",
+      "title": "Öppnarens återbud efter 1M–2M",
+      "tags": [
+        "1M–2M",
+        "återbud",
+        "trumfstöd",
+        "invit",
+        "utgång"
+      ],
+      "conditions": [
+        "Svarshanden har minst fyra korts stöd och 6–12 HTP efter öppning 1♥ eller 1♠.",
+        "17–19 HTP: singleton visas på 3-nivån; utan singleton bjuds 3M.",
+        "20+ HTP: 4M. Högst 16 HTP: pass.",
+        "Void räknas inte som singleton; flera singletonfärger utan prioritet lämnas ej täckta."
+      ],
+      "root": "t35_h_n0",
+      "nodes": [
+        {
+          "id": "t35_h_n0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass"
+          ],
+          "meaning": "Öppnaren väljer återbud efter den begränsade hjärterhöjningen.",
+          "analysis": "Svarshanden har visat 6–12 HTP och minst fyrkortsstöd. Öppnaren passar med högst 16 HTP. Med 17–19 HTP visas en enda singleton på 3-nivån, eller 3♥ om ingen singleton finns. Med 20+ HTP bjuds 4♥. Flera singletonfärger utan prioritet ger ingen automatisk rekommendation.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t35_h_c",
+              "label": "17–19 HTP och exakt en singleton i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t35_h_d",
+              "label": "17–19 HTP och exakt en singleton i ruter"
+            },
+            {
+              "call": "3♠",
+              "next": "t35_h_s",
+              "label": "17–19 HTP och exakt en singleton i spader"
+            },
+            {
+              "call": "3♥",
+              "next": "t35_h_3h",
+              "label": "17–19 HTP utan singleton"
+            },
+            {
+              "call": "4♥",
+              "next": "t35_h_4h",
+              "label": "20+ HTP – utgång"
+            },
+            {
+              "call": "Pass",
+              "next": "t35_h_p",
+              "label": "Högst 16 HTP – pass"
+            }
+          ],
+          "handProfile": {
+            "opener": "12–20+ HTP, återbud styrs av HTP och singleton",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_h_c",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar exakt en singleton i klöver.",
+          "analysis": "Öppnaren har 17–19 HTP och en enda singleton i klöver. Void räknas inte som singleton.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, exakt en klöversingel",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_h_d",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ visar exakt en singleton i ruter.",
+          "analysis": "Öppnaren har 17–19 HTP och en enda singleton i ruter.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, exakt en rutertsingel",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_h_s",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar exakt en singleton i spader.",
+          "analysis": "Öppnaren har 17–19 HTP och en enda singleton i spader.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, exakt en spadersingel",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_h_3h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar 17–19 HTP utan singleton.",
+          "analysis": "Öppnaren inviterar till 4♥ med extra styrka men utan singelton i sidofärg.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, ingen singleton",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_h_4h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "4♥ visar 20+ HTP och går direkt till utgång.",
+          "analysis": "Öppnaren bedömer att styrkan räcker för utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20+ HTP",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_h_p",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♥",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Pass visar högst 16 HTP.",
+          "analysis": "Öppnaren har inte tillräckliga HTP för invit eller utgång och stannar i 2♥.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Högst 16 HTP",
+            "responder": "6–12 HTP, minst fyra hjärter"
+          }
+        },
+        {
+          "id": "t35_s_n0",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass"
+          ],
+          "meaning": "Öppnaren väljer återbud efter den begränsade spaderhöjningen.",
+          "analysis": "Samma principer gäller efter 1♠–2♠: högst 16 HTP ger pass; 17–19 HTP visar en enda singleton på 3-nivån eller 3♠ utan singleton; 20+ HTP ger 4♠. Flera singletonfärger saknar prioritet.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t35_s_c",
+              "label": "17–19 HTP och exakt en singleton i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t35_s_d",
+              "label": "17–19 HTP och exakt en singleton i ruter"
+            },
+            {
+              "call": "3♥",
+              "next": "t35_s_h",
+              "label": "17–19 HTP och exakt en singleton i hjärter"
+            },
+            {
+              "call": "3♠",
+              "next": "t35_s_3s",
+              "label": "17–19 HTP utan singleton"
+            },
+            {
+              "call": "4♠",
+              "next": "t35_s_4s",
+              "label": "20+ HTP – utgång"
+            },
+            {
+              "call": "Pass",
+              "next": "t35_s_p",
+              "label": "Högst 16 HTP – pass"
+            }
+          ],
+          "handProfile": {
+            "opener": "12–20+ HTP, återbud styrs av HTP och singleton",
+            "responder": "6–12 HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t35_s_c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar exakt en singleton i klöver.",
+          "analysis": "Öppnaren har 17–19 HTP och en enda singleton i klöver.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, exakt en klöversingel",
+            "responder": "6–12 HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t35_s_d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ visar exakt en singleton i ruter.",
+          "analysis": "Öppnaren har 17–19 HTP och en enda singleton i ruter.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, exakt en rutertsingel",
+            "responder": "6–12 HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t35_s_h",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar exakt en singleton i hjärter.",
+          "analysis": "Öppnaren har 17–19 HTP och en enda singleton i hjärter.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, exakt en hjärtersingel",
+            "responder": "6–12 HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t35_s_3s",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar 17–19 HTP utan singleton.",
+          "analysis": "Öppnaren inviterar till 4♠ med extra styrka men utan singleton i sidofärg.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17–19 HTP, ingen singleton",
+            "responder": "6–12 HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t35_s_4s",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "4♠ visar 20+ HTP och går direkt till utgång.",
+          "analysis": "Öppnaren bedömer att styrkan räcker för utgång.",
+          "branches": [],
+          "handProfile": {
+            "opener": "20+ HTP",
+            "responder": "6–12 HTP, minst fyra spader"
+          }
+        },
+        {
+          "id": "t35_s_p",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♠",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Pass visar högst 16 HTP.",
+          "analysis": "Öppnaren har inte tillräckliga HTP för invit eller utgång och stannar i 2♠.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Högst 16 HTP",
+            "responder": "6–12 HTP, minst fyra spader"
           }
         }
       ]
