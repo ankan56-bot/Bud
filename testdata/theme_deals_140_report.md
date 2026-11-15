@@ -6,7 +6,7 @@
 - Samtliga givare har 52 unika kort och 13 kort per hand.
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
-- Rättningsmotor: version 6.6.
+- Rättningsmotor: version 6.7.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`.
@@ -54,18 +54,20 @@ Samtliga 47 ej täckta bedömningar är pass i den genererade referensauktionen.
 | Orsak enligt rättningsmotorn | Antal |
 |---|---:|
 | Konkurrensbudgivning / motståndarna ingriper | 26 |
-| Budsekvens utanför dokumenterade turordnade mönster | 10 |
+| Öppnarens återbud efter partnerns pass och motståndarnas inkliv | 10 |
 | Dokumentet anger inte budet för handen | 9 |
 | Svarshandens andra bud efter 1 i färg | 1 |
 | Handtyp eller fortsättning kan inte avgöras säkert | 1 |
 
-Den största gruppen gäller konkurrensbudgivning där motståndarna ingriper. Därefter kommer sekvenser som inte följer dokumenterade turordnade mönster och lägen där dokumentet inte specificerar budet för handen. Exakta budsekvenser, positioner och fyra händer finns i `testdata/uncovered_cases_47.json`.
+Den största gruppen gäller konkurrensbudgivning där motståndarna ingriper. Därefter kommer öppnarens återbud efter partnerns pass i konkurrensbudgivning och lägen där dokumentet inte specificerar budet för handen. Exakta budsekvenser, positioner och fyra händer finns i `testdata/uncovered_cases_47.json`.
 
 ## Körning
 
 ```bash
 node testdata/generate-theme-deals.js
 node --test testdata/theme-deals.test.js
+node --test testdata/auction-dispatch.test.js
+node --test testdata/analysis-library-match.test.js
 ```
 
 Tester kontrollerar 140 givare, 10 per tema, kortintegritet, strukturella auktioner och att fasta seeds återskapar samma händer och budsekvenser.
