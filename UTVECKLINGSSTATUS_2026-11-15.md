@@ -232,7 +232,7 @@ Den tidigare inventeringen och 47-fallsanalysen ovan är historiska ögonblicksb
 - Det statiska DDS-testet passerade i GitHub Actions körning `43662387692`.
 
 
-## Källstyrd regeländring – 2026-11-15 (engine 7.2)
+## Källstyrd regeländring – 2026-11-15 (engine 7.3)
 
 Originaldokumentet `Nordisk standard, 2012-08-22` (8 sidor, tidigare uppladdat i ChatGPT Library) har nu lästs. Källgranskningen finns i `testdata/system-rule-source-audit_2026-11-15.md`.
 
@@ -248,7 +248,7 @@ Originaldokumentet `Nordisk standard, 2012-08-22` (8 sidor, tidigare uppladdat i
 Andra inklivsnivåer är uttryckligen avgränsade och får inte automatiskt använda samma tabell. Hoppande 2-högfärgsinkliv hänvisas i källan till svag-två-strukturen, men gränsen mellan invit och spärrhöjning är inte numeriskt definierad. 2-lägesinkliv i lågfärg, hoppande 3-nivåinkliv och 2NT-inkliv är därför fortsatt ej täckta.
 
 **Regression:**
-- Nya testfiler: `testdata/overcall-responses.test.js` och `testdata/unresolved-system-gaps.test.js`.
+- Nya testfiler: `testdata/overcall-responses.test.js` och `testdata/unresolved-system-gaps.test.js`; de åtta återbuden testas fortsatt som ej täckta, och 18+-betydelsen utan stöd testas separat.
 - Verifierar stöd 3/4/5 kort, NT-intervall, ny färg på 1-/2-nivå, hoppande ny färg, överbud och att andra inklivsnivåer inte ärver tabellen.
 - Exakt tidigare lucka `inkliv-05`: 8 hp och fem hjärter efter partnerns 1♥ ger nu 4♥.
 - Ett tidigare för lågt stödbud med 4 hp och fyrkortsstöd har tagits bort; källan anger 6–9 hp.
@@ -260,10 +260,10 @@ Andra inklivsnivåer är uttryckligen avgränsade och får inte automatiskt anv�
 - `testdata/theme_deals_140.json` är regenererad med engine 7.1; generatorn registrerar nu exakt Git-blob-hash för den använda motorn.
 - `testdata/theme_deals_140_report.md` uppdaterad.
 
-GitHub Actions körning `43664859992` godkände samtliga steg: deterministisk generering, datasettest, auktion-dispatch, ny inklivstestsvit, analysbibliotek, strukturerade handvillkor/profiler, spelarroller, seat-isolering och DDS-paketering.
+GitHub Actions körning `43665028981` godkände samtliga steg: deterministisk generering, datasettest, auktion-dispatch, ny inklivstestsvit, analysbibliotek, strukturerade handvillkor/profiler, spelarroller, seat-isolering och DDS-paketering.
 
 **Fortfarande ej ändrat:**
-- Åtta återbud från den som gjort upplysningsdubblingen efter partnerns svar. Sida 8 ger dubblarens grundstyrka och partnerns första svar, men ingen återbudsstruktur.
+- Åtta återbud från den som gjort upplysningsdubblingen efter partnerns svar. Sida 8 ger dubblarens grundstyrka och partnerns första svar, men ingen återbudsstruktur för de aktuella händerna. Motorn visar nu den separata betydelsen 18+ hp när dubblaren saknar stöd och återbjuder egen färg/NT, men väljer inget bud.
 - Öppnarens tredje bud efter 1♣–1♠–2♣–2NT. Det närliggande exemplet på sida 3 gäller en annan sekvens och har dessutom en motsägelsefull förklaring för 3♥.
 - DDS har inte använts som budfacit.
 
