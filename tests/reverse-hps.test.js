@@ -83,6 +83,15 @@ function assessMajorRaise(shape, honors, call) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
+function assessOpeningOvercall(opponentOpen, shape, honors, call) {
+  const hands = makeDealFor('S', shape, honors, 'H');
+  const bids = [
+    { s: 'E', c: opponentOpen },
+    { s: 'S', c: call }
+  ];
+  return Rattning.nodeFor({ hands, dealer: 'E', bids }, 1);
+}
+
 function assessTakeoutDoubleResponse(opponentOpen, shape, honors, call) {
   const hands = makeDealFor('S', shape, honors, 'H');
   const bids = [
@@ -604,4 +613,102 @@ function assessReverse(shape, honors) {
   assert.equal(item.bedomning, 'rätt');
 }
 
-console.log('Bridge bidding regression tests passed (38 cases).');
+ 
+// Simple overcall at the 1-level: 10+ hp and a good 5+ suit.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 3, D: 3, H: 2, S: 5 },
+    { S: [14, 13], C: [12], D: [11] },
+    '1S'
+  );
+  assert.equal(node.exp, '1S');
+}
+
+// Simple overcall at the 2-level requires 12+ hp and 6+ cards.
+{
+  const node = assessOpeningOvercall(
+    '1S',
+    { C: 2, D: 6, H: 3, S: 2 },
+    { D: [14, 13, 12], H: [11], C: [11] },
+    '2D'
+  );
+  assert.equal(node.exp, '2D');
+}
+{
+  const node = assessOpeningOvercall(
+    '1S',
+    { C: 2, D: 5, H: 3, S: 3 },
+    { D: [14, 13], H: [12], C: [11], S: [11] },
+    'P'
+  );
+  assert.equal(node.exp, 'P');
+}
+
+// 1-level overcall with only 9 hp is below the 10 hp threshold.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 3, D: 3, H: 2, S: 5 },
+    { S: [14, 13], C: [12] },
+    'P'
+  );
+  assert.equal(node.exp, 'P');
+}
+
+// Takeout double: 12+ hp and at least 3 cards in every unbid suit.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { C: [14, 13], H: [13], S: [12] },
+    'X'
+  );
+  assert.equal(node.exp, 'X');
+}
+
+// 17+ hp is a double regardless of distribution, even with a 5-card suit.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 2, D: 3, H: 3, S: 5 },
+    { S: [14, 13], C: [14], D: [13], H: [12], C: [11] },
+    'X'
+  );
+  assert.equal(node.exp, 'X');
+}
+
+// 1NT overcall: 15-17 hp, balanced and with a stopper.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14, 13], S: [14, 13], H: [11] },
+    '1N'
+  );
+  assert.equal(node.exp, '1N');
+}
+
+// Against a 2-level preempt, balanced 16-18 hp is 2NT.
+{
+  const node = assessOpeningOvercall(
+    '2H',
+    { C: 4, D: 3, H: 4, S: 2 },
+    { H: [14, 13], C: [14, 13], D: [12] },
+    '2N'
+  );
+  assert.equal(node.exp, '2N');
+}
+
+// Against a 2-level preempt, 15 hp without a takeout shape is not 2NT.
+{
+  const node = assessOpeningOvercall(
+    '2H',
+    { C: 4, D: 3, H: 4, S: 2 },
+    { H: [14, 13], C: [14, 13], D: [11] },
+    'P'
+  );
+  assert.equal(node.exp, 'P');
+}
+
+console.log('Bridge bidding regression tests passed (47 cases).');
