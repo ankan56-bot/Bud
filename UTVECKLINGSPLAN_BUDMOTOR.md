@@ -178,13 +178,16 @@ Analysbibliotekets T29–T33 har nu 25 bladnoder med `handConditions` schema ver
 
 ## Utökning till övriga analysbiblioteket – 33 träd
 
-Analysbiblioteket är version 0.5.9. De befintliga `handProfile`-beskrivningarna har strukturerats för samtliga 114 noder som redan hade sådana profiler. Det ger 228 rollprofiler (öppnare och svarshand där de finns) under `handConditionsByRole`.
+Analysbiblioteket är version 0.5.9. De befintliga `handProfile`-beskrivningarna har strukturerats för samtliga 119 noder som redan hade sådana profiler. Det ger 238 rollprofiler (öppnare och svarshand där de finns) under `handConditionsByRole`.
 
-- 134 rollprofiler kan kontrolleras helt maskinellt utifrån de uttryckliga numeriska/fördelningsvillkor som kunde läsas ut.
-- 94 rollprofiler innehåller dessutom kvalitativa, systemberoende eller ofullständigt definierade villkor och ger därför `manual_review` i stället för ett säkert automatiskt ja/nej.
+- 137 rollprofiler kan kontrolleras helt maskinellt utifrån de uttryckliga numeriska/fördelningsvillkor som kunde läsas ut.
+- 101 rollprofiler innehåller dessutom kvalitativa, systemberoende eller ofullständigt definierade villkor och ger därför `manual_review` i stället för ett säkert automatiskt ja/nej.
 - Profilerna är märkta `authority: "analysis_only"`; de blir inte grundsystemregler.
-- 11 noder saknar ursprunglig `handProfile`-beskrivning och har lämnats orörda. Ingen handinformation har hittats på.
+- Sex noder i T01 saknar handprofil och har lämnats orörda eftersom trädet bygger på Jacoby 2NT och är oförenligt med den fastställda Stenberg 2NT-överenskommelsen. T02, T03 och T05 har nu fått profiler direkt från sina uttryckliga trädvillkor. Ingen handinformation har hittats på.
 
 Analysmotorn 1.0.6 väljer nu rollprofil efter vem som faktiskt avgav nodens sista bud: första budgivaren i sekvensen är `opener`, dennes partner är `responder`. Den jämför passinkluderande nodsekvenser med rätt antal icke-passbud när den hämtar den faktiska budgivarens hand. Kvalitativa alternativ, exempelvis "16–17 hp eller motsvarande goda spelvärden", kan inte felaktigt underkännas automatiskt: vid sådana profiler redovisas eventuella numeriska avvikelser men resultatet blir `manual_review`.
 
 Nya regressionstester finns i `testdata/hand-profile-conditions.test.js` och körs i CI.
+
+
+**Tillägg för T02, T03 och T05:** de fem noderna i dessa tre kompatibla träd har nu fått handprofiler direkt från trädens befintliga villkor. Ungefärliga intervall (t.ex. "cirka" och "normalt") är märkta för manuell bedömning. T01 har inte kompletterats eftersom dess Jacoby 2NT-konvention strider mot parets fastställda Stenberg 2NT.
