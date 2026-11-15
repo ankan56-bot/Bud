@@ -76,4 +76,7 @@ test("18+ no-support takeout-double rebid meaning is explained without choosing 
   const result = Rattning.nodeFor({ hands, dealer: "W", bids }, 5);
   assert.equal(result?.exp || null, null);
   assert.match(result.means("2N") || "", /18\+ hp/);
+  assert.match(result.means("2D") || "", /egen färg.*18\+ hp/i);
+  assert.equal(result.means("2H"), null, "cannot label opponent's opening suit as own suit");
+  assert.equal(result.means("2C"), null, "the explanation must be for a suit other than partner's response");
 });
