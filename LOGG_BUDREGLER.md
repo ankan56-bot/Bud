@@ -418,10 +418,10 @@ Tio nya regressionstester täcker stödhöjningar, 1NT/2NT/3NT, ny färg på 1- 
 
 ### 140-givarsbaslinje efter ändringen
 
-- Täckning: 516/590 turer (**87,6 %**), tidigare 515/590 (**87,3 %**).
+- Täckning: 522/596 turer (**87,6 %**), tidigare 515/590 (**87,3 %**).
 - Ej täckta turer: 74, tidigare 75.
 - Ostört: fortsatt 100 %.
-- Stört: förbättrad täckning i inklivstemat från 60,9 % till 83,3 %.
+- Stört: 348/422 turer täckta (**82,5 %**); inklivstemat förbättrades från 60,9 % till 83,3 %.
 - 0 krascher och 0 olagliga kontraktsbud.
 
 Baslinjefilen har uppdaterats med aktuell motorversion och samtliga kvarvarande luckor. Att totalprocenten bara ökar marginellt beror på att nya korrekta svar förändrar auktionernas fortsättning och därmed blottlägger andra ännu ej beskrivna konkurrenssekvenser. De nya buden är inte tillagda enbart för att höja täckningsprocenten; de följer systemunderlaget.
