@@ -71,7 +71,9 @@ function findSupplementary(logic,bids,hands,seat){
  const entries=logic&&Array.isArray(logic.entries)?logic.entries:[];
  const q=normalizeSequence((bids||[]).map(b=>callText(b.c)));
  if(!q.length)return [];
- const next=seat||nextSeat((bids||[])[bids.length-1].s);
+ const expectedNext=nextSeat((bids||[])[bids.length-1].s);
+ const next=seat||expectedNext;
+ if(next!==expectedNext)return [];
  return entries.filter(entry=>{
   const prefix=normalizeSequence(entry.auctionPrefix||[]);
   if(prefix.length!==q.length||!prefix.every((v,i)=>v===q[i]))return false;
@@ -85,7 +87,7 @@ function findSupplementary(logic,bids,hands,seat){
   rationale:entry.rationale,alternatives:entry.alternatives||[],
   confidence:entry.confidence,approvalStatus:entry.approvalStatus,
   systemCoverage:entry.systemCoverage,relationshipToSystem:entry.relationshipToSystem,
-  provenance:entry.provenance
+  provenance:entry.provenance,notes:entry.notes||[]
  }));
 }
 async function analyzeSupplementary(st,seat){
