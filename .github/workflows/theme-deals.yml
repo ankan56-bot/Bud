@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: theme-deals-${{ github.ref }}
+  group: theme-deals-${{ github.ref }}-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
