@@ -122,3 +122,13 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - Kodgranskningen visar att `nodeForRaw()` har begränsad hantering av `oppBefore` och `oppAfter`; efter konkurrensbud går många legitima fortsättningar till generisk ej täckt. Det är en täckningsbegränsning, inte belägg för att pass är fel.
 - Giv 13 i `LOGG_BUDREGLER.md` är ett närliggande exempel (1♠–X–2♠), men tillgängligt underlag fastställer inte ett helt system för svar/återbud efter dubbling.
 - Ingen budregel eller rättningskod ändrades. Nästa steg är att få fram/återfinna uttryckligt systemunderlag för dessa separata situationer innan implementation.
+
+
+## Fullständig första granskning av 47 ej täckta positioner
+
+- 26 konkurrenspositioner: `testdata/competition_audit_26.md`.
+- 10 sekvenspositioner: `testdata/sequence_audit_10.md`. Samtliga är pass efter partnerns pass; koden filtrerar bort pass ur listan över egna bud och ger därför en missvisande diagnos om turordning. Detta visar inte om pass är korrekt.
+- 9 handspecifika positioner: `testdata/hand_gaps_9.md`. De gäller svar efter partnerns färginkliv/hoppinkliv eller 2NT-inkliv; systemet anger inklivens krav men inte tillräckligt om svaren.
+- 2 övriga positioner: `testdata/final_gaps_2.md`. Den första felklassificeras som svarshandens andra bud trots att det är öppnarens tredje bud; den andra gäller svar efter öppnarens 1♠–2♠–3♥.
+- Totalt: 47/47 genomgångna på sekvensnivå, handens HCP och fördelning samt kodens dispatch. Detta är inte en oberoende expertgranskning av bästa bud eller DDS-facit.
+- Ingen grundsystemregel, kompletterande regel eller rättningskod ändrades. `main` är fortfarande orörd.
