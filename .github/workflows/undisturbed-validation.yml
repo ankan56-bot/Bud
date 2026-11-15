@@ -30,6 +30,8 @@ jobs:
         run: node tests/ostord-100.test.js
       - name: Run independent second 100-deal undisturbed stress test
         run: node tests/ostord-100-second.test.js
+      - name: Run third independent 200-deal undisturbed stress test
+        run: node tests/ostord-400.test.js
       - name: Upload undisturbed verification reports
         uses: actions/upload-artifact@v4
         with:
@@ -38,8 +40,9 @@ jobs:
             testdata/ostord_validation_latest.json
             testdata/ostord_100_validation_latest.json
             testdata/ostord_200_validation_latest.json
+            testdata/ostord_400_validation_latest.json
 
-  stress-100:
+  stress-400:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -56,7 +59,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ostord-200-validation
+          name: ostord-400-validation
           path: |
             testdata/ostord_100_validation_latest.json
             testdata/ostord_200_validation_latest.json
