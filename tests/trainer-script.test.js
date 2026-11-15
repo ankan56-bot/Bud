@@ -36,5 +36,5 @@ test("solo mode assigns exactly one human and makes the default seat explicit", 
 
 test("the selected human seat cannot be changed mid-auction in solo mode", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  assert.match(html, /function setSeat\(s\)\{if\(s===null&&state&&state\.hands&&!ended\(state\)&&\(state\.humanSeats\|\|\['N','S'\]\)\.length===1\)\{alert\('Du kan inte byta spelplats mitt i en solobudgivning/);
+  assert.match(html, /function setSeat\\(s\\)\\{if\\(s===null&&state&&state\\.hands&&\\(state\\.humanSeats\\|\\|\\['N','S'\\]\\)\\.length===1\\)\\{alert\\('Du kan inte byta spelplats under en soloträningsgiv/);
 });
