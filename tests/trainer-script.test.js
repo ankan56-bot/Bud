@@ -160,3 +160,64 @@ test("room actions are accepted only for the exact auction state the player acte
   assert.equal(context.sameRoomState(stateA, null), false);
   assert.match(html, /sameRoomState\(m\.baseState,pack\(state\)\)/);
 });
+
+
+test("room reconnect rebuilds the same deterministic bot bids from the seed and human calls", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function pack(");
+  const end = html.indexOf("\nfunction adopt", start);
+  assert.ok(start >= 0 && end > start, "pack/build reconstruction functions should exist");
+  const source = html.slice(start, end);
+  function reconstruct() {
+    const context = {
+      isBot: (seat, st) => !(st.humanSeats || ["N", "S"]).includes(seat),
+      newDeal: (no, mode, focus, seed, humanSeats) => ({
+        no, mode, focus, seed, humanSeats: humanSeats || ["N", "S"],
+        bids: [], hands: { N: [], E: [], S: [], W: [] }, dealer: "N"
+      }),
+      advance: st => {
+        while (st.bids.length < 8 && !((["N", "E", "S", "W"])[st.bids.length] === "S" ||
+                 (["N", "E", "S", "W"])[st.bids.length] === "N")) {
+          const seat = ["N", "E", "S", "W"][st.bids.length];
+          if ((st.humanSeats || ["N", "S"]).includes(seat)) break;
+          st.bids.push({ s: seat, c: "P" });
+        }
+        return st;
+      },
+      ended: st => st.bids.length >= 8,
+      turn: st => ["N", "E", "S", "W"][st.bids.length % 4],
+      legal: (st, call, seat) => ["N", "E", "S", "W"][st.bids.length % 4] === seat && call.length > 0
+    };
+    vm.runInNewContext(source, context);
+    return context;
+  }
+  const ctx = reconstruct();
+  const snapshot = { no: 7, seed: 12345, mode: "stord", focus: "alla",
+    humanSeats: ["N", "S"], h: ["N1NT", "S2NT"], rep: 0 };
+  const first = ctx.build(snapshot);
+  const second = ctx.build(snapshot);
+  assert.deepEqual(JSON.parse(JSON.stringify(first.bids)), JSON.parse(JSON.stringify(second.bids)));
+  assert.deepEqual(first.bids.filter(b => b.c === "P").map(b => b.s), ["E", "W", "E", "W"]);
+  assert.deepEqual(JSON.parse(JSON.stringify(ctx.pack(first).h)), snapshot.h);
+});
+
+test("room coordinator election is deterministic and fails over after stale presence expires", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function roomCoordinator()");
+  const end = html.indexOf("\nfunction isFreshRoomAction", start);
+  assert.ok(start >= 0 && end > start, "coordinator election helper should exist");
+  const source = html.slice(start, end);
+  const now = 1_800_000_000_000;
+  const context = { Date: { now: () => now }, playerId: "c",
+    roomPlayers: {
+      c: { at: now, seat: "S" },
+      a: { at: now - 10_000, seat: "N" },
+      b: { at: now - 20_000, seat: "E" }
+    } };
+  vm.runInNewContext(source, context);
+  assert.equal(context.roomCoordinator(), "a", "lowest active player ID coordinates");
+  context.roomPlayers.a.at = now - 46_000;
+  assert.equal(context.roomCoordinator(), "b", "next active player takes over after timeout");
+  context.roomPlayers.b.at = now - 46_000;
+  assert.equal(context.roomCoordinator(), "c", "remaining client becomes coordinator");
+});
