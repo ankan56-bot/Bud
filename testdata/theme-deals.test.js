@@ -251,7 +251,7 @@ test("Stenberg opener shows 15+ HTP without a singleton", () => {
   assert.ok(Rattning.H(south).htp("H") >= 13, "the Stenberg response must itself meet 13+ HTP");
   assert.equal(node.conv, "Stenberg");
   assert.equal(node.exp, "3H");
-  assert.match(node.why, /15\+ stp/);
+  assert.match(node.why, /15\+ htp/);
   assert.match(node.means("3H"), /15\+ htp/);
   assert.match(node.means("3N"), /12-14 hp/);
 });
