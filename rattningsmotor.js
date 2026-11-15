@@ -266,14 +266,16 @@ var Rattning = (function(){
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
   }
-  function transfer2(h,M){
-    var L=h.L,hp=h.hp,exp,why,alt=[];
+  function transfer2(h,M,openerCards){
+    var L=h.L,hp=h.hp,exp,why,alt=[],opener=openerCards?H(openerCards):null;
+    var jointHp=hp+(opener?opener.hp:0),fit=opener?L[M]+opener.L[M]:0;
+    var fitPoints=opener&&fit>=8?partnershipPoints(h,opener,M):0;
     var means=function(c){
       if(c==='P')return '0-8 hp med minst 5 kort i överföringsfärgen: svagt slutbud.';
-      if(c==='2N')return '9 hp och exakt 5 kort i överföringsfärgen: invit.';
-      if(c==='3'+M)return '9 hp och minst 6 kort i överföringsfärgen: invit.';
-      if(c==='3N')return 'Välj utgång med jämn hand och exakt 5-korts '+SYM[M]+'.';
-      if(c==='4'+M)return '10–15 hp och minst 6 kort i överföringsfärgen: utgång i högfärgen.';
+      if(c==='2N')return 'Invit med exakt fem kort i överföringsfärgen och 22–25 gemensamma honnörspoäng.';
+      if(c==='3'+M)return 'Invit med minst sex kort i överföringsfärgen och 22–25 gemensamma spelpoäng i minst åtta trumfkort.';
+      if(c==='3N')return 'Utgång i sang med jämn hand, exakt fem kort i överföringsfärgen och minst 26 gemensamma honnörspoäng.';
+      if(c==='4'+M)return 'Utgång i högfärgen med minst åtta trumfkort och 26 gemensamma spelpoäng.';
       if(c==='4C'||c==='4D')return 'Kontrollbud och slamintresse i '+SYM[M]+'.';
       if(c==='4N')return 'Essfråga (RKC) med '+SYM[M]+' som trumf.';
       if(M==='H'&&c==='2S')return '6+ hp, minst 5♥ och 4+♠: rondkrav.';
@@ -281,12 +283,18 @@ var Rattning = (function(){
       if(M==='S'&&c==='3H')return 'Invit med minst 5-5 i båda högfärgerna.';
       return null};
     if(hp<=8){exp='P';why=hp+' hp och minst 5 '+SYM[M]+': pass efter fullföljd överföring (0-8 hp).'}
-    else if(hp<=9){if(L[M]>=6){exp='3'+M;why='8-9 hp och minst 6 '+SYM[M]+': invit med 3 i högfärgen.'}else{exp='2N';why='8-9 hp och exakt 5 '+SYM[M]+': invit med 2NT.'}}
+    else if(hp<=9){if(L[M]>=6){exp='3'+M;why='9 hp och minst 6 '+SYM[M]+': invit med 3 i högfärgen.'}else{exp='2N';why='9 hp och exakt 5 '+SYM[M]+': invit med 2NT.'}}
     else if(hp<=15){
-      if(L[M]>=6){exp='4'+M;why='10-15 hp och minst 6 '+SYM[M]+': utgång 4'+SYM[M]+'.'}
-      else{
-        if(h.bal){exp='3N';why='Välj utgång med jämn hand och exakt 5-korts '+SYM[M]+'.';}
-        else{return NC('3NT kräver jämn hand och exakt 5-korts högfärg. Med obalanserad hand, överväg 4'+M+'.', means, 'överföring');}
+      if(L[M]>=6){
+        if(fit>=8&&fitPoints>=26){exp='4'+M;why=fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';}
+        else if(fit>=8&&fitPoints>=22){exp='3'+M;why=fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: invit med '+txt(exp)+'.';}
+        else{return NC('Överföringshand med 6+ kort men gemensamma spelpoäng räcker inte för en säker nivå; exakt fortsättning är inte definierad.',means,'överföring');}
+      }else{
+        if(h.bal){
+          if(jointHp>=26){exp='3N';why=jointHp+' gemensamma honnörspoäng och jämn hand: utgång 3NT.';}
+          else if(jointHp>=22){exp='2N';why=jointHp+' gemensamma honnörspoäng: invit 2NT efter överföringen.';}
+          else{exp='P';why=jointHp+' gemensamma honnörspoäng: pass.';}
+        }else{return NC('3NT kräver jämn hand och exakt fem kort i överföringsfärgen. Obalanserad femkortshand saknar fastställd fortsättning.',means,'överföring');}
       }
     }
     else{
@@ -1284,8 +1292,8 @@ var Rattning = (function(){
       if(opener&&d===2)return ntOpener(h,k,ours[1].c,st.hands[pt]);
       if(!opener&&d===3&&!k){var m1=ours[1].c,rep=ours[2].c;
         if(m1==='2C')return stay2(h,rep,st.hands[pt]);
-        if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
-        if(m1==='2H'&&rep==='2S')return transfer2(h,'S');
+        if(m1==='2D'&&rep==='2H')return transfer2(h,'H',st.hands[pt]);
+        if(m1==='2H'&&rep==='2S')return transfer2(h,'S',st.hands[pt]);
         if(m1==='2S'&&rep==='2N'){var mc=h.L.C>=h.L.D?'3C':'3D';return {exp:mc,alt:[],why:'Bjud din långa lågfärg på 3-nivå som slutbud.',means:T({'3C':'Slutbud i ♣.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
         if(m1==='2S'&&rep==='3C'){var e=h.L.C>=h.L.D?'P':'3D';return {exp:e,alt:[],why:e==='P'?'Du har ♣ som lågfärg: pass.':'Du har ♦ som lågfärg: 3♦.',means:T({P:'Slutbud: pass.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
       }
