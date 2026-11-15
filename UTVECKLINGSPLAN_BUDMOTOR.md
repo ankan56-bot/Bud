@@ -135,3 +135,14 @@ Fördjupningen av dubblingsfallen finns i `testdata/uncovered_analysis_47.md`. A
 ## Konkurrensgranskning – 26 positioner
 
 `testdata/competition_audit_26.md` innehåller den handvisa genomgången av de 26 konkurrenspositionerna. Den identifierar den tekniska luckan i `nodeForRaw()` (`oppBefore`/`oppAfter`) och skiljer mellan flera motståndarbud, svar efter dubbling av vår öppning, dubblerarens återbud och senare konkurrens. Giv 13 i `LOGG_BUDREGLER.md` är ett närliggande konkret exempel på 1♠–X–2♠, men inte tillräckligt för att härleda ett fullständigt regelträd. Inga grundregler eller motorgrenar har ändrats; saknade regler ska fortsatt markeras ej täckta.
+
+
+## Fullständig granskning av de 47 ej täckta positionerna
+
+Den första manuella genomgången är nu dokumenterad i fyra separata rapporter:
+- `testdata/competition_audit_26.md` – 26 konkurrenspositioner och `oppBefore`/`oppAfter`-dispatch.
+- `testdata/sequence_audit_10.md` – 10 sekvensluckor där partnern har passat; motorns turordningsdiagnos är missvisande eftersom pass filtreras bort från `ours`.
+- `testdata/hand_gaps_9.md` – 9 svarpositioner efter partnerns inkliv/hoppande inkliv eller 2NT-inkliv; svarssystem saknas i granskade texter.
+- `testdata/final_gaps_2.md` – öppnarens tredje bud efter 1♣–1♠–2♣–2NT och svar efter 1♠–2♠–3♥.
+
+Ingen av rapporterna inför nya systemregler. De skiljer mellan teknisk dispatchlucka, missvisande diagnostext och faktiskt saknat systemunderlag. Nästa steg är att återfinna den exakta auktoritativa systemtexten för svar efter inkliv, konkurrenssekvenser och öppnarens fortsättningar innan avgränsade kodändringar görs.
