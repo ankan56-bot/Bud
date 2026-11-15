@@ -549,8 +549,8 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "2NT är en invit till 3NT.",
-          "analysis": "Svarshanden har cirka 8–9 hp och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars pass.",
+          "analysis": "Svarshanden har cirka 8–9 hp och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
           "branches": [
             {
               "call": "Pass",
@@ -1026,7 +1026,7 @@
             "3♥"
           ],
           "meaning": "3♥ är en invit till 4♥ med hjärterstöd.",
-          "analysis": "Svarshanden har cirka 8–9 hp och fyrkortshjärter. Öppnaren har visat fyrkortshjärter och därmed finns minst åtta trumf tillsammans. Svarshanden inviterar till utgång i stället för att välja 2NT, eftersom hjärterfitten gör färgkontraktet mer attraktivt. Öppnaren accepterar med maximum och lämplig hand, annars passar.",
+          "analysis": "Svarshanden har cirka 8–9 hp och fyrkortshjärter. Öppnaren har visat fyrkortshjärter och därmed finns minst åtta trumf tillsammans. Svarshanden inviterar till utgång i stället för att välja 2NT, eftersom hjärterfitten gör färgkontraktet mer attraktivt. Öppnaren accepterar med maximum och lämplig hand, annars passar. Öppnaren accepterar endast när paret har minst 26 gemensamma spelpoäng i den etablerade 8-kortsfitten; annars pass.",
           "branches": [
             {
               "call": "Pass",
@@ -1057,11 +1057,11 @@
             "Pass",
             "4♥"
           ],
-          "meaning": "Öppnaren accepterar invitbudet och går till utgång.",
+          "meaning": "4M – accepterar inviten när paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Svarshanden har visat en invit med hjärterstöd efter Stayman. Öppnaren har maximum inom 1NT-intervallet och tillräckligt bra stöd eller sidovärden för att acceptera. Med minimum hade öppnaren passat på 3♥.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp, minst fyra hjärter; accepterar invit med 4♥.",
+            "opener": "Minst fyra kort i trumffärgen; paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
             "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för 3♥-invit."
           }
         }
@@ -1255,8 +1255,8 @@
       ],
       "conditions": [
         "1NT = 15–17 hp, jämn fördelning.",
-        "Svarshandens 2NT är en balanserad invit; normalt 8–9 hp eller 10+ när gemensamma honnörspoäng är under 26.",
-        "Öppnaren passar med 15 hp och accepterar med 16–17 hp."
+        "Svarshandens 2NT är en balanserad invit.",
+        "Öppnaren accepterar med 3NT endast om de gemensamma honnörspoängen når minst 26; annars pass."
       ],
       "root": "t17_n0",
       "nodes": [
@@ -1269,12 +1269,12 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "Öppnaren accepterar inviten till 3NT.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars passar öppnaren.",
           "analysis": "Öppnaren har 16–17 hp och jämn fördelning. Svarshanden har cirka 8–9 hp och också jämn fördelning. Ingen högfärg eller trumffit har hittats, så sang är rätt kontraktstyp. Med maximum och välplacerade honnörer räcker den sammanlagda styrkan för utgång. Öppnaren accepterar därför inviten med 3NT.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp, jämn fördelning, lämpliga honnörer",
-            "responder": "Balanserad hand utan fyrkortshögfärg; normalt 8–9 hp eller 10+ med sammanlagt under 26 hp."
+            "opener": "15–17 hp, balanserad; accepterar endast när paret når minst 26 gemensamma honnörspoäng.",
+            "responder": "Balanserad invit efter 1NT, normalt 8–9 hp; 2NT används även med 10+ om paret ännu inte når 26."
           }
         }
       ]
@@ -1340,23 +1340,23 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "Överföring till hjärter – invit med femkortsfärg",
+          "meaning": "Öppnaren tar ställning till 2NT-inviten efter överföringen. 4H kräver minst åtta trumfkort och 26 gemensamma spelpoäng; 3NT kräver 26 gemensamma honnörspoäng utan 8-kortsfit; annars pass.",
           "analysis": "Svarshanden har cirka 8–9 hp och minst fem hjärter. Öppnaren måste väga samman styrka, honnörskvalitet och trumfstöd. 3♥ visar att öppnaren föredrar hjärter med stöd; 3NT är alternativet när sanghanden är bättre än trumfhanden.",
           "branches": [
             {
               "call": "3NT",
               "next": "t19_2",
-              "label": "3NT – accepterar utan lämpligt trumfstöd"
+              "label": "3NT – 26+ gemensamma hp, utan 8-kortsfit"
             },
             {
-              "call": "4♥",
+              "call": "4H",
               "next": "t19_3",
-              "label": "4♥ – maximum med starkt hjärterstöd"
+              "label": "4H – 8+ korts fit och 26+ gemensamma spelpoäng"
             },
             {
               "call": "Pass",
               "next": "t19_4",
-              "label": "Pass – minimum, inviten avslås"
+              "label": "Pass – paret når inte utgångsgränsen"
             }
           ],
           "handProfile": {
@@ -1377,7 +1377,7 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT – öppnaren accepterar inviten utan minst trekortsstöd.",
+          "meaning": "3NT – accepterar endast om paret har minst 26 gemensamma honnörspoäng och saknar 8-kortsfit.",
           "analysis": "Öppnaren accepterar inviten men saknar lämpligt hjärterstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♥ väljs bort eftersom en säker trumffit inte är etablerad.",
           "branches": [
             {
@@ -1387,7 +1387,7 @@
             }
           ],
           "handProfile": {
-            "opener": "16–17 hp och färre än tre kort i trumffärgen; accepterar med 3NT.",
+            "opener": "Tillräckliga honnörspoäng för att paret tillsammans ska nå 26; färre än tre kort i trumffärgen.",
             "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         },
@@ -1404,7 +1404,7 @@
             "Pass",
             "4♥"
           ],
-          "meaning": "4H – öppnaren accepterar inviten med minst trekortsstöd.",
+          "meaning": "4H – accepterar endast med minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren har maximum och starkt hjärterstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♥. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
           "branches": [
             {
@@ -1414,7 +1414,7 @@
             }
           ],
           "handProfile": {
-            "opener": "16–17 hp och minst tre kort i trumffärgen; accepterar med 4H.",
+            "opener": "Minst tre kort i hjärter och tillsammans minst 26 spelpoäng i fitten.",
             "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         },
@@ -1431,11 +1431,11 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "Pass – minimum, inviten avslås",
+          "meaning": "Pass – inviten avslås när paret inte når 26-poängsgränsen.",
           "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem hjärter; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
           "branches": [],
           "handProfile": {
-            "opener": "15 hp – minimum, inviten avslås.",
+            "opener": "Handen når inte 26 gemensamma honnörspoäng eller 26 gemensamma spelpoäng i fitten.",
             "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         }
@@ -1469,23 +1469,23 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "Överföring till spader – invit med femkortsfärg",
+          "meaning": "Öppnaren tar ställning till 2NT-inviten efter överföringen. 4S kräver minst åtta trumfkort och 26 gemensamma spelpoäng; 3NT kräver 26 gemensamma honnörspoäng utan 8-kortsfit; annars pass.",
           "analysis": "Svarshanden har cirka 8–9 hp och minst fem spader. Öppnaren väger samman styrka, honnörskvalitet och trumfstöd. 3♠ visar att öppnaren föredrar spader med stöd; 3NT är alternativet när sanghanden är bättre.",
           "branches": [
             {
               "call": "3NT",
               "next": "t20_2",
-              "label": "3NT – accepterar utan lämpligt trumfstöd"
+              "label": "3NT – 26+ gemensamma hp, utan 8-kortsfit"
             },
             {
-              "call": "4♠",
+              "call": "4S",
               "next": "t20_3",
-              "label": "4♠ – maximum med starkt spaderstöd"
+              "label": "4S – 8+ korts fit och 26+ gemensamma spelpoäng"
             },
             {
               "call": "Pass",
               "next": "t20_4",
-              "label": "Pass – minimum, inviten avslås"
+              "label": "Pass – paret når inte utgångsgränsen"
             }
           ],
           "handProfile": {
@@ -1506,7 +1506,7 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT – öppnaren accepterar inviten utan minst trekortsstöd.",
+          "meaning": "3NT – accepterar endast om paret har minst 26 gemensamma honnörspoäng och saknar 8-kortsfit.",
           "analysis": "Öppnaren accepterar inviten men saknar lämpligt spaderstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♠ väljs bort eftersom en säker trumffit inte är etablerad.",
           "branches": [
             {
@@ -1516,7 +1516,7 @@
             }
           ],
           "handProfile": {
-            "opener": "16–17 hp och färre än tre kort i trumffärgen; accepterar med 3NT.",
+            "opener": "Tillräckliga honnörspoäng för att paret tillsammans ska nå 26; färre än tre kort i trumffärgen.",
             "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         },
@@ -1533,7 +1533,7 @@
             "Pass",
             "4♠"
           ],
-          "meaning": "4S – öppnaren accepterar inviten med minst trekortsstöd.",
+          "meaning": "4S – accepterar endast med minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren har maximum och starkt spaderstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♠. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
           "branches": [
             {
@@ -1543,7 +1543,7 @@
             }
           ],
           "handProfile": {
-            "opener": "16–17 hp och minst tre kort i trumffärgen; accepterar med 4S.",
+            "opener": "Minst tre kort i spader och tillsammans minst 26 spelpoäng i fitten.",
             "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         },
@@ -1560,11 +1560,11 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "Pass – minimum, inviten avslås",
+          "meaning": "Pass – inviten avslås när paret inte når 26-poängsgränsen.",
           "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem spader; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
           "branches": [],
           "handProfile": {
-            "opener": "15 hp – minimum, inviten avslås.",
+            "opener": "Handen når inte 26 gemensamma honnörspoäng eller 26 gemensamma spelpoäng i fitten.",
             "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         }
@@ -2059,7 +2059,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren visar fyrkortsfärg i hjärter efter Stayman.",
-          "analysis": "Svarshanden har fyrkortsstöd och invitstyrka. Efter öppnarens svar passar motståndaren innan svarshanden väljer mellan invit och direkt utgång.",
+          "analysis": "Svarshanden har fyrkortsstöd och invitstyrka. Efter öppnarens svar passar motståndaren innan svarshanden väljer mellan invit och direkt utgång. Öppnaren accepterar endast när paret har minst 26 gemensamma spelpoäng i den etablerade 8-kortsfitten; annars pass.",
           "branches": [
             {
               "call": "Pass",
@@ -2082,7 +2082,7 @@
             "2♥",
             "Pass"
           ],
-          "meaning": "Budgivningen går vidare efter motståndarens pass.",
+          "meaning": "4M – accepterar inviten när paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Svarshanden har cirka 8–9 hp och inviterar med höjningen på treläget. Med minst cirka 10 hp kan svarshanden i stället bjuda utgång direkt.",
           "branches": [
             {
@@ -2097,7 +2097,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "opener": "Minst fyra kort i trumffärgen; paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
             "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
@@ -2139,7 +2139,7 @@
             "Pass"
           ],
           "meaning": "Öppnaren ska nu ta ställning till inviten.",
-          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med utgång på maximum eller goda spelvärden.",
+          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med utgång på maximum eller goda spelvärden. Öppnaren accepterar endast när paret har minst 26 gemensamma spelpoäng i den etablerade 8-kortsfitten; annars pass.",
           "branches": [
             {
               "call": "Pass",
@@ -2170,7 +2170,7 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "3♥ blir slutbud.",
+          "meaning": "3M blir slutbud när paret inte når 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Den kända 4–4-fitten gör högfärgen till rätt trumf, men styrkan räcker inte för utgång.",
           "branches": [],
           "handProfile": {
@@ -2191,11 +2191,11 @@
             "Pass",
             "4♥"
           ],
-          "meaning": "4♥ blir slutbud.",
+          "meaning": "4M – accepterar inviten när paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren har maximum eller goda spelvärden och accepterar inviten. Den gemensamma 4–4-fitten gör högfärgen till rätt trumf.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
+            "opener": "Minst fyra kort i trumffärgen; paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
             "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
@@ -2249,7 +2249,7 @@
             "2♠"
           ],
           "meaning": "Öppnaren visar fyrkortsfärg i spader efter Stayman.",
-          "analysis": "Svarshanden har fyrkortsstöd och invitstyrka. Efter öppnarens svar passar motståndaren innan svarshanden väljer mellan invit och direkt utgång.",
+          "analysis": "Svarshanden har fyrkortsstöd och invitstyrka. Efter öppnarens svar passar motståndaren innan svarshanden väljer mellan invit och direkt utgång. Öppnaren accepterar endast när paret har minst 26 gemensamma spelpoäng i den etablerade 8-kortsfitten; annars pass.",
           "branches": [
             {
               "call": "Pass",
@@ -2272,7 +2272,7 @@
             "2♠",
             "Pass"
           ],
-          "meaning": "Budgivningen går vidare efter motståndarens pass.",
+          "meaning": "4M – accepterar inviten när paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Svarshanden har cirka 8–9 hp och inviterar med höjningen på treläget. Med minst cirka 10 hp kan svarshanden i stället bjuda utgång direkt.",
           "branches": [
             {
@@ -2287,7 +2287,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "opener": "Minst fyra kort i trumffärgen; paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
             "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
@@ -2329,7 +2329,7 @@
             "Pass"
           ],
           "meaning": "Öppnaren ska nu ta ställning till inviten.",
-          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med utgång på maximum eller goda spelvärden.",
+          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med utgång på maximum eller goda spelvärden. Öppnaren accepterar endast när paret har minst 26 gemensamma spelpoäng i den etablerade 8-kortsfitten; annars pass.",
           "branches": [
             {
               "call": "Pass",
@@ -2360,7 +2360,7 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "3♠ blir slutbud.",
+          "meaning": "3M blir slutbud när paret inte når 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Den kända 4–4-fitten gör högfärgen till rätt trumf, men styrkan räcker inte för utgång.",
           "branches": [],
           "handProfile": {
@@ -2381,11 +2381,11 @@
             "Pass",
             "4♠"
           ],
-          "meaning": "4♠ blir slutbud.",
+          "meaning": "4M – accepterar inviten när paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren har maximum eller goda spelvärden och accepterar inviten. Den gemensamma 4–4-fitten gör högfärgen till rätt trumf.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
+            "opener": "Minst fyra kort i trumffärgen; paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
             "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
@@ -2523,8 +2523,8 @@
             "2NT",
             "Pass"
           ],
-          "meaning": "Öppnaren ska ta ställning till sanginviten.",
-          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med 3NT på maximum eller med bra honnörskvalitet.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars pass.",
+          "analysis": "Öppnaren avslår med pass på minimum eller accepterar med 3NT på maximum eller med bra honnörskvalitet. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
           "branches": [
             {
               "call": "Pass",
@@ -2555,7 +2555,7 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "2NT blir slutbud.",
+          "meaning": "2NT blir slutbud när paret inte når 26 gemensamma honnörspoäng.",
           "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Ingen högfärgsfit har hittats och paret stannar i 2NT.",
           "branches": [],
           "handProfile": {
@@ -2599,7 +2599,7 @@
           "analysis": "Öppnaren har maximum eller goda honnörsvärden. Stayman har inte hittat någon högfärgsfit, så 3NT är rätt kontraktstyp.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp eller motsvarande goda spelvärden",
+            "opener": "Öppnarhanden bidrar så att paret når minst 26 gemensamma honnörspoäng.",
             "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
           }
         }
@@ -2714,7 +2714,7 @@
             "3♥",
             "Pass"
           ],
-          "meaning": "Öppnaren ska ta ställning till inviten.",
+          "meaning": "Öppnaren accepterar endast om paret når 26 gemensamma poäng: 4H vid 8+ trumfkort och 26 spelpoäng; 3NT vid 26 honnörspoäng utan 8-kortsfit; annars pass.",
           "analysis": "Med minimum avslår öppnaren med pass. Med tillräckliga värden men utan trumfstöd kan öppnaren välja 3NT. Med tillräckliga värden och minst trekortsstöd väljs högfärgsutgång.",
           "branches": [
             {
@@ -2751,11 +2751,11 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "3♥ blir slutbud.",
+          "meaning": "3H blir slutbud när utgångsgränsen inte nås.",
           "analysis": "Öppnaren har minimum eller olämpliga värden för utgång. Den långa trumffärgen är etablerad, men styrkan räcker inte för utgång.",
           "branches": [],
           "handProfile": {
-            "opener": "15 hp eller svaga spelvärden",
+            "opener": "Paret når inte 26 gemensamma poäng.",
             "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
@@ -2772,11 +2772,11 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "Öppnaren accepterar inviten utan trumfstöd.",
+          "meaning": "Öppnaren accepterar med 3NT endast om paret har minst 26 gemensamma honnörspoäng och färre än tre kort i trumffärgen.",
           "analysis": "Öppnaren har tillräckliga värden för utgång men saknar minst trekortsstöd i högfärgen. Med jämn hand blir 3NT alternativet.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
+            "opener": "Färre än tre kort i hjärter; paret når minst 26 gemensamma honnörspoäng.",
             "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
@@ -2812,11 +2812,11 @@
             "Pass",
             "4♥"
           ],
-          "meaning": "4♥ blir slutbud.",
+          "meaning": "Öppnaren accepterar med 4H endast om paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren accepterar inviten med tillräcklig styrka och minst trekortsstöd. Den gemensamma minst niokortsfärgen gör högfärgen till bättre kontrakt än 3NT.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
+            "opener": "Minst tre kort i hjärter och tillsammans minst 26 spelpoäng i fitten.",
             "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
@@ -2948,7 +2948,7 @@
             "3♠",
             "Pass"
           ],
-          "meaning": "Öppnaren ska ta ställning till inviten.",
+          "meaning": "Öppnaren accepterar endast om paret når 26 gemensamma poäng: 4S vid 8+ trumfkort och 26 spelpoäng; 3NT vid 26 honnörspoäng utan 8-kortsfit; annars pass.",
           "analysis": "Med minimum avslår öppnaren med pass. Med tillräckliga värden men utan trumfstöd kan öppnaren välja 3NT. Med tillräckliga värden och minst trekortsstöd väljs högfärgsutgång.",
           "branches": [
             {
@@ -2985,11 +2985,11 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "3♠ blir slutbud.",
+          "meaning": "3S blir slutbud när utgångsgränsen inte nås.",
           "analysis": "Öppnaren har minimum eller olämpliga värden för utgång. Den långa trumffärgen är etablerad, men styrkan räcker inte för utgång.",
           "branches": [],
           "handProfile": {
-            "opener": "15 hp eller svaga spelvärden",
+            "opener": "Paret når inte 26 gemensamma poäng.",
             "responder": "Minst sex spader, 9 hp för invit"
           }
         },
@@ -3006,11 +3006,11 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "Öppnaren accepterar inviten utan trumfstöd.",
+          "meaning": "Öppnaren accepterar med 3NT endast om paret har minst 26 gemensamma honnörspoäng och färre än tre kort i trumffärgen.",
           "analysis": "Öppnaren har tillräckliga värden för utgång men saknar minst trekortsstöd i högfärgen. Med jämn hand blir 3NT alternativet.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
+            "opener": "Färre än tre kort i spader; paret når minst 26 gemensamma honnörspoäng.",
             "responder": "Minst sex spader, 9 hp för invit"
           }
         },
@@ -3046,11 +3046,11 @@
             "Pass",
             "4♠"
           ],
-          "meaning": "4♠ blir slutbud.",
+          "meaning": "Öppnaren accepterar med 4S endast om paret har minst åtta trumfkort och 26 gemensamma spelpoäng.",
           "analysis": "Öppnaren accepterar inviten med tillräcklig styrka och minst trekortsstöd. Den gemensamma minst niokortsfärgen gör högfärgen till bättre kontrakt än 3NT.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
+            "opener": "Minst tre kort i spader och tillsammans minst 26 spelpoäng i fitten.",
             "responder": "Minst sex spader, 9 hp för invit"
           }
         },
