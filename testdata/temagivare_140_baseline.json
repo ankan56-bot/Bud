@@ -1,16 +1,16 @@
 {
-  "version": "1.8.0",
+  "version": "1.8.1",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
   "corpusBlobSha": "29c2992e78bf9b959f98ba572df99e9a66d6e365",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "e5e8f8b637dd6e49fec36b897cf8184ca2467ecf",
+  "engineBlobSha": "c229eee273aca0d2dd61a5ed77bb4ceeaf357572",
   "engineVersion": "7.0",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
   "previousBaseline": {
-    "engineBlobSha": "387f78d8988b2365d395187aa8db71cd17bcde3b",
-    "coveragePercent": 88.7,
-    "uncovered": 68
+    "engineBlobSha": "e5e8f8b637dd6e49fec36b897cf8184ca2467ecf",
+    "coveragePercent": 88.1,
+    "uncovered": 72
   },
   "stats": {
     "deals": 140,
