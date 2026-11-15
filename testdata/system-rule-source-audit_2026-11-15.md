@@ -2,48 +2,65 @@
 
 ## Syfte
 
-Fastställa vad som faktiskt stöds av det befintliga systemunderlaget för tre prioriterade luckor:
+Fastställa vad som faktiskt stöds av den auktoritativa systemkällan för tre prioriterade luckor:
 1. Svar efter partnerns inkliv.
 2. Återbud från den som gjort upplysningsdubblingen efter partnerns svar.
 3. Öppnarens tredje bud efter att svarshanden har bjudit 2NT.
 
-Detta är en källinventering, inte en ny systemdefinition. Inga budregler eller motorgrenar ändras genom denna rapport.
-
-## Källornas status
-
-I arbetsgrenens rot finns ingen separat systembok, PDF, konventionsbilaga eller annan extern originalkälla. Det tillgängliga underlaget består av:
-- `LOGG_BUDREGLER.md`: tidigare beslut och enskilda givobservationer.
-- `analysbibliotek.json`: pedagogiska budträd. Träden T29–T33 är uttryckligen analysunderlag (`analysis_only`), inte godkända grundsystemregler.
-- `rattningsmotor.js`: den nuvarande implementationen. Den kan visa vad motorn gör, men är inte oberoende bevis för att systemtolkningen är korrekt.
-- Granskningsrapporterna i `testdata/`: inventeringar av luckor och tekniska orsaker; de är inte facit.
-
-Därför kan en regel som endast förekommer i motorkod eller i ett analysbibliotek inte automatiskt upphöjas till auktoritativ systemregel.
+Auktoritativ källa är användarens åtta sidor långa **Nordisk standard, 2012-08-22** (`nordisk_standard.pdf`, tillgänglig i Library). Rättningsmotorn och analysbiblioteket är implementation respektive analysunderlag – de ersätter inte originaldokumentet.
 
 ## 1. Svar efter partnerns inkliv
 
-### Vad som är belagt
-- Loggen anger att ett inkliv på 2-nivån kräver minst sex kort i inklivsfärgen. Detta gäller inklivarens eget bud, inte partnerns svar.
-- Giv 21 visar ett exempel med 1♥–(2♣)–Pass–Pass–2♥, där öppnarens återbud bedöms som rimligt. Det fastställer inte svarssystemet för inklivarens partner.
-- Giv 24 visar 1♣–(2♥)–Pass–2♠–..., men loggen markerar uttryckligen svaret 2♠ som ej täckt.
-- `hand-specific-overcall-responses-9-audit.md` delar svarsluckorna i svar efter 1-nivåinkliv, 2-nivåinkliv, hoppande 3-nivåinkliv och 2NT-inkliv. Ingen komplett svarstabell kunde beläggas.
+### Belagt i Nordisk standard, sida 7
+Rubriken är **”Svar på inkliv med 1 hö/♦”**:
+- 1NT: 8–10 hp, balanserad med håll i öppningsfärgen.
+- 2NT: 11–13 hp, balanserad och bra håll i öppningsfärgen.
+- 3NT: 14+ hp, balanserad och bra håll i öppningsfärgen.
+- Enkel höjning: 6–9 hp och trekortsstöd.
+- Dubbel höjning: 6–9 hp och fyrkortsstöd.
+- Trippel höjning: 6–9 hp och femkortsstöd.
+- Ny färg: 8+ hp, femkortsfärg och rondkrav; 10+ hp om budet är på 2-nivån.
+- Hopp i ny färg: 14+ hp, bra sexkortsfärg och utgångskrav.
+- Överbud i motståndarnas färg: 10+ hp och trekortsstöd.
 
-### Närliggande material som inte är samma situation
-- T29–T32 behandlar svarshandens agerande efter att motståndarna har klivit in över vår öppning. Det är inte svar efter partnerns eget inkliv.
-- T29–T32 är dessutom märkta `analysis_only`; de är inte grundsystemfacit.
+Sidan anger också att ett enkelt inkliv normalt visar 12–17 hp, med särskilda villkor för 1-högfärgsinkliv, och att hoppande inkliv visar 6–10 hp med minst sex kort.
+
+### Begränsningar
+- Tabellen är uttryckligen avgränsad till inkliv med 1-högfärg/1-ruter. Den kan inte utan vidare kopieras till 2-nivåinkliv eller hoppande 3-nivåinkliv.
+- För hoppande 2-högfärgsinkliv anger sidan att fortsättningen är som efter en svag 2-högfärgsöppning. Det är en separat gren.
+- Den aktuella luckgruppen innehåller svar efter 1-nivå, 2-nivå, hoppande 3-nivå och 2NT-inkliv. Bara den första gruppen har en uttrycklig svarstabell på sidan 7.
+- Det tidigare sexkortskravet för egna 2-nivåinkliv är en regel om inklivarens eget bud; det får inte förväxlas med partnerns svar.
 
 ### Slutsats
-Det går att behålla sexkortskravet för egna 2-nivåinkliv som en dokumenterad regel. Det går däremot inte att fastställa pass/stöd/ny färg/sang efter partnerns inkliv utifrån nuvarande underlag. De nio svarfallen ska därför fortsätta vara ej täckta.
+Vi kan nu implementera och regressionstesta svar efter 1-högfärgs-/1-ruterinkliv enligt tabellen på sida 7, men bara när sekvens och nivå matchar den angivna situationen. De andra nivåerna måste hållas separata och förbli ej täckta tills motsvarande systemregler har fastställts. T29–T32 beskriver svar efter motståndarnas inkliv över vår öppning och är inte samma situation; de är dessutom märkta `analysis_only`.
 
 ## 2. Återbud efter upplysningsdubbling
 
-### Vad som är belagt
-- `double-rebid-8-audit.md` identifierar åtta separata fall där dubbleraren ska agera igen efter partnerns svar. Dubblerarens styrka varierar 12–19 HCP och partnerns svar 3–9 HCP.
-- `rattningsmotor.js` har funktionen `respDouble()`, men den beskriver svarshandens bud efter partnerns dubbling av motståndarnas öppning. Den är inte en regel för dubblerarens återbud.
-- Giv 13 i loggen är 1♠–(Dbl)–2♠. Det är svarshandens stöd efter en upplysningsdubbling, inte dubblerarens senare återbud.
-- Giv 22 gäller en upplysningsdubbling efter ett hoppande inkliv. Den visar inte hur dubbleraren återkommer efter partnerns svar.
+### Belagt i Nordisk standard, sida 8
+Under **”D som upplysningsdubbelt”**:
+- D visar 12+ hp och minst tre kort i objudna färger, eller 17+ hp med alla fördelningar.
+- Normalt har dubblaren alltså stöd i objudna färger och vill att partnern väljer sin längsta färg.
+- Partnern måste i detta läge bjuda ut sin hand direkt.
+- Ny färg är inte krav.
+- Om dubblaren saknar stöd och bjuder egen färg eller NT visar det starka kort, 18+ hp.
+
+Därefter följer tabellen **”svar på D (upplysningsdubbling)”** för partnerns första svar:
+- 1NT: 6–9 hp och håll i öppningsfärgen.
+- 2NT: 10–12 hp och håll i öppningsfärgen.
+- 3NT: 13+ hp och håll i öppningsfärgen.
+- Färg på lägsta nivå: 0–7 hp (i värsta fall trekortsfärg).
+- Hopp i färg: 8–9 htp, fyrkortsfärg.
+- Hopp till 3-läget: 10–12 htp, helst femkortsfärg.
+- Överbud: 10+ hp och krav så länge nya färger bjuds.
+- Pass: endast med många kort i öppningsfärgen.
+
+### Vad källan inte anger
+Sidan ger dubblarens styrka och partnerns första svar, men ingen fullständig tabell för **dubblarens återbud efter partnerns svar**. Den anger inte hur dubblaren ska skilja mellan minimum/maximum, balanserad hand, egen lång färg eller preferens efter partnerns val.
+
+De åtta fallen i `double-rebid-8-audit.md` är just dubblerarens senare återbud. De får inte lösas genom att återanvända `respDouble()`, som är svarshandens första bud efter partnerns dubbling av motståndarnas öppning. Giv 13 i loggen gäller också svarshandens stöd efter dubbling, inte dubblarens återbud.
 
 ### Slutsats
-Det saknas en belagd återbudsstruktur för dubbleraren. Framför allt är det inte fastställt hur minimum/maximum, balanserad hand, egen lång färg och partnerns svarsfärg ska prioriteras. De åtta fallen ska fortsätta vara ej täckta; `respDouble()` ska inte återanvändas för dem.
+Upplysningsdubblingens öppningsstyrka och partnerns första svar kan verifieras mot sida 8. De åtta senare återbuden saknar fortfarande uttryckligt stöd i dokumentet och ska förbli ej täckta.
 
 ## 3. Öppnarens tredje bud efter svarshandens 2NT
 
@@ -51,36 +68,40 @@ Det saknas en belagd återbudsstruktur för dubbleraren. Framför allt är det i
 `final_gaps_2.md` beskriver:
 - Auktion: 1♣–Pass–1♠–Pass–2♣–Pass–2NT–Pass–?
 - Aktuell spelare: öppnaren.
-- Hand: 13 HCP, fördelning 1–4–3–5 (♠–♥–♦–♣).
+- Öppnarens hand: 13 hp, fördelning 1–4–3–5 (♠–♥–♦–♣).
 
-### Vad som är belagt
-- Systemets dokumenterade Stenberg 2NT gäller svar efter öppnarens högfärgsöppning med 13+ HTP och minst fyrkortsstöd. Det är inte samma sak som 2NT i den här sekvensen.
-- Bokreglerna på s. 32–33 som loggen beskriver gäller svarshandens andra bud efter öppnarens återbud. De fastställer inte öppnarens tredje bud efter att svarshanden har bjudit 2NT.
-- `ntResp()` avser svar på en 1NT-/2NT-öppning med Stayman/överföringar. Den fastställer inte öppnarens fortsättning i den aktuella naturliga sekvensen.
+### Närliggande regel i Nordisk standard, sida 3
+Dokumentet har ett specifikt exempel:
+- 1♥ – 1♠ – 2♣ – 2NT: svarshanden visar 10–12 hp, balanserad hand, två hjärter samt håll i spader och ruter.
+- Öppnarens 3♥ visar 10–12 htp och trekortshjärterstöd; öppnaren har visat minst fem hjärter efter 2♣.
+
+Detta exempel gäller en annan sekvens: öppnaren började med 1♥ och visade därefter klöver som andra färg. Det kan inte överföras till 1♣–1♠–2♣, där öppnaren återbjuder sin öppningsfärg.
+
+Sida 3 beskriver också öppnarens andra bud med egen 6+ färg, balanserad hand och tvåfärgshand, men ger inte en generell regel för öppnarens tredje bud efter svarshandens 2NT när öppnaren har återbjudit sin egen färg.
+
+Stenberg 2NT är inte relevant här: den konventionen används som svar på öppnarens färgöppning med 13+ htp och minst fyrkortsstöd. Inte heller är detta svar på en 2NT-öppning.
 
 ### Slutsats
-Det finns ingen belagd regel som avgör om öppnaren ska passa eller fortsätta efter 1♣–1♠–2♣–2NT. Positionen är korrekt klassificerad som öppnarens tredje bud och ska fortsätta vara ej täckt.
+Det finns ett närliggande 2NT-exempel på sida 3, men inte en regel för den aktuella sekvensen. Positionen är korrekt klassificerad som öppnarens tredje bud och ska förbli ej täckt tills en uttrycklig fortsättning kan beläggas.
 
 ## Beslut för implementation
 
 | Område | Vad kan användas nu? | Vad får inte göras ännu? |
 |---|---|---|
-| Svar efter partnerns inkliv | Sexkortskravet för inkliv på 2-nivån, endast på inklivarens eget bud | Härleda svarstabell från T29–T32 eller från inklivarnas styrka |
-| Återbud efter upplysningsdubbling | Separat identifiering av de åtta fallen | Återanvända `respDouble()` eller hitta på återbud efter styrkeintervall |
-| Öppnarens tredje bud efter 2NT | Korrekt roll-/positionsklassificering | Behandla 2NT som Stenberg eller som svar på en 2NT-öppning |
+| Svar efter partnerns 1-högfärgs-/1-ruterinkliv | Svarstabellen på sida 7, med angivna nivåer och handvillkor | Applicera tabellen generellt på 2-/3-nivå eller 2NT-inkliv |
+| Återbud efter upplysningsdubbling | Sida 8 ger dubblarens grundkrav och partnerns första svar | Hitta på dubblarens senare återbud eller återanvända `respDouble()` |
+| Öppnarens tredje bud efter 2NT | Det specifika 1♥–1♠–2♣–2NT-exemplet kan användas i just den sekvensen | Överföra 3♥-fortsättningen till 1♣–1♠–2♣–2NT |
 
-## Nästa nödvändiga underlag
+## Nästa tekniska steg
 
-För att kunna fastställa reglerna behövs den auktoritativa systemtexten för:
-1. Partnerns svar efter 1-, 2- och 3-nivåinkliv samt efter 2NT-inkliv.
-2. Dubblerarens återbud efter partnerns svar på upplysningsdubbling.
-3. Öppnarens fortsättning när svarshanden bjuder naturligt 2NT efter öppnarens återbud.
-
-Tills den källan finns tillgänglig ska motorn markera dessa lägen som ej täckta. Det är avsiktligt och skyddar rättningens tillförlitlighet.
+1. Implementera den uttryckliga svarstabellen efter 1-högfärgs-/1-ruterinkliv i en separat dispatchgren. Lägg tester för varje svarstyp och gränsvärde, inklusive att andra inklivsnivåer inte råkar få samma regel.
+2. Behåll de åtta dubblaråterbuden som ej täckta; ingen motorregel införs utan kompletterande systemkälla eller uttryckligt godkänt partnerskapsbeslut.
+3. Behåll öppnarens tredje bud i 1♣–1♠–2♣–2NT som ej täckt. Lägg däremot ett positivt regressionstest för det dokumenterade exemplet 1♥–1♠–2♣–2NT–3♥ med dess uttryckliga handvillkor, om den nuvarande motorn ännu inte täcker det.
+4. Kör hela 140-givarsbaslinjen och befintliga regressionstester efter den avgränsade ändringen. Ingen DDS-bedömning ska användas som budfacit.
 
 ## Verifieringsstatus
 
-- Källgranskning och dokumentation endast.
-- Ingen ändring av `rattningsmotor.js`, `analysbibliotek.json` eller `kompletterande_budlogik.json`.
-- Ingen DDS-bedömning har använts.
+- Källan har lästs i sin helhet: 8 sidor, Nordisk standard 2012-08-22.
+- Denna rapport skiljer nu mellan uttryckliga källregler, närliggande men ej överförbara exempel och verkliga luckor.
+- Inga motorregler har ännu ändrats i samband med denna källgranskning.
 - `main` är orörd.
