@@ -138,6 +138,18 @@ button:disabled{opacity:.3;cursor:default}
 .table.end .hand-seat{width:100%;box-sizing:border-box}
 .table.end .hand-seat b{display:flex;justify-content:center;align-items:center;white-space:nowrap}
 @media(max-width:520px){.table.end{grid-template-columns:repeat(3,minmax(0,1fr))!important}.table.end .hand-seat{font-size:12px;padding:8px 4px}.table.end .hand-seat b{font-size:11px}}
+
+/* Öppna händer under budgivningen – avsett för betatest och felsökning */
+.seat .hand{width:100%;text-align:left;display:flex;flex-direction:column;gap:1px}
+.seat .hand div{font-size:11px;line-height:1.15;white-space:nowrap;letter-spacing:-.15px}
+.cd[data-s="♥"],.cd[data-s="♣"]{background:#e9e9e9}
+.report-backdrop{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.58);display:grid;place-items:center;padding:18px}
+.report-dialog{width:min(100%,520px);max-height:min(88dvh,720px);overflow:auto;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.report-dialog h2{font-family:"Iowan Old Style",Georgia,serif;margin:0 0 8px;font-size:26px}
+.report-dialog p{margin:6px 0 14px}
+.report-dialog textarea{display:block;width:100%;min-height:130px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,system-ui,sans-serif;user-select:text;-webkit-user-select:text}
+.report-dialog .row{justify-content:flex-end;margin-top:14px}
+@media(max-width:600px){.seat .hand div{font-size:9px;letter-spacing:-.35px}.report-dialog{padding:16px}}
 </style>
 </head>
 <body>
@@ -743,11 +755,54 @@ function roomScreen(){
 }
 function loadSaved(){try{return JSON.parse(localStorage.getItem('bt_saved')||'[]')}catch(e){return []}}
 function putSaved(l){try{localStorage.setItem('bt_saved',JSON.stringify(l))}catch(e){}}
+function loadReports(){try{return JSON.parse(localStorage.getItem('bt_reports')||'[]')}catch(e){return []}}
+function putReports(list){try{localStorage.setItem('bt_reports',JSON.stringify(list))}catch(e){}}
+function reportSnapshot(st,comment){
+  var hands={};SEATS.forEach(function(seat){hands[seat]=handText(st.hands[seat])});
+  return {
+    id:'r'+Date.now(),createdAt:new Date().toISOString(),dealNo:st.no,seed:st.seed,
+    mode:st.mode,focus:st.focus,dealer:st.dealer,comment:comment||'',
+    bids:st.bids.map(function(b){return {seat:b.s,name:NAME[b.s],call:txt(b.c),explanation:b.e||''}}),
+    hands:hands,contract:contractText(st)
+  };
+}
+function reportBody(r){
+  var lines=['Betarapport från Budträning','', 'Giv: '+r.dealNo,'Slumpfrö: '+r.seed,
+    'Läge: '+(r.mode==='ostord'?'Ostörd budgivning':'Alla bjuder'),'Tema: '+(r.focus||'alla'),
+    'Giv: '+NAME[r.dealer],'Kontrakt/status: '+r.contract,'Tid: '+r.createdAt,'',
+    'HÄNDER'];
+  ['N','E','S','W'].forEach(function(s){lines.push(NAME[s]+': '+r.hands[s])});
+  lines.push('','BUDGIVNING');
+  r.bids.forEach(function(b,i){lines.push((i+1)+'. '+b.name+': '+b.call)});
+  lines.push('','BETATESTARENS KOMMENTAR',r.comment||'(Ingen kommentar)','',
+    'Reproducerbar giv: slumpfrö '+r.seed+'; givnummer '+r.dealNo+'.');
+  return lines.join('\n');
+}
 function saveDeal(){
   if(!state||!state.hands)return;
-  var st=state,l=loadSaved(),p=pack(st);p.id='d'+Date.now();p.savedAt=new Date().toISOString().slice(0,10);
-  l.unshift(p);putSaved(l.slice(0,40));
-  savedFlag=true;render();setTimeout(function(){savedFlag=false;render()},1800);
+  var overlay=document.createElement('div');
+  overlay.className='report-backdrop';overlay.id='report-modal';
+  overlay.innerHTML='<section class="report-dialog" role="dialog" aria-modal="true" aria-labelledby="report-title">'+
+    '<h2 id="report-title">Rapportera giv</h2>'+
+    '<p class="mu">Lägg till kommentar (valfritt).</p>'+
+    '<textarea id="report-comment" placeholder="Beskriv vad som verkar fel eller vad vi bör kontrollera…"></textarea>'+
+    '<p class="mu">Giv, samtliga händer, budgivning och slumpfrö följer med automatiskt så att vi kan återskapa och analysera felet.</p>'+
+    '<div class="row"><button id="report-cancel">Avbryt</button><button id="report-send" class="pri">Skapa rapport</button></div>'+
+    '</section>';
+  document.body.appendChild(overlay);
+  document.getElementById('report-cancel').onclick=function(){overlay.remove()};
+  overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.remove()});
+  document.getElementById('report-send').onclick=function(){
+    var comment=document.getElementById('report-comment').value.trim();
+    var report=reportSnapshot(state,comment),reports=loadReports();
+    reports.unshift(report);putReports(reports.slice(0,100));
+    var title='[Betatest] Giv '+report.dealNo+' – '+(report.mode==='ostord'?'ostörd':'störd')+' budgivning';
+    var url='https://github.com/ankan56-bot/Bud/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(reportBody(report));
+    overlay.remove();
+    var win=window.open(url,'_blank');
+    if(!win){window.location.href=url}
+    alert('Rapporten är sparad på den här enheten. GitHub öppnas med rapporten ifylld – tryck på ”Submit new issue” där för att skicka den till projektet.');
+  };
 }
 function savedHtml(){
   var l=loadSaved();if(!l.length)return '';
@@ -756,6 +811,20 @@ function savedHtml(){
     h+='<div style="border-top:1px solid var(--line);padding:8px 0"><div class="mu">Giv '+esc(s.no)+' · '+(s.mode==='ostord'?'ostört':'alla bjuder')+' · '+esc(s.savedAt)+'</div><div class="row" style="margin-top:6px"><button data-play="'+esc(s.id)+'">Spela om</button>'+((s.h&&s.h.length)?'<button data-show="'+esc(s.id)+'">Visa budgivning</button>':'')+'<button data-del="'+esc(s.id)+'" class="mu">Ta bort</button></div></div>';
   });
   return h+'</div>';
+}
+function reportToolsHtml(){
+  var reports=loadReports();if(!reports.length)return '';
+  return '<div class="card"><p class="status">Lokalt sparade betarapporter ('+reports.length+')</p><p class="mu">Rapporterna finns kvar på den här enheten även om GitHub-formuläret inte skickades.</p><button id="export-reports" class="sm">Exportera rapporter som JSON</button></div>';
+}
+function attachReportTools(){
+  var b=document.getElementById('export-reports');if(!b)return;
+  b.onclick=function(){
+    var data=JSON.stringify(loadReports(),null,2);
+    var blob=new Blob([data],{type:'application/json'});
+    var url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='bud-betarapporter-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},1000);
+  };
 }
 function attachSaved(){
   function find(id){return loadSaved().filter(function(s){return s.id===id})[0]}
@@ -805,7 +874,7 @@ function fanHtml(cards){
 function seatHtml(st,s,rel){
    var lc=null,last=-1;st.bids.forEach(function(b,i){if(b.s===s){lc=b.c;last=i}});
    var latest=last===st.bids.length-1,pass=lc==='P';
-   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+'<span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
+   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+handHtml(st.hands[s])+'<span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
  }
 function handBlock(st,me){
   var lc=null,last=-1;
@@ -823,7 +892,7 @@ function render(){
     return;
   }
   if(!state||!state.hands){
-    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
+    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+reportToolsHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
     var no=(state&&state.no)||0;
     var b1=document.getElementById('m1'),b2=document.getElementById('m2');
     b1.onclick=function(){setSel('stord',focusSel);b1.classList.add('on');b2.classList.remove('on')};
@@ -832,13 +901,13 @@ function render(){
     document.getElementById('sw').onclick=function(){setSeat(null)};
     document.getElementById('rm').onclick=function(){room='';try{localStorage.removeItem('bt_room')}catch(e){}if(es)es.close();connState='offline';render()};
     Array.prototype.forEach.call(app.querySelectorAll('[data-f]'),function(b){b.onclick=function(){setSel(modeSel,b.getAttribute('data-f'));Array.prototype.forEach.call(app.querySelectorAll('[data-f]'),function(c){c.classList.toggle('on',c===b)})}});
-    attachSaved();
+    attachSaved();attachReportTools();
     return;
   }
   var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
   var base='S',pos={l:'W',t:'N',r:'E'},x=ctx(st);
   function rel(s){return s===partner(me)?'Partner':''}
-  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+(savedFlag?'Sparad ✓':'Spara given')+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
+  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+'Rapportera giv'+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
   h+='<div class="board-column">';
   if(end){
