@@ -926,6 +926,16 @@ var Rattning = (function(){
     }
 
     if(oppBefore.length){
+      // Källan beskriver endast betydelsen av ett återbud utan stöd efter
+      // upplysningsdubbling: egen färg/NT visar 18+ hp. Den väljer inte budet.
+      if(d===2&&opener&&f==='X'&&oppBefore.length===1&&!oppAfter.length){
+        var doubledPartnerSuit=st_(ours[1].c);
+        if(SU.indexOf(doubledPartnerSuit)>=0&&h.L[doubledPartnerSuit]<3&&h.hp>=18){
+          return NC('Nordisk standard s. 8 anger att dubblarens egen färg eller sang utan stöd visar 18+ hp, men anger inte vilket av dessa återbud som ska väljas.',function(c){
+            return isBid(c)&&(st_(c)==='N'||SU.indexOf(st_(c))>=0)?'Egen färg eller sang utan stöd visar 18+ hp.':null;
+          },'upplysningsdubbling');
+        }
+      }
       if(d===1&&!oppAfter.length&&oppBefore.length===1){
         if(f==='X')return respDouble(h,oppBefore[0].c,last);
         if(f==='1N')return ntResp(h,0);
