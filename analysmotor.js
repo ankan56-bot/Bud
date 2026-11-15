@@ -3,7 +3,7 @@
 "use strict";
 const SUITS=["S","H","D","C"], SUIT_NAME={S:"spader",H:"hjärter",D:"ruter",C:"klöver"};
 const SYMBOL={S:"♠",H:"♥",D:"♦",C:"♣",N:"sang"};
-let libraryPromise=null;
+let libraryPromise=null, supplementaryPromise=null;
 function callText(c){
  if(c==="P")return "Pass";if(c==="X")return "Dbl";if(c==="XX")return "Redbl";
  if(!c)return "";return String(c[0])+({S:"♠",H:"♥",D:"♦",C:"♣",N:"NT"}[c[1]]||c[1]);
@@ -41,6 +41,56 @@ function findMatch(lib,bids){
 }
 function lengths(hand){
  const L={S:0,H:0,D:0,C:0};(hand||[]).forEach(c=>{if(L[c[0]]!==undefined)L[c[0]]++});return L;
+}
+function loadSupplementary(){
+ if(!supplementaryPromise)supplementaryPromise=fetch("kompletterande_budlogik.json").then(r=>{if(!r.ok)throw new Error("Kompletterande budlogik kunde inte läsas ("+r.status+").");return r.json()});
+ return supplementaryPromise;
+}
+function handStats(hand){
+ const L=lengths(hand),hcp=(hand||[]).reduce((sum,c)=>sum+Math.max(0,(+c.slice(1))-10),0);
+ const shape=[L.S,L.H,L.D,L.C].sort((a,b)=>b-a).join("");
+ return {L,hcp,shape,balanced:["4333","4432","5332"].includes(shape)};
+}
+function nextSeat(seat){return {N:"E",E:"S",S:"W",W:"N"}[seat]}
+function partnerSeat(seat){return {N:"S",S:"N",E:"W",W:"E"}[seat]}
+function handMatches(conditions,hand){
+ if(!conditions||!hand)return false;
+ const stats=handStats(hand),hcp=conditions.hcp||{};
+ if(hcp.min!=null&&stats.hcp<hcp.min)return false;
+ if(hcp.max!=null&&stats.hcp>hcp.max)return false;
+ for(const suit of SUITS){
+  const range=(conditions.shape||{})[suit];
+  if(range&&range.min!=null&&stats.L[suit]<range.min)return false;
+  if(range&&range.max!=null&&stats.L[suit]>range.max)return false;
+ }
+ if(conditions.balanced===true&&!stats.balanced)return false;
+ if(conditions.balanced===false&&stats.balanced)return false;
+ return true;
+}
+function findSupplementary(logic,bids,hands,seat){
+ const entries=logic&&Array.isArray(logic.entries)?logic.entries:[];
+ const q=normalizeSequence((bids||[]).map(b=>callText(b.c)));
+ if(!q.length)return [];
+ const next=seat||nextSeat((bids||[])[bids.length-1].s);
+ return entries.filter(entry=>{
+  const prefix=normalizeSequence(entry.auctionPrefix||[]);
+  if(prefix.length!==q.length||!prefix.every((v,i)=>v===q[i]))return false;
+  const role=entry.handConditions&&entry.handConditions.seatRole;
+  if(role==="responder"&&next!==partnerSeat(bids[0].s))return false;
+  if(role==="opener"&&next!==bids[0].s)return false;
+  if(!handMatches(entry.handConditions,hands&&hands[next]))return false;
+  return true;
+ }).map(entry=>({
+  id:entry.id,topic:entry.topic,seat:next,recommendation:entry.recommendation,
+  rationale:entry.rationale,alternatives:entry.alternatives||[],
+  confidence:entry.confidence,approvalStatus:entry.approvalStatus,
+  systemCoverage:entry.systemCoverage,relationshipToSystem:entry.relationshipToSystem,
+  provenance:entry.provenance
+ }));
+}
+async function analyzeSupplementary(st,seat){
+ const logic=await loadSupplementary();
+ return findSupplementary(logic,st&&st.bids,st&&st.hands,seat);
 }
 function fitSummary(hands){
  const n=lengths(hands.N),s=lengths(hands.S);
@@ -124,7 +174,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.2",loadLibrary,findMatch,treeCompatible,buildReport,analyze,
+ version:"1.1.0",loadLibrary,loadSupplementary,findSupplementary,analyzeSupplementary,handStats,handMatches,findMatch,treeCompatible,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
