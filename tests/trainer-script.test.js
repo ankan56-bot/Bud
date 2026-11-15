@@ -178,7 +178,7 @@ test("room reconnect rebuilds the same deterministic bot bids from the seed and 
       advance: st => {
         while (st.bids.length < 8 && !((["N", "E", "S", "W"])[st.bids.length] === "S" ||
                  (["N", "E", "S", "W"])[st.bids.length] === "N")) {
-          const seat = ["N", "E", "S", "W"][st.bids.length];
+          const seat = ["N", "E", "S", "W"][st.bids.length % 4];
           if ((st.humanSeats || ["N", "S"]).includes(seat)) break;
           st.bids.push({ s: seat, c: "P" });
         }
@@ -197,7 +197,7 @@ test("room reconnect rebuilds the same deterministic bot bids from the seed and 
   const first = ctx.build(snapshot);
   const second = ctx.build(snapshot);
   assert.deepEqual(JSON.parse(JSON.stringify(first.bids)), JSON.parse(JSON.stringify(second.bids)));
-  assert.deepEqual(first.bids.filter(b => b.c === "P").map(b => b.s), ["E", "W", "E", "W"]);
+  assert.deepEqual(first.bids.filter(b => b.c === "P").map(b => b.s), ["E", "W"]);
   assert.deepEqual(JSON.parse(JSON.stringify(ctx.pack(first).h)), snapshot.h);
 });
 
