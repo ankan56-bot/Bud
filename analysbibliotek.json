@@ -1,6 +1,6 @@
 {
-  "version": "0.5.6",
-  "description": "Utökat fristående bibliotek med budträd och systemmässigt detaljerade handprofiler. Nya noder beskriver ostörd öppning och svar efter 1 i färg samt skiljer 4-4-4-1-fördelningar från artificiell fjärde färg. Grundsystemets regler är oförändrade.",
+  "version": "0.5.7",
+  "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.7 utökar ostörd budgivning med öppnarens återbud efter 1 över 1: balanserade intervall, egen färg, stöd, andra färg, reverse, hopp i andra färg, splinter och 4-4-4-1.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -4573,6 +4573,661 @@
           "handProfile": {
             "opener": "Öppnaren har visat ruter och klöver. 4-4-4-1-former måste särskiljas efter vilken färg som är singel; ingen naturlig hjärterlängd kan härledas av sekvensen.",
             "responder": "Svarshanden har visat spader. 3♥ är fjärde färg: artificiellt, 13+ hp, utgångskrav; det lovar inte hjärter."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T39_OPPNARENS_ATERBUD_EFTER_1_OVER_1",
+      "title": "Ostörd budgivning – öppnarens återbud efter 1 över 1",
+      "tags": [
+        "ostörd",
+        "öppnarens återbud",
+        "1 över 1",
+        "balanserad",
+        "6-kortsfärg",
+        "5-4",
+        "reverse",
+        "stöd",
+        "splinter",
+        "4-4-4-1"
+      ],
+      "conditions": [
+        "Ostörd budgivning efter öppning 1 i färg och svar 1 över 1.",
+        "Återbuden återger reb1() i rattningsmotorn; de ändrar inte grundsystemet.",
+        "HP, HTP, STP och HPS hålls isär. Använd den värdering som respektive regel uttryckligen kräver.",
+        "Reverse kräver 18+ HPS och minst 5-4; vanligt andra färgbud på lägsta nivå visar 12-17 hp och 5-4.",
+        "Balanserad hand avser motorns definition (4333, 4432 eller 5332); 4-4-4-1 är obalanserad."
+      ],
+      "root": "t39_1c1d_1nt",
+      "nodes": [
+        {
+          "id": "t39_1c1d_1nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♣–1♦ – balanserat minimumåterbud",
+          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+          }
+        },
+        {
+          "id": "t39_1c1d_2nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT efter 1♣–1♦ – starkt balanserat återbud",
+          "analysis": "Öppnaren visar 18–19 hp och balanserad hand. Det är ett hopp i sang och skiljer sig från 1NT-återbudets 12–14 hp. 15–17 hp är inte beskrivet som ett sådant hoppåterbud i den här sekvensen och ska inte pressas in i intervallet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18–19 hp, balanserad hand.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen. Budet ger en tydlig styrkegräns för nästa beslut."
+          }
+        },
+        {
+          "id": "t39_1c1d_own",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♣–1♦ – återbud i egen färg",
+          "analysis": "Öppnaren visar minst sex kort i öppningsfärgen och saknar sidofärg med minst fyra kort. Med 12–14 hp bjuds färgen på lägsta nivå; med 15–17 hp görs enkelhopp. Med 18+ hp i högfärg går öppnaren till utgång. För lågfärgsöppning anger motorn inte ett säkert motsvarande utgångsbud vid 18+ hp – det ska lämnas öppet i stället för att gissas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "6+ kort i öppningsfärgen, utan annan sidofärg med 4+ kort. 12–14 hp = lägsta nivå; 15–17 hp = enkelhopp; 18+ hp i högfärg = utgång.",
+            "responder": "Svarshanden har visat en egen färg på 1-nivån; öppnarens ombud av egen färg visar extra längd snarare än stöd i svarsfärgen."
+          }
+        },
+        {
+          "id": "t39_1c1d_support",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♣–1♦ – stöd i svarsfärgen",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
+          }
+        },
+        {
+          "id": "t39_1c1d_second_0",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "1♥"
+          ],
+          "meaning": "1♥ efter 1♣–1♦ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1c1d_second_1",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "1♠"
+          ],
+          "meaning": "1♠ efter 1♣–1♦ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1c1h_1nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♣–1♥ – balanserat minimumåterbud",
+          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+          }
+        },
+        {
+          "id": "t39_1c1h_2nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT efter 1♣–1♥ – starkt balanserat återbud",
+          "analysis": "Öppnaren visar 18–19 hp och balanserad hand. Det är ett hopp i sang och skiljer sig från 1NT-återbudets 12–14 hp. 15–17 hp är inte beskrivet som ett sådant hoppåterbud i den här sekvensen och ska inte pressas in i intervallet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18–19 hp, balanserad hand.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen. Budet ger en tydlig styrkegräns för nästa beslut."
+          }
+        },
+        {
+          "id": "t39_1c1h_own",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♣–1♥ – återbud i egen färg",
+          "analysis": "Öppnaren visar minst sex kort i öppningsfärgen och saknar sidofärg med minst fyra kort. Med 12–14 hp bjuds färgen på lägsta nivå; med 15–17 hp görs enkelhopp. Med 18+ hp i högfärg går öppnaren till utgång. För lågfärgsöppning anger motorn inte ett säkert motsvarande utgångsbud vid 18+ hp – det ska lämnas öppet i stället för att gissas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "6+ kort i öppningsfärgen, utan annan sidofärg med 4+ kort. 12–14 hp = lägsta nivå; 15–17 hp = enkelhopp; 18+ hp i högfärg = utgång.",
+            "responder": "Svarshanden har visat en egen färg på 1-nivån; öppnarens ombud av egen färg visar extra längd snarare än stöd i svarsfärgen."
+          }
+        },
+        {
+          "id": "t39_1c1h_support",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♣–1♥ – stöd i svarsfärgen",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
+          }
+        },
+        {
+          "id": "t39_1c1h_second_0",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥",
+            "Pass",
+            "1♠"
+          ],
+          "meaning": "1♠ efter 1♣–1♥ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1c1s_1nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♣–1♠ – balanserat minimumåterbud",
+          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+          }
+        },
+        {
+          "id": "t39_1c1s_2nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT efter 1♣–1♠ – starkt balanserat återbud",
+          "analysis": "Öppnaren visar 18–19 hp och balanserad hand. Det är ett hopp i sang och skiljer sig från 1NT-återbudets 12–14 hp. 15–17 hp är inte beskrivet som ett sådant hoppåterbud i den här sekvensen och ska inte pressas in i intervallet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18–19 hp, balanserad hand.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen. Budet ger en tydlig styrkegräns för nästa beslut."
+          }
+        },
+        {
+          "id": "t39_1c1s_own",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♣–1♠ – återbud i egen färg",
+          "analysis": "Öppnaren visar minst sex kort i öppningsfärgen och saknar sidofärg med minst fyra kort. Med 12–14 hp bjuds färgen på lägsta nivå; med 15–17 hp görs enkelhopp. Med 18+ hp i högfärg går öppnaren till utgång. För lågfärgsöppning anger motorn inte ett säkert motsvarande utgångsbud vid 18+ hp – det ska lämnas öppet i stället för att gissas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "6+ kort i öppningsfärgen, utan annan sidofärg med 4+ kort. 12–14 hp = lägsta nivå; 15–17 hp = enkelhopp; 18+ hp i högfärg = utgång.",
+            "responder": "Svarshanden har visat en egen färg på 1-nivån; öppnarens ombud av egen färg visar extra längd snarare än stöd i svarsfärgen."
+          }
+        },
+        {
+          "id": "t39_1c1s_support",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ efter 1♣–1♠ – stöd i svarsfärgen",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
+          }
+        },
+        {
+          "id": "t39_1c1s_second_0",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♣–1♠ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1c1s_second_1",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♣–1♠ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1d1h_1nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♦–1♥ – balanserat minimumåterbud",
+          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+          }
+        },
+        {
+          "id": "t39_1d1h_2nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT efter 1♦–1♥ – starkt balanserat återbud",
+          "analysis": "Öppnaren visar 18–19 hp och balanserad hand. Det är ett hopp i sang och skiljer sig från 1NT-återbudets 12–14 hp. 15–17 hp är inte beskrivet som ett sådant hoppåterbud i den här sekvensen och ska inte pressas in i intervallet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18–19 hp, balanserad hand.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen. Budet ger en tydlig styrkegräns för nästa beslut."
+          }
+        },
+        {
+          "id": "t39_1d1h_own",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♦–1♥ – återbud i egen färg",
+          "analysis": "Öppnaren visar minst sex kort i öppningsfärgen och saknar sidofärg med minst fyra kort. Med 12–14 hp bjuds färgen på lägsta nivå; med 15–17 hp görs enkelhopp. Med 18+ hp i högfärg går öppnaren till utgång. För lågfärgsöppning anger motorn inte ett säkert motsvarande utgångsbud vid 18+ hp – det ska lämnas öppet i stället för att gissas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "6+ kort i öppningsfärgen, utan annan sidofärg med 4+ kort. 12–14 hp = lägsta nivå; 15–17 hp = enkelhopp; 18+ hp i högfärg = utgång.",
+            "responder": "Svarshanden har visat en egen färg på 1-nivån; öppnarens ombud av egen färg visar extra längd snarare än stöd i svarsfärgen."
+          }
+        },
+        {
+          "id": "t39_1d1h_support",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♦–1♥ – stöd i svarsfärgen",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
+          }
+        },
+        {
+          "id": "t39_1d1h_second_0",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "1♠"
+          ],
+          "meaning": "1♠ efter 1♦–1♥ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1d1s_1nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♦–1♠ – balanserat minimumåterbud",
+          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+          }
+        },
+        {
+          "id": "t39_1d1s_2nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT efter 1♦–1♠ – starkt balanserat återbud",
+          "analysis": "Öppnaren visar 18–19 hp och balanserad hand. Det är ett hopp i sang och skiljer sig från 1NT-återbudets 12–14 hp. 15–17 hp är inte beskrivet som ett sådant hoppåterbud i den här sekvensen och ska inte pressas in i intervallet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18–19 hp, balanserad hand.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen. Budet ger en tydlig styrkegräns för nästa beslut."
+          }
+        },
+        {
+          "id": "t39_1d1s_own",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♦–1♠ – återbud i egen färg",
+          "analysis": "Öppnaren visar minst sex kort i öppningsfärgen och saknar sidofärg med minst fyra kort. Med 12–14 hp bjuds färgen på lägsta nivå; med 15–17 hp görs enkelhopp. Med 18+ hp i högfärg går öppnaren till utgång. För lågfärgsöppning anger motorn inte ett säkert motsvarande utgångsbud vid 18+ hp – det ska lämnas öppet i stället för att gissas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "6+ kort i öppningsfärgen, utan annan sidofärg med 4+ kort. 12–14 hp = lägsta nivå; 15–17 hp = enkelhopp; 18+ hp i högfärg = utgång.",
+            "responder": "Svarshanden har visat en egen färg på 1-nivån; öppnarens ombud av egen färg visar extra längd snarare än stöd i svarsfärgen."
+          }
+        },
+        {
+          "id": "t39_1d1s_support",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ efter 1♦–1♠ – stöd i svarsfärgen",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
+          }
+        },
+        {
+          "id": "t39_1d1s_second_0",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♦–1♠ – andra färgen",
+          "analysis": "Detta är en möjlig reverse-sekvens i systemets färgrangordning. Reverse kräver minst fem kort i öppningsfärgen, minst fyra i den nya färgen och 18+ HPS. HPS ska räknas enligt systemets särskilda regel för egen sexkortsfärg eller 5-5; det är inte samma sak som att bara addera HTP. Om öppnaren inte når 18 HPS men har minst fem kort i öppningsfärgen ska öppnaren i stället bjuda om första färgen. Reverse är krav och visar extra styrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1d1s_second_1",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♦–1♠ – andra färgen",
+          "analysis": "Öppnaren visar minst fyra kort i den nya färgen. Ett naturligt andra färgbud på lägsta nivå visar normalt 12–17 hp och en 5-4-hand. Om färgparet och budnivån i stället gör budet till reverse gäller den starkare reverse-regeln: minst 5-4 och 18+ HPS. Hela handens färglängder måste därför kontrolleras; budet får inte automatiskt tolkas som en vanlig 5-4-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1h1s_1nt",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♥–1♠ – balanserat minimumåterbud",
+          "analysis": "Öppnaren visar 12–14 hp och balanserad hand. Det är ett begränsat återbud på lägsta sangnivå. Det lovar inte fyrkortsstöd i svarsfärgen. En 4-4-4-1-hand är obalanserad enligt systemets definition och ska därför inte placeras här enbart för att den har 12–14 hp.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad fördelning enligt systemets definition; ingen visad 4-korts fit som prioriteras.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen; fortsättningen bedöms nu med öppnarens intervall 12–14 hp."
+          }
+        },
+        {
+          "id": "t39_1h1s_2nt",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT efter 1♥–1♠ – starkt balanserat återbud",
+          "analysis": "Öppnaren visar 18–19 hp och balanserad hand. Det är ett hopp i sang och skiljer sig från 1NT-återbudets 12–14 hp. 15–17 hp är inte beskrivet som ett sådant hoppåterbud i den här sekvensen och ska inte pressas in i intervallet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18–19 hp, balanserad hand.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i svarsfärgen. Budet ger en tydlig styrkegräns för nästa beslut."
+          }
+        },
+        {
+          "id": "t39_1h1s_own",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♥–1♠ – återbud i egen färg",
+          "analysis": "Öppnaren visar minst sex kort i öppningsfärgen och saknar sidofärg med minst fyra kort. Med 12–14 hp bjuds färgen på lägsta nivå; med 15–17 hp görs enkelhopp. Med 18+ hp i högfärg går öppnaren till utgång. För lågfärgsöppning anger motorn inte ett säkert motsvarande utgångsbud vid 18+ hp – det ska lämnas öppet i stället för att gissas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "6+ kort i öppningsfärgen, utan annan sidofärg med 4+ kort. 12–14 hp = lägsta nivå; 15–17 hp = enkelhopp; 18+ hp i högfärg = utgång.",
+            "responder": "Svarshanden har visat en egen färg på 1-nivån; öppnarens ombud av egen färg visar extra längd snarare än stöd i svarsfärgen."
+          }
+        },
+        {
+          "id": "t39_1h1s_support",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ efter 1♥–1♠ – stöd i svarsfärgen",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
+          }
+        },
+        {
+          "id": "t39_1h1s_second_0",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♥–1♠ – andra färgen",
+          "analysis": "Detta är en möjlig reverse-sekvens i systemets färgrangordning. Reverse kräver minst fem kort i öppningsfärgen, minst fyra i den nya färgen och 18+ HPS. HPS ska räknas enligt systemets särskilda regel för egen sexkortsfärg eller 5-5; det är inte samma sak som att bara addera HTP. Om öppnaren inte når 18 HPS men har minst fem kort i öppningsfärgen ska öppnaren i stället bjuda om första färgen. Reverse är krav och visar extra styrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_1h1s_second_1",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♥–1♠ – andra färgen",
+          "analysis": "Detta är en möjlig reverse-sekvens i systemets färgrangordning. Reverse kräver minst fem kort i öppningsfärgen, minst fyra i den nya färgen och 18+ HPS. HPS ska räknas enligt systemets särskilda regel för egen sexkortsfärg eller 5-5; det är inte samma sak som att bara addera HTP. Om öppnaren inte når 18 HPS men har minst fem kort i öppningsfärgen ska öppnaren i stället bjuda om första färgen. Reverse är krav och visar extra styrka.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fyra kort i den nya färgen. Normalt 5-4 med 12–17 hp på lägsta nivå; vid reverse minst 5-4 och 18+ HPS. Öppningsfärgen måste ha minst fem kort för reverse.",
+            "responder": "Svarshanden har visat 6+ hp och minst fyra kort i sin färg. Öppnarens andra färg kan vara ett vanligt återbud eller reverse beroende på färgrangordning och styrka."
+          }
+        },
+        {
+          "id": "t39_reverse_strong_jump",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♣–1♦ – hopp i andra färgen",
+          "analysis": "När öppnaren visar en andra färg med hopp, utan att sekvensen är reverse, visar motorns regel 18+ HPS och minst 5-4-fördelning. Det är en stark hand och ska inte blandas ihop med ett vanligt andra färgbud på lägsta nivå (12–17 hp). HPS är systemets färgpoängsvärdering enligt dess längdregler; ingen trumf behöver vara fastställd för denna beräkning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "18+ HPS och minst 5-4 i öppningsfärgen och den andra färgen; hopp i andra färgen när budet inte är reverse.",
+            "responder": "Svarshanden har visat en 4+ färg och 6+ hp; öppnarens hopp visar stark tvåfärgshand."
+          }
+        },
+        {
+          "id": "t39_splinter",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ efter 1♥–1♠ – splinter med spaderstöd",
+          "analysis": "Splinter visar singel eller renons i den bjudna sidofärgen, minst fyra korts stöd i svarsfärgen och 13+ STP. Det är en starkt fit-orienterad beskrivning, inte ett naturligt ruterbud. Motorns val av splinterfärg beror på singel-/renonsfördelningen; om flera sidofärger är korta ska prioriteringen granskas separat och inte beskrivas som entydig utan stöd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst 13 STP, 4+ spaderstöd och singel/renons i ruter (i detta exempel).",
+            "responder": "Svarshanden har visat minst fyra spader; öppnarens splinter fastställer spaderfit och visar korthet i ruter."
+          }
+        },
+        {
+          "id": "t39_4441",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ efter 1♥–1♠ – 4-4-4-1 och trumfstöd",
+          "analysis": "En öppnarhand med 4-4-4-1 kan ha fyra kort i svarsfärgen och därmed stödja partnerns 1♠. Den ska värderas med HTP i spader när fit finns. Exempelvis 4♠-4♥-4♦-1♣ är inte balanserad; om den öppnar 1♥ enligt färgprioriteten och partnern svarar 1♠ finns fyrkortsstöd. Stödåterbudets nivå styrs av HTP: 12–16 lägsta höjning, 17–19 enkelhopp, 20+ utgång i högfärg. Det är viktigt att inte kalla 4-4-4-1 balanserad.",
+          "branches": [],
+          "handProfile": {
+            "opener": "4-4-4-1 är obalanserad. Exakt singelfärg och fyrkortsfärger avgör öppningsbudet och om svarsfärgen har stöd.",
+            "responder": "Minst fyra spader; partnerns 1♠ visar minst fyra spader. 8+ korts fit när öppnarhanden har fyra spader."
           }
         }
       ]
