@@ -45,10 +45,15 @@ function makeDealFor(seat, shape, honors) {
   }
   assert.equal(target.length, 13, 'Target hand must have 13 cards');
   assert.equal(new Set(target).size, 13, 'Target hand must contain unique cards');
-  const rest = deck.filter(card => !target.includes(card));
+  let rest = deck.filter(card => !target.includes(card));
   const hands = { N: [], E: [], S: [], W: [] };
   hands[seat] = target;
-  const others = ['N', 'E', 'S', 'W'].filter(s => s !== seat);
+  const partner = { N: 'S', E: 'W', S: 'N', W: 'E' }[seat];
+  const partnerHearts = rest.filter(card => card[0] === 'H').slice(0, 4);
+  const partnerHand = partnerHearts.concat(rest.filter(card => !partnerHearts.includes(card)).slice(0, 9));
+  hands[partner] = partnerHand;
+  rest = rest.filter(card => !partnerHand.includes(card));
+  const others = ['N', 'E', 'S', 'W'].filter(s => s !== seat && s !== partner);
   others.forEach((s, i) => { hands[s] = rest.slice(i * 13, (i + 1) * 13); });
   return hands;
 }
