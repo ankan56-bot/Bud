@@ -716,3 +716,26 @@ Arbetet fortsätter på `work/undisturbed-validation` separat från konkurrenssp
 - Analysbiblioteket uppdaterat med Stenberg 2NT och återbud efter 1M–2M enligt motorversion 7.1.
 - Flera singletonfärger utan dokumenterad prioritet ger ingen automatisk rekommendation. Void är inte singleton.
 - Ännu ej verifierat: ny ostörd 140-givarskörning efter ändringen. Den ska dokumenteras först när CI/körning har bekräftat resultatet.
+
+
+## 1♥/1♠ till utgång och RKC 4NT – pågående arbete (2026-11-15)
+
+Utvecklingsspåret `feature/one-major-to-game-4nt` har startats från aktuell `main`. Arbetet omfattar ostörd budgivning efter 1♥ och 1♠, från svarshandens första bud via öppnarens återbud och svarshandens fortsättning till utgång eller 4NT med överenskommen trumf. Störd budgivning är fortsatt pausad.
+
+### Första verifierbara ändringen
+- Rättat en verklig konventionskonflikt: analysbiblioteket angav RKC 1430, men `rkcReply()` i rättningsmotorn svarade enligt 0314.
+- Motorn använder nu RKC 1430 när trumf är fastställd: 5♣ = 1/4 nyckelkort, 5♦ = 0/3, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam.
+- Tagit bort motorns odokumenterade 5NT-svar för 3 nyckelkort och renons från den här svarsmappningen; det ingår inte i den dokumenterade 1430-överenskommelsen.
+- Förtydligat att 2NT efter 1♥/1♠ är Stenberg (13+ HTP och minst fyra korts stöd), inte Jacoby. Void räknas inte som singleton.
+- Befintligt hjärterträd T01 har korrigerats till Stenberg/RKC 1430. Nytt spaderträd T44 beskriver motsvarande sekvens efter 1♠.
+- Lagt till sex riktade regressionstester som kontrollerar 1-, 4-, 0- och 3-nyckelkort samt två nyckelkort med/utan trumfdam.
+- CI har utökats så att dessa tester körs på arbetsgrenen.
+
+### Kvar att göra i detta spår
+- Täcka samtliga svar efter 1♥/1♠, inklusive stöd, 1 över 1, 2 över 1, 1NT, Stenberg och spärrhöjningar.
+- Slutföra öppnarens och svarshandens fortsättningar efter 1 över 1 fram till utgång; komplettera luckor i T39/T40.
+- Slutföra svarshandens fortsättningar efter Stenbergåterbuden i T34.
+- Kontrollera RKC 1430 genom hela auktionen, inklusive frågeställarens fortsättning efter 5♣/5♦/5♥/5♠. Slamval ska inte hittas på där kontrollinformation saknas.
+- Köra riktade handprofiler och 100 deterministiska ostörda givare med 1♥/1♠ som tema, och redovisa täckning, felbud, olagliga bud och undantag separat.
+
+Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen ny täckningsprocent hävdas innan testerna har körts.
