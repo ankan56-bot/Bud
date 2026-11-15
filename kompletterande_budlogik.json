@@ -30,7 +30,7 @@
           }
         },
         "balanced": null,
-        "notes": "Minst cirka 10 hp och normalt högst två hjärter; redubbling visar styrka utan tydligt stöd."
+        "notes": "Minst cirka 10 hp och normalt högst två hjärter; redubbling visar styrka utan tydligt stöd. Vid exakt 10 hp kan även 1NT-profilen matcha."
       },
       "alternatives": [
         {
@@ -51,7 +51,8 @@
       "approvalStatus": "unreviewed",
       "notes": [
         "Kompletterande analys, aldrig en grundsystemregel.",
-        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning.",
+        "Överlapp vid exakt 10 hp med den balanserade 1NT-kandidaten; ingen prioritetsregel är angiven."
       ],
       "recommendation": "XX",
       "rationale": "Redubbling visar normalt minst 10 hp och ingen tydlig hjärterfit. Avsikten är att markera styrka och möjlighet att straffa motståndarna om de fortsätter."
@@ -97,7 +98,8 @@
       "approvalStatus": "unreviewed",
       "notes": [
         "Kompletterande analys, aldrig en grundsystemregel.",
-        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning.",
+        "Överlapp vid 6 hp och 4+ hjärter med den spärrande 3H-kandidaten; ingen prioritetsregel är angiven."
       ],
       "recommendation": "2H",
       "rationale": "Naturlig konkurrenshöjning med minst trekortsstöd och begränsad styrka."
@@ -143,7 +145,8 @@
       "approvalStatus": "unreviewed",
       "notes": [
         "Kompletterande analys, aldrig en grundsystemregel.",
-        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning.",
+        "Överlapp vid 6 hp och 4+ hjärter med den naturliga 2H-kandidaten; ingen prioritetsregel är angiven."
       ],
       "recommendation": "3H",
       "rationale": "Spärrande hoppstöd med lång trumffit och svag honnörsstyrka; inte invit."
