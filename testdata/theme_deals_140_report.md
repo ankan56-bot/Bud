@@ -12,7 +12,7 @@
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`. Generatorn registrerar den exakta Git-blob-hashen för den rättningsmotor som användes.
 
-## Rättningsutfall – engine 7.1
+## Rättningsutfall – engine 7.3
 
 | Bedömning | Antal |
 |---|---:|
