@@ -1,0 +1,104 @@
+'use strict';
+
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const { execFileSync } = require('node:child_process');
+const Rattning = require('../rattningsmotor.js');
+const corpus = require('../testdata/temagivare_140.json');
+
+const NEXT = { N: 'E', E: 'S', S: 'W', W: 'N' };
+const deals = corpus.deals.filter(deal => deal.mode === 'ostord');
+const report = {
+  generatedAt: new Date().toISOString(),
+  branch: process.env.GITHUB_REF_NAME || 'local',
+  commit: (() => { try { return execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(); } catch (_) { return null; } })(),
+  corpusPath: 'testdata/temagivare_140.json',
+  engineVersion: Rattning.version,
+  deals: deals.length,
+  turns: 0,
+  covered: 0,
+  uncovered: [],
+  exceptions: [],
+  illegalRecommendations: [],
+  invalidAuctions: [],
+  unfinishedAuctions: []
+};
+
+for (const deal of deals) {
+  const st = { hands: deal.hands, dealer: deal.dealer, bids: [] };
+  let seat = deal.dealer;
+  let ended = false;
+  let guard = 0;
+
+  while (!ended && guard++ < 32) {
+    const index = st.bids.length;
+    let call = 'P';
+
+    if (seat === 'N' || seat === 'S') {
+      report.turns++;
+      st.bids.push({ s: seat, c: 'P' });
+      try {
+        const node = Rattning.nodeFor(st, index);
+        if (node && node.exp != null) {
+          call = node.exp;
+          report.covered++;
+        } else {
+          report.uncovered.push({
+            dealId: deal.id,
+            seat,
+            auction: st.bids.map(b => b.s + ':' + b.c).join(' '),
+            reason: node && node.why ? node.why : 'Ingen regelmatchning.'
+          });
+        }
+      } catch (error) {
+        report.exceptions.push({ dealId: deal.id, seat, message: String(error && error.message || error) });
+      }
+      st.bids[index] = { s: seat, c: call };
+    } else {
+      st.bids.push({ s: seat, c: 'P' });
+    }
+
+    const validation = Rattning.validateAuction(st);
+    for (const error of validation.errors) {
+      if (error.index === index) report.illegalRecommendations.push({
+        dealId: deal.id, seat, call, message: error.message
+      });
+    }
+    ended = validation.ended;
+    seat = NEXT[seat];
+  }
+
+  const finalValidation = Rattning.validateAuction(st);
+  if (!finalValidation.valid) report.invalidAuctions.push({
+    dealId: deal.id, errors: finalValidation.errors
+  });
+  if (!finalValidation.ended) report.unfinishedAuctions.push({
+    dealId: deal.id, calls: st.bids.length
+  });
+}
+
+report.coveragePercent = report.turns ? Math.round(report.covered / report.turns * 1000) / 10 : 0;
+fs.mkdirSync('testdata', { recursive: true });
+fs.writeFileSync('testdata/ostord_validation_latest.json', JSON.stringify(report, null, 2) + '\n');
+
+console.log(JSON.stringify({
+  deals: report.deals,
+  turns: report.turns,
+  covered: report.covered,
+  uncovered: report.uncovered.length,
+  coveragePercent: report.coveragePercent,
+  exceptions: report.exceptions.length,
+  illegalRecommendations: report.illegalRecommendations.length,
+  invalidAuctions: report.invalidAuctions.length,
+  unfinishedAuctions: report.unfinishedAuctions.length
+}, null, 2));
+
+assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
+assert.equal(report.turns, 170, 'The fixed corpus should contain 170 undisturbed N/S positions.');
+assert.equal(report.covered, report.turns, 'Every undisturbed N/S position must be covered.');
+assert.equal(report.uncovered.length, 0, 'No undisturbed positions may be uncovered.');
+assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
+assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
+assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
+assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
+assert.equal(report.coveragePercent, 100, 'Undisturbed coverage must remain 100%.');

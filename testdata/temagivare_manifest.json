@@ -1,117 +1,349 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "title": "Första temabaserade träningsuppsättningen",
   "targetDeals": 140,
   "dealsPerTheme": 10,
   "generation": {
-    "source": "Budtraning.html existing biasedDeal/theme generator",
+    "source": "Budtraning.html existing biasedDeal/newDeal theme generator",
     "reproducibleSeeds": true,
-    "distribution": {
-      "typical": 7,
-      "borderline": 3
+    "modeMix": {
+      "standardThemes": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "forcedInterferenceThemes": {
+        "dubbling": 10,
+        "inkliv": 10
+      }
     },
     "validateThemeBeforeSave": true,
     "validate52UniqueCards": true,
-    "status": "pending_generation_and_validation"
+    "status": "generated_and_validated",
+    "corpusPath": "testdata/temagivare_140.json",
+    "engineVersion": "6.6",
+    "sourceEngineBlobSha": "bc6feae55ac0bba101f349a975270bf89c6e6b28",
+    "regeneratedDeals": [
+      "svag-02",
+      "svag-05",
+      "svag-09",
+      "svag-10"
+    ],
+    "regeneratedReason": "Revalidated weak-two response conditions after correcting response and opener rebid logic and removing arbitrary multiple-suit priorities.",
+    "regeneratedSeeds": {
+      "svag-02": 93000004,
+      "svag-05": 93000001,
+      "svag-09": 93000002,
+      "svag-10": 93000003
+    }
   },
   "themes": [
     {
       "id": "alla",
       "title": "Alla slags givar",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "alla-01",
+        "alla-02",
+        "alla-03",
+        "alla-04",
+        "alla-05",
+        "alla-06",
+        "alla-07",
+        "alla-08",
+        "alla-09",
+        "alla-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "nt",
       "title": "1NT, Stayman och överföringar",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "nt-01",
+        "nt-02",
+        "nt-03",
+        "nt-04",
+        "nt-05",
+        "nt-06",
+        "nt-07",
+        "nt-08",
+        "nt-09",
+        "nt-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "stenberg",
       "title": "Stenberg 2NT (stöd i hög- och lågfärg)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "stenberg-01",
+        "stenberg-02",
+        "stenberg-03",
+        "stenberg-04",
+        "stenberg-05",
+        "stenberg-06",
+        "stenberg-07",
+        "stenberg-08",
+        "stenberg-09",
+        "stenberg-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "tva",
       "title": "2♣-öppning (starka givar)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "tva-01",
+        "tva-02",
+        "tva-03",
+        "tva-04",
+        "tva-05",
+        "tva-06",
+        "tva-07",
+        "tva-08",
+        "tva-09",
+        "tva-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "rkc",
       "title": "Essfråga (RKC) – alla färger",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "rkc-01",
+        "rkc-02",
+        "rkc-03",
+        "rkc-04",
+        "rkc-05",
+        "rkc-06",
+        "rkc-07",
+        "rkc-08",
+        "rkc-09",
+        "rkc-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "slam",
       "title": "Slambudgivning i färg (kontrollbud och RKC)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "slam-01",
+        "slam-02",
+        "slam-03",
+        "slam-04",
+        "slam-05",
+        "slam-06",
+        "slam-07",
+        "slam-08",
+        "slam-09",
+        "slam-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "slamnt",
       "title": "Slambudgivning i sang",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "slamnt-01",
+        "slamnt-02",
+        "slamnt-03",
+        "slamnt-04",
+        "slamnt-05",
+        "slamnt-06",
+        "slamnt-07",
+        "slamnt-08",
+        "slamnt-09",
+        "slamnt-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "trumf",
       "title": "Trumfstöd (stödbud i färg)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "trumf-01",
+        "trumf-02",
+        "trumf-03",
+        "trumf-04",
+        "trumf-05",
+        "trumf-06",
+        "trumf-07",
+        "trumf-08",
+        "trumf-09",
+        "trumf-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "sang",
       "title": "Sanghänder (1NT/2NT och svar)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "sang-01",
+        "sang-02",
+        "sang-03",
+        "sang-04",
+        "sang-05",
+        "sang-06",
+        "sang-07",
+        "sang-08",
+        "sang-09",
+        "sang-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "invit",
       "title": "Inviter (invit eller utgång)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "invit-01",
+        "invit-02",
+        "invit-03",
+        "invit-04",
+        "invit-05",
+        "invit-06",
+        "invit-07",
+        "invit-08",
+        "invit-09",
+        "invit-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "tvafarg",
       "title": "Tvåfärgshänder (andra bud)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "tvafarg-01",
+        "tvafarg-02",
+        "tvafarg-03",
+        "tvafarg-04",
+        "tvafarg-05",
+        "tvafarg-06",
+        "tvafarg-07",
+        "tvafarg-08",
+        "tvafarg-09",
+        "tvafarg-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "svag",
       "title": "Svaga öppningar och spärrbud",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "svag-01",
+        "svag-02",
+        "svag-03",
+        "svag-04",
+        "svag-05",
+        "svag-06",
+        "svag-07",
+        "svag-08",
+        "svag-09",
+        "svag-10"
+      ],
+      "modeMix": {
+        "stord": 7,
+        "ostord": 3
+      },
+      "status": "validated"
     },
     {
       "id": "dubbling",
       "title": "Upplysningsdubbling (dubbla och svara, alltid störd)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "dubbling-01",
+        "dubbling-02",
+        "dubbling-03",
+        "dubbling-04",
+        "dubbling-05",
+        "dubbling-06",
+        "dubbling-07",
+        "dubbling-08",
+        "dubbling-09",
+        "dubbling-10"
+      ],
+      "modeMix": {
+        "stord": 10,
+        "ostord": 0
+      },
+      "status": "validated"
     },
     {
       "id": "inkliv",
       "title": "Inkliv och dubbling (alla bjuder)",
       "target": 10,
-      "dealIds": [],
-      "status": "pending"
+      "dealIds": [
+        "inkliv-01",
+        "inkliv-02",
+        "inkliv-03",
+        "inkliv-04",
+        "inkliv-05",
+        "inkliv-06",
+        "inkliv-07",
+        "inkliv-08",
+        "inkliv-09",
+        "inkliv-10"
+      ],
+      "modeMix": {
+        "stord": 10,
+        "ostord": 0
+      },
+      "status": "validated"
     }
   ],
   "evaluation": {
@@ -119,7 +351,49 @@
     "captureUncoveredAndOptional": true,
     "aiAnalysis": "pending_development_analysis",
     "dds": "use_as_hindsight_cross_check_only",
-    "regressionBaseline": "same fixed deals for every motor version"
+    "regressionBaseline": "same fixed deals for every motor version",
+    "status": "baseline_run",
+    "baselinePath": "testdata/temagivare_140_baseline.json",
+    "baselineEngineBlobSha": "e94d92bb59b8ba5781c2868a1c1ab8f61ac4ed22",
+    "baselineSummary": {
+      "nsTurns": 606,
+      "covered": 538,
+      "uncovered": 68,
+      "coveragePercent": 88.8,
+      "ostordCoveragePercent": 100,
+      "stordCoveragePercent": 84.4,
+      "exceptions": 0,
+      "illegalRecommendations": 0,
+      "completedAuctions": 140,
+      "auctionValidationValid": 140,
+      "auctionValidationErrors": 0,
+      "previousCoveragePercent": 88.3,
+      "previousUncovered": 71,
+      "regressionTestCount": 78,
+      "regressionTestsPassed": 78
+    },
+    "regressionTestCount": 78,
+    "regressionTestsPassed": 78,
+    "supplementaryCandidatePath": "kompletterande_budlogik.json",
+    "supplementaryCandidateCount": 25,
+    "supplementaryApprovalStatus": "unreviewed",
+    "supplementaryTestPath": "tests/supplementary-logic.test.js",
+    "supplementaryTestCount": 15,
+    "supplementaryTestsPassed": 15,
+    "undisturbedVerification": {
+      "status": "pending_ci_run",
+      "scriptPath": "tests/ostord-coverage.test.js",
+      "workflowPath": ".github/workflows/undisturbed-validation.yml",
+      "targetDeals": 36,
+      "expectedNsTurns": 170,
+      "requiredCoveragePercent": 100,
+      "requiredExceptions": 0,
+      "requiredIllegalRecommendations": 0,
+      "requiredInvalidAuctions": 0,
+      "note": "A draft PR targets work/hps-reverse-audit, where the workflow definition is also present so GitHub can run the pull-request check. Do not update the baseline engine SHA or claim the new result until the workflow artifact confirms the run."
+    },
+    "competitiveBiddingStatus": "paused",
+    "competitiveBiddingRemaining": 68
   },
-  "note": "This is a manifest only. It does not claim that the 140 deals have already been generated or AI-reviewed."
+  "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
 }

@@ -79,3 +79,78 @@ Ingen extern AI-tjänst ska krävas av den publicerade hemsidan. Analys som ska 
 ## Avgränsning för publicerad webbplats
 
 Stora simuleringar och analyskörningar ska ske i utvecklingsmiljö, inte i besökarens webbläsare. Webbplatsen ska bara hämta den färdiga, validerade kunskapen och använda DDS för enskilda givar när det behövs.
+
+
+## Kompletterande kandidatmatchning – första implementation
+
+`kompletterande_budlogik.json` innehåller nu fem omarkerade som systemregler (status `unreviewed`) kandidater för 1♥–Dbl. `analysmotor.js` kan matcha dessa separat mot exakt budsekvens, nästa spelare och strukturerade HCP-/fördelningsvillkor. Endast den aktuella spelarens hand används. Matcharen returnerar alla kandidater och visar överlapp; den väljer inte automatiskt mellan motstridiga kandidater och får aldrig skriva över `rattningsmotor.js`.
+
+Regressioner:
+- Grundsystemets budrättningsmotor: 54 testfall.
+- Kompletterande handvillkorsmatchare: 15 testfall.
+- Kandidaterna är ännu inte godkända och får inte användas som grundsystemfacit.
+
+
+### Visning av kompletterande kandidater
+
+Efter avslutad giv kan analysvyn nu visa handvillkorsmatchade kompletterande kandidater för ej täckta budpositioner. Kandidaterna märks som ej godkända, visar källa/osäkerhet och påverkar inte grundsystemets rättning. Matchningen stöder också pass före öppningsbudet.
+
+
+De kompletterande testerna täcker även kända överlapp mellan redubbling/1NT, 2♥/3♥ och 1♠/1NT. Matcharen visar flera kandidater när underlaget inte anger en prioritetsregel.
+
+
+Det kompletterande kandidatbiblioteket omfattar nu 25 ej godkända kandidater från T29–T33. Matcharen kontrollerar även stoppare (E, Kx, Qxx, Jxxx). Alla kandidater är separata från grundsystemet och returneras som möjliga analyser, inte automatiska budfacit.
+
+
+## Pågående prioritet: Öst/Väst och grundsystemets täckning
+
+Spelmotorn där Syd spelar mot en människa i Nord är pausad enligt användarens instruktion. Arbetet fokuserar i stället på att göra Öst/Väst-budmotorn och den befintliga rättningsmotorn tillförlitliga.
+
+### Konkurrenssekvenser
+- Negativ dubbling efter naturlig färgöppning och reopening-/stöddubbling är inte definierade i REF och ska därför visas som ej täckta, inte automatiskt godkännas.
+- 1NT efter motståndarinkliv: kontrollera 5+ färg och lämna bud utan numeriskt definierad invit-/utgångsstyrka ej täckta.
+- Svar efter UD: billigaste objudna färg vid 0–7 hp; NT-svar kräver håll men inte ett extra balansvillkor; sök HTP-kandidater bland samtliga relevanta färger.
+
+### Stenberg och öppnarens återbud
+- Void får inte behandlas som singleton.
+- En singleton i sidofärg visas; flera möjliga singletonfärger utan prioritet lämnas ej täckta i råmotorn.
+- 15+ HTP utan singleton efter Stenberg visar 3M; 12–14 hp balanserad visar 3NT.
+- 1M–2M: 17–19 HTP med singleton visar färgen; utan singleton 3M; 20+ utgång.
+
+### Svaga tvåöppningar
+- Ny färg 5+ är forcing till minst 3 i öppningsfärgen utan påhittad 15 hp-gräns.
+- 2NT kräver 9–10 hp och minst 2 korts stöd.
+- 3 i öppningsfärgen är spärrande med 3+ stöd, ej invit.
+- Openerns återbud efter 2NT följer 6–8 minimum på 3-nivån och 9–10 maximum: 4M eller 3NT efter minoröppning.
+- Odefinierade fortsättningar lämnas ej täckta.
+
+Aktuell teststatus: 73 grundsystemstester och 15 kompletterande tester passerar. 140 deterministiska givare är validerade; alla auktioner är giltiga och ostörd täckning är 100 %. Fortsätt prioritera att granska de återstående störda sekvenserna och Stenberg-/återbudsgränserna.
+
+
+### Slutlig kontroll – svaga tvåor och konkurrens
+
+Flera egna 5+ färger efter svag tvåa har nu också gjorts ej täckta när REF saknar prioritetsregel. Testsviten är 74/74 för grundmotorn och 15/15 för kompletterande matchning. Senaste 140-givarsbaslinjen: 535/606 täckta positioner (88,3 %), 100 % ostört, 83,7 % stört, 0 tekniska fel och 140/140 giltiga auktioner. Den aktuella svag-02-givaren använder seed 93000004.
+
+
+### Dubblerarens återbud – uttrycklig 18 hp-regel
+
+Efter upplysningsdubbling och partnerns svar gäller enligt REF: utan stöd kräver egen färg/NT minst 18 hp. Motorn kontrollerar nu dubblerarens faktiska andra tur:
+- Under 18 hp utan stöd: pass i stället för egen färg/NT.
+- 18+ hp utan stöd: egen färg/NT kan godkännas.
+- Med 3+ stöd är återbudet ej täckt tills systemunderlaget anger fortsättningen.
+
+Detta har minskat luckorna i dubblingstemat. Senaste motor 7.1: 78/78 grundtester, 15/15 kompletterande tester, 538/606 positioner täckta (88,8 %), 100 % ostört och 84,4 % stört.
+
+
+## Pausad konkurrensbudgivning och ny arbetsgren (2026-11-15)
+
+Konkurrensbudgivningen pausas tills vidare. De återstående 68 ej täckta positionerna i 140-givarsbaslinjen ska bevaras som arbetslista; de ska inte fyllas med antagna regler. Fortsatt arbete ska ske separat från den ostörda budgivningen.
+
+Ny arbetsgren: `work/undisturbed-validation`, skapad från `work/hps-reverse-audit`. Denna gren fokuserar på att verifiera ostörd budgivning, bevara 100 % täckning och synkronisera rättningsmotor, analysnoder och handanalysunderlag. `main` lämnas orörd.
+
+Genomförda synkroniseringar i denna arbetsomgång:
+- Gemensam trumfbonus: 9 kort ger +1; 10 eller fler ger +2 (inte +3). Kortfärgspoäng räknas separat enligt handens korthet.
+- Analysbiblioteket har kompletterats med Stenberg 2NT och öppnarens återbud efter 1M–2M.
+- Singletonprioritet får inte hittas på när flera sidofärger är singel; void räknas inte som singleton.
+
+Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat kräver 100 % täckning, noll tekniska undantag och noll olagliga rekommendationer. Därefter granskas noder och handanalys mot de faktiska resultaten.

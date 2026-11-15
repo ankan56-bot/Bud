@@ -1,7 +1,7 @@
 name: Validate bridge trainer
 on:
   push:
-    branches: [feature/two-player-dds]
+    branches: [feature/two-player-dds, work/hps-reverse-audit]
   workflow_dispatch:
 jobs:
   validate:
@@ -48,6 +48,18 @@ jobs:
           if (!result || !result.exp) throw new Error('Opening decision-tree smoke test failed');
           console.log('Correction engine v' + R.version + ': opening recommendation ' + result.exp);
           NODE
+      - name: Run correction-engine regression tests
+        run: node tests/reverse-hps.test.js
+      - name: Validate supplementary bidding logic
+        run: |
+          node - <<'NODE'
+          const x = require('./kompletterande_budlogik.json');
+          if (x.authority !== 'supplementary_only' || !Array.isArray(x.entries)) throw new Error('Supplementary logic schema is invalid');
+          if (x.entries.some(e => e.approvalStatus !== 'unreviewed' || e.relationshipToSystem !== 'must_not_override')) throw new Error('A supplementary candidate is incorrectly marked as approved or authoritative');
+          console.log(x.version + ': ' + x.entries.length + ' unapproved candidates');
+          NODE
+      - name: Run supplementary matcher tests
+        run: node tests/supplementary-logic.test.js
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
@@ -61,7 +73,7 @@ jobs:
           node - <<'NODE'
           const A = require('./analysmotor.js');
           const lib = require('./analysbibliotek.json');
-          if (A.version !== '1.0.2') throw new Error('Unexpected analysis engine version');
+          if (A.version !== '1.1.0') throw new Error('Unexpected analysis engine version');
           const incompatible = lib.trees.find(t => t.id === 'T01_RKC_HJARTER');
           if (A.treeCompatible(incompatible)) throw new Error('Jacoby prototype must not override Stenberg rules');
           const hit = A.findMatch(lib, [{c:'1N'},{c:'P'},{c:'2D'},{c:'P'},{c:'2H'},{c:'P'}]);

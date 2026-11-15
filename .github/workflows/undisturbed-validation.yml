@@ -1,0 +1,68 @@
+name: Undisturbed bidding verification
+
+on:
+  push:
+    branches:
+      - work/undisturbed-validation
+  pull_request:
+    branches:
+      - work/hps-reverse-audit
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run correction-engine regression tests
+        run: node tests/reverse-hps.test.js
+      - name: Validate analysis library JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('analysbibliotek.json','utf8'))"
+      - name: Run supplementary matcher tests
+        run: node tests/supplementary-logic.test.js
+      - name: Verify manually approved undisturbed decisions and node analysis
+        run: node tests/ostord-manual-rules.test.js
+      - name: Verify all fixed undisturbed deals
+        run: node tests/ostord-coverage.test.js
+      - name: Run first 100-deal undisturbed stress test
+        run: node tests/ostord-100.test.js
+      - name: Run independent second 100-deal undisturbed stress test
+        run: node tests/ostord-100-second.test.js
+      - name: Run third independent 200-deal undisturbed stress test
+        run: node tests/ostord-400.test.js
+      - name: Upload undisturbed verification reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: ostord-validation
+          path: |
+            testdata/ostord_validation_latest.json
+            testdata/ostord_100_validation_latest.json
+            testdata/ostord_200_validation_latest.json
+            testdata/ostord_400_validation_latest.json
+            testdata/ostord_manual_rules_latest.json
+
+  stress-400:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate and verify 100 undisturbed deals
+        run: node tests/ostord-100.test.js
+      - name: Generate and verify second independent 100 deals
+        run: node tests/ostord-100-second.test.js
+      - name: Upload 200-deal verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ostord-400-validation
+          path: |
+            testdata/ostord_100_validation_latest.json
+            testdata/ostord_200_validation_latest.json
