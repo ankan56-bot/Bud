@@ -1,6 +1,6 @@
 {
-  "version": "1.1.0",
-  "title": "45 ej täckta budpositioner från temabaslinjen",
+  "version": "1.2.0",
+  "title": "44 ej täckta budpositioner från temabaslinjen",
   "note": "Samtliga poster är pass i den deterministiskt genererade referensauktionen eftersom rättningsmotorn saknade ett säkert förslag. Ej täckt betyder inte att pass är fel eller rätt.",
   "cases": [
     {
@@ -1309,117 +1309,6 @@
         "bid": "Pass",
         "suggested": "",
         "reason": "Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet."
-      }
-    },
-    {
-      "id": "trumf-04-bid-7",
-      "dealId": "trumf-04",
-      "theme": "trumf",
-      "mode": "stord",
-      "seed": 555321,
-      "dealer": "S",
-      "hands": {
-        "N": [
-          "C12",
-          "D2",
-          "S2",
-          "H13",
-          "S9",
-          "C9",
-          "S4",
-          "H2",
-          "D6",
-          "H10",
-          "D5",
-          "H11",
-          "S6"
-        ],
-        "E": [
-          "C10",
-          "C11",
-          "H12",
-          "D3",
-          "D13",
-          "D14",
-          "S5",
-          "D12",
-          "S7",
-          "H9",
-          "H7",
-          "H8",
-          "S11"
-        ],
-        "S": [
-          "S12",
-          "H4",
-          "S14",
-          "C6",
-          "S13",
-          "D8",
-          "S10",
-          "C8",
-          "D11",
-          "S3",
-          "C5",
-          "C13",
-          "C4"
-        ],
-        "W": [
-          "C2",
-          "C7",
-          "D7",
-          "D9",
-          "D4",
-          "H3",
-          "D10",
-          "H5",
-          "H14",
-          "H6",
-          "C14",
-          "C3",
-          "S8"
-        ]
-      },
-      "auction": [
-        {
-          "s": "S",
-          "c": "1S"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "2S"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "3H"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        }
-      ],
-      "uncoveredBid": {
-        "number": 7,
-        "seat": "Norr",
-        "bid": "Pass",
-        "suggested": "",
-        "reason": "Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas."
       }
     },
     {
