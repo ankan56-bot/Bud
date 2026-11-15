@@ -150,6 +150,22 @@ button:disabled{opacity:.3;cursor:default}
 .report-dialog textarea{display:block;width:100%;min-height:130px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,system-ui,sans-serif;user-select:text;-webkit-user-select:text}
 .report-dialog .row{justify-content:flex-end;margin-top:14px}
 @media(max-width:600px){.seat .hand div{font-size:9px;letter-spacing:-.35px}.report-dialog{padding:16px}}
+
+/* När spelaren sitter Öst/Väst staplas de stående korten vertikalt
+   så att bordets befintliga bredd kan behållas. */
+.seatL .fan,.seatR .fan{flex-direction:column;align-items:center;padding:0}
+.seatL .cd,.seatR .cd{width:46px;height:68px;flex-basis:46px;margin-left:0;margin-top:-54px}
+.seatL .cd:first-child,.seatR .cd:first-child{margin-top:0}
+.seatL .cd b,.seatR .cd b{font-size:19px}
+.seatL .cd i,.seatR .cd i{font-size:21px}
+.seatL .cd::after,.seatR .cd::after{font-size:30px;right:4px;bottom:4px}
+@media(max-width:600px){
+ .seatL .cd,.seatR .cd{width:24px;height:55px;flex-basis:24px;margin-left:0;margin-top:-43px;padding:3px 2px}
+ .seatL .cd:first-child,.seatR .cd:first-child{margin-top:0}
+ .seatL .cd b,.seatR .cd b{font-size:12px}
+ .seatL .cd i,.seatR .cd i{font-size:13px}
+ .seatL .cd::after,.seatR .cd::after{font-size:18px;right:2px;bottom:3px}
+}
 </style>
 </head>
 <body>
