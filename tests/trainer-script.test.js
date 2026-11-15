@@ -315,3 +315,23 @@ test("room reconnect holds bot turns until replayed state messages go quiet", ()
   assert.ok(html.includes("if(roomSyncing||state!==st"));
   assert.ok(html.includes("es.onopen=function(){connState='online';startPresence();markRoomSync()"));
 });
+
+
+test("stale room presence history cannot reclaim seats after reconnect", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function isFreshRoomPresence(");
+  const end = html.indexOf("\\nfunction isFreshRoomAction", start);
+  assert.ok(start >= 0 && end > start, "presence freshness helpers should exist");
+  const context = {};
+  vm.runInNewContext(html.slice(start, end), context);
+  const now = 1_800_000_000_000;
+  assert.equal(context.isFreshRoomPresence({ time: now / 1000 }, now), true);
+  assert.equal(context.isFreshRoomPresence({ time: now / 1000 - 44 }, now), true);
+  assert.equal(context.isFreshRoomPresence({ time: now / 1000 - 46 }, now), false);
+  assert.equal(context.isFreshRoomPresence({ time: now / 1000 + 46 }, now), false);
+  assert.equal(context.isFreshRoomPresence({}, now), false);
+  assert.equal(context.isNewerRoomPresence({ time: 100 }, 99_000), true);
+  assert.equal(context.isNewerRoomPresence({ time: 98 }, 99_000), false);
+  assert.ok(html.includes("isFreshRoomPresence(o)&&isNewerRoomPresence(o,lastPresenceEventTime[m.p.id])"));
+  assert.ok(html.includes("freshPresence={id:m.p.id,name:m.p.name||'',seat:m.p.seat||null,at:Date.now()}"));
+});
