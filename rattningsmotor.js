@@ -864,9 +864,18 @@ var Rattning = (function(){
           return x.s===asker&&x.c==='5N'&&answer&&
             callsAfterAsk.indexOf(x)>callsAfterAsk.indexOf(answer);
         });
+        var answerIndex=answer?callsAfterAsk.indexOf(answer):-1;
+        var laterAskerBid=callsAfterAsk.findIndex(function(x,idx){
+          return idx>answerIndex&&x.s===asker&&isBid(x.c);
+        });
+        var retreatAfterAmbiguous=!!answer&&/^5[CD]$/.test(answer.c)&&
+          laterAskerBid>=0&&callsAfterAsk.some(function(x,idx){
+            return idx>laterAskerBid&&x.s===partner(asker)&&x.c==='5'+rkcTrumpFromAuction(auctionThroughAsk,askSide);
+          });
         aceAskResponse=askIsAgreed&&!!answer&&(
           (/^5[CDHSN]$/.test(answer.c)&&lastCall===answer&&me===asker)||
-          (askerFixedNoTrump&&lastCall&&lastCall.s===asker&&lastCall.c==='5N'&&me!==asker)
+          (askerFixedNoTrump&&lastCall&&lastCall.s===asker&&lastCall.c==='5N'&&me!==asker)||
+          (retreatAfterAmbiguous&&me===asker)
         );
       }
       var pendingPartnerAceAsk=lastCall&&lastCall.c==='4N'&&lastCall.s===pt&&(
