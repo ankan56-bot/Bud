@@ -486,3 +486,15 @@ Dessa gränser och prioriteringar är nu korrigerade. Även ett fel i kontrollen
 - 0 krascher, 0 olagliga kontraktsbud och 0 valideringsfel.
 
 Inklivstemat ligger nu på 83,3 % och trumfstöd på 68,4 %. Dubblingstemat ligger kvar på 47,1 % eftersom de återstående exemplen främst kräver fortsättningsregler efter dubblerarens första svar, inte själva inklivs-/dubblingsbeslutet.
+
+
+### Kvarvarande luckor – fördelning
+
+De 68 ej täckta turerna i senaste 140-givarsbaslinjen är samtliga i störda lägen:
+- 28: motståndarna har klivit in efter att vår sida börjat bjuda.
+- 16: partnern har passat efter vår senaste budgivning; vi får en ny tur.
+- 13: motståndarna har hunnit bjuda flera gånger.
+- 10: ytterligare varianter av motståndarinblandning.
+- 1: annan odokumenterad fortsättning.
+
+Det bekräftar att ostörd budgivning och de flesta grundsvar nu är väl täckta. Nästa stora utvecklingsområde är uttryckliga konkurrenssekvenser. Jag håller dessa luckor separata från regelkorrigeringarna: vi ska inte höja täckningen genom att hitta på svar som inte finns i systemunderlaget.
