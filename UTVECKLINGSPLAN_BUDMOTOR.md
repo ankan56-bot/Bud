@@ -100,3 +100,28 @@ De kompletterande testerna täcker även kända överlapp mellan redubbling/1NT,
 
 
 Det kompletterande kandidatbiblioteket omfattar nu 25 ej godkända kandidater från T29–T33. Matcharen kontrollerar även stoppare (E, Kx, Qxx, Jxxx). Alla kandidater är separata från grundsystemet och returneras som möjliga analyser, inte automatiska budfacit.
+
+
+## Pågående prioritet: Öst/Väst och grundsystemets täckning
+
+Spelmotorn där Syd spelar mot en människa i Nord är pausad enligt användarens instruktion. Arbetet fokuserar i stället på att göra Öst/Väst-budmotorn och den befintliga rättningsmotorn tillförlitliga.
+
+### Konkurrenssekvenser
+- Negativ dubbling efter naturlig färgöppning och reopening-/stöddubbling är inte definierade i REF och ska därför visas som ej täckta, inte automatiskt godkännas.
+- 1NT efter motståndarinkliv: kontrollera 5+ färg och lämna bud utan numeriskt definierad invit-/utgångsstyrka ej täckta.
+- Svar efter UD: billigaste objudna färg vid 0–7 hp; NT-svar kräver håll men inte ett extra balansvillkor; sök HTP-kandidater bland samtliga relevanta färger.
+
+### Stenberg och öppnarens återbud
+- Void får inte behandlas som singleton.
+- En singleton i sidofärg visas; flera möjliga singletonfärger utan prioritet lämnas ej täckta i råmotorn.
+- 15+ HTP utan singleton efter Stenberg visar 3M; 12–14 hp balanserad visar 3NT.
+- 1M–2M: 17–19 HTP med singleton visar färgen; utan singleton 3M; 20+ utgång.
+
+### Svaga tvåöppningar
+- Ny färg 5+ är forcing till minst 3 i öppningsfärgen utan påhittad 15 hp-gräns.
+- 2NT kräver 9–10 hp och minst 2 korts stöd.
+- 3 i öppningsfärgen är spärrande med 3+ stöd, ej invit.
+- Openerns återbud efter 2NT följer 6–8 minimum på 3-nivån och 9–10 maximum: 4M eller 3NT efter minoröppning.
+- Odefinierade fortsättningar lämnas ej täckta.
+
+Aktuell teststatus: 73 grundsystemstester och 15 kompletterande tester passerar. 140 deterministiska givare är validerade; alla auktioner är giltiga och ostörd täckning är 100 %. Fortsätt prioritera att granska de återstående störda sekvenserna och Stenberg-/återbudsgränserna.
