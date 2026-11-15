@@ -1332,7 +1332,7 @@ var Rattning = (function(){
         // samma färg. En reverse eller en ensidig färgbeskrivning fastställer
         // inte i sig trumf, även om de dolda händerna råkar ha 8 kort ihop.
         for(var aj=i;aj>=0;aj--){
-          if(side(bids[aj].s)!==side(b.s)||!isBid(bids[aj].c)||bids[aj].c[1]==='N')continue;
+          if(bids[aj].s!==b.s||!isBid(bids[aj].c)||bids[aj].c[1]==='N')continue;
           var candidateSuit=bids[aj].c[1];
           var partnerHasBidSuit=bids.slice(0,i+1).some(function(x){
             return x.s===partner(b.s)&&isBid(x.c)&&x.c[1]===candidateSuit;
