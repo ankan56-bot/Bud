@@ -40,11 +40,20 @@
 - 20+ HTP: 4M.
 - Flera singletonfärger utan prioritet: ej täckt; välj inte godtycklig färg.
 
-## 4. Konkurrensbudgivning – pausad
+
+## 4. Förtydliganden från manuell kontroll av ostörda givare
+
+- Efter 1NT–2♣–2♠ (Stayman) med konstaterad 8-korts spaderfit ska svarshanden passa när parets gemensamma spelpoäng understiger 26. Bjud inte automatiskt 3♠ enbart för att svarshanden har 10 hp. Vid 26+ gemensamma spelpoäng bjuds 4♠.
+- Efter 1♣–2♣ väljer öppnaren 3NT med 18+ hp och balanserad hand. Sang prioriteras framför utgång i lågfärg när handen är jämn.
+- Efter 1♦–1♠–2♣–2NT accepterar öppnaren med 3NT när öppnaren har håll i alla fyra färger och paret har minst 26 gemensamma honnörspoäng. Sang prioriteras framför lågfärgsutgång.
+- Efter 2NT–3♣–3♠ väljer svarshanden 3NT med balanserad hand, minst 26 gemensamma honnörspoäng och utan 8-korts spaderfit. En lågfärg ska inte sökas före sangutgång i detta läge.
+- Fortsättningen efter 1♥–1NT är fortfarande ej fastställd och ska lämnas ej täckt tills systemregeln har beslutats.
+
+## 5. Konkurrensbudgivning – pausad
 
 Konkurrensbudgivningen är pausad. Kvarvarande luckor från 140-givarsanalysen bevaras i baslinjen och utvecklingsloggen. De ska inte påverka eller sänka kvaliteten i den ostörda motorn. Återuppta först efter separat beslut och fortsatt avstämning mot REF.
 
-## 5. Valideringsprinciper
+## 6. Valideringsprinciper
 
 1. Skilj systemkorrekthet från strategisk spelstyrka och DDS-efterhandsanalys.
 2. Visa endast rekommendationer som stöds av grundsystemet eller tydligt märkta, godkända kompletteringar.
