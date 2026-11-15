@@ -132,3 +132,13 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - 2 övriga positioner: `testdata/final_gaps_2.md`. Den första felklassificeras som svarshandens andra bud trots att det är öppnarens tredje bud; den andra gäller svar efter öppnarens 1♠–2♠–3♥.
 - Totalt: 47/47 genomgångna på sekvensnivå, handens HCP och fördelning samt kodens dispatch. Detta är inte en oberoende expertgranskning av bästa bud eller DDS-facit.
 - Ingen grundsystemregel, kompletterande regel eller rättningskod ändrades. `main` är fortfarande orörd.
+
+
+## Fortsättning 2026-11-15 – analysbibliotek och diagnostik
+
+- Granskat T29–T33 i analysbiblioteket. Två av de 47 luckorna har starka kandidatbud från dessa befintliga träd: 2♥ i `trumf-02-bid-3` och spärrande 3♣ i `trumf-05-bid-3`. De är inte införda som rättningsregler eftersom träden saknar uttrycklig godkännandestatus. `dubbling-09-bid-3` matchar T33 men handprofilen täcker inte handen.
+- Analysbibliotekets T29–T33 utelämnar pass i sina komprimerade sekvenser. Matchningen var tidigare ordagrann och missade därför normala auktioner med passrundor. Metadata `ignorePasses:true` har lagts till endast för dessa fem träd; `analysmotor.js` version 1.0.3 använder flaggan. Alla fem sekvensmönster testas.
+- Korrigerat ett verkligt diagnostikfel i `rattningsmotor.js`: giltiga återbud från öppnaren efter partnerns pass och motståndarnas inkliv kallades tidigare felaktigt turordningsfel. De är nu tydligt ej täckta utan att motorn hittar på ett bud.
+- Nya tester: `auction-dispatch.test.js` och `analysis-library-match.test.js`. GitHub Actions körning `43659839449` passerade med alla testgrupper: dataset/reproducerbarhet, dispatch, analysbiblioteksmatchning, AI-informationsgräns och spelarroller.
+- Generatorns reproducerbara baslinje är uppdaterad med den nya diagnostexten. Antalet ej täckta positioner är fortfarande 47; det här var en klassificeringskorrigering, inte en ökning eller minskning av budtäckningen.
+- Inga nya grundsystemregler har införts. `main` är orörd.
