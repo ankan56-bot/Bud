@@ -203,20 +203,21 @@ var Rattning = (function(){
     else{exp='P';why=hp+' hp utan färg att visa: pass.'}
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
   }
-  function ntOpener(h,k,r){
+  function ntOpener(h,k,r,responderCards){
     var L=h.L,hp=h.hp,b=2+k,c2=b+'C',d2=b+'D',h2=b+'H',s2=b+'S',n2=b+'N',exp,why,alt=[],soft=false,conv='1NT-system';
+    var responder=responderCards?H(responderCards):null,jointHp=hp+(responder?responder.hp:0);
     var means=function(c){
       if(r===c2){if(c===b+'D')return 'Ingen 4+ högfärg.';if(c===b+'H')return '4-5 korts ♥ (kan ha 4-4 i högfärg).';if(c===b+'S')return '4-5 korts ♠.'}
       if(r===d2){if(c===h2)return 'Fullföljer överföringen (visar 2+ ♥).';if(c===(b+1)+'H')return 'Max och 4+ ♥: kan bjuda 3♥ i stället för 2♥.'}
       if(r===h2){if(c===s2)return 'Fullföljer överföringen.';if(c===(b+1)+'S')return 'Max och 4+ ♠: kan bjuda 3♠ i stället.'}
       if(!k&&r==='2S'){if(c==='2N')return 'Längre ♦ än ♣ eller lika längd i lågfärg.';if(c==='3C')return 'Längre ♣ än ♦.'}
-      if(r===b+'N'){if(c==='P')return 'Pass: 15 hp, minimum.';if(c==='3N')return 'Tackar ja till inviten (16-17 hp).'}
+      if(r===b+'N'){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 26 gemensamma honnörspoäng.'}
       if(c==='P')return 'Pass (slutbud).';
       return null};
 
     if (r === b+'N') {
-        if (hp <= 15) return {exp:'P', alt:[], why:hp+' hp (minimum): passar på inbjudan.', means:means, conv:'1NT-system', soft:false};
-        return {exp:'3N', alt:[], why:hp+' hp: tackar ja till inbjudan med 3NT.', means:means, conv:'1NT-system', soft:false};
+        if (jointHp < 26) return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+        return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:means,conv:'1NT-system',soft:false};
     }
 
     if(r===c2){conv='Stayman';exp=L.H>=4?h2:L.S>=4?s2:d2;
@@ -300,22 +301,25 @@ var Rattning = (function(){
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'överföring'};
   }
-  function ntOpenerInvit(h,M,inv){
-    var L=h.L,hp=h.hp,exp,alt=[],why;
+  function ntOpenerInvit(h,M,inv,responderCards){
+    var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,exp,alt=[],why;
+    var fit=partner?L[M]+partner.L[M]:0;
+    var fitPoints=partner&&fit>=8?partnershipPoints(h,partner,M):0;
+    var jointHp=hp+(partner?partner.hp:0);
     var means=function(c){
-      if(c==='P')return 'Pass: tackar nej till inviten (15 hp).';
-      if(c==='3N')return 'Tackar ja till inviten (16-17 hp): utgång i sang.';
-      if(c==='4'+M)return 'Tackar ja till inviten (16-17 hp): utgång i högfärgen.';
+      if(c==='P')return 'Avslår inviten: paret når inte relevant utgångsgräns.';
+      if(c==='3N')return 'Accepterar med 3NT när paret har minst 26 gemensamma honnörspoäng utan etablerad 8-kortsfit.';
+      if(c==='4'+M)return 'Accepterar med '+txt('4'+M)+' när paret har minst 8-kortsfit och 26 gemensamma spelpoäng.';
       return null};
     if(inv!=='2N'&&inv!=='3'+M)return NC('Öppnarens svar på detta bud beskrivs inte i dokumentet.',means,'överföring');
-    var game=L[M]>=3?'4'+M:'3N';
-
-    if(hp<=15){exp='P';why=hp+' hp (minimum): tackar nej till inviten, pass.'}
-    else{exp=game;why=hp+' hp: tackar ja till inviten med '+txt(game)+(L[M]>=3?' (minst 3 '+SYM[M]+').':' (färre än 3 '+SYM[M]+').');}
+    if(!partner)return NC('Kan inte verifiera inviten utan svarshandens handprofil.',means,'överföring');
+    if(fit>=8&&fitPoints>=26){exp='4'+M;why=fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: accepterar inviten med '+txt(exp)+'.';}
+    else if(jointHp>=26){exp='3N';why=jointHp+' gemensamma honnörspoäng utan tillräckliga spelpoäng i högfärgsfit: accepterar med 3NT.';}
+    else{exp='P';why=jointHp+' gemensamma honnörspoäng och '+fit+'-korts fit: når inte 26-poängsgränsen, avslår inviten.';}
     return {exp:exp,alt:alt,why:why,means:means,conv:'överföring',soft:false};
   }
-  function ntOpener3(h,k1,k2,k3){
-    var L=h.L,hp=h.hp;
+  function ntOpener3(h,k1,k2,k3,responderCards){
+    var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,jointHp=hp+(partner?partner.hp:0);
     if(k1==='2S'&&((k2==='2N'&&(k3==='3C'||k3==='3D'))||(k2==='3C'&&k3==='3D'))){
       return {exp:'P',alt:[],why:'Svarshanden har valt slutbud i lågfärg efter 2♠-reläet. Pass avslutar budgivningen.',means:function(c){return c==='P'?'Pass efter svarshandens val av lågfärg.':null},conv:'1NT-svar'};
     }
@@ -328,8 +332,8 @@ var Rattning = (function(){
     }
     if(k1==='2C'&&M==='D'&&k3==='2N'){
       var meansNoMajor=function(c){if(c==='P')return 'Minimum: avslår sanginviten.';if(c==='3N')return 'Maximum: accepterar sanginviten.';return null};
-      if(hp<=15)return {exp:'P',alt:[],why:hp+' hp (minimum): avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
-      return {exp:'3N',alt:[],why:hp+' hp (maximum): accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
+      if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='2N'){
       return NC('Efter Stayman 1NT–2♣–2'+M+'–2NT måste öppnaren väga 3NT mot eventuell fit i den andra högfärgen. Exakt fortsättning är inte fastställd; öppnarens egen 4-kortsfärg räcker inte för att rekommendera 4'+M+'.',null,'Stayman');
@@ -337,8 +341,10 @@ var Rattning = (function(){
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3'+M){
       var gameSuit='4'+M;
       var meansInvite=function(c){if(c==='P')return 'Minimum: avslår invit till '+txt(gameSuit)+'.';if(c===gameSuit)return 'Maximum: accepterar invit till '+txt(gameSuit)+'.';return null};
-      if(hp<=15)return {exp:'P',alt:[],why:hp+' hp (minimum): avslår '+txt(k3)+'-inviten.',means:meansInvite,conv:'Stayman'};
-      return {exp:gameSuit,alt:[],why:hp+' hp (maximum) och minst fyra kort i '+SYM[M]+': accepterar inviten med '+txt(gameSuit)+'.',means:meansInvite,conv:'Stayman'};
+      if(!partner)return NC('Kan inte verifiera Stayman-inviten utan svarshandens handprofil.',meansInvite,'Stayman');
+      var fit=M?L[M]+partner.L[M]:0,fitPoints=fit>=8?partnershipPoints(h,partner,M):0;
+      if(fit>=8&&fitPoints>=26)return {exp:gameSuit,alt:[],why:fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: accepterar inviten med '+txt(gameSuit)+'.',means:meansInvite,conv:'Stayman'};
+      return {exp:'P',alt:[],why:fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: når inte 26-poängsgränsen, avslår inviten.',means:meansInvite,conv:'Stayman'};
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3N'){
       var means2=function(c){return c==='P'?'Passar på utgångsbudet.':null};
@@ -1281,7 +1287,7 @@ var Rattning = (function(){
         if(opening&&openerRebid)return respAfter1NT(h,opening.c,openerRebid.c,b.c);
       }
       if(!opener&&d===1)return ntResp(h,k,st.hands[pt]);
-      if(opener&&d===2)return ntOpener(h,k,ours[1].c);
+      if(opener&&d===2)return ntOpener(h,k,ours[1].c,st.hands[pt]);
       if(!opener&&d===3&&!k){var m1=ours[1].c,rep=ours[2].c;
         if(m1==='2C')return stay2(h,rep,st.hands[pt]);
         if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
@@ -1296,7 +1302,7 @@ var Rattning = (function(){
             return ntOpener3NTChoice(h, t1==='2D'?'H':'S');
         }
         if((t1==='2D'&&t2==='2H')||(t1==='2H'&&t2==='2S'))return ntOpenerInvit(h,t1==='2D'?'H':'S',ours[3].c);
-        return ntOpener3(h,ours[1].c,ours[2].c,ours[3].c);
+        return ntOpener3(h,ours[1].c,ours[2].c,ours[3].c,st.hands[pt]);
       }
       return nc('Fortsättningen i 1NT/2NT-systemet beskrivs inte i dokumentet.');
     }
