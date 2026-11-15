@@ -116,12 +116,13 @@ test("post-deal analysis evaluates the bidder's own hand after pass rounds", () 
     }
   };
   const bids = [
-    { s: "S", c: "1H" }, { s: "W", c: "P" },
-    { s: "N", c: "1S" }, { s: "E", c: "P" },
-    { s: "N", c: "2H" }, { s: "E", c: "P" }
+    { s: "N", c: "1H" }, { s: "E", c: "P" },
+    { s: "S", c: "P" }, { s: "W", c: "1S" },
+    { s: "N", c: "P" }, { s: "E", c: "P" },
+    { s: "S", c: "2H" }, { s: "W", c: "P" }
   ];
-  const result = evaluateMatchedHand(match, bids, { N: fittingHand });
-  assert.equal(result.seat, "N");
+  const result = evaluateMatchedHand(match, bids, { S: fittingHand });
+  assert.equal(result.seat, "S");
   assert.equal(result.status, "match");
   assert.equal(result.hcp, 8);
 });
