@@ -792,4 +792,108 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, 'P');
 }
 
-console.log('Bridge bidding regression tests passed (55 cases).');
+// A negative double after a natural suit opening is not a REF base-system rule.
+{
+  const hands = makeDealFor(
+    'S',
+    { C: 3, D: 2, H: 4, S: 4 },
+    { H: [14, 13], S: [12], D: [11] }
+  );
+  const bids = [
+    { s: 'N', c: '1H' },
+    { s: 'E', c: '1S' },
+    { s: 'S', c: 'X' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 2);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /Negativ dubbling.*inte definierad/i);
+}
+
+// A double after 1NT still needs an exact invit-strength boundary; shape alone is insufficient.
+{
+  const hands = makeDealFor(
+    'S',
+    { C: 3, D: 2, H: 4, S: 4 },
+    { C: [14], H: [14], S: [13], D: [11] }
+  );
+  const bids = [
+    { s: 'N', c: '1N' },
+    { s: 'E', c: '2D' },
+    { s: 'S', c: 'X' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 2);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /exakta styrkegränsen.*inte numeriskt/i);
+}
+
+// A new suit after interference over 1NT must have at least five cards.
+{
+  const hands = makeDealFor(
+    'S',
+    { C: 3, D: 3, H: 4, S: 3 },
+    { C: [14], H: [13], S: [12], D: [11] }
+  );
+  const bids = [
+    { s: 'N', c: '1N' },
+    { s: 'E', c: '2D' },
+    { s: 'S', c: '2H' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 2);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /minst 5 kort/i);
+}
+
+// A void is not a singleton: 17 HTP after 1H-2H is the no-singleton 3H invite.
+{
+  const item = assessOpenerRebid(
+    { C: 0, D: 4, H: 5, S: 4 },
+    { H: [14, 13], D: [14], S: [13] },
+    '3H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 17);
+  assert.match(item.motivering, /utan singel/i);
+}
+
+// Two side singletons after 1H-2H have no documented priority.
+{
+  const item = assessOpenerRebid(
+    { C: 1, D: 1, H: 4, S: 7 },
+    { H: [14, 13], S: [14, 12] },
+    '3C'
+  );
+  assert.equal(item.bedomning, 'ej_täckt');
+  assert.match(item.motivering, /singel i flera sidofärger/i);
+}
+
+// Two side singletons after Stenberg also have no documented priority.
+{
+  const item = assessStenbergOpener(
+    { C: 1, D: 1, H: 4, S: 7 },
+    { H: [14, 13], S: [14, 12], D: [11] },
+    '3C'
+  );
+  assert.equal(item.bedomning, 'ej_täckt');
+  assert.match(item.motivering, /Flera sidofärger är singel/i);
+}
+
+// A new suit over a weak two is forcing, but the opener's exact rebid is unspecified.
+{
+  const hands = makeDealFor(
+    'S',
+    { C: 3, D: 6, H: 2, S: 2 },
+    { D: [14, 13], C: [11], H: [10] }
+  );
+  const bids = [
+    { s: 'S', c: '2D' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: '2H' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: 'P' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'S', bids }, 4);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /forcing till minst 3.*Öppnarens återbud/i);
+}
+
+console.log('Bridge bidding regression tests passed (62 cases).');
