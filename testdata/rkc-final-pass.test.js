@@ -157,7 +157,7 @@ function askerAfterAmbiguousResponse(north) {
 }
 
 test("after 5C then 5S retreat, asker with three aces bids 6S", () => {
-  const north = ["SA", "HA", "DA", "SK", "SQ", "SJ", "S10", "S9", "H2", "D2", "C2", "C3", "C4"];
+  const north = ["S14", "H14", "D14", "S13", "S12", "S11", "S10", "S9", "H2", "D2", "C2", "C3", "C4"];
   const result = askerAfterAmbiguousResponse(north);
   assert.equal(Rattning.H(north).aces, 3);
   assert.equal(result?.exp, "6S", JSON.stringify(result));
@@ -165,7 +165,7 @@ test("after 5C then 5S retreat, asker with three aces bids 6S", () => {
 });
 
 test("after 5C then 5S retreat, asker with only two aces does not get the documented 6S continuation", () => {
-  const north = ["SA", "HA", "SK", "SQ", "SJ", "S10", "S9", "S8", "H2", "D2", "C2", "C3", "C4"];
+  const north = ["S14", "H14", "S13", "S12", "S11", "S10", "S9", "S8", "H2", "D2", "C2", "C3", "C4"];
   const result = askerAfterAmbiguousResponse(north);
   assert.equal(Rattning.H(north).aces, 2);
   assert.equal(result?.exp, null, JSON.stringify(result));
@@ -173,7 +173,7 @@ test("after 5C then 5S retreat, asker with only two aces does not get the docume
 });
 
 test("after 5D then 5S retreat, asker with four aces bids 6S", () => {
-  const north = ["SA", "HA", "DA", "CA", "SK", "SQ", "SJ", "S10", "S9", "H2", "D2", "C2", "C3"];
+  const north = ["S14", "H14", "D14", "C14", "S13", "S12", "S11", "S10", "S9", "H2", "D2", "C2", "C3"];
   const result = askerAfterAmbiguousResponse(north);
   assert.equal(Rattning.H(north).aces, 4);
   assert.equal(result?.exp, "6S", JSON.stringify(result));
