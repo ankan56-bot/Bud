@@ -174,3 +174,17 @@ Rättningsmotorn är nu version 6.7. `testdata/generate-theme-deals.js` är pinn
 Analysbibliotekets T29–T33 har nu 25 bladnoder med `handConditions` schema version 1. HCP, explicita färglängder och balanserad fördelning är maskinläsbara. Stopperkrav och oklara fritextbegrepp ligger kvar som manuell kontroll; de får inte approximeras utan godkänd definition.
 
 `analysmotor.js` 1.0.5 kan utvärdera villkoren och koppla dem till den hand som faktiskt avgav budet i efterhandsanalysen. Denna fullhandskontroll är inte tillgänglig för spelande AI under pågående budgivning. Testfil: `testdata/hand-conditions.test.js`.
+
+
+## Utökning till övriga analysbiblioteket – 33 träd
+
+Analysbiblioteket är version 0.5.9. De befintliga `handProfile`-beskrivningarna har strukturerats för samtliga 114 noder som redan hade sådana profiler. Det ger 228 rollprofiler (öppnare och svarshand där de finns) under `handConditionsByRole`.
+
+- 134 rollprofiler kan kontrolleras helt maskinellt utifrån de uttryckliga numeriska/fördelningsvillkor som kunde läsas ut.
+- 94 rollprofiler innehåller dessutom kvalitativa, systemberoende eller ofullständigt definierade villkor och ger därför `manual_review` i stället för ett säkert automatiskt ja/nej.
+- Profilerna är märkta `authority: "analysis_only"`; de blir inte grundsystemregler.
+- 11 noder saknar ursprunglig `handProfile`-beskrivning och har lämnats orörda. Ingen handinformation har hittats på.
+
+Analysmotorn 1.0.6 väljer nu rollprofil efter vem som faktiskt avgav nodens sista bud: första budgivaren i sekvensen är `opener`, dennes partner är `responder`. Den jämför passinkluderande nodsekvenser med rätt antal icke-passbud när den hämtar den faktiska budgivarens hand. Kvalitativa alternativ, exempelvis "16–17 hp eller motsvarande goda spelvärden", kan inte felaktigt underkännas automatiskt: vid sådana profiler redovisas eventuella numeriska avvikelser men resultatet blir `manual_review`.
+
+Nya regressionstester finns i `testdata/hand-profile-conditions.test.js` och körs i CI.
