@@ -415,9 +415,11 @@ var Rattning = (function(){
   function open2w(h,oc,r){
     var o=st_(oc),hp=h.hp,exp,why,alt=[];
     var means=function(c){
-      if(r==='2N'){if(c==='3'+o||c==='3D'||c==='3H')return 'Ombud: minimum (6-8 hp).';if(c==='3N'||c==='4'+o)return 'Maximum (9-10 hp).'}
-      if(r==='3'+o){if(c==='P')return 'Pass: minimum (6-8 hp).';if(c==='4'+o)return 'Maximum (9-10 hp).'}
-      if(r==='2N'&&c==='P')return 'Pass (efter minimumsinvit).';
+      if(r==='2N'){
+        if(c==='3'+o)return 'Öppnarens minimum: 6-8 hp, 3 i öppningsfärgen.';
+        if((maj(o)&&c==='4'+o)||(!maj(o)&&c==='3N'))return 'Öppnarens maximum: 9-10 hp, 4M eller 3NT efter lågfärg.';
+        if(c==='P')return 'Pass efter 2NT-invit när öppnarens hand inte passar minimum-/maximumåterbudet.';
+      }
       return null};
     if(r==='2N'){
       if(hp>=6&&hp<=8){exp='3'+o;why=hp+' hp: minimum, 3 i öppningsfärgen.';return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};}
