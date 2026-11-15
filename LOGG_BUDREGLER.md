@@ -311,3 +311,16 @@ De fem ej täckta fallen är sparade som nästa analyskö:
 - Giv 191: fortsättning efter 1♥–1♠–2♥–3♥.
 
 **Begränsning:** Detta är ett tekniskt täcknings-/rökprov där motståndarna alltid passar. Det bevisar inte att varje rekommendation är bridgekorrekt. De fem luckorna ska granskas mot systemreglerna innan ny logik läggs till.
+
+
+### Uppföljning – öppnarens återbud efter 1M–2M
+
+Samma jämförelse mot regelsammanfattningen visade att `reb1()` använde gränserna 16+ för invit/ny färg och 19+ för utgång. Källregeln anger däremot:
+- 17–19 HTP: 3M naturlig invit utan singel.
+- 17–19 HTP: ny färg när handen har singel i den bjudna färgen.
+- 20+ HTP: utgång.
+
+Gränserna är nu korrigerade till pass upp till 16, invit/ny färg från 17 och utgång från 20. Fyra nya regressionstester täcker 16, 17 med singel, 17 utan singel och 20 HTP. Samtliga passerar.
+
+Testsviten `tests/reverse-hps.test.js` omfattar nu **14 isolerade fall** och passerar med aktuell motor.
+
