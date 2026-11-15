@@ -11,7 +11,7 @@ Alla 47 poster är **Pass** i den deterministiska referensauktionen. Referensgen
 | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. | 13 | stenberg-03-bid-3, slam-02-bid-3, trumf-02-bid-3 |
 | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. | 9 | dubbling-01-bid-6, dubbling-03-bid-6, dubbling-05-bid-6 |
 | Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. | 4 | alla-05-bid-5, alla-05-bid-7, alla-05-bid-9 |
-| Budgivningen följer inte ett turordnat mönster som dokumentet beskriver. | 10 | stenberg-03-bid-5, slam-02-bid-5, trumf-02-bid-5 |
+| Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. | 10 | stenberg-03-bid-5, slam-02-bid-5, trumf-02-bid-5 |
 | Dokumentet anger inte budet för denna hand. | 9 | alla-02-bid-5, inkliv-01-bid-4, inkliv-03-bid-4 |
 | Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet. | 1 | alla-01-bid-9 |
 | Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas. | 1 | trumf-04-bid-7 |
