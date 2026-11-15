@@ -673,6 +673,28 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, '1S');
 }
 
+// A 1-level minor overcall does not use the 10+ major-suit exception.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 5, D: 3, H: 3, S: 2 },
+    { C: [14, 13, 11], D: [12], H: [11] },
+    'P'
+  );
+  assert.equal(node.exp, 'P');
+}
+
+// A good 5-card major may be overcalled at the 1-level with 10 hp.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 3, D: 3, H: 5, S: 2 },
+    { H: [14, 13], D: [12], C: [11] },
+    '1H'
+  );
+  assert.equal(node.exp, '1H');
+}
+
 // Simple overcall at the 2-level requires 12+ hp and 6+ cards.
 {
   const node = assessOpeningOvercall(
@@ -759,4 +781,4 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, 'P');
 }
 
-console.log('Bridge bidding regression tests passed (52 cases).');
+console.log('Bridge bidding regression tests passed (54 cases).');
