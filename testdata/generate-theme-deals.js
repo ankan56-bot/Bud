@@ -236,21 +236,26 @@ function generateDataset() {
       }
 
       const auction = makeReferenceAuction(generated, api, Rattning);
-      if (theme.id === "stenberg") {
+      if (theme.id === "stenberg" || theme.id === "trumf") {
         const openingIndex = auction.bids.findIndex(bid => /^[1][CDHS]$/.test(bid.c));
         const opening = auction.bids[openingIndex];
         const responseIndex = auction.bids.findIndex((bid, position) =>
           position > openingIndex && bid.s === (opening.s === "N" ? "S" : "N"));
         const response = auction.bids[responseIndex];
-        if (!opening || !response || response.c !== "2N" ||
-            auction.bids.slice(openingIndex + 1, responseIndex).some(bid => bid.c !== "P")) {
-          throw new Error("Stenberg deal does not contain an uninterrupted 2NT response: " + theme.id + " #" + (index + 1));
+        const uninterrupted = auction.bids.slice(openingIndex + 1, responseIndex).every(bid => bid.c === "P");
+        const expectedResponse = theme.id === "stenberg"
+          ? response && response.c === "2N"
+          : response && /^[23][CDHS]$/.test(response.c) && response.c[1] === opening.c[1];
+        if (!opening || !response || !uninterrupted || !expectedResponse) {
+          throw new Error(theme.id + " deal does not contain its required uncontested support response: #" + (index + 1));
         }
         const responseTrial = auction.bids.slice(0, responseIndex + 1);
         const responseNode = Rattning.nodeFor({ hands: auction.hands, dealer: auction.dealer, bids: responseTrial }, responseIndex);
-        if (!responseNode || responseNode.conv !== "Stenberg" ||
-            api.shapeOf(auction.hands[response.s])[opening.c[1]] < 4) {
-          throw new Error("Stenberg response fails the 13+ HTP / 4+ support rule: " + theme.id + " #" + (index + 1));
+        const supportLength = api.shapeOf(auction.hands[response.s])[opening.c[1]];
+        if (supportLength < 4 ||
+            (theme.id === "stenberg" && (!responseNode || responseNode.conv !== "Stenberg" || responseNode.exp !== "2N")) ||
+            (theme.id === "trumf" && (!responseNode || responseNode.exp !== response.c))) {
+          throw new Error(theme.id + " response violates documented support/strength logic: #" + (index + 1));
         }
       }
       const judged = Rattning.judge(auction);
