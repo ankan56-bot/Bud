@@ -83,6 +83,20 @@ function assessMajorRaise(shape, honors, call) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
+function assessOvercallResponse(opponentOpen, partnerOvercall, shape, honors, call) {
+  const supportSuit = partnerOvercall[1];
+  const hands = makeDealFor('S', shape, honors, supportSuit);
+  const bids = [
+    { s: 'E', c: opponentOpen },
+    { s: 'S', c: 'P' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: partnerOvercall },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: call }
+  ];
+  return Rattning.judge({ hands, dealer: 'E', bids }).items.at(-1);
+}
+
 function assessStenbergOpener(shape, honors, call) {
   const hands = makeDealFor('N', shape, honors, 'H');
   const bids = [
@@ -365,4 +379,127 @@ function assessReverse(shape, honors) {
   assert.match(node.why, /Partnern har passat/);
 }
 
-console.log('Bridge bidding regression tests passed (19 cases).');
+ 
+// Responses to partner's overcall follow the published support-length ladder.
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { H: [14], S: [13], D: [11] },
+    '2H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 3, D: 3, H: 4, S: 3 },
+    { H: [14, 13], S: [11] },
+    '3H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 2, D: 3, H: 5, S: 3 },
+    { H: [14, 13], S: [11] },
+    '4H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// NT responses: 8-10, 11-13 and 14+ hp, with a stopper.
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14], H: [13], S: [12] },
+    '1N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14, 13], H: [12], S: [11], C: [11] },
+    '2N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14, 13], H: [14, 13] },
+    '3N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// New suit: 8+ hp at the 1-level, 10+ hp when the cheapest bid is at 2-level.
+{
+  const item = assessOvercallResponse(
+    '1C', '1H',
+    { C: 3, D: 3, H: 2, S: 5 },
+    { S: [14], D: [13], C: [11] },
+    '1S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+{
+  const item = assessOvercallResponse(
+    '1C', '1H',
+    { C: 3, D: 5, H: 2, S: 3 },
+    { D: [14, 13], S: [12], C: [11] },
+    '2D'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// Jump in a new suit: 14+ hp and a good 6+ suit is game forcing.
+{
+  const item = assessOvercallResponse(
+    '1C', '1H',
+    { C: 2, D: 3, H: 2, S: 6 },
+    { S: [14, 13, 12], D: [14], H: [11] },
+    '2S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// Cue-bid: 10+ hp and 3+ support.
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { H: [14, 13], S: [12], C: [11] },
+    '2D'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// A hand that meets none of the response conditions passes.
+{
+  const item = assessOvercallResponse(
+    '1D', '1H',
+    { C: 4, D: 3, H: 2, S: 4 },
+    { S: [13], D: [12], C: [11], H: [11] },
+    'P'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// After a 2-level overcall, a new suit at the 3-level requires 10+ hp.
+{
+  const item = assessOvercallResponse(
+    '1S', '2H',
+    { C: 5, D: 3, H: 2, S: 3 },
+    { C: [14, 13], D: [12], S: [11] },
+    '3C'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+console.log('Bridge bidding regression tests passed (30 cases).');
