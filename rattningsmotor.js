@@ -212,11 +212,7 @@ var Rattning = (function(){
   function stay2(h,reply){
     var hp=h.hp,L=h.L,M=reply==='2H'?'H':reply==='2S'?'S':null,exp,why,alt=[];
 
-    var splSuit = M ? SU.filter(function(s){return s!==M&&L[s]<=1})[0] : null;
-    var splBid = splSuit ? (L[M]>=6 ? ((lv('2'+M)+1)+splSuit) : null) : null;
-
     var means=function(c){
-      if(c===splBid && L[M]>=6) return 'Splinter: singel/renons i '+SYM[splSuit]+' och 6+ kort i trumffärgen. 14+ stp.';
       if(/^3[HS]$/.test(c))return 'Invit: 3 i öppnarens visade högfärg (8-9 stp).';
       if(c==='2N')return 'Invit (8-9 hp); efter Stayman visar sang att man har 4♠ (annars hade man bjudit högfärgen).';
       if(c==='3N')return 'Utgång i sang (10-15 hp); efter Stayman visar det 4♠ (eller ingen fit).';
@@ -408,15 +404,11 @@ var Rattning = (function(){
   function reb1(h,oc,r){
     var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false;
 
-    var splSuit = SU.filter(function(s){return s!==o&&s!==rs&&L[s]<=1})[0];
-    var splBid = splSuit ? ((lv(r)+1)+splSuit) : null;
-
     var means=function(c){
       if(r==='2N'){var Ma=maj(o);
         if(c==='3N')return '12-15 hp, jämn hand utan 3-korts stöd.';
         if(c==='3'+o)return '16+ stp, stark hand.';
         if(isBid(c)&&lv(c)===3)return 'Singel i '+SYM[c[1]]+' (12-15 hp).';return null}
-      if(c===splBid && hp>=13) return 'Splinter: singel/renons i '+SYM[splSuit]+' och 13+ stp.';
       if(rs===o&&lv(r)===2){if(c==='4'+o)return '19+ stp: utgång.';if(c==='3'+o)return '16-18 stp, naturlig invit.';if(isBid(c)&&lv(c)===3)return '16-18 stp med singel i den bjudna färgen.';if(c==='P')return 'Pass: 13-15 stp.'}
       if(rs!==o&&rs!=='N'&&c===lv(r)+1+rs)return 'Trumfstöd, lägsta höjning: 12-16 stp.';
       if(rs!==o&&rs!=='N'&&c===(lv(r)+2)+rs)return 'Trumfstöd, enkelhopp: 17-19 stp.';
@@ -452,8 +444,7 @@ var Rattning = (function(){
     var sup=rs!=='N'&&L[rs]>=4;
     var side4=SU.filter(function(s){return s!==o&&L[s]>=4});
     if(sup){var tp=h.htp(rs);
-      if(hp>=13 && splBid && L[rs]>=4){exp=splBid;why='Splinter: singel/renons i '+SYM[splSuit]+', 13+ stp.'}
-      else if(tp<=16){exp=low(rs);why='4+ stöd i '+SYM[rs]+' och '+tp+' htp: lägsta höjning (12-16).'}
+      if(tp<=16){exp=low(rs);why='4+ stöd i '+SYM[rs]+' och '+tp+' htp: lägsta höjning (12-16).'}
       else if(tp<=19){exp=jump(rs,r);why=tp+' htp med stöd: enkelhopp (17-19).'}
       else if(maj(rs)){exp='4'+rs;why=tp+' htp: hopp till utgång (20+).'}
       else return {exp:null,alt:[],why:'Med 20+ htp och lågfärgsstöd ska man först undersöka 3NT; dokumentet anger inte budet.',means:means,conv:'öppnarens 2:a bud'};
@@ -1000,13 +991,6 @@ var Rattning = (function(){
       if(!opener&&d===1)return resp1(h,c1);
       if(opener&&d===2)return reb1(h,c1,ours[1].c);
       if(opener&&d===4)return nc('Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.');
-      if(!opener&&d===3&&isBid(ours[2].c) && ours[2].c[1]!=='N') {
-         var M = st_(ours[0].c);
-         if (ours[2].c[1] !== M && ours[2].c[1] !== 'N' && ours[2].c[0] >= '3') {
-             if (b.c === '4'+M) return {exp:'4'+M, alt:[], why:'Slutbud (minimum).', conv:'splinter'};
-             if (b.c === '3'+M) return {exp:'3'+M, alt:[], why:'Slamintresse (stark hand).', conv:'splinter'};
-         }
-      }
       return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
     }
     return nc('Okänd budgivning.');
@@ -1099,7 +1083,6 @@ var Rattning = (function(){
       'Tredje färg':'Tredje färg är ett rondkrav som lovar minst 10 hp. Det kan bjudas med bara 3 kort om det är ett håll (t.ex. D-x-x).',
       'Fjärde färg':'Fjärde färg är ett konstgjort utgångskrav som lovar minst 13 hp. Det berättar ingenting om färgen man bjuder, utan ber partnern beskriva sin hand ytterligare.',
       'spärr':'Spärrbudet visar en lång färg och begränsad styrka. Ny färg är krav. 3NT kan vara rätt slutbud om partnern har en lång lågfärg.',
-      'splinter':'Splinterbudet visar singel/renons i den bjudna färgen, 4+ trumfstöd och 19-21 stp. Efter splinter kan SH bjuda 3M (slamintresse) eller 4M (minimum).',
       'överbud':'Överbud (Cuebid) i motståndarens färg visar 10+ hp och 3+ trumfstöd. Det är ett kravbud.'
     };
     var detail=extra[conv]||'Budets betydelse ska läsas tillsammans med den föregående budgivningen.';
@@ -1318,7 +1301,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.8'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.9'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
