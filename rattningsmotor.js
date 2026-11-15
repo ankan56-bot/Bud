@@ -409,7 +409,7 @@ var Rattning = (function(){
         if(c==='3N')return '12-15 hp, jämn hand utan 3-korts stöd.';
         if(c==='3'+o)return '16+ stp, stark hand.';
         if(isBid(c)&&lv(c)===3)return 'Singel i '+SYM[c[1]]+' (12-15 hp).';return null}
-      if(rs===o&&lv(r)===2){if(c==='4'+o)return '19+ stp: utgång.';if(c==='3'+o)return '16-18 stp, naturlig invit.';if(isBid(c)&&lv(c)===3)return '16-18 stp med singel i den bjudna färgen.';if(c==='P')return 'Pass: 13-15 stp.'}
+      if(rs===o&&lv(r)===2){if(c==='4'+o)return '19+ stp: utgång.';if(c==='3'+o)return '16-18 stp, naturlig invit.';if(c==='P')return 'Pass: 13-15 stp.'}
       if(rs!==o&&rs!=='N'&&c===lv(r)+1+rs)return 'Trumfstöd, lägsta höjning: 12-16 stp.';
       if(rs!==o&&rs!=='N'&&c===(lv(r)+2)+rs)return 'Trumfstöd, enkelhopp: 17-19 stp.';
       if(isBid(c)&&st_(c)===o&&rs!==o)return 'Egen färg.';
@@ -430,9 +430,7 @@ var Rattning = (function(){
     if(rs===o){
       if(lv(r)===2&&maj(o)){var t=h.htp(o);
         if(t>=19){exp='4'+o;why=t+' htp: utgång.'}
-        else if(t>=16){var sg2=h.singles().filter(function(s){return L[s]<=1&&s!==o});
-          if(sg2.length){exp=lowest(sg2[0],r);alt=['3'+o];why=t+' htp med singel: ny färg 16-18.'}
-          else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (invit).'}}
+        else if(t>=16){exp='3'+o;why=t+' htp: 3 i färgen (naturlig invit).'}
         else{exp='P';why=t+' htp: högst 15, pass.'}
         return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
       if(!maj(o)&&lv(r)>=2&&h.hp<=14){
@@ -1301,7 +1299,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.9'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.0'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
