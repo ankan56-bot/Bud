@@ -252,8 +252,9 @@ function generateDataset() {
         const responseTrial = auction.bids.slice(0, responseIndex + 1);
         const responseNode = Rattning.nodeFor({ hands: auction.hands, dealer: auction.dealer, bids: responseTrial }, responseIndex);
         const supportLength = api.shapeOf(auction.hands[response.s])[opening.c[1]];
+        const responseHtp = Rattning.H(auction.hands[response.s]).htp(opening.c[1]);
         if (supportLength < 4 ||
-            (theme.id === "stenberg" && (!responseNode || responseNode.conv !== "Stenberg" || responseNode.exp !== "2N")) ||
+            (theme.id === "stenberg" && (responseHtp < 13 || !responseNode || responseNode.conv !== "Stenberg" || responseNode.exp !== "2N")) ||
             (theme.id === "trumf" && (!responseNode || responseNode.exp !== response.c))) {
           throw new Error(theme.id + " response violates documented support/strength logic: #" + (index + 1));
         }
