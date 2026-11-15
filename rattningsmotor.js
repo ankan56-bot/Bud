@@ -1162,7 +1162,7 @@ var Rattning = (function(){
         var invitePartner=H(st.hands[pt]);
         var inviteHcp=h.hp+invitePartner.hp;
         var allStops=['C','D','H','S'].every(function(s){return h.stop(s)});
-        if(allStops&&inviteHcp>=26){
+        if(allStops){
           return {exp:'3N',alt:[],why:'Öppnaren har håll i alla fyra färger och paret har '+inviteHcp+' gemensamma honnörspoäng efter 2NT-inviten. Välj 3NT framför lågfärgsutgång.',means:function(c){return c==='3N'?'Accepterar sanginvit med håll i alla färger.':null},conv:'invit i sang'};
         }
       }
@@ -1185,10 +1185,10 @@ var Rattning = (function(){
         var staymanOpener=H(st.hands[pt]);
         var staymanTotal=h.hp+staymanOpener.hp;
         var spadeFit=h.L.S+staymanOpener.L.S;
-        if(h.bal&&staymanTotal>=26&&spadeFit<8){
+        if(h.bal&&staymanTotal>=25&&spadeFit<8){
           return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand, 26+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
         }
-        if(h.bal&&staymanTotal>=26&&spadeFit>=8){
+        if(h.bal&&staymanTotal>=25&&spadeFit>=8){
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+staymanTotal+' gemensamma honnörspoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
         }
       }
