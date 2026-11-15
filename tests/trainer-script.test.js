@@ -369,7 +369,7 @@ test("room seat claims cannot exceed the configured participant count", () => {
 test("queued messages from a previous room connection are ignored", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   const start = html.indexOf("function isCurrentRoomConnection(");
-  const end = html.indexOf("\\nfunction connect(", start);
+  const end = html.indexOf("\nfunction connect(", start);
   assert.ok(start >= 0 && end > start, "room connection identity guard should exist");
   const context = { room: "NEW", es: null };
   vm.runInNewContext(html.slice(start, end), context);
