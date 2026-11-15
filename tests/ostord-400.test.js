@@ -37,7 +37,7 @@ function opponentMustPass(hands) {
 }
 function generateDeals() {
   const deals = [], seen = new Set();
-  for (let seed = 202615150; deals.length < 200 && seed < 202613150 + 2000000; seed++) {
+  for (let seed = 202813150; deals.length < 200 && seed < 202613150 + 2000000; seed++) {
     const rng = mulberry(seed);
     const hands = shuffleDeal(rng);
     if (!opponentMustPass(hands)) continue;
@@ -129,7 +129,8 @@ console.log(JSON.stringify({
   exceptions: report.exceptions.length, illegalRecommendations: report.illegalRecommendations.length,
   invalidAuctions: report.invalidAuctions.length, unfinishedAuctions: report.unfinishedAuctions.length,
   cardIntegrityErrors: report.cardIntegrityErrors.length,
-  uncoveredDetails: report.uncovered
+  uncoveredDetails: report.uncovered,
+  exceptionDetails: report.exceptions
 }, null, 2));
 
 assert.equal(report.cardIntegrityErrors.length, 0, 'All generated deals must contain 52 unique cards and four 13-card hands.');
