@@ -162,7 +162,8 @@ button:disabled{opacity:.3;cursor:default}
 var SU=['C','D','H','S','N'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},RK={14:'E',13:'K',12:'D',11:'Kn',10:'T'};
 var SEATS=['N','E','S','W'],NAME={N:'Norr',E:'Öst',S:'Syd',W:'Väst'};
 var app=document.getElementById('app');
-var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random,botTimer=null;
+var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random,botTimer=null,playerMode='partner';
+try{playerMode=localStorage.getItem('bt_player_mode')||'partner'}catch(e){}
 showHp=true;
 
 var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: lå=♣/♦, hö=♥/♠, hp: E4 K3 D2 Kn1; stödpoäng vid stöd eller egen 6+färg/5-5: renons 3, singel 2, dubbelton 1; htp=hp+stp. Balanserad hand: 4333, 4432, 5332.\n"+
@@ -180,7 +181,9 @@ var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: 
 "UPPLYSNINGSDUBBLING (D): 12+ hp och minst 3 kort i objudna färger, eller 17+ alla fördelningar. Utan stöd som bjuder egen färg/NT efter dubbling: 18+ hp. Svar: 1NT 6-9 hp håll i öppningsfärgen; 2NT 10-12 håll; 3NT 13+ håll; färg på lägsta nivå 0-7 hp (i värsta fall 3-kort); hopp i färg 8-9 htp 4+färg; hopp till 3-läget 10-12 htp helst 5+färg; överbud 10+ hp krav; pass bara med många kort i öppningsfärgen. Försvar mot spärröppningar (2 och högre): D = UD eller 17+ hp; 2NT 16-18 balanserad; överbud = hållfråga.";
 
 function side(s){return s==='N'||s==='S'?0:1}
-function isBot(s){return s==='E'||s==='W'}
+function isBot(s,st){var humans=st&&Array.isArray(st.humanSeats)?st.humanSeats:['N','S'];return !humans.includes(s)}
+function humanSeatsForNewDeal(){return playerMode==='solo'&&(seat==='N'||seat==='S')?[seat]:['N','S']}
+function setPlayerMode(mode){playerMode=mode==='solo'?'solo':'partner';try{localStorage.setItem('bt_player_mode',playerMode)}catch(e){}render()}
 function partner(s){return SEATS[(SEATS.indexOf(s)+2)%4]}
 function rank(c){return (+c[0])*5+SU.indexOf(c[1])}
 function isBid(c){return c!=='P'&&c!=='X'&&c!=='XX'}
@@ -550,17 +553,18 @@ function botCall(st,botSeat){
 }
 function advance(st){
   var g=0;
-  while(!ended(st)&&isBot(turn(st))&&g++<30){var s=turn(st),r=botCall(st,s);st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c})}
+  while(!ended(st)&&isBot(turn(st),st)&&g++<30){var s=turn(st),r=botCall(st,s);st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c})}
   return st;
 }
-function newDeal(no,mode,focus,seed){
+function newDeal(no,mode,focus,seed,humanSeats){
   rng=mulberry(seed);
   if(focus==='dubbling'||focus==='inkliv')mode='stord';
   var hd=biasedDeal(mode,focus),dl=hd.dealer;delete hd.dealer;
   if(!dl)dl=themeDealer(hd,focus||'alla');
-  return {id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0};
+  var humans=Array.isArray(humanSeats)&&humanSeats.length?SEATS.filter(function(s){return humanSeats.indexOf(s)>=0}):['N','S'];
+  return {id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],humanSeats:humans,review:null,rep:0};
 }
-function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:(st.rep||0)+1,h:[]})}
+function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,humanSeats:st.humanSeats||['N','S'],rep:(st.rep||0)+1,h:[]})}
 function handHtml(cards){
   var out='';
   ['S','H','D','C'].forEach(function(s){
@@ -610,10 +614,10 @@ function newSeed(){return Math.floor(Math.random()*1000000000)}
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function pack(st){
   if(!st||!st.hands)return {menu:true,no:(st&&st.no)||0,mode:modeSel,focus:focusSel};
-  return {no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:st.rep||0,h:st.bids.filter(function(b){return !isBot(b.s)}).map(function(b){return b.s+b.c})};
+  return {no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:st.rep||0,humanSeats:st.humanSeats||['N','S'],h:st.bids.filter(function(b){return !isBot(b.s,st)}).map(function(b){return b.s+b.c})};
 }
 function build(m){
-  var st=newDeal(m.no,m.mode,m.focus,m.seed);st.rep=m.rep||0;
+  var st=newDeal(m.no,m.mode,m.focus,m.seed,m.humanSeats||['N','S']);st.rep=m.rep||0;
   advance(st);
   (m.h||[]).forEach(function(x){var s=x[0],c=x.slice(1);if(ended(st)||turn(st)!==s||!legal(st,c,s))return;st.bids.push({s:s,c:c});advance(st)});
   return st;
@@ -645,10 +649,10 @@ function connect(){
 function scheduleBot(){
   if(botTimer){clearTimeout(botTimer);botTimer=null}
   var st=state;
-  if(!st||!st.hands||ended(st)||!isBot(turn(st)))return;
+  if(!st||!st.hands||ended(st)||!isBot(turn(st),st))return;
   botTimer=setTimeout(function(){
     botTimer=null;
-    if(state!==st||ended(st)||!isBot(turn(st)))return;
+    if(state!==st||ended(st)||!isBot(turn(st),st))return;
     var s=turn(st),r=botCall(st,s);
     st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c});
     rev++;render();send({v:rev,from:sender,st:pack(st)});
@@ -670,7 +674,7 @@ function copyText(t,done){
 }
 function reviewPrompt(st){
   var auc=st.bids.map(function(b,i){return (i+1)+'. '+NAME[b.s]+': '+txt(b.c)+(b.e?' [robotens avsikt: '+b.e+']':'')}).join('\n');
-  return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Spelarna är Norr och Syd (partners); Öst och Väst är enkla robotar vars bud inte ska bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. För varje bud av Norr och Syd (och Öst/Västs bud som inte är pass, kort): förklara vad budet visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
+  return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Mänskliga platser: "+(st.humanSeats||['N','S']).map(function(s){return NAME[s]}).join(', ')+". Robotplatser: "+SEATS.filter(function(s){return isBot(s,st)}).map(function(s){return NAME[s]}).join(', ')+". Robotbud ska inte bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. För varje bud av Norr och Syd (och Öst/Västs bud som inte är pass, kort): förklara vad budet visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
 }
 function reviewHtml(st){
   var result;
@@ -834,16 +838,16 @@ function attachSaved(){
 }
 var score={},hintText='',hintBusy=false,showHp=false,focusSel='alla';
 function mySeat(st){if(seat!=='X')return seat;var t=turn(st);return (t==='N'||t==='S')?t:'N'}
-function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))return st.bids[i].s;return null}
+function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s,st))return st.bids[i].s;return null}
 function submitCall(st,me,c){
   var nb=st.bids.concat([{s:me,c:c}]);clr();
   save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
   
 }
-function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s))return seat==='X'||st.bids[i].s===seat}return false}
+function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s,st))return seat==='X'||st.bids[i].s===seat}return false}
 function undoBid(){
   var st=state,i;
-  for(i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))break;
+  for(i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s,st))break;
   if(i<0||(seat!=='X'&&st.bids[i].s!==seat))return;
   clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
 }
@@ -858,9 +862,9 @@ var pickL=null,pickS=null,pickO=null;
 function clr(){pickL=null;pickS=null;pickO=null;hintText=''}
 function curPick(){return pickO||(pickL&&pickS?pickL+pickS:null)}
 function oppList(st){
-  var l=st.bids.filter(function(b){return side(b.s)===1&&b.c!=='P'&&b.e});
+  var l=st.bids.filter(function(b){return isBot(b.s,st)&&b.c!=='P'&&b.e});
   if(!l.length)return '';
-  return '<p class="mu" style="margin:8px 0 0"><b>Öst/Väst:</b> '+l.map(function(b){var parts=(b.e||'').split(' · '),why=(parts.length>2?parts.slice(2):parts.slice(1)).join(' · ').trim();if(why.length>95)why=why.slice(0,92)+'…';return NAME[b.s]+' '+fmt(b.c)+(why?' – '+esc(why):'')}).join(' · ')+'</p>';
+  return '<p class="mu" style="margin:8px 0 0"><b>Robotar:</b> '+l.map(function(b){var parts=(b.e||'').split(' · '),why=(parts.length>2?parts.slice(2):parts.slice(1)).join(' · ').trim();if(why.length>95)why=why.slice(0,92)+'…';return NAME[b.s]+' '+fmt(b.c)+(why?' – '+esc(why):'')}).join(' · ')+'</p>';
 }
 function fanHtml(cards){
   var o='';
@@ -892,11 +896,13 @@ function render(){
     return;
   }
   if(!state||!state.hands){
-    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+reportToolsHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
+    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Motståndarna kan kliva in, dubbla och spärra.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><p class="status" style="margin-top:16px">Spelform</p><div class="modes"><button id="pm1" class="mode'+(playerMode==='solo'?' on':'')+'"><b>Ensam mot tre robotar</b><span>Du spelar vald plats (Nord eller Syd). De tre andra platserna sköts av robotar.</span></button><button id="pm2" class="mode'+(playerMode==='partner'?' on':'')+'"><b>Två människor</b><span>Nord och Syd är mänskliga. Öst och Väst är robotar.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+reportToolsHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
     var no=(state&&state.no)||0;
     var b1=document.getElementById('m1'),b2=document.getElementById('m2');
     b1.onclick=function(){setSel('stord',focusSel);b1.classList.add('on');b2.classList.remove('on')};
-    document.getElementById('go2').onclick=function(){clr();save(newDeal(no+1,modeSel,focusSel,newSeed()))};
+    document.getElementById('pm1').onclick=function(){setPlayerMode('solo')};
+    document.getElementById('pm2').onclick=function(){setPlayerMode('partner')};
+    document.getElementById('go2').onclick=function(){clr();save(newDeal(no+1,modeSel,focusSel,newSeed(),humanSeatsForNewDeal()))};
     b2.onclick=function(){setSel('ostord',focusSel);b2.classList.add('on');b1.classList.remove('on')};
     document.getElementById('sw').onclick=function(){setSeat(null)};
     document.getElementById('rm').onclick=function(){room='';try{localStorage.removeItem('bt_room')}catch(e){}if(es)es.close();connState='offline';render()};
@@ -940,7 +946,7 @@ function render(){
   document.getElementById('sv').onclick=saveDeal;
   var hb=document.getElementById('hpb');if(hb)hb.onclick=function(){showHp=!showHp;try{localStorage.setItem('bt_hp',showHp?'1':'0')}catch(e){}render()};
   var un=document.getElementById('undo');if(un)un.onclick=undoBid;
-  var nd=document.getElementById('nd');if(nd)nd.onclick=function(){clr();save(newDeal(st.no+1,st.mode,st.focus,newSeed()))};
+  var nd=document.getElementById('nd');if(nd)nd.onclick=function(){clr();save(newDeal(st.no+1,st.mode,st.focus,newSeed(),st.humanSeats||['N','S']))};
   var rp=document.getElementById('rp');if(rp)rp.onclick=function(){clr();save(replay(st))};
   Array.prototype.forEach.call(app.querySelectorAll('[data-l]'),function(b){
     b.onclick=function(){pickL=+b.getAttribute('data-l');pickO=null;if(pickS&&!legal(st,pickL+pickS,me))pickS=null;if(pickS){submitCall(st,me,pickL+pickS);return}render()};
