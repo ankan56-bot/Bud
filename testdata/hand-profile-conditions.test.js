@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { evaluateHandConditions, evaluateMatchedHand } = require("../analysmotor.js");
+const { evaluateHandConditions, evaluateMatchedHand, treeCompatible } = require("../analysmotor.js");
 const library = JSON.parse(fs.readFileSync(
   path.join(__dirname, "..", "analysbibliotek.json"), "utf8"
 ));
@@ -47,8 +47,8 @@ test("all 114 existing hand-profile nodes have role-specific structured profiles
       }
     }
   }
-  assert.equal(count, 114);
-  assert.equal(roleProfiles, 228);
+  assert.equal(count, 119);
+  assert.equal(roleProfiles, 238);
 });
 
 test("explicit three-or-four-card support is encoded without inventing a single length", () => {
@@ -109,4 +109,29 @@ test("qualitative alternatives do not become false automatic rejections", () => 
   assert.equal(result.status, "manual_review");
   assert.equal(result.matches, null);
   assert.ok(result.failures.length > 0);
+});
+
+test("remaining compatible trees receive only source-backed profiles", () => {
+  const t02 = node("T02_KVANTITATIV_4NT", "t02_n0");
+  assert.deepEqual(t02.handConditionsByRole.opener.hcp, { min: 20, max: 21 });
+  assert.equal(t02.handConditionsByRole.opener.balanced, true);
+  assert.deepEqual(t02.handConditionsByRole.responder.hcp, { min: 11, max: 12 });
+  assert.ok(t02.handConditionsByRole.responder.manual?.length);
+
+  const t03 = node("T03_OVERFORING_PASS", "t03_n0");
+  assert.deepEqual(t03.handConditionsByRole.responder.hcp, { min: 0, max: 7 });
+  assert.deepEqual(t03.handConditionsByRole.responder.suitLengths.H, { min: 5 });
+  assert.ok(t03.handConditionsByRole.responder.manual?.length);
+
+  const t05 = node("T05_HJARTERFIT_PASS", "t05_n0");
+  assert.deepEqual(t05.handConditionsByRole.responder.hcp, { min: 6, max: 9 });
+  assert.deepEqual(t05.handConditionsByRole.responder.suitLengths.H, { min: 3, max: 4 });
+  assert.ok(t05.handConditionsByRole.responder.manual?.length);
+});
+
+test("Jacoby 2NT example remains excluded because the system specifies Stenberg 2NT", () => {
+  const t01 = library.trees.find(t => t.id === "T01_RKC_HJARTER");
+  assert.ok(t01);
+  assert.equal(treeCompatible(t01), false);
+  assert.equal(t01.nodes.some(n => n.handConditionsByRole), false);
 });
