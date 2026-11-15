@@ -1091,6 +1091,24 @@ var Rattning = (function(){
         if(f==='1N')return ntResp(h,0);
         if(isBid(f))return respOvercall(h,f,last,oppBefore[0].c);
       }
+      // Dubblerarens återbud efter partnerns svar på upplysningsdubbling.
+      if(d===2&&ours.length===2&&ours[0].c==='X'&&ours[0].s===me&&ours[1].s===pt&&!oppAfter.length){
+        var partnerResponse=ours[1].c;
+        var responseSuit=isBid(partnerResponse)?st_(partnerResponse):null;
+        var hasSupport=responseSuit&&responseSuit!=='N'&&h.L[responseSuit]>=3;
+        if(hasSupport){
+          return nc('Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.');
+        }
+        if(b.c==='P'){
+          if(hp<18)return {exp:'P',alt:[],why:hp+' hp utan stöd för partnerns svar: pass. Egen färg/NT efter dubbling kräver 18+ hp.',means:function(c){return c==='P'?'Pass under 18 hp utan stöd efter upplysningsdubbling.':null},conv:'dubbling'};
+          return nc('18+ hp utan stöd: REF tillåter egen färg/NT, men anger inte vilket återbud som ska väljas. Pass kan därför inte bedömas automatiskt.');
+        }
+        if(isBid(b.c)&&(b.c[1]==='N'||(b.c[1]!==responseSuit&&b.c[1]!==oppBefore[0].c[1]))){
+          if(hp>=18)return {exp:b.c,alt:[],why:hp+' hp utan stöd för partnerns svar: egen färg/NT efter upplysningsdubbling är tillåtet från 18 hp.',means:function(c){return c===b.c?'Egen färg/NT efter upplysningsdubbling utan stöd: 18+ hp.':null},conv:'dubbling'};
+          return {exp:'P',alt:[],why:hp+' hp utan stöd: egen färg/NT efter dubbling kräver 18+ hp; pass i stället.',means:function(c){return c==='P'?'Pass under 18 hp utan stöd.':null},conv:'dubbling'};
+        }
+        return nc('Dubblerarens återbud är varken pass eller en egen färg/NT enligt den uttryckliga 18 hp-regeln.');
+      }
       return nc('Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.');
     }
 
@@ -1562,7 +1580,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.0'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.1'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
