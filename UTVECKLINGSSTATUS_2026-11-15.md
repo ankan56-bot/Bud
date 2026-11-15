@@ -88,3 +88,12 @@ Viktig begränsning: referensauktionerna är deterministiska täckningsspår byg
 ## Korrigering av referensauktionernas läge
 
 Den första exporterade baslinjen använde störd Öst/Väst-bot även på givarna märkta ostörd. GitHub Actions upptäckte att regenerering gav avvikande budsekvenser. Generatorn har korrigerats så att referensauktionen använder varje givs faktiska läge. Den korrigerade baslinjen har därför 583 rätt och 47 ej täckta (i stället för den preliminära 578/49). Korrigerad dataset, rapport och lista över ej täckta positioner är uppdaterade. Korrigeringen verifierades av GitHub Actions körning 43658747827 (success).
+
+
+## Analys av täckningsluckorna
+
+`testdata/uncovered_analysis_47.md` grupperar de 47 ej täckta positionerna och prioriterar nästa granskning. 26 gäller konkurrensbudgivning (13 med dubbling i sekvensen, 9 annan motståndarinblandning och 4 flera motståndarbud), 10 gäller sekvens-/turordningsmönster, 9 saknar specificerat bud för handen, 1 gäller svarshandens andra bud och 1 är uttryckligen osäker. Alla 47 är pass i referensauktionen eftersom generatorn väljer pass när motorn saknar ett säkert förslag; de är inte facit för att pass är korrekt.
+
+Jämförbara dokumenterade exempel finns i `LOGG_BUDREGLER.md` (bl.a. Giv 7, 10, 13, 19, 21, 22, 24 och 25). De ska granskas hand för hand innan regler ändras. Ingen ny systemregel eller kompletterande regel har lagts till.
+
+GitHub Actions körning `43658789320` passerade med success inklusive regenerering, oförändrat dataset, dataset-/reproducerbarhetstester och AI seat isolation-tester.
