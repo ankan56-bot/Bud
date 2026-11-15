@@ -1162,7 +1162,7 @@ function assessReverse(shape, honors) {
   ];
   const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 6);
   assert.equal(node.exp, 'P');
-  assert.match(node.why, /under 26-poängsgränsen/i);
+  assert.match(node.why, /under 22-poängsgränsen/i);
 }
 
 // After 1C-2C, a balanced 18-HCP opener chooses 3NT before a minor game.
