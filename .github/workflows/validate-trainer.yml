@@ -1,7 +1,7 @@
 name: Validate bridge trainer
 on:
   push:
-    branches: [feature/two-player-dds]
+    branches: [feature/two-player-dds, work/hps-reverse-audit]
   workflow_dispatch:
 jobs:
   validate:
@@ -48,6 +48,8 @@ jobs:
           if (!result || !result.exp) throw new Error('Opening decision-tree smoke test failed');
           console.log('Correction engine v' + R.version + ': opening recommendation ' + result.exp);
           NODE
+      - name: Run correction-engine regression tests
+        run: node tests/reverse-hps.test.js
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
