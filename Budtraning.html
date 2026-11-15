@@ -798,7 +798,7 @@ function roomScreen(){
   var inp=document.getElementById('rc');
   document.getElementById('player-name').value=playerName;
   document.getElementById('rg').onclick=function(){var c='',a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';for(var i=0;i<6;i++)c+=a[Math.floor(Math.random()*a.length)];inp.value=c};
-  document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}playerName=(document.getElementById('player-name').value||'').trim().slice(0,24);try{localStorage.setItem('bt_player_name',playerName)}catch(e){}room=v;try{localStorage.setItem('bt_room',room)}catch(e){}restoreRoomConfig();connect();render()};
+  document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}playerName=(document.getElementById('player-name').value||'').trim().slice(0,24);try{localStorage.setItem('bt_player_name',playerName)}catch(e){}room=v;roomConfig={count:0,bothNS:false};roomPlayers={};seat=null;try{localStorage.setItem('bt_room',room);localStorage.removeItem('bt_seat')}catch(e){}restoreRoomConfig();connect();render()};
 }
 function loadSaved(){try{return JSON.parse(localStorage.getItem('bt_saved')||'[]')}catch(e){return []}}
 function putSaved(l){try{localStorage.setItem('bt_saved',JSON.stringify(l))}catch(e){}}
