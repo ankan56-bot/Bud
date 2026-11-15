@@ -26,3 +26,5 @@ jobs:
         run: node --test testdata/theme-deals.test.js
       - name: Run AI seat isolation tests
         run: node --test testdata/seat-view.test.js
+      - name: Run player role tests
+        run: node --test testdata/player-roles.test.js
