@@ -28,9 +28,13 @@ function treeCompatible(tree){
  return true;
 }
 function findMatch(lib,bids){
- const q=normalizeSequence((bids||[]).map(b=>callText(b.c))),hits=[];
+ const raw=normalizeSequence((bids||[]).map(b=>callText(b.c))),hits=[];
  for(const tree of lib.trees||[]){
   if(!treeCompatible(tree))continue;
+  // Competitive trees T29–T33 store only contract calls. Their explicit
+  // ignorePasses flag keeps normal pass rounds from preventing a match,
+  // without weakening exact sequencing in the other trees.
+  const q=tree.ignorePasses?raw.filter(v=>v!=="Pass"):raw;
   for(const node of tree.nodes||[]){
    const seq=normalizeSequence(node.sequence||[]);
    if(seq.length<=q.length&&seq.every((v,i)=>v==="…"||v===q[i]))hits.push({tree,node,length:seq.length,exact:seq.length===q.length});
@@ -124,7 +128,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.2",loadLibrary,findMatch,treeCompatible,buildReport,analyze,
+ version:"1.0.3",loadLibrary,findMatch,treeCompatible,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
