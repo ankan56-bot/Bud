@@ -665,3 +665,15 @@ Aktuell motor: **7.0**.
 - Störd budgivning: 363/435 täckt (**83,4 %**).
 
 Täckningsprocenten är inte direkt jämförbar med föregående baslinje eftersom fyra testgivare har bytts ut efter att deras gamla svaga-två-svar inte längre uppfyllde REF. De kvarvarande luckorna är huvudsakligen konkurrensfortsättningar som inte finns i REF; de ska inte fyllas med gissningar.
+
+
+### Slutlig omkörning efter att flera 5+ färger gjorts ej täckta
+
+En extra gränskontroll visade att en svag-två-givare hade två egna 5-kortsfärger. Eftersom REF inte anger prioritet mellan dem lämnas den situationen nu ej täckt i stället för att färgordningen i koden avgör. Därför ersattes även svag-02 en gång till, med seed **93000004** (de övriga tre ersatta givarna behåller 93000001–93000003).
+
+Slutlig verifiering mot motor 7.0:
+- Grundsystemets regressionstester: **74/74**.
+- Kompletterande analystester: **15/15**.
+- 606 N/S-positioner: 535 täckta, 71 ej täckta (**88,3 %**).
+- Stört: 365/436 (**83,7 %**); ostört: 170/170 (**100 %**).
+- 140/140 giltiga och avslutade auktioner; 0 undantag och 0 olagliga rekommendationer.
