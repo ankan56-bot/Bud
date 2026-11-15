@@ -429,3 +429,17 @@ test("shared room theme requests compare against the unchanged menu state", () =
   assert.match(html, /rm2\.onclick=function\(\)\{setSel\('ostord',focusSel\);render\(\)\}/);
   assert.match(html, /b\.onclick=function\(\)\{setSel\(modeSel,b\.getAttribute\('data-focus'\)\);render\(\)\}/);
 });
+
+test("room menu actions ignore device-local theme preferences when validating the shared base state", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function roomActionState(");
+  const end = html.indexOf("\\nfunction ", start);
+  assert.ok(start >= 0 && end > start, "room action snapshot helper should exist");
+  const context = { pack: st => ({ no: st.no, mode: st.mode }), state: null };
+  vm.runInNewContext(html.slice(start, end), context);
+  assert.deepEqual(JSON.parse(JSON.stringify(context.roomActionState({ menu: true, no: 0 }))), { menu: true, no: 0 });
+  assert.deepEqual(JSON.parse(JSON.stringify(context.roomActionState({ hands: {}, no: 2, mode: "stord" }))),
+    { no: 2, mode: "stord" });
+  assert.match(html, /sameRoomState\(m\.baseState,roomActionState\(state\)\)/);
+  assert.match(html, /baseState:roomActionState\(state\)/);
+});
