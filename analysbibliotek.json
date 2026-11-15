@@ -1,5 +1,5 @@
 {
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -3048,7 +3048,8 @@
             "responder": "Minst fem ruter och cirka 10+ hp; budet är forcing en rond enligt denna överenskommelse"
           }
         }
-      ]
+      ],
+      "ignorePasses": true
     },
     {
       "id": "T30_1S_2H_KONKURRENS",
@@ -3182,7 +3183,8 @@
             "responder": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse"
           }
         }
-      ]
+      ],
+      "ignorePasses": true
     },
     {
       "id": "T31_1D_1S_KONKURRENS",
@@ -3316,7 +3318,8 @@
             "responder": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse"
           }
         }
-      ]
+      ],
+      "ignorePasses": true
     },
     {
       "id": "T32_1C_1H_KONKURRENS",
@@ -3450,7 +3453,8 @@
             "responder": "Cirka 6–10 hp, jämn hand och hjärterstopper"
           }
         }
-      ]
+      ],
+      "ignorePasses": true
     },
     {
       "id": "T33_1H_DBL_SVAR",
@@ -3584,7 +3588,8 @@
             "responder": "Cirka 6–10 hp, jämn hand, normalt utan trekortsstöd i hjärter"
           }
         }
-      ]
+      ],
+      "ignorePasses": true
     }
   ],
   "valuationRules": {
