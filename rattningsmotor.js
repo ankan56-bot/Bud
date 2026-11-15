@@ -47,17 +47,12 @@ var Rattning = (function(){
   // med egen 6+-färg/5-5. En 5-4-hand utan stöd ger bara HP.
   function handHps(h,supportedSuit){
     if(supportedSuit)return h.htp(supportedSuit);
-    var six=SU.filter(function(s){return h.L[s]>=6;});
-    if(six.length)return h.htp(six[0]);
-    var fives=SU.filter(function(s){return h.L[s]>=5;});
-    if(fives.length>=2){
-      var total=h.hp;
-      SU.forEach(function(s){
-        if(fives.indexOf(s)<0){var n=h.L[s];total+=n===0?3:n===1?2:n===2?1:0;}
-      });
-      return total;
-    }
-    return h.hp;
+    var eligible=SU.filter(function(s){
+      return h.L[s]>=6||(h.L[s]===5&&SU.some(function(t){return t!==s&&h.L[t]===5;}));
+    });
+    var best=h.hp;
+    eligible.forEach(function(s){best=Math.max(best,h.htp(s));});
+    return best;
   }
 
   // Gemensam spelstyrka: honnörspoäng alltid; fördelningspoäng och
