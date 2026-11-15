@@ -293,7 +293,7 @@ test("Stenberg counts HCP plus support points only after 4+ trump support", () =
 test("reverse rebid strength does not count shortage points without a confirmed fit", () => {
   const { Rattning } = loadRuntime();
   const north = ["C14","C13","C12","C9","C8","D14","D13","D7","D6","H5","H4","S5","S4"];
-  const south = ["H14","H13","H12","H11","D5","D4","D3","S6","S3","S2","C7","C6","C5"];
+  const south = ["H14","H13","H12","H11","D5","D4","D3","S8","S6","S3","S2","C7","C6"];
   const used = new Set([...north, ...south]);
   const deck = ["S","H","D","C"].flatMap(suit =>
     Array.from({length:13}, (_,i) => suit + String(i+2)));
