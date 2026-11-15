@@ -118,3 +118,12 @@ GitHub Actions har passerat på commit med både dataset-/reproducerbarhetsteste
 
 
 Senaste AI-seat regression: GitHub Actions körning `43658949390` passerade med både dataset- och AI-seat-tester. Informationsvyn blockerar okända fält, dolda händer även nästlade och dummy utan uttrycklig exponering.
+
+
+## Första konkreta spelargränssnittet
+
+- `player-roles.js` anger standardbordet: Nord = människa, Syd = AI-partner, Öst/Väst = AI-motståndare. Roller kan konfigureras utan att ändra kunskapsmotorn.
+- `seat-view.js` skapar en separat, fryst vy för en bestämd position. Vyn innehåller endast spelarens egen hand, budhistorik, givare, sårbarhet, system och uttryckligen godkända offentliga spelfält.
+- AI-kod ska få `createSeatView(gameState, seat, publicState)`-resultatet och aldrig själva `gameState`-objektet. Fullständiga händer får bara användas av givhantering och separat efterhandskontroll.
+- Dummy får läggas i offentlig vy först när `dummyExposed === true`.
+- Detta är en testad arkitekturgrund, inte en färdig spelande agent eller spelmotor.
