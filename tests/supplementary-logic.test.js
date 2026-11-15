@@ -23,8 +23,9 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
 // 10+ hp without 3-card heart support: candidate redouble.
 {
   const hands = {
-    N: makeHand({ C: 4, D: 3, H: 2, S: 4 }, { C: [14, 13], D: [12, 11], S: [13] }),
-    E: [], S: [], W: []
+    N: [], E: [],
+    S: makeHand({ C: 4, D: 3, H: 2, S: 4 }, { C: [14, 13], D: [12, 11], S: [13] }),
+    W: []
   };
   const matches = A.findSupplementary(logic, bids, hands);
   assert.deepEqual(matches.map(x => x.recommendation), ['XX']);
