@@ -28,4 +28,4 @@ jobs:
         with:
           node-version: 22
       - name: Run bidding session tests
-        run: node --test tests/*.test.js
+        run: node --test tests/budgivning-session.test.js tests/trainer-script.test.js
