@@ -1,7 +1,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const BudSession = require("../budgivning-session.js");
-const hands = Object.fromEntries(["N","E","S","W"].map(s => [s, Array(13).fill(s + "2")]));
+const cards = Array.from({length:52}, (_,i) => String(i));
+const hands = Object.fromEntries(["N","E","S","W"].map((s,i) => [s, cards.slice(i*13,(i+1)*13)]));
 const legal = (st, call, seat) => call === "P" || /^[1-7][CDHSN]$/.test(call);
 
 test("stödjer 1, 2, 3 och 4 mänskliga spelare", () => {
@@ -43,4 +44,19 @@ test("avvisar dubbla platser, fel tur och otillåtna bud", () => {
 test("auktionen avslutas efter fyra pass eller tre pass efter kontraktsbud", () => {
   assert.equal(BudSession.auctionEnded([{call:"P"},{call:"P"},{call:"P"},{call:"P"}]),true);
   assert.equal(BudSession.auctionEnded([{call:"1N"},{call:"P"},{call:"P"},{call:"P"}]),true);
+});
+test("avvisar dubbletter i kortleken och felaktig giv", () => {
+  const duplicate = {...hands, W:hands.W.slice()};
+  duplicate.W[0] = duplicate.N[0];
+  assert.throws(()=>BudSession.createSession({hands:duplicate}),/52 unika kort/);
+  assert.throws(()=>BudSession.createSession({hands:{N:[],E:[],S:[],W:[]}}),/13 kort/);
+});
+test("avvisar bud i fel ordning och bud efter avslutad auktion", () => {
+  assert.throws(()=>BudSession.createSession({hands,dealer:"N",humanSeats:["N"],bids:[{seat:"E",call:"P"}]}),/Fel budordning/);
+  assert.throws(()=>BudSession.createSession({hands,dealer:"N",humanSeats:["N"],bids:[
+    {seat:"N",call:"1N"},{seat:"E",call:"P"},{seat:"S",call:"P"},{seat:"W",call:"P"},{seat:"N",call:"P"}
+  ]}),/bud efter avslut/);
+});
+test("nextSeat avvisar okänd plats", () => {
+  assert.throws(()=>BudSession.nextSeat("X"),/Ogiltig plats/);
 });
