@@ -693,49 +693,27 @@ var Rattning = (function(){
         else exp = '5N';
     }
 
-    why = T_ ? (kc + ' ess inklusive trumfkungen. Svar enligt 0314.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
-    return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
+    why = T_ ? (kc + ' nyckelkort inklusive trumfkungen. Svar enligt RKC 1430.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
+    return {exp:exp,alt:[],why:why,means:means,conv:T_?'RKC 1430':'Fyr-essfråga utan trumf'};
   }
   function rkcNextStep(h,T_,r){
+    if(T_){
+      return NC('Efter svaret på RKC 1430 behöver frågeställaren väga in sina egna nyckelkort och skilja mellan de dubbla svaren 1/4 respektive 0/3. Fortsättningsregeln efter 5♣, 5♦, 5♥ eller 5♠ är ännu inte fastställd; motorn ska därför inte automatiskt bjuda slam.');
+    }
     var exp,why;
     var means=function(c){
-      if(c==='5N')return 'Frågar efter trumfdamen (eller antal kungar i sang).';
-      if(c==='6'+T_)return 'Lillslam i trumffärgen.';
-      if(c==='7'+T_)return 'Storslam i trumffärgen.';
+      if(c==='5N')return 'Fyr-essfråga: alla fyra ess.';
       if(c==='6N')return 'Lillslam i sang.';
       if(c==='7N')return 'Storslam i sang.';
       if(c==='P')return 'Pass.';
       return null;
     };
-    if (T_) {
-        if (r === '5N') {
-            if (h.has(T_, 12)) {
-                if (h.kings >= 3) { exp = '7'+T_; why = 'Trumfdamen och alla kungar finns: Storslam.'; }
-                else { exp = '6'+T_; why = 'Trumfdamen finns, men kungar saknas: Lillslam.'; }
-            } else {
-                exp = '6'+T_; why = 'Trumfdamen saknas: Lillslam.';
-            }
-        } else if (r === '6'+T_ || r === '7'+T_) {
-            exp = 'P'; why = 'Slutbud.';
-        } else {
-            exp = '6'+T_; why = 'Lillslam.';
-        }
-    } else {
-        // I fyr-essvarianten är 5NT svaret som visar alla fyra ess.
-        // Det går därför inte att använda 5NT som kungfråga efter det svaret.
-        if (r === '5N') {
-            exp = '6N'; why = 'Alla fyra ess finns. Bjud 6NT och avsluta budgivningen; ingen kungfråga används.';
-        } else if (/^5[CDHS]$/.test(r)) {
-            exp = '5N'; why = 'Svaret visar färre än fyra ess. 5NT används som sangslutbud, inte som kungfråga.';
-        } else if (r === '6N' || r === '7N') {
-            exp = 'P'; why = 'Slutbud.';
-        } else if (r === 'P') {
-            exp = 'P'; why = 'Pass efter fastställt sangslutbud.';
-        } else {
-            exp = '6N'; why = 'Lillslam i sang.';
-        }
-    }
-    return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
+    if(r==='5N'){exp='6N';why='Alla fyra ess finns. Bjud 6NT och avsluta budgivningen; ingen kungfråga används.';}
+    else if(/^5[CDHS]$/.test(r)){exp='5N';why='Svaret visar färre än fyra ess. 5NT används som sangslutbud, inte som kungfråga.';}
+    else if(r==='6N'||r==='7N'){exp='P';why='Slutbud.';}
+    else if(r==='P'){exp='P';why='Pass efter fastställt sangslutbud.';}
+    else{exp='6N';why='Lillslam i sang.';}
+    return {exp:exp,alt:[],why:why,means:means,conv:'Fyr-essfråga utan trumf'};
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
@@ -1452,7 +1430,7 @@ var Rattning = (function(){
       'svag tvåa':'En svag tvåöppning visar 6–10 hp och exakt 6 kort i ♦ eller högfärg, med bra färgkvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8). 3 i öppningsfärgen är invit (14-16 stp), 2NT är invit (9-10 hp).',
       'öppnarens 2:a bud':'Öppnarens andra bud preciserar styrka och fördelning efter svarshandens första bud.',
       'RKC':'RKC är essfråga. När trumf är fastställd räknas fyra ess plus trumfkungen som femte ess.',
-      'Blackwood 5 ess':'Blackwood 5 ess (0314) används när trumf är fastställd. 5♣ = 0 eller 3, 5♦ = 1 eller 4, 5♥ = 2 utan dam, 5♠ = 2 med dam. Efter 5NT kan fortsatt budgivning följa RKC-reglerna för fastställd trumf.',
+      'RKC 1430':'RKC 1430 används när trumf är fastställd. 5♣ = 1 eller 4 nyckelkort, 5♦ = 0 eller 3, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam.',
       'Fyr-essfråga utan trumf':'Fyr-essfråga utan fastställd trumf används bara i uttryckligen överenskomna sangsekvenser: 1NT–4NT, 1NT–2♣–2♦–4NT, 2NT–4NT, 2NT–3♣–3♦–4NT och 2♣–2♦–2NT–4NT. 5♣ = 0 ess, 5♦ = 1 ess, 5♥ = 2 ess, 5♠ = 3 ess, 5NT = 4 ess. Efter 5NT bjuder frågeställaren 6NT och därefter pass. Ingen kungfråga används.',
       'inkliv':'Ett inkliv visar normalt 12–17 hp och minst 5 kort i färgen (2-nivån kräver 6 kort). 1NT-inkliv visar 15–17 hp och håll i öppningsfärgen. Vid inkliv efter 1NT stängs Stayman/överföring av. Ny färg 2-nivå = invit, 3-nivå = krav.',
       'dubbling':'Upplysningsdubbling (UD) visar minst 12 hp och 3+ kort i objudna färger. Negativ dubbling (av SH) visar 6+ hp och 4-korts objuden högfärg. Stöddubbling (av ÖH) visar exakt 3-korts stöd. Dubbelt efter 1NT-inkl = UD, invit+.',
