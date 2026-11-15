@@ -120,7 +120,7 @@ function buildReport(st,ruleResult,ddsResult){
   }
  }
  return {
-  version:"1.0.1",
+  version:"1.0.5",
   source:"Rattningsmotor v"+((global.Rattning&&global.Rattning.version)||"?")+" + analysbibliotek",
   ruleErrors:rules.errors,uncovered:rules.uncovered,optional:rules.optional,
   fits:fits,theoreticalFindings:findings,
