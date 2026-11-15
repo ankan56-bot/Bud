@@ -128,6 +128,19 @@ function assessOvercallResponse(opponentOpen, partnerOvercall, shape, honors, ca
   return Rattning.judge({ hands, dealer: 'E', bids }).items.at(-1);
 }
 
+function assessDoublerRebid(opening, shape, honors, partnerResponse, call) {
+  const hands = makeDealFor('N', shape, honors);
+  const bids = [
+    { s: 'W', c: opening },
+    { s: 'N', c: 'X' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: partnerResponse },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: call }
+  ];
+  return Rattning.nodeFor({ hands, dealer: 'W', bids }, 5);
+}
+
 function assessWeakTwoResponse(opening, shape, honors, call) {
   const hands = makeDealFor('S', shape, honors, opening[1]);
   const bids = [
@@ -1064,4 +1077,56 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, '4H');
 }
 
-console.log('Bridge bidding regression tests passed (74 cases).');
+// Doubler with no support and under 18 hp passes after partner's 2NT response.
+{
+  const node = assessDoublerRebid(
+    '1D',
+    { C: 3, D: 2, H: 4, S: 4 },
+    { C: [14, 13], H: [14, 13] },
+    '2N',
+    'P'
+  );
+  assert.equal(node.exp, 'P');
+  assert.match(node.why, /18\+ hp/i);
+}
+
+// Doubler without support may rebid own suit/NT with 18+ hp.
+{
+  const node = assessDoublerRebid(
+    '1D',
+    { C: 3, D: 2, H: 5, S: 3 },
+    { H: [14, 13, 12], C: [14, 13], S: [13] },
+    '2N',
+    '3H'
+  );
+  assert.equal(node.exp, '3H');
+  assert.match(node.why, /18 hp.*utan stöd/i);
+}
+
+// A natural own-suit rebid below 18 hp without support should be pass.
+{
+  const node = assessDoublerRebid(
+    '1D',
+    { C: 3, D: 3, H: 5, S: 2 },
+    { H: [14, 13], C: [14], D: [13] },
+    '1S',
+    '2H'
+  );
+  assert.equal(node.exp, 'P');
+  assert.match(node.why, /kräver 18\+ hp/i);
+}
+
+// When the doubler has 3+ support for partner's response, the rebid is not specified.
+{
+  const node = assessDoublerRebid(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { C: [14, 13], D: [14, 13], S: [14] },
+    '1S',
+    'P'
+  );
+  assert.equal(node.exp, null);
+  assert.match(node.why, /3\+ stöd.*inte dubblerarens fortsättning/i);
+}
+
+console.log('Bridge bidding regression tests passed (78 cases).');
