@@ -309,8 +309,10 @@ test("reverse rebid strength does not count shortage points without a confirmed 
   assert.equal(node.exp, "2C");
   assert.match(node.why, /Utan styrka för reverse/);
   const judged = Rattning.judge({hands, dealer:"N", bids});
-  assert.equal(judged.items[4].hp, 16);
-  assert.equal(judged.items[4].htp, 16, "do not display unsupported shortage points as HTP");
+  const openerItem = judged.items.find(item => item.nr === 5);
+  assert.ok(openerItem, "the opener's second bid should be included in the correction result");
+  assert.equal(openerItem.hp, 16);
+  assert.equal(openerItem.htp, 16, "do not display unsupported shortage points as HTP");
 });
 
 test("partnership fit bonus is +1 for nine trumps and +2 for ten", () => {
