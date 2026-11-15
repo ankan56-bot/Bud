@@ -92,7 +92,7 @@ for (const deal of deals) {
           report.covered++;
         } else {
           report.uncovered.push({
-            dealId: deal.id, seed: deal.seed, seat,
+            dealId: deal.id, seed: deal.seed, seat, hands: deal.hands,
             auction: st.bids.map(b => b.s + ':' + b.c).join(' '),
             reason: node && node.why ? node.why : 'Ingen regelmatchning.'
           });
