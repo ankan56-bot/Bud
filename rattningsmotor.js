@@ -187,9 +187,15 @@ var Rattning = (function(){
     if(L.H>=5&&L.S>=5){exp=h2;alt=[d2];why='5-5 i högfärgerna: överföring till ♠ (och sedan 3♥ som invit).';conv='överföring'}
     else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring.';conv='överföring'}
     else if(hp>=lo&&(L.H===4||L.S===4)){exp=c2;why='4-korts högfärg och '+hp+' hp: Stayman.';conv='Stayman';soft=false}
-    else if(hp>=lo&&hp<gl&&!k){exp='2N';why=hp+' hp, balanserad utan 4-korts högfärg: invit 2NT.'}
+    else if(hp>=lo&&hp<gl&&!k){
+      if(h.bal){exp='2N';why=hp+' hp, balanserad utan 4-korts högfärg: invit 2NT.';}
+      else return NC('8–9 hp utan 4-korts högfärg men obalanserad hand: fortsatt bud efter 1NT är inte definierat för denna handtyp.',means,conv);
+    }
     else if(hp>=gl){
-      if(!k&&jointHp<26){exp='2N';why=hp+' hp och '+jointHp+' gemensamma honnörspoäng: invit 2NT eftersom 26 hp för sangutgång inte nås.';}
+      if(!k&&jointHp<26){
+        if(h.bal){exp='2N';why=hp+' hp och '+jointHp+' gemensamma honnörspoäng: balanserad invit 2NT eftersom 26 hp för sangutgång inte nås.';}
+        else return NC('10+ hp och under 26 gemensamma honnörspoäng utan 4-korts högfärg: fortsatt bud med obalanserad hand är inte definierat.',means,conv);
+      }
       else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
@@ -252,7 +258,8 @@ var Rattning = (function(){
       else{
         var jointHcp=hp+(opener?opener.hp:0);
         if(jointHcp>=26){exp='3N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: utgång 3NT.';}
-        else if(jointHcp>=22){exp='2N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: invit 2NT.';}
+        else if(jointHcp>=22&&h.bal){exp='2N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: balanserad invit 2NT.';}
+        else if(jointHcp>=22){return NC('Ingen fit, obalanserad svarshand och invitstyrka efter Stayman: fortsatt bud är inte definierat.',means,'Stayman');}
         else{exp='P';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: under invitnivån, pass.';}
       }
     }
@@ -320,6 +327,9 @@ var Rattning = (function(){
       var meansNoMajor=function(c){if(c==='P')return 'Minimum: avslår sanginviten.';if(c==='3N')return 'Maximum: accepterar sanginviten.';return null};
       if(hp<=15)return {exp:'P',alt:[],why:hp+' hp (minimum): avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:hp+' hp (maximum): accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
+    }
+    if(k1==='2C'&&(M==='H'||M==='S')&&k3==='2N'){
+      return NC('Efter Stayman 1NT–2♣–2'+M+'–2NT måste öppnaren väga 3NT mot eventuell fit i den andra högfärgen. Exakt fortsättning är inte fastställd; öppnarens egen 4-kortsfärg räcker inte för att rekommendera 4'+M+'.','Stayman');
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3'+M){
       var gameSuit='4'+M;
