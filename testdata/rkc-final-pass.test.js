@@ -39,6 +39,44 @@ for (const response of ["5C", "5D", "5H", "5S"]) {
   });
 }
 
+function dealWithSouth(south) {
+  const deck = [];
+  for (const suit of ["S", "H", "D", "C"]) {
+    for (let rank = 14; rank >= 2; rank--) deck.push(suit + rank);
+  }
+  const chosen = new Set(south);
+  const rest = deck.filter(card => !chosen.has(card));
+  return {
+    N: rest.slice(0, 13),
+    E: rest.slice(13, 26),
+    S: south,
+    W: rest.slice(26, 39)
+  };
+}
+
+function responseFromSouthHand(south) {
+  const hands = dealWithSouth(south);
+  const bids = [
+    { s: "N", c: "1S" }, { s: "E", c: "P" },
+    { s: "S", c: "2S" }, { s: "W", c: "P" },
+    { s: "N", c: "4N" }, { s: "E", c: "P" },
+    { s: "S", c: "P" }
+  ];
+  return Rattning.nodeFor({ hands, dealer: "N", bids }, 6);
+}
+
+test("two keycards and a club void are shown by 6C when clubs are below trumps", () => {
+  const hand = ["S14", "S10", "S9", "H14", "H13", "H12", "H11", "D14", "D13", "D12", "D11", "D10", "D9"];
+  const result = responseFromSouthHand(hand);
+  assert.equal(result?.exp, "6C");
+});
+
+test("two keycards and a heart void above spade trumps are shown by 6S", () => {
+  const hand = ["S14", "S10", "S9", "S8", "D14", "D13", "D12", "D11", "D10", "D9", "D8", "D7", "C14"];
+  const result = responseFromSouthHand(hand);
+  assert.equal(result?.exp, "6S");
+});
+
 test("a documented no-trump four-ace ask uses 5NT as the final contract after fewer than four aces", () => {
   const hands = deal();
   const bids = [
