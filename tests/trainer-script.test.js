@@ -83,3 +83,26 @@ test("shared actions are routed through a room coordinator", () => {
   assert.match(html, /baseRev:rev/);
   assert.match(html, /roomConfig\.count&&!roomReady\(\)/);
 });
+
+
+test("room readiness counts distinct valid seat owners, not raw presence records", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function roomSeatOwners()");
+  const end = html.indexOf("function seatOwnerName", start);
+  assert.ok(start >= 0 && end > start, "room seat ownership helpers should exist");
+  const source = html.slice(start, end);
+  function ready(count, players) {
+    const context = { SEATS: ["N", "E", "S", "W"], roomPlayers: players, roomConfig: { count } };
+    vm.runInNewContext(source, context);
+    return context.roomReady();
+  }
+  assert.equal(ready(1, { a: { seat: "X" } }), true, "one player controlling both N/S is one participant");
+  assert.equal(ready(1, { a: { seat: "N" } }), true);
+  assert.equal(ready(2, { a: { seat: "N" }, b: { seat: "N" } }), false,
+    "two people claiming the same seat must not start a two-player room");
+  assert.equal(ready(2, { a: { seat: "N" }, b: { seat: "S" } }), true);
+  assert.equal(ready(3, { a: { seat: "N" }, b: { seat: "N" }, c: { seat: "S" } }), false,
+    "a duplicate seat claim must not count as a third player");
+  assert.equal(ready(3, { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" } }), true);
+  assert.equal(ready(4, { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" }, d: { seat: "W" } }), true);
+});
