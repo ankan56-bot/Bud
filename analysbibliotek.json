@@ -1,6 +1,6 @@
 {
-  "version": "0.6.0",
-  "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.9 dokumenterar och korrigerar 4-4-4-1-öppnarens återbud efter partnerns 1NT.",
+  "version": "0.6.2",
+  "description": "Analysbibliotek med 42 budträd och 254 noder. Utökat med stark 2♣, svagt lågfärgsrelä efter 1NT och superaccept av överföring; endast dokumenterade motorregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -2696,6 +2696,23 @@
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
           }
+        },
+        {
+          "id": "t27_superaccept",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Superaccept av hjärteröverföring",
+          "analysis": "Öppnaren kan i stället för normal accept på 2♥ bjuda 3♥ med 17 hp och minst fyra hjärter. Detta är ett frivilligt alternativ i motorn; 2♥ är det vanliga återbudet.",
+          "handProfile": {
+            "opener": "17 hp och minst fyra hjärter efter 1NT-öppning.",
+            "responder": "Minst fem hjärter; överföringen 2♦ är fullföljd på 3-nivån."
+          },
+          "branches": []
         }
       ]
     },
@@ -2913,6 +2930,23 @@
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
           }
+        },
+        {
+          "id": "t28_superaccept",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Superaccept av spaderöverföring",
+          "analysis": "Öppnaren kan i stället för normal accept på 2♠ bjuda 3♠ med 17 hp och minst fyra spader. Detta är ett frivilligt alternativ i motorn; 2♠ är det vanliga återbudet.",
+          "handProfile": {
+            "opener": "17 hp och minst fyra spader efter 1NT-öppning.",
+            "responder": "Minst fem spader; överföringen 2♥ är fullföljd på 3-nivån."
+          },
+          "branches": []
         }
       ]
     },
@@ -5519,6 +5553,835 @@
             "opener": "Har öppnat 1♥ och gjort ett naturligt återbud, här 2♥.",
             "responder": "6–9 hp + minst 6 kort i egen färg: motorn tillåter ett 3-bud när 3 är lägsta lagliga nivå, eller 3 i öppningsfärgen; budet är ej krav. Högst 9 hp utan sådan färg: pass. 10+ hp och nya färger som kan bjudas på 2-nivån: ej täckt/regel behöver förtydligas."
           }
+        }
+      ]
+    },
+    {
+      "id": "T41_STARK_2C_FORTSATTNING",
+      "title": "Stark 2♣ – väntebud, öppnarens återbud och svarshandens fortsättning",
+      "tags": [
+        "2♣",
+        "stark öppning",
+        "2♦ väntan",
+        "Herbert",
+        "utgångskrav"
+      ],
+      "conditions": [
+        "Ostörd budgivning.",
+        "2♣ är stark öppning; första svar är alltid artificiella 2♦ oavsett svarshandens styrka och fördelning.",
+        "Efter 2♦ visar 2♥/2♠ minst femkortsfärg och utgångskrav; 3♣/3♦ minst femkortsfärg och utgångskrav.",
+        "2NT visar 22–24 hp och jämn hand; 3NT visar 25–27 hp och jämn hand.",
+        "Efter öppnarens färgbud följer svarshanden de dokumenterade Herbert-, stöd-, sidofärgs- och sangreglerna i rattningsmotorns resp2c2().",
+        "Noderna beskriver endast fortsättningar som uttryckligen stöds av aktuell motor; ej definierade handtyper lämnas utanför."
+      ],
+      "root": "t41_n0",
+      "nodes": [
+        {
+          "id": "t41_n0",
+          "sequence": [
+            "2♣"
+          ],
+          "meaning": "Stark 2♣-öppning",
+          "analysis": "Öppningsbudet 2♣ är artificiellt starkt. I det dokumenterade systemet svarar partnern alltid 2♦ som väntebud, oavsett styrka och fördelning. 2♦ lovar alltså inte ruter.",
+          "branches": [
+            {
+              "call": "2♦",
+              "next": "t41_n1",
+              "label": "Obligatoriskt väntebud"
+            }
+          ],
+          "handProfile": {
+            "opener": "Stark 2♣-öppning; exakt handintervall och fördelning avgörs av öppningsregeln.",
+            "responder": "Alla handtyper: obligatoriskt 2♦ som artificiellt väntebud."
+          }
+        },
+        {
+          "id": "t41_n1",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "Svar 2♦ – öppnaren beskriver sin starka hand",
+          "analysis": "Svarshanden har gjort det obligatoriska artificiella väntebudet. Öppnaren visar nu sin handtyp: 2♥/2♠ eller 3♣/3♦ är utgångskrav med minst fem kort i färgen; 2NT visar 22–24 hp och jämn hand; 3NT visar 25–27 hp och jämn hand.",
+          "branches": [
+            {
+              "call": "2♥",
+              "next": "t41_2h",
+              "label": "5+ hjärter, utgångskrav"
+            },
+            {
+              "call": "2♠",
+              "next": "t41_2s",
+              "label": "5+ spader, utgångskrav"
+            },
+            {
+              "call": "2NT",
+              "next": "t41_2nt",
+              "label": "22–24 hp, jämn hand"
+            },
+            {
+              "call": "3♣",
+              "next": "t41_3c",
+              "label": "5+ klöver, utgångskrav"
+            },
+            {
+              "call": "3♦",
+              "next": "t41_3d",
+              "label": "5+ ruter, utgångskrav"
+            },
+            {
+              "call": "3NT",
+              "next": "t41_3nt",
+              "label": "25–27 hp, jämn hand"
+            }
+          ],
+          "handProfile": {
+            "opener": "Stark hand. 2♥/2♠: minst femkortsfärg, utgångskrav. 3♣/3♦: minst femkortsfärg, utgångskrav. 2NT: 22–24 hp, jämn. 3NT: 25–27 hp, jämn.",
+            "responder": "2♦ är artificiellt väntebud och säger inget om ruter."
+          }
+        },
+        {
+          "id": "t41_2h",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "5+ hjärter, utgångskrav",
+          "analysis": "Öppnaren visar minst fem hjärter. Budet är utgångskrav; svarshanden ska beskriva stöd, egen färg eller balanserad hand enligt fortsättningen i 2♣-systemet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem hjärter; utgångskrav.",
+            "responder": "2♦ var ett artificiellt väntebud; svarshandens exakta styrka och fördelning är ännu inte visad."
+          }
+        },
+        {
+          "id": "t41_2s",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "5+ spader, utgångskrav",
+          "analysis": "Öppnaren visar minst fem spader. Budet är utgångskrav; svarshanden ska beskriva stöd, egen färg eller balanserad hand enligt fortsättningen i 2♣-systemet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem spader; utgångskrav.",
+            "responder": "2♦ var ett artificiellt väntebud; svarshandens exakta styrka och fördelning är ännu inte visad."
+          }
+        },
+        {
+          "id": "t41_2nt",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "22–24 hp, jämn hand",
+          "analysis": "Öppnaren visar en jämn hand med 22–24 hp. Det är en naturlig styrkebeskrivning efter det artificiella 2♦-svaret.",
+          "branches": [],
+          "handProfile": {
+            "opener": "22–24 hp, jämn fördelning.",
+            "responder": "2♦ var ett artificiellt väntebud; svarshandens exakta styrka och fördelning är ännu inte visad."
+          }
+        },
+        {
+          "id": "t41_3c",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "5+ klöver, utgångskrav",
+          "analysis": "Öppnaren visar minst fem klöver. Budet är utgångskrav; svarshanden kan visa svaghet med Herbertavslag eller beskriva stöd, högfärg eller jämn hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem klöver; utgångskrav.",
+            "responder": "2♦ var ett artificiellt väntebud; svarshandens exakta styrka och fördelning är ännu inte visad."
+          }
+        },
+        {
+          "id": "t41_3d",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "5+ ruter, utgångskrav",
+          "analysis": "Öppnaren visar minst fem ruter. Budet är utgångskrav; svarshanden kan visa svaghet med Herbertavslag eller beskriva stöd, högfärg eller jämn hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem ruter; utgångskrav.",
+            "responder": "2♦ var ett artificiellt väntebud; svarshandens exakta styrka och fördelning är ännu inte visad."
+          }
+        },
+        {
+          "id": "t41_3nt",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "25–27 hp, jämn hand",
+          "analysis": "Öppnaren visar en jämn hand med 25–27 hp. Svarshanden har fått en stark styrkebeskrivning; ytterligare fortsättning är inte dokumenterad i den aktuella svarsfunktionen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "25–27 hp, jämn fördelning.",
+            "responder": "2♦ var ett artificiellt väntebud; svarshandens exakta styrka och fördelning är ännu inte visad."
+          }
+        },
+        {
+          "id": "t41_2h_root",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass"
+          ],
+          "meaning": "2♥ – svarshandens fortsättning",
+          "analysis": "Öppnarens färgbud visar minst fem kort och är utgångskrav. Svarshanden prioriterar först ett eventuellt Herbertavslag vid 0–5 hp, därefter stöd med tillräcklig styrka, egen lång färg eller sang med jämn hand. Exakta villkor framgår av grenarna.",
+          "branches": [
+            {
+              "call": "2♠",
+              "next": "t41_2h_decline",
+              "label": "Herbertavslag: 0–5 hp utan visat stödvärde"
+            },
+            {
+              "call": "3♥",
+              "next": "t41_2h_support",
+              "label": "6+ hp och minst 3 korts stöd"
+            },
+            {
+              "call": "4♥",
+              "next": "t41_2h_weakfit",
+              "label": "0–5 hp, minst 4 korts stöd och kortfärg"
+            },
+            {
+              "call": "3NT",
+              "next": "t41_2h_nt",
+              "label": "6+ hp, jämn hand utan stöd eller högfärg att visa"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem kort i hjärter; utgångskrav.",
+            "responder": "0–5 hp: Herbertavslag om handen saknar 4+ stöd med kortfärg. 6+ hp: visa 3+ stöd, 5+ sidofärg eller jämn hand enligt villkoren."
+          }
+        },
+        {
+          "id": "t41_2h_decline",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ efter 2♥ – Herbertavslag eller naturlig spaderfärg",
+          "analysis": "Samma bud har två olika betydelser beroende på svarshandens styrka och fördelning. Med 0–5 hp och utan 4+ hjärterstöd tillsammans med kortfärg är 2♠ Herbertavslag. Med 6+ hp och minst fem spader är 2♠ i stället en naturlig färgbeskrivning och utgångskrav. Rätt betydelse avgörs av svarshandens handprofil; auktionen ensam skiljer inte dessa fall åt.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem hjärter; utgångskrav.",
+            "responder": "Alternativ A: 0–5 hp, utan 4+ hjärterstöd med kortfärg = Herbertavslag. Alternativ B: 6+ hp och minst fem spader = naturlig spaderfärg, utgångskrav."
+          }
+        },
+        {
+          "id": "t41_2h_support",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Stöd med positiv hand efter 2♥",
+          "analysis": "Svarshanden visar 6+ hp och minst tre korts stöd. Efter högfärgsvisning är stödbudet 3 i färgen. Efter lågfärgsvisning är stödbudet 4 i färgen och visar slamintresse enligt den aktuella motorkoden.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i hjärter; utgångskrav.",
+            "responder": "6+ hp och minst tre kort i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_2h_weakfit",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4♥"
+          ],
+          "meaning": "Svag hand med kortfärg och starkt stöd",
+          "analysis": "Svarshanden har 0–5 hp men minst fyra korts stöd och minst en singelton/renons. Motorn visar då 4 i högfärgen eller 5 i lågfärgen. Närmaste bud är dokumenterat alternativ.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i hjärter; utgångskrav.",
+            "responder": "0–5 hp, minst fyra korts stöd och kortfärg (singelton eller renons)."
+          }
+        },
+        {
+          "id": "t41_2h_nt",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Jämn svarshand efter 2♥",
+          "analysis": "Med 6+ hp, jämn hand och utan stöd eller den färgtyp som prioriteras före sang kan svarshanden bjuda 3NT. Förutsättningen är att ingen högfärg med minst fyra kort ska visas enligt motorns prioritering.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i hjärter; utgångskrav.",
+            "responder": "6+ hp, jämn hand, ingen minst fyrkortig högfärg som ska visas först och inget kvalificerande trumfstöd."
+          }
+        },
+        {
+          "id": "t41_2s_root",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠",
+            "Pass"
+          ],
+          "meaning": "2♠ – svarshandens fortsättning",
+          "analysis": "Öppnarens färgbud visar minst fem kort och är utgångskrav. Svarshanden prioriterar först ett eventuellt Herbertavslag vid 0–5 hp, därefter stöd med tillräcklig styrka, egen lång färg eller sang med jämn hand. Exakta villkor framgår av grenarna.",
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t41_2s_decline",
+              "label": "Herbertavslag: 0–5 hp utan visat stödvärde"
+            },
+            {
+              "call": "3♠",
+              "next": "t41_2s_support",
+              "label": "6+ hp och minst 3 korts stöd"
+            },
+            {
+              "call": "4♠",
+              "next": "t41_2s_weakfit",
+              "label": "0–5 hp, minst 4 korts stöd och kortfärg"
+            },
+            {
+              "call": "3NT",
+              "next": "t41_2s_nt",
+              "label": "6+ hp, jämn hand utan stöd eller högfärg att visa"
+            },
+            {
+              "call": "3♥",
+              "next": "t41_2s_new",
+              "label": "6+ hp och minst 5 kort i annan färg – utgångskrav"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem kort i spader; utgångskrav.",
+            "responder": "0–5 hp: Herbertavslag om handen saknar 4+ stöd med kortfärg. 6+ hp: visa 3+ stöd, 5+ sidofärg eller jämn hand enligt villkoren."
+          }
+        },
+        {
+          "id": "t41_2s_decline",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "Herbertavslag efter 2♠",
+          "analysis": "När öppnaren har visat en högfärg (2♥ eller 2♠) visar närmaste bud 0–5 hp utan trumfstöd/kortfärdsvärde. Efter lågfärgsvisning används på motsvarande sätt närmaste steg. Budet är ett svagt avslag, inte en naturlig färgbeskrivning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i öppningsfärgen; utgångskrav.",
+            "responder": "0–5 hp, inte 4+ stöd tillsammans med kortfärg i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_2s_support",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Stöd med positiv hand efter 2♠",
+          "analysis": "Svarshanden visar 6+ hp och minst tre korts stöd. Efter högfärgsvisning är stödbudet 3 i färgen. Efter lågfärgsvisning är stödbudet 4 i färgen och visar slamintresse enligt den aktuella motorkoden.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i spader; utgångskrav.",
+            "responder": "6+ hp och minst tre kort i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_2s_weakfit",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Svag hand med kortfärg och starkt stöd",
+          "analysis": "Svarshanden har 0–5 hp men minst fyra korts stöd och minst en singelton/renons. Motorn visar då 4 i högfärgen eller 5 i lågfärgen. Närmaste bud är dokumenterat alternativ.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i spader; utgångskrav.",
+            "responder": "0–5 hp, minst fyra korts stöd och kortfärg (singelton eller renons)."
+          }
+        },
+        {
+          "id": "t41_2s_nt",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Jämn svarshand efter 2♠",
+          "analysis": "Med 6+ hp, jämn hand och utan stöd eller den färgtyp som prioriteras före sang kan svarshanden bjuda 3NT. Förutsättningen är att ingen högfärg med minst fyra kort ska visas enligt motorns prioritering.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i spader; utgångskrav.",
+            "responder": "6+ hp, jämn hand, ingen minst fyrkortig högfärg som ska visas först och inget kvalificerande trumfstöd."
+          }
+        },
+        {
+          "id": "t41_2s_new",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Ny färg efter 2♠",
+          "analysis": "Med 6+ hp och minst fem kort i en annan färg visar svarshanden sin färg på lägsta lagliga nivå. Auktionen är redan utgångskrav efter 2♣-öppningen.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i spader; utgångskrav.",
+            "responder": "6+ hp och minst fem kort i annan färg; färgbudet är utgångskrav."
+          }
+        },
+        {
+          "id": "t41_3c_root",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣",
+            "Pass"
+          ],
+          "meaning": "3♣ – svarshandens fortsättning",
+          "analysis": "Öppnarens färgbud visar minst fem kort och är utgångskrav. Svarshanden prioriterar först ett eventuellt Herbertavslag vid 0–5 hp, därefter stöd med tillräcklig styrka, egen lång färg eller sang med jämn hand. Exakta villkor framgår av grenarna.",
+          "branches": [
+            {
+              "call": "3♦",
+              "next": "t41_3c_decline",
+              "label": "Herbertavslag: 0–5 hp utan visat stödvärde"
+            },
+            {
+              "call": "4♣",
+              "next": "t41_3c_support",
+              "label": "6+ hp och minst 3 korts stöd"
+            },
+            {
+              "call": "5♣",
+              "next": "t41_3c_weakfit",
+              "label": "0–5 hp, minst 4 korts stöd och kortfärg"
+            },
+            {
+              "call": "3NT",
+              "next": "t41_3c_nt",
+              "label": "6+ hp, jämn hand utan stöd eller högfärg att visa"
+            },
+            {
+              "call": "3♠",
+              "next": "t41_3c_newmajor",
+              "label": "6+ hp och minst 4 kort i spader – utgångskrav"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem kort i klöver; utgångskrav.",
+            "responder": "0–5 hp: Herbertavslag om handen saknar 4+ stöd med kortfärg. 6+ hp: visa 3+ stöd, 5+ sidofärg eller jämn hand enligt villkoren."
+          }
+        },
+        {
+          "id": "t41_3c_decline",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "Herbertavslag efter 3♣",
+          "analysis": "När öppnaren har visat en högfärg (2♥ eller 2♠) visar närmaste bud 0–5 hp utan trumfstöd/kortfärdsvärde. Efter lågfärgsvisning används på motsvarande sätt närmaste steg. Budet är ett svagt avslag, inte en naturlig färgbeskrivning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i öppningsfärgen; utgångskrav.",
+            "responder": "0–5 hp, inte 4+ stöd tillsammans med kortfärg i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_3c_support",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4♣"
+          ],
+          "meaning": "Stöd med positiv hand efter 3♣",
+          "analysis": "Svarshanden visar 6+ hp och minst tre korts stöd. Efter högfärgsvisning är stödbudet 3 i färgen. Efter lågfärgsvisning är stödbudet 4 i färgen och visar slamintresse enligt den aktuella motorkoden.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i klöver; utgångskrav.",
+            "responder": "6+ hp och minst tre kort i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_3c_weakfit",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣",
+            "Pass",
+            "5♣"
+          ],
+          "meaning": "Svag hand med kortfärg och starkt stöd",
+          "analysis": "Svarshanden har 0–5 hp men minst fyra korts stöd och minst en singelton/renons. Motorn visar då 4 i högfärgen eller 5 i lågfärgen. Närmaste bud är dokumenterat alternativ.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i klöver; utgångskrav.",
+            "responder": "0–5 hp, minst fyra korts stöd och kortfärg (singelton eller renons)."
+          }
+        },
+        {
+          "id": "t41_3c_nt",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Jämn svarshand efter 3♣",
+          "analysis": "Med 6+ hp, jämn hand och utan stöd eller den färgtyp som prioriteras före sang kan svarshanden bjuda 3NT. Förutsättningen är att ingen högfärg med minst fyra kort ska visas enligt motorns prioritering.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i klöver; utgångskrav.",
+            "responder": "6+ hp, jämn hand, ingen minst fyrkortig högfärg som ska visas först och inget kvalificerande trumfstöd."
+          }
+        },
+        {
+          "id": "t41_3c_newmajor",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Högfärg efter lågfärgsvisning",
+          "analysis": "Efter öppnarens 3♣/3♦ visar svarshanden med 6+ hp en fyrkortshögfärg på 3-nivån när inget trumfstöd med tre kort eller mer tar prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i klöver; utgångskrav.",
+            "responder": "6+ hp och minst fyra spader. Motorns fortsättning prioriterar högfärg före sang."
+          }
+        },
+        {
+          "id": "t41_3d_root",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦",
+            "Pass"
+          ],
+          "meaning": "3♦ – svarshandens fortsättning",
+          "analysis": "Öppnarens färgbud visar minst fem kort och är utgångskrav. Svarshanden prioriterar först ett eventuellt Herbertavslag vid 0–5 hp, därefter stöd med tillräcklig styrka, egen lång färg eller sang med jämn hand. Exakta villkor framgår av grenarna.",
+          "branches": [
+            {
+              "call": "3♥",
+              "next": "t41_3d_decline",
+              "label": "Herbertavslag: 0–5 hp utan visat stödvärde"
+            },
+            {
+              "call": "4♦",
+              "next": "t41_3d_support",
+              "label": "6+ hp och minst 3 korts stöd"
+            },
+            {
+              "call": "5♦",
+              "next": "t41_3d_weakfit",
+              "label": "0–5 hp, minst 4 korts stöd och kortfärg"
+            },
+            {
+              "call": "3NT",
+              "next": "t41_3d_nt",
+              "label": "6+ hp, jämn hand utan stöd eller högfärg att visa"
+            },
+            {
+              "call": "3♠",
+              "next": "t41_3d_newmajor",
+              "label": "6+ hp och minst 4 kort i spader – utgångskrav"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst fem kort i ruter; utgångskrav.",
+            "responder": "0–5 hp: Herbertavslag om handen saknar 4+ stöd med kortfärg. 6+ hp: visa 3+ stöd, 5+ sidofärg eller jämn hand enligt villkoren."
+          }
+        },
+        {
+          "id": "t41_3d_decline",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Herbertavslag efter 3♦",
+          "analysis": "När öppnaren har visat en högfärg (2♥ eller 2♠) visar närmaste bud 0–5 hp utan trumfstöd/kortfärdsvärde. Efter lågfärgsvisning används på motsvarande sätt närmaste steg. Budet är ett svagt avslag, inte en naturlig färgbeskrivning.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i öppningsfärgen; utgångskrav.",
+            "responder": "0–5 hp, inte 4+ stöd tillsammans med kortfärg i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_3d_support",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦",
+            "Pass",
+            "4♦"
+          ],
+          "meaning": "Stöd med positiv hand efter 3♦",
+          "analysis": "Svarshanden visar 6+ hp och minst tre korts stöd. Efter högfärgsvisning är stödbudet 3 i färgen. Efter lågfärgsvisning är stödbudet 4 i färgen och visar slamintresse enligt den aktuella motorkoden.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i ruter; utgångskrav.",
+            "responder": "6+ hp och minst tre kort i öppningsfärgen."
+          }
+        },
+        {
+          "id": "t41_3d_weakfit",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦",
+            "Pass",
+            "5♦"
+          ],
+          "meaning": "Svag hand med kortfärg och starkt stöd",
+          "analysis": "Svarshanden har 0–5 hp men minst fyra korts stöd och minst en singelton/renons. Motorn visar då 4 i högfärgen eller 5 i lågfärgen. Närmaste bud är dokumenterat alternativ.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i ruter; utgångskrav.",
+            "responder": "0–5 hp, minst fyra korts stöd och kortfärg (singelton eller renons)."
+          }
+        },
+        {
+          "id": "t41_3d_nt",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Jämn svarshand efter 3♦",
+          "analysis": "Med 6+ hp, jämn hand och utan stöd eller den färgtyp som prioriteras före sang kan svarshanden bjuda 3NT. Förutsättningen är att ingen högfärg med minst fyra kort ska visas enligt motorns prioritering.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i ruter; utgångskrav.",
+            "responder": "6+ hp, jämn hand, ingen minst fyrkortig högfärg som ska visas först och inget kvalificerande trumfstöd."
+          }
+        },
+        {
+          "id": "t41_3d_newmajor",
+          "sequence": [
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♦",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Högfärg efter lågfärgsvisning",
+          "analysis": "Efter öppnarens 3♣/3♦ visar svarshanden med 6+ hp en fyrkortshögfärg på 3-nivån när inget trumfstöd med tre kort eller mer tar prioritet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Minst fem kort i ruter; utgångskrav.",
+            "responder": "6+ hp och minst fyra spader. Motorns fortsättning prioriterar högfärg före sang."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T42_1NT_SVAG_LAGFARGSRELA",
+      "title": "1NT – svagt relä med lång lågfärg",
+      "tags": [
+        "1NT",
+        "2♠",
+        "relä",
+        "lågfärg",
+        "ostörd budgivning"
+      ],
+      "conditions": [
+        "Norr öppnar 1NT = 15–17 hp och jämn hand.",
+        "Svarshanden har under 8 hp och minst sex kort i en lågfärg, eller 5-5 i lågfärgerna.",
+        "2♠ är artificiellt relä; det visar inte spader.",
+        "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre klöver, annars 2NT med längre ruter eller lika längd.",
+        "Fortsättningen efter öppnarens reläsvar är inte specificerad i den nuvarande motorn och dokumenteras därför inte med påhittade slutbud."
+      ],
+      "root": "t42_n0",
+      "nodes": [
+        {
+          "id": "t42_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ – artificiellt relä med svag lågfärgshand",
+          "analysis": "Svarshanden har en svag hand under 8 hp och lång lågfärg: minst sex klöver eller ruter, alternativt 5-5 i lågfärgerna. 2♠ är ett relä för att hitta rätt lågfärg och lovar inte spader.",
+          "handProfile": {
+            "opener": "1NT = 15–17 hp, balanserad hand.",
+            "responder": "Under 8 hp; minst 6 klöver eller ruter, alternativt 5-5 i lågfärgerna."
+          },
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t42_n2",
+              "label": "Längre ruter eller lika längd i lågfärgerna"
+            },
+            {
+              "call": "3♣",
+              "next": "t42_n3",
+              "label": "Längre klöver"
+            }
+          ]
+        },
+        {
+          "id": "t42_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass"
+          ],
+          "meaning": "Öppnarens svar på 2♠-reläet",
+          "analysis": "Öppnaren väljer mellan 2NT och 3♣ utifrån längden i lågfärgerna. 2NT visar längre ruter eller lika längd; 3♣ visar längre klöver.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand. Längre ruter eller lika långa lågfärger: 2NT; längre klöver: 3♣.",
+            "responder": "Under 8 hp, lång lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t42_n2",
+              "label": "Ruter minst lika lång som klöver"
+            },
+            {
+              "call": "3♣",
+              "next": "t42_n3",
+              "label": "Klöver längre än ruter"
+            }
+          ]
+        },
+        {
+          "id": "t42_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT – längre ruter eller lika längd i lågfärgerna",
+          "analysis": "Öppnaren visar att ruter är längre än klöver eller att lågfärgerna är lika långa. Budet är en del av det artificiella reläet, inte en invit i sang i denna sekvens. Svarshandens fortsättning är inte definierad i nuvarande motor.",
+          "handProfile": {
+            "opener": "15–17 hp, 1NT-hand; ruter minst lika lång som klöver.",
+            "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": []
+        },
+        {
+          "id": "t42_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ – längre klöver",
+          "analysis": "Öppnaren visar att klöver är längre än ruter. Budet är reläsvar, inte ett naturligt krav på att svarshanden ska ha klöverstöd. Svarshandens fortsättning är inte definierad i nuvarande motor.",
+          "handProfile": {
+            "opener": "15–17 hp, 1NT-hand; klöver längre än ruter.",
+            "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": []
         }
       ]
     }
