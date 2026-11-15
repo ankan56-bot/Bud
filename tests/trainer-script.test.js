@@ -6,7 +6,7 @@ const vm = require("node:vm");
 
 test("Budtraning.html inline JavaScript parses without syntax errors", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  const scripts = [...html.matchAll(/<script\\b[^>]*>([\\s\\S]*?)<\\/script>/gi)]
+  const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)]
     .map(match => match[1])
     .filter(source => source.trim());
   assert.ok(scripts.length > 0, "HTML should contain an inline application script");
