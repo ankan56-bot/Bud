@@ -149,6 +149,17 @@ function makeReferenceAuction(deal, api, Rattning) {
         JSON.stringify(api.shapeOf(openingHand)));
     }
   }
+  if (firstBid && firstBid.c === "2C") {
+    const openingHand = state.hands[firstBid.s];
+    const openingHcp = api.hpOf(openingHand);
+    const openingIsBalanced = balanced(openingHand, api);
+    const validStrongTwo = openingHcp >= 22 || (openingHcp >= 20 && openingHcp <= 21 && !openingIsBalanced);
+    if (!validStrongTwo) {
+      throw new Error("Invalid 2C opening in " + deal.theme + ": " +
+        firstBid.s + " has " + openingHcp + " HCP and " +
+        (openingIsBalanced ? "balanced" : "unbalanced") + " shape.");
+    }
+  }
   return state;
 }
 
@@ -241,7 +252,7 @@ function generateDataset() {
         checks: {
           uniqueCards: uniqueCards.size, thirteenCardsPerSeat: true,
           themeCondition: true, quietModeCondition, auctionErrors: 0,
-          openingNTValidated: true
+          openingNTValidated: true, openingStrongTwoValidated: true
         },
         correction: { version: Rattning.version, summary: judged.summary, items }
       };
