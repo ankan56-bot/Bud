@@ -155,3 +155,27 @@ test("the strong 2C theme consists only of 22+ HCP openings", () => {
     assert.ok(api.hpOf(deal.hands[firstBid.s]) >= 22, deal.id);
   }
 });
+
+
+test("all Stenberg theme deals contain a genuine 13+ HTP, 4+ support 2NT response", () => {
+  const { api, Rattning } = loadRuntime();
+  const deals = stored.deals.filter(deal => deal.theme === "stenberg");
+  assert.equal(deals.length, 10);
+  for (const deal of deals) {
+    const openingIndex = deal.bids.findIndex(bid => /^[1][CDHS]$/.test(bid.c));
+    assert.ok(openingIndex >= 0, deal.id + ": missing suit opening");
+    const opening = deal.bids[openingIndex];
+    const responseIndex = openingIndex + 1;
+    const response = deal.bids[responseIndex];
+    assert.ok(response, deal.id + ": missing response");
+    assert.notEqual(response.s, opening.s, deal.id);
+    assert.equal(response.c, "2N", deal.id);
+    const shape = api.shapeOf(deal.hands[response.s]);
+    assert.ok(shape[opening.c[1]] >= 4, deal.id + ": fewer than 4-card support");
+    const node = Rattning.nodeFor({
+      hands: deal.hands, dealer: deal.dealer, bids: deal.bids.slice(0, responseIndex + 1)
+    }, responseIndex);
+    assert.equal(node.conv, "Stenberg", deal.id);
+    assert.equal(node.exp, "2N", deal.id);
+  }
+});
