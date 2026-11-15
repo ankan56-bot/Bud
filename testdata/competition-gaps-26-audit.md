@@ -14,11 +14,12 @@ Loggens givbeskrivningar innehåller inte fullständiga kortlistor för dessa ex
 | Delgrupp | Antal | Vad saknas |
 |---|---:|---|
 | Första svar/fortsättning efter motståndarnas inkliv eller dubbling | 13 | Stöd, naturliga svar, sang, färgbud eller pass efter olika inklivsnivåer |
-| Återbud efter partnerns svar på upplysningsdubbling | 9 | Dubblerarens återbud utifrån egen hand och partnerns svar |
+| Återbud efter partnerns svar på upplysningsdubbling | 8 | Dubblerarens återbud utifrån egen hand och partnerns svar |
+| Återbud från inklivaren efter partnerns hoppstöd | 1 | Fortsättning efter 1♥-inkliv och partnerns 3♥ |
 | Försvar efter motståndarnas öppning och svar/återbud | 4 | Försvarspass när motståndarna bygger en naturlig auktion |
 | **Totalt** | **26** | |
 
-Av de 26 positionerna är 22 egentliga konkurrens-/dubblingssituationer och fyra försvarspositioner mot en naturlig motståndarauktions fortsättning. De 16 positioner där dubbling förekommer har dessutom tidigare delats upp i tre svar efter motståndarnas dubbling av vår öppning, åtta återbud från dubbleraren efter partners svar och två fortsättningar efter ny motståndarinblandning, plus tre övriga passpositioner. Dessa är olika beslutssituationer och får inte slås ihop till en generell dubblingsregel.
+Av de 26 positionerna är 22 egentliga konkurrens-/dubblingssituationer och fyra försvarspositioner mot en naturlig motståndarauktions fortsättning. De 16 positioner där dubbling förekommer har dessutom tidigare delats upp i tre svar efter motståndarnas dubbling av vår öppning, åtta återbud från dubbleraren efter partners svar och två fortsättningar efter ny motståndarinblandning, plus tre övriga passpositioner. Den nionde posten i den bredare gruppen med senare motståndarbjudning, `inkliv-02-bid-6`, är däremot ett återbud från inklivaren efter partnerns hoppstöd 3♥ – inte ett återbud efter upplysningsdubbling. Dessa är olika beslutssituationer och får inte slås ihop till en generell dubblingsregel.
 
 ## Jämförelse mot befintliga analysnoder
 
@@ -92,7 +93,7 @@ HCP och fördelning nedan gäller handen hos den spelare vars Pass står som ej 
 | dubbling-09-bid-3 | N | 2 | ♠1 ♥2 ♦8 ♣2 | 1H Dbl P | Svar/fortsättning efter motståndarnas inkliv eller dubbling |
 | dubbling-09-bid-7 | N | 2 | ♠1 ♥2 ♦8 ♣2 | 1H Dbl P 3S P P P | Svar/fortsättning efter motståndarnas inkliv eller dubbling |
 | dubbling-10-bid-6 | S | 13 | ♠4 ♥2 ♦3 ♣4 | 1H Dbl P 2C P P | Efter partners svar på upplysningsdubbling |
-| inkliv-02-bid-6 | N | 11 | ♠1 ♥6 ♦5 ♣1 | 1C 1H P 3H P P | Efter partners svar på upplysningsdubbling |
+| inkliv-02-bid-6 | N | 11 | ♠1 ♥6 ♦5 ♣1 | 1C 1H P 3H P P | Inklivarens återbud efter partnerns hoppstöd |
 | inkliv-09-bid-6 | S | 14 | ♠4 ♥3 ♦2 ♣4 | 1D Dbl P 1S P P | Efter partners svar på upplysningsdubbling |
 
 ## Rekommenderad ordning för fortsatt regelarbete
