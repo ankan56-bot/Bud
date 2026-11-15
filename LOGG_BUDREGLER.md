@@ -569,3 +569,8 @@ I `analysmotor.js` finns nu en separat matchare som:
 Ett avsiktligt överlapp mellan 1♠ och 1NT för jämna händer med fem spader dokumenteras i stället för att en prioritet hittas på. Sex nya tester täcker kandidaterna och matchningen. Grundmotorns 54 regressionstester är oförändrade.
 
 Detta är ett första separat analyslager, inte en ändring av de 140 givarnas grundsystemstäckning.
+
+
+### Sista gränstestet för hoppinkliv
+
+Ett ytterligare test verifierar den uttryckliga regeln för hoppinkliv: 6–10 hp och en bra sexkortsfärg. Testet passerar. Grundsystemets regressionstestsvit är nu **55/55 godkänd**; de sex testerna för det separata kompletterande kunskapslagret är fortsatt godkända.
