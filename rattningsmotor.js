@@ -1317,25 +1317,23 @@ var Rattning = (function(){
       if(isBid(b.c)){runningContract=b.c;runningSide=side(b.s);}
       var hand=H(st.hands[b.s]);
       var partnerHand=H(st.hands[partner(b.s)]);
-      var suit=isBid(b.c)?st_(b.c):null;
       var agreed=null;
-      // Ett Stenberg-2NT visar redan stöd i öppnarens färg, trots att
-      // själva budet är sang. Använd därför öppnarens färg för HTP-visningen.
+      // Stenberg 2NT visar stöd i öppnarens färg trots att budet är sang.
       if(node&&node.conv==='Stenberg'){
-        for(var ai=i-1;ai>=0;ai--){
-          if(bids[ai].s===partner(b.s)&&/^1[CDHS]$/.test(bids[ai].c)){
+        for(var ai=0;ai<i;ai++){
+          if(side(bids[ai].s)===side(b.s)&&/^1[CDHS]$/.test(bids[ai].c)){
             var candidate=bids[ai].c[1];
             if(hand.L[candidate]+partnerHand.L[candidate]>=8)agreed=candidate;
             break;
           }
         }
-      }
-      if(!agreed&&suit&&suit!=='N'&&hand.L[suit]+partnerHand.L[suit]>=8)agreed=suit;
-      if(!agreed){
+      }else{
+        // Stödpoäng kräver att partnern faktiskt har bjudit färgen.
+        // Ett eget nytt färgbud (t.ex. reverse) fastställer inte trumf.
         for(var aj=i-1;aj>=0;aj--){
-          if(bids[aj].s===b.s&&isBid(bids[aj].c)&&bids[aj].c[1]!=='N'){
-            var previousSuit=bids[aj].c[1];
-            if(hand.L[previousSuit]+partnerHand.L[previousSuit]>=8){agreed=previousSuit;break;}
+          if(bids[aj].s===partner(b.s)&&isBid(bids[aj].c)&&bids[aj].c[1]!=='N'){
+            var partnerSuit=bids[aj].c[1];
+            if(hand.L[partnerSuit]+partnerHand.L[partnerSuit]>=8){agreed=partnerSuit;break;}
           }
         }
       }
