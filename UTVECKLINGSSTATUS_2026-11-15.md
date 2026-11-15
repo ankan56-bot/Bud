@@ -161,4 +161,4 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - Stopperkrav och oklara uttryck som "begränsat stöd" markeras för manuell kontroll; inga antagna definitioner.
 - Efterhandsanalysen kan kontrollera budgivarens faktiska hand mot noden. Detta får inte användas av AI under pågående budgivning; seat-view-gränsen gäller fortsatt.
 - Nya regressionstester i `testdata/hand-conditions.test.js`.
-- CI för den senaste ändringen är ännu inte verifierad. `main` är orörd.
+- GitHub Actions körning `43660192227` passerade på commit `09bab5a909dfacce5f65b15825b682e8617089f2`; alla fem handvillkorstester passerade och övriga dataset-, analys-, AI-seat- och rolltester passerade. Dokumentationskörning `43660201574` passerade också. `main` är orörd.
