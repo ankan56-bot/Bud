@@ -43,6 +43,33 @@ function findMatch(lib,bids){
  hits.sort((a,b)=>b.length-a.length);
  return hits[0]||null;
 }
+function evaluateHandConditions(hand,conditions){
+ const c=conditions||{};
+ if(!Array.isArray(hand)||hand.length!==13)return {status:"invalid_hand",matches:null,failures:["Handen måste innehålla 13 kort."],manual:[]};
+ const seen=new Set(),shape={S:0,H:0,D:0,C:0};let hcp=0;
+ for(const card of hand){
+  const m=typeof card==="string"&&card.match(/^([SHDC])(1[0-4]|[2-9])$/);
+  if(!m||seen.has(card))return {status:"invalid_hand",matches:null,failures:["Handen innehåller ogiltigt eller duplicerat kort."],manual:[]};
+  seen.add(card);shape[m[1]]++;
+  const rank=Number(m[2]);hcp+=rank===14?4:rank===13?3:rank===12?2:rank===11?1:0;
+ }
+ const failures=[];
+ if(c.hcp){
+  if(Number.isFinite(c.hcp.min)&&hcp<c.hcp.min)failures.push("HCP under miniminivån ("+hcp+" < "+c.hcp.min+").");
+  if(Number.isFinite(c.hcp.max)&&hcp>c.hcp.max)failures.push("HCP över maximinivån ("+hcp+" > "+c.hcp.max+").");
+ }
+ for(const [suit,bounds] of Object.entries(c.suitLengths||{})){
+  if(!Object.prototype.hasOwnProperty.call(shape,suit))return {status:"invalid_conditions",matches:null,failures:["Okänd färg i handvillkoren: "+suit],manual:[]};
+  if(Number.isFinite(bounds.min)&&shape[suit]<bounds.min)failures.push("För få "+SUIT_NAME[suit]+" ("+shape[suit]+" < "+bounds.min+").");
+  if(Number.isFinite(bounds.max)&&shape[suit]>bounds.max)failures.push("För många "+SUIT_NAME[suit]+" ("+shape[suit]+" > "+bounds.max+").");
+ }
+ if(c.balanced===true&&!["4333","4432","5332"].includes(Object.values(shape).sort((a,b)=>b-a).join("")))failures.push("Handen är inte balanserad enligt 4-3-3-3, 4-4-3-2 eller 5-3-3-2.");
+ if(c.balanced===false&&["4333","4432","5332"].includes(Object.values(shape).sort((a,b)=>b-a).join("")))failures.push("Handen är balanserad men villkoret kräver obalanserad hand.");
+ const manual=Array.isArray(c.manual)?c.manual.slice():[];
+ if(failures.length)return {status:"no_match",matches:false,hcp,shape,failures,manual};
+ if(manual.length)return {status:"manual_review",matches:null,hcp,shape,failures:[],manual};
+ return {status:"match",matches:true,hcp,shape,failures:[],manual:[]};
+}
 function lengths(hand){
  const L={S:0,H:0,D:0,C:0};(hand||[]).forEach(c=>{if(L[c[0]]!==undefined)L[c[0]]++});return L;
 }
@@ -128,7 +155,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.3",loadLibrary,findMatch,treeCompatible,buildReport,analyze,
+ version:"1.0.4",loadLibrary,findMatch,treeCompatible,evaluateHandConditions,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
