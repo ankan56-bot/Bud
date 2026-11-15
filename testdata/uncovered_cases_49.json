@@ -1,0 +1,4870 @@
+{
+  "version": "1.0.0",
+  "title": "49 ej täckta budpositioner från temabaslinjen",
+  "note": "Samtliga poster är pass i den deterministiskt genererade referensauktionen eftersom rättningsmotorn saknade ett säkert förslag. De är analyskandidater, inte facit för rätt/fel.",
+  "cases": [
+    {
+      "id": "alla-01-bid-9",
+      "dealId": "alla-01",
+      "theme": "alla",
+      "mode": "stord",
+      "seed": 426835,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "S5",
+          "S8",
+          "S2",
+          "C5",
+          "D6",
+          "D2",
+          "S3",
+          "D11",
+          "D3",
+          "S14",
+          "H6",
+          "S9",
+          "H14"
+        ],
+        "E": [
+          "D9",
+          "H10",
+          "D4",
+          "S13",
+          "H3",
+          "S10",
+          "C12",
+          "S12",
+          "H9",
+          "S4",
+          "S11",
+          "H4",
+          "S7"
+        ],
+        "S": [
+          "C7",
+          "D10",
+          "H2",
+          "D5",
+          "C2",
+          "C14",
+          "D14",
+          "H5",
+          "H13",
+          "C4",
+          "S6",
+          "H12",
+          "C8"
+        ],
+        "W": [
+          "C10",
+          "C11",
+          "C9",
+          "C6",
+          "D12",
+          "C13",
+          "H8",
+          "D13",
+          "D8",
+          "C3",
+          "H11",
+          "H7",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1C"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "2C"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2N"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 9,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet."
+      }
+    },
+    {
+      "id": "alla-02-bid-5",
+      "dealId": "alla-02",
+      "theme": "alla",
+      "mode": "stord",
+      "seed": 434754,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "C14",
+          "H2",
+          "D13",
+          "S3",
+          "S14",
+          "D10",
+          "S9",
+          "H10",
+          "H11",
+          "D2",
+          "S7",
+          "D8",
+          "C13"
+        ],
+        "E": [
+          "H7",
+          "H5",
+          "C10",
+          "S8",
+          "C12",
+          "S12",
+          "D7",
+          "D9",
+          "D14",
+          "D3",
+          "H12",
+          "D12",
+          "C5"
+        ],
+        "S": [
+          "C11",
+          "D4",
+          "C9",
+          "S11",
+          "C2",
+          "S2",
+          "S4",
+          "C3",
+          "H14",
+          "S6",
+          "C6",
+          "S10",
+          "C8"
+        ],
+        "W": [
+          "D11",
+          "S13",
+          "H8",
+          "H4",
+          "H13",
+          "S5",
+          "H9",
+          "D6",
+          "C7",
+          "H3",
+          "C4",
+          "H6",
+          "D5"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "2H"
+        },
+        {
+          "s": "N",
+          "c": "2N"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "alla-05-bid-5",
+      "dealId": "alla-05",
+      "theme": "alla",
+      "mode": "stord",
+      "seed": 458511,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H11",
+          "H8",
+          "C8",
+          "D11",
+          "C4",
+          "H2",
+          "S4",
+          "S10",
+          "H6",
+          "D3",
+          "S7",
+          "S6",
+          "S13"
+        ],
+        "E": [
+          "C2",
+          "H14",
+          "C7",
+          "S11",
+          "H3",
+          "H13",
+          "D6",
+          "C12",
+          "C5",
+          "H4",
+          "C13",
+          "D8",
+          "C11"
+        ],
+        "S": [
+          "S12",
+          "C10",
+          "C9",
+          "S8",
+          "C6",
+          "H7",
+          "D2",
+          "D5",
+          "D9",
+          "H9",
+          "D10",
+          "D13",
+          "D4"
+        ],
+        "W": [
+          "H5",
+          "S14",
+          "D12",
+          "C14",
+          "S2",
+          "D14",
+          "H12",
+          "S9",
+          "S5",
+          "S3",
+          "C3",
+          "H10",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "alla-05-bid-7",
+      "dealId": "alla-05",
+      "theme": "alla",
+      "mode": "stord",
+      "seed": 458511,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H11",
+          "H8",
+          "C8",
+          "D11",
+          "C4",
+          "H2",
+          "S4",
+          "S10",
+          "H6",
+          "D3",
+          "S7",
+          "S6",
+          "S13"
+        ],
+        "E": [
+          "C2",
+          "H14",
+          "C7",
+          "S11",
+          "H3",
+          "H13",
+          "D6",
+          "C12",
+          "C5",
+          "H4",
+          "C13",
+          "D8",
+          "C11"
+        ],
+        "S": [
+          "S12",
+          "C10",
+          "C9",
+          "S8",
+          "C6",
+          "H7",
+          "D2",
+          "D5",
+          "D9",
+          "H9",
+          "D10",
+          "D13",
+          "D4"
+        ],
+        "W": [
+          "H5",
+          "S14",
+          "D12",
+          "C14",
+          "S2",
+          "D14",
+          "H12",
+          "S9",
+          "S5",
+          "S3",
+          "C3",
+          "H10",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "2C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 7,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "alla-05-bid-9",
+      "dealId": "alla-05",
+      "theme": "alla",
+      "mode": "stord",
+      "seed": 458511,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H11",
+          "H8",
+          "C8",
+          "D11",
+          "C4",
+          "H2",
+          "S4",
+          "S10",
+          "H6",
+          "D3",
+          "S7",
+          "S6",
+          "S13"
+        ],
+        "E": [
+          "C2",
+          "H14",
+          "C7",
+          "S11",
+          "H3",
+          "H13",
+          "D6",
+          "C12",
+          "C5",
+          "H4",
+          "C13",
+          "D8",
+          "C11"
+        ],
+        "S": [
+          "S12",
+          "C10",
+          "C9",
+          "S8",
+          "C6",
+          "H7",
+          "D2",
+          "D5",
+          "D9",
+          "H9",
+          "D10",
+          "D13",
+          "D4"
+        ],
+        "W": [
+          "H5",
+          "S14",
+          "D12",
+          "C14",
+          "S2",
+          "D14",
+          "H12",
+          "S9",
+          "S5",
+          "S3",
+          "C3",
+          "H10",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "2C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "5C"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 9,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "alla-05-bid-11",
+      "dealId": "alla-05",
+      "theme": "alla",
+      "mode": "stord",
+      "seed": 458511,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H11",
+          "H8",
+          "C8",
+          "D11",
+          "C4",
+          "H2",
+          "S4",
+          "S10",
+          "H6",
+          "D3",
+          "S7",
+          "S6",
+          "S13"
+        ],
+        "E": [
+          "C2",
+          "H14",
+          "C7",
+          "S11",
+          "H3",
+          "H13",
+          "D6",
+          "C12",
+          "C5",
+          "H4",
+          "C13",
+          "D8",
+          "C11"
+        ],
+        "S": [
+          "S12",
+          "C10",
+          "C9",
+          "S8",
+          "C6",
+          "H7",
+          "D2",
+          "D5",
+          "D9",
+          "H9",
+          "D10",
+          "D13",
+          "D4"
+        ],
+        "W": [
+          "H5",
+          "S14",
+          "D12",
+          "C14",
+          "S2",
+          "D14",
+          "H12",
+          "S9",
+          "S5",
+          "S3",
+          "C3",
+          "H10",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "2C"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "5C"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 11,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "stenberg-03-bid-3",
+      "dealId": "stenberg-03",
+      "theme": "stenberg",
+      "mode": "stord",
+      "seed": 861589,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "D7",
+          "H3",
+          "H10",
+          "C4",
+          "S13",
+          "D10",
+          "C8",
+          "D14",
+          "D4",
+          "S12",
+          "H14",
+          "S5",
+          "S4"
+        ],
+        "E": [
+          "D3",
+          "H6",
+          "C2",
+          "C5",
+          "D13",
+          "D12",
+          "D6",
+          "H13",
+          "C10",
+          "S10",
+          "D8",
+          "H9",
+          "D9"
+        ],
+        "S": [
+          "S14",
+          "H8",
+          "C13",
+          "S3",
+          "C6",
+          "D5",
+          "H5",
+          "D11",
+          "C14",
+          "S8",
+          "S2",
+          "C3",
+          "C7"
+        ],
+        "W": [
+          "H12",
+          "S9",
+          "H2",
+          "C9",
+          "C12",
+          "S7",
+          "S11",
+          "H7",
+          "C11",
+          "S6",
+          "H11",
+          "H4",
+          "D2"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "3D"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "stenberg-03-bid-5",
+      "dealId": "stenberg-03",
+      "theme": "stenberg",
+      "mode": "stord",
+      "seed": 861589,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "D7",
+          "H3",
+          "H10",
+          "C4",
+          "S13",
+          "D10",
+          "C8",
+          "D14",
+          "D4",
+          "S12",
+          "H14",
+          "S5",
+          "S4"
+        ],
+        "E": [
+          "D3",
+          "H6",
+          "C2",
+          "C5",
+          "D13",
+          "D12",
+          "D6",
+          "H13",
+          "C10",
+          "S10",
+          "D8",
+          "H9",
+          "D9"
+        ],
+        "S": [
+          "S14",
+          "H8",
+          "C13",
+          "S3",
+          "C6",
+          "D5",
+          "H5",
+          "D11",
+          "C14",
+          "S8",
+          "S2",
+          "C3",
+          "C7"
+        ],
+        "W": [
+          "H12",
+          "S9",
+          "H2",
+          "C9",
+          "C12",
+          "S7",
+          "S11",
+          "H7",
+          "C11",
+          "S6",
+          "H11",
+          "H4",
+          "D2"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "3D"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "rkc-07-bid-3",
+      "dealId": "rkc-07",
+      "theme": "rkc",
+      "mode": "ostord",
+      "seed": 369637,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "S8",
+          "H12",
+          "S10",
+          "C14",
+          "S2",
+          "H2",
+          "C6",
+          "H10",
+          "C13",
+          "S6",
+          "D8",
+          "S13",
+          "C12"
+        ],
+        "E": [
+          "S14",
+          "H8",
+          "S4",
+          "S3",
+          "C7",
+          "C8",
+          "H4",
+          "H5",
+          "D13",
+          "H9",
+          "H11",
+          "D4",
+          "H6"
+        ],
+        "S": [
+          "D6",
+          "H14",
+          "S11",
+          "S5",
+          "C9",
+          "S9",
+          "D12",
+          "H13",
+          "D14",
+          "C5",
+          "C11",
+          "S12",
+          "C2"
+        ],
+        "W": [
+          "S7",
+          "D2",
+          "D9",
+          "D7",
+          "C10",
+          "H3",
+          "D11",
+          "C4",
+          "D5",
+          "C3",
+          "D10",
+          "H7",
+          "D3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "3H"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "rkc-07-bid-5",
+      "dealId": "rkc-07",
+      "theme": "rkc",
+      "mode": "ostord",
+      "seed": 369637,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "S8",
+          "H12",
+          "S10",
+          "C14",
+          "S2",
+          "H2",
+          "C6",
+          "H10",
+          "C13",
+          "S6",
+          "D8",
+          "S13",
+          "C12"
+        ],
+        "E": [
+          "S14",
+          "H8",
+          "S4",
+          "S3",
+          "C7",
+          "C8",
+          "H4",
+          "H5",
+          "D13",
+          "H9",
+          "H11",
+          "D4",
+          "H6"
+        ],
+        "S": [
+          "D6",
+          "H14",
+          "S11",
+          "S5",
+          "C9",
+          "S9",
+          "D12",
+          "H13",
+          "D14",
+          "C5",
+          "C11",
+          "S12",
+          "C2"
+        ],
+        "W": [
+          "S7",
+          "D2",
+          "D9",
+          "D7",
+          "C10",
+          "H3",
+          "D11",
+          "C4",
+          "D5",
+          "C3",
+          "D10",
+          "H7",
+          "D3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "3H"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "slam-02-bid-3",
+      "dealId": "slam-02",
+      "theme": "slam",
+      "mode": "stord",
+      "seed": 434754,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "S14",
+          "H3",
+          "S5",
+          "D2",
+          "H8",
+          "D9",
+          "C3",
+          "S2",
+          "C10",
+          "H13",
+          "C11",
+          "H7",
+          "S12"
+        ],
+        "E": [
+          "H11",
+          "C4",
+          "S10",
+          "D6",
+          "D4",
+          "H6",
+          "C5",
+          "D7",
+          "S4",
+          "C6",
+          "C9",
+          "S7",
+          "C12"
+        ],
+        "S": [
+          "D5",
+          "H10",
+          "D11",
+          "C13",
+          "H5",
+          "H9",
+          "H14",
+          "C7",
+          "D14",
+          "D8",
+          "C14",
+          "H4",
+          "D13"
+        ],
+        "W": [
+          "D12",
+          "C8",
+          "S9",
+          "S11",
+          "S8",
+          "D10",
+          "S6",
+          "D3",
+          "H12",
+          "S13",
+          "H2",
+          "C2",
+          "S3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "2S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "slam-02-bid-5",
+      "dealId": "slam-02",
+      "theme": "slam",
+      "mode": "stord",
+      "seed": 434754,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "S14",
+          "H3",
+          "S5",
+          "D2",
+          "H8",
+          "D9",
+          "C3",
+          "S2",
+          "C10",
+          "H13",
+          "C11",
+          "H7",
+          "S12"
+        ],
+        "E": [
+          "H11",
+          "C4",
+          "S10",
+          "D6",
+          "D4",
+          "H6",
+          "C5",
+          "D7",
+          "S4",
+          "C6",
+          "C9",
+          "S7",
+          "C12"
+        ],
+        "S": [
+          "D5",
+          "H10",
+          "D11",
+          "C13",
+          "H5",
+          "H9",
+          "H14",
+          "C7",
+          "D14",
+          "D8",
+          "C14",
+          "H4",
+          "D13"
+        ],
+        "W": [
+          "D12",
+          "C8",
+          "S9",
+          "S11",
+          "S8",
+          "D10",
+          "S6",
+          "D3",
+          "H12",
+          "S13",
+          "H2",
+          "C2",
+          "S3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "2S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "trumf-02-bid-3",
+      "dealId": "trumf-02",
+      "theme": "trumf",
+      "mode": "stord",
+      "seed": 539483,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H9",
+          "H12",
+          "C5",
+          "D5",
+          "C7",
+          "H7",
+          "C13",
+          "H6",
+          "S10",
+          "S7",
+          "C6",
+          "S11",
+          "H3"
+        ],
+        "E": [
+          "C2",
+          "D6",
+          "S8",
+          "D7",
+          "D11",
+          "C9",
+          "D13",
+          "S6",
+          "C11",
+          "H11",
+          "D3",
+          "D9",
+          "D2"
+        ],
+        "S": [
+          "C10",
+          "H14",
+          "S12",
+          "S4",
+          "H8",
+          "H10",
+          "H4",
+          "C4",
+          "S3",
+          "C14",
+          "C8",
+          "C12",
+          "H2"
+        ],
+        "W": [
+          "S14",
+          "C3",
+          "H13",
+          "H5",
+          "D8",
+          "S5",
+          "S2",
+          "S13",
+          "D12",
+          "D10",
+          "D4",
+          "D14",
+          "S9"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "trumf-02-bid-5",
+      "dealId": "trumf-02",
+      "theme": "trumf",
+      "mode": "stord",
+      "seed": 539483,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H9",
+          "H12",
+          "C5",
+          "D5",
+          "C7",
+          "H7",
+          "C13",
+          "H6",
+          "S10",
+          "S7",
+          "C6",
+          "S11",
+          "H3"
+        ],
+        "E": [
+          "C2",
+          "D6",
+          "S8",
+          "D7",
+          "D11",
+          "C9",
+          "D13",
+          "S6",
+          "C11",
+          "H11",
+          "D3",
+          "D9",
+          "D2"
+        ],
+        "S": [
+          "C10",
+          "H14",
+          "S12",
+          "S4",
+          "H8",
+          "H10",
+          "H4",
+          "C4",
+          "S3",
+          "C14",
+          "C8",
+          "C12",
+          "H2"
+        ],
+        "W": [
+          "S14",
+          "C3",
+          "H13",
+          "H5",
+          "D8",
+          "S5",
+          "S2",
+          "S13",
+          "D12",
+          "D10",
+          "D4",
+          "D14",
+          "S9"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "trumf-04-bid-7",
+      "dealId": "trumf-04",
+      "theme": "trumf",
+      "mode": "stord",
+      "seed": 555321,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "C12",
+          "D2",
+          "S2",
+          "H13",
+          "S9",
+          "C9",
+          "S4",
+          "H2",
+          "D6",
+          "H10",
+          "D5",
+          "H11",
+          "S6"
+        ],
+        "E": [
+          "C10",
+          "C11",
+          "H12",
+          "D3",
+          "D13",
+          "D14",
+          "S5",
+          "D12",
+          "S7",
+          "H9",
+          "H7",
+          "H8",
+          "S11"
+        ],
+        "S": [
+          "S12",
+          "H4",
+          "S14",
+          "C6",
+          "S13",
+          "D8",
+          "S10",
+          "C8",
+          "D11",
+          "S3",
+          "C5",
+          "C13",
+          "C4"
+        ],
+        "W": [
+          "C2",
+          "C7",
+          "D7",
+          "D9",
+          "D4",
+          "H3",
+          "D10",
+          "H5",
+          "H14",
+          "H6",
+          "C14",
+          "C3",
+          "S8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "3H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 7,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas."
+      }
+    },
+    {
+      "id": "trumf-05-bid-3",
+      "dealId": "trumf-05",
+      "theme": "trumf",
+      "mode": "stord",
+      "seed": 563240,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "S12",
+          "S4",
+          "H13",
+          "C6",
+          "S3",
+          "H8",
+          "S13",
+          "C7",
+          "C5",
+          "C13",
+          "D13",
+          "H5",
+          "C4"
+        ],
+        "E": [
+          "S9",
+          "D12",
+          "D10",
+          "D4",
+          "H6",
+          "H10",
+          "C11",
+          "H14",
+          "H12",
+          "D3",
+          "H3",
+          "H11",
+          "C10"
+        ],
+        "S": [
+          "D11",
+          "D5",
+          "D9",
+          "S8",
+          "C2",
+          "C12",
+          "D2",
+          "C8",
+          "D6",
+          "C3",
+          "C9",
+          "S11",
+          "S5"
+        ],
+        "W": [
+          "S14",
+          "D7",
+          "H2",
+          "H9",
+          "H7",
+          "S7",
+          "S10",
+          "S2",
+          "C14",
+          "H4",
+          "S6",
+          "D14",
+          "D8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1C"
+        },
+        {
+          "s": "E",
+          "c": "1H"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "trumf-05-bid-5",
+      "dealId": "trumf-05",
+      "theme": "trumf",
+      "mode": "stord",
+      "seed": 563240,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "S12",
+          "S4",
+          "H13",
+          "C6",
+          "S3",
+          "H8",
+          "S13",
+          "C7",
+          "C5",
+          "C13",
+          "D13",
+          "H5",
+          "C4"
+        ],
+        "E": [
+          "S9",
+          "D12",
+          "D10",
+          "D4",
+          "H6",
+          "H10",
+          "C11",
+          "H14",
+          "H12",
+          "D3",
+          "H3",
+          "H11",
+          "C10"
+        ],
+        "S": [
+          "D11",
+          "D5",
+          "D9",
+          "S8",
+          "C2",
+          "C12",
+          "D2",
+          "C8",
+          "D6",
+          "C3",
+          "C9",
+          "S11",
+          "S5"
+        ],
+        "W": [
+          "S14",
+          "D7",
+          "H2",
+          "H9",
+          "H7",
+          "S7",
+          "S10",
+          "S2",
+          "C14",
+          "H4",
+          "S6",
+          "D14",
+          "D8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1C"
+        },
+        {
+          "s": "E",
+          "c": "1H"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "2C"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "trumf-05-bid-7",
+      "dealId": "trumf-05",
+      "theme": "trumf",
+      "mode": "stord",
+      "seed": 563240,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "S12",
+          "S4",
+          "H13",
+          "C6",
+          "S3",
+          "H8",
+          "S13",
+          "C7",
+          "C5",
+          "C13",
+          "D13",
+          "H5",
+          "C4"
+        ],
+        "E": [
+          "S9",
+          "D12",
+          "D10",
+          "D4",
+          "H6",
+          "H10",
+          "C11",
+          "H14",
+          "H12",
+          "D3",
+          "H3",
+          "H11",
+          "C10"
+        ],
+        "S": [
+          "D11",
+          "D5",
+          "D9",
+          "S8",
+          "C2",
+          "C12",
+          "D2",
+          "C8",
+          "D6",
+          "C3",
+          "C9",
+          "S11",
+          "S5"
+        ],
+        "W": [
+          "S14",
+          "D7",
+          "H2",
+          "H9",
+          "H7",
+          "S7",
+          "S10",
+          "S2",
+          "C14",
+          "H4",
+          "S6",
+          "D14",
+          "D8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1C"
+        },
+        {
+          "s": "E",
+          "c": "1H"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "2C"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 7,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "tvafarg-02-bid-3",
+      "dealId": "tvafarg-02",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seed": 748941,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "D8",
+          "C8",
+          "H4",
+          "S6",
+          "H13",
+          "H7",
+          "C4",
+          "S9",
+          "D6",
+          "H3",
+          "C2",
+          "C9",
+          "C13"
+        ],
+        "E": [
+          "D10",
+          "H6",
+          "S4",
+          "S13",
+          "D14",
+          "D13",
+          "S3",
+          "D4",
+          "C14",
+          "S8",
+          "S11",
+          "D7",
+          "D5"
+        ],
+        "S": [
+          "S12",
+          "D9",
+          "H14",
+          "H5",
+          "S7",
+          "D12",
+          "D11",
+          "S5",
+          "S14",
+          "C3",
+          "S2",
+          "H8",
+          "D3"
+        ],
+        "W": [
+          "C10",
+          "H11",
+          "H10",
+          "C11",
+          "H9",
+          "C12",
+          "D2",
+          "C7",
+          "H2",
+          "H12",
+          "C5",
+          "S10",
+          "C6"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1S"
+        },
+        {
+          "s": "W",
+          "c": "3C"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "tvafarg-02-bid-5",
+      "dealId": "tvafarg-02",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seed": 748941,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "D8",
+          "C8",
+          "H4",
+          "S6",
+          "H13",
+          "H7",
+          "C4",
+          "S9",
+          "D6",
+          "H3",
+          "C2",
+          "C9",
+          "C13"
+        ],
+        "E": [
+          "D10",
+          "H6",
+          "S4",
+          "S13",
+          "D14",
+          "D13",
+          "S3",
+          "D4",
+          "C14",
+          "S8",
+          "S11",
+          "D7",
+          "D5"
+        ],
+        "S": [
+          "S12",
+          "D9",
+          "H14",
+          "H5",
+          "S7",
+          "D12",
+          "D11",
+          "S5",
+          "S14",
+          "C3",
+          "S2",
+          "H8",
+          "D3"
+        ],
+        "W": [
+          "C10",
+          "H11",
+          "H10",
+          "C11",
+          "H9",
+          "C12",
+          "D2",
+          "C7",
+          "H2",
+          "H12",
+          "C5",
+          "S10",
+          "C6"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1S"
+        },
+        {
+          "s": "W",
+          "c": "3C"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "tvafarg-04-bid-3",
+      "dealId": "tvafarg-04",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seed": 764779,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H12",
+          "D4",
+          "D2",
+          "H5",
+          "S14",
+          "D12",
+          "D11",
+          "D14",
+          "C10",
+          "H9",
+          "H2",
+          "C14",
+          "D5"
+        ],
+        "E": [
+          "H7",
+          "S8",
+          "S12",
+          "H11",
+          "C11",
+          "S7",
+          "C12",
+          "S9",
+          "S3",
+          "C7",
+          "S2",
+          "D9",
+          "H13"
+        ],
+        "S": [
+          "H8",
+          "C3",
+          "C4",
+          "H10",
+          "H14",
+          "D10",
+          "C6",
+          "H4",
+          "C13",
+          "C9",
+          "D13",
+          "C8",
+          "S11"
+        ],
+        "W": [
+          "S10",
+          "C2",
+          "H6",
+          "C5",
+          "H3",
+          "S4",
+          "D7",
+          "S5",
+          "D6",
+          "S6",
+          "D3",
+          "S13",
+          "D8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1D"
+        },
+        {
+          "s": "E",
+          "c": "2S"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "tvafarg-04-bid-5",
+      "dealId": "tvafarg-04",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seed": 764779,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H12",
+          "D4",
+          "D2",
+          "H5",
+          "S14",
+          "D12",
+          "D11",
+          "D14",
+          "C10",
+          "H9",
+          "H2",
+          "C14",
+          "D5"
+        ],
+        "E": [
+          "H7",
+          "S8",
+          "S12",
+          "H11",
+          "C11",
+          "S7",
+          "C12",
+          "S9",
+          "S3",
+          "C7",
+          "S2",
+          "D9",
+          "H13"
+        ],
+        "S": [
+          "H8",
+          "C3",
+          "C4",
+          "H10",
+          "H14",
+          "D10",
+          "C6",
+          "H4",
+          "C13",
+          "C9",
+          "D13",
+          "C8",
+          "S11"
+        ],
+        "W": [
+          "S10",
+          "C2",
+          "H6",
+          "C5",
+          "H3",
+          "S4",
+          "D7",
+          "S5",
+          "D6",
+          "S6",
+          "D3",
+          "S13",
+          "D8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1D"
+        },
+        {
+          "s": "E",
+          "c": "2S"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "tvafarg-05-bid-3",
+      "dealId": "tvafarg-05",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seed": 772698,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H14",
+          "S6",
+          "H8",
+          "D2",
+          "S8",
+          "D14",
+          "H7",
+          "D10",
+          "D7",
+          "S5",
+          "C4",
+          "S10",
+          "S12"
+        ],
+        "E": [
+          "D6",
+          "D11",
+          "S2",
+          "C7",
+          "D3",
+          "C9",
+          "D12",
+          "H4",
+          "D4",
+          "D13",
+          "H2",
+          "D8",
+          "C3"
+        ],
+        "S": [
+          "C13",
+          "C11",
+          "C5",
+          "C6",
+          "S11",
+          "H12",
+          "H9",
+          "H5",
+          "C14",
+          "C2",
+          "C8",
+          "H6",
+          "C12"
+        ],
+        "W": [
+          "C10",
+          "H13",
+          "H3",
+          "D5",
+          "D9",
+          "S3",
+          "S13",
+          "H11",
+          "S4",
+          "S14",
+          "S9",
+          "H10",
+          "S7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1C"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "tvafarg-05-bid-5",
+      "dealId": "tvafarg-05",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seed": 772698,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H14",
+          "S6",
+          "H8",
+          "D2",
+          "S8",
+          "D14",
+          "H7",
+          "D10",
+          "D7",
+          "S5",
+          "C4",
+          "S10",
+          "S12"
+        ],
+        "E": [
+          "D6",
+          "D11",
+          "S2",
+          "C7",
+          "D3",
+          "C9",
+          "D12",
+          "H4",
+          "D4",
+          "D13",
+          "H2",
+          "D8",
+          "C3"
+        ],
+        "S": [
+          "C13",
+          "C11",
+          "C5",
+          "C6",
+          "S11",
+          "H12",
+          "H9",
+          "H5",
+          "C14",
+          "C2",
+          "C8",
+          "H6",
+          "C12"
+        ],
+        "W": [
+          "C10",
+          "H13",
+          "H3",
+          "D5",
+          "D9",
+          "S3",
+          "S13",
+          "H11",
+          "S4",
+          "S14",
+          "S9",
+          "H10",
+          "S7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1C"
+        },
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "dubbling-01-bid-6",
+      "dealId": "dubbling-01",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 845751,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "S8",
+          "S7",
+          "C3",
+          "H8",
+          "S4",
+          "H11",
+          "H13",
+          "S14",
+          "C14",
+          "D14",
+          "C13",
+          "H10",
+          "C5"
+        ],
+        "E": [
+          "H7",
+          "S2",
+          "D2",
+          "H9",
+          "C8",
+          "S6",
+          "C2",
+          "H12",
+          "D9",
+          "H5",
+          "C10",
+          "D12",
+          "S5"
+        ],
+        "S": [
+          "H4",
+          "S12",
+          "C7",
+          "D11",
+          "S9",
+          "C12",
+          "C9",
+          "H3",
+          "H6",
+          "D8",
+          "D6",
+          "S10",
+          "D4"
+        ],
+        "W": [
+          "D10",
+          "D5",
+          "S3",
+          "D3",
+          "S11",
+          "D7",
+          "C6",
+          "D13",
+          "H2",
+          "H14",
+          "C11",
+          "C4",
+          "S13"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1D"
+        },
+        {
+          "s": "N",
+          "c": "X"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "1S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-02-bid-3",
+      "dealId": "dubbling-02",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 853670,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "S10",
+          "C2",
+          "C14",
+          "S11",
+          "S6",
+          "H12",
+          "C9",
+          "H7",
+          "S4",
+          "H13",
+          "S8",
+          "H6",
+          "C11"
+        ],
+        "E": [
+          "D7",
+          "C6",
+          "D10",
+          "D4",
+          "D9",
+          "H5",
+          "D11",
+          "D5",
+          "D13",
+          "H4",
+          "D2",
+          "C8",
+          "S3"
+        ],
+        "S": [
+          "C7",
+          "H10",
+          "C5",
+          "D12",
+          "S2",
+          "D8",
+          "C13",
+          "S9",
+          "H8",
+          "H9",
+          "S13",
+          "D14",
+          "D6"
+        ],
+        "W": [
+          "H11",
+          "S7",
+          "S14",
+          "C3",
+          "C4",
+          "C10",
+          "D3",
+          "S12",
+          "C12",
+          "S5",
+          "H2",
+          "H14",
+          "H3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1D"
+        },
+        {
+          "s": "W",
+          "c": "X"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-02-bid-5",
+      "dealId": "dubbling-02",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 853670,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "S10",
+          "C2",
+          "C14",
+          "S11",
+          "S6",
+          "H12",
+          "C9",
+          "H7",
+          "S4",
+          "H13",
+          "S8",
+          "H6",
+          "C11"
+        ],
+        "E": [
+          "D7",
+          "C6",
+          "D10",
+          "D4",
+          "D9",
+          "H5",
+          "D11",
+          "D5",
+          "D13",
+          "H4",
+          "D2",
+          "C8",
+          "S3"
+        ],
+        "S": [
+          "C7",
+          "H10",
+          "C5",
+          "D12",
+          "S2",
+          "D8",
+          "C13",
+          "S9",
+          "H8",
+          "H9",
+          "S13",
+          "D14",
+          "D6"
+        ],
+        "W": [
+          "H11",
+          "S7",
+          "S14",
+          "C3",
+          "C4",
+          "C10",
+          "D3",
+          "S12",
+          "C12",
+          "S5",
+          "H2",
+          "H14",
+          "H3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1D"
+        },
+        {
+          "s": "W",
+          "c": "X"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "dubbling-03-bid-6",
+      "dealId": "dubbling-03",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 861589,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "S4",
+          "S6",
+          "C4",
+          "S7",
+          "C14",
+          "S11",
+          "C2",
+          "S5",
+          "H3",
+          "S8",
+          "S14",
+          "H13",
+          "H6"
+        ],
+        "E": [
+          "C7",
+          "C13",
+          "D13",
+          "H5",
+          "D3",
+          "H12",
+          "C10",
+          "D12",
+          "S9",
+          "C9",
+          "D4",
+          "H9",
+          "C12"
+        ],
+        "S": [
+          "D5",
+          "C6",
+          "S3",
+          "S12",
+          "D6",
+          "H4",
+          "C3",
+          "H2",
+          "H8",
+          "C5",
+          "D7",
+          "C11",
+          "H7"
+        ],
+        "W": [
+          "S13",
+          "D14",
+          "H10",
+          "D10",
+          "D2",
+          "D8",
+          "S2",
+          "D9",
+          "D11",
+          "H14",
+          "H11",
+          "C8",
+          "S10"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1D"
+        },
+        {
+          "s": "N",
+          "c": "X"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-04-bid-3",
+      "dealId": "dubbling-04",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 869508,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "C8",
+          "H13",
+          "S11",
+          "D14",
+          "H7",
+          "D4",
+          "D5",
+          "D2",
+          "C14",
+          "S4",
+          "D11",
+          "C5",
+          "H9"
+        ],
+        "E": [
+          "S7",
+          "S6",
+          "C13",
+          "H2",
+          "H14",
+          "C10",
+          "C4",
+          "S3",
+          "C12",
+          "D7",
+          "D13",
+          "S2",
+          "H8"
+        ],
+        "S": [
+          "C11",
+          "S8",
+          "C7",
+          "H3",
+          "H10",
+          "S10",
+          "D9",
+          "H6",
+          "S12",
+          "D8",
+          "H11",
+          "D6",
+          "S9"
+        ],
+        "W": [
+          "C9",
+          "C6",
+          "D10",
+          "D12",
+          "C3",
+          "S13",
+          "H5",
+          "C2",
+          "H12",
+          "S14",
+          "S5",
+          "H4",
+          "D3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1D"
+        },
+        {
+          "s": "E",
+          "c": "X"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-04-bid-5",
+      "dealId": "dubbling-04",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 869508,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "C8",
+          "H13",
+          "S11",
+          "D14",
+          "H7",
+          "D4",
+          "D5",
+          "D2",
+          "C14",
+          "S4",
+          "D11",
+          "C5",
+          "H9"
+        ],
+        "E": [
+          "S7",
+          "S6",
+          "C13",
+          "H2",
+          "H14",
+          "C10",
+          "C4",
+          "S3",
+          "C12",
+          "D7",
+          "D13",
+          "S2",
+          "H8"
+        ],
+        "S": [
+          "C11",
+          "S8",
+          "C7",
+          "H3",
+          "H10",
+          "S10",
+          "D9",
+          "H6",
+          "S12",
+          "D8",
+          "H11",
+          "D6",
+          "S9"
+        ],
+        "W": [
+          "C9",
+          "C6",
+          "D10",
+          "D12",
+          "C3",
+          "S13",
+          "H5",
+          "C2",
+          "H12",
+          "S14",
+          "S5",
+          "H4",
+          "D3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1D"
+        },
+        {
+          "s": "E",
+          "c": "X"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "2N"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "dubbling-04-bid-7",
+      "dealId": "dubbling-04",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 869508,
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "C8",
+          "H13",
+          "S11",
+          "D14",
+          "H7",
+          "D4",
+          "D5",
+          "D2",
+          "C14",
+          "S4",
+          "D11",
+          "C5",
+          "H9"
+        ],
+        "E": [
+          "S7",
+          "S6",
+          "C13",
+          "H2",
+          "H14",
+          "C10",
+          "C4",
+          "S3",
+          "C12",
+          "D7",
+          "D13",
+          "S2",
+          "H8"
+        ],
+        "S": [
+          "C11",
+          "S8",
+          "C7",
+          "H3",
+          "H10",
+          "S10",
+          "D9",
+          "H6",
+          "S12",
+          "D8",
+          "H11",
+          "D6",
+          "S9"
+        ],
+        "W": [
+          "C9",
+          "C6",
+          "D10",
+          "D12",
+          "C3",
+          "S13",
+          "H5",
+          "C2",
+          "H12",
+          "S14",
+          "S5",
+          "H4",
+          "D3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "N",
+          "c": "1D"
+        },
+        {
+          "s": "E",
+          "c": "X"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "2N"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 7,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-05-bid-6",
+      "dealId": "dubbling-05",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 877427,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "C10",
+          "H13",
+          "S2",
+          "C9",
+          "D8",
+          "S9",
+          "C4",
+          "H12",
+          "D9",
+          "D5",
+          "C6",
+          "S8",
+          "D12"
+        ],
+        "E": [
+          "S5",
+          "S6",
+          "H5",
+          "S12",
+          "C7",
+          "D7",
+          "H2",
+          "C13",
+          "D14",
+          "H4",
+          "H10",
+          "H14",
+          "H3"
+        ],
+        "S": [
+          "S14",
+          "C3",
+          "D13",
+          "D3",
+          "S13",
+          "C11",
+          "S11",
+          "D6",
+          "C12",
+          "S4",
+          "H7",
+          "D11",
+          "C2"
+        ],
+        "W": [
+          "C5",
+          "D2",
+          "H6",
+          "C8",
+          "H9",
+          "S7",
+          "S10",
+          "D4",
+          "C14",
+          "H11",
+          "H8",
+          "D10",
+          "S3"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1H"
+        },
+        {
+          "s": "S",
+          "c": "X"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2D"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-06-bid-6",
+      "dealId": "dubbling-06",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 885346,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "D12",
+          "D3",
+          "C6",
+          "D11",
+          "D13",
+          "S4",
+          "H11",
+          "H9",
+          "S6",
+          "D5",
+          "H5",
+          "S3",
+          "C10"
+        ],
+        "E": [
+          "C9",
+          "H7",
+          "H14",
+          "S5",
+          "D10",
+          "H3",
+          "C3",
+          "S14",
+          "D6",
+          "C2",
+          "C13",
+          "C8",
+          "C11"
+        ],
+        "S": [
+          "S9",
+          "S12",
+          "H6",
+          "D8",
+          "D2",
+          "S2",
+          "H13",
+          "C5",
+          "D7",
+          "C14",
+          "H12",
+          "H2",
+          "S13"
+        ],
+        "W": [
+          "D14",
+          "S8",
+          "S11",
+          "C4",
+          "D9",
+          "D4",
+          "H8",
+          "C12",
+          "S7",
+          "H4",
+          "H10",
+          "C7",
+          "S10"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "X"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "1D"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-07-bid-6",
+      "dealId": "dubbling-07",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 893265,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "D8",
+          "H3",
+          "C13",
+          "D11",
+          "C5",
+          "D9",
+          "S6",
+          "H2",
+          "S8",
+          "S14",
+          "D5",
+          "D10",
+          "S10"
+        ],
+        "E": [
+          "H4",
+          "H9",
+          "S4",
+          "C11",
+          "H6",
+          "H14",
+          "C9",
+          "C4",
+          "C12",
+          "H13",
+          "H8",
+          "D12",
+          "S12"
+        ],
+        "S": [
+          "H10",
+          "C8",
+          "S13",
+          "C7",
+          "D6",
+          "D14",
+          "S3",
+          "C14",
+          "D4",
+          "H12",
+          "D3",
+          "S5",
+          "C2"
+        ],
+        "W": [
+          "D7",
+          "D2",
+          "C10",
+          "S9",
+          "S7",
+          "H11",
+          "C3",
+          "S11",
+          "H5",
+          "S2",
+          "D13",
+          "H7",
+          "C6"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1H"
+        },
+        {
+          "s": "S",
+          "c": "X"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2D"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-08-bid-6",
+      "dealId": "dubbling-08",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 901184,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "S12",
+          "H5",
+          "D7",
+          "D2",
+          "D10",
+          "H14",
+          "H3",
+          "S5",
+          "H11",
+          "S14",
+          "C4",
+          "C7",
+          "D11"
+        ],
+        "E": [
+          "D5",
+          "H8",
+          "C5",
+          "C3",
+          "S13",
+          "D4",
+          "S6",
+          "C12",
+          "C2",
+          "H4",
+          "D6",
+          "S3",
+          "S7"
+        ],
+        "S": [
+          "S9",
+          "C13",
+          "D14",
+          "H12",
+          "H2",
+          "H6",
+          "S4",
+          "D9",
+          "S8",
+          "C9",
+          "H9",
+          "C6",
+          "H10"
+        ],
+        "W": [
+          "H7",
+          "D13",
+          "D3",
+          "C10",
+          "C11",
+          "S11",
+          "H13",
+          "C14",
+          "D8",
+          "S10",
+          "D12",
+          "S2",
+          "C8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1C"
+        },
+        {
+          "s": "N",
+          "c": "X"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-09-bid-3",
+      "dealId": "dubbling-09",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 909103,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "D10",
+          "D2",
+          "S9",
+          "D4",
+          "C8",
+          "D5",
+          "D9",
+          "H10",
+          "C3",
+          "D7",
+          "H7",
+          "D8",
+          "D12"
+        ],
+        "E": [
+          "H13",
+          "S6",
+          "C11",
+          "H3",
+          "D13",
+          "H9",
+          "S4",
+          "S7",
+          "S13",
+          "D11",
+          "C4",
+          "S5",
+          "S2"
+        ],
+        "S": [
+          "H5",
+          "C9",
+          "S3",
+          "H2",
+          "C7",
+          "H14",
+          "H8",
+          "H12",
+          "C13",
+          "S11",
+          "C2",
+          "C14",
+          "H4"
+        ],
+        "W": [
+          "D14",
+          "S10",
+          "C12",
+          "D3",
+          "D6",
+          "C5",
+          "S14",
+          "C6",
+          "H11",
+          "H6",
+          "C10",
+          "S12",
+          "S8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "X"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 3,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-09-bid-5",
+      "dealId": "dubbling-09",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 909103,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "D10",
+          "D2",
+          "S9",
+          "D4",
+          "C8",
+          "D5",
+          "D9",
+          "H10",
+          "C3",
+          "D7",
+          "H7",
+          "D8",
+          "D12"
+        ],
+        "E": [
+          "H13",
+          "S6",
+          "C11",
+          "H3",
+          "D13",
+          "H9",
+          "S4",
+          "S7",
+          "S13",
+          "D11",
+          "C4",
+          "S5",
+          "S2"
+        ],
+        "S": [
+          "H5",
+          "C9",
+          "S3",
+          "H2",
+          "C7",
+          "H14",
+          "H8",
+          "H12",
+          "C13",
+          "S11",
+          "C2",
+          "C14",
+          "H4"
+        ],
+        "W": [
+          "D14",
+          "S10",
+          "C12",
+          "D3",
+          "D6",
+          "C5",
+          "S14",
+          "C6",
+          "H11",
+          "H6",
+          "C10",
+          "S12",
+          "S8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "X"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "3S"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 5,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+      }
+    },
+    {
+      "id": "dubbling-09-bid-7",
+      "dealId": "dubbling-09",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 909103,
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "D10",
+          "D2",
+          "S9",
+          "D4",
+          "C8",
+          "D5",
+          "D9",
+          "H10",
+          "C3",
+          "D7",
+          "H7",
+          "D8",
+          "D12"
+        ],
+        "E": [
+          "H13",
+          "S6",
+          "C11",
+          "H3",
+          "D13",
+          "H9",
+          "S4",
+          "S7",
+          "S13",
+          "D11",
+          "C4",
+          "S5",
+          "S2"
+        ],
+        "S": [
+          "H5",
+          "C9",
+          "S3",
+          "H2",
+          "C7",
+          "H14",
+          "H8",
+          "H12",
+          "C13",
+          "S11",
+          "C2",
+          "C14",
+          "H4"
+        ],
+        "W": [
+          "D14",
+          "S10",
+          "C12",
+          "D3",
+          "D6",
+          "C5",
+          "S14",
+          "C6",
+          "H11",
+          "H6",
+          "C10",
+          "S12",
+          "S8"
+        ]
+      },
+      "auction": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "X"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "3S"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 7,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "dubbling-10-bid-6",
+      "dealId": "dubbling-10",
+      "theme": "dubbling",
+      "mode": "stord",
+      "seed": 917022,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "S3",
+          "S2",
+          "D4",
+          "H3",
+          "S12",
+          "C10",
+          "C4",
+          "C8",
+          "S11",
+          "C3",
+          "C13",
+          "H8",
+          "H5"
+        ],
+        "E": [
+          "C11",
+          "D13",
+          "D2",
+          "S13",
+          "H6",
+          "S5",
+          "S10",
+          "D11",
+          "S6",
+          "H9",
+          "H13",
+          "H7",
+          "D14"
+        ],
+        "S": [
+          "C12",
+          "S4",
+          "D9",
+          "H11",
+          "C14",
+          "D6",
+          "H12",
+          "C5",
+          "S14",
+          "S9",
+          "C7",
+          "D10",
+          "S8"
+        ],
+        "W": [
+          "H14",
+          "C2",
+          "C6",
+          "H2",
+          "H4",
+          "H10",
+          "C9",
+          "D3",
+          "S7",
+          "D8",
+          "D5",
+          "D12",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1H"
+        },
+        {
+          "s": "S",
+          "c": "X"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2C"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "inkliv-01-bid-4",
+      "dealId": "inkliv-01",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 636293,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "C2",
+          "C10",
+          "S2",
+          "S10",
+          "D4",
+          "D3",
+          "D2",
+          "C5",
+          "D5",
+          "C13",
+          "S8",
+          "S4",
+          "H11"
+        ],
+        "E": [
+          "S13",
+          "H4",
+          "H5",
+          "C12",
+          "C7",
+          "C14",
+          "H12",
+          "S11",
+          "C3",
+          "S14",
+          "D10",
+          "C8",
+          "C6"
+        ],
+        "S": [
+          "S7",
+          "H3",
+          "H13",
+          "H8",
+          "H9",
+          "H14",
+          "D8",
+          "D12",
+          "S12",
+          "S3",
+          "H7",
+          "C9",
+          "C4"
+        ],
+        "W": [
+          "D9",
+          "H10",
+          "S5",
+          "S6",
+          "D13",
+          "D6",
+          "S9",
+          "H2",
+          "D14",
+          "C11",
+          "D11",
+          "H6",
+          "D7"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-02-bid-6",
+      "dealId": "inkliv-02",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 644212,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "D2",
+          "H9",
+          "C8",
+          "H14",
+          "H3",
+          "D9",
+          "D6",
+          "H10",
+          "D3",
+          "D7",
+          "H8",
+          "S14",
+          "H13"
+        ],
+        "E": [
+          "S7",
+          "H12",
+          "D12",
+          "D4",
+          "C4",
+          "S13",
+          "S2",
+          "D13",
+          "S3",
+          "C11",
+          "D5",
+          "S11",
+          "S10"
+        ],
+        "S": [
+          "H5",
+          "S9",
+          "H11",
+          "D8",
+          "C3",
+          "C7",
+          "D11",
+          "H6",
+          "H7",
+          "C9",
+          "S4",
+          "S6",
+          "S12"
+        ],
+        "W": [
+          "D10",
+          "D14",
+          "H2",
+          "C10",
+          "C5",
+          "S5",
+          "C2",
+          "H4",
+          "C13",
+          "C6",
+          "C12",
+          "S8",
+          "C14"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1C"
+        },
+        {
+          "s": "N",
+          "c": "1H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "3H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "inkliv-03-bid-4",
+      "dealId": "inkliv-03",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 652131,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "C12",
+          "D4",
+          "C2",
+          "C8",
+          "H8",
+          "H12",
+          "S5",
+          "H4",
+          "S9",
+          "H2",
+          "S3",
+          "H9",
+          "S7"
+        ],
+        "E": [
+          "S6",
+          "D9",
+          "H5",
+          "C13",
+          "H7",
+          "S12",
+          "S4",
+          "S8",
+          "S13",
+          "S2",
+          "H11",
+          "H14",
+          "D5"
+        ],
+        "S": [
+          "D8",
+          "C4",
+          "C6",
+          "H6",
+          "C14",
+          "H13",
+          "C7",
+          "D14",
+          "D3",
+          "S11",
+          "C3",
+          "D12",
+          "C5"
+        ],
+        "W": [
+          "S10",
+          "C10",
+          "S14",
+          "D2",
+          "D7",
+          "C11",
+          "H3",
+          "H10",
+          "D10",
+          "D6",
+          "D13",
+          "D11",
+          "C9"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1S"
+        },
+        {
+          "s": "S",
+          "c": "2C"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-04-bid-4",
+      "dealId": "inkliv-04",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 660050,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "D2",
+          "D8",
+          "S2",
+          "D14",
+          "D3",
+          "H7",
+          "D11",
+          "H6",
+          "D9",
+          "H11",
+          "D13",
+          "S3",
+          "H3"
+        ],
+        "E": [
+          "C11",
+          "H12",
+          "C13",
+          "C9",
+          "C2",
+          "H8",
+          "D5",
+          "C3",
+          "C10",
+          "H4",
+          "C12",
+          "C8",
+          "C14"
+        ],
+        "S": [
+          "S9",
+          "D7",
+          "D4",
+          "S8",
+          "S7",
+          "H5",
+          "S12",
+          "H9",
+          "H2",
+          "C4",
+          "D10",
+          "S14",
+          "C5"
+        ],
+        "W": [
+          "S13",
+          "S11",
+          "H13",
+          "S6",
+          "H10",
+          "D12",
+          "C7",
+          "S5",
+          "S10",
+          "C6",
+          "S4",
+          "H14",
+          "D6"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "3D"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-05-bid-4",
+      "dealId": "inkliv-05",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 667969,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "C11",
+          "H13",
+          "S4",
+          "S12",
+          "H3",
+          "H11",
+          "H14",
+          "H9",
+          "D4",
+          "C4",
+          "C6",
+          "C10",
+          "S2"
+        ],
+        "E": [
+          "D9",
+          "H4",
+          "D12",
+          "D11",
+          "S9",
+          "S3",
+          "S13",
+          "H8",
+          "D13",
+          "D10",
+          "D6",
+          "S6",
+          "S10"
+        ],
+        "S": [
+          "D14",
+          "H5",
+          "H7",
+          "D3",
+          "H12",
+          "C9",
+          "C3",
+          "C12",
+          "H6",
+          "S7",
+          "D7",
+          "H10",
+          "D2"
+        ],
+        "W": [
+          "C2",
+          "C7",
+          "S11",
+          "C5",
+          "S5",
+          "S8",
+          "C8",
+          "C13",
+          "C14",
+          "D5",
+          "D8",
+          "S14",
+          "H2"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1C"
+        },
+        {
+          "s": "N",
+          "c": "1H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-06-bid-4",
+      "dealId": "inkliv-06",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 675888,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "H8",
+          "D5",
+          "H14",
+          "C8",
+          "H2",
+          "H12",
+          "S5",
+          "D3",
+          "D6",
+          "H3",
+          "D13",
+          "H9",
+          "H7"
+        ],
+        "E": [
+          "D10",
+          "D4",
+          "H10",
+          "C7",
+          "S10",
+          "C3",
+          "D7",
+          "D2",
+          "C5",
+          "C14",
+          "C2",
+          "C6",
+          "D14"
+        ],
+        "S": [
+          "S3",
+          "D8",
+          "S12",
+          "C9",
+          "S11",
+          "C12",
+          "S8",
+          "C11",
+          "C13",
+          "S6",
+          "C4",
+          "S9",
+          "H6"
+        ],
+        "W": [
+          "S7",
+          "H13",
+          "S2",
+          "C10",
+          "H11",
+          "H5",
+          "H4",
+          "S4",
+          "D9",
+          "S14",
+          "S13",
+          "D11",
+          "D12"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1S"
+        },
+        {
+          "s": "N",
+          "c": "3H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-07-bid-4",
+      "dealId": "inkliv-07",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 683807,
+      "dealer": "W",
+      "hands": {
+        "N": [
+          "S11",
+          "S5",
+          "H8",
+          "S7",
+          "S12",
+          "S2",
+          "H11",
+          "D3",
+          "S8",
+          "H6",
+          "S4",
+          "C10",
+          "H14"
+        ],
+        "E": [
+          "C13",
+          "C4",
+          "S10",
+          "C7",
+          "D14",
+          "H5",
+          "D6",
+          "D13",
+          "H10",
+          "C6",
+          "D12",
+          "D4",
+          "C11"
+        ],
+        "S": [
+          "D7",
+          "S9",
+          "H13",
+          "S13",
+          "C5",
+          "H4",
+          "H3",
+          "D9",
+          "H7",
+          "H9",
+          "S3",
+          "D5",
+          "C8"
+        ],
+        "W": [
+          "D10",
+          "C9",
+          "H2",
+          "C3",
+          "H12",
+          "D8",
+          "D11",
+          "C12",
+          "S6",
+          "D2",
+          "C2",
+          "S14",
+          "C14"
+        ]
+      },
+      "auction": [
+        {
+          "s": "W",
+          "c": "1C"
+        },
+        {
+          "s": "N",
+          "c": "2S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-08-bid-4",
+      "dealId": "inkliv-08",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 691726,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "S7",
+          "S14",
+          "C7",
+          "S8",
+          "H11",
+          "C13",
+          "D10",
+          "H7",
+          "H3",
+          "C11",
+          "C9",
+          "D4",
+          "D6"
+        ],
+        "E": [
+          "S5",
+          "H6",
+          "D9",
+          "D12",
+          "C2",
+          "S11",
+          "D5",
+          "H14",
+          "S13",
+          "S2",
+          "D2",
+          "D13",
+          "H2"
+        ],
+        "S": [
+          "C12",
+          "C14",
+          "S10",
+          "D14",
+          "H9",
+          "C10",
+          "C6",
+          "C5",
+          "S6",
+          "S4",
+          "C4",
+          "D3",
+          "C8"
+        ],
+        "W": [
+          "H12",
+          "H10",
+          "C3",
+          "S9",
+          "H8",
+          "D11",
+          "S3",
+          "D7",
+          "S12",
+          "H13",
+          "H4",
+          "D8",
+          "H5"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1D"
+        },
+        {
+          "s": "S",
+          "c": "3C"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    },
+    {
+      "id": "inkliv-09-bid-6",
+      "dealId": "inkliv-09",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 699645,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "H11",
+          "C2",
+          "D3",
+          "S4",
+          "H3",
+          "S5",
+          "S11",
+          "D9",
+          "D11",
+          "S13",
+          "D2",
+          "S3",
+          "H9"
+        ],
+        "E": [
+          "C9",
+          "S2",
+          "D7",
+          "H4",
+          "C4",
+          "C13",
+          "D8",
+          "D10",
+          "S8",
+          "D13",
+          "C3",
+          "D14",
+          "D12"
+        ],
+        "S": [
+          "S10",
+          "H12",
+          "S6",
+          "C6",
+          "S14",
+          "H2",
+          "C11",
+          "D6",
+          "C14",
+          "D4",
+          "H13",
+          "C7",
+          "S9"
+        ],
+        "W": [
+          "H10",
+          "H14",
+          "C10",
+          "C5",
+          "C8",
+          "D5",
+          "H6",
+          "H8",
+          "H5",
+          "H7",
+          "C12",
+          "S7",
+          "S12"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1D"
+        },
+        {
+          "s": "S",
+          "c": "X"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 6,
+        "seat": "Syd",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet."
+      }
+    },
+    {
+      "id": "inkliv-10-bid-4",
+      "dealId": "inkliv-10",
+      "theme": "inkliv",
+      "mode": "stord",
+      "seed": 707564,
+      "dealer": "E",
+      "hands": {
+        "N": [
+          "S6",
+          "S10",
+          "H2",
+          "S8",
+          "C5",
+          "C12",
+          "C8",
+          "S4",
+          "C4",
+          "H5",
+          "C2",
+          "S11",
+          "D14"
+        ],
+        "E": [
+          "H9",
+          "C11",
+          "C13",
+          "C14",
+          "D12",
+          "C3",
+          "H6",
+          "S9",
+          "H11",
+          "C6",
+          "S13",
+          "H4",
+          "C7"
+        ],
+        "S": [
+          "S14",
+          "D8",
+          "S7",
+          "S2",
+          "H12",
+          "S3",
+          "C10",
+          "H8",
+          "H10",
+          "H14",
+          "H13",
+          "D5",
+          "D3"
+        ],
+        "W": [
+          "D13",
+          "D10",
+          "S12",
+          "D9",
+          "D7",
+          "D2",
+          "D4",
+          "H7",
+          "D11",
+          "S5",
+          "C9",
+          "H3",
+          "D6"
+        ]
+      },
+      "auction": [
+        {
+          "s": "E",
+          "c": "1C"
+        },
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        }
+      ],
+      "uncoveredBid": {
+        "number": 4,
+        "seat": "Norr",
+        "bid": "Pass",
+        "suggested": "",
+        "reason": "Dokumentet anger inte budet för denna hand."
+      }
+    }
+  ]
+}
