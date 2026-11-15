@@ -151,8 +151,8 @@ var Rattning = (function(){
     else if(!M&&sup&&cand.some(maj)){var cm=cand.filter(maj);exp=lowest(pickBest(cm),oc);why='Stöd i lågfärg men egen 4+ högfärg: visa högfärgen först (sök högfärg).';
       if(cm.length>1&&L[cm[0]]===L[cm[1]])alt.push(lowest(cm[0]===pickBest(cm)?cm[1]:cm[0],oc))}
     else if(!M&&sup){
-      if(htp<=10){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen.'}
-      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen.'}
+      if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen (6-9).'}
+      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (10-12).'}
       else{exp='2N';why=htp+' htp med 4+ stöd: Stenberg 2NT.'}
     }
     else if(cand.length){var b=pickBest(cand);exp=lowest(b,oc);why='6+ hp och en 4+ färg på 1-nivå: 1 över 1.';
