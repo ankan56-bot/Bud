@@ -1,36 +1,36 @@
 {
-  "version": "1.8.1",
+  "version": "1.8.3",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
-  "corpusBlobSha": "29c2992e78bf9b959f98ba572df99e9a66d6e365",
+  "corpusBlobSha": "41bfa07645a79b92c61d4a6fd3820b4d95925cf5",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "c229eee273aca0d2dd61a5ed77bb4ceeaf357572",
+  "engineBlobSha": "96d434eff151f3c42cb11cad1c1b2ce00e288483",
   "engineVersion": "7.0",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
   "previousBaseline": {
-    "engineBlobSha": "e5e8f8b637dd6e49fec36b897cf8184ca2467ecf",
+    "engineBlobSha": "c229eee273aca0d2dd61a5ed77bb4ceeaf357572",
     "coveragePercent": 88.1,
     "uncovered": 72
   },
   "stats": {
     "deals": 140,
     "validDeals": 140,
-    "nsTurns": 605,
-    "covered": 533,
-    "uncovered": 72,
-    "ewTurns": 601,
+    "nsTurns": 606,
+    "covered": 535,
+    "uncovered": 71,
+    "ewTurns": 602,
     "exceptions": 0,
     "illegal": 0,
     "auctionsEnded": 140,
-    "calls": 1206
+    "calls": 1208
   },
-  "coveragePercent": 88.1,
+  "coveragePercent": 88.3,
   "modeStats": {
     "stord": {
-      "turns": 435,
-      "covered": 363,
-      "uncovered": 72,
-      "coveragePercent": 83.4
+      "turns": 436,
+      "covered": 365,
+      "uncovered": 71,
+      "coveragePercent": 83.7
     },
     "ostord": {
       "turns": 170,
@@ -119,10 +119,10 @@
     },
     "svag": {
       "deals": 10,
-      "nsTurns": 28,
-      "covered": 24,
-      "uncovered": 4,
-      "coveragePercent": 85.7
+      "nsTurns": 29,
+      "covered": 26,
+      "uncovered": 3,
+      "coveragePercent": 89.7
     },
     "dubbling": {
       "deals": 10,
@@ -164,7 +164,7 @@
     },
     {
       "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
-      "count": 5
+      "count": 4
     }
   ],
   "uncovered": [
@@ -1544,36 +1544,6 @@
       "shape": {
         "C": 4,
         "D": 5,
-        "H": 1,
-        "S": 3
-      }
-    },
-    {
-      "dealId": "svag-02",
-      "theme": "svag",
-      "mode": "stord",
-      "seat": "N",
-      "auction": "N:2D E:P S:2H W:P N:P",
-      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
-      "hand": [
-        "D14",
-        "S3",
-        "C8",
-        "S4",
-        "D12",
-        "S5",
-        "D13",
-        "C9",
-        "D3",
-        "H7",
-        "C3",
-        "D7",
-        "D9"
-      ],
-      "hp": 9,
-      "shape": {
-        "C": 3,
-        "D": 6,
         "H": 1,
         "S": 3
       }
