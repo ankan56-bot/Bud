@@ -237,7 +237,7 @@ Nytt test: `tests/reverse-hps.test.js`. Fyra isolerade fall verifierades:
 3. 17 HP och 6-4: STP enligt 6+-färgsregeln ger 20 HPS; reverse godkänns.
 4. 17 HP och 5-5: STP enligt 5-5-regeln ger 20 HPS; reverse godkänns.
 
-**Verifiering:** JavaScript-syntaxkontroll och samtliga fyra isolerade regressionfall passerade mot version 6.6. Fullständig temagivar-/200-givarsregression återstår.
+**Verifiering:** JavaScript-syntaxkontroll och samtliga fem isolerade regressionfall passerade mot version 6.6. Fullständig temagivar-/200-givarsregression återstår.
 
 **Viktigt om GitHub-grenar:** Vid återstarten var `main` 90 commits före `feature/two-player-dds` (som fortfarande pekade på commit `f96e664`). Arbetet har därför startats från aktuella `main` i den nya grenen `work/hps-reverse-audit`. Varken `main` eller den äldre grenen har ändrats.
 
