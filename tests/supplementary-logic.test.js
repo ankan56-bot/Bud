@@ -175,7 +175,7 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
 }
 {
   const prefix = [{ s: 'N', c: '1C' }, { s: 'E', c: '1H' }];
-  const hand = makeHand({ C: 3, D: 4, H: 3, S: 3 }, { H: [13], H: [12], D: [14] });
+  const hand = makeHand({ C: 3, D: 4, H: 3, S: 3 }, { H: [13, 12], D: [14] });
   const matches = A.findSupplementary(logic, prefix, { N: [], E: [], S: hand, W: [] });
   assert.deepEqual(matches.map(x => x.recommendation), ['1N']);
 }
