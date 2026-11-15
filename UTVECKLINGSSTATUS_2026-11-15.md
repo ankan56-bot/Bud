@@ -102,3 +102,6 @@ GitHub Actions körning `43658789320` passerade med success inklusive regenereri
 ## Skärpt informationsgräns för AI-positioner
 
 `seat-view.js` är nu version 0.2.0. Den tillåter endast en uttrycklig lista av offentliga spelfält i `publicState`, avvisar okända fält och blockerar dolda hand-/seat-mappar även nästlade. Dummy får bara skickas när `dummyExposed: true`. Testfilen innehåller sex tester för egen hand, kopiering/frysning, avvisade dolda händer, dummygränsen och ogiltiga positioner. Ändringen är fortfarande en fristående byggsten och ännu inte inkopplad i en spelande agent.
+
+
+Senaste verifiering av informationsgränsen: GitHub Actions körning `43658949390` passerade efter att `seat-view.js` blockerar även nästlade seat-keyed handobjekt. Både dataset-/reproducerbarhetstester och samtliga AI seat isolation-tester passerade.
