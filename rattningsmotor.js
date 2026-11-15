@@ -833,11 +833,25 @@ var Rattning = (function(){
     if(b.c==='P'&&lastCall&&side(lastCall.s)===side(me)){
       var ls=st_(lastCall.c),ll=lv(lastCall.c);
       var partnerHasGame=(ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5);
-      // 5C/5D kan vara svar på partnerns 4NT-essfråga, inte slutbud.
-      // Låt RKC-grenen längre ned hantera dessa svar innan generell passregel.
-      var partnerAceAsk=prior.some(function(x){return x.s===pt&&x.c==='4N'})&&
-        (!!rkcTrumpFromAuction(prior,side(me))||agreedNoTrumpAceAsk(prior,side(me)));
-      var aceAskResponse=partnerAceAsk&&(lastCall.c==='5C'||lastCall.c==='5D');
+      // Ett 5-lägesbud kan vara svar på en 4NT-essfråga och får då
+      // inte behandlas som ett vanligt slutbud (även 5H/5S/5N kan förekomma).
+      // Kontrollera både vem som frågade och vem som svarade.
+      var latestAskIndex=-1;
+      for(var rai=prior.length-1;rai>=0;rai--){
+        if(prior[rai].c==='4N'&&(prior[rai].s===me||prior[rai].s===pt)){
+          latestAskIndex=rai;break;
+        }
+      }
+      var aceAskResponse=false;
+      if(latestAskIndex>=0){
+        var asker=prior[latestAskIndex].s;
+        var askSide=side(asker);
+        var askIsAgreed=!!rkcTrumpFromAuction(prior,askSide)||agreedNoTrumpAceAsk(prior,askSide);
+        var answer=prior.slice(latestAskIndex+1).find(function(x){
+          return x.s===partner(asker)&&isBid(x.c);
+        });
+        aceAskResponse=askIsAgreed&&!!answer&&/^5[CDHSN]$/.test(answer.c)&&lastCall===answer;
+      }
       if(partnerHasGame&&!aceAskResponse)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
