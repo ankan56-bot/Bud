@@ -24,7 +24,7 @@ Nordisk standard, 2012-08-22, sida 7, avsnittet ”Slaminstrument – RKC”.
 
 Källan säger att ”nästa bud som inte är trumf” efter svar på 5-läget frågar efter trumfdamen. Trumfdamen förnekas genom att bjuda 5 i trumf och visas genom 5NT eller 6 i ny färg (vilket visar kung i den färgen). Texten specificerar inte tillräckligt tydligt samtliga budval och prioriteringar i fortsättningen för att motorn ska kunna välja ett entydigt bud i alla lägen.
 
-Källan anger också att efter dubbeltydiga 5♣-/5♦-svar kan svarshanden gå ned i 5 i trumf; om frågeställaren då har 3 eller 4 ess ska denne bjuda 6 i trumf. Den exakta praktiska budsekvensen behöver modelleras separat och testas innan den kodas.
+Källan anger också att efter dubbeltydiga 5♣-/5♦-svar kan svarshanden gå ned i 5 i trumf; om frågeställaren då har 3 eller 4 egna ess ska denne bjuda 6 i trumf. Motorn känner nu igen den avgränsade sekvensen 4NT–5♣/5♦–frågeställarens bud utanför trumf–5 i trumf och föreslår 6 i trumf när frågeställaren har 3 eller 4 ess. Andra fortsättningar förblir ej täckta.
 
 ## Kodstatus efter denna granskning
 
@@ -32,8 +32,8 @@ Källan anger också att efter dubbeltydiga 5♣-/5♦-svar kan svarshanden gå 
 - Projektets särskilda 5NT-visning av 3 ess och renons finns.
 - Svar på 6 i färg för 2 ess och renons är implementerat: en renons visas med 6 i renonsfärgen, men om renonsfärgen är högre än trumf visas 6 i trumf. Flera renonser lämnas ej täckta eftersom källan inte anger vilken som ska visas.
 - Fyr-essfrågan utan trumf behåller den separat överenskomna sekvenslogiken.
-- Frågeställarens fortsättning efter 5♣/5♦/5♥/5♠ med trumf är nu markerad som ej täckt i stället för att automatiskt föreslå 6 i trumf. Det förhindrar att en osäker fortsättning presenteras som systemfacit.
-- Nästa utvecklingssteg är att modellera den dokumenterade fortsättningen efter dubbeltydiga 5♣-/5♦-svar, inklusive när svarshanden går ned i 5 i trumf. Detta ska göras först när den exakta budsekvensen kan identifieras utan att gissa.
+- Frågeställarens fortsättning efter 5♣/5♦/5♥/5♠ med trumf är i huvudsak markerad som ej täckt i stället för att automatiskt föreslå 6 i trumf. Det dokumenterade specialfallet efter 5♣/5♦ och partnerns återgång till 5 i trumf är undantaget: 3 eller 4 egna ess ger 6 i trumf.
+- Den dokumenterade fortsättningen efter dubbeltydiga 5♣-/5♦-svar är implementerad för den identifierbara återgången till 5 i trumf: frågeställaren med 3 eller 4 egna ess bjuder 6 i trumf. Övriga fortsättningar lämnas ej täckta.
 
 ## Kvalitetsprincip
 
