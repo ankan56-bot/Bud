@@ -784,6 +784,12 @@ var Rattning = (function(){
     var iFirst=ours.length?prior.indexOf(ours[0]):-1;
     var oppBefore=opp.filter(function(x){return iFirst<0||prior.indexOf(x)<iFirst});
     var oppAfter=opp.filter(function(x){return iFirst>=0&&prior.indexOf(x)>iFirst});
+    // En öppnare kan behöva agera igen efter att partnern har passat på
+    // motståndarnas inkliv. Detta är en giltig auktion, inte ett turordningsfel.
+    var openerReturnedAfterPartnerPass=ours.length===1&&ours[0].s===me&&
+      oppAfter.length>0&&prior.some(function(x){
+        return x.s===pt&&x.c==='P'&&prior.indexOf(x)>iFirst;
+      });
     var nc=function(w){return NC(w)};
     if(!ours.length){
       if(!opp.length){var fourthHandAfterThreePasses=prior.length===3&&prior.every(function(x){return x.c==='P'});return openingNode(h,fourthHandAfterThreePasses);}
@@ -791,7 +797,7 @@ var Rattning = (function(){
       return nc('Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.');
     }
     for(var k=1;k<ours.length;k++)if(ours[k].s===ours[k-1].s)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
-    if(ours[ours.length-1].s!==pt)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
+    if(ours[ours.length-1].s!==pt&&!openerReturnedAfterPartnerPass)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
     var d=ours.length,opener=ours[0].s===me,f=ours[0].c;
     var c1=f,fs=c1[1]; // Deklareras nu här för att undvika bugg
 
@@ -884,6 +890,7 @@ var Rattning = (function(){
           if (has4.length > 0) return {exp:'X', alt:[], why:'Negativ dubbling: visar 4-korts '+SYM[has4[0]]+'.', conv:'dubbling'};
           return {exp:'X', alt:[], why:'Negativ dubbling: visar 4-kort i objuden högfärg.', conv:'dubbling'};
       }
+      if(openerReturnedAfterPartnerPass)return nc('Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet.');
       return nc('Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.');
     }
 
