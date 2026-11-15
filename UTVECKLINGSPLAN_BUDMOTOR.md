@@ -167,3 +167,10 @@ Ingen av rapporterna inför nya systemregler. De skiljer mellan teknisk dispatch
 ## Version- och CI-kontroll efter diagnostikkorrigeringen
 
 Rättningsmotorn är nu version 6.7. `testdata/generate-theme-deals.js` är pinnad till den exakta blobben för 6.7, och samtliga 140 sparade givare anger samma motorversion. Baslinjerapporten är uppdaterad. Senaste fullständiga GitHub Actions-körning `43659958289` passerade; den verifierade reproducerbarheten och samtliga teststeg, inklusive auktionens dispatch, analysbibliotekets fem konkurrensträd, seat isolation och spelarroller.
+
+
+## Strukturerade handvillkor för konkurrensanalys
+
+Analysbibliotekets T29–T33 har nu 25 bladnoder med `handConditions` schema version 1. HCP, explicita färglängder och balanserad fördelning är maskinläsbara. Stopperkrav och oklara fritextbegrepp ligger kvar som manuell kontroll; de får inte approximeras utan godkänd definition.
+
+`analysmotor.js` 1.0.5 kan utvärdera villkoren och koppla dem till den hand som faktiskt avgav budet i efterhandsanalysen. Denna fullhandskontroll är inte tillgänglig för spelande AI under pågående budgivning. Testfil: `testdata/hand-conditions.test.js`.
