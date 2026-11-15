@@ -633,7 +633,7 @@ function auctionHtml(st,end){
   if(!end)h+='<div class="ac cur">…</div>';
   return h+'</div>';
 }
-var savedFlag=false,copied=false,room='',rev=0,lastStateEventTime=0,es=null,connState='offline',sender=Math.random().toString(36).slice(2,8);
+var savedFlag=false,copied=false,room='',rev=0,lastStateEventTime=0,roomSyncTimer=null,roomSyncing=false,es=null,connState='offline',sender=Math.random().toString(36).slice(2,8);
 function persistRoomConfig(){try{if(room&&roomConfig.count)localStorage.setItem('bt_room_config_'+room,JSON.stringify(roomConfig))}catch(e){}}
 function restoreRoomConfig(){try{var c=room&&JSON.parse(localStorage.getItem('bt_room_config_'+room)||'null');if(c&&c.count>=1&&c.count<=4)roomConfig=c}catch(e){}}
 try{room=localStorage.getItem('bt_room')||'';restoreRoomConfig()}catch(e){}
@@ -642,6 +642,7 @@ function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a
 function sendRoom(m){if(!room)return;try{fetch('https://ntfy.sh/'+topic(),{method:'POST',body:JSON.stringify(m)}).catch(function(){})}catch(e){}}
 function announcePresence(){if(!room)return;var p={id:playerId,name:playerName||'',seat:seat||null,at:Date.now()};roomPlayers[playerId]=p;sendRoom({type:'presence',from:playerId,p:p})}
 function startPresence(){if(presenceTimer)clearInterval(presenceTimer);announcePresence();presenceTimer=setInterval(function(){announcePresence();var now=Date.now();Object.keys(roomPlayers).forEach(function(id){if(id!==playerId&&now-(roomPlayers[id].at||0)>45000)delete roomPlayers[id]});if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot();if(!state||!state.hands)render()},15000)}
+function markRoomSync(){roomSyncing=true;if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=setTimeout(function(){roomSyncTimer=null;roomSyncing=false;if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot()},1800)}
 function chooseRoomCount(n){if(roomConfig.count||pendingRoomCount)return;pendingRoomCount=n;sendRoom({type:'room-config',from:playerId,config:{count:n,bothNS:false}});render()}
 function claimRoomSeat(s){var owners=roomSeatOwners();if(s!=='X'&&owners[s]&&owners[s]!==playerId){alert('Platsen är redan upptagen.');return}if(s==='X'&&roomConfig.count!==1)return;if(roomConfig.count===2&&s!=='N'&&s!=='S'){alert('Med två spelare väljer ni Nord och Syd.');return}if(roomConfig.count===1&&s==='X')roomConfig.bothNS=true;seat=s;lastSeat=s;roomPlayers[playerId]={id:playerId,name:playerName||'',seat:s,at:Date.now()};try{localStorage.setItem('bt_seat',s)}catch(e){}announcePresence();render()}
 function releaseRoomSeat(){if(state&&state.hands&&ended(state))state={menu:true,no:state.no};seat=null;roomPlayers[playerId]={id:playerId,name:playerName||'',seat:null,at:Date.now()};try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence();render()}
@@ -682,24 +683,24 @@ function connect(){
   connState='ansluter';
   try{
     es=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');
-    es.onopen=function(){connState='online';startPresence();render()};
-    es.onerror=function(){connState='offline';if(state)render()};
+    es.onopen=function(){connState='online';startPresence();markRoomSync();render()};
+    es.onerror=function(){connState='offline';roomSyncing=true;if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=null;if(state)render()};
     es.onmessage=function(ev){
       try{var o=JSON.parse(ev.data);if(o.event&&o.event!=='message')return;var m=JSON.parse(o.message);
         if(m.type==='presence'&&m.p&&m.p.id!==playerId){var previous=roomPlayers[m.p.id];if(!previous||(m.p.at||0)>=(previous.at||0)){roomPlayers[m.p.id]=m.p;var ownersNow=roomSeatOwners(),lost=seat==='X'?(ownersNow.N!==playerId||ownersNow.S!==playerId):(seat&&ownersNow[seat]!==playerId);if(lost){seat=null;try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence()}if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot()}render();return}
         if(m.type==='room-config'&&m.config&&m.config.count>=1&&m.config.count<=4&&!roomConfig.count){roomConfig=m.config;pendingRoomCount=0;persistRoomConfig();render();return}
         if(m.type==='room-action'&&isFreshRoomAction(o)&&m.action&&m.request&&sameRoomState(m.baseState,pack(state))&&roomCoordinator()===playerId&&!seenRoomActions[m.request]){seenRoomActions[m.request]=true;executeRoomAction(m.action,m.data,m.from);return}
-        if(m.from===sender||!m.st||!isNewerRoomState(o,lastStateEventTime))return;lastStateEventTime=Number(o.time)*1000;rev=Math.max(rev,Number(m.v)||0);adopt(m.st)}catch(e){}
+        if(m.from===sender||!m.st)return;markRoomSync();if(!isNewerRoomState(o,lastStateEventTime))return;lastStateEventTime=Number(o.time)*1000;rev=Math.max(rev,Number(m.v)||0);adopt(m.st)}catch(e){}
     };
   }catch(e){connState='offline'}
 }
 function scheduleBot(){
   if(botTimer){clearTimeout(botTimer);botTimer=null}
   var st=state;
-  if(!st||!st.hands||ended(st)||!isBot(turn(st),st)||!isRoomBotCoordinator())return;
+  if(roomSyncing||!st||!st.hands||ended(st)||!isBot(turn(st),st)||!isRoomBotCoordinator())return;
   botTimer=setTimeout(function(){
     botTimer=null;
-    if(state!==st||ended(st)||!isBot(turn(st),st)||roomConfig.count&&roomCoordinator()!==playerId)return;
+    if(roomSyncing||state!==st||ended(st)||!isBot(turn(st),st)||roomConfig.count&&roomCoordinator()!==playerId)return;
     var s=turn(st),r=botCall(st,s);
     st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c});
     rev++;render();send({v:rev,from:sender,st:pack(st)});
