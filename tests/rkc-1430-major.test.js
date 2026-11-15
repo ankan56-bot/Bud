@@ -43,6 +43,21 @@ function cases(trump) {
 cases('H');
 cases('S');
 
+// RKC is also recognized after a natural raise has established the major fit.
+function answerAfterSimpleFit(north,trump){
+ const hands=deal(north),opening=trump==='H'?'1H':'1S',raise='2'+trump,rebid='3'+trump;
+ const st={hands,dealer:'N',bids:[
+  {s:'N',c:opening},{s:'E',c:'P'},
+  {s:'S',c:raise},{s:'W',c:'P'},
+  {s:'N',c:rebid},{s:'E',c:'P'},
+  {s:'S',c:'4N'},{s:'W',c:'P'},
+  {s:'N',c:'P'}
+ ]};
+ return Rattning.nodeFor(st,8);
+}
+assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'H').exp,'5C');
+assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'S').exp,'5C');
+
 // The asker must not be auto-promoted to 6M after an ambiguous 1430 reply.
 {
   const north=['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'];
@@ -59,4 +74,4 @@ cases('S');
   assert.equal(node.exp,null,'RKC follow-up is uncovered until the 1/4 ambiguity and slam continuations are defined');
 }
 
-console.log('RKC 1430 major-suit responses: 12/12 passed; unsupported asker continuations remain uncovered.');
+console.log('RKC 1430 major-suit responses: 14/14 passed; unsupported asker continuations remain uncovered.');
