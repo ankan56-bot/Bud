@@ -92,7 +92,7 @@ Den första exporterade baslinjen använde störd Öst/Väst-bot även på givar
 
 ## Analys av täckningsluckorna
 
-`testdata/uncovered_analysis_47.md` grupperar de 47 ej täckta positionerna och prioriterar nästa granskning. 26 gäller konkurrensbudgivning (13 med dubbling i sekvensen, 9 annan motståndarinblandning och 4 flera motståndarbud), 10 gäller sekvens-/turordningsmönster, 9 saknar specificerat bud för handen, 1 gäller svarshandens andra bud och 1 är uttryckligen osäker. Alla 47 är pass i referensauktionen eftersom generatorn väljer pass när motorn saknar ett säkert förslag; de är inte facit för att pass är korrekt.
+`testdata/uncovered_analysis_47.md` grupperar de 47 ej täckta positionerna och prioriterar nästa granskning. 26 gäller konkurrensbudgivning; dessutom förekommer dubbling i totalt 16 av de 47 ej täckta positionerna, uppdelade i tre svar efter motståndarens dubbling av öppningen, åtta återbud från dubbleraren, två fortsättningar efter ny motståndarinblandning och tre övriga passpositioner, 10 gäller sekvens-/turordningsmönster, 9 saknar specificerat bud för handen, 1 gäller svarshandens andra bud och 1 är uttryckligen osäker. Alla 47 är pass i referensauktionen eftersom generatorn väljer pass när motorn saknar ett säkert förslag; de är inte facit för att pass är korrekt.
 
 Jämförbara dokumenterade exempel finns i `LOGG_BUDREGLER.md` (bl.a. Giv 7, 10, 13, 19, 21, 22, 24 och 25). De ska granskas hand för hand innan regler ändras. Ingen ny systemregel eller kompletterande regel har lagts till.
 
