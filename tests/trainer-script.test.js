@@ -101,6 +101,8 @@ test("room readiness counts distinct valid seat owners, not raw presence records
   }
   assert.equal(ready(1, { a: { seat: "X" } }), true, "one player controlling both N/S is one participant");
   assert.equal(ready(1, { a: { seat: "N" } }), true);
+  assert.equal(ready(1, { a: { seat: "N" }, b: { seat: "E" } }), true,
+    "simultaneous distinct claims in a one-player room resolve to one deterministic owner");
   assert.equal(ready(2, { a: { seat: "N" }, b: { seat: "N" } }), false,
     "two people claiming the same seat must not start a two-player room");
   assert.equal(ready(2, { a: { seat: "N" }, b: { seat: "S" } }), true);
