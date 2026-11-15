@@ -3,6 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const crypto = require("node:crypto");
 const { generateDataset, loadRuntime } = require("./generate-theme-deals.js");
 
 const DATA_PATH = path.join(__dirname, "theme_deals_140.json");
@@ -26,11 +27,25 @@ test("dataset contains exactly 140 valid deals, 10 for each of 14 themes", () =>
   }
 });
 
-test("manifest source metadata matches the generated dataset and correction engine", () => {
+function gitBlobSha(content) {
+  const header = Buffer.from("blob " + Buffer.byteLength(content) + "\0");
+  return crypto.createHash("sha1").update(header).update(content).digest("hex");
+}
+
+test("manifest and dataset source metadata match the actual generator and rules engine", () => {
   const manifest = JSON.parse(fs.readFileSync(path.join(__dirname, "temagivare_manifest.json"), "utf8"));
-  assert.equal(manifest.generation.rulesEngineVersion, stored.source.rulesEngineVersion);
-  assert.equal(manifest.generation.rulesEngineBlobSha, stored.source.rulesEngineBlobSha);
-  assert.equal(manifest.generation.generatorBlobSha, stored.source.generatorBlobSha);
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const rules = fs.readFileSync(path.join(__dirname, "..", "rattningsmotor.js"), "utf8");
+  const htmlBlobSha = gitBlobSha(html);
+  const rulesBlobSha = gitBlobSha(rules);
+  const rulesVersion = (rules.match(/version:'([^']+)'/) || [])[1];
+
+  assert.equal(manifest.generation.rulesEngineVersion, rulesVersion);
+  assert.equal(manifest.generation.rulesEngineBlobSha, rulesBlobSha);
+  assert.equal(manifest.generation.generatorBlobSha, htmlBlobSha);
+  assert.equal(stored.source.rulesEngineVersion, rulesVersion);
+  assert.equal(stored.source.rulesEngineBlobSha, rulesBlobSha);
+  assert.equal(stored.source.generatorBlobSha, htmlBlobSha);
 });
 
 test("all stored reference auctions pass the current structural validator", () => {
