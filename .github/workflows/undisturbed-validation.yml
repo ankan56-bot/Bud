@@ -32,4 +32,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ostord-validation
-          path: |\n            testdata/ostord_validation_latest.json\n            testdata/ostord_100_validation_latest.json
+          path: |
+            testdata/ostord_validation_latest.json
+            testdata/ostord_100_validation_latest.json
