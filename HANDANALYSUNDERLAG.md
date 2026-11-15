@@ -60,3 +60,16 @@ Konkurrensbudgivningen är pausad. Kvarvarande luckor från 140-givarsanalysen b
 3. Visa inte en budrekommendation om flera regler konkurrerar utan dokumenterad prioritet.
 4. Samma fasta testgivare används vid varje motorändring.
 5. En ny ostörd analys ska redovisa täckning, ej täckta lägen, tekniska undantag och olagliga rekommendationer separat.
+
+
+## 5. Manuell genomgång av nya ostörda testgivare (2026-11-15)
+
+Följande bedömningar är dokumenterade från genomgången av de åtta redovisade givarna. De är underlag för fortsatt arbete; motorn ändras inte automatiskt av denna notering.
+
+- **Giv 023:** Syd har 21 poäng och Nord har minst sex ruter. Med tio gemensamma ruter tillkommer +2 längdpoäng, vilket ger 28. Rekommenderat slutbud är **5♦**.
+- **Giv 037:** Behöver inte täckas av motorn i nuläget. Behandlas som en accepterad lucka.
+- **Giv 055:** Nord har minst fem ruter och poängen räcker till 28. Med tolv gemensamma trumf är handen starkare än vad enbart +2 längdpoäng visar. Lillslam är sannolikt rätt nivå och bedöms som försvarbar: Nord har kontroll i alla färger och endast en möjlig förlorare i klöver kung. Slamregel/auktionsfortsättning är inte fullständigt fastställd.
+- **Giv 068:** Efter 1♣–1♦–2♣–2NT får öppnaren nu bjuda om sin andra färg för att visa håll i hjärter: **3♥**, utgångskrav.
+- **Giv 103, 126, 140 och 149:** Lämnas obesvarade tills vidare. Inga budregler ska härledas från dessa givare utan ny genomgång.
+
+Övriga obesvarade fall i stressmaterialet ska fortsatt redovisas som ej täckta, inte fyllas med antaganden.
