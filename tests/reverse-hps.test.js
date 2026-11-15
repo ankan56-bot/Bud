@@ -30,7 +30,7 @@ function makeDeal(shape, honors) {
   };
 }
 
-function makeDealFor(seat, shape, honors) {
+function makeDealFor(seat, shape, honors, supportSuit = 'H') {
   const deck = [];
   for (const suit of ['C', 'D', 'H', 'S']) {
     for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
@@ -56,6 +56,17 @@ function makeDealFor(seat, shape, honors) {
   const others = ['N', 'E', 'S', 'W'].filter(s => s !== seat && s !== partner);
   others.forEach((s, i) => { hands[s] = rest.slice(i * 13, (i + 1) * 13); });
   return hands;
+}
+
+function assessRaise(suit, shape, honors, call) {
+  const hands = makeDealFor('S', shape, honors, suit);
+  const bids = [
+    { s: 'N', c: '1' + suit },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: call },
+    { s: 'W', c: 'P' }
+  ];
+  return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
 function assessMajorRaise(shape, honors, call) {
@@ -192,4 +203,29 @@ function assessReverse(shape, honors) {
   assert.match(item.motivering, /Stenberg/);
 }
 
-console.log('Reverse/HPS and major-raise regression tests passed (8 cases).');
+ 
+// Minor-suit raise: 9 HTP belongs at the 2-level.
+{
+  const item = assessRaise(
+    'C',
+    { C: 4, D: 2, H: 3, S: 4 },
+    { C: [14], S: [13], H: [11] },
+    '2C'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 9);
+}
+
+// Minor-suit raise: 10 HTP belongs at the 3-level.
+{
+  const item = assessRaise(
+    'C',
+    { C: 4, D: 1, H: 4, S: 4 },
+    { C: [14], S: [13], H: [11] },
+    '3C'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 10);
+}
+
+console.log('Reverse/HPS and raise regression tests passed (10 cases).');
