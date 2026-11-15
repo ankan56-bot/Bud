@@ -341,7 +341,7 @@ test("room seat claims cannot exceed the configured participant count", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   function sourceOf(name) {
     const start = html.indexOf("function " + name + "(");
-    const end = html.indexOf("\\nfunction ", start + 10);
+    const end = html.indexOf("\nfunction ", start + 10);
     assert.ok(start >= 0 && end > start, name + " helper should exist");
     return html.slice(start, end);
   }
