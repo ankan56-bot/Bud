@@ -1,14 +1,14 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
   "corpusBlobSha": "bf287f919494617fb8a4f9629578f548623e649f",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "6bd4bd7d1b913b0e4171878e43f80ee0998235ee",
-  "engineVersion": "6.7",
+  "engineBlobSha": "387f78d8988b2365d395187aa8db71cd17bcde3b",
+  "engineVersion": "6.9",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
   "previousBaseline": {
-    "engineBlobSha": "b0441517969acd27453f27f2108fe216ca5db74d",
+    "engineBlobSha": "6bd4bd7d1b913b0e4171878e43f80ee0998235ee",
     "coveragePercent": 88.7,
     "uncovered": 68
   },
@@ -163,7 +163,7 @@
       "count": 10
     },
     {
-      "reason": "Fortsättningen beskrivs inte i dokumentet.",
+      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
       "count": 1
     }
   ],
@@ -473,7 +473,7 @@
       "theme": "alla",
       "mode": "stord",
       "seat": "N",
-      "auction": "N:1D E:X S:P W:1H N:P",
+      "auction": "N:1D E:X S:P W:1N N:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "D12",
@@ -503,7 +503,7 @@
       "theme": "alla",
       "mode": "stord",
       "seat": "S",
-      "auction": "N:1D E:X S:P W:1H N:P E:P S:P",
+      "auction": "N:1D E:X S:P W:1N N:P E:P S:P",
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "S9",
@@ -1374,7 +1374,7 @@
       "mode": "stord",
       "seat": "S",
       "auction": "S:2D W:P N:2H E:P S:P",
-      "reason": "Fortsättningen beskrivs inte i dokumentet.",
+      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
       "hand": [
         "C8",
         "C11",
@@ -1583,7 +1583,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "S",
-      "auction": "S:1H W:X N:P E:2D S:P",
+      "auction": "S:1H W:X N:P E:2C S:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "C14",
@@ -1613,7 +1613,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "S:1H W:X N:P E:2D S:P W:P N:P",
+      "auction": "S:1H W:X N:P E:2C S:P W:P N:P",
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "S6",
@@ -1733,7 +1733,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "W:1S N:X E:P S:3C W:P N:P",
+      "auction": "W:1S N:X E:P S:2N W:P N:P",
       "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "D6",
@@ -1793,7 +1793,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "N:1D E:X S:P W:1S N:P",
+      "auction": "N:1D E:X S:P W:1H N:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "C8",
@@ -1823,7 +1823,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "S",
-      "auction": "N:1D E:X S:P W:1S N:P E:P S:P",
+      "auction": "N:1D E:X S:P W:1H N:P E:P S:P",
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "C10",
@@ -2033,7 +2033,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "W:1C N:X E:P S:1H W:P N:P",
+      "auction": "W:1C N:X E:P S:1D W:P N:P",
       "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "S4",
