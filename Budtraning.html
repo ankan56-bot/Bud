@@ -913,7 +913,7 @@ function render(){
     return;
   }
   var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
-  var pos={l:'W',t:'N',r:'E'},x=ctx(st);\n  function seatView(s){return s===me?handBlock(st,s):seatHtml(st,s,rel(s))}
+  var pos={l:'W',t:'N',r:'E'},x=ctx(st),unused=null;\n  function seatView(s){return s===me?handBlock(st,s):seatHtml(st,s,rel(s))}
   function rel(s){return s===partner(me)?'Partner':''}
   var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+'Rapportera giv'+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
