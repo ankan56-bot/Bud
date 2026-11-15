@@ -484,7 +484,8 @@ var Rattning = (function(){
       var s2=side4.filter(function(s){return s!==rs&&L[o]+L[s]>=9}).sort(function(a,b){return L[b]-L[a]})[0];
       if(s2){
         var x=low(s2);
-        var reverse=L[o]>=5&&L[s2]>=4&&SU.indexOf(s2)>SU.indexOf(o)&&SU.indexOf(s2)>SU.indexOf(rs)&&lv(r)===1;
+        var reverseCandidate=SU.indexOf(s2)>SU.indexOf(o)&&SU.indexOf(s2)>SU.indexOf(rs)&&lv(r)===1;
+        var reverse=reverseCandidate&&L[o]>=5&&L[s2]>=4;
         var hps=handHps(h,null);
         if(reverse){
           reverseBid=(lv(r)+1)+s2;
@@ -495,6 +496,9 @@ var Rattning = (function(){
             exp=low(o);
             why='Under 18 HPS för reverse: bjud om första färgen (visar 5+ färg).';
           }else return NC('Dokumentet anger inte budet.',means);
+        }else if(reverseCandidate){
+          exp=x;
+          why='Reverse kräver minst 5 kort i öppningsfärgen och 4 i den nya färgen. Visa den nya färgen på lägsta nivå.';
         }else if(hps>=18){
           exp=jump(s2,r);
           why='Hopp i andra färgen: '+hps+' HPS, 18+ och minst 5-4.';
