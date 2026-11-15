@@ -1,0 +1,26 @@
+name: Theme deal regression
+
+on:
+  push:
+    branches:
+      - work/theme-dataset-analysis
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  theme-deals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Regenerate deterministic dataset
+        run: node testdata/generate-theme-deals.js
+      - name: Ensure generated data is unchanged
+        run: git diff --exit-code -- testdata/theme_deals_140.json
+      - name: Run dataset and reproducibility tests
+        run: node --test testdata/theme-deals.test.js
