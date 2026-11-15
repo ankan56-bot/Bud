@@ -765,3 +765,10 @@ Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen
 
 - Ytterligare test avslöjade att den generella reservkontrollen för missad utgång kunde skriva över ett korrekt ej täckt RKC-fall och föreslå 6M. Den kontrollen är nu avstängd i RKC-kontext, så 1430-svar och ej definierade fortsättningar inte överskrivs av generisk poänglogik.
 - Rättningsmotorn uppdaterad till v7.6.
+
+### Kvarstående avgränsningar för 1♥/1♠
+- Färgprov efter 1M–2M–3x finns strukturellt i T21/T22, men kriteriet för vad som räknas som hjälp i provfärgen är inte fastställt. Ingen automatisk 3M/4M-rekommendation läggs till där.
+- Efter Stenberg 1M–2NT–3x är 4NT RKC-svaret tekniskt täckt när frågan ställs, men exakt när svarshanden ska välja 4NT i stället för andra fortsättningar är inte numeriskt definierat. Ingen sådan tröskel har hittats på.
+- 1♠–2♦–3♥ med 10–12 hp obalanserad svarshand utan preferens är den enda ej täckta situationen i 100-givarsprovet.
+- 4-4-4-1 efter 1M–1NT har fortfarande ett ej systembekräftat val av fjärde färg i vissa 13+ hp-lägen.
+- Efter 4NT är RKC-svaren 1430 implementerade för 0–4 nyckelkort. Alla fem nyckelkort och frågeställarens fortsättning efter svaren är uttryckligen ej täckta tills reglerna är fastställda.
