@@ -579,7 +579,7 @@ function assessReverse(shape, honors) {
     '1D',
     { C: 2, D: 1, H: 3, S: 7 },
     { S: [13], H: [12] },
-    '1S'
+    '1H'
   );
   assert.equal(item.bedomning, 'rätt');
 }
