@@ -6,7 +6,7 @@
 - Samtliga givare har 52 unika kort och 13 kort per hand.
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
-- Rättningsmotor: version 6.7.
+- Rättningsmotor: version 6.8.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`.
