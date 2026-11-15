@@ -1319,10 +1319,27 @@ var Rattning = (function(){
       var partnerHand=H(st.hands[partner(b.s)]);
       var suit=isBid(b.c)?st_(b.c):null;
       var agreed=null;
-      for(var ai=i;ai>=0;ai--){
-        if(bids[ai].s===b.s && isBid(bids[ai].c) && bids[ai].c[1]!=='N'){agreed=bids[ai].c[1];break;}
+      // Ett Stenberg-2NT visar redan stöd i öppnarens färg, trots att
+      // själva budet är sang. Använd därför öppnarens färg för HTP-visningen.
+      if(node&&node.conv==='Stenberg'){
+        for(var ai=i-1;ai>=0;ai--){
+          if(bids[ai].s===partner(b.s)&&/^1[CDHS]$/.test(bids[ai].c)){
+            var candidate=bids[ai].c[1];
+            if(hand.L[candidate]+partnerHand.L[candidate]>=8)agreed=candidate;
+            break;
+          }
+        }
       }
-      item.hp=hand.hp;item.htp=handHps(hand,agreed&&hand.L[agreed]+partnerHand.L[agreed]>=8?agreed:null);item.langd=hand.L;
+      if(!agreed&&suit&&suit!=='N'&&hand.L[suit]+partnerHand.L[suit]>=8)agreed=suit;
+      if(!agreed){
+        for(var aj=i-1;aj>=0;aj--){
+          if(bids[aj].s===b.s&&isBid(bids[aj].c)&&bids[aj].c[1]!=='N'){
+            var previousSuit=bids[aj].c[1];
+            if(hand.L[previousSuit]+partnerHand.L[previousSuit]>=8){agreed=previousSuit;break;}
+          }
+        }
+      }
+      item.hp=hand.hp;item.htp=handHps(hand,agreed);item.langd=hand.L;
       if(agreed && hand.L[agreed]+partnerHand.L[agreed]>=8){
         item.handtyp='Trumfstöd ('+SYM[agreed]+')';
       }else{
