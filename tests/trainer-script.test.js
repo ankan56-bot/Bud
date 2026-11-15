@@ -281,3 +281,37 @@ test("only the elected room coordinator runs shared bot turns and presence refre
   assert.match(html, /roomConfig\.count&&roomCoordinator\(\)===playerId\)scheduleBot\(\)/,
     "presence refresh should start bot processing after coordinator failover");
 });
+
+
+test("room reconnect holds bot turns until replayed state messages go quiet", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function markRoomSync()");
+  const end = html.indexOf("\\n", start);
+  assert.ok(start >= 0 && end > start, "room replay quiet-period helper should exist");
+  const timers = new Map();
+  const cleared = [];
+  let nextId = 0, scheduledBots = 0;
+  const context = {
+    roomSyncTimer: null, roomSyncing: false,
+    roomConfig: { count: 2 }, playerId: "a",
+    roomCoordinator: () => "a",
+    scheduleBot: () => { scheduledBots++; },
+    setTimeout: fn => { const id = ++nextId; timers.set(id, fn); return id; },
+    clearTimeout: id => { cleared.push(id); timers.delete(id); }
+  };
+  vm.runInNewContext(html.slice(start, end), context);
+  context.markRoomSync();
+  const firstTimer = context.roomSyncTimer;
+  assert.equal(context.roomSyncing, true);
+  context.markRoomSync();
+  const latestTimer = context.roomSyncTimer;
+  assert.notEqual(latestTimer, firstTimer);
+  assert.deepEqual(cleared, [firstTimer], "each replayed state restarts the quiet period");
+  assert.equal(scheduledBots, 0, "bots must wait while historical state is still arriving");
+  timers.get(latestTimer)();
+  assert.equal(context.roomSyncing, false);
+  assert.equal(scheduledBots, 1, "the coordinator resumes bots after the replay quiet period");
+  assert.match(html, /if\\(roomSyncing\\|\\|!st\\|\\|!st\\.hands/);
+  assert.match(html, /if\\(roomSyncing\\|\\|state!==st/);
+  assert.match(html, /es\\.onopen=function\\(\\)\\{connState='online';startPresence\\(\\);markRoomSync\\(\\)/);
+});
