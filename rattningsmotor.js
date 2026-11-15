@@ -689,6 +689,9 @@ var Rattning = (function(){
       return null;
     };
 
+    if (T_ && kc === 5) {
+        return NC('Alla fem nyckelkort finns. Bibliotekets RKC 1430-tabell anger inte ett särskilt svar för fem av fem; motorn lämnar därför detta fall ej täckt i stället för att felaktigt tolka det som två nyckelkort.',means,'RKC 1430');
+    }
     if (T_) {
         // Systemets avtalade RKC 1430: 5C=1/4, 5D=0/3,
         // 5H=2 utan trumfdam, 5S=2 med trumfdam.
