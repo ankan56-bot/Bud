@@ -256,6 +256,48 @@ test("Stenberg opener shows 15+ HTP without a singleton", () => {
   assert.match(node.means("3N"), /12-14 hp/);
 });
 
+test("Stenberg shows a singleton before the strong no-singleton rebid", () => {
+  const { Rattning } = loadRuntime();
+  const north = ["H14","H13","H12","H8","D14","D6","D5","D4","S2","C7","C6","C5","C4"];
+  const south = ["H11","H10","H9","H7","D13","D12","D11","S14","S13","S12","C3","C2","S3"];
+  const used = new Set([...north, ...south]);
+  const deck = ["S","H","D","C"].flatMap(suit =>
+    Array.from({length:13}, (_,i) => suit + String(i+2)));
+  const remaining = deck.filter(card => !used.has(card));
+  const hands = { N:north, E:remaining.slice(0,13), S:south, W:remaining.slice(13) };
+  const bids = [
+    {s:"N",c:"1H"}, {s:"E",c:"P"}, {s:"S",c:"2N"},
+    {s:"W",c:"P"}, {s:"N",c:"3S"}
+  ];
+  const node = Rattning.nodeFor({hands, dealer:"N", bids}, 4);
+  assert.equal(Rattning.H(north).hp, 13);
+  assert.equal(Rattning.H(north).htp("H"), 15);
+  assert.equal(node.conv, "Stenberg");
+  assert.equal(node.exp, "3S");
+  assert.match(node.why, /Singel i/);
+});
+
+test("Stenberg uses 3NT only for a balanced 12-14 HCP opener", () => {
+  const { Rattning } = loadRuntime();
+  const north = ["H14","H13","H8","H7","S14","S8","S7","D11","D8","D7","C8","C7","C6"];
+  const south = ["H12","H11","H10","H9","S13","S12","S11","D10","D9","D6","C5","C4","C3"];
+  const used = new Set([...north, ...south]);
+  const deck = ["S","H","D","C"].flatMap(suit =>
+    Array.from({length:13}, (_,i) => suit + String(i+2)));
+  const remaining = deck.filter(card => !used.has(card));
+  const hands = { N:north, E:remaining.slice(0,13), S:south, W:remaining.slice(13) };
+  const bids = [
+    {s:"N",c:"1H"}, {s:"E",c:"P"}, {s:"S",c:"2N"},
+    {s:"W",c:"P"}, {s:"N",c:"3N"}
+  ];
+  const node = Rattning.nodeFor({hands, dealer:"N", bids}, 4);
+  assert.equal(Rattning.H(north).hp, 12);
+  assert.equal(Rattning.H(north).htp("H"), 12);
+  assert.equal(node.conv, "Stenberg");
+  assert.equal(node.exp, "3N");
+  assert.match(node.means("3N"), /12-14 hp/);
+});
+
 test("Stenberg counts HCP plus support points only after 4+ trump support", () => {
   const { Rattning } = loadRuntime();
 
