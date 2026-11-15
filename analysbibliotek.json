@@ -5741,11 +5741,6 @@
               "call": "3NT",
               "next": "t41_2h_nt",
               "label": "6+ hp, jämn hand utan stöd eller högfärg att visa"
-            },
-            {
-              "call": "2♠",
-              "next": "t41_2h_new",
-              "label": "6+ hp och minst 5 kort i annan färg – utgångskrav"
             }
           ],
           "handProfile": {
@@ -5764,12 +5759,12 @@
             "Pass",
             "2♠"
           ],
-          "meaning": "Herbertavslag efter 2♥",
-          "analysis": "När öppnaren har visat en högfärg (2♥ eller 2♠) visar närmaste bud 0–5 hp utan trumfstöd/kortfärdsvärde. Efter lågfärgsvisning används på motsvarande sätt närmaste steg. Budet är ett svagt avslag, inte en naturlig färgbeskrivning.",
+          "meaning": "2♠ efter 2♥ – Herbertavslag eller naturlig spaderfärg",
+          "analysis": "Samma bud har två olika betydelser beroende på svarshandens styrka och fördelning. Med 0–5 hp och utan 4+ hjärterstöd tillsammans med kortfärg är 2♠ Herbertavslag. Med 6+ hp och minst fem spader är 2♠ i stället en naturlig färgbeskrivning och utgångskrav. Rätt betydelse avgörs av svarshandens handprofil; auktionen ensam skiljer inte dessa fall åt.",
           "branches": [],
           "handProfile": {
-            "opener": "Minst fem kort i öppningsfärgen; utgångskrav.",
-            "responder": "0–5 hp, inte 4+ stöd tillsammans med kortfärg i öppningsfärgen."
+            "opener": "Minst fem hjärter; utgångskrav.",
+            "responder": "Alternativ A: 0–5 hp, utan 4+ hjärterstöd med kortfärg = Herbertavslag. Alternativ B: 6+ hp och minst fem spader = naturlig spaderfärg, utgångskrav."
           }
         },
         {
@@ -5827,25 +5822,6 @@
           "handProfile": {
             "opener": "Minst fem kort i hjärter; utgångskrav.",
             "responder": "6+ hp, jämn hand, ingen minst fyrkortig högfärg som ska visas först och inget kvalificerande trumfstöd."
-          }
-        },
-        {
-          "id": "t41_2h_new",
-          "sequence": [
-            "2♣",
-            "Pass",
-            "2♦",
-            "Pass",
-            "2♥",
-            "Pass",
-            "2♠"
-          ],
-          "meaning": "Ny färg efter 2♥",
-          "analysis": "Med 6+ hp och minst fem kort i en annan färg visar svarshanden sin färg på lägsta lagliga nivå. Auktionen är redan utgångskrav efter 2♣-öppningen.",
-          "branches": [],
-          "handProfile": {
-            "opener": "Minst fem kort i hjärter; utgångskrav.",
-            "responder": "6+ hp och minst fem kort i annan färg; färgbudet är utgångskrav."
           }
         },
         {
