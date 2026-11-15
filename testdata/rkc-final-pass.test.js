@@ -72,10 +72,10 @@ test("two keycards and a club void are shown by 6C when clubs are below trumps",
   assert.equal(result?.exp, "6C", JSON.stringify(result));
 });
 
-test("two keycards and a heart void above spade trumps are shown by 6S", () => {
+test("two keycards and a heart void below spade trumps are shown by 6H", () => {
   const hand = ["S14", "S10", "S9", "S8", "D14", "D13", "D12", "D11", "D10", "D9", "D8", "D7", "C13"];
   const result = responseFromSouthHand(hand);
-  assert.equal(result?.exp, "6S");
+  assert.equal(result?.exp, "6H");
 });
 
 test("a documented no-trump four-ace ask uses 5NT as the final contract after fewer than four aces", () => {
