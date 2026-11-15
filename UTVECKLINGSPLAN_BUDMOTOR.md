@@ -79,3 +79,13 @@ Ingen extern AI-tjänst ska krävas av den publicerade hemsidan. Analys som ska 
 ## Avgränsning för publicerad webbplats
 
 Stora simuleringar och analyskörningar ska ske i utvecklingsmiljö, inte i besökarens webbläsare. Webbplatsen ska bara hämta den färdiga, validerade kunskapen och använda DDS för enskilda givar när det behövs.
+
+
+## Kompletterande kandidatmatchning – första implementation
+
+`kompletterande_budlogik.json` innehåller nu fem omarkerade som systemregler (status `unreviewed`) kandidater för 1♥–Dbl. `analysmotor.js` kan matcha dessa separat mot exakt budsekvens, nästa spelare och strukturerade HCP-/fördelningsvillkor. Endast den aktuella spelarens hand används. Matcharen returnerar alla kandidater och visar överlapp; den väljer inte automatiskt mellan motstridiga kandidater och får aldrig skriva över `rattningsmotor.js`.
+
+Regressioner:
+- Grundsystemets budrättningsmotor: 54 testfall.
+- Kompletterande handvillkorsmatchare: 6 testfall.
+- Kandidaterna är ännu inte godkända och får inte användas som grundsystemfacit.
