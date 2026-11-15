@@ -54,7 +54,7 @@ for(const deal of deals){
 report.coveragePercent=report.turns?Math.round(report.covered/report.turns*1000)/10:0;
 fs.mkdirSync('testdata',{recursive:true});
 fs.writeFileSync('testdata/one_major_100_validation_latest.json',JSON.stringify(report,null,2)+'\n');
-console.log(JSON.stringify({deals:report.deals,openings:report.openings,turns:report.turns,covered:report.covered,uncovered:report.uncovered.length,coveragePercent:report.coveragePercent,exceptions:report.exceptions.length,illegalRecommendations:report.illegalRecommendations.length,invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,cardIntegrityErrors:report.cardIntegrityErrors.length},null,2));
+console.log(JSON.stringify({deals:report.deals,openings:report.openings,turns:report.turns,covered:report.covered,uncovered:report.uncovered.length,coveragePercent:report.coveragePercent,exceptions:report.exceptions.length,illegalRecommendations:report.illegalRecommendations.length,invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,cardIntegrityErrors:report.cardIntegrityErrors.length,uncoveredDetails:report.uncovered},null,2));
 assert.equal(report.cardIntegrityErrors.length,0);
 assert.equal(report.exceptions.length,0);
 assert.equal(report.illegalRecommendations.length,0);
