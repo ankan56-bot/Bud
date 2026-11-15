@@ -30,6 +30,8 @@ jobs:
         run: node --test testdata/analysis-library-match.test.js
       - name: Run structured hand condition tests
         run: node --test testdata/hand-conditions.test.js
+      - name: Run structured hand profile tests
+        run: node --test testdata/hand-profile-conditions.test.js
       - name: Run AI seat isolation tests
         run: node --test testdata/seat-view.test.js
       - name: Run player role tests
