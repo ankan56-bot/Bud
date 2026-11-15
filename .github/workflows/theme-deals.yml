@@ -36,3 +36,5 @@ jobs:
         run: node --test testdata/seat-view.test.js
       - name: Run player role tests
         run: node --test testdata/player-roles.test.js
+      - name: Run DDS WebAssembly smoke test
+        run: node --test testdata/dds-runtime.test.js
