@@ -65,3 +65,27 @@ Ett regressionstest kontrollerar samtliga tio positioner och säkerställer att 
 ## Avgränsning
 
 Ingen av T29–T33 har gjorts till automatisk grundsystemregel. Ingen ny bridgekonvention har hittats på. Korrigeringarna i analysmotorn och turordningsdiagnosen är tekniska matchnings-/klassificeringsändringar, inte ändringar av budsystemet. `main` är orörd.
+
+
+## Strukturerade handvillkor – schema version 1
+
+Analysbiblioteket är nu version 0.5.6 och har fått `handConditionSchemaVersion: 1`. Samtliga 25 bladnoder i T29–T33 har maskinläsbara `handConditions` med svarshandens roll, HCP-intervall och explicita färglängder. Där underlaget uttryckligen anger balanserad hand har detta också strukturerats.
+
+Exempel på schema:
+
+```json
+{
+  "schemaVersion": 1,
+  "seat": "responder",
+  "hcp": { "min": 6, "max": 9 },
+  "suitLengths": { "H": { "min": 3 } }
+}
+```
+
+Villkor som inte kan avgöras säkert enbart från 13 kort – särskilt stopperbedömning och fritextuttryck som "begränsat stöd" – ligger kvar i `manual`. De får inte översättas till falskt exakta gränser.
+
+`analysmotor.js` version 1.0.5 innehåller `evaluateHandConditions()`: kontrollerar 13 giltiga, unika kort, beräknar HCP och färglängder, kontrollerar balanserad fördelning enligt formerna 4-3-3-3, 4-4-3-2 och 5-3-3-2, och returnerar `match`, `no_match` eller `manual_review`. Om ett nödvändigt villkor kräver manuell bedömning returneras aldrig ett falskt säkert ja.
+
+Efterhandsanalysen använder `evaluateMatchedHand()` för att kontrollera den faktiska budgivarens hand mot den matchade noden. Detta är uttryckligen efterhandsanalys med full handinformation – funktionen får inte användas som beslutsunderlag för AI under pågående budgivning. AI-agenternas seat-view/informationsgräns är fortsatt separat.
+
+Nya tester i `testdata/hand-conditions.test.js` täcker schema, positiv och negativ matchning, manuell stopperbedömning, ogiltiga händer och kopplingen till rätt budgivares hand i en auktion med passrundor.
