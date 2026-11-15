@@ -44,3 +44,19 @@ Den äldre grenen `feature/two-player-dds` ligger 90 commits bakom `main` och sk
 5. Först därefter föreslå regeländringar och förbättringar i Öst/Väst-motorn.
 
 Ingen ny systemregel har införts genom denna inventering.
+
+
+## Arkitekturkrav: människa i Nord, AI i Syd och Öst/Väst
+
+Det långsiktiga spelsättet ska vara möjligt utan att bud- eller spelmotorerna byggs om:
+
+- Nord styrs av människan.
+- Syd är AI-partner till Nord.
+- Öst och Väst är separata AI-motståndare.
+- Varje AI-instans får endast sin egen hand, budhistoriken, sårbarhet, giv och annan information som är lagligt offentlig eller visad genom budgivningen.
+- En AI-instans får aldrig läsa partnerns eller motståndarnas dolda händer. Ingen gemensam AI-kontext får innehålla alla fyra händer under pågående budgivning eller spel.
+- DDS och fullständig givanalysering får använda alla fyra händer endast i en separat efterhands-/testfas, tydligt skild från spelarnas beslutsunderlag.
+
+Tekniskt ska framtida beslutsgränssnitt ta emot en spelposition (seat) och ett explicit avgränsat informationsunderlag (knownInformation/motsvarande), inte ett objekt med samtliga händer. Budmotorn ska kunna anropas separat per position och använda samma auktoritativa systemregler, men med spelarens egen hand och lagliga budhistorik. Spelmotor och kortspels-AI ligger senare i planen; detta krav ska säkras i datamodell och API redan nu.
+
+Detta är ett arkitekturkrav, inte ett påstående om att tvåspelar-/fyrspelar-AI redan är implementerad eller testad.
