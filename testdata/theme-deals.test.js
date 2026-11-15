@@ -292,20 +292,20 @@ test("Stenberg counts HCP plus support points only after 4+ trump support", () =
 
 test("reverse rebid strength does not count shortage points without a confirmed fit", () => {
   const { Rattning } = loadRuntime();
-  const north = ["C14","C13","C12","C11","C9","D7","D2","H13","H12","H11","H8","S6","S3"];
-  const south = ["C2","C3","D14","D13","D12","D11","H2","H3","H4","S4","S5","S7","S8"];
+  const north = ["C14","C13","C12","C9","C8","D14","D13","D7","D6","H5","H4","S5","S4"];
+  const south = ["H14","H13","H12","H11","D5","D4","D3","S6","S3","S2","C7","C6","C5"];
   const used = new Set([...north, ...south]);
   const deck = ["S","H","D","C"].flatMap(suit =>
     Array.from({length:13}, (_,i) => suit + String(i+2)));
   const remaining = deck.filter(card => !used.has(card));
   const hands = { N:north, S:south, E:remaining.slice(0,13), W:remaining.slice(13) };
   const bids = [
-    {s:"N",c:"1C"}, {s:"E",c:"P"}, {s:"S",c:"1D"},
+    {s:"N",c:"1C"}, {s:"E",c:"P"}, {s:"S",c:"1H"},
     {s:"W",c:"P"}, {s:"N",c:"2C"}
   ];
   const node = Rattning.nodeFor({hands, dealer:"N", bids}, 4);
   assert.equal(Rattning.H(north).hp, 16);
-  assert.equal(Rattning.H(north).htp("H"), 18);
+  assert.equal(Rattning.H(north).htp("D"), 18);
   assert.equal(node.exp, "2C");
   assert.match(node.why, /Utan styrka för reverse/);
   const judged = Rattning.judge({hands, dealer:"N", bids});
