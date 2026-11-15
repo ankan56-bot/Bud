@@ -26,8 +26,8 @@
     "modeDistribution": "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
     "caseClassification": "NT theme: all 10 deals are typical valid 1NT openings. The 1NT rule is strict; hands outside 15-17 HCP balanced are invalid 1NT openings, not borderline cases. Other themes remain unclassified pending rule-specific evidence.",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
-    "rulesEngineBlobSha": "08ec85497afc3df840a73092590599305eb3f5b1",
-    "rulesEngineVersion": "8.2",
+    "rulesEngineBlobSha": "1b809fff5fd720d927a86fe8fa093ed6efc835e0",
+    "rulesEngineVersion": "8.3",
     "datasetPath": "testdata/theme_deals_140.json",
     "generatorScript": "testdata/generate-theme-deals.js",
     "openingNTValidation": "1NT: 15-17 HCP and balanced; 2NT: 20-21 HCP and balanced."
