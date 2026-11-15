@@ -433,7 +433,7 @@ test("shared room theme requests compare against the unchanged menu state", () =
 test("room menu actions ignore device-local theme preferences when validating the shared base state", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   const start = html.indexOf("function roomActionState(");
-  const end = html.indexOf("\\nfunction ", start);
+  const end = html.indexOf("\nfunction ", start);
   assert.ok(start >= 0 && end > start, "room action snapshot helper should exist");
   const context = { pack: st => ({ no: st.no, mode: st.mode }), state: null };
   vm.runInNewContext(html.slice(start, end), context);
