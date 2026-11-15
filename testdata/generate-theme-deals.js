@@ -213,8 +213,8 @@ function generateDataset() {
   const themeStats = {};
 
   for (const theme of manifest.themes) {
-    const modes = theme.id === "dubbling" || theme.id === "inkliv"
-      ? Array(10).fill("stord")
+    const modes = ["dubbling", "inkliv", "stenberg", "trumf"].includes(theme.id)
+      ? Array(10).fill(theme.id === "stenberg" || theme.id === "trumf" ? "ostord" : "stord")
       : Array.from({ length: 10 }, (_, index) => index < 5 ? "stord" : "ostord");
 
     for (let index = 0; index < 10; index++) {
@@ -236,6 +236,21 @@ function generateDataset() {
       }
 
       const auction = makeReferenceAuction(generated, api, Rattning);
+      if (theme.id === "stenberg") {
+        const openingIndex = auction.bids.findIndex(bid => /^[1][CDHS]$/.test(bid.c));
+        const responseIndex = openingIndex + 1;
+        const opening = auction.bids[openingIndex];
+        const response = auction.bids[responseIndex];
+        if (!opening || !response || response.s === opening.s || response.c !== "2N") {
+          throw new Error("Stenberg deal does not contain an uninterrupted 2NT response: " + theme.id + " #" + (index + 1));
+        }
+        const responseTrial = auction.bids.slice(0, responseIndex + 1);
+        const responseNode = Rattning.nodeFor({ hands: auction.hands, dealer: auction.dealer, bids: responseTrial }, responseIndex);
+        if (!responseNode || responseNode.conv !== "Stenberg" ||
+            api.shapeOf(auction.hands[response.s])[opening.c[1]] < 4) {
+          throw new Error("Stenberg response fails the 13+ HTP / 4+ support rule: " + theme.id + " #" + (index + 1));
+        }
+      }
       const judged = Rattning.judge(auction);
       const id = theme.id + "-" + String(index + 1).padStart(2, "0");
       const items = judged.items.map(item => ({
@@ -252,7 +267,8 @@ function generateDataset() {
         checks: {
           uniqueCards: uniqueCards.size, thirteenCardsPerSeat: true,
           themeCondition: true, quietModeCondition, auctionErrors: 0,
-          openingNTValidated: true, openingStrongTwoValidated: true
+          openingNTValidated: true, openingStrongTwoValidated: true,
+          stenbergbidValidated: theme.id !== "stenberg" || true
         },
         correction: { version: Rattning.version, summary: judged.summary, items }
       };
