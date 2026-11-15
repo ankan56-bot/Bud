@@ -1131,7 +1131,10 @@ var Rattning = (function(){
     var highestBefore=null;
     if(st&&st.bids)st.bids.slice(0,i).forEach(function(x){if(x&&isBid(x.c)&&(!highestBefore||rk(x.c)>rk(highestBefore)))highestBefore=x.c;});
     var rawIllegal=!!(node&&node.exp&&isBid(node.exp)&&highestBefore&&rk(node.exp)<=rk(highestBefore));
-    if(st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
+    // Ett uttryckligen ej täckt RKC-fortsättningsläge får inte skrivas över
+    // av den generella poängkontrollen för missad utgång/slam.
+    var unresolvedRkc=!!(node&&!node.exp&&node.conv==='Blackwood 5 ess');
+    if(!unresolvedRkc&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
