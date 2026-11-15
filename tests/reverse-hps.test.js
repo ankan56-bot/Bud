@@ -49,8 +49,8 @@ function makeDealFor(seat, shape, honors, supportSuit = 'H') {
   const hands = { N: [], E: [], S: [], W: [] };
   hands[seat] = target;
   const partner = { N: 'S', E: 'W', S: 'N', W: 'E' }[seat];
-  const partnerHearts = rest.filter(card => card[0] === 'H').slice(0, 4);
-  const partnerHand = partnerHearts.concat(rest.filter(card => !partnerHearts.includes(card)).slice(0, 9));
+  const partnerSupport = rest.filter(card => card[0] === supportSuit).slice(0, 4);
+  const partnerHand = partnerSupport.concat(rest.filter(card => !partnerSupport.includes(card)).slice(0, 9));
   hands[partner] = partnerHand;
   rest = rest.filter(card => !partnerHand.includes(card));
   const others = ['N', 'E', 'S', 'W'].filter(s => s !== seat && s !== partner);
