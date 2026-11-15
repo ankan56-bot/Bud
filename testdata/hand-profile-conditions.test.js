@@ -78,7 +78,7 @@ test("post-deal evaluation chooses the role of the actual final bidder", () => {
   assert.equal(responderResult.hcp, 8);
 
   const openerHand = [
-    "S14", "S13", "S12",
+    "S14", "S13", "S2",
     "H14", "H13", "H2", "H3", "H4",
     "D11", "D2",
     "C3", "C4", "C5"
@@ -98,7 +98,7 @@ test("post-deal evaluation chooses the role of the actual final bidder", () => {
 });
 
 test("qualitative alternatives do not become false automatic rejections", () => {
-  const c = node("T26_STAYMAN_INGEN_HOGFARG_INVIT", "t26_n4").handConditionsByRole.opener;
+  const c = node("T26_STAYMAN_INGEN_HOGFARG_INVIT", "t26_n6").handConditionsByRole.opener;
   const hand = [
     "S14", "S2", "S3", "S4",
     "H13", "H2", "H3",
