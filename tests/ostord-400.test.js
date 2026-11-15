@@ -48,7 +48,7 @@ function generateDeals() {
     seen.add(key);
     deals.push({ id: 'ostord-400-' + String(deals.length + 1).padStart(3, '0'), seed, dealer: SEATS[Math.floor(rng() * 4)], hands });
   }
-  assert.equal(deals.length, 100, 'Could not generate 200 unique undisturbed deals within the seed range.');
+  assert.equal(deals.length, 200, 'Could not generate 200 unique undisturbed deals within the seed range.');
   return deals;
 }
 
