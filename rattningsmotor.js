@@ -460,7 +460,7 @@ var Rattning = (function(){
     }else{
       var s2=side4.filter(function(s){return s!==rs&&L[o]+L[s]>=9}).sort(function(a,b){return L[b]-L[a]})[0];
       if(s2){var x=low(s2),rev=SU.indexOf(s2)>SU.indexOf(o)&&lv(x)===2&&lv(r)===1;
-        if(rev){if(h.htp(s2)>=18||hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+.'}else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}else return NC('Dokumentet anger inte budet.',means)}
+        if(rev){if(hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+ hp.'}else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}else return NC('Dokumentet anger inte budet.',means)}
         else if(hp>=18){exp=jump(s2,r);why='Hopp i andra färgen: 18+ htp med minst 5-4.'}
         else{exp=x;why='Andra färgen på lägsta nivå: 12-17 hp med 5-4.'}
       }else if(L[o]>=5){exp=low(o);why='Bjuder om första färgen (5+ kort).';soft=true}
@@ -1457,7 +1457,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.5'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.6'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
