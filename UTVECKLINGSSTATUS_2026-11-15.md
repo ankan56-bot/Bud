@@ -280,3 +280,11 @@ GitHub Actions körning `43665028981` godkände samtliga steg: deterministisk ge
 - Temabaslinjen är regenererad från engine 7.5: 140 givare, 594 rätt, 37 ej täckta, 0 fel och 0 valfria. Stenbergtemats tio givare uppfyller 13+ HTP och 4+ stöd.
 - temagivare_manifest.json är synkroniserad med den aktuella motorns versions- och blob-hash. Nytt test hindrar att manifestets källmetadata driver isär från datasetet.
 - main är fortsatt orörd; ändringarna ligger på work/theme-dataset-analysis. Senaste CI-körning för manifestkontrollen inväntas.
+
+## Fördjupad poängkontroll – engine 7.9
+
+- Reverse i öppnarens andra bud får inte nå 18-gränsen genom stödpoäng i en obekräftad fyrkortsfärg. Reverse kräver 18+ honnörspoäng; stödpoäng används bara när källans villkor för trumfstöd, egen 6+ färg eller 5-5 är uppfyllda.
+- HTP som visas per bud är nu villkorad: minst 8 gemensamma trumf, egen 6+ färg eller egen 5-5 där den valda färgen ingår. Annars visas enbart hp. En Stenberg-2NT-respons hämtar HTP från partnerns öppningsfärg, men endast i ostörd sekvens.
+- Regressionstester täcker reverse med 16 hp men 18 råa htp, Stenbergens visade HTP, 9-/10-/11-kortsfit och att bonusen är +1 vid nio samt +2 från tio trumf.
+- Motorn är version 7.9 och temamanifestets versions-/blobmetadata är synkroniserad. Temadatasetet kommer att regenereras av CI för denna version.
+- En tidigare GitHub Actions-körning har fastnat som in_progress utan uppdaterade steg; senaste körningen för 7.9 står därför i kö. Inga CI-resultat för 7.9 hävdas ännu.
