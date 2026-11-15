@@ -27,12 +27,12 @@ Sidan anger också att ett enkelt inkliv normalt visar 12–17 hp, med särskild
 
 ### Begränsningar
 - Tabellen är uttryckligen avgränsad till inkliv med 1-högfärg/1-ruter. Den kan inte utan vidare kopieras till 2-nivåinkliv eller hoppande 3-nivåinkliv.
-- För hoppande 2-högfärgsinkliv anger sidan att fortsättningen är som efter en svag 2-högfärgsöppning. Det är en separat gren.
-- Den aktuella luckgruppen innehåller svar efter 1-nivå, 2-nivå, hoppande 3-nivå och 2NT-inkliv. Bara den första gruppen har en uttrycklig svarstabell på sidan 7.
+- För hoppande 2-högfärgsinkliv anger sidan att fortsättningen är som efter en svag 2-högfärgsöppning. Sida 4 anger då: ny färg 5+ och krav till minst 3 i öppningsfärgen; 3 i öppningsfärgen är spärrhöjning med 3+ stöd, ej invit; 3NT är slutbud; hopp i ny färg visar renons och slaminvit; 2NT är invit med 2+ stöd. Efter 2NT visar öppnaren 3 i öppningsfärgen med 6–8 hp och 3NT/4 i högfärgen med 9–10 hp. Dokumentet anger däremot ingen exakt styrkegräns för när svarshanden ska välja 2NT-invit kontra spärrhöjningen.
+- Den aktuella luckgruppen innehåller svar efter 1-nivå, 2-nivå, hoppande 3-nivå och 2NT-inkliv. Bara 1-nivågruppen har en fullständigare numerisk svarstabell på sida 7. Hoppande 2-högfärgsinkliv hänvisas vidare till svag-två-strukturen, men där saknas vissa numeriska valgränser.
 - Det tidigare sexkortskravet för egna 2-nivåinkliv är en regel om inklivarens eget bud; det får inte förväxlas med partnerns svar.
 
 ### Slutsats
-Vi kan nu implementera och regressionstesta svar efter 1-högfärgs-/1-ruterinkliv enligt tabellen på sida 7, men bara när sekvens och nivå matchar den angivna situationen. De andra nivåerna måste hållas separata och förbli ej täckta tills motsvarande systemregler har fastställts. T29–T32 beskriver svar efter motståndarnas inkliv över vår öppning och är inte samma situation; de är dessutom märkta `analysis_only`.
+Svar efter 1-högfärgs-/1-ruterinkliv kan implementeras enligt tabellen på sida 7, och den avgränsade implementationen finns nu i `rattningsmotor.js` version 7.1 med tester i `testdata/overcall-responses.test.js`. Hoppande 2-högfärgsinkliv har en hänvisning till svag-två-strukturen men behöver en separat, försiktig implementering eftersom invit-/spärrgränsen inte är numeriskt definierad. 2-lägesinkliv i lågfärg, hoppande 3-nivåinkliv och 2NT-inkliv förblir ej täckta. T29–T32 beskriver svar efter motståndarnas inkliv över vår öppning och är inte samma situation; de är dessutom märkta `analysis_only`.
 
 ## 2. Återbud efter upplysningsdubbling
 
@@ -94,14 +94,16 @@ Det finns ett närliggande 2NT-exempel på sida 3, men inte en regel för den ak
 
 ## Nästa tekniska steg
 
-1. Implementera den uttryckliga svarstabellen efter 1-högfärgs-/1-ruterinkliv i en separat dispatchgren. Lägg tester för varje svarstyp och gränsvärde, inklusive att andra inklivsnivåer inte råkar få samma regel.
-2. Behåll de åtta dubblaråterbuden som ej täckta; ingen motorregel införs utan kompletterande systemkälla eller uttryckligt godkänt partnerskapsbeslut.
-3. Behåll öppnarens tredje bud i 1♣–1♠–2♣–2NT som ej täckt. Lägg däremot ett positivt regressionstest för det dokumenterade exemplet 1♥–1♠–2♣–2NT–3♥ med dess uttryckliga handvillkor, om den nuvarande motorn ännu inte täcker det.
-4. Kör hela 140-givarsbaslinjen och befintliga regressionstester efter den avgränsade ändringen. Ingen DDS-bedömning ska användas som budfacit.
+1. Kör regression på den implementerade 1-nivåtabellen och kontrollera den genererade 140-givarsbaslinjen.
+2. Utred den separata hänvisningen för hoppande 2-högfärgsinkliv; behåll den ej täckt där val mellan invit och spärr inte kan avgöras säkert.
+3. Behåll de åtta dubblaråterbuden som ej täckta; ingen motorregel införs utan kompletterande systemkälla eller uttryckligt godkänt partnerskapsbeslut.
+4. Behåll öppnarens tredje bud i 1♣–1♠–2♣–2NT som ej täckt. Lägg däremot ett positivt regressionstest för det dokumenterade exemplet 1♥–1♠–2♣–2NT–3♥ med dess uttryckliga handvillkor.
+5. Kör hela 140-givarsbaslinjen och befintliga regressionstester efter varje avgränsad ändring. Ingen DDS-bedömning ska användas som budfacit.
 
 ## Verifieringsstatus
 
 - Källan har lästs i sin helhet: 8 sidor, Nordisk standard 2012-08-22.
 - Denna rapport skiljer nu mellan uttryckliga källregler, närliggande men ej överförbara exempel och verkliga luckor.
-- Inga motorregler har ännu ändrats i samband med denna källgranskning.
+- Svarstabellen efter 1-högfärgs-/1-ruterinkliv är implementerad, version 7.1. Slutlig CI-körning för den uppdaterade testsviten inväntas.
+- Övriga nämnda svarslägen och de två andra prioriterade luckorna är inte ändrade.
 - `main` är orörd.
