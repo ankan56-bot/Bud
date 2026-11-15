@@ -21,7 +21,14 @@
     "status": "generated_and_validated",
     "corpusPath": "testdata/temagivare_140.json",
     "engineVersion": "6.6",
-    "sourceEngineBlobSha": "bc6feae55ac0bba101f349a975270bf89c6e6b28"
+    "sourceEngineBlobSha": "bc6feae55ac0bba101f349a975270bf89c6e6b28",
+    "regeneratedDeals": [
+      "svag-02",
+      "svag-05",
+      "svag-09",
+      "svag-10"
+    ],
+    "regeneratedReason": "Revalidated weak-two response conditions after aligning response and opener rebid logic to REF."
   },
   "themes": [
     {
@@ -341,14 +348,14 @@
     "regressionBaseline": "same fixed deals for every motor version",
     "status": "baseline_run",
     "baselinePath": "testdata/temagivare_140_baseline.json",
-    "baselineEngineBlobSha": "387f78d8988b2365d395187aa8db71cd17bcde3b",
+    "baselineEngineBlobSha": "e5e8f8b637dd6e49fec36b897cf8184ca2467ecf",
     "baselineSummary": {
-      "nsTurns": 604,
-      "covered": 536,
-      "uncovered": 68,
-      "coveragePercent": 88.7,
+      "nsTurns": 605,
+      "covered": 533,
+      "uncovered": 72,
+      "coveragePercent": 88.1,
       "ostordCoveragePercent": 100,
-      "stordCoveragePercent": 84.2,
+      "stordCoveragePercent": 83.4,
       "exceptions": 0,
       "illegalRecommendations": 0,
       "completedAuctions": 140,
@@ -356,11 +363,11 @@
       "auctionValidationErrors": 0,
       "previousCoveragePercent": 88.7,
       "previousUncovered": 68,
-      "regressionTestCount": 66,
-      "regressionTestsPassed": 66
+      "regressionTestCount": 73,
+      "regressionTestsPassed": 73
     },
-    "regressionTestCount": 66,
-    "regressionTestsPassed": 66,
+    "regressionTestCount": 73,
+    "regressionTestsPassed": 73,
     "supplementaryCandidatePath": "kompletterande_budlogik.json",
     "supplementaryCandidateCount": 25,
     "supplementaryApprovalStatus": "unreviewed",
