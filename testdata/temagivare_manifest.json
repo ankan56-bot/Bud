@@ -7,8 +7,10 @@
     "source": "Budtraning.html existing biasedDeal/theme generator",
     "reproducibleSeeds": true,
     "distribution": {
-      "typical": 7,
-      "borderline": 3,
+      "targetPerTheme": {
+        "typical": 7,
+        "borderline": 3
+      },
       "actualByTheme": {
         "nt": {
           "typical": 10,
@@ -22,7 +24,7 @@
     "status": "generated_and_validated_rule_constraints",
     "seedScheme": "(7919 * (indexWithinTheme + 1) + themeId.length * 104729 + (mode === 'ostord' ? 17 : 0)) >>> 0",
     "modeDistribution": "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
-    "caseClassification": "NT theme: all 10 deals are typical valid 1NT openings (15-17 HCP and balanced). No borderline deals are claimed; counterexamples must be separately generated and must not be represented as correct 1NT openings.",
+    "caseClassification": "NT theme: all 10 deals are typical valid 1NT openings. The 1NT rule is strict; hands outside 15-17 HCP balanced are invalid 1NT openings, not borderline cases. Other themes remain unclassified pending rule-specific evidence.",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
     "rulesEngineBlobSha": "f811670c3f26d7321ac485b4f56de8db033cc065",
     "rulesEngineVersion": "7.3",
@@ -397,5 +399,5 @@
       }
     }
   },
-  "note": "The 140 deals are generated with the existing seeded theme generator and validated for hand integrity, theme conditions, legal auction structure, and exact NT opening ranges. The stored auction is a deterministic coverage reference, not an independent optimal auction. Typical/borderline labels remain unclassified until each deal has evidence tied to a documented system rule. The NT theme now has evidence-backed typical/borderline classifications; it yields 6 typical and 4 borderline because all four deals at the 15/17 HCP opening limits are retained as genuine boundary cases. Other themes remain explicitly unclassified. Correction: all 10 NT theme deals are classified as typical because every opening hand satisfies the absolute 1NT rule (15-17 HCP and balanced). Exact 15/17 HCP endpoints are valid, not borderline. No NT borderline deals are currently present."
+  "note": "The 140 deals are generated with the existing seeded theme generator and validated for hand integrity, theme conditions, legal auction structure, and exact NT opening ranges. The stored auction is a deterministic coverage reference, not an independent optimal auction. The NT theme contains 10 typical deals: every opening hand meets the strict 1NT rule of 15-17 HCP and balanced shape. A 14-HCP balanced hand, an 18-HCP balanced hand, or an unbalanced 15-17 HCP hand is not a borderline 1NT opening; it is simply not a valid 1NT opening under this system. Other themes remain unclassified until their own documented rules and genuine decision boundaries have been modelled."
 }
