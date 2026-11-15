@@ -30,10 +30,10 @@ Källan anger också att efter dubbeltydiga 5♣-/5♦-svar kan svarshanden gå 
 
 - Svarskoderna för 5♣–5♠ med fastställd trumf finns i `rkcReply`.
 - Projektets särskilda 5NT-visning av 3 ess och renons finns.
-- Svar på 6 i färg för 2 ess och renons är ännu inte implementerat. Det kräver en uttrycklig kontroll av renonsfärgens rangordning relativt trumf.
+- Svar på 6 i färg för 2 ess och renons är implementerat: en renons visas med 6 i renonsfärgen, men om renonsfärgen är högre än trumf visas 6 i trumf. Flera renonser lämnas ej täckta eftersom källan inte anger vilken som ska visas.
 - Fyr-essfrågan utan trumf behåller den separat överenskomna sekvenslogiken.
 - Frågeställarens fortsättning efter 5♣/5♦/5♥/5♠ med trumf är nu markerad som ej täckt i stället för att automatiskt föreslå 6 i trumf. Det förhindrar att en osäker fortsättning presenteras som systemfacit.
-- Nästa utvecklingssteg är att implementera och testa 6-färgsrenonsvar samt den dokumenterade 5-trumf-fortsättningen, men bara efter att budsekvensens exakta tolkning har verifierats.
+- Nästa utvecklingssteg är att modellera den dokumenterade fortsättningen efter dubbeltydiga 5♣-/5♦-svar, inklusive när svarshanden går ned i 5 i trumf. Detta ska göras först när den exakta budsekvensen kan identifieras utan att gissa.
 
 ## Kvalitetsprincip
 
