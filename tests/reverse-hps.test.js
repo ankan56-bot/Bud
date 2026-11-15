@@ -300,11 +300,11 @@ function assessReverse(shape, honors) {
   assert.equal(Rattning.partnershipPoints(north, south, 'H'), north.hp + south.hp + 2);
 }
 
-// Ten combined trumps add three fit points, plus any hand shortness points.
+// Ten or more combined trumps add exactly two fit points, plus any hand shortness points.
 {
   const north = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 0));
   const south = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 6));
-  assert.equal(Rattning.partnershipPoints(north, south, 'H'), north.hp + south.hp + 5);
+  assert.equal(Rattning.partnershipPoints(north, south, 'H'), north.hp + south.hp + 4);
 }
 
 // NT contracts count HCP only, regardless of distribution or trump fit.
