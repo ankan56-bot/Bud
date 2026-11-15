@@ -60,7 +60,7 @@ Sidan ger dubblarens styrka och partnerns första svar, men ingen fullständig t
 De åtta fallen i `double-rebid-8-audit.md` är just dubblerarens senare återbud. De får inte lösas genom att återanvända `respDouble()`, som är svarshandens första bud efter partnerns dubbling av motståndarnas öppning. Giv 13 i loggen gäller också svarshandens stöd efter dubbling, inte dubblarens återbud.
 
 ### Slutsats
-Upplysningsdubblingens öppningsstyrka och partnerns första svar kan verifieras mot sida 8. De åtta senare återbuden saknar fortfarande uttryckligt stöd i dokumentet och ska förbli ej täckta.
+Upplysningsdubblingens öppningsstyrka och partnerns första svar kan verifieras mot sida 8. Källan ger också 18+-betydelsen för återbud utan stöd, men den gäller inte de åtta inventerade fallen eftersom dubbleraren har 3+ stöd i samtliga. Dessa åtta återbud saknar därför fortfarande en användbar fortsättningsregel och ska förbli ej täckta.
 
 ## 3. Öppnarens tredje bud efter svarshandens 2NT
 
