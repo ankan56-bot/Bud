@@ -204,3 +204,20 @@ Fördjupade delgranskningar finns nu:
 `inkliv-02-bid-6` är en separat nionde senare återbudsposition: naturligt inkliv följt av partnerns hoppstöd 3♥. Den ska inte blandas ihop med upplysningsdubbling.
 
 Samtliga fyra nya delgranskningar har verifierats i GitHub Actions utan testfel. De är analysdokumentation; ingen av de 47 positionerna har omklassificerats och ingen ny systemregel har lagts till.
+
+
+## Aktuellt verifierat läge – engine 7.0 och uppdaterad temabaslinje
+
+Den tidigare inventeringen och 47-fallsanalysen ovan är historiska ögonblicksbilder. Efter att splinter-/singelvisande återbudsgrenar tagits bort enligt parets beslut har temagivarna genererats om och den aktuella baslinjen omfattar nu 44 ej täckta positioner.
+
+- `rattningsmotor.js` version 7.0: splinter och singelvisande återbud efter enkel höjning är borttagna. Naturlig invit i öppnarens trumffärg används i stället.
+- `testdata/theme_deals_140.json`: 140 givare, 589 rätt, 0 fel, 0 valfria och 44 ej täckta. Alla givare har 52 unika kort, 13 kort per hand och strukturellt giltiga auktioner.
+- `analysbibliotek.json` version 0.5.11: 119 av 125 noder har rollbaserade strukturerade handprofiler, 238 rollprofiler totalt. 137 är fullt maskinellt kontrollerbara och 101 kräver även manuell bedömning. Alla är analysunderlag, inte automatiskt grundregler.
+- `analysmotor.js` version 1.0.6: väljer handprofil efter faktisk budgivarroll och markerar kvalitativa villkor för manuell bedömning.
+- De aktuella 44 luckorna fördelas på 25 konkurrens-/försvarsfall, 9 öppnaråterbud efter partnerns pass, 9 svar på partnerns inkliv och 1 öppnarens tredje bud efter svarshandens andra bud.
+- Den tidigare osäkra splinterpositionen `trumf-04-bid-7` är nu täckt: öppnaren bjuder 3♠ naturlig invit och svarshandens pass bedöms som rätt.
+- Diagnosen för `alla-01-bid-9` är korrigerad: det är öppnarens tredje bud, inte svarshandens andra bud. Positionen förblir ej täckt.
+- 16 av de 44 kvarvarande positionerna har dubbling i sekvensen. Åtta är dubblerarens återbud efter partnerns svar; en annan position gäller naturlig inklivare efter partnerns hoppstöd.
+- GitHub Actions har passerat på engine 7.0-baslinjen, inklusive dataset/reproducerbarhet, auktion-dispatch, analysbiblioteksmatchning, strukturerade handvillkor/profiler, AI-seat-isolering och rolltester. Senast bekräftade kompletta körning: `43661555698`.
+
+`main` är fortsatt orörd. Arbetet ligger på `work/theme-dataset-analysis`. DDS har inte använts som budfacit och Safari-körning har inte verifierats.
