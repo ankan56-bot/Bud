@@ -39,6 +39,25 @@ function makeDeal(shape, honors) {
   };
 }
 
+function makeDealFromPair(seat, hand, partnerHand) {
+  const deck = [];
+  for (const suit of ['C', 'D', 'H', 'S']) {
+    for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
+  }
+  assert.equal(hand.length, 13);
+  assert.equal(partnerHand.length, 13);
+  assert.equal(new Set([...hand, ...partnerHand]).size, 26);
+  const rest = deck.filter(card => !hand.includes(card) && !partnerHand.includes(card));
+  const partner = { N: 'S', E: 'W', S: 'N', W: 'E' }[seat];
+  const others = ['N', 'E', 'S', 'W'].filter(s => s !== seat && s !== partner);
+  return {
+    [seat]: hand.slice(),
+    [partner]: partnerHand.slice(),
+    [others[0]]: rest.slice(0, 13),
+    [others[1]]: rest.slice(13, 26)
+  };
+}
+
 function makeDealFor(seat, shape, honors, supportSuit = 'H') {
   const deck = [];
   for (const suit of ['C', 'D', 'H', 'S']) {
@@ -904,7 +923,9 @@ function assessReverse(shape, honors) {
 
 // Two side singletons after Stenberg also have no documented priority.
 {
-  const hands = makeDealFor('N', { C: 1, D: 1, H: 6, S: 5 }, { H: [14, 13], S: [14, 12], D: [11] }, 'H');
+  const north = ['C2', 'D2', 'HA', 'H2', 'H3', 'HK', 'H4', 'H5', 'SA', 'SQ', 'S2', 'S3', 'S4'];
+  const south = ['CA', 'CK', 'CQ', 'C3', 'DA', 'DK', 'DQ', 'D3', 'H6', 'H7', 'H8', 'SK', 'SJ'];
+  const hands = makeDealFromPair('N', north, south);
   const bids = [
     { s: 'N', c: '1H' }, { s: 'E', c: 'P' },
     { s: 'S', c: '2N' }, { s: 'W', c: 'P' }, { s: 'N', c: '3C' }
@@ -1129,4 +1150,67 @@ function assessReverse(shape, honors) {
   assert.match(node.why, /3\+ stöd.*inte dubblerarens fortsättning/i);
 }
 
-console.log('Bridge bidding regression tests passed (78 cases).');
+// After 1NT-2C-2S, an 8-card major fit below 26 playing points is passed.
+{
+  const north = ['SA', 'SK', 'S2', 'S3', 'HA', 'H2', 'H3', 'DK', 'D2', 'D3', 'CQ', 'C2', 'C3'];
+  const south = ['SQ', 'SJ', 'S4', 'S5', 'H4', 'H5', 'H6', 'D4', 'D5', 'D6', 'C4', 'C5', 'C6'];
+  const hands = makeDealFromPair('S', south, north);
+  const bids = [
+    { s: 'N', c: '1N' }, { s: 'E', c: 'P' },
+    { s: 'S', c: '2C' }, { s: 'W', c: 'P' },
+    { s: 'N', c: '2S' }, { s: 'E', c: 'P' }, { s: 'S', c: 'P' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 6);
+  assert.equal(node.exp, 'P');
+  assert.match(node.why, /under 26-poängsgränsen/i);
+}
+
+// After 1C-2C, a balanced 18-HCP opener chooses 3NT before a minor game.
+{
+  const opener = ['CA', 'CK', 'CQ', 'C2', 'DA', 'DK', 'D2', 'H Q', 'H J', 'H2', 'S J', 'S2', 'S3'].map(x => x.replace(' ', ''));
+  const responder = ['C3', 'C4', 'C5', 'C6', 'D3', 'D4', 'D5', 'H3', 'H4', 'H5', 'S4', 'S5', 'S6'];
+  const hands = makeDealFromPair('S', opener, responder);
+  const bids = [
+    { s: 'S', c: '1C' }, { s: 'W', c: 'P' },
+    { s: 'N', c: '2C' }, { s: 'E', c: 'P' }, { s: 'S', c: '3N' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'S', bids }, 4);
+  assert.equal(node.exp, '3N');
+  assert.match(node.why, /18 hp och jämn fördelning/i);
+}
+
+// After a two-suit rebid and a 2NT invite, opener accepts with 3NT
+// when all four suits are stopped and partnership HCP reaches 26.
+{
+  const opener = ['DA', 'DQ', 'D2', 'D3', 'CA', 'CK', 'C2', 'C3', 'HK', 'H2', 'H3', 'SK', 'S2'];
+  const responder = ['SA', 'S3', 'S4', 'S5', 'HK2', 'H4', 'H5', 'DK', 'D4', 'D5', 'CQ', 'C4', 'C5'];
+  // Normalize the responder's cards to unique physical cards.
+  responder[4] = 'H6';
+  responder[7] = 'D6';
+  const hands = makeDealFromPair('S', opener, responder);
+  const bids = [
+    { s: 'S', c: '1D' }, { s: 'W', c: 'P' },
+    { s: 'N', c: '1S' }, { s: 'E', c: 'P' },
+    { s: 'S', c: '2C' }, { s: 'W', c: 'P' },
+    { s: 'N', c: '2N' }, { s: 'E', c: 'P' }, { s: 'S', c: '3N' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'S', bids }, 8);
+  assert.equal(node.exp, '3N');
+}
+
+// After 2NT-3C-3S, a balanced responder with 26+ combined HCP and no
+// eight-card spade fit chooses 3NT.
+{
+  const responder = ['CA', 'C2', 'C3', 'DQ', 'D2', 'D3', 'H4', 'H5', 'H6', 'H7', 'S4', 'S5', 'S6'];
+  const opener = ['SA', 'SK', 'S2', 'S3', 'HA', 'HK', 'H8', 'DA', 'DK', 'D8', 'C5', 'C6', 'C7'];
+  const hands = makeDealFromPair('S', responder, opener);
+  const bids = [
+    { s: 'N', c: '2N' }, { s: 'E', c: 'P' },
+    { s: 'S', c: '3C' }, { s: 'W', c: 'P' },
+    { s: 'N', c: '3S' }, { s: 'E', c: 'P' }, { s: 'S', c: '3N' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 6);
+  assert.equal(node.exp, '3N');
+}
+
+console.log('Bridge bidding regression tests passed (82 cases).');
