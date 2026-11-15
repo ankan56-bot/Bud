@@ -240,15 +240,25 @@ test("Stenberg counts HCP plus support points only after 4+ trump support", () =
     "D14", "D2", "D3", "D4", "D5",
     "C2", "C3", "C4"
   ];
+  const deck = [];
+  for (const suit of ["S", "H", "D", "C"]) {
+    for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
+  }
+  const available = deck.filter(card => !threeTrumpHand.includes(card));
+  const openerHearts = available.filter(card => card[0] === "H").slice(0, 5);
+  const openerExtras = available.filter(card => !openerHearts.includes(card)).slice(0, 8);
+  const openerHand = openerHearts.concat(openerExtras);
+  const rest = available.filter(card => !openerHand.includes(card));
+  const hands = {
+    N: openerHand,
+    E: rest.slice(0, 13),
+    S: threeTrumpHand,
+    W: rest.slice(13, 26)
+  };
   const result = Rattning.nodeFor({
-    hands: {
-      N: ["S3","S4","S5","S6","S7","H5","H6","H7","H8","D6","D7","C6","C7"],
-      E: ["S8","S9","S10","S11","S12","H9","H10","H11","H12","D8","D9","C8","C9"],
-      S: threeTrumpHand,
-      W: ["S13","S2","H13","D10","D11","D12","D13","C10","C11","C12","C13","C14","H2"]
-    },
+    hands,
     dealer: "N",
-    bids: [{s:"N",c:"1H"},{s:"E",c:"P"},{s:"S",c:"P"},{s:"W",c:"P"}]
+    bids: [{s:"N",c:"1H"},{s:"E",c:"P"},{s:"S",c:"P"}]
   }, 2);
   assert.notEqual(result.exp, "2N");
   assert.notEqual(result.conv, "Stenberg");
