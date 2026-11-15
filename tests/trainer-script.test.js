@@ -364,3 +364,22 @@ test("room seat claims cannot exceed the configured participant count", () => {
   assert.equal(allowed(3, "b", { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" } }, "W"), true,
     "an existing participant may move to an unoccupied seat");
 });
+
+
+test("queued messages from a previous room connection are ignored", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function isCurrentRoomConnection(");
+  const end = html.indexOf("\\nfunction connect(", start);
+  assert.ok(start >= 0 && end > start, "room connection identity guard should exist");
+  const context = { room: "NEW", es: null };
+  vm.runInNewContext(html.slice(start, end), context);
+  const oldSource = {};
+  const currentSource = {};
+  context.es = currentSource;
+  assert.equal(context.isCurrentRoomConnection("OLD", oldSource), false,
+    "messages queued from a different room must be rejected");
+  assert.equal(context.isCurrentRoomConnection("NEW", oldSource), false,
+    "messages from a replaced EventSource must be rejected");
+  assert.equal(context.isCurrentRoomConnection("NEW", currentSource), true);
+  assert.ok(html.includes("if(!isCurrentRoomConnection(connectedRoom,source))return;"));
+});
