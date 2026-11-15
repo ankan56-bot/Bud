@@ -983,6 +983,18 @@ function assessReverse(shape, honors) {
   assert.match(node.why, /5\+ kort.*forcing|5\+ kort.*krav/i);
 }
 
+// Two own 5-card suits after a weak two have no documented priority.
+{
+  const node = assessWeakTwoResponse(
+    '2D',
+    { C: 1, D: 2, H: 5, S: 5 },
+    { H: [14, 13], S: [11] },
+    '2H'
+  );
+  assert.equal(node.exp, null);
+  assert.match(node.why, /flera egna 5\+ färger.*ingen prioritet/i);
+}
+
 // 2NT after a weak two is invitational with 9-10 hp and at least 2-card support.
 {
   const node = assessWeakTwoResponse(
@@ -1052,4 +1064,4 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, '4H');
 }
 
-console.log('Bridge bidding regression tests passed (73 cases).');
+console.log('Bridge bidding regression tests passed (74 cases).');
