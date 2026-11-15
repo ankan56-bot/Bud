@@ -10,6 +10,7 @@
  * - Fixat: Öppningshandens svar på 3NT-valet (passar eller bjuder 4M).
  *
  * Rensad version: inledande chattext och kodstaket borttagna. Rättningar utöver detta:
+ * - Version 6.7: öppnarens återbud efter partnerns pass och motståndarnas inkliv klassas som giltig turordning men fortsatt ej täckt.
  * - isBid använde /^[1-7]$/ och kände därför inte igen något bud: nu /^[1-7][CDHSN]$/.
  * - transfer2 refererade till okänd variabel b (ReferenceError): raderna borttagna.
  * - judge() tappade förklaring/motivering/konvention i resultatet: bevaras nu (hp/htp/langd läggs till).
@@ -1316,7 +1317,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.6'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.7'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
