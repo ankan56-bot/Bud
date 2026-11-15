@@ -1364,7 +1364,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
         {
@@ -1391,7 +1391,7 @@
           ],
           "handProfile": {
             "opener": "Tillräckliga honnörspoäng för att paret tillsammans ska nå 26; färre än tre kort i trumffärgen.",
-            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
         {
@@ -1418,7 +1418,7 @@
           ],
           "handProfile": {
             "opener": "Minst tre kort i hjärter och tillsammans minst 26 spelpoäng i fitten.",
-            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
         {
@@ -1439,7 +1439,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Handen når inte 26 gemensamma honnörspoäng eller 26 gemensamma spelpoäng i fitten.",
-            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         }
       ]
@@ -1493,7 +1493,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
         {
@@ -1520,7 +1520,7 @@
           ],
           "handProfile": {
             "opener": "Tillräckliga honnörspoäng för att paret tillsammans ska nå 26; färre än tre kort i trumffärgen.",
-            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
         {
@@ -1547,7 +1547,7 @@
           ],
           "handProfile": {
             "opener": "Minst tre kort i spader och tillsammans minst 26 spelpoäng i fitten.",
-            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
         {
@@ -1568,7 +1568,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Handen når inte 26 gemensamma honnörspoäng eller 26 gemensamma spelpoäng i fitten.",
-            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
+            "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         }
       ]
@@ -2648,7 +2648,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2677,7 +2677,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2702,7 +2702,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2738,7 +2738,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2759,7 +2759,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Paret når inte 26 gemensamma poäng.",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2780,7 +2780,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Färre än tre kort i hjärter; paret når minst 26 gemensamma honnörspoäng.",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2799,7 +2799,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Minst sex hjärter, normalt minst cirka 10 hp"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2820,7 +2820,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Minst tre kort i hjärter och tillsammans minst 26 spelpoäng i fitten.",
-            "responder": "Minst sex hjärter, 9 hp för invit"
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2836,7 +2836,7 @@
           "analysis": "Öppnaren kan i stället för normal accept på 2♥ bjuda 3♥ med 17 hp och minst fyra hjärter. Detta är ett frivilligt alternativ i motorn; 2♥ är det vanliga återbudet.",
           "handProfile": {
             "opener": "17 hp och minst fyra hjärter efter 1NT-öppning.",
-            "responder": "Minst fem hjärter; överföringen 2♦ är fullföljd på 3-nivån."
+            "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           },
           "branches": []
         }
@@ -2882,7 +2882,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2911,7 +2911,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2936,7 +2936,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2972,7 +2972,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -2993,7 +2993,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Paret når inte 26 gemensamma poäng.",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -3014,7 +3014,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Färre än tre kort i spader; paret når minst 26 gemensamma honnörspoäng.",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -3033,7 +3033,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Minst sex spader, normalt minst cirka 10 hp"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -3054,7 +3054,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Minst tre kort i spader och tillsammans minst 26 spelpoäng i fitten.",
-            "responder": "Minst sex spader, 9 hp för invit"
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
         {
@@ -3070,7 +3070,7 @@
           "analysis": "Öppnaren kan i stället för normal accept på 2♠ bjuda 3♠ med 17 hp och minst fyra spader. Detta är ett frivilligt alternativ i motorn; 2♠ är det vanliga återbudet.",
           "handProfile": {
             "opener": "17 hp och minst fyra spader efter 1NT-öppning.",
-            "responder": "Minst fem spader; överföringen 2♥ är fullföljd på 3-nivån."
+            "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           },
           "branches": []
         }
