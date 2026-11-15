@@ -97,3 +97,8 @@ Den första exporterade baslinjen använde störd Öst/Väst-bot även på givar
 Jämförbara dokumenterade exempel finns i `LOGG_BUDREGLER.md` (bl.a. Giv 7, 10, 13, 19, 21, 22, 24 och 25). De ska granskas hand för hand innan regler ändras. Ingen ny systemregel eller kompletterande regel har lagts till.
 
 GitHub Actions körning `43658789320` passerade med success inklusive regenerering, oförändrat dataset, dataset-/reproducerbarhetstester och AI seat isolation-tester.
+
+
+## Skärpt informationsgräns för AI-positioner
+
+`seat-view.js` är nu version 0.2.0. Den tillåter endast en uttrycklig lista av offentliga spelfält i `publicState`, avvisar okända fält och blockerar dolda hand-/seat-mappar även nästlade. Dummy får bara skickas när `dummyExposed: true`. Testfilen innehåller sex tester för egen hand, kopiering/frysning, avvisade dolda händer, dummygränsen och ogiltiga positioner. Ändringen är fortfarande en fristående byggsten och ännu inte inkopplad i en spelande agent.
