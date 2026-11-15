@@ -462,3 +462,27 @@ Efter täckningskörningen kördes även `Rattning.validateAuction()` på varje 
 - 0 undantag.
 
 Detta kompletterar täckningsmåttet: de ej täckta buden är regel-/sekvensluckor, inte felaktigt konstruerade auktioner.
+
+
+## Inkliv och försvar mot spärr – öppningsbuden korrigerade
+
+Ytterligare en jämförelse mellan `overcall()` och systemunderlaget visade flera avvikelser:
+- 1-nivåns enkla inkliv ska kunna bjudas med 10+ hp och bra 5+ färg.
+- 2-nivåns enkla inkliv kräver 12–17 hp och minst 6 kort.
+- Upplysningsdubbling kräver 12+ hp och 3+ kort i alla objudna färger; den ska inte dessutom kräva högst två kort i öppningsfärgen.
+- 17+ hp ger dubbling oavsett fördelning, med det särskilda undantaget att 1NT 15–17 hp balanserad med håll prioriteras.
+- Hoppande inkliv: 6–10 hp och 6+ färg.
+- Mot spärröppning: 2NT 16–18 hp balanserad; dubbling med UD-form eller 17+ hp.
+
+Dessa gränser och prioriteringar är nu korrigerade. Även ett fel i kontrollen av objudna färger vid försvar mot spärr är rättat. Nio nya regressionstester tillkom; testsviten omfattar nu **47 fall**, samtliga passerar.
+
+### Ny 140-givarsbaslinje
+
+- 536/604 turer täckta (**88,7 %**), tidigare 522/595 (**87,7 %**).
+- 68 ej täckta turer, tidigare 73.
+- Stört läge: 362/430 (**84,2 %**).
+- Ostört läge: fortsatt 174/174 (**100 %**).
+- 140/140 auktioner avslutades och godkändes av `validateAuction`.
+- 0 krascher, 0 olagliga kontraktsbud och 0 valideringsfel.
+
+Inklivstemat ligger nu på 83,3 % och trumfstöd på 68,4 %. Dubblingstemat ligger kvar på 47,1 % eftersom de återstående exemplen främst kräver fortsättningsregler efter dubblerarens första svar, inte själva inklivs-/dubblingsbeslutet.
