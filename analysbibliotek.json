@@ -6399,8 +6399,8 @@
         "Norr öppnar 1NT = 15–17 hp och jämn hand.",
         "Svarshanden har under 8 hp och minst sex kort i en lågfärg, eller 5-5 i lågfärgerna.",
         "2♠ är artificiellt relä; det visar inte spader.",
-        "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre klöver, annars 2NT med längre ruter eller lika längd.",
-        "Fortsättningen efter öppnarens reläsvar är inte specificerad i den nuvarande motorn och dokumenteras därför inte med påhittade slutbud."
+        "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre klöver; 2NT med längre ruter eller lika längd.",
+        "Efter reläsvar väljer svarshanden slutbud 3♣ eller 3♦ efter sin egen längd; vid lika längd efter 2NT väljs 3♣."
       ],
       "root": "t42_n0",
       "nodes": [
@@ -6464,15 +6464,27 @@
             "Pass",
             "2♠",
             "Pass",
-            "2NT"
+            "2NT",
+            "Pass"
           ],
-          "meaning": "2NT – längre ruter eller lika längd i lågfärgerna",
-          "analysis": "Öppnaren visar att ruter är längre än klöver eller att lågfärgerna är lika långa. Budet är en del av det artificiella reläet, inte en invit i sang i denna sekvens. Svarshandens fortsättning är inte definierad i nuvarande motor.",
+          "meaning": "2NT visar längre ruter eller lika längd i lågfärgerna. Svarshanden väljer sin längsta lågfärg; vid lika längd väljs klöver enligt nuvarande motor.",
+          "analysis": "Om klöver är minst lika lång som ruter bjuder svarshanden 3♣; om ruter är längre bjuder svarshanden 3♦. Budet är slutbud i den valda lågfärgen.",
           "handProfile": {
             "opener": "15–17 hp, 1NT-hand; ruter minst lika lång som klöver.",
             "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
           },
-          "branches": []
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t42_n4",
+              "label": "Klöver minst lika lång – slutbud 3♣"
+            },
+            {
+              "call": "3♦",
+              "next": "t42_n5",
+              "label": "Ruter längre – slutbud 3♦"
+            }
+          ]
         },
         {
           "id": "t42_n3",
@@ -6481,13 +6493,240 @@
             "Pass",
             "2♠",
             "Pass",
-            "3♣"
+            "3♣",
+            "Pass"
           ],
-          "meaning": "3♣ – längre klöver",
-          "analysis": "Öppnaren visar att klöver är längre än ruter. Budet är reläsvar, inte ett naturligt krav på att svarshanden ska ha klöverstöd. Svarshandens fortsättning är inte definierad i nuvarande motor.",
+          "meaning": "3♣ visar att öppnarens klöver är längre än ruter. Svarshanden passar om egna klöver är minst lika långa som ruter; annars korrigerar svarshanden till 3♦.",
+          "analysis": "Reläsvar 3♣ är inte ett krav på klöverstöd. Svarshanden väljer slutkontrakt efter sin egen lågfärgslängd.",
           "handProfile": {
             "opener": "15–17 hp, 1NT-hand; klöver längre än ruter.",
             "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t42_n6",
+              "label": "Klöver minst lika lång – slutbud 3♣"
+            },
+            {
+              "call": "3♦",
+              "next": "t42_n7",
+              "label": "Ruter längre – korrigering till 3♦"
+            }
+          ]
+        },
+        {
+          "id": "t42_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "Svarshanden väljer 3♣ som slutbud efter 2NT-reläsvar.",
+          "analysis": "Klöver är minst lika lång som ruter i svarshanden. 3♣ blir slutkontrakt.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand; ruter minst lika lång som klöver.",
+            "responder": "Under 8 hp; minst sex klöver eller 5-5 i lågfärgerna, med klöver minst lika lång som ruter."
+          },
+          "branches": []
+        },
+        {
+          "id": "t42_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "Svarshanden väljer 3♦ som slutbud efter 2NT-reläsvar.",
+          "analysis": "Ruter är längre än klöver i svarshanden. 3♦ blir slutkontrakt.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand; ruter minst lika lång som klöver.",
+            "responder": "Under 8 hp; minst sex ruter eller 5-5 i lågfärgerna, med ruter längre än klöver."
+          },
+          "branches": []
+        },
+        {
+          "id": "t42_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Svarshanden passar på 3♣ och avslutar budgivningen.",
+          "analysis": "Svarshanden har minst lika många klöver som ruter; öppnarens 3♣ blir slutkontrakt.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand; klöver längre än ruter.",
+            "responder": "Under 8 hp; klöver minst lika lång som ruter."
+          },
+          "branches": []
+        },
+        {
+          "id": "t42_n7",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "Svarshanden korrigerar till 3♦ som slutbud.",
+          "analysis": "Svarshanden har längre ruter än klöver trots att öppnaren visade längre klöver. 3♦ blir slutkontrakt enligt nuvarande motor.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand; klöver längre än ruter.",
+            "responder": "Under 8 hp; ruter längre än klöver."
+          },
+          "branches": []
+        }
+      ]
+    },
+    {
+      "id": "T43_1NT_4NT_ENDPOINTS",
+      "title": "1NT – 4NT: essfråga utan trumf och RKC efter fit",
+      "tags": [
+        "1NT",
+        "4NT",
+        "fyr-essfråga",
+        "RKC",
+        "sang",
+        "slam"
+      ],
+      "conditions": [
+        "Öppningen 1NT visar 15–17 hp och balanserad hand.",
+        "Trädet dokumenterar bara vägen fram till 4NT; svaren efter 4NT ingår inte i denna etapp.",
+        "Direkt 1NT–4NT och 1NT–2♣–2♦–4NT är fyr-essfråga utan trumf.",
+        "Efter överföring till högfärg är 4NT RKC 1430 med överföringsfärgen som trumf."
+      ],
+      "root": "t43_n0",
+      "nodes": [
+        {
+          "id": "t43_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är uttryckligen avtalad fyr-essfråga utan fastställd trumf – inte kvantitativ invit.",
+          "analysis": "Sekvensen 1NT–4NT är en av de särskilt avtalade sangsekvenserna för fyr-essfråga. 5♣ visar 0 ess, 5♦ 1, 5♥ 2, 5♠ 3 och 5NT 4. Svaren och fortsättningen efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand.",
+            "responder": "Slamintresserad hand som använder den uttryckligen avtalade fyr-essfrågan utan trumf; exakt poängintervall är inte specificerat här."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är uttryckligen avtalad fyr-essfråga utan fastställd trumf efter Stayman 2♦.",
+          "analysis": "Öppnaren har förnekat fyrkortshögfärg. I denna särskilt avtalade sekvens frågar 4NT efter de fyra essen: 5♣=0, 5♦=1, 5♥=2, 5♠=3, 5NT=4. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, ingen fyrkortshögfärg.",
+            "responder": "Slamintresserad hand; exakt poängintervall och fördelning är inte specificerade i denna nod."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 med hjärter som trumf efter fullföljd hjärteröverföring.",
+          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand; har fullföljt hjärteröverföringen.",
+            "responder": "Minst fem hjärter och slamintresse; 4NT används som RKC om den vägen väljs."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 med spader som trumf efter fullföljd spaderöverföring.",
+          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen.",
+            "responder": "Minst fem spader och slamintresse; 4NT används som RKC om den vägen väljs."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4♥",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 efter att Stayman hittat hjärterfit och paret gått till 4♥.",
+          "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat hjärterstöd med 3♥. Efter öppnarens 4♥ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, minst fyra hjärter.",
+            "responder": "Minst fyra hjärter; paret har minst åtta hjärter tillsammans."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "4♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 efter att Stayman hittat spaderfit och paret gått till 4♠.",
+          "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat spaderstöd med 3♠. Efter öppnarens 4♠ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, minst fyra spader.",
+            "responder": "Minst fyra spader; paret har minst åtta spader tillsammans."
           },
           "branches": []
         }
