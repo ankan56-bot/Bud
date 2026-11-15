@@ -45,8 +45,8 @@
 
 - Efter 1NT–2♣–2♠ (Stayman) med konstaterad 8-korts spaderfit ska svarshanden passa när parets gemensamma spelpoäng understiger 26. Bjud inte automatiskt 3♠ enbart för att svarshanden har 10 hp. Vid 26+ gemensamma spelpoäng bjuds 4♠.
 - Efter 1♣–2♣ väljer öppnaren 3NT med 18+ hp och balanserad hand. Sang prioriteras framför utgång i lågfärg när handen är jämn.
-- Efter 1♦–1♠–2♣–2NT accepterar öppnaren med 3NT när öppnaren har håll i alla fyra färger och paret har minst 26 gemensamma honnörspoäng. Sang prioriteras framför lågfärgsutgång.
-- Efter 2NT–3♣–3♠ väljer svarshanden 3NT med balanserad hand, minst 26 gemensamma honnörspoäng och utan 8-korts spaderfit. En lågfärg ska inte sökas före sangutgång i detta läge.
+- Efter 1♦–1♠–2♣–2NT accepterar öppnaren med 3NT när öppnaren har håll i alla fyra färger. 2NT-inviten accepteras i sang; sang prioriteras framför lågfärgsutgång. Sang prioriteras framför lågfärgsutgång.
+- Efter 2NT–3♣–3♠ väljer svarshanden 3NT med balanserad hand, minst 25 gemensamma honnörspoäng och utan 8-korts spaderfit. En lågfärg ska inte sökas före sangutgång i detta läge.
 - Fortsättningen efter 1♥–1NT är fortfarande ej fastställd och ska lämnas ej täckt tills systemregeln har beslutats.
 
 ## 5. Konkurrensbudgivning – pausad
