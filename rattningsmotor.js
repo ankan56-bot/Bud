@@ -405,12 +405,13 @@ var Rattning = (function(){
 
   /* ––––– ÖPPNARENS ANDRA BUD (Plus) ––––– */
   function reb1(h,oc,r){
-    var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false;
+    var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false,reverseBid=null;
 
     var splSuit = SU.filter(function(s){return s!==o&&s!==rs&&L[s]<=1})[0];
     var splBid = splSuit ? ((lv(r)+1)+splSuit) : null;
 
     var means=function(c){
+      if(c===reverseBid&&reverseBid)return 'Reverse: 18+ HPS och minst 5-4 i öppningsfärgen och den nya färgen. HPS räknas enligt reglerna för egen 6+-färg eller 5-5, utan krav på fastställd trumf.';
       if(r==='2N'){var Ma=maj(o);
         if(c==='3N')return '12-15 hp, jämn hand utan 3-korts stöd.';
         if(c==='3'+o)return '16+ stp, stark hand.';
@@ -469,10 +470,41 @@ var Rattning = (function(){
       else return NC('Dokumentet anger inte budet för balanserad hand med '+hp+' hp i denna situation.',means);
     }else{
       var s2=side4.filter(function(s){return s!==rs&&L[o]+L[s]>=9}).sort(function(a,b){return L[b]-L[a]})[0];
-      if(s2){var x=low(s2),rev=SU.indexOf(s2)>SU.indexOf(o)&&lv(x)===2&&lv(r)===1;
-        if(rev){if(h.htp(s2)>=18||hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+.'}else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}else return NC('Dokumentet anger inte budet.',means)}
-        else if(hp>=18){exp=jump(s2,r);why='Hopp i andra färgen: 18+ htp med minst 5-4.'}
-        else{exp=x;why='Andra färgen på lägsta nivå: 12-17 hp med 5-4.'}
+      // HPS enligt rättningsmallen: STP räknas vid stöd, egen 6+-färg
+      // eller 5-5. En 5-4-hand utan 6+-färg/5-5 får därför inga extra STP.
+      function ownHps(){
+        var six=SU.filter(function(s){return L[s]>=6;});
+        if(six.length)return h.htp(six[0]);
+        var fives=SU.filter(function(s){return L[s]>=5;});
+        if(fives.length>=2){
+          var total=hp;
+          SU.forEach(function(s){
+            if(fives.indexOf(s)<0){var n=L[s];total+=n===0?3:n===1?2:n===2?1:0;}
+          });
+          return total;
+        }
+        return hp;
+      }
+      if(s2){
+        var x=low(s2);
+        var reverse=SU.indexOf(s2)>SU.indexOf(o)&&SU.indexOf(s2)>SU.indexOf(rs)&&lv(r)===1;
+        var hps=ownHps();
+        if(reverse){
+          reverseBid=(lv(r)+1)+s2;
+          if(hps>=18){
+            exp=reverseBid;
+            why='Reverse (andra färgen högre än öppningsfärgen och svarsfärgen): '+hps+' HPS, 18+ och minst 5-4.';
+          }else if(L[o]>=5){
+            exp=low(o);
+            why='Under 18 HPS för reverse: bjud om första färgen (visar 5+ färg).';
+          }else return NC('Dokumentet anger inte budet.',means);
+        }else if(hps>=18){
+          exp=jump(s2,r);
+          why='Hopp i andra färgen: '+hps+' HPS, 18+ och minst 5-4.';
+        }else{
+          exp=x;
+          why='Andra färgen på lägsta nivå: 12-17 hp med 5-4.';
+        }
       }else if(L[o]>=5){exp=low(o);why='Bjuder om första färgen (5+ kort).';soft=true}
       else return NC('Dokumentet anger inte budet för denna hand.',means);
     }
