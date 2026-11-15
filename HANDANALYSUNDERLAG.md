@@ -62,7 +62,7 @@ Konkurrensbudgivningen är pausad. Kvarvarande luckor från 140-givarsanalysen b
 5. En ny ostörd analys ska redovisa täckning, ej täckta lägen, tekniska undantag och olagliga rekommendationer separat.
 
 
-## 5. Manuell genomgång av nya ostörda testgivare (2026-11-15)
+## Bilaga A. Manuell genomgång av nya ostörda testgivare (2026-11-15)
 
 Följande bedömningar är dokumenterade från genomgången av de åtta redovisade givarna. De är underlag för fortsatt arbete; motorn ändras inte automatiskt av denna notering.
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
 const Rattning = require('../rattningsmotor.js');
 
 function deal(N, E, S, W) { return { N, E, S, W }; }
@@ -67,4 +68,16 @@ const auction068 = state(deal068, 'E', [
   assert.equal(item.nod.konvention, 'hållvisning');
 }
 
+const report = {
+  engineVersion: Rattning.version,
+  cases: [
+    { deal: 'ostord-400-023', expected: '5D', fit: 10, jointPlayingPoints: 31 },
+    { deal: 'ostord-400-055', expected: '6D', fit: 12, jointPlayingPoints: 34 },
+    { deal: 'ostord-400-068', expected: '3H', forcing: 'game' }
+  ],
+  detailedNodeAnalysis: true,
+  result: 'passed'
+};
+fs.mkdirSync('testdata', { recursive: true });
+fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\\n');
 console.log('Manual undisturbed hand rules and detailed node analysis passed (3 deals).');
