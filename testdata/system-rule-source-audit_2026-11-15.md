@@ -71,18 +71,20 @@ Upplysningsdubblingens öppningsstyrka och partnerns första svar kan verifieras
 - Öppnarens hand: 13 hp, fördelning 1–4–3–5 (♠–♥–♦–♣).
 
 ### Närliggande regel i Nordisk standard, sida 3
-Dokumentet har ett specifikt exempel:
+Dokumentet har ett närliggande exempel:
 - 1♥ – 1♠ – 2♣ – 2NT: svarshanden visar 10–12 hp, balanserad hand, två hjärter samt håll i spader och ruter.
-- Öppnarens 3♥ visar 10–12 htp och trekortshjärterstöd; öppnaren har visat minst fem hjärter efter 2♣.
+- Nästa rad visar 3♥ och anger 10–12 htp samt ”3-korts ♥”, med kommentaren att öppnaren redan har visat 5+ hjärter efter 2♣.
 
-Detta exempel gäller en annan sekvens: öppnaren började med 1♥ och visade därefter klöver som andra färg. Det kan inte överföras till 1♣–1♠–2♣, där öppnaren återbjuder sin öppningsfärg.
+Det finns en intern motsägelse i den sista raden: öppnaren har redan visat minst fem hjärter genom 1♥ och 2♣, så uppgiften ”3-korts ♥” kan inte utan vidare beskriva öppnarens hand. Budet 3♥ står dessutom i öppnarens kolumn i originalets uppställning. Det kan vara ett skrivfel i färgangivelsen eller i handbeskrivningen. Därför använder vi den tydliga beskrivningen av svarshandens 2NT som information, men inte 3♥-raden som ett säkert facit för öppnarens tredje bud.
+
+Exemplet gäller dessutom en annan sekvens: öppnaren började med 1♥ och visade därefter klöver som andra färg. Det kan inte överföras till 1♣–1♠–2♣, där öppnaren återbjuder sin öppningsfärg.
 
 Sida 3 beskriver också öppnarens andra bud med egen 6+ färg, balanserad hand och tvåfärgshand, men ger inte en generell regel för öppnarens tredje bud efter svarshandens 2NT när öppnaren har återbjudit sin egen färg.
 
 Stenberg 2NT är inte relevant här: den konventionen används som svar på öppnarens färgöppning med 13+ htp och minst fyrkortsstöd. Inte heller är detta svar på en 2NT-öppning.
 
 ### Slutsats
-Det finns ett närliggande 2NT-exempel på sida 3, men inte en regel för den aktuella sekvensen. Positionen är korrekt klassificerad som öppnarens tredje bud och ska förbli ej täckt tills en uttrycklig fortsättning kan beläggas.
+Det finns ett närliggande 2NT-exempel på sida 3, men det fastställer inte öppnarens fortsättning i den aktuella sekvensen. Dessutom är 3♥-radens förklaring internt motsägelsefull. Positionen är korrekt klassificerad som öppnarens tredje bud och ska förbli ej täckt tills en entydig fortsättning kan beläggas.
 
 ## Beslut för implementation
 
