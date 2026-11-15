@@ -5,8 +5,8 @@
     "generator": "Budtraning.html existing newDeal/biasedDeal generator",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
     "rulesEngine": "rattningsmotor.js",
-    "rulesEngineVersion": "7.4",
-    "rulesEngineBlobSha": "cd359a740aea1172d954dd3e76dd013bbe53477a",
+    "rulesEngineVersion": "7.5",
+    "rulesEngineBlobSha": "a6639b5d75580a18c2dd298d2237ea182cfaa930",
     "branchBase": "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
   },
   "generation": {
@@ -30,7 +30,7 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 596,
+      "rätt": 594,
       "ej_täckt": 37
     },
     "themeStats": {
@@ -50,7 +50,7 @@
       },
       "stenberg": {
         "deals": 10,
-        "bids": 96,
+        "bids": 94,
         "uncovered": 0,
         "optional": 0,
         "wrong": 0
@@ -85,7 +85,7 @@
       },
       "trumf": {
         "deals": 10,
-        "bids": 80,
+        "bids": 78,
         "uncovered": 1,
         "optional": 0,
         "wrong": 0
@@ -261,7 +261,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -417,7 +417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -557,7 +557,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -685,7 +685,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -853,7 +853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 4 (Norr och Syd).",
         "items": [
           {
@@ -1065,7 +1065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1253,7 +1253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1449,7 +1449,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1629,7 +1629,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1801,7 +1801,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1981,7 +1981,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2161,7 +2161,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2341,7 +2341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2521,7 +2521,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2701,7 +2701,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2881,7 +2881,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2914,7 +2914,7 @@
             "bid": "6♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 40 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 9,
@@ -3061,7 +3061,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3241,7 +3241,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3421,7 +3421,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3601,7 +3601,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3756,18 +3756,10 @@
         },
         {
           "s": "N",
-          "c": "6H"
+          "c": "P"
         },
         {
           "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
           "c": "P"
         }
       ],
@@ -3781,8 +3773,8 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
-        "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "7.5",
+        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -3814,19 +3806,11 @@
             "bid": "4♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11-korts fit i ♥ och 33 gemensamma spelpoäng: utgång."
+            "reason": "11-korts fit i ♥ och 32 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
             "seat": "Norr",
-            "bid": "6♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♥-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
-          },
-          {
-            "nr": 11,
-            "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -3953,7 +3937,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4125,7 +4109,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4158,7 +4142,7 @@
             "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♠ och 34 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♠ och 33 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -4166,7 +4150,7 @@
             "bid": "6♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 34 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -4297,7 +4281,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4453,7 +4437,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4625,7 +4609,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4797,7 +4781,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4953,7 +4937,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5117,7 +5101,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5289,7 +5273,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5322,7 +5306,7 @@
             "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♠ och 32 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♠ och 31 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -5477,7 +5461,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5673,7 +5657,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5853,7 +5837,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6025,7 +6009,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6197,7 +6181,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6377,7 +6361,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6565,7 +6549,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6745,7 +6729,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6917,7 +6901,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7097,7 +7081,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7285,7 +7269,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7318,7 +7302,7 @@
             "bid": "4♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♥ och 37 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♥ och 36 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -7326,7 +7310,7 @@
             "bid": "6♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 37 poäng (naturligt visad ♥-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♥-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -7473,7 +7457,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7661,7 +7645,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7841,7 +7825,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8021,7 +8005,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8054,7 +8038,7 @@
             "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♠ och 40 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♠ och 39 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8062,7 +8046,7 @@
             "bid": "6♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 40 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8209,7 +8193,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8242,7 +8226,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11-korts fit i ♦ och 37 gemensamma spelpoäng: utgång."
+            "reason": "11-korts fit i ♦ och 36 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8250,7 +8234,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 37 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8397,7 +8381,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8585,7 +8569,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8618,7 +8602,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♦ och 39 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♦ och 38 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8626,7 +8610,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 38 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8773,7 +8757,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8806,7 +8790,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♦ och 39 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♦ och 38 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8814,7 +8798,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 38 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8961,7 +8945,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9133,7 +9117,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9277,7 +9261,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -9433,7 +9417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9589,7 +9573,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9745,7 +9729,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9901,7 +9885,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10073,7 +10057,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10106,7 +10090,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11-korts fit i ♦ och 36 gemensamma spelpoäng: utgång."
+            "reason": "11-korts fit i ♦ och 35 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -10114,7 +10098,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 35 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -10245,7 +10229,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10417,7 +10401,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10597,7 +10581,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10769,7 +10753,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10941,7 +10925,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11113,7 +11097,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11293,7 +11277,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11481,7 +11465,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11653,7 +11637,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11817,7 +11801,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11981,7 +11965,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12145,7 +12129,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12317,7 +12301,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12481,7 +12465,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12620,18 +12604,10 @@
         },
         {
           "s": "N",
-          "c": "6S"
+          "c": "P"
         },
         {
           "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
           "c": "P"
         }
       ],
@@ -12645,8 +12621,8 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "7.5",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -12675,14 +12651,6 @@
           {
             "nr": 7,
             "seat": "Norr",
-            "bid": "6♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
-          },
-          {
-            "nr": 9,
-            "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -12801,7 +12769,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -12949,7 +12917,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13105,7 +13073,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13261,7 +13229,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13392,7 +13360,7 @@
         },
         {
           "s": "N",
-          "c": "6D"
+          "c": "5D"
         },
         {
           "s": "E",
@@ -13417,7 +13385,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13439,10 +13407,10 @@
           {
             "nr": 5,
             "seat": "Norr",
-            "bid": "6♦",
+            "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 32 poäng. 28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
           },
           {
             "nr": 7,
@@ -13573,7 +13541,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13729,7 +13697,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13885,7 +13853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14041,7 +14009,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14205,7 +14173,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14377,7 +14345,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14541,7 +14509,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14697,7 +14665,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14853,7 +14821,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15001,7 +14969,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15141,7 +15109,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15297,7 +15265,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15469,7 +15437,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15625,7 +15593,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15765,7 +15733,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15905,7 +15873,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16045,7 +16013,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16193,7 +16161,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16341,7 +16309,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16489,7 +16457,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16637,7 +16605,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16785,7 +16753,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16933,7 +16901,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17097,7 +17065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17257,7 +17225,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -17413,7 +17381,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17577,7 +17545,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17729,7 +17697,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -17893,7 +17861,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18073,7 +18041,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18106,7 +18074,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♦ och 36 gemensamma spelpoäng: utgång enligt våra gränser (28+)."
+            "reason": "10-korts fit i ♦ och 35 gemensamma spelpoäng: utgång enligt våra gränser (28+)."
           },
           {
             "nr": 9,
@@ -18114,7 +18082,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 35 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -18269,7 +18237,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18465,7 +18433,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18645,7 +18613,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18793,7 +18761,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18933,7 +18901,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19073,7 +19041,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19197,7 +19165,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19329,7 +19297,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19461,7 +19429,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19585,7 +19553,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19725,7 +19693,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19881,7 +19849,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -20037,7 +20005,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -20189,7 +20157,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20333,7 +20301,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -20485,7 +20453,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20637,7 +20605,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -20805,7 +20773,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20957,7 +20925,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21109,7 +21077,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21261,7 +21229,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21413,7 +21381,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -21581,7 +21549,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21725,7 +21693,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21861,7 +21829,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21997,7 +21965,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22133,7 +22101,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22277,7 +22245,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -22421,7 +22389,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22557,7 +22525,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22693,7 +22661,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22837,7 +22805,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22981,7 +22949,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "7.4",
+        "version": "7.5",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
