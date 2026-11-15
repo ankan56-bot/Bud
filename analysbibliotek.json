@@ -1,5 +1,5 @@
 {
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -983,10 +983,7 @@
                 "H": {
                   "min": 3
                 }
-              },
-              "manual": [
-                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, trumfstöd med minst tre hjärter"
-              ]
+              }
             }
           }
         },
@@ -1391,10 +1388,7 @@
                 "H": {
                   "min": 4
                 }
-              },
-              "manual": [
-                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 10–12 hp, minst fyra hjärter, trumfstöd"
-              ]
+              }
             }
           }
         },
@@ -1515,10 +1509,7 @@
                 "S": {
                   "min": 3
                 }
-              },
-              "manual": [
-                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, trumfstöd"
-              ]
+              }
             }
           }
         },
@@ -7174,7 +7165,7 @@
     "nodesWithProfiles": 114,
     "nodesStructured": 114,
     "roleProfiles": 228,
-    "machineCheckable": 184,
-    "manualOnly": 44
+    "machineCheckable": 134,
+    "manualReview": 94
   }
 }
