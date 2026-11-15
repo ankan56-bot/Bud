@@ -341,7 +341,7 @@
     "regressionBaseline": "same fixed deals for every motor version",
     "status": "baseline_run",
     "baselinePath": "testdata/temagivare_140_baseline.json",
-    "baselineEngineBlobSha": "6bd4bd7d1b913b0e4171878e43f80ee0998235ee",
+    "baselineEngineBlobSha": "387f78d8988b2365d395187aa8db71cd17bcde3b",
     "baselineSummary": {
       "nsTurns": 604,
       "covered": 536,
@@ -356,11 +356,11 @@
       "auctionValidationErrors": 0,
       "previousCoveragePercent": 88.7,
       "previousUncovered": 68,
-      "regressionTestCount": 55,
-      "regressionTestsPassed": 55
+      "regressionTestCount": 66,
+      "regressionTestsPassed": 66
     },
-    "regressionTestCount": 55,
-    "regressionTestsPassed": 55,
+    "regressionTestCount": 66,
+    "regressionTestsPassed": 66,
     "supplementaryCandidatePath": "kompletterande_budlogik.json",
     "supplementaryCandidateCount": 25,
     "supplementaryApprovalStatus": "unreviewed",
