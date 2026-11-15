@@ -1,111 +1,120 @@
-# Analys av 47 ej täckta budpositioner
+# Analys av 44 ej täckta budpositioner
 
 ## Tolkning
 
-Alla 47 poster är **Pass** i den deterministiska referensauktionen. Referensgeneratorn använder Pass när rättningsmotorn inte lämnar ett säkert budförslag. Därför är dessa poster täckningsluckor, inte bevis för att Pass är korrekt eller felaktigt.
+Alla 44 poster är **Pass** i den deterministiska referensauktionen. Referensgeneratorn använder Pass när rättningsmotorn inte lämnar ett säkert budförslag. Därför är dessa poster täckningsluckor, inte bevis för att Pass är korrekt eller felaktigt.
 
 ## Orsaksfördelning
 
-| Orsak från rättningsmotorn | Antal | Exempel-ID |
-|---|---:|---|
-| Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. | 13 | stenberg-03-bid-3, slam-02-bid-3, trumf-02-bid-3 |
-| Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. | 9 | dubbling-01-bid-6, dubbling-03-bid-6, dubbling-05-bid-6 |
-| Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. | 4 | alla-05-bid-5, alla-05-bid-7, alla-05-bid-9 |
-| Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. | 10 | stenberg-03-bid-5, slam-02-bid-5, trumf-02-bid-5 |
-| Dokumentet anger inte budet för denna hand. | 9 | alla-02-bid-5, inkliv-01-bid-4, inkliv-03-bid-4 |
-| Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet. | 1 | alla-01-bid-9 |
-| Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas. | 1 | trumf-04-bid-7 |
+| Orsak från rättningsmotorn | Antal |
+|---|---:|
+| Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. | 12 |
+| Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. | 9 |
+| Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. | 4 |
+| Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. | 9 |
+| Dokumentet anger inte budet för denna hand. | 9 |
+| Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet. | 1 |
+| Osäkert fall | 0 |
 
-Summa: 47.
+Summa: 44.
 
 ## Första prioritering
 
-1. **Konkurrensbudgivning (26 poster).** De 13 posterna med första orsaken är särskilt värda att kontrollera mot dubblingslogiken; 9 poster gäller annan motståndarinblandning och 4 har flera motståndarbud i sekvensen. Befintliga exempel i `LOGG_BUDREGLER.md` som bör jämföras är Giv 7, 10, 13, 19, 21, 22, 24 och 25. Dessa exempel är inte automatiskt bevis för att samtliga 26 lägen har en fast regel.
-2. **Öppnarens återbud efter partnerns pass (10 poster).** Dessa är giltiga auktioner där öppnaren återkommer efter partnerns pass och motståndarnas inkliv. En kodkorrigering har tagit bort den felaktiga turordningsdiagnosen; själva återbudet är fortfarande ej täckt.
-3. **Handspecifika luckor (9 poster).** Dessa är koncentrerade till inklivstemat och en allmän giv. De måste bedömas med full hand, budhistorik och uttryckliga systemgränser; vi ska inte fylla dem med generella bridgeantaganden.
-4. **Svarshandens andra bud (1 post).** Isolerat fall efter 1 i färg och öppnarens återbud. Jämför med tidigare loggade exempel och bokregler innan kodning.
-5. **Osäkert fall (1 post).** Ska förbli ej täckt tills mer systemunderlag finns.
+1. **Konkurrensbudgivning och dubbling (21 positioner).** Tolv positioner gäller svar/fortsättning efter motståndarnas inkliv eller dubbling och nio gäller återbud från dubbleraren efter partners svar. De fyra fallen med flera motståndarbud är en separat försvarsgrupp och ska inte räknas som vanliga inkliv.
+2. **Öppnarens återbud efter partnerns pass (9 positioner).** Giltiga auktioner, men ingen generell återbudsregel kan utläsas ur varierande handtyper.
+3. **Handspecifika svar efter partnerns inkliv (9 positioner).** Dessa är svarshänder, inte egna inkliv. Den dokumenterade sexkortskravsregeln för 2-nivåinkliv gäller inte deras svar.
+4. **Öppnarens tredje bud efter svarshandens andra bud (1 position).** Diagnosen är nu korrekt, men budregeln saknas.
+5. **Osäkert fall (0).** Den tidigare osäkra splinterpositionen har nu lösts genom att splintergrenarna tagits bort och 3♠-invit används i stället för 3♥-splinter.
+
+## De 16 positionerna med dubbling i sekvensen
+
+### Svar efter att motståndaren dubblat vår öppning (3)
+- `dubbling-02-bid-3`: S:1D W:X N:P E:P S:P
+- `dubbling-04-bid-3`: N:1D E:X S:P W:2N N:P E:P S:P
+- `dubbling-09-bid-3`: S:1H W:X N:P E:3S S:P W:P N:P
+
+### Dubblerarens återbud efter partners svar (8)
+- `dubbling-01-bid-6`: W:1D N:X E:P S:1S W:P N:P E:P
+- `dubbling-03-bid-6`: W:1D N:X E:P S:1H W:P N:P E:P
+- `dubbling-05-bid-6`: E:1H S:X W:P N:2D E:P S:P W:P
+- `dubbling-06-bid-6`: E:1C S:X W:P N:1D E:P S:P W:P
+- `dubbling-07-bid-6`: E:1H S:X W:P N:2D E:P S:P W:P
+- `dubbling-08-bid-6`: W:1C N:X E:P S:1H W:P N:P E:P
+- `dubbling-10-bid-6`: E:1H S:X W:P N:2C E:P S:P W:P
+- `inkliv-09-bid-6`: E:1D S:X W:P N:1S E:P S:P W:P
+
+### Fortsättning efter ytterligare motståndarinblandning (2)
+- `dubbling-04-bid-7`: N:1D E:X S:P W:2N N:P E:P S:P
+- `dubbling-09-bid-7`: S:1H W:X N:P E:3S S:P W:P N:P
+
+### Övriga passpositioner i dubblingssekvenser (3)
+- `dubbling-02-bid-5`: S:1D W:X N:P E:P S:P
+- `dubbling-04-bid-5`: N:1D E:X S:P W:2N N:P E:P S:P
+- `dubbling-09-bid-5`: S:1H W:X N:P E:3S S:P W:P N:P
+
+Dessa är fyra olika situationer. De ska inte generaliseras till en enda dubblingsregel. `respDouble()` för svar på partnerns upplysningsdubbling täcker inte automatiskt svar när motståndarna dubblar vår öppning eller dubblerarens återbud efter partners svar.
+
+## Alla 44 exakta positioner
+
+HCP och fördelning avser handen hos spelaren vars Pass inte täcks. Fördelningen visas ♠/♥/♦/♣.
+
+| Case | Spelare | HCP | Fördelning | Auktion | Diagnos |
+|---|---|---:|---|---|---|
+| alla-01-bid-9 | S | 13 | ♠1 ♥4 ♦3 ♣5 | 1C P 1S P 2C P 2N P P P | Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet. |
+| alla-02-bid-5 | S | 6 | ♠5 ♥1 ♦1 ♣6 | P 2H 2N P P P | Dokumentet anger inte budet för denna hand. |
+| alla-05-bid-5 | N | 5 | ♠5 ♥4 ♦2 ♣2 | P 1C P 1S P 2C P 5C P P P | Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. |
+| alla-05-bid-7 | S | 5 | ♠2 ♥2 ♦6 ♣3 | P 1C P 1S P 2C P 5C P P P | Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. |
+| alla-05-bid-9 | N | 5 | ♠5 ♥4 ♦2 ♣2 | P 1C P 1S P 2C P 5C P P P | Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. |
+| alla-05-bid-11 | S | 5 | ♠2 ♥2 ♦6 ♣3 | P 1C P 1S P 2C P 5C P P P | Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet. |
+| stenberg-03-bid-3 | S | 12 | ♠4 ♥2 ♦2 ♣5 | 1S 3D P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| stenberg-03-bid-5 | N | 13 | ♠4 ♥3 ♦4 ♣2 | 1S 3D P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| slam-02-bid-3 | N | 10 | ♠4 ♥4 ♦2 ♣3 | 1H 2S P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| slam-02-bid-5 | S | 19 | ♠0 ♥5 ♦5 ♣3 | 1H 2S P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| trumf-02-bid-3 | N | 6 | ♠3 ♥5 ♦1 ♣4 | 1H 1S P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| trumf-02-bid-5 | S | 12 | ♠3 ♥5 ♦0 ♣5 | 1H 1S P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| trumf-05-bid-3 | S | 4 | ♠3 ♥0 ♦5 ♣5 | 1C 1H P 2C P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| trumf-05-bid-5 | N | 14 | ♠4 ♥3 ♦1 ♣5 | 1C 1H P 2C P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| trumf-05-bid-7 | S | 4 | ♠3 ♥0 ♦5 ♣5 | 1C 1H P 2C P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| tvafarg-02-bid-3 | N | 6 | ♠2 ♥4 ♦2 ♣5 | 1S 3C P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| tvafarg-02-bid-5 | S | 13 | ♠5 ♥3 ♦4 ♣1 | 1S 3C P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| tvafarg-05-bid-3 | N | 10 | ♠5 ♥3 ♦4 ♣1 | 1C 1S P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| tvafarg-05-bid-5 | S | 13 | ♠1 ♥4 ♦0 ♣8 | 1C 1S P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| dubbling-01-bid-6 | N | 19 | ♠4 ♥4 ♦1 ♣4 | 1D Dbl P 1S P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-02-bid-3 | N | 11 | ♠5 ♥4 ♦0 ♣4 | 1D Dbl P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-02-bid-5 | S | 12 | ♠3 ♥3 ♦4 ♣3 | 1D Dbl P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| dubbling-03-bid-6 | N | 12 | ♠7 ♥3 ♦0 ♣3 | 1D Dbl P 1H P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-04-bid-3 | S | 4 | ♠4 ♥4 ♦3 ♣2 | 1D Dbl P 2N P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-04-bid-5 | N | 13 | ♠2 ♥3 ♦5 ♣3 | 1D Dbl P 2N P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| dubbling-04-bid-7 | S | 4 | ♠4 ♥4 ♦3 ♣2 | 1D Dbl P 2N P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-05-bid-6 | S | 15 | ♠4 ♥1 ♦4 ♣4 | 1H Dbl P 2D P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-06-bid-6 | S | 14 | ♠4 ♥4 ♦3 ♣2 | 1C Dbl P 1D P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-07-bid-6 | S | 13 | ♠3 ♥2 ♦4 ♣4 | 1H Dbl P 2D P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-08-bid-6 | N | 12 | ♠3 ♥4 ♦4 ♣2 | 1C Dbl P 1H P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-09-bid-3 | N | 2 | ♠1 ♥2 ♦8 ♣2 | 1H Dbl P 3S P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-09-bid-5 | S | 14 | ♠2 ♥6 ♦0 ♣5 | 1H Dbl P 3S P P P | Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet. |
+| dubbling-09-bid-7 | N | 2 | ♠1 ♥2 ♦8 ♣2 | 1H Dbl P 3S P P P | Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet. |
+| dubbling-10-bid-6 | S | 13 | ♠4 ♥2 ♦3 ♣4 | 1H Dbl P 2C P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| inkliv-01-bid-4 | N | 4 | ♠4 ♥1 ♦4 ♣4 | 1C 1H P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-02-bid-6 | N | 11 | ♠1 ♥6 ♦5 ♣1 | 1C 1H P 3H P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| inkliv-03-bid-4 | N | 4 | ♠4 ♥5 ♦1 ♣3 | 1S 2C P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-04-bid-4 | S | 6 | ♠5 ♥3 ♦3 ♣2 | 1S 3D P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-05-bid-4 | S | 8 | ♠1 ♥5 ♦4 ♣3 | 1C 1H P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-06-bid-4 | S | 9 | ♠6 ♥1 ♦1 ♣5 | 1S 3H P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-07-bid-4 | S | 6 | ♠3 ♥5 ♦3 ♣2 | 1C 2S P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-08-bid-4 | N | 9 | ♠3 ♥3 ♦3 ♣4 | 1D 3C P P P | Dokumentet anger inte budet för denna hand. |
+| inkliv-09-bid-6 | S | 14 | ♠4 ♥3 ♦2 ♣4 | 1D Dbl P 1S P P P | Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet. |
+| inkliv-10-bid-4 | N | 7 | ♠5 ♥2 ♦1 ♣5 | 1C 1H P P P | Dokumentet anger inte budet för denna hand. |
 
 ## Vad som inte har ändrats
 
 - Ingen grundsystemregel har lagts till eller ändrats.
 - Ingen kompletterande regel har godkänts.
-- Inga analysnoder har lagts till på basis av dessa pass.
+- Ingen av de kvarvarande passen har omklassificerats till fel.
 - DDS har inte använts för att avgöra buden.
+- Den gamla splinterpositionen `trumf-04-bid-7` finns inte längre bland de ej täckta fallen efter rättningen.
 
 ## Underlag
 
-- `testdata/uncovered_cases_47.json`: exakta händer, auktioner, positioner och rättningsmotivering.
+- `testdata/uncovered_cases_47.json` (legacy-filnamn): aktuell lista med 44 positioner.
 - `testdata/theme_deals_140.json`: fullständiga givare och referensauktioner.
 - `LOGG_BUDREGLER.md`: tidigare dokumenterade testobservationer och uttryckliga systemkrav.
-
-Nästa steg är att jämföra de 26 konkurrensfallen mot loggens konkreta givexempel och regeltexter, och därefter formulera testbara kandidater. Ingen kodändring ska göras förrän ett handvillkor och en regelkälla är tydliga.
-
-
-## Fördjupning: de 16 ej täckta positionerna med dubbling i sekvensen
-
-Dessa 16 positioner ska inte behandlas som en enda regeltyp. Budsekvenserna visar minst fyra olika situationer:
-
-### A. Svar efter att motståndaren dubblat partnerns öppning (3 positioner)
-- `dubbling-02-bid-3`: S:1D W:X N:P; position Norr, Pass.
-- `dubbling-04-bid-3`: N:1D E:X S:P; position Syd, Pass.
-- `dubbling-09-bid-3`: S:1H W:X N:P; position Norr, Pass.
-
-Detta är inte samma situation som svar på partnerns upplysningsdubbling. I rättningsmotorns nuvarande dispatch finns `respDouble()` för svar när partnern har dubblat motståndarnas öppning. Den täcker inte automatiskt svarshandens val efter att motståndaren har dubblat vår öppning. Vi behöver kontrollera om systemet föreskriver redubbling, naturliga svar eller andra prioriteringar innan en sådan gren byggs.
-
-### B. Dubblerarens återbud efter partners svar (8 positioner)
-- `dubbling-01-bid-6`: W:1D N:X E:P S:1S W:P N:P; position Norr, Pass.
-- `dubbling-03-bid-6`: W:1D N:X E:P S:1H W:P N:P; position Norr, Pass.
-- `dubbling-05-bid-6`: E:1H S:X W:P N:2D E:P S:P; position Syd, Pass.
-- `dubbling-06-bid-6`: E:1C S:X W:P N:1D E:P S:P; position Syd, Pass.
-- `dubbling-07-bid-6`: E:1H S:X W:P N:2D E:P S:P; position Syd, Pass.
-- `dubbling-08-bid-6`: W:1C N:X E:P S:1H W:P N:P; position Norr, Pass.
-- `dubbling-10-bid-6`: E:1H S:X W:P N:2C E:P S:P; position Syd, Pass.
-- `inkliv-09-bid-6`: E:1D S:X W:P N:1S E:P S:P; position Syd, Pass.
-
-Det här är återbud från den spelare som först dubblade, efter att partnern har svarat och motståndarna har passat. Rättningsmotorn lämnar dessa som ej täckta. De ska granskas utifrån dubblerarens ursprungliga hand, partnerns svarsfärg och om pass från öppningssidan är en del av sekvensen.
-
-### C. Fortsättning efter ytterligare motståndarinblandning (2 positioner)
-- `dubbling-04-bid-7`: N:1D E:X S:P W:2N N:P E:P S:P; position Syd, Pass.
-- `dubbling-09-bid-7`: S:1H W:X N:P E:3S S:P W:P N:P; position Norr, Pass.
-
-Här har motståndarna lagt ett nytt bud efter den första dubblingen och partnerskapet måste ompröva. Detta är skilt från ett ostört återbud efter dubbling.
-
-### D. Övriga passpositioner i dubblingssekvenser (3 positioner)
-- `dubbling-02-bid-5`: S:1D W:X N:P E:P S:P; position Syd, Pass.
-- `dubbling-04-bid-5`: N:1D E:X S:P W:2N N:P; position Norr, Pass.
-- `dubbling-09-bid-5`: S:1H W:X N:P E:3S S:P; position Syd, Pass.
-
-De här positionerna är pass efter varierande motståndarsvar/fortsättningar. De kräver samma exakta sekvenskontroll och ska inte generaliseras från A–C.
-
-**Kodobservation:** `nodeForRaw()` har en särskild dispatch för `oppBefore`, men går till en generell ej täckt-nod när motståndarinblandningen inte matchar dess snäva mönster. Det förklarar varför flera olika fortsättningar hamnar i samma generiska feltext. Det är en täckningsbegränsning, inte belägg för att passen är rätt eller fel.
-
-**Nästa regelgranskning:** separera (1) svar efter motståndarnas dubbling av vår öppning, (2) återbud efter partnerns svar på vår upplysningsdubbling, och (3) ny budgivning när motståndarna kliver in igen. För varje kategori måste vi hitta uttrycklig systemkälla och testhänder. Ingen regel ändras i detta steg.
-
-
-## Fördjupad granskning av konkurrens-/försvarsluckorna
-
-De 26 poster som i den första orsaksgrupperingen hamnade under motståndarnas bud har nu granskats mot `LOGG_BUDREGLER.md` och T29–T33. Förtydligande: 22 är egentliga konkurrens-/dubblingssituationer; fyra är försvarspass efter motståndarnas naturliga 1♣–1♠–2♣–5♣-sekvens. Rapporten `testdata/competition-gaps-26-audit.md` listar alla 26 positioner med handens HCP/fördelning och jämförelser med tidigare givexempel.
-
-Två tydliga handbaserade kandidater finns i T29–T33: `trumf-02-bid-3` matchar T29 men har en överlappning mellan 2♥ och spärrande 3♥ vid 6 HCP/fem hjärter; `trumf-05-bid-3` matchar T32:s 3♣-profil (4 HCP/fem klöver). Båda är fortfarande `analysis_only`. `dubbling-09-bid-3` (1♥–Dbl, 2 HCP/två hjärter) saknar ett definierat passalternativ i T33. Loggens Giv 7, 10, 13, 19, 21, 22, 24 och 25 ger strukturella jämförelser men ingen komplett regelkälla för de 26 fallen. Inga budregler har ändrats.
-
-
-**Ytterligare precisering av de nio senare återbuden:** åtta är återbud från den som gjort upplysningsdubblingen efter partnerns svar. `inkliv-02-bid-6` är i stället inklivarens återbud efter partnerns hoppstöd 3♥. Dessa kräver separata beslutsgrenar.
-
-
-## Separat inventering av återbud efter upplysningsdubbling
-
-Åtta fall där dubbleraren ska återkomma efter partnerns svar har fått en egen hand-/auktionsinventering i `testdata/double-rebid-8-audit.md`. Dubblerarens styrka varierar 12–19 HCP, partnerns 3–9 HCP och partnerns svarsfärger varierar. Loggens Giv 13 och 22 handlar om andra situationer och ger inte den saknade återbudsregeln. `inkliv-02-bid-6` har särskilts som ett nionde fall i den bredare gruppen: naturligt 1♥-inkliv följt av partnerns 3♥-hoppstöd, inte en upplysningsdubbling. Ingen regel eller rekommendation har lagts till.
-
-
-## Samlad dokumentation för de 47 täckningsluckorna
-
-Fördjupade delgranskningar finns nu:
-- `testdata/competition-gaps-26-audit.md` – 26 positioner där motståndarnas bud påverkar beslutet eller där vi försvarar mot deras naturliga budsekvens. Förtydligar att 22 är egentliga konkurrens-/dubblingssituationer och fyra är försvarspass efter naturlig öppning/svar.
-- `testdata/opener-rebid-after-pass-10-audit.md` – tio återbudslägen för öppnaren efter partnerns pass och motståndarnas inkliv.
-- `testdata/hand-specific-overcall-responses-9-audit.md` – nio svar på partnerns egna inkliv, uppdelade efter 1-, 2-, 3-nivå och 2NT.
-- `testdata/double-rebid-8-audit.md` – åtta återbud efter partnerns svar på upplysningsdubbling.
-
-`inkliv-02-bid-6` är en separat nionde senare återbudsposition: naturligt inkliv följt av partnerns hoppstöd 3♥. Den ska inte blandas ihop med upplysningsdubbling.
-
-Samtliga fyra nya delgranskningar har verifierats i GitHub Actions utan testfel. De är analysdokumentation; ingen av de 47 positionerna har omklassificerats och ingen ny systemregel har lagts till.
