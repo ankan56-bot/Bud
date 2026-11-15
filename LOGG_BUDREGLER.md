@@ -591,3 +591,16 @@ Matcharen har nu uttryckliga tester för tre överlapp som finns i det befintlig
 - En jämn hand med 5 spader kan passa både 1♠ och 1NT.
 
 Dessa har inte lösts genom påhittad prioritering. Matcharen visar samtliga kandidater och noterar att överenskommelsen saknar prioritet. Det kompletterande lagret har nu **9/9 godkända tester**.
+
+
+## Utökning av kompletterande konkurrensbudgivning
+
+Analysbibliotekets befintliga träd T29–T32 har nu också omvandlats till strukturerade kandidater:
+- 1♥–(1♠): höjning, cue-bid, spärrstöd, 1NT med spaderhåll och egen ruterfärg.
+- 1♠–(2♥): höjning, cue-bid, spärrstöd, 2NT med hjärterhåll och egen klöverfärg.
+- 1♦–(1♠): ruterstöd, cue-bid, spärrstöd, 1NT med spaderhåll och egen klöverfärg.
+- 1♣–(1♥): klöverstöd, cue-bid, spärrstöd, naturlig spader och 1NT med hjärterhåll.
+
+Det kompletterande lagret innehåller nu **25 kandidater** (5 efter 1♥–Dbl och 20 efter fyra naturliga inklivsekvenser). Alla är fortfarande `unreviewed` och får inte skriva över grundsystemet. Matcharen kontrollerar nu även stoppare med samma grundprincip som rättningsmotorn (E, Kx, Qxx, Jxxx).
+
+Testerna omfattar nu **15 fall** för det kompletterande lagret. De kontrollerar bland annat stöd, färglängd, styrka, jämn fördelning, stoppare och att sangbud utan stoppare inte matchar.
