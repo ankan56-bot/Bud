@@ -128,3 +128,30 @@ test("NT theme classification is evidence-based and preserves every hard rule", 
     assert.equal(deal.classification.status, "pending", deal.id);
   }
 });
+
+
+test("all first-bid 2C openings satisfy the strong-opening rule", () => {
+  const { api } = loadRuntime();
+  for (const deal of stored.deals) {
+    const firstBid = deal.bids.find(bid => bid.c !== "P");
+    if (!firstBid || firstBid.c !== "2C") continue;
+    const hand = deal.hands[firstBid.s];
+    const hcp = api.hpOf(hand);
+    const balanced = api.isBalanced ? api.isBalanced(hand) :
+      [api.shapeOf(hand).S, api.shapeOf(hand).H, api.shapeOf(hand).D, api.shapeOf(hand).C]
+        .sort((a, b) => b - a).join("") in { "4333": 1, "4432": 1, "5332": 1 };
+    assert.ok(hcp >= 22 || (hcp >= 20 && hcp <= 21 && !balanced),
+      deal.id + ": invalid 2C opening with " + hcp + " HCP");
+  }
+});
+
+test("the strong 2C theme consists only of 22+ HCP openings", () => {
+  const { api } = loadRuntime();
+  const deals = stored.deals.filter(deal => deal.theme === "tva");
+  assert.equal(deals.length, 10);
+  for (const deal of deals) {
+    const firstBid = deal.bids.find(bid => bid.c !== "P");
+    assert.equal(firstBid.c, "2C", deal.id);
+    assert.ok(api.hpOf(deal.hands[firstBid.s]) >= 22, deal.id);
+  }
+});
