@@ -182,7 +182,7 @@ var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: 
 
 function side(s){return s==='N'||s==='S'?0:1}
 function isBot(s,st){var humans=st&&Array.isArray(st.humanSeats)?st.humanSeats:['N','S'];return !humans.includes(s)}
-function humanSeatsForNewDeal(){return playerMode==='solo'?[seat==='S'?'S':'N']:['N','S']}
+function humanSeatsForNewDeal(){if(playerMode!=='solo')return ['N','S'];if(seat==='X'){seat='N';try{localStorage.setItem('bt_seat','N')}catch(e){}}return [seat==='S'?'S':'N']}
 function setPlayerMode(mode){playerMode=mode==='solo'?'solo':'partner';try{localStorage.setItem('bt_player_mode',playerMode)}catch(e){}render()}
 function partner(s){return SEATS[(SEATS.indexOf(s)+2)%4]}
 function rank(c){return (+c[0])*5+SU.indexOf(c[1])}
