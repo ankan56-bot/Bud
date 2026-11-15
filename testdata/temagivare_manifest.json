@@ -356,11 +356,11 @@
       "auctionValidationErrors": 0,
       "previousCoveragePercent": 88.7,
       "previousUncovered": 68,
-      "regressionTestCount": 54,
-      "regressionTestsPassed": 54
+      "regressionTestCount": 55,
+      "regressionTestsPassed": 55
     },
-    "regressionTestCount": 54,
-    "regressionTestsPassed": 54,
+    "regressionTestCount": 55,
+    "regressionTestsPassed": 55,
     "supplementaryCandidatePath": "kompletterande_budlogik.json",
     "supplementaryCandidateCount": 5,
     "supplementaryApprovalStatus": "unreviewed",
