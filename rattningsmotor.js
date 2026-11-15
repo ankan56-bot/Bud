@@ -385,8 +385,11 @@ var Rattning = (function(){
   }
 
   /* ––––– SVAG TVÅA (Plus) ––––– */
-  function resp2w(h,oc){
+  function resp2w(h,oc,openerCards){
     var o=st_(oc),L=h.L,hp=h.hp,exp,why,alt=[];
+    var opener=openerCards?H(openerCards):null;
+    var fit=opener?L[o]+opener.L[o]:0;
+    var jointPoints=opener&&fit>=8?partnershipPoints(h,opener,o):0;
     var newSuits=SU.filter(function(s){return s!==o&&L[s]>=5;})
       .sort(function(a,b){if(L[b]!==L[a])return L[b]-L[a];return SU.indexOf(b)-SU.indexOf(a);});
     var preempt=hp<=8&&L[o]>=3;
@@ -394,10 +397,28 @@ var Rattning = (function(){
     var means=function(c){
       if(c==='3'+o)return 'Spärrande höjning: minst 3 korts stöd, ej invit.';
       if(c==='2N')return 'Invit: 9-10 hp och minst 2 korts stöd.';
+      if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
+      if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
       if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
       if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, krav till minst 3 i öppningsfärgen.';
       return null;
     };
+    // Med etablerad fit väger gemensam spelstyrka före svaga svarsalternativ.
+    // 33+ spelpoäng och minst 10 trumf motiverar lillslam; annars gäller
+    // 26+ i högfärg respektive 28+ i lågfärg för utgång.
+    if(opener && !newSuits.length && fit>=8){
+      if(fit>=10 && jointPoints>=33){
+        exp='6'+o;
+        why=fit+'-korts fit i '+SYM[o]+' och '+jointPoints+' gemensamma spelpoäng: lillslam ska undersökas.';
+        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa / slam',soft:false};
+      }
+      var gameThreshold=maj(o)?26:28;
+      if(jointPoints>=gameThreshold){
+        exp=maj(o)?'4'+o:'5'+o;
+        why=fit+'-korts fit i '+SYM[o]+' och '+jointPoints+' gemensamma spelpoäng: utgång enligt '+gameThreshold+'-poängsgränsen.';
+        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};
+      }
+    }
     if(newSuits.length>1){
       return NC('Handen har flera egna 5+ färger efter svag tvåa. REF anger ingen prioritet mellan färgerna; välj inte en färg enbart utifrån intern sorteringsordning.');
     }
@@ -1158,6 +1179,11 @@ var Rattning = (function(){
       var openerShowsTwoSuits = isBid(ours[2].c) &&
         ours[2].c[1] !== s1 && ours[2].c[1] !== 'N' &&
         h.L[s1] >= 4 && h.L[ours[2].c[1]] >= 4;
+      if(d===4 && opener && ours[0].c==='1C' && ours[1].c==='1D' &&
+         ours[2].c==='2C' && ours[3].c==='2N' && h.stop('H')){
+        return {exp:'3H',alt:[],why:'Håll i hjärter visas med 3♥ efter 1♣–1♦–2♣–2NT. Budet är utgångskrav.',
+          means:function(c){return c==='3H'?'Visar hjärterhåll; utgångskrav.':null},conv:'hållvisning',soft:false};
+      }
       if(d===4 && opener && ours[3].c==='2N' && openerShowsTwoSuits){
         var invitePartner=H(st.hands[pt]);
         var inviteHcp=h.hp+invitePartner.hp;
@@ -1237,7 +1263,7 @@ var Rattning = (function(){
       return nc('Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.');
     }
     if(/^2[DHS]$/.test(c1)){
-      if(!opener&&d===1)return resp2w(h,c1);
+      if(!opener&&d===1)return resp2w(h,c1,st.hands[pt]);
       if(opener&&d===2)return open2w(h,c1,ours[1].c);
       return nc('Fortsättningen efter svag tvåa beskrivs inte i dokumentet.');
     }
@@ -1369,7 +1395,8 @@ var Rattning = (function(){
       'Fjärde färg':'Fjärde färg är ett konstgjort utgångskrav som lovar minst 13 hp. Det berättar ingenting om färgen man bjuder, utan ber partnern beskriva sin hand ytterligare.',
       'spärr':'Spärrbudet visar en lång färg och begränsad styrka. Ny färg är krav. 3NT kan vara rätt slutbud om partnern har en lång lågfärg.',
       'splinter':'Splinterbudet visar singel/renons i den bjudna färgen, 4+ trumfstöd och 19-21 stp. Efter splinter kan SH bjuda 3M (slamintresse) eller 4M (minimum).',
-      'överbud':'Överbud (Cuebid) i motståndarens färg visar 10+ hp och 3+ trumfstöd. Det är ett kravbud.'
+      'överbud':'Överbud (Cuebid) i motståndarens färg visar 10+ hp och 3+ trumfstöd. Det är ett kravbud.',
+      'hållvisning':'3♥ visar håll i hjärter efter 1♣–1♦–2♣–2NT. Budet är utgångskrav.'
     };
     var detail=extra[conv]||'Budets betydelse ska läsas tillsammans med den föregående budgivningen.';
     return short ? short+'\n\n'+detail : detail;
@@ -1591,9 +1618,20 @@ var Rattning = (function(){
           }
         }
       }
+      if(!agreed && node && node.conv && node.conv.indexOf('svag tvåa')===0){
+        for(var wi=0;wi<=i;wi++){
+          if(side(bids[wi].s)===side(b.s) && /^2[DHS]$/.test(bids[wi].c)){
+            var weakSuit=st_(bids[wi].c);
+            if(hand.L[weakSuit]+partnerHand.L[weakSuit]>=8)agreed=weakSuit;
+            break;
+          }
+        }
+      }
+      var agreedFit=agreed?hand.L[agreed]+partnerHand.L[agreed]:0;
       item.hp=hand.hp;item.htp=handHps(hand,agreed);item.langd=hand.L;
-      if(agreed && hand.L[agreed]+partnerHand.L[agreed]>=8){
+      if(agreed && agreedFit>=8){
         item.handtyp='Trumfstöd ('+SYM[agreed]+')';
+        item.trumfstod=agreedFit+' kort i '+SYM[agreed];
       }else{
         var lens=[hand.L.C,hand.L.D,hand.L.H,hand.L.S].sort(function(a,b){return b-a});
         if(hand.bal)item.handtyp='Jämn fördelning ('+hand.shape+')';
@@ -1601,13 +1639,33 @@ var Rattning = (function(){
         else if(lens[0]>=5&&lens[1]>=4)item.handtyp='Tvåfärgshand';
         else item.handtyp='Obalanserad hand';
       }
+      if(node && node.exp){
+        var jointHcp=hand.hp+partnerHand.hp;
+        var lengthBonus=agreedFit===9?1:agreedFit>=10?2:0;
+        var jointPlaying=agreedFit>=8?partnershipPoints(hand,partnerHand,agreed):jointHcp;
+        var distributionPoints=agreedFit>=8?jointPlaying-jointHcp-lengthBonus:0;
+        function handShapeText(x){return '♠'+x.L.S+' ♥'+x.L.H+' ♦'+x.L.D+' ♣'+x.L.C;}
+        item.nod={
+          konvention:node.conv||'övrigt',
+          rekommendation:txt(node.exp),
+          rekommendationskod:node.exp,
+          alternativ:(node.alt||[]).map(txt),
+          motivering:node.why||'',
+          betydelse:typeof node.means==='function'?(node.means(node.exp)||''):'',
+          regelstatus:node.soft?'Vägledande bedömning':'Systemregel',
+          hand:{hp:hand.hp,fordelning:handShapeText(hand)},
+          partner:{hp:partnerHand.hp,fordelning:handShapeText(partnerHand)},
+          gemensammaHp:jointHcp,
+          fit:agreedFit>=8?{farg:agreed,antal:agreedFit,gemensammaSpelpoang:jointPlaying,fordelningspoang:distributionPoints,langdBonus:lengthBonus}:null
+        };
+      }
       if(!(side(b.s)===1&&b.c==='P'))items.push(item);
     }
     var status=structural.ended?'Budgivningen är avslutad.':bids.length?'Budgivningen är inte avslutad – inväntar fler bud.':'Ingen budgivning registrerad.';
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.1'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.2'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;

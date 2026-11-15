@@ -24,6 +24,8 @@ jobs:
         run: node -e "JSON.parse(require('fs').readFileSync('analysbibliotek.json','utf8'))"
       - name: Run supplementary matcher tests
         run: node tests/supplementary-logic.test.js
+      - name: Verify manually approved undisturbed decisions and node analysis
+        run: node tests/ostord-manual-rules.test.js
       - name: Verify all fixed undisturbed deals
         run: node tests/ostord-coverage.test.js
       - name: Run first 100-deal undisturbed stress test
@@ -41,6 +43,7 @@ jobs:
             testdata/ostord_100_validation_latest.json
             testdata/ostord_200_validation_latest.json
             testdata/ostord_400_validation_latest.json
+            testdata/ostord_manual_rules_latest.json
 
   stress-400:
     runs-on: ubuntu-latest

@@ -678,6 +678,23 @@ function reviewHtml(st){
     if(it.bedomning==='fel'&&it.battre)h+='<p><b>Rekommenderat bud:</b> '+esc(it.battre)+'</p>';
     else if(it.bedomning==='valfritt'&&it.battre)h+='<p><b>Huvudalternativ:</b> '+esc(it.battre)+'</p>';
     if(it.motivering)h+='<p>'+esc(it.motivering)+'</p>';
+    if(it.nod){
+      var nd=it.nod;
+      h+='<details class="node-detail" style="margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg)">';
+      h+='<summary style="cursor:pointer;font-weight:700">Fördjupad handanalys · '+esc(nd.konvention)+'</summary>';
+      h+='<p><b>Beslutspunkt:</b> '+esc(nd.motivering)+'</p>';
+      h+='<p><b>Rekommenderat bud:</b> '+esc(nd.rekommendation)+(nd.alternativ.length?' · Alternativ: '+nd.alternativ.map(esc).join(', '):'')+'</p>';
+      h+='<p><b>Din hand:</b> '+esc(nd.hand.fordelning)+' ('+nd.hand.hp+' hp)</p>';
+      h+='<p><b>Partnerns hand:</b> '+esc(nd.partner.fordelning)+' ('+nd.partner.hp+' hp)</p>';
+      if(nd.fit){
+        h+='<p><b>Fit:</b> '+nd.fit.antal+' kort i '+SYM[nd.fit.farg]+' · <b>Gemensamma spelpoäng:</b> '+nd.fit.gemensammaSpelpoang+
+          ' (fördelning '+nd.fit.fordelningspoang+' + längdbonus '+nd.fit.langdBonus+')</p>';
+      }else{
+        h+='<p><b>Gemensamma honnörspoäng:</b> '+nd.gemensammaHp+'</p>';
+      }
+      if(nd.betydelse)h+='<p><b>Systembetydelse:</b> '+esc(nd.betydelse)+'</p>';
+      h+='<p class="mu">'+esc(nd.regelstatus)+'</p></details>';
+    }
  
     h+='</article>';
   });
