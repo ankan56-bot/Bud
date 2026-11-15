@@ -340,7 +340,7 @@ test("stale room presence history cannot reclaim seats after reconnect", () => {
 test("room seat claims cannot exceed the configured participant count", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   const start = html.indexOf("function roomSeatOwners()");
-  const end = html.indexOf("\\nfunction claimRoomSeat", start);
+  const end = html.indexOf("\nfunction claimRoomSeat", start);
   assert.ok(start >= 0 && end > start, "room seat claim helpers should exist");
   const now = 1_800_000_000_000;
   function allowed(count, playerId, players, seat) {
