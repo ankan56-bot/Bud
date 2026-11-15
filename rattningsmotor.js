@@ -959,7 +959,21 @@ var Rattning = (function(){
       var afterMyAsk=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c)});
       if(afterMyAsk.length){
         var response=afterMyAsk[0].c;
-        if(isBid(b.c)||b.c==='P')return rkcNextStep(h,rkcTrumpFromAuction(prior,side(me)),response);
+        var agreedTrump=rkcTrumpFromAuction(prior,side(me));
+        // Nordisk standard s. 7: efter ett dubbeltydigt 5C/5D-svar,
+        // om svarshanden därefter går ned i 5 i trumf, bjuder frågeställaren
+        // 6 i trumf med 3 eller 4 egna ess.
+        var retreatToTrump=afterMyAsk.length>=2&&
+          /^5[CD]$/.test(response)&&
+          afterMyAsk[1].c==='5'+agreedTrump&&
+          h.aces>=3;
+        if(retreatToTrump&&(b.c==='6'+agreedTrump||isBid(b.c)||b.c==='P')){
+          return {exp:'6'+agreedTrump,alt:[],
+            why:'Efter det dubbeltydiga '+response+'-svaret har svarshanden gått ned i 5'+agreedTrump+'. Med '+h.aces+' egna ess anger Nordisk standard s. 7 att frågeställaren ska bjuda 6'+agreedTrump+'.',
+            means:function(c){return c==='6'+agreedTrump?'6 i fastställd trumf efter 5C/5D-svar och partnerns återgång till 5 i trumf.':null},
+            conv:'Blackwood 5 ess'};
+        }
+        if(isBid(b.c)||b.c==='P')return rkcNextStep(h,agreedTrump,response);
       }
     }
 
