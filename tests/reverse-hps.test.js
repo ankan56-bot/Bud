@@ -869,7 +869,7 @@ function assessReverse(shape, honors) {
 // Two side singletons after Stenberg also have no documented priority.
 {
   const item = assessStenbergOpener(
-    { C: 1, D: 1, H: 4, S: 7 },
+    { C: 1, D: 1, H: 6, S: 5 },
     { H: [14, 13], S: [14, 12], D: [11] },
     '3C'
   );
