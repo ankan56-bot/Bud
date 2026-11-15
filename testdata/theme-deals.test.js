@@ -251,6 +251,8 @@ test("Stenberg opener shows 15+ HTP without a singleton", () => {
   assert.equal(node.conv, "Stenberg");
   assert.equal(node.exp, "3H");
   assert.match(node.why, /15\+ stp/);
+  assert.match(node.means("3H"), /15\+ htp/);
+  assert.match(node.means("3N"), /12-14 hp/);
 });
 
 test("Stenberg counts HCP plus support points only after 4+ trump support", () => {
