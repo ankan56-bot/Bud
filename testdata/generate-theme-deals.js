@@ -134,14 +134,17 @@ function makeReferenceAuction(deal, api, Rattning) {
   if (structural.errors.length) {
     throw new Error("Invalid reference auction: " + JSON.stringify(structural.errors));
   }
-  // The first non-pass call is the opening bid. 1NT is never an opening
-  // outside the documented 15-17 HCP balanced range.
+  // Hard opening constraints: never allow the reference auction to
+  // normalize an out-of-range or unbalanced NT opening.
   const firstBid = state.bids.find(bid => bid.c !== "P");
-  if (firstBid && firstBid.c === "1N") {
+  if (firstBid && (firstBid.c === "1N" || firstBid.c === "2N")) {
     const openingHand = state.hands[firstBid.s];
     const openingHcp = api.hpOf(openingHand);
-    if (openingHcp < 15 || openingHcp > 17 || !balanced(openingHand, api)) {
-      throw new Error("Invalid 1NT opening in " + deal.theme + ": " +
+    const validRange = firstBid.c === "1N"
+      ? openingHcp >= 15 && openingHcp <= 17
+      : openingHcp >= 20 && openingHcp <= 21;
+    if (!validRange || !balanced(openingHand, api)) {
+      throw new Error("Invalid " + firstBid.c + " opening in " + deal.theme + ": " +
         firstBid.s + " has " + openingHcp + " HCP and shape " +
         JSON.stringify(api.shapeOf(openingHand)));
     }
@@ -193,7 +196,7 @@ function generateDataset() {
         checks: {
           uniqueCards: uniqueCards.size, thirteenCardsPerSeat: true,
           themeCondition: true, quietModeCondition, auctionErrors: 0,
-          opening1NTValidated: true
+          openingNTValidated: true
         },
         correction: { version: Rattning.version, summary: judged.summary, items }
       };
@@ -221,7 +224,7 @@ function generateDataset() {
       dealsPerTheme: 10,
       modeDistribution: "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
       caseClassification: "unclassified; classification requires rule-boundary evidence",
-      opening1NT: "A first non-pass 1NT call is valid only with 15-17 HCP and a balanced 4333/4432/5332 hand."
+      openingNT: "A first non-pass 1NT call requires 15-17 HCP; a first non-pass 2NT call requires 20-21 HCP. Both require a balanced 4333/4432/5332 hand."
     },
     validation: {
       allDealsGenerated: true, noGenerationFailures: true,
