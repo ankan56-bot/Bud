@@ -190,7 +190,7 @@ var Rattning = (function(){
     else if(hp>=lo&&hp<gl&&!k){exp='2N';why=hp+' hp, balanserad utan 4-korts högfärg: invit 2NT.'}
     else if(hp>=gl){
       if(!k&&jointHp<26){exp='2N';why=hp+' hp och '+jointHp+' gemensamma honnörspoäng: invit 2NT eftersom 26 hp för sangutgång inte nås.';}
-      else{exp=n2;why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
+      else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
     else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){exp='2S';why='Dåliga kort med lång lågfärg: 2♠ (relä till 3 i lågfärg).'}
@@ -1091,7 +1091,7 @@ var Rattning = (function(){
     var c1=f,fs=c1[1]; // Deklareras nu här för att undvika bugg
 
     // Slut på en naturlig preferens till öppningsfärgen.
-    if(b.c==='P'&&opener&&d>=4&&isBid(ours[3].c)&&
+    if(b.c==='P'&&opener&&d>=4&&/^2[CDHS]$/.test(ours[3].c)&&
        st_(ours[3].c)===st_(ours[0].c)&&lv(ours[3].c)===2){
       return {exp:'P',alt:[],why:'Svarshanden har valt preferens till öppningsfärgen på 2-nivån. Pass är slutbud om inte den separata utgångs-/slamkontrollen visar tillräcklig styrka.',means:function(c){return c==='P'?'Pass efter preferens till öppningsfärgen.':null},conv:'preferens'};
     }
