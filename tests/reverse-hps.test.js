@@ -208,8 +208,8 @@ function assessReverse(shape, honors) {
 {
   const item = assessRaise(
     'C',
-    { C: 4, D: 2, H: 3, S: 4 },
-    { C: [14], S: [13], H: [11] },
+    { C: 4, D: 4, H: 3, S: 2 },
+    { C: [14], D: [13], H: [11] },
     '2C'
   );
   assert.equal(item.bedomning, 'rätt');
@@ -220,8 +220,8 @@ function assessReverse(shape, honors) {
 {
   const item = assessRaise(
     'C',
-    { C: 4, D: 1, H: 4, S: 4 },
-    { C: [14], S: [13], H: [11] },
+    { C: 4, D: 4, H: 3, S: 2 },
+    { C: [14], D: [13], H: [12] },
     '3C'
   );
   assert.equal(item.bedomning, 'rätt');
