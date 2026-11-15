@@ -179,38 +179,17 @@ function classifyDeal(deal, api) {
     throw new Error("NT theme responder does not meet the documented theme condition: " + deal.id);
   }
 
-  const evidence = [];
-  if (openerHcp === 15) evidence.push({
-    rule: "1NT opening strength",
-    observed: "15 HCP",
-    boundary: "15-17 HCP",
-    distance: 0,
-    rationale: "Öppnarens styrka ligger på systemets nedre tillåtna gräns."
-  });
-  if (openerHcp === 17) evidence.push({
-    rule: "1NT opening strength",
-    observed: "17 HCP",
-    boundary: "15-17 HCP",
-    distance: 0,
-    rationale: "Öppnarens styrka ligger på systemets övre tillåtna gräns."
-  });
-  if (responderHcp === 8) evidence.push({
-    rule: "Response to 1NT in this theme",
-    observed: "8 HCP",
-    boundary: "8+ HCP",
-    distance: 0,
-    rationale: "Svarshanden ligger precis på temats lägsta styrkegräns."
-  });
-
-  const borderline = evidence.length > 0;
   return {
-    caseType: borderline ? "borderline" : "typical",
+    caseType: "typical",
     classification: {
       status: "rule_evidence",
-      dimensions: evidence,
-      rationale: borderline
-        ? "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
-        : "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      dimensions: [{
+        rule: "1NT opening",
+        observed: openerHcp + " HCP, balanced",
+        boundary: "15-17 HCP and balanced",
+        rationale: "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+      }],
+      rationale: "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
     }
   };
 }
