@@ -66,19 +66,31 @@ function evaluateHandConditions(hand,conditions){
  if(c.balanced===true&&!["4333","4432","5332"].includes(Object.values(shape).sort((a,b)=>b-a).join("")))failures.push("Handen är inte balanserad enligt 4-3-3-3, 4-4-3-2 eller 5-3-3-2.");
  if(c.balanced===false&&["4333","4432","5332"].includes(Object.values(shape).sort((a,b)=>b-a).join("")))failures.push("Handen är balanserad men villkoret kräver obalanserad hand.");
  const manual=Array.isArray(c.manual)?c.manual.slice():[];
- if(failures.length)return {status:"no_match",matches:false,hcp,shape,failures,manual};
- if(manual.length)return {status:"manual_review",matches:null,hcp,shape,failures:[],manual};
+ if(manual.length)return {status:"manual_review",matches:null,hcp,shape,failures,manual};
+ if(failures.length)return {status:"no_match",matches:false,hcp,shape,failures,manual:[]};
+ if(!c.hcp&&!c.balanced&&!Object.keys(c.suitLengths||{}).length)return {status:"invalid_conditions",matches:null,hcp,shape,failures:[],manual:["Inga maskinellt verifierbara handvillkor finns."]};
  return {status:"match",matches:true,hcp,shape,failures:[],manual:[]};
 }
 // Post-deal analysis only: this reads the actual hand after the auction.
 function evaluateMatchedHand(match,bids,hands){
- if(!match||!match.node||!match.node.handConditions||!Array.isArray(bids)||!hands)return null;
+ if(!match||!match.node||!Array.isArray(bids)||!hands)return null;
  const calls=bids.filter(b=>b&&b.c!=="P");
- const index=match.length-1,entry=calls[index];
- if(!entry||normalizeCall(callText(entry.c))!==normalizeCall(match.node.sequence[match.node.sequence.length-1]))return null;
+ const sequenceCalls=(match.node.sequence||[]).filter(c=>normalizeCall(c)!=="Pass");
+ const index=match.length-1,entry=calls[index],last=sequenceCalls[sequenceCalls.length-1];
+ if(!entry||!last||normalizeCall(callText(entry.c))!==normalizeCall(last))return null;
  const hand=hands[entry.s];
  if(!hand)return null;
- return {seat:entry.s,...evaluateHandConditions(hand,match.node.handConditions)};
+ let conditions=match.node.handConditions||null,role=null;
+ if(match.node.handConditionsByRole){
+  const first=calls[0];
+  const partnerOf={N:"S",S:"N",E:"W",W:"E"};
+  if(first&&entry.s===first.s)role="opener";
+  else if(first&&partnerOf[first.s]===entry.s)role="responder";
+  if(!role)return null;
+  conditions=match.node.handConditionsByRole[role]||null;
+ }
+ if(!conditions)return null;
+ return {seat:entry.s,role,...evaluateHandConditions(hand,conditions)};
 }
 function lengths(hand){
  const L={S:0,H:0,D:0,C:0};(hand||[]).forEach(c=>{if(L[c[0]]!==undefined)L[c[0]]++});return L;
@@ -120,7 +132,7 @@ function buildReport(st,ruleResult,ddsResult){
   }
  }
  return {
-  version:"1.0.5",
+  version:"1.0.6",
   source:"Rattningsmotor v"+((global.Rattning&&global.Rattning.version)||"?")+" + analysbibliotek",
   ruleErrors:rules.errors,uncovered:rules.uncovered,optional:rules.optional,
   fits:fits,theoreticalFindings:findings,
@@ -173,7 +185,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.5",loadLibrary,findMatch,treeCompatible,evaluateHandConditions,evaluateMatchedHand,buildReport,analyze,
+ version:"1.0.6",loadLibrary,findMatch,treeCompatible,evaluateHandConditions,evaluateMatchedHand,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
