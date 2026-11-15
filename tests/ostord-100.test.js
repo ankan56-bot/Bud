@@ -128,7 +128,8 @@ console.log(JSON.stringify({
   uncovered: report.uncovered.length, coveragePercent: report.coveragePercent,
   exceptions: report.exceptions.length, illegalRecommendations: report.illegalRecommendations.length,
   invalidAuctions: report.invalidAuctions.length, unfinishedAuctions: report.unfinishedAuctions.length,
-  cardIntegrityErrors: report.cardIntegrityErrors.length
+  cardIntegrityErrors: report.cardIntegrityErrors.length,
+  uncoveredDetails: report.uncovered
 }, null, 2));
 
 assert.equal(report.cardIntegrityErrors.length, 0, 'All generated deals must contain 52 unique cards and four 13-card hands.');
