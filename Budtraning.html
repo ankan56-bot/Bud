@@ -182,7 +182,7 @@ var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: 
 
 function side(s){return s==='N'||s==='S'?0:1}
 function isBot(s,st){var humans=st&&Array.isArray(st.humanSeats)?st.humanSeats:['N','S'];return !humans.includes(s)}
-function humanSeatsForNewDeal(){if(playerMode!=='solo')return ['N','S'];if(seat==='X'){seat='N';try{localStorage.setItem('bt_seat','N')}catch(e){}}return [seat==='S'?'S':'N']}
+function humanSeatsForNewDeal(){if(playerMode!=='solo')return ['N','S'];if(seat==='X')return ['N','S'];return [SEATS.indexOf(seat)>=0?seat:'S']}
 function setPlayerMode(mode){playerMode=mode==='solo'?'solo':'partner';try{localStorage.setItem('bt_player_mode',playerMode)}catch(e){}render()}
 function partner(s){return SEATS[(SEATS.indexOf(s)+2)%4]}
 function rank(c){return (+c[0])*5+SU.indexOf(c[1])}
@@ -542,7 +542,7 @@ function strategicBotFallback(st,botSeat,node){
   return null;
 }
 function botCall(st,botSeat){
-  if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(botSeat)!==side(seat)))return R('P');
+  if(st.mode==='ostord'){var hs=st.humanSeats||['N','S'];if(!hs.some(function(h){return side(h)===side(botSeat)}))return R('P')}
   var trial=st.bids.concat([{s:botSeat,c:'P'}]);
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
@@ -859,7 +859,7 @@ function hpInfo(h){
   return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].join('-');
 }
 function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
-function setSeat(s){if(s===null&&state&&state.hands&&(state.humanSeats||['N','S']).length===1){alert('Du kan inte byta spelplats under en soloträningsgiv. Gå tillbaka till menyn först.');return}if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
+function setSeat(s){if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
 
 var pickL=null,pickS=null,pickO=null;
 function clr(){pickL=null;pickS=null;pickO=null;hintText=''}
@@ -892,9 +892,8 @@ function handBlock(st,me){
 function render(){
   if(!room){roomScreen();return}
   if(!seat){
-    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Vem sitter vid den här enheten?</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Norr</b><span>Du spelar Norr på den här enheten.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd på den här enheten.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Båda på en enhet</b><span>Du spelar både Norr och Syd på den här enheten.</span></button></div></div>';
-    document.getElementById('sN').onclick=function(){setSeat('N')};
-    document.getElementById('sS').onclick=function(){setSeat('S')};
+    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Välj vilken plats du vill spela från den här enheten.</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Nord</b><span>Du spelar Nord.</span></button><button id="sE" class="seatpick'+(lastSeat==='E'?' on':'')+'"><b>Öst</b><span>Du spelar Öst.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd.</span></button><button id="sW" class="seatpick'+(lastSeat==='W'?' on':'')+'"><b>Väst</b><span>Du spelar Väst.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Både Nord och Syd</b><span>Du spelar båda platserna på samma enhet.</span></button></div></div>';
+    ['N','E','S','W'].forEach(function(s){document.getElementById('s'+s).onclick=function(){setSeat(s)}});
     document.getElementById('sX').onclick=function(){setSeat('X')};
     return;
   }
@@ -914,7 +913,7 @@ function render(){
     return;
   }
   var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
-  var base='S',pos={l:'W',t:'N',r:'E'},x=ctx(st);
+  var pos={l:'W',t:'N',r:'E'},x=ctx(st);\n  function seatView(s){return s===me?handBlock(st,s):seatHtml(st,s,rel(s))}
   function rel(s){return s===partner(me)?'Partner':''}
   var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+'Rapportera giv'+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
@@ -924,7 +923,7 @@ function render(){
     h+='<section class="table end">'+seatHand('N','Norr')+seatHand('W','Väst')+'<div class="center">'+hbx+'</div>'+seatHand('E','Öst')+seatHand('S','Syd')+'</section>';
     h+='<div id="dds-review" class="card dds-panel"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   }else{
-    h+='<section class="table"><div class="seatT">'+(pos.t===me?handBlock(st,me):seatHtml(st,pos.t,rel(pos.t)))+'</div><div class="seatL">'+seatHtml(st,pos.l,rel(pos.l))+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatHtml(st,pos.r,rel(pos.r))+'</div><div class="mine">'+(base===me?handBlock(st,me):seatHtml(st,base,rel(base)))+'</div></section>';
+    h+='<section class="table"><div class="seatT">'+seatView('N')+'</div><div class="seatL">'+seatView('W')+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatView('E')+'</div><div class="mine">'+seatView('S')+'</div></section>';
   }
   h+='</div><aside class="side"><div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><p class="status" style="margin:0">Budgivning</p>'+(canUndo(st)?'<button id="undo" class="sm">Ångra mitt senaste bud</button>':'')+'</div><div class="ascroll">'+auctionHtml(st,end)+'</div></div>';
   if(end){
