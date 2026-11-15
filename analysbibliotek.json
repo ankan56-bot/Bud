@@ -1,6 +1,6 @@
 {
-  "version": "0.6.4",
-  "description": "Analysbibliotek med 44 budträd. Fortsatt utbyggnad av ostörd 1♥/1♠-budgivning och RKC 1430 efter Stenberg 2NT.",
+  "version": "0.6.5",
+  "description": "Analysbibliotek med 45 budträd. Ostörd 1♥/1♠-budgivning utvecklas vidare, inklusive Stenberg och RKC 1430.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -1086,7 +1086,8 @@
       "conditions": [
         "1♥ visar minst fem hjärter och öppningsstyrka",
         "3♥ är invithöjning i parets system",
-        "Svarshanden har normalt 10–12 hp och minst fyrkortsstöd"
+        "Svarshanden har normalt 10–12 HTP och minst fyrkortsstöd",
+        "Öppnaren accepterar till 4♥ endast vid minst 26 gemensamma spelpoäng; annars pass."
       ],
       "root": "t14_n0",
       "nodes": [
@@ -6938,6 +6939,67 @@
           "handProfile": {
             "opener": "Två nyckelkort med spaderdam.",
             "responder": "Stenberghand med minst fyra spader."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T45_1S_3S_INVIT",
+      "title": "Invithöjning till 3♠",
+      "tags": [
+        "1♠",
+        "3♠",
+        "invit",
+        "trumfstöd",
+        "utgång"
+      ],
+      "conditions": [
+        "1♠ visar minst fem spader och öppningsstyrka.",
+        "3♠ är invithöjning i parets system.",
+        "Svarshanden har normalt 10–12 HTP och minst fyrkortsstöd.",
+        "Öppnaren accepterar till 4♠ endast vid minst 26 gemensamma spelpoäng; annars pass."
+      ],
+      "root": "t45_s0",
+      "nodes": [
+        {
+          "id": "t45_s0",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar minst fyrkortsstöd och invitstyrka (normalt 10–12 HTP). Öppnaren accepterar bara om paret når 26 gemensamma spelpoäng.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Under 26 gemensamma spelpoäng – avslå inviten"
+            },
+            {
+              "call": "4♠",
+              "next": "t45_s1",
+              "label": "26+ gemensamma spelpoäng – acceptera inviten"
+            }
+          ],
+          "handProfile": {
+            "opener": "Öppningsstyrka, minst fem spader. Passar med färre än 26 gemensamma spelpoäng; accepterar med 26+.",
+            "responder": "Normalt 10–12 HTP och minst fyra spader."
+          }
+        },
+        {
+          "id": "t45_s1",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "3♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Öppnaren accepterar 3♠-inviten med 26+ gemensamma spelpoäng.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshand som tillsammans med svarshanden når 26+ gemensamma spelpoäng.",
+            "responder": "Invitstyrka med minst fyrkortsstöd."
           }
         }
       ]
