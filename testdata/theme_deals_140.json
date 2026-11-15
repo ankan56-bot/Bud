@@ -30,8 +30,8 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 590,
-      "ej_täckt": 43
+      "rätt": 594,
+      "ej_täckt": 37
     },
     "themeStats": {
       "alla": {
@@ -50,8 +50,8 @@
       },
       "stenberg": {
         "deals": 10,
-        "bids": 91,
-        "uncovered": 2,
+        "bids": 94,
+        "uncovered": 0,
         "optional": 0,
         "wrong": 0
       },
@@ -85,8 +85,8 @@
       },
       "trumf": {
         "deals": 10,
-        "bids": 74,
-        "uncovered": 5,
+        "bids": 78,
+        "uncovered": 1,
         "optional": 0,
         "wrong": 0
       },
@@ -257,7 +257,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -412,7 +413,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -551,7 +553,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -678,7 +681,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -845,7 +849,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1056,7 +1061,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1243,7 +1249,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1438,7 +1445,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1617,7 +1625,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1788,7 +1797,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1846,8 +1856,15 @@
       "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
-        "dimensions": [],
-        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+        "dimensions": [
+          {
+            "rule": "1NT opening",
+            "observed": "16 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+          }
+        ],
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "S",
       "hands": {
@@ -1960,7 +1977,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2018,8 +2036,15 @@
       "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
-        "dimensions": [],
-        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+        "dimensions": [
+          {
+            "rule": "1NT opening",
+            "observed": "16 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+          }
+        ],
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "N",
       "hands": {
@@ -2132,7 +2157,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2187,19 +2213,18 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "stord",
       "seed": 233215,
-      "caseType": "borderline",
+      "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
         "dimensions": [
           {
-            "rule": "1NT opening strength",
-            "observed": "15 HCP",
-            "boundary": "15-17 HCP",
-            "distance": 0,
-            "rationale": "Öppnarens styrka ligger på systemets nedre tillåtna gräns."
+            "rule": "1NT opening",
+            "observed": "15 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
           }
         ],
-        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "N",
       "hands": {
@@ -2312,7 +2337,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2370,8 +2396,15 @@
       "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
-        "dimensions": [],
-        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+        "dimensions": [
+          {
+            "rule": "1NT opening",
+            "observed": "16 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+          }
+        ],
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "N",
       "hands": {
@@ -2484,7 +2517,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2542,8 +2576,15 @@
       "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
-        "dimensions": [],
-        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+        "dimensions": [
+          {
+            "rule": "1NT opening",
+            "observed": "16 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+          }
+        ],
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "S",
       "hands": {
@@ -2656,7 +2697,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2711,19 +2753,18 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 256989,
-      "caseType": "borderline",
+      "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
         "dimensions": [
           {
-            "rule": "1NT opening strength",
-            "observed": "15 HCP",
-            "boundary": "15-17 HCP",
-            "distance": 0,
-            "rationale": "Öppnarens styrka ligger på systemets nedre tillåtna gräns."
+            "rule": "1NT opening",
+            "observed": "15 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
           }
         ],
-        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "N",
       "hands": {
@@ -2836,7 +2877,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2894,8 +2936,15 @@
       "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
-        "dimensions": [],
-        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+        "dimensions": [
+          {
+            "rule": "1NT opening",
+            "observed": "16 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+          }
+        ],
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "N",
       "hands": {
@@ -3008,7 +3057,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3066,8 +3116,15 @@
       "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
-        "dimensions": [],
-        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+        "dimensions": [
+          {
+            "rule": "1NT opening",
+            "observed": "16 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
+          }
+        ],
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "S",
       "hands": {
@@ -3180,7 +3237,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3235,26 +3293,18 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 280746,
-      "caseType": "borderline",
+      "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
         "dimensions": [
           {
-            "rule": "1NT opening strength",
-            "observed": "17 HCP",
-            "boundary": "15-17 HCP",
-            "distance": 0,
-            "rationale": "Öppnarens styrka ligger på systemets övre tillåtna gräns."
-          },
-          {
-            "rule": "Response to 1NT in this theme",
-            "observed": "8 HCP",
-            "boundary": "8+ HCP",
-            "distance": 0,
-            "rationale": "Svarshanden ligger precis på temats lägsta styrkegräns."
+            "rule": "1NT opening",
+            "observed": "17 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
           }
         ],
-        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "S",
       "hands": {
@@ -3367,7 +3417,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3422,19 +3473,18 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 288665,
-      "caseType": "borderline",
+      "caseType": "typical",
       "classification": {
         "status": "rule_evidence",
         "dimensions": [
           {
-            "rule": "1NT opening strength",
-            "observed": "17 HCP",
-            "boundary": "15-17 HCP",
-            "distance": 0,
-            "rationale": "Öppnarens styrka ligger på systemets övre tillåtna gräns."
+            "rule": "1NT opening",
+            "observed": "17 HCP, balanced",
+            "boundary": "15-17 HCP and balanced",
+            "rationale": "Handen uppfyller samtliga absoluta krav för en korrekt 1NT-öppning. En hand på 15 eller 17 hp är inte ett gränsfall i betydelsen tveksamt eller felaktigt bud."
           }
         ],
-        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+        "rationale": "Typisk giltig 1NT-giv: öppningshanden uppfyller systemets kompletta krav 15-17 hp och balanserad fördelning."
       },
       "dealer": "S",
       "hands": {
@@ -3547,7 +3597,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3600,8 +3651,180 @@
       "id": "stenberg-01",
       "theme": "stenberg",
       "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
-      "mode": "stord",
-      "seed": 845751,
+      "mode": "ostord",
+      "seed": 845768,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "S13",
+          "D4",
+          "H4",
+          "D8",
+          "H11",
+          "H13",
+          "H6",
+          "D14",
+          "H7",
+          "D12",
+          "H5",
+          "C9",
+          "D3"
+        ],
+        "E": [
+          "C4",
+          "C2",
+          "D11",
+          "S12",
+          "C12",
+          "S14",
+          "D9",
+          "S7",
+          "H8",
+          "C6",
+          "C10",
+          "C7",
+          "D10"
+        ],
+        "S": [
+          "C13",
+          "C5",
+          "H12",
+          "S2",
+          "S5",
+          "C3",
+          "S4",
+          "H10",
+          "H14",
+          "H3",
+          "H9",
+          "C8",
+          "C11"
+        ],
+        "W": [
+          "S3",
+          "H2",
+          "D7",
+          "C14",
+          "S11",
+          "S9",
+          "D5",
+          "D2",
+          "S8",
+          "S6",
+          "D13",
+          "D6",
+          "S10"
+        ]
+      },
+      "bids": [
+        {
+          "s": "N",
+          "c": "1H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "2N"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "3H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "4H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "7.3",
+        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Norr",
+            "bid": "1♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "13 hp med längsta färgen ♥ (6 kort): 1 i färg (12-19 hp)."
+          },
+          {
+            "nr": 3,
+            "seat": "Syd",
+            "bid": "2NT",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "13 htp med 4+ stöd: Stenberg 2NT (13+)."
+          },
+          {
+            "nr": 5,
+            "seat": "Norr",
+            "bid": "3♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "17 htp utan singel: 3 i färgen (16+ stp)."
+          },
+          {
+            "nr": 7,
+            "seat": "Syd",
+            "bid": "4♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "11-korts fit i ♥ och 32 gemensamma spelpoäng: utgång."
+          },
+          {
+            "nr": 9,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+          }
+        ]
+      }
+    },
+    {
+      "id": "stenberg-02",
+      "theme": "stenberg",
+      "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
+      "mode": "ostord",
+      "seed": 853687,
       "caseType": "unclassified",
       "classification": {
         "status": "pending",
@@ -3610,70 +3833,70 @@
       "dealer": "S",
       "hands": {
         "N": [
-          "S12",
-          "C5",
-          "C9",
-          "S14",
-          "H2",
-          "D5",
-          "H4",
+          "S8",
+          "H13",
           "C14",
+          "S3",
+          "H4",
+          "H2",
+          "S10",
+          "C7",
           "D14",
-          "C11",
-          "C10",
-          "C6",
-          "H7"
+          "S5",
+          "D9",
+          "S14",
+          "D2"
         ],
         "E": [
-          "D3",
-          "S9",
-          "D8",
-          "D12",
-          "D7",
+          "C6",
+          "H8",
           "H12",
-          "H6",
-          "H11",
+          "C10",
+          "H9",
+          "H14",
           "S2",
-          "D2",
-          "S5",
-          "H13",
-          "C4"
+          "H5",
+          "H7",
+          "D8",
+          "C2",
+          "C11",
+          "C5"
         ],
         "S": [
-          "D9",
-          "S6",
-          "S10",
-          "C3",
-          "D11",
-          "H14",
           "C13",
-          "S7",
+          "C3",
+          "S12",
+          "C4",
+          "H6",
           "S13",
-          "C7",
+          "S4",
+          "D11",
           "H10",
-          "C12",
-          "C8"
+          "D13",
+          "D7",
+          "S7",
+          "D5"
         ],
         "W": [
-          "D6",
-          "S11",
-          "S3",
-          "D13",
-          "H3",
-          "H9",
-          "C2",
-          "D4",
-          "H8",
           "D10",
-          "H5",
-          "S4",
-          "S8"
+          "D12",
+          "S9",
+          "H11",
+          "D3",
+          "H3",
+          "D6",
+          "S6",
+          "C8",
+          "C9",
+          "C12",
+          "S11",
+          "D4"
         ]
       },
       "bids": [
         {
           "s": "S",
-          "c": "1C"
+          "c": "1S"
         },
         {
           "s": "W",
@@ -3697,7 +3920,171 @@
         },
         {
           "s": "N",
-          "c": "6C"
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "7.3",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Syd",
+            "bid": "1♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "12 hp med längsta färgen ♠ (4 kort): 1 i färg (12-19 hp)."
+          },
+          {
+            "nr": 3,
+            "seat": "Norr",
+            "bid": "2NT",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "16 htp med 4+ stöd: Stenberg 2NT (13+)."
+          },
+          {
+            "nr": 5,
+            "seat": "Syd",
+            "bid": "3NT",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "12-15 hp, jämn hand eller utan singel: 3NT."
+          },
+          {
+            "nr": 7,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+          }
+        ]
+      }
+    },
+    {
+      "id": "stenberg-03",
+      "theme": "stenberg",
+      "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
+      "mode": "ostord",
+      "seed": 861606,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H12",
+          "S6",
+          "C5",
+          "D7",
+          "S2",
+          "D13",
+          "S13",
+          "C14",
+          "S7",
+          "S12",
+          "H10",
+          "S9",
+          "D9"
+        ],
+        "E": [
+          "D2",
+          "C4",
+          "H6",
+          "C6",
+          "D11",
+          "C12",
+          "D12",
+          "S4",
+          "C8",
+          "C9",
+          "H11",
+          "S8",
+          "H4"
+        ],
+        "S": [
+          "H14",
+          "C10",
+          "C11",
+          "S10",
+          "S5",
+          "S3",
+          "D4",
+          "D3",
+          "D8",
+          "S14",
+          "D14",
+          "H2",
+          "D10"
+        ],
+        "W": [
+          "H13",
+          "C13",
+          "D6",
+          "C2",
+          "D5",
+          "H9",
+          "H3",
+          "H7",
+          "C3",
+          "H5",
+          "H8",
+          "C7",
+          "S11"
+        ]
+      },
+      "bids": [
+        {
+          "s": "N",
+          "c": "1S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "2N"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "3S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "4S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "6S"
         },
         {
           "s": "E",
@@ -3718,46 +4105,55 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Syd",
-            "bid": "1♣",
+            "seat": "Norr",
+            "bid": "1♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "13 hp med längsta färgen ♣ (5 kort): 1 i färg (12-19 hp)."
+            "reason": "14 hp med längsta färgen ♠ (6 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
-            "seat": "Norr",
+            "seat": "Syd",
             "bid": "2NT",
             "grade": "rätt",
             "suggested": "",
-            "reason": "17 htp med 4+ stöd: Stenberg 2NT."
+            "reason": "15 htp med 4+ stöd: Stenberg 2NT (13+)."
           },
           {
             "nr": 5,
-            "seat": "Syd",
-            "bid": "3NT",
+            "seat": "Norr",
+            "bid": "3♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "12-15 hp, jämn hand eller utan singel: 3NT."
+            "reason": "16 htp utan singel: 3 i färgen (16+ stp)."
           },
           {
             "nr": 7,
-            "seat": "Norr",
-            "bid": "6♣",
+            "seat": "Syd",
+            "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 34 poäng (naturligt visad ♣-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "10-korts fit i ♠ och 33 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
+            "seat": "Norr",
+            "bid": "6♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+          },
+          {
+            "nr": 11,
             "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
@@ -3768,11 +4164,11 @@
       }
     },
     {
-      "id": "stenberg-02",
+      "id": "stenberg-04",
       "theme": "stenberg",
       "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
-      "mode": "stord",
-      "seed": 853670,
+      "mode": "ostord",
+      "seed": 869525,
       "caseType": "unclassified",
       "classification": {
         "status": "pending",
@@ -3781,64 +4177,64 @@
       "dealer": "S",
       "hands": {
         "N": [
-          "D7",
-          "D13",
-          "C8",
-          "H14",
-          "H2",
-          "H11",
-          "C13",
-          "S3",
-          "S4",
-          "D2",
-          "H12",
-          "C3",
-          "C6"
-        ],
-        "E": [
-          "C7",
-          "S9",
-          "H5",
-          "D11",
-          "H3",
-          "C10",
-          "C5",
-          "C11",
-          "S5",
-          "D8",
-          "S6",
-          "H9",
-          "S14"
-        ],
-        "S": [
-          "H7",
-          "H8",
-          "S12",
-          "H6",
-          "D12",
-          "C12",
-          "D10",
-          "D4",
-          "S7",
-          "H13",
-          "D6",
-          "S13",
-          "C4"
-        ],
-        "W": [
-          "S11",
-          "D5",
-          "C2",
-          "S10",
-          "C14",
-          "S2",
-          "C9",
-          "D14",
-          "H4",
           "D3",
           "H10",
+          "S3",
           "S8",
-          "D9"
+          "H12",
+          "H3",
+          "C12",
+          "S2",
+          "H11",
+          "S10",
+          "D13",
+          "H14",
+          "S12"
+        ],
+        "E": [
+          "D5",
+          "H8",
+          "D6",
+          "S9",
+          "C6",
+          "S5",
+          "D2",
+          "D9",
+          "D8",
+          "C2",
+          "C10",
+          "C9",
+          "H13"
+        ],
+        "S": [
+          "C14",
+          "H6",
+          "D7",
+          "C11",
+          "H5",
+          "D12",
+          "S7",
+          "S13",
+          "H4",
+          "D14",
+          "C4",
+          "S4",
+          "H9"
+        ],
+        "W": [
+          "D11",
+          "H2",
+          "S14",
+          "C8",
+          "C5",
+          "H7",
+          "S11",
+          "C13",
+          "S6",
+          "C3",
+          "C7",
+          "D4",
+          "D10"
         ]
       },
       "bids": [
@@ -3881,7 +4277,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3893,7 +4290,7 @@
             "bid": "1♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "12 hp med längsta färgen ♥ (4 kort): 1 i färg (12-19 hp)."
+            "reason": "14 hp med längsta färgen ♥ (4 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
@@ -3901,7 +4298,7 @@
             "bid": "2NT",
             "grade": "rätt",
             "suggested": "",
-            "reason": "14 htp med 4+ stöd: Stenberg 2NT (13+)."
+            "reason": "17 htp med 4+ stöd: Stenberg 2NT (13+)."
           },
           {
             "nr": 5,
@@ -3923,325 +4320,11 @@
       }
     },
     {
-      "id": "stenberg-03",
-      "theme": "stenberg",
-      "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
-      "mode": "stord",
-      "seed": 861589,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "D7",
-          "H3",
-          "H10",
-          "C4",
-          "S13",
-          "D10",
-          "C8",
-          "D14",
-          "D4",
-          "S12",
-          "H14",
-          "S5",
-          "S4"
-        ],
-        "E": [
-          "D3",
-          "H6",
-          "C2",
-          "C5",
-          "D13",
-          "D12",
-          "D6",
-          "H13",
-          "C10",
-          "S10",
-          "D8",
-          "H9",
-          "D9"
-        ],
-        "S": [
-          "S14",
-          "H8",
-          "C13",
-          "S3",
-          "C6",
-          "D5",
-          "H5",
-          "D11",
-          "C14",
-          "S8",
-          "S2",
-          "C3",
-          "C7"
-        ],
-        "W": [
-          "H12",
-          "S9",
-          "H2",
-          "C9",
-          "C12",
-          "S7",
-          "S11",
-          "H7",
-          "C11",
-          "S6",
-          "H11",
-          "H4",
-          "D2"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "1S"
-        },
-        {
-          "s": "E",
-          "c": "3D"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true
-      },
-      "correction": {
-        "version": "7.3",
-        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "1♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "13 hp med längsta färgen ♠ (4 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 2,
-            "seat": "Öst",
-            "bid": "3♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "ej_täckt",
-            "suggested": "",
-            "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
-          },
-          {
-            "nr": 5,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "ej_täckt",
-            "suggested": "",
-            "reason": "Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet."
-          }
-        ]
-      }
-    },
-    {
-      "id": "stenberg-04",
-      "theme": "stenberg",
-      "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
-      "mode": "stord",
-      "seed": 869508,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "S4",
-          "S12",
-          "H11",
-          "C2",
-          "C9",
-          "D13",
-          "H13",
-          "C13",
-          "H4",
-          "C11",
-          "S2",
-          "H2",
-          "C7"
-        ],
-        "E": [
-          "C8",
-          "C6",
-          "D10",
-          "H14",
-          "S10",
-          "H5",
-          "D11",
-          "D8",
-          "S8",
-          "S5",
-          "H7",
-          "D7",
-          "H10"
-        ],
-        "S": [
-          "C10",
-          "C3",
-          "H12",
-          "D5",
-          "S13",
-          "C5",
-          "C14",
-          "H3",
-          "D3",
-          "C4",
-          "D2",
-          "D12",
-          "S7"
-        ],
-        "W": [
-          "H9",
-          "H6",
-          "D6",
-          "C12",
-          "S11",
-          "D9",
-          "D14",
-          "S6",
-          "S14",
-          "H8",
-          "S9",
-          "D4",
-          "S3"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "1C"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "2N"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "3D"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "5C"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true
-      },
-      "correction": {
-        "version": "7.3",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "1♣",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "13 hp med längsta färgen ♣ (5 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "2NT",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "13 htp med 4+ stöd: Stenberg 2NT."
-          },
-          {
-            "nr": 5,
-            "seat": "Norr",
-            "bid": "3♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Singel i ♦: visa den på 3-nivå."
-          },
-          {
-            "nr": 7,
-            "seat": "Syd",
-            "bid": "5♣",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 30 poäng. 28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 9,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
-          }
-        ]
-      }
-    },
-    {
       "id": "stenberg-05",
       "theme": "stenberg",
       "themeTitle": "Stenberg 2NT (stöd i hög- och lågfärg)",
-      "mode": "stord",
-      "seed": 877427,
+      "mode": "ostord",
+      "seed": 877444,
       "caseType": "unclassified",
       "classification": {
         "status": "pending",
@@ -4250,64 +4333,64 @@
       "dealer": "N",
       "hands": {
         "N": [
-          "H2",
-          "H9",
-          "C14",
-          "D2",
-          "D9",
-          "S10",
-          "D13",
-          "H4",
           "C10",
-          "C7",
-          "H11",
+          "C2",
+          "D6",
+          "H5",
+          "H6",
+          "D13",
+          "D2",
+          "C14",
+          "S12",
+          "D10",
+          "S5",
           "D14",
-          "D6"
+          "S3"
         ],
         "E": [
+          "S7",
           "H3",
-          "C8",
-          "H6",
-          "S12",
-          "H13",
+          "S2",
+          "D4",
           "S13",
+          "C8",
+          "D9",
           "S8",
-          "D11",
-          "D5",
+          "H2",
+          "H10",
           "S14",
-          "C4",
-          "H7",
-          "H10"
+          "H8",
+          "S9"
         ],
         "S": [
-          "C2",
-          "H14",
-          "D3",
-          "S7",
-          "C11",
-          "S9",
-          "D10",
-          "C12",
+          "C6",
           "C13",
-          "C9",
+          "C4",
+          "D3",
+          "D8",
+          "H12",
+          "S6",
+          "D7",
+          "H14",
+          "C12",
+          "H7",
           "D12",
-          "C3",
-          "D7"
+          "C11"
         ],
         "W": [
-          "S5",
-          "H8",
-          "S2",
-          "S6",
-          "C5",
-          "H12",
-          "C6",
-          "D8",
+          "H11",
           "S11",
-          "D4",
-          "S3",
-          "H5",
-          "S4"
+          "S4",
+          "C3",
+          "H13",
+          "D11",
+          "C5",
+          "H4",
+          "C9",
+          "S10",
+          "H9",
+          "D5",
+          "C7"
         ]
       },
       "bids": [
@@ -4329,7 +4412,7 @@
         },
         {
           "s": "N",
-          "c": "3S"
+          "c": "3N"
         },
         {
           "s": "E",
@@ -4337,18 +4420,10 @@
         },
         {
           "s": "S",
-          "c": "5D"
+          "c": "P"
         },
         {
           "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
           "c": "P"
         }
       ],
@@ -4358,11 +4433,12 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -4370,7 +4446,7 @@
             "bid": "1♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "12 hp med längsta färgen ♦ (5 kort): 1 i färg (12-19 hp)."
+            "reason": "13 hp med längsta färgen ♦ (5 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
@@ -4378,27 +4454,19 @@
             "bid": "2NT",
             "grade": "rätt",
             "suggested": "",
-            "reason": "15 htp med 4+ stöd: Stenberg 2NT."
+            "reason": "16 htp med 4+ stöd: Stenberg 2NT."
           },
           {
             "nr": 5,
             "seat": "Norr",
-            "bid": "3♠",
+            "bid": "3NT",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Singel i ♠: visa den på 3-nivå."
+            "reason": "12-15 hp, jämn hand eller utan singel: 3NT."
           },
           {
             "nr": 7,
             "seat": "Syd",
-            "bid": "5♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 30 poäng. 28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 9,
-            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -4537,7 +4605,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4708,7 +4777,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4863,7 +4933,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5026,7 +5097,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5197,7 +5269,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5384,7 +5457,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5579,7 +5653,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5758,7 +5833,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5929,7 +6005,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6100,7 +6177,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6279,7 +6357,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6466,7 +6545,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6645,7 +6725,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6816,7 +6897,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6995,7 +7077,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7182,7 +7265,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7369,7 +7453,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7556,7 +7641,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7735,7 +7821,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7914,7 +8001,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8101,7 +8189,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8288,7 +8377,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8475,7 +8565,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8662,7 +8753,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8849,7 +8941,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9020,7 +9113,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9163,7 +9257,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9318,7 +9413,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9473,7 +9569,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9628,7 +9725,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9783,7 +9881,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9954,7 +10053,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10125,7 +10225,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10296,7 +10397,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10475,7 +10577,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10646,7 +10749,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10817,7 +10921,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10988,7 +11093,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11167,7 +11273,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11354,7 +11461,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11525,7 +11633,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11688,7 +11797,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11851,7 +11961,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12014,7 +12125,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12185,7 +12297,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12238,8 +12351,8 @@
       "id": "trumf-01",
       "theme": "trumf",
       "themeTitle": "Trumfstöd (stödbud i färg)",
-      "mode": "stord",
-      "seed": 531564,
+      "mode": "ostord",
+      "seed": 531581,
       "caseType": "unclassified",
       "classification": {
         "status": "pending",
@@ -12248,515 +12361,70 @@
       "dealer": "N",
       "hands": {
         "N": [
-          "S9",
-          "C3",
-          "D4",
-          "S3",
+          "S8",
+          "C14",
+          "H2",
+          "H8",
+          "S5",
+          "D7",
+          "C4",
           "S13",
-          "D10",
-          "S7",
-          "D14",
           "C13",
-          "C8",
-          "S11",
-          "H9",
-          "H12"
+          "C12",
+          "S14",
+          "S2",
+          "C11"
         ],
         "E": [
-          "S5",
-          "S6",
-          "D7",
-          "H14",
-          "D2",
-          "D12",
-          "D13",
-          "H11",
-          "H2",
-          "D8",
-          "C5",
+          "S9",
+          "H6",
+          "D14",
+          "D6",
+          "C9",
+          "D9",
+          "H12",
           "H10",
-          "H7"
+          "D11",
+          "S7",
+          "C6",
+          "H7",
+          "D5"
         ],
         "S": [
-          "S8",
-          "S4",
-          "H13",
-          "D9",
-          "S2",
-          "D5",
-          "C2",
-          "D11",
-          "C14",
-          "C9",
-          "S12",
-          "H8",
-          "H5"
-        ],
-        "W": [
-          "C4",
-          "C12",
-          "D3",
-          "H6",
-          "C10",
-          "H3",
-          "H4",
-          "D6",
-          "C6",
-          "S14",
+          "D4",
+          "D13",
+          "H11",
+          "D8",
+          "S3",
           "S10",
-          "C11",
+          "S12",
+          "S11",
+          "C5",
+          "H13",
+          "H4",
+          "D3",
           "C7"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "1S"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "2S"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true
-      },
-      "correction": {
-        "version": "7.3",
-        "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "1♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "13 hp med längsta färgen ♠ (5 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "2♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "10 htp med 4+ stöd i högfärgen: 2 i färgen (6-10 stp)."
-          },
-          {
-            "nr": 5,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "14 htp: högst 15, pass."
-          }
-        ]
-      }
-    },
-    {
-      "id": "trumf-02",
-      "theme": "trumf",
-      "themeTitle": "Trumfstöd (stödbud i färg)",
-      "mode": "stord",
-      "seed": 539483,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "S",
-      "hands": {
-        "N": [
-          "H9",
-          "H12",
-          "C5",
-          "D5",
-          "C7",
-          "H7",
-          "C13",
-          "H6",
-          "S10",
-          "S7",
-          "C6",
-          "S11",
-          "H3"
-        ],
-        "E": [
-          "C2",
-          "D6",
-          "S8",
-          "D7",
-          "D11",
-          "C9",
-          "D13",
-          "S6",
-          "C11",
-          "H11",
-          "D3",
-          "D9",
-          "D2"
-        ],
-        "S": [
-          "C10",
-          "H14",
-          "S12",
-          "S4",
-          "H8",
-          "H10",
-          "H4",
-          "C4",
-          "S3",
-          "C14",
-          "C8",
-          "C12",
-          "H2"
         ],
         "W": [
-          "S14",
-          "C3",
-          "H13",
-          "H5",
-          "D8",
-          "S5",
-          "S2",
-          "S13",
-          "D12",
-          "D10",
-          "D4",
-          "D14",
-          "S9"
-        ]
-      },
-      "bids": [
-        {
-          "s": "S",
-          "c": "1H"
-        },
-        {
-          "s": "W",
-          "c": "1S"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true
-      },
-      "correction": {
-        "version": "7.3",
-        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Syd",
-            "bid": "1♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "12 hp med längsta färgen ♥ (5 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 2,
-            "seat": "Väst",
-            "bid": "1♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
-          },
-          {
-            "nr": 3,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "ej_täckt",
-            "suggested": "",
-            "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
-          },
-          {
-            "nr": 5,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "ej_täckt",
-            "suggested": "",
-            "reason": "Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet."
-          }
-        ]
-      }
-    },
-    {
-      "id": "trumf-03",
-      "theme": "trumf",
-      "themeTitle": "Trumfstöd (stödbud i färg)",
-      "mode": "stord",
-      "seed": 547402,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "C13",
-          "D5",
-          "C10",
-          "D7",
-          "D6",
-          "S7",
-          "C3",
-          "D12",
-          "D9",
-          "H13",
-          "C12",
-          "S13",
-          "D13"
-        ],
-        "E": [
-          "H5",
-          "H11",
-          "H8",
-          "H4",
-          "S8",
-          "H12",
-          "H6",
-          "S6",
-          "C11",
-          "C7",
-          "D10",
-          "C4",
-          "S3"
-        ],
-        "S": [
-          "D14",
           "C2",
-          "C5",
+          "C10",
+          "H14",
           "S4",
-          "D8",
-          "S12",
           "D2",
-          "C6",
           "H3",
-          "H14",
-          "D3",
-          "S5",
-          "H7"
-        ],
-        "W": [
-          "S2",
-          "C9",
-          "S9",
-          "S14",
-          "C14",
-          "D11",
-          "D4",
-          "H9",
-          "S11",
-          "C8",
-          "S10",
-          "H2",
-          "H10"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "1D"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "2D"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "5D"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true
-      },
-      "correction": {
-        "version": "7.3",
-        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "1♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "16 hp med längsta färgen ♦ (6 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "2♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "10 htp med 4+ stöd i lågfärgen: 2 i färgen."
-          },
-          {
-            "nr": 5,
-            "seat": "Norr",
-            "bid": "5♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 31 poäng. 28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 7,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
-          }
-        ]
-      }
-    },
-    {
-      "id": "trumf-04",
-      "theme": "trumf",
-      "themeTitle": "Trumfstöd (stödbud i färg)",
-      "mode": "stord",
-      "seed": 555321,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "S",
-      "hands": {
-        "N": [
-          "C12",
-          "D2",
-          "S2",
-          "H13",
-          "S9",
-          "C9",
-          "S4",
-          "H2",
-          "D6",
-          "H10",
-          "D5",
-          "H11",
-          "S6"
-        ],
-        "E": [
-          "C10",
-          "C11",
-          "H12",
-          "D3",
-          "D13",
-          "D14",
-          "S5",
           "D12",
-          "S7",
-          "H9",
-          "H7",
-          "H8",
-          "S11"
-        ],
-        "S": [
-          "S12",
-          "H4",
-          "S14",
-          "C6",
-          "S13",
-          "D8",
-          "S10",
-          "C8",
-          "D11",
-          "S3",
-          "C5",
-          "C13",
-          "C4"
-        ],
-        "W": [
-          "C2",
-          "C7",
-          "D7",
-          "D9",
-          "D4",
-          "H3",
-          "D10",
-          "H5",
-          "H14",
-          "H6",
-          "C14",
           "C3",
-          "S8"
+          "D10",
+          "S6",
+          "H9",
+          "C8",
+          "H5"
         ]
       },
       "bids": [
         {
-          "s": "S",
-          "c": "1S"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
           "s": "N",
-          "c": "2S"
+          "c": "1S"
         },
         {
           "s": "E",
@@ -12772,6 +12440,170 @@
         },
         {
           "s": "N",
+          "c": "4S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "7.3",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Norr",
+            "bid": "1♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "17 hp med längsta färgen ♠ (5 kort): 1 i färg (12-19 hp)."
+          },
+          {
+            "nr": 3,
+            "seat": "Syd",
+            "bid": "3♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "11 htp med 4+ stöd: 3 i färgen (11-12 stp)."
+          },
+          {
+            "nr": 5,
+            "seat": "Norr",
+            "bid": "4♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 32 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
+          },
+          {
+            "nr": 7,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+          }
+        ]
+      }
+    },
+    {
+      "id": "trumf-02",
+      "theme": "trumf",
+      "themeTitle": "Trumfstöd (stödbud i färg)",
+      "mode": "ostord",
+      "seed": 539500,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "C8",
+          "H3",
+          "H12",
+          "H4",
+          "C11",
+          "S13",
+          "D7",
+          "S2",
+          "S6",
+          "C14",
+          "D9",
+          "S3",
+          "D8"
+        ],
+        "E": [
+          "C5",
+          "H5",
+          "H9",
+          "S10",
+          "D2",
+          "C7",
+          "C4",
+          "H8",
+          "H2",
+          "D6",
+          "S12",
+          "D12",
+          "C6"
+        ],
+        "S": [
+          "H11",
+          "S9",
+          "H14",
+          "D13",
+          "S8",
+          "S11",
+          "D10",
+          "S4",
+          "D4",
+          "D14",
+          "S7",
+          "S14",
+          "C10"
+        ],
+        "W": [
+          "H13",
+          "C12",
+          "C2",
+          "H6",
+          "C9",
+          "C13",
+          "D11",
+          "H10",
+          "D3",
+          "H7",
+          "D5",
+          "S5",
+          "C3"
+        ]
+      },
+      "bids": [
+        {
+          "s": "S",
+          "c": "1S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "4S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
           "c": "P"
         },
         {
@@ -12785,7 +12617,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12797,7 +12630,7 @@
             "bid": "1♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "13 hp med längsta färgen ♠ (5 kort): 1 i färg (12-19 hp)."
+            "reason": "17 hp med längsta färgen ♠ (6 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
@@ -12805,15 +12638,15 @@
             "bid": "2♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "7 htp med 4+ stöd i högfärgen: 2 i färgen (6-10 stp)."
+            "reason": "10 htp med 4+ stöd i högfärgen: 2 i färgen (6-10 stp)."
           },
           {
             "nr": 5,
             "seat": "Syd",
-            "bid": "3♠",
+            "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "16 htp: 3 i färgen (naturlig invit)."
+            "reason": "20 htp: utgång."
           },
           {
             "nr": 7,
@@ -12821,93 +12654,101 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Det ursprungliga förslaget 3♠ är inte längre lagligt eftersom kontraktsbudet 3♠ redan har lagts. Passas i stället; budmotorn får inte rekommendera ett lägre eller upprepat kontraktsbud."
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
           }
         ]
       }
     },
     {
-      "id": "trumf-05",
+      "id": "trumf-03",
       "theme": "trumf",
       "themeTitle": "Trumfstöd (stödbud i färg)",
-      "mode": "stord",
-      "seed": 563240,
+      "mode": "ostord",
+      "seed": 547419,
       "caseType": "unclassified",
       "classification": {
         "status": "pending",
         "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
       },
-      "dealer": "N",
+      "dealer": "S",
       "hands": {
         "N": [
-          "S12",
           "S4",
-          "H13",
+          "C4",
+          "H7",
+          "D10",
           "C6",
-          "S3",
-          "H8",
-          "S13",
           "C7",
-          "C5",
-          "C13",
-          "D13",
-          "H5",
-          "C4"
+          "S2",
+          "C3",
+          "D2",
+          "H3",
+          "S10",
+          "D14",
+          "D11"
         ],
         "E": [
-          "S9",
-          "D12",
-          "D10",
-          "D4",
-          "H6",
-          "H10",
-          "C11",
-          "H14",
-          "H12",
-          "D3",
-          "H3",
           "H11",
-          "C10"
+          "H4",
+          "D8",
+          "C2",
+          "C11",
+          "H5",
+          "C8",
+          "C9",
+          "C13",
+          "H8",
+          "S13",
+          "S6",
+          "D5"
         ],
         "S": [
-          "D11",
-          "D5",
           "D9",
-          "S8",
-          "C2",
-          "C12",
-          "D2",
-          "C8",
+          "S7",
+          "D13",
+          "S3",
+          "S14",
+          "D12",
+          "H13",
+          "S9",
+          "D7",
+          "H6",
           "D6",
-          "C3",
-          "C9",
-          "S11",
-          "S5"
+          "C14",
+          "C12"
         ],
         "W": [
-          "S14",
-          "D7",
-          "H2",
+          "S12",
+          "H12",
+          "C10",
+          "S11",
+          "S5",
+          "D4",
+          "D3",
+          "S8",
+          "H10",
           "H9",
-          "H7",
-          "S7",
-          "S10",
-          "S2",
-          "C14",
-          "H4",
-          "S6",
-          "D14",
-          "D8"
+          "H2",
+          "C5",
+          "H14"
         ]
       },
       "bids": [
         {
+          "s": "S",
+          "c": "1D"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
           "s": "N",
-          "c": "1C"
+          "c": "2D"
         },
         {
           "s": "E",
-          "c": "1H"
+          "c": "P"
         },
         {
           "s": "S",
@@ -12915,18 +12756,6 @@
         },
         {
           "s": "W",
-          "c": "2C"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
           "c": "P"
         }
       ],
@@ -12936,59 +12765,348 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
-        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Norr",
-            "bid": "1♣",
+            "seat": "Syd",
+            "bid": "1♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "14 hp med längsta färgen ♣ (5 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 2,
-            "seat": "Öst",
-            "bid": "1♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
+            "reason": "18 hp med längsta färgen ♦ (5 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "ej_täckt",
-            "suggested": "",
-            "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
-          },
-          {
-            "nr": 4,
-            "seat": "Väst",
-            "bid": "2♣",
+            "seat": "Norr",
+            "bid": "2♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
+            "reason": "6 htp med 4+ stöd i lågfärgen: 2 i färgen."
           },
           {
             "nr": 5,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "ej_täckt",
-            "suggested": "",
-            "reason": "Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet."
-          },
-          {
-            "nr": 7,
             "seat": "Syd",
             "bid": "Pass",
             "grade": "ej_täckt",
             "suggested": "",
-            "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+            "reason": "Fortsättningen efter denna höjning beskrivs inte i dokumentet."
+          }
+        ]
+      }
+    },
+    {
+      "id": "trumf-04",
+      "theme": "trumf",
+      "themeTitle": "Trumfstöd (stödbud i färg)",
+      "mode": "ostord",
+      "seed": 555338,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H13",
+          "S9",
+          "H5",
+          "D2",
+          "C8",
+          "D3",
+          "C2",
+          "H4",
+          "H14",
+          "D4",
+          "S8",
+          "C14",
+          "S5"
+        ],
+        "E": [
+          "C3",
+          "C6",
+          "D6",
+          "C7",
+          "S3",
+          "D9",
+          "C10",
+          "D14",
+          "D7",
+          "S4",
+          "H12",
+          "S10",
+          "C12"
+        ],
+        "S": [
+          "C11",
+          "C13",
+          "S12",
+          "H7",
+          "H8",
+          "D13",
+          "H11",
+          "H2",
+          "S7",
+          "S14",
+          "D10",
+          "S6",
+          "H9"
+        ],
+        "W": [
+          "C5",
+          "D5",
+          "D8",
+          "S13",
+          "D11",
+          "C4",
+          "H6",
+          "H10",
+          "H3",
+          "C9",
+          "S11",
+          "D12",
+          "S2"
+        ]
+      },
+      "bids": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "3H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "4H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "7.3",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Syd",
+            "bid": "1♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "14 hp med längsta färgen ♥ (5 kort): 1 i färg (12-19 hp)."
+          },
+          {
+            "nr": 3,
+            "seat": "Norr",
+            "bid": "3♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "11 htp med 4+ stöd: 3 i färgen (11-12 stp)."
+          },
+          {
+            "nr": 5,
+            "seat": "Syd",
+            "bid": "4♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 28 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
+          },
+          {
+            "nr": 7,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+          }
+        ]
+      }
+    },
+    {
+      "id": "trumf-05",
+      "theme": "trumf",
+      "themeTitle": "Trumfstöd (stödbud i färg)",
+      "mode": "ostord",
+      "seed": 563257,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H4",
+          "D8",
+          "D2",
+          "H5",
+          "D14",
+          "S3",
+          "S2",
+          "D13",
+          "H13",
+          "C8",
+          "S5",
+          "D4",
+          "H6"
+        ],
+        "E": [
+          "C11",
+          "H2",
+          "S7",
+          "C13",
+          "C6",
+          "S11",
+          "D3",
+          "S4",
+          "S6",
+          "H8",
+          "S14",
+          "D9",
+          "C4"
+        ],
+        "S": [
+          "D10",
+          "C12",
+          "D11",
+          "S10",
+          "H14",
+          "C5",
+          "S8",
+          "H10",
+          "D12",
+          "S13",
+          "H7",
+          "H11",
+          "H3"
+        ],
+        "W": [
+          "D5",
+          "S9",
+          "C2",
+          "C14",
+          "D7",
+          "C3",
+          "D6",
+          "H9",
+          "C9",
+          "S12",
+          "C10",
+          "C7",
+          "H12"
+        ]
+      },
+      "bids": [
+        {
+          "s": "S",
+          "c": "1H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "3H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "4H"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "7.3",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Syd",
+            "bid": "1♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "13 hp med längsta färgen ♥ (5 kort): 1 i färg (12-19 hp)."
+          },
+          {
+            "nr": 3,
+            "seat": "Norr",
+            "bid": "3♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "12 htp med 4+ stöd: 3 i färgen (11-12 stp)."
+          },
+          {
+            "nr": 5,
+            "seat": "Syd",
+            "bid": "4♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 27 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
+          },
+          {
+            "nr": 7,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
           }
         ]
       }
@@ -13107,7 +13225,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13262,7 +13381,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13417,7 +13537,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13572,7 +13693,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13727,7 +13849,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13882,7 +14005,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14045,7 +14169,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14216,7 +14341,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14379,7 +14505,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14534,7 +14661,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14689,7 +14817,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14836,7 +14965,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14975,7 +15105,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15130,7 +15261,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15301,7 +15433,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15456,7 +15589,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15595,7 +15729,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15734,7 +15869,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15873,7 +16009,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16020,7 +16157,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16167,7 +16305,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16314,7 +16453,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16461,7 +16601,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16608,7 +16749,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16755,7 +16897,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16918,7 +17061,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17077,7 +17221,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17232,7 +17377,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17395,7 +17541,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17546,7 +17693,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17709,7 +17857,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17888,7 +18037,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18083,7 +18233,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18278,7 +18429,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18457,7 +18609,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18604,7 +18757,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18743,7 +18897,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18882,7 +19037,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19005,7 +19161,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19136,7 +19293,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19267,7 +19425,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19390,7 +19549,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19529,7 +19689,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19684,7 +19845,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19839,7 +20001,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19990,7 +20153,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20133,7 +20297,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20284,7 +20449,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20435,7 +20601,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20602,7 +20769,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20753,7 +20921,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20904,7 +21073,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21055,7 +21225,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21206,7 +21377,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21373,7 +21545,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21516,7 +21689,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21651,7 +21825,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21786,7 +21961,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21921,7 +22097,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22064,7 +22241,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22207,7 +22385,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22342,7 +22521,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22477,7 +22657,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22620,7 +22801,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22763,7 +22945,8 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "openingNTValidated": true
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
       },
       "correction": {
         "version": "7.3",
