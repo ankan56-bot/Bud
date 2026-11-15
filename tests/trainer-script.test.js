@@ -42,3 +42,11 @@ test("seat selection can be changed between deals to inspect all table positions
   assert.match(html, /Du spelar Öst\./);
   assert.match(html, /Du spelar Väst\./);
 });
+
+test("room entry has an optional persistent player name", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  assert.match(html, /Namn \(valfritt\)/);
+  assert.match(html, /id="player-name"/);
+  assert.match(html, /localStorage\.setItem\('bt_player_name',playerName\)/);
+  assert.match(html, /playerName\?'\+esc\(playerName\)\+' \('/);
+});
