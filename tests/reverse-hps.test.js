@@ -83,6 +83,18 @@ function assessMajorRaise(shape, honors, call) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
+function assessStenbergOpener(shape, honors, call) {
+  const hands = makeDealFor('N', shape, honors, 'H');
+  const bids = [
+    { s: 'N', c: '1H' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: '2N' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: call }
+  ];
+  return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
+}
+
 function assessOpenerRebid(shape, honors, call) {
   const hands = makeDealFor('S', shape, honors, 'H');
   const bids = [
@@ -288,4 +300,48 @@ function assessReverse(shape, honors) {
   assert.equal(item.htp, 20);
 }
 
-console.log('Bridge bidding regression tests passed (14 cases).');
+ 
+// Stenberg: 15+ HTP without a singleton is shown with 3M.
+{
+  const item = assessStenbergOpener(
+    { C: 3, D: 3, H: 4, S: 3 },
+    { H: [14, 13, 12], D: [14, 13], C: [11] },
+    '3H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 15);
+}
+
+// Stenberg: 12-14 hp and balanced is shown with 3NT.
+{
+  const item = assessStenbergOpener(
+    { C: 3, D: 3, H: 4, S: 3 },
+    { H: [14, 13], D: [14, 13] },
+    '3N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.hp, 14);
+}
+
+// Stenberg: a singleton is shown even when the hand has 15+ HTP.
+{
+  const item = assessStenbergOpener(
+    { C: 4, D: 4, H: 4, S: 1 },
+    { H: [14, 13, 12], D: [14], C: [12] },
+    '3S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 17);
+}
+
+// Unbalanced minimum without a singleton is not silently converted to 3NT.
+{
+  const item = assessStenbergOpener(
+    { C: 2, D: 4, H: 5, S: 2 },
+    { H: [14, 13, 12], D: [14], C: [11] },
+    'P'
+  );
+  assert.equal(item.bedomning, 'ej_täckt');
+}
+
+console.log('Bridge bidding regression tests passed (18 cases).');
