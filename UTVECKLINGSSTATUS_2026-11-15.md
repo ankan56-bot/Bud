@@ -191,3 +191,16 @@ Två tydliga handbaserade kandidater finns i T29–T33: `trumf-02-bid-3` matchar
 ## Separat inventering av återbud efter upplysningsdubbling
 
 Åtta fall där dubbleraren ska återkomma efter partnerns svar har fått en egen hand-/auktionsinventering i `testdata/double-rebid-8-audit.md`. Dubblerarens styrka varierar 12–19 HCP, partnerns 3–9 HCP och partnerns svarsfärger varierar. Loggens Giv 13 och 22 handlar om andra situationer och ger inte den saknade återbudsregeln. `inkliv-02-bid-6` har särskilts som ett nionde fall i den bredare gruppen: naturligt 1♥-inkliv följt av partnerns 3♥-hoppstöd, inte en upplysningsdubbling. Ingen regel eller rekommendation har lagts till.
+
+
+## Samlad dokumentation för de 47 täckningsluckorna
+
+Fördjupade delgranskningar finns nu:
+- `testdata/competition-gaps-26-audit.md` – 26 positioner där motståndarnas bud påverkar beslutet eller där vi försvarar mot deras naturliga budsekvens. Förtydligar att 22 är egentliga konkurrens-/dubblingssituationer och fyra är försvarspass efter naturlig öppning/svar.
+- `testdata/opener-rebid-after-pass-10-audit.md` – tio återbudslägen för öppnaren efter partnerns pass och motståndarnas inkliv.
+- `testdata/hand-specific-overcall-responses-9-audit.md` – nio svar på partnerns egna inkliv, uppdelade efter 1-, 2-, 3-nivå och 2NT.
+- `testdata/double-rebid-8-audit.md` – åtta återbud efter partnerns svar på upplysningsdubbling.
+
+`inkliv-02-bid-6` är en separat nionde senare återbudsposition: naturligt inkliv följt av partnerns hoppstöd 3♥. Den ska inte blandas ihop med upplysningsdubbling.
+
+Samtliga fyra nya delgranskningar har verifierats i GitHub Actions utan testfel. De är analysdokumentation; ingen av de 47 positionerna har omklassificerats och ingen ny systemregel har lagts till.
