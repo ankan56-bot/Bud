@@ -115,3 +115,6 @@ GitHub Actions har passerat på commit med både dataset-/reproducerbarhetsteste
 ## AI-informationsgräns
 
 `seat-view.js` version 0.2.0 är nu striktare: AI-agenten får en whitelistad vy; okända `publicState`-fält och dolda hand-/seat-mappar avvisas, och dummy får endast exponeras efter `dummyExposed: true`. Sex automatiska tester täcker gränsen. Detta är ännu inte inkopplat i spelmotorn, men API-gränsen ska återanvändas när agentgränssnittet byggs.
+
+
+Senaste AI-seat regression: GitHub Actions körning `43658949390` passerade med både dataset- och AI-seat-tester. Informationsvyn blockerar okända fält, dolda händer även nästlade och dummy utan uttrycklig exponering.
