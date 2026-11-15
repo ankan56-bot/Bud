@@ -220,8 +220,10 @@ var Rattning = (function(){
     else return {exp:null,alt:[],why:'Öppnarens svar på detta bud beskrivs inte i dokumentet.',means:means,conv:conv};
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
   }
-  function stay2(h,reply){
+  function stay2(h,reply,openerCards){
     var hp=h.hp,L=h.L,M=reply==='2H'?'H':reply==='2S'?'S':null,exp,why,alt=[];
+    var opener=openerCards?H(openerCards):null;
+    var fitPoints=opener&&M?partnershipPoints(h,opener,M):0;
 
     var splSuit = M ? SU.filter(function(s){return s!==M&&L[s]<=1})[0] : null;
     var splBid = splSuit ? (L[M]>=6 ? ((lv('2'+M)+1)+splSuit) : null) : null;
@@ -233,7 +235,10 @@ var Rattning = (function(){
       if(c==='3N')return 'Utgång i sang (10-15 hp); efter Stayman visar det 4♠ (eller ingen fit).';
       if(c==='4H'||c==='4S')return 'Slutbud i högfärgen (10-15 stp).';
       return null};
-    if(M&&L[M]>=4){exp=hp>=10?'4'+M:'3'+M;why='Fit i '+SYM[M]+' med '+hp+' hp: '+(hp>=10?'utgång 4':'invit 3')+SYM[M]+'.'}
+    if(M&&L[M]>=4){
+      if(opener&&L[M]+opener.L[M]>=8&&fitPoints>=26){exp='4'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';}
+      else{exp='P';why='Minst 8-korts fit i '+SYM[M]+' men endast '+fitPoints+' gemensamma spelpoäng: under 26-poängsgränsen. Pass i stället för att bjuda en invit som inte är fastställd här.';}
+    }
     else{
       var five=L.H>=5?'H':L.S>=5?'S':null;
       if(reply==='2D'&&five&&!h.bal&&hp>=10){exp='3'+five;why='Utgångsstyrka och obalanserad hand med 5-högfärg: 2♣ och sedan 3 i högfärgen.'}
@@ -488,6 +493,9 @@ var Rattning = (function(){
         }
         else{exp='P';why=t+' htp: högst 16, pass.'}
         return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
+      if(!maj(o)&&lv(r)>=2&&h.bal&&h.hp>=18){
+        return {exp:'3N',alt:[],why:h.hp+' hp och jämn fördelning efter partnerns lågfärgshöjning: välj 3NT före utgång i lågfärg.',means:function(c){return c==='3N'?'18+ hp och jämn fördelning: sang prioriteras framför lågfärgsutgång.':null},conv:'trumfstöd'};
+      }
       if(!maj(o)&&lv(r)>=2&&h.hp<=14){
         return {exp:'P',alt:[],why:'Öppnaren har minimum eller normal styrka efter partnerns lågfärgshöjning. Pass tills vidare; starkare fortsättning kräver ytterligare stöd eller styrka.',means:means,conv:'trumfstöd'};
       }
@@ -1150,6 +1158,14 @@ var Rattning = (function(){
       var openerShowsTwoSuits = isBid(ours[2].c) &&
         ours[2].c[1] !== s1 && ours[2].c[1] !== 'N' &&
         h.L[s1] >= 4 && h.L[ours[2].c[1]] >= 4;
+      if(d===4 && opener && ours[3].c==='2N' && openerShowsTwoSuits){
+        var invitePartner=H(st.hands[pt]);
+        var inviteHcp=h.hp+invitePartner.hp;
+        var allStops=['C','D','H','S'].every(function(s){return h.stop(s)});
+        if(allStops&&inviteHcp>=26){
+          return {exp:'3N',alt:[],why:'Öppnaren har håll i alla fyra färger och paret har '+inviteHcp+' gemensamma honnörspoäng efter 2NT-inviten. Välj 3NT framför lågfärgsutgång.',means:function(c){return c==='3N'?'Accepterar sanginvit med håll i alla färger.':null},conv:'invit i sang'};
+        }
+      }
       if(d===4 && opener && (ours[2].c === '2'+s1 || openerShowsTwoSuits) &&
          isBid(ours[3].c) && ours[3].c[1]!==s1 &&
          ours[3].c[1]!==s2 && ours[3].c[1]!=='N'){
@@ -1165,6 +1181,17 @@ var Rattning = (function(){
     }
 
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
+      if(k===1&&!opener&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
+        var staymanOpener=H(st.hands[pt]);
+        var staymanTotal=h.hp+staymanOpener.hp;
+        var spadeFit=h.L.S+staymanOpener.L.S;
+        if(h.bal&&staymanTotal>=26&&spadeFit<8){
+          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand, 26+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
+        }
+        if(h.bal&&staymanTotal>=26&&spadeFit>=8){
+          return {exp:'4S',alt:[],why:'8-korts spaderfit och '+staymanTotal+' gemensamma honnörspoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
+        }
+      }
       if(c1==='1N'&&!opener&&d===2){
         var opening=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&/^1[CDHS]$/.test(x.c)})[0];
         var openerRebid=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&x!==opening}).slice(-1)[0];
@@ -1173,7 +1200,7 @@ var Rattning = (function(){
       if(!opener&&d===1)return ntResp(h,k);
       if(opener&&d===2)return ntOpener(h,k,ours[1].c);
       if(!opener&&d===3&&!k){var m1=ours[1].c,rep=ours[2].c;
-        if(m1==='2C')return stay2(h,rep);
+        if(m1==='2C')return stay2(h,rep,st.hands[pt]);
         if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
         if(m1==='2H'&&rep==='2S')return transfer2(h,'S');
         if(m1==='2S'&&rep==='2N'){var mc=h.L.C>=h.L.D?'3C':'3D';return {exp:mc,alt:[],why:'Bjud din långa lågfärg på 3-nivå som slutbud.',means:T({'3C':'Slutbud i ♣.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
