@@ -416,3 +416,16 @@ test("switching rooms clears the old auction and pending sync/bot timers", () =>
   assert.ok(html.includes("resetRoomSession();room=v;"));
   assert.ok(html.includes("resetRoomSession();room='';"));
 });
+
+test("shared room theme requests compare against the unchanged menu state", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function setSel(");
+  const end = html.indexOf("\\nfunction ", start);
+  assert.ok(start >= 0 && end > start, "shared theme setter should exist");
+  const source = html.slice(start, end);
+  assert.ok(source.indexOf("requestRoomAction('theme'") < source.indexOf("modeSel=m"),
+    "room requests must be sent before local menu settings are changed");
+  assert.match(html, /rm1\.onclick=function\(\)\{setSel\('stord',focusSel\);render\(\)\}/);
+  assert.match(html, /rm2\.onclick=function\(\)\{setSel\('ostord',focusSel\);render\(\)\}/);
+  assert.match(html, /b\.onclick=function\(\)\{setSel\(modeSel,b\.getAttribute\('data-focus'\)\);render\(\)\}/);
+});
