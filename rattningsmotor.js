@@ -819,8 +819,11 @@ var Rattning = (function(){
       if(opp.length===1&&isBid(opp[0].c)){var ob=opp[0].c;if(ob==='1N'||ob==='2C')return nc('Försvar mot '+txt(ob)+'-öppning beskrivs inte i dokumentet.');return overcall(h,ob,last)}
       return nc('Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.');
     }
-    for(var k=1;k<ours.length;k++)if(ours[k].s===ours[k-1].s)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
-    if(ours[ours.length-1].s!==pt)return nc('Budgivningen följer inte ett turordnat mönster som dokumentet beskriver.');
+    // Om den som nu ska bjuda senast var den som bjöd för paret har
+    // partnern passat. Det är en giltig auktion, men konkurrensåterbudet
+    // efter partnerns pass måste bedömas som ej täckt – inte som fel turordning.
+    if(ours.length&&ours[ours.length-1].s===me)
+      return nc('Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.');
     var d=ours.length,opener=ours[0].s===me,f=ours[0].c;
     var c1=f,fs=c1[1]; // Deklareras nu här för att undvika bugg
 
