@@ -43,6 +43,23 @@ var Rattning = (function(){
     return o;
   }
 
+  // HPS för en egen hand: STP får räknas vid etablerat stöd eller
+  // med egen 6+-färg/5-5. En 5-4-hand utan stöd ger bara HP.
+  function handHps(h,supportedSuit){
+    if(supportedSuit)return h.htp(supportedSuit);
+    var six=SU.filter(function(s){return h.L[s]>=6;});
+    if(six.length)return h.htp(six[0]);
+    var fives=SU.filter(function(s){return h.L[s]>=5;});
+    if(fives.length>=2){
+      var total=h.hp;
+      SU.forEach(function(s){
+        if(fives.indexOf(s)<0){var n=h.L[s];total+=n===0?3:n===1?2:n===2?1:0;}
+      });
+      return total;
+    }
+    return h.hp;
+  }
+
   // Gemensam spelstyrka: honnörspoäng alltid; fördelningspoäng och
   // trumflängdsbonus endast i färgkontrakt med minst 8 gemensamma trumfkort.
   // Sang värderas enbart med honnörspoäng.
@@ -470,25 +487,10 @@ var Rattning = (function(){
       else return NC('Dokumentet anger inte budet för balanserad hand med '+hp+' hp i denna situation.',means);
     }else{
       var s2=side4.filter(function(s){return s!==rs&&L[o]+L[s]>=9}).sort(function(a,b){return L[b]-L[a]})[0];
-      // HPS enligt rättningsmallen: STP räknas vid stöd, egen 6+-färg
-      // eller 5-5. En 5-4-hand utan 6+-färg/5-5 får därför inga extra STP.
-      function ownHps(){
-        var six=SU.filter(function(s){return L[s]>=6;});
-        if(six.length)return h.htp(six[0]);
-        var fives=SU.filter(function(s){return L[s]>=5;});
-        if(fives.length>=2){
-          var total=hp;
-          SU.forEach(function(s){
-            if(fives.indexOf(s)<0){var n=L[s];total+=n===0?3:n===1?2:n===2?1:0;}
-          });
-          return total;
-        }
-        return hp;
-      }
       if(s2){
         var x=low(s2);
         var reverse=SU.indexOf(s2)>SU.indexOf(o)&&SU.indexOf(s2)>SU.indexOf(rs)&&lv(r)===1;
-        var hps=ownHps();
+        var hps=handHps(h,null);
         if(reverse){
           reverseBid=(lv(r)+1)+s2;
           if(hps>=18){
@@ -1325,7 +1327,7 @@ var Rattning = (function(){
       for(var ai=i;ai>=0;ai--){
         if(bids[ai].s===b.s && isBid(bids[ai].c) && bids[ai].c[1]!=='N'){agreed=bids[ai].c[1];break;}
       }
-      item.hp=hand.hp;item.htp=suit?hand.htp(suit):hand.hp;item.langd=hand.L;
+      item.hp=hand.hp;item.htp=handHps(hand,agreed&&hand.L[agreed]+partnerHand.L[agreed]>=8?agreed:null);item.langd=hand.L;
       if(agreed && hand.L[agreed]+partnerHand.L[agreed]>=8){
         item.handtyp='Trumfstöd ('+SYM[agreed]+')';
       }else{
