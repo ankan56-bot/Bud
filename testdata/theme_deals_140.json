@@ -14,7 +14,7 @@
     "dealsPerTheme": 10,
     "modeDistribution": "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
     "caseClassification": "unclassified; classification requires rule-boundary evidence",
-    "opening1NT": "A first non-pass 1NT call is valid only with 15-17 HCP and a balanced 4333/4432/5332 hand."
+    "openingNT": "A first non-pass 1NT call requires 15-17 HCP; a first non-pass 2NT call requires 20-21 HCP. Both require a balanced 4333/4432/5332 hand."
   },
   "validation": {
     "allDealsGenerated": true,
@@ -253,7 +253,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -404,7 +404,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -539,7 +539,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -662,7 +662,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -825,7 +825,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1032,7 +1032,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1215,7 +1215,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1406,7 +1406,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1581,7 +1581,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1748,7 +1748,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -1915,7 +1915,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2082,7 +2082,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2249,7 +2249,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2416,7 +2416,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2583,7 +2583,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2750,7 +2750,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -2917,7 +2917,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3084,7 +3084,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3251,7 +3251,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3418,7 +3418,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3585,7 +3585,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3744,7 +3744,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -3883,7 +3883,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4042,7 +4042,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4209,7 +4209,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4384,7 +4384,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4551,7 +4551,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4702,7 +4702,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -4861,7 +4861,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5028,7 +5028,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5211,7 +5211,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5402,7 +5402,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5577,7 +5577,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5744,7 +5744,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -5911,7 +5911,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6086,7 +6086,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6269,7 +6269,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6444,7 +6444,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6611,7 +6611,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6786,7 +6786,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -6969,7 +6969,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7152,7 +7152,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7335,7 +7335,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7510,7 +7510,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7685,7 +7685,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -7868,7 +7868,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8051,7 +8051,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8234,7 +8234,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8417,7 +8417,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8600,7 +8600,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8767,7 +8767,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -8906,7 +8906,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9057,7 +9057,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9208,7 +9208,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9359,7 +9359,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9510,7 +9510,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9677,7 +9677,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -9844,7 +9844,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10011,7 +10011,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10186,7 +10186,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10353,7 +10353,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10520,7 +10520,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10687,7 +10687,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -10862,7 +10862,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11045,7 +11045,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11212,7 +11212,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11371,7 +11371,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11530,7 +11530,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11689,7 +11689,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -11856,7 +11856,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12007,7 +12007,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12138,7 +12138,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12289,7 +12289,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12440,7 +12440,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12587,7 +12587,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12754,7 +12754,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -12905,7 +12905,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13056,7 +13056,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13207,7 +13207,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13358,7 +13358,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13509,7 +13509,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13668,7 +13668,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13835,7 +13835,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -13994,7 +13994,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14145,7 +14145,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14296,7 +14296,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14439,7 +14439,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14574,7 +14574,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14725,7 +14725,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -14892,7 +14892,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15043,7 +15043,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15178,7 +15178,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15313,7 +15313,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15448,7 +15448,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15591,7 +15591,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15734,7 +15734,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -15877,7 +15877,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16020,7 +16020,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16163,7 +16163,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16306,7 +16306,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16465,7 +16465,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16620,7 +16620,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16771,7 +16771,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -16930,7 +16930,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17077,7 +17077,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17236,7 +17236,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17411,7 +17411,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17602,7 +17602,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17793,7 +17793,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -17968,7 +17968,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18111,7 +18111,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18246,7 +18246,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18381,7 +18381,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18500,7 +18500,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18627,7 +18627,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18754,7 +18754,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -18873,7 +18873,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19008,7 +19008,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19159,7 +19159,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19310,7 +19310,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19457,7 +19457,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19596,7 +19596,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19743,7 +19743,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -19890,7 +19890,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20053,7 +20053,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20200,7 +20200,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20347,7 +20347,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20494,7 +20494,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20641,7 +20641,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20804,7 +20804,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -20943,7 +20943,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21074,7 +21074,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21205,7 +21205,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21336,7 +21336,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21475,7 +21475,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21614,7 +21614,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21745,7 +21745,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -21876,7 +21876,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22015,7 +22015,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
@@ -22154,7 +22154,7 @@
         "themeCondition": true,
         "quietModeCondition": true,
         "auctionErrors": 0,
-        "opening1NTValidated": true
+        "openingNTValidated": true
       },
       "correction": {
         "version": "7.3",
