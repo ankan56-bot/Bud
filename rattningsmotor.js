@@ -1334,7 +1334,7 @@ var Rattning = (function(){
         for(var aj=i;aj>=0;aj--){
           if(side(bids[aj].s)!==side(b.s)||!isBid(bids[aj].c)||bids[aj].c[1]==='N')continue;
           var candidateSuit=bids[aj].c[1];
-          var partnerHasBidSuit=bids.slice(0,aj).some(function(x){
+          var partnerHasBidSuit=bids.slice(0,i+1).some(function(x){
             return x.s===partner(b.s)&&isBid(x.c)&&x.c[1]===candidateSuit;
           });
           if(partnerHasBidSuit&&hand.L[candidateSuit]+partnerHand.L[candidateSuit]>=8){
