@@ -21,11 +21,13 @@ test("5C response to partner's 4NT ace ask is not mistaken for a final game cont
   const bids = [
     { s: "N", c: "1S" },
     { s: "E", c: "P" },
-    { s: "S", c: "4N" },
+    { s: "S", c: "2S" },
     { s: "W", c: "P" },
-    { s: "N", c: "5C" },
+    { s: "N", c: "4N" },
     { s: "E", c: "P" },
-    { s: "S", c: "P" }
+    { s: "S", c: "5C" },
+    { s: "W", c: "P" },
+    { s: "N", c: "P" }
   ];
   const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 6);
   assert.notEqual(result?.exp || null, "P");
