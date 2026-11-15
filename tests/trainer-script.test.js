@@ -75,8 +75,9 @@ test("room membership persists and is synchronized with player names and seats",
 test("shared actions are routed through a room coordinator", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   assert.match(html, /function roomCoordinator\(\)/);
-  assert.match(html, /function requestRoomAction\(action\)/);
+  assert.match(html, /function requestRoomAction\(action,data\)/);
   assert.match(html, /type:'room-action'/);
   assert.match(html, /requestRoomAction\('next'\)/);
   assert.match(html, /requestRoomAction\('undo'\)/);
+  assert.match(html, /requestRoomAction\('theme'/);
 });
