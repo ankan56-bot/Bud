@@ -39,6 +39,8 @@ function cases(trump) {
   assert.equal(answer(cards.three,trump).exp,'5D','3 keycards must be 5♦ in 1430');
   assert.equal(answer(cards.twoNoQueen,trump).exp,'5H','2 without trump queen must be 5♥');
   assert.equal(answer(cards.twoWithQueen,trump).exp,'5S','2 with trump queen must be 5♠');
+  const allFive=['S14','H14','D14','C14',trump+'13','H2','H3','H4','H5','S2','S3','D2','D3'];
+  assert.equal(answer(allFive,trump).exp,null,'All five keycards are not assigned a response in the documented 1430 table');
 }
 cases('H');
 cases('S');
@@ -74,4 +76,4 @@ assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2'
   assert.equal(node.exp,null,'RKC follow-up is uncovered until the 1/4 ambiguity and slam continuations are defined');
 }
 
-console.log('RKC 1430 major-suit responses: 14/14 passed; unsupported asker continuations remain uncovered.');
+console.log('RKC 1430 major-suit responses: 16/16 passed; all-five-keycard and asker continuations remain explicitly uncovered.');
