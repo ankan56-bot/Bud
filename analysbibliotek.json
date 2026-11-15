@@ -6797,8 +6797,8 @@
       ]
     },
     {
-      "id": "T44_RKC_1430_AFTER_STENBERG",
-      "title": "RKC 1430 efter 1♥/1♠ och Stenberg 2NT",
+      "id": "T44_RKC_1430_SPADER_STENBERG",
+      "title": "RKC 1430 efter 1♠ och Stenberg 2NT",
       "tags": [
         "1♥",
         "1♠",
@@ -6809,137 +6809,13 @@
       ],
       "conditions": [
         "Ostörd budgivning.",
-        "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd.",
-        "Öppnarens 3♣ efter 1♥ eller 3♥ efter 1♠ visar exakt en singleton i den färgen.",
+        "2NT efter 1♠ är Stenberg: 13+ HTP och minst fyra korts stöd.",
+        "Öppnarens 3♥ visar exakt en singleton i hjärter.",
         "4NT frågar efter fem nyckelkort; svaren följer RKC 1430.",
         "Void behandlas inte som singleton. Andra Stenbergåterbud och kontrollbudssekvenser dokumenteras separat."
       ],
-      "root": "t44_h0",
+      "root": "t44_s0",
       "nodes": [
-        {
-          "id": "t44_h0",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♣",
-            "Pass",
-            "4NT"
-          ],
-          "meaning": "4NT är RKC 1430 med hjärter som överenskommen trumf efter Stenberg 2NT.",
-          "analysis": "Svarshanden har visat 13+ HTP och minst fyra hjärter. Öppnaren har visat exakt en singleton i klöver. 4NT frågar efter de fem nyckelkorten enligt 1430.",
-          "branches": [
-            {
-              "call": "5♣",
-              "next": "t44_h1",
-              "label": "1 eller 4 nyckelkort"
-            },
-            {
-              "call": "5♦",
-              "next": "t44_h2",
-              "label": "0 eller 3 nyckelkort"
-            },
-            {
-              "call": "5♥",
-              "next": "t44_h3",
-              "label": "2 nyckelkort utan hjärterdam"
-            },
-            {
-              "call": "5♠",
-              "next": "t44_h4",
-              "label": "2 nyckelkort med hjärterdam"
-            }
-          ],
-          "handProfile": {
-            "opener": "1♥-öppning med minst fem hjärter och exakt en singleton i klöver.",
-            "responder": "13+ HTP och minst fyra hjärter; Stenberg 2NT är utgångskrav."
-          }
-        },
-        {
-          "id": "t44_h1",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♣",
-            "Pass",
-            "4NT",
-            "Pass",
-            "5♣"
-          ],
-          "meaning": "5♣ visar 1 eller 4 nyckelkort enligt RKC 1430.",
-          "analysis": "Frågeställaren skiljer mellan 1 och 4 med sina egna nyckelkort.",
-          "branches": [],
-          "handProfile": {
-            "opener": "1 eller 4 av de fem nyckelkorten.",
-            "responder": "Stenberghand med minst fyra hjärter."
-          }
-        },
-        {
-          "id": "t44_h2",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♣",
-            "Pass",
-            "4NT",
-            "Pass",
-            "5♦"
-          ],
-          "meaning": "5♦ visar 0 eller 3 nyckelkort enligt RKC 1430.",
-          "analysis": "Frågeställaren skiljer mellan 0 och 3 med sina egna nyckelkort.",
-          "branches": [],
-          "handProfile": {
-            "opener": "0 eller 3 av de fem nyckelkorten.",
-            "responder": "Stenberghand med minst fyra hjärter."
-          }
-        },
-        {
-          "id": "t44_h3",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♣",
-            "Pass",
-            "4NT",
-            "Pass",
-            "5♥"
-          ],
-          "meaning": "5♥ visar två nyckelkort utan hjärterdam.",
-          "analysis": "Två nyckelkort finns, men hjärterdam saknas. Slam får inte väljas automatiskt utan kompletterande kontrollinformation.",
-          "branches": [],
-          "handProfile": {
-            "opener": "Två nyckelkort utan hjärterdam.",
-            "responder": "Stenberghand med minst fyra hjärter."
-          }
-        },
-        {
-          "id": "t44_h4",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♣",
-            "Pass",
-            "4NT",
-            "Pass",
-            "5♠"
-          ],
-          "meaning": "5♠ visar två nyckelkort med hjärterdam.",
-          "analysis": "Två nyckelkort och hjärterdam visas. Frågeställaren avgör om slam är säkert utifrån egna nyckelkort och sidokontroller.",
-          "branches": [],
-          "handProfile": {
-            "opener": "Två nyckelkort med hjärterdam.",
-            "responder": "Stenberghand med minst fyra hjärter."
-          }
-        },
         {
           "id": "t44_s0",
           "sequence": [
