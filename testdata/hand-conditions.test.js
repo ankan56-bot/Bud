@@ -84,8 +84,8 @@ test("machine-verifiable HCP and suit-length conditions can match or reject a ha
 test("unresolved stopper requirements remain manual review, not false certainty", () => {
   const balancedHand = [
     "S14", "S2", "S3", "S4",
-    "H13", "H2", "H3",
-    "D11", "D2", "D3",
+    "H13", "H2",
+    "D11", "D2", "D3", "D4",
     "C2", "C3", "C4"
   ];
   const result = evaluateHandConditions(balancedHand, t29Notrump);
