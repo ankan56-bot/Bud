@@ -3,6 +3,15 @@
 const assert = require('node:assert/strict');
 const Rattning = require('../rattningsmotor.js');
 
+function makeScoringHand(shape, offset = 0) {
+  const cards = [];
+  for (const suit of ['C', 'D', 'H', 'S']) {
+    for (let i = 0; i < shape[suit]; i++) cards.push(suit + (2 + offset + i));
+  }
+  assert.equal(cards.length, 13, 'Scoring hand must contain 13 cards');
+  return cards;
+}
+
 function makeDeal(shape, honors) {
   const deck = [];
   for (const suit of ['C', 'D', 'H', 'S']) {
@@ -189,6 +198,17 @@ function assessReverse(shape, honors) {
   assert.match(item.motivering, /20 HPS/);
 }
 
+// A 4-5 distribution is not a 5-4 reverse, even with 18 HPS.
+{
+  const item = assessReverse(
+    { C: 1, D: 4, H: 3, S: 5 },
+    { D: [14, 13], S: [14, 13], H: [13], C: [11] }
+  );
+  assert.equal(item.bedomning, 'fel');
+  assert.equal(item.htp, 18, '5-4 is required; 4-5 without support counts HP only');
+  assert.equal(item.battre, '1♠', 'Show the second suit at the lowest level instead of a false reverse');
+}
+
 // 17 HP, 5-5 shape: own two-suiter permits STP in the short side suits.
 {
   const item = assessReverse(
@@ -231,6 +251,34 @@ function assessReverse(shape, honors) {
 }
 
  
+// Partnership scoring: 8 trumps gives no fit bonus.
+{
+  const north = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 4, S: 3 }, 0));
+  const south = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 4, S: 3 }, 6));
+  assert.equal(Rattning.partnershipPoints(north, south, 'H'), north.hp + south.hp);
+}
+
+// Nine combined trumps add exactly one point.
+{
+  const north = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 0));
+  const south = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 4, S: 3 }, 6));
+  assert.equal(Rattning.partnershipPoints(north, south, 'H'), north.hp + south.hp + 2);
+}
+
+// Ten combined trumps add three fit points, plus any hand shortness points.
+{
+  const north = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 0));
+  const south = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 6));
+  assert.equal(Rattning.partnershipPoints(north, south, 'H'), north.hp + south.hp + 5);
+}
+
+// NT contracts count HCP only, regardless of distribution or trump fit.
+{
+  const north = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 0));
+  const south = Rattning.H(makeScoringHand({ C: 3, D: 3, H: 5, S: 2 }, 6));
+  assert.equal(Rattning.partnershipPoints(north, south, 'N'), north.hp + south.hp);
+}
+
 // 9 HTP with 4-card heart support is a simple 2H raise.
 {
   const item = assessMajorRaise(
@@ -711,4 +759,4 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, 'P');
 }
 
-console.log('Bridge bidding regression tests passed (47 cases).');
+console.log('Bridge bidding regression tests passed (52 cases).');
