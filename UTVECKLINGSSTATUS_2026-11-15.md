@@ -142,3 +142,13 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - Nya tester: `auction-dispatch.test.js` och `analysis-library-match.test.js`. GitHub Actions körning `43659839449` passerade med alla testgrupper: dataset/reproducerbarhet, dispatch, analysbiblioteksmatchning, AI-informationsgräns och spelarroller.
 - Generatorns reproducerbara baslinje är uppdaterad med den nya diagnostexten. Antalet ej täckta positioner är fortfarande 47; det här var en klassificeringskorrigering, inte en ökning eller minskning av budtäckningen.
 - Inga nya grundsystemregler har införts. `main` är orörd.
+
+
+## Slutlig verifiering av denna arbetsomgång
+
+- `rattningsmotor.js` version 6.7: den nya diagnostiken för öppnarens återbud efter partnerns pass är versionssatt.
+- Generatorn `testdata/generate-theme-deals.js` är pinnad till exakt rättningsmotor-blob `76d57bacb0cc63a07d45f65ef55bd58a2f3b62c4` och förväntar version 6.7.
+- Alla 140 sparade givare har `correction.version: 6.7`; `theme_deals_140_report.md` anger samma version.
+- Senaste fullständiga GitHub Actions-körning `43659958289` är `success`. Reproducerbarhetsdiffen är ren och workflow-jobbet passerade samtliga teststeg.
+- Analysbiblioteket är version 0.5.5 och analysmotorn 1.0.3. T29–T33 matchar nu sina komprimerade sekvenser även när lagliga passrundor förekommer.
+- `main` är fortfarande orörd. Arbetsgrenen ligger 80 commits före `main` och 0 bakom.
