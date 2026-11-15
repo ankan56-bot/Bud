@@ -71,7 +71,7 @@ test("post-deal evaluation chooses the role of the actual final bidder", () => {
     { s: "S", c: "2H" }, { s: "W", c: "P" }
   ];
   const responderResult = evaluateMatchedHand(
-    { length: 2, node: responderNode }, responderBids, { S: responderHand }
+    { length: 3, node: responderNode }, responderBids, { S: responderHand }
   );
   assert.equal(responderResult.role, "responder");
   assert.equal(responderResult.status, "match");
@@ -90,7 +90,7 @@ test("post-deal evaluation chooses the role of the actual final bidder", () => {
     { s: "N", c: "3H" }
   ];
   const openerResult = evaluateMatchedHand(
-    { length: 3, node: openerNode }, openerBids, { N: openerHand }
+    { length: 5, node: openerNode }, openerBids, { N: openerHand }
   );
   assert.equal(openerResult.role, "opener");
   assert.equal(openerResult.status, "manual_review");
