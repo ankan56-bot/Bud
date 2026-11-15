@@ -87,10 +87,13 @@ Stora simuleringar och analyskörningar ska ske i utvecklingsmiljö, inte i bes�
 
 Regressioner:
 - Grundsystemets budrättningsmotor: 54 testfall.
-- Kompletterande handvillkorsmatchare: 6 testfall.
+- Kompletterande handvillkorsmatchare: 9 testfall.
 - Kandidaterna är ännu inte godkända och får inte användas som grundsystemfacit.
 
 
 ### Visning av kompletterande kandidater
 
 Efter avslutad giv kan analysvyn nu visa handvillkorsmatchade kompletterande kandidater för ej täckta budpositioner. Kandidaterna märks som ej godkända, visar källa/osäkerhet och påverkar inte grundsystemets rättning. Matchningen stöder också pass före öppningsbudet.
+
+
+De kompletterande testerna täcker även kända överlapp mellan redubbling/1NT, 2♥/3♥ och 1♠/1NT. Matcharen visar flera kandidater när underlaget inte anger en prioritetsregel.
