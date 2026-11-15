@@ -35,3 +35,21 @@ jobs:
           path: |
             testdata/ostord_validation_latest.json
             testdata/ostord_100_validation_latest.json
+
+  stress-100:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate and verify 100 undisturbed deals
+        run: node tests/ostord-100.test.js
+      - name: Upload 100-deal verification report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ostord-100-validation
+          path: testdata/ostord_100_validation_latest.json
