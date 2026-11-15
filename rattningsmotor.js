@@ -833,7 +833,12 @@ var Rattning = (function(){
     if(b.c==='P'&&lastCall&&side(lastCall.s)===side(me)){
       var ls=st_(lastCall.c),ll=lv(lastCall.c);
       var partnerHasGame=(ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5);
-      if(partnerHasGame)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+      // 5C/5D kan vara svar på partnerns 4NT-essfråga, inte slutbud.
+      // Låt RKC-grenen längre ned hantera dessa svar innan generell passregel.
+      var partnerAceAsk=prior.some(function(x){return x.s===pt&&x.c==='4N'})&&
+        (!!rkcTrumpFromAuction(prior,side(me))||agreedNoTrumpAceAsk(prior,side(me)));
+      var aceAskResponse=partnerAceAsk&&(lastCall.c==='5C'||lastCall.c==='5D');
+      if(partnerHasGame&&!aceAskResponse)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
     // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
