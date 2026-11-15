@@ -80,4 +80,6 @@ test("shared actions are routed through a room coordinator", () => {
   assert.match(html, /requestRoomAction\('next'\)/);
   assert.match(html, /requestRoomAction\('undo'\)/);
   assert.match(html, /requestRoomAction\('theme'/);
+  assert.match(html, /baseRev:rev/);
+  assert.match(html, /roomConfig\.count&&!roomReady\(\)/);
 });
