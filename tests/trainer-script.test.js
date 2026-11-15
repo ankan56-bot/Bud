@@ -286,7 +286,7 @@ test("only the elected room coordinator runs shared bot turns and presence refre
 test("room reconnect holds bot turns until replayed state messages go quiet", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   const start = html.indexOf("function markRoomSync()");
-  const end = html.indexOf("\\n", start);
+  const end = html.indexOf("\n", start);
   assert.ok(start >= 0 && end > start, "room replay quiet-period helper should exist");
   const timers = new Map();
   const cleared = [];
