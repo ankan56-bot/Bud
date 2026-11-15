@@ -81,6 +81,21 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
   assert.deepEqual(matches.map(x => x.recommendation), ['1N']);
 }
 
+// A pass before the opening does not prevent suffix matching.
+{
+  const extendedBids = [
+    { s: 'N', c: 'P' },
+    { s: 'E', c: '1H' },
+    { s: 'S', c: 'X' }
+  ];
+  const hands = {
+    N: [], E: [], S: [],
+    W: makeHand({ C: 4, D: 3, H: 2, S: 4 }, { C: [14, 13], D: [12, 11], S: [13] })
+  };
+  const matches = A.findSupplementary(logic, extendedBids, hands);
+  assert.deepEqual(matches.map(x => x.recommendation), ['XX']);
+}
+
 // The matcher must only inspect the next legal bidder and that hand.
 {
   const hand = makeHand({ C: 3, D: 4, H: 2, S: 4 }, { C: [14], D: [13], S: [11] });
@@ -89,4 +104,4 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
   assert.equal(A.findSupplementary(logic, [{ s: 'N', c: '1S' }, { s: 'E', c: 'X' }], hands).length, 0);
 }
 
-console.log('Supplementary bidding matcher passed (6 cases).');
+console.log('Supplementary bidding matcher passed (7 cases).');
