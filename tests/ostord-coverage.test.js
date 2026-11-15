@@ -94,6 +94,7 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
+assert.equal(report.turns, 170, 'The fixed corpus should contain 170 undisturbed N/S positions.');
 assert.equal(report.covered, report.turns, 'Every undisturbed N/S position must be covered.');
 assert.equal(report.uncovered.length, 0, 'No undisturbed positions may be uncovered.');
 assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
