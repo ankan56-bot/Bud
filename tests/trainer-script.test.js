@@ -320,7 +320,7 @@ test("room reconnect holds bot turns until replayed state messages go quiet", ()
 test("stale room presence history cannot reclaim seats after reconnect", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   const start = html.indexOf("function isFreshRoomPresence(");
-  const end = html.indexOf("\\nfunction isFreshRoomAction", start);
+  const end = html.indexOf("\nfunction isFreshRoomAction", start);
   assert.ok(start >= 0 && end > start, "presence freshness helpers should exist");
   const context = {};
   vm.runInNewContext(html.slice(start, end), context);
