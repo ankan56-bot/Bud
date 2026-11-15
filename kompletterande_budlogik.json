@@ -1,0 +1,68 @@
+{
+  "version": "0.1.0",
+  "description": "Kompletterande bridgebedömningar utanför eller utöver uttryckliga regler i grundsystemet. Får aldrig skriva över grundsystemet.",
+  "authority": "supplementary_only",
+  "status": "initial_schema_no_approved_rules",
+  "confidenceLevels": [
+    "high",
+    "medium",
+    "low",
+    "unreviewed"
+  ],
+  "entries": [],
+  "entrySchema": {
+    "id": "unique-id",
+    "topic": "theme-id",
+    "auctionPrefix": [
+      "1H",
+      "Pass",
+      "2H"
+    ],
+    "handConditions": {
+      "seat": "N|E|S|W",
+      "hcp": {
+        "min": 0,
+        "max": 37
+      },
+      "shape": {
+        "S": {
+          "min": 0,
+          "max": 13
+        },
+        "H": {
+          "min": 0,
+          "max": 13
+        },
+        "D": {
+          "min": 0,
+          "max": 13
+        },
+        "C": {
+          "min": 0,
+          "max": 13
+        }
+      },
+      "notes": "Human-readable condition; structured fields should be used wherever possible."
+    },
+    "recommendation": "Call or pass",
+    "rationale": "Why this is a reasonable bridge decision",
+    "alternatives": [
+      {
+        "call": "Alternative",
+        "reason": "Trade-off"
+      }
+    ],
+    "systemCoverage": "covered|optional|uncovered|ambiguous",
+    "relationshipToSystem": "must_not_override",
+    "informationAvailableToBidder": "Only own hand and legal auction information",
+    "ddsEvidence": {
+      "used": false,
+      "result": null,
+      "caveat": "DDS uses all four hands and is hindsight evidence, not proof of a bid available to the partnership."
+    },
+    "confidence": "unreviewed",
+    "provenance": "AI-assisted analysis / test case / approved human rule",
+    "approvalStatus": "unreviewed|approved_supplement|candidate_for_system_rule|rejected",
+    "notes": []
+  }
+}
