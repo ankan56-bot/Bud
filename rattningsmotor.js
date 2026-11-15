@@ -324,12 +324,6 @@ var Rattning = (function(){
       return {exp:'P',alt:[],why:'Svarshanden har valt slutbud i lågfärg efter 2♠-reläet. Pass avslutar budgivningen.',means:function(c){return c==='P'?'Pass efter svarshandens val av lågfärg.':null},conv:'1NT-svar'};
     }
     var M = st_(k2);
-    if(k1==='2C'&&(M==='H'||M==='S')&&k3==='2N'){
-      var means=function(c){if(c==='P')return 'Minimum: passar på inviten.';if(c==='3N')return 'Maximum: tackar ja med 3NT.';if(c==='4'+M)return 'Maximum med trumfstöd: tackar ja med utgång.';return null};
-      if (hp <= 15) return {exp:'P', alt:[], why:hp+' hp (minimum): passar på inbjudan.', means:means, conv:'Stayman'};
-      var game = L[M]>=4 ? '4'+M : '3N';
-      return {exp:game, alt:[], why:hp+' hp: tackar ja till inbjudan med '+txt(game), means:means, conv:'Stayman'};
-    }
     if(k1==='2C'&&M==='D'&&k3==='2N'){
       var meansNoMajor=function(c){if(c==='P')return 'Minimum: avslår sanginviten.';if(c==='3N')return 'Maximum: accepterar sanginviten.';return null};
       if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
@@ -340,7 +334,7 @@ var Rattning = (function(){
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3'+M){
       var gameSuit='4'+M;
-      var meansInvite=function(c){if(c==='P')return 'Minimum: avslår invit till '+txt(gameSuit)+'.';if(c===gameSuit)return 'Maximum: accepterar invit till '+txt(gameSuit)+'.';return null};
+      var meansInvite=function(c){if(c==='P')return 'Avslår inviten när paret inte når 26 gemensamma spelpoäng.';if(c===gameSuit)return 'Accepterar inviten när paret har minst 8-korts fit och 26 gemensamma spelpoäng.';return null};
       if(!partner)return NC('Kan inte verifiera Stayman-inviten utan svarshandens handprofil.',meansInvite,'Stayman');
       var fit=M?L[M]+partner.L[M]:0,fitPoints=fit>=8?partnershipPoints(h,partner,M):0;
       if(fit>=8&&fitPoints>=26)return {exp:gameSuit,alt:[],why:fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: accepterar inviten med '+txt(gameSuit)+'.',means:meansInvite,conv:'Stayman'};
