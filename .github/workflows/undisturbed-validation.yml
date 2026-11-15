@@ -1,0 +1,33 @@
+name: Undisturbed bidding verification
+
+on:
+  push:
+    branches:
+      - work/undisturbed-validation
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run correction-engine regression tests
+        run: node tests/reverse-hps.test.js
+      - name: Validate analysis library JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('analysbibliotek.json','utf8'))"
+      - name: Run supplementary matcher tests
+        run: node tests/supplementary-logic.test.js
+      - name: Verify all fixed undisturbed deals
+        run: node tests/ostord-coverage.test.js
+      - name: Upload undisturbed verification report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ostord-validation
+          path: testdata/ostord_validation_latest.json
