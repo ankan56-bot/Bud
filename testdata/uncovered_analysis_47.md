@@ -21,7 +21,7 @@ Summa: 47.
 ## Första prioritering
 
 1. **Konkurrensbudgivning (26 poster).** De 13 posterna med första orsaken är särskilt värda att kontrollera mot dubblingslogiken; 9 poster gäller annan motståndarinblandning och 4 har flera motståndarbud i sekvensen. Befintliga exempel i `LOGG_BUDREGLER.md` som bör jämföras är Giv 7, 10, 13, 19, 21, 22, 24 och 25. Dessa exempel är inte automatiskt bevis för att samtliga 26 lägen har en fast regel.
-2. **Sekvens-/turordningsluckor (10 poster).** Här behöver vi kontrollera om motorn felaktigt avvisar normala pass-/återbudssekvenser efter att motståndarna har klivit in, eller om dokumenterad systeminformation saknas.
+2. **Öppnarens återbud efter partnerns pass (10 poster).** Dessa är giltiga auktioner där öppnaren återkommer efter partnerns pass och motståndarnas inkliv. En kodkorrigering har tagit bort den felaktiga turordningsdiagnosen; själva återbudet är fortfarande ej täckt.
 3. **Handspecifika luckor (9 poster).** Dessa är koncentrerade till inklivstemat och en allmän giv. De måste bedömas med full hand, budhistorik och uttryckliga systemgränser; vi ska inte fylla dem med generella bridgeantaganden.
 4. **Svarshandens andra bud (1 post).** Isolerat fall efter 1 i färg och öppnarens återbud. Jämför med tidigare loggade exempel och bokregler innan kodning.
 5. **Osäkert fall (1 post).** Ska förbli ej täckt tills mer systemunderlag finns.
