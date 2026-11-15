@@ -30,6 +30,40 @@ function makeDeal(shape, honors) {
   };
 }
 
+function makeDealFor(seat, shape, honors) {
+  const deck = [];
+  for (const suit of ['C', 'D', 'H', 'S']) {
+    for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
+  }
+  const target = [];
+  for (const suit of ['C', 'D', 'H', 'S']) {
+    const cards = (honors[suit] || []).map(rank => suit + rank);
+    for (let rank = 2; rank <= 14 && cards.length < shape[suit]; rank++) {
+      if (!cards.includes(suit + rank)) cards.push(suit + rank);
+    }
+    target.push(...cards.slice(0, shape[suit]));
+  }
+  assert.equal(target.length, 13, 'Target hand must have 13 cards');
+  assert.equal(new Set(target).size, 13, 'Target hand must contain unique cards');
+  const rest = deck.filter(card => !target.includes(card));
+  const hands = { N: [], E: [], S: [], W: [] };
+  hands[seat] = target;
+  const others = ['N', 'E', 'S', 'W'].filter(s => s !== seat);
+  others.forEach((s, i) => { hands[s] = rest.slice(i * 13, (i + 1) * 13); });
+  return hands;
+}
+
+function assessMajorRaise(shape, honors, call) {
+  const hands = makeDealFor('S', shape, honors);
+  const bids = [
+    { s: 'N', c: '1H' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: call },
+    { s: 'W', c: 'P' }
+  ];
+  return Rattning.judge({ hands, dealer: 'N', bids }).items.find(item => item.plats === 'S' && item.bud === call.replace('H', '♥'));
+}
+
 function assessReverse(shape, honors) {
   const hands = makeDeal(shape, honors);
   const bids = [
@@ -117,4 +151,40 @@ function assessReverse(shape, honors) {
   assert.equal(item.htp, 19, '8-card support fit allows support points');
 }
 
-console.log('Reverse/HPS regression tests passed (5 cases).');
+ 
+// 9 HTP with 4-card heart support is a simple 2H raise.
+{
+  const item = assessMajorRaise(
+    { C: 2, D: 3, H: 4, S: 4 },
+    { H: [14], S: [13], D: [11] },
+    '2H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 9);
+}
+
+// The exact 10-HTP boundary belongs to the 3H raise, not 2H.
+{
+  const item = assessMajorRaise(
+    { C: 1, D: 4, H: 4, S: 4 },
+    { H: [14], S: [13], D: [11] },
+    '3H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 10);
+}
+
+// 13+ HTP with 4-card major support uses Stenberg 2NT even with a singleton;
+// it must take precedence over a splinter.
+{
+  const item = assessMajorRaise(
+    { C: 1, D: 4, H: 4, S: 4 },
+    { H: [14, 13, 12], S: [14] },
+    '2N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 15);
+  assert.match(item.motivering, /Stenberg/);
+}
+
+console.log('Reverse/HPS and major-raise regression tests passed (8 cases).');
