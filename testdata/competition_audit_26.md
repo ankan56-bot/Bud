@@ -45,7 +45,9 @@ Detta är samma giv med fyra olika passpositioner. Händerna är svaga (5 hp i b
 
 Detta är inte en enhetlig kategori. Den innehåller både enkla inkliv, hoppande inkliv, dubblingar och senare konkurrensbud. De tre svaren direkt efter motståndarnas dubbling av vår öppning är särskilt separata från svar på partnerns upplysningsdubbling.
 
-### C. Dubblerarens återbud efter partners svar (7 av de 26)
+### C. Dubblingssekvenser efter motståndarnas dubbling (9)
+
+**C1. Dubblerarens återbud efter partners svar (7)**
 
 - `dubbling-01-bid-6`: Norr efter 1♦–X–pass–1♠.
 - `dubbling-03-bid-6`: Norr efter 1♦–X–pass–1♥.
@@ -56,6 +58,13 @@ Detta är inte en enhetlig kategori. Den innehåller både enkla inkliv, hoppand
 - `dubbling-10-bid-6`: Syd efter 1♥–X–pass–2♣.
 
 Här är det den ursprungliga dubbleraren som ska agera igen. `respDouble()` är inte rätt funktion för detta steg: den analyserar svarshanden efter partnerns dubbling av motståndarnas öppning, inte dubblerarens återbud efter partnerns svar. Något komplett återbudssystem efter upplysningsdubbling har inte kunnat beläggas i de granskade regeltexterna.
+
+**C2. Ytterligare motståndarinblandning efter dubblingen (2)**
+
+- `dubbling-04-bid-7`: Syd efter 1♦–X–pass–2NT–pass–pass.
+- `dubbling-09-bid-7`: Norr efter 1♥–X–pass–3♠–pass–pass.
+
+Dessa är senare konkurrensbeslut efter att motståndarna först dubblat vår öppning och därefter bjudit igen. De ska inte blandas ihop med ett ostört återbud från dubbleraren.
 
 ## Samtliga 26 poster – handdata och auktion
 
