@@ -390,7 +390,7 @@
       "requiredExceptions": 0,
       "requiredIllegalRecommendations": 0,
       "requiredInvalidAuctions": 0,
-      "note": "This is a fresh verification gate. Do not update the baseline engine SHA or claim the new result until the workflow artifact confirms the run."
+      "note": "A draft PR targets work/hps-reverse-audit, where the workflow definition is also present so GitHub can run the pull-request check. Do not update the baseline engine SHA or claim the new result until the workflow artifact confirms the run."
     },
     "competitiveBiddingStatus": "paused",
     "competitiveBiddingRemaining": 68
