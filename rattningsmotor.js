@@ -1318,7 +1318,7 @@ var Rattning = (function(){
       var hand=H(st.hands[b.s]);
       var partnerHand=H(st.hands[partner(b.s)]);
       var agreed=null;
-      // Stenberg 2NT visar stöd i öppnarens färg trots att budet är sang.
+      // Stenberg 2NT visar uttryckligen stöd i öppnarens färg.
       if(node&&node.conv==='Stenberg'){
         for(var ai=0;ai<i;ai++){
           if(side(bids[ai].s)===side(b.s)&&/^1[CDHS]$/.test(bids[ai].c)){
@@ -1328,12 +1328,17 @@ var Rattning = (function(){
           }
         }
       }else{
-        // Stödpoäng kräver att partnern faktiskt har bjudit färgen.
-        // Ett eget nytt färgbud (t.ex. reverse) fastställer inte trumf.
-        for(var aj=i-1;aj>=0;aj--){
-          if(bids[aj].s===partner(b.s)&&isBid(bids[aj].c)&&bids[aj].c[1]!=='N'){
-            var partnerSuit=bids[aj].c[1];
-            if(hand.L[partnerSuit]+partnerHand.L[partnerSuit]>=8){agreed=partnerSuit;break;}
+        // I övriga sekvenser krävs att båda spelarna faktiskt har bjudit
+        // samma färg. En reverse eller en ensidig färgbeskrivning fastställer
+        // inte i sig trumf, även om de dolda händerna råkar ha 8 kort ihop.
+        for(var aj=i;aj>=0;aj--){
+          if(side(bids[aj].s)!==side(b.s)||!isBid(bids[aj].c)||bids[aj].c[1]==='N')continue;
+          var candidateSuit=bids[aj].c[1];
+          var partnerHasBidSuit=bids.slice(0,aj).some(function(x){
+            return x.s===partner(b.s)&&isBid(x.c)&&x.c[1]===candidateSuit;
+          });
+          if(partnerHasBidSuit&&hand.L[candidateSuit]+partnerHand.L[candidateSuit]>=8){
+            agreed=candidateSuit;break;
           }
         }
       }
