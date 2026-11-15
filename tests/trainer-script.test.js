@@ -255,3 +255,24 @@ test("human room bids are coordinator-validated and only accepted from the owner
   assert.match(html, /requestRoomAction\('call',\{seat:me,call:c\}\)/);
   assert.match(html, /sameRoomState\(m\.baseState,pack\(state\)\)/);
 });
+
+
+test("only the elected room coordinator runs shared bot turns and presence refresh triggers failover", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function isRoomBotCoordinator()");
+  const end = html.indexOf("\nfunction isFreshRoomAction", start);
+  assert.ok(start >= 0 && end > start, "room bot coordinator guard should exist");
+  const context = { roomConfig: { count: 2 }, playerId: "b",
+    roomCoordinator: () => "a" };
+  vm.runInNewContext(html.slice(start, end), context);
+  assert.equal(context.isRoomBotCoordinator(), false,
+    "non-coordinator clients must not run duplicate bot turns");
+  context.roomCoordinator = () => "b";
+  assert.equal(context.isRoomBotCoordinator(), true);
+  context.roomConfig = { count: 0 };
+  assert.equal(context.isRoomBotCoordinator(), true,
+    "legacy single-device mode is not restricted by room election");
+  assert.match(html, /!isRoomBotCoordinator\(\)\)return/);
+  assert.match(html, /roomConfig\.count&&roomCoordinator\(\)===playerId\)scheduleBot\(\)/,
+    "presence refresh should start bot processing after coordinator failover");
+});
