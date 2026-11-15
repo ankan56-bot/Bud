@@ -269,9 +269,10 @@
       ],
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning.",
-        "2♦ är överföring och visar minst fem hjärter.",
-        "Efter 2♥: 0–8 hp passar; 9 hp inviterar med 2NT (exakt fem hjärter) eller 3♥ (6+ hjärter); 10–15 hp väljer utgång enligt handtyp.",
-        "Vid 16+ hp finns slamintresse; 4NT är RKC om den vägen väljs, men valet mot kontrollbud är inte automatiserat."
+        "2♦ är överföring och visar minst fem hjärter; öppnaren fullföljer med 2♥ eller superaccepterar med 3♥ vid 17 hp och 4+ hjärter.",
+        "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med 6+ hjärter som invit.",
+        "10–15 hp: med exakt fem hjärter och jämn hand väljs 3NT vid 26+ gemensamma hp, annars 2NT-invit vid 22–25; med 6+ hjärter väljs 4♥ vid 26+ gemensamma spelpoäng, annars 3♥-invit vid 22–25.",
+        "16+ hp: slamintresse; valet mellan kontrollbud och 4NT RKC är inte automatiserat."
       ],
       "root": "t03_n0",
       "nodes": [
@@ -311,7 +312,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Observera: motorn tolkar senare 4NT som RKC med hjärter som trumf, men överföringsaccepten i sig verifierar inte separat en 8-korts fit.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat.",
           "branches": [
             {
               "call": "Pass",
@@ -321,22 +322,22 @@
             {
               "call": "2NT",
               "next": "t19_0",
-              "label": "9 hp, exakt fem hjärter – invit"
+              "label": "9 hp exakt fem hjärter eller 10+ hp med 22–25 gemensamma hp – invit"
             },
             {
               "call": "3♥",
               "next": "t27_overforing_hjarter_sexkort_invit_n2",
-              "label": "9 hp, minst sex hjärter – invit"
+              "label": "9 hp med 6+ hjärter eller 10+ hp med 22–25 gemensamma spelpoäng – invit"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "10–15 hp, jämn hand och exakt fem hjärter"
+              "label": "Exakt fem hjärter, jämn hand och 26+ gemensamma honnörspoäng"
             },
             {
               "call": "4♥",
               "next": null,
-              "label": "10–15 hp och minst sex hjärter"
+              "label": "6+ hjärter, minst 8-kortsfit och 26+ gemensamma spelpoäng"
             },
             {
               "call": "2♠",
@@ -582,9 +583,10 @@
       ],
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning.",
-        "2♦ är överföring och visar minst fem hjärter.",
-        "Efter 2♥: 0–8 hp passar; 9 hp inviterar med 2NT (exakt fem hjärter) eller 3♥ (6+ hjärter); 10–15 hp väljer utgång enligt handtyp.",
-        "Vid 16+ hp finns slamintresse; 4NT är RKC om den vägen väljs, men valet mot kontrollbud är inte automatiserat."
+        "2♦ är överföring och visar minst fem hjärter; öppnaren fullföljer med 2♥ eller superaccepterar med 3♥ vid 17 hp och 4+ hjärter.",
+        "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med 6+ hjärter som invit.",
+        "10–15 hp: med exakt fem hjärter och jämn hand väljs 3NT vid 26+ gemensamma hp, annars 2NT-invit vid 22–25; med 6+ hjärter väljs 4♥ vid 26+ gemensamma spelpoäng, annars 3♥-invit vid 22–25.",
+        "16+ hp: slamintresse; valet mellan kontrollbud och 4NT RKC är inte automatiserat."
       ],
       "root": "t07_n0",
       "nodes": [
@@ -624,7 +626,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Observera: motorn tolkar senare 4NT som RKC med hjärter som trumf, men överföringsaccepten i sig verifierar inte separat en 8-korts fit.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat.",
           "branches": [
             {
               "call": "Pass",
@@ -634,22 +636,22 @@
             {
               "call": "2NT",
               "next": "t19_0",
-              "label": "9 hp, exakt fem hjärter – invit"
+              "label": "9 hp exakt fem hjärter eller 10+ hp med 22–25 gemensamma hp – invit"
             },
             {
               "call": "3♥",
               "next": "t27_overforing_hjarter_sexkort_invit_n2",
-              "label": "9 hp, minst sex hjärter – invit"
+              "label": "9 hp med 6+ hjärter eller 10+ hp med 22–25 gemensamma spelpoäng – invit"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "10–15 hp, jämn hand och exakt fem hjärter"
+              "label": "Exakt fem hjärter, jämn hand och 26+ gemensamma honnörspoäng"
             },
             {
               "call": "4♥",
               "next": null,
-              "label": "10–15 hp och minst sex hjärter"
+              "label": "6+ hjärter, minst 8-kortsfit och 26+ gemensamma spelpoäng"
             },
             {
               "call": "2♠",
@@ -701,9 +703,10 @@
       ],
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning.",
-        "2♥ är överföring och visar minst fem spader.",
-        "Efter 2♠: 0–8 hp passar; 9 hp inviterar med 2NT (exakt fem spader) eller 3♠ (6+ spader); 10–15 hp väljer utgång enligt handtyp.",
-        "Vid 16+ hp finns slamintresse; 4NT är RKC om den vägen väljs, men valet mot kontrollbud är inte automatiserat."
+        "2♥ är överföring och visar minst fem spader; öppnaren fullföljer med 2♠ eller superaccepterar med 3♠ vid 17 hp och 4+ spader.",
+        "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med 6+ spader som invit.",
+        "10–15 hp: med exakt fem spader och jämn hand väljs 3NT vid 26+ gemensamma hp, annars 2NT-invit vid 22–25; med 6+ spader väljs 4♠ vid 26+ gemensamma spelpoäng, annars 3♠-invit vid 22–25.",
+        "16+ hp: slamintresse; valet mellan kontrollbud och 4NT RKC är inte automatiserat."
       ],
       "root": "t08_n0",
       "nodes": [
@@ -743,7 +746,7 @@
             "2♠"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem spader, eller 4♠ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Observera: motorn tolkar senare 4NT som RKC med spader som trumf, men överföringsaccepten i sig verifierar inte separat en 8-korts fit.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: exakt fem spader och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex spader – 4♠ vid minst 26 gemensamma spelpoäng, annars 3♠-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat.",
           "branches": [
             {
               "call": "Pass",
@@ -753,22 +756,22 @@
             {
               "call": "2NT",
               "next": "t20_0",
-              "label": "9 hp, exakt fem spader – invit"
+              "label": "9 hp exakt fem spader eller 10+ hp med 22–25 gemensamma hp – invit"
             },
             {
               "call": "3♠",
               "next": "t28_overforing_spader_sexkort_invit_n2",
-              "label": "9 hp, minst sex spader – invit"
+              "label": "9 hp med 6+ spader eller 10+ hp med 22–25 gemensamma spelpoäng – invit"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "10–15 hp, jämn hand och exakt fem spader"
+              "label": "Exakt fem spader, jämn hand och 26+ gemensamma honnörspoäng"
             },
             {
               "call": "4♠",
               "next": null,
-              "label": "10–15 hp och minst sex spader"
+              "label": "6+ spader, minst 8-kortsfit och 26+ gemensamma spelpoäng"
             },
             {
               "call": "3♥",
@@ -1324,8 +1327,8 @@
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning.",
         "2♦ överför till hjärter; 2♥ fullföljer.",
-        "Svarshanden har exakt fem kort i hjärter och 9 hp; 8 hp eller mindre passar.",
-        "Efter 2NT inviterar svarshanden; öppnaren passar med 15 hp, bjuder 3NT med 16–17 och färre än tre trumfkort, eller 4H med 16–17 och minst tre trumfkort."
+        "Svarshanden har exakt fem kort i hjärter och invitstyrka: normalt 9 hp eller 10+ när paret har 22–25 gemensamma honnörspoäng.",
+        "Efter 2NT: öppnaren bjuder 3NT vid minst 26 gemensamma honnörspoäng, 4M vid minst 8-kortsfit och 26 gemensamma spelpoäng, annars pass."
       ],
       "root": "t19_0",
       "nodes": [
@@ -1453,8 +1456,8 @@
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning.",
         "2♥ överför till spader; 2♠ fullföljer.",
-        "Svarshanden har exakt fem kort i spader och 9 hp; 8 hp eller mindre passar.",
-        "Efter 2NT inviterar svarshanden; öppnaren passar med 15 hp, bjuder 3NT med 16–17 och färre än tre trumfkort, eller 4S med 16–17 och minst tre trumfkort."
+        "Svarshanden har exakt fem kort i spader och invitstyrka: normalt 9 hp eller 10+ när paret har 22–25 gemensamma honnörspoäng.",
+        "Efter 2NT: öppnaren bjuder 3NT vid minst 26 gemensamma honnörspoäng, 4M vid minst 8-kortsfit och 26 gemensamma spelpoäng, annars pass."
       ],
       "root": "t20_0",
       "nodes": [
@@ -2618,10 +2621,10 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♦ överför till hjärter; öppnaren fullföljer med 2♥",
-        "Svarshanden har minst sex hjärter och 9 hp",
-        "3♥ efter fullföljd överföring är invit; öppnaren väljer slutbud"
+        "1NT = 15–17 hp och jämn fördelning.",
+        "2♦ överför till hjärter; 2♥ fullföljer.",
+        "Svarshanden har minst sex kort i hjärter och invitstyrka: normalt 9 hp eller 10+ när parets gemensamma spelpoäng är 22–25.",
+        "Efter 3M-inviten: öppnaren bjuder 4M vid minst 8-kortsfit och 26 gemensamma spelpoäng, 3NT vid 26 gemensamma honnörspoäng utan 8-kortsfit, annars pass."
       ],
       "root": "t27_overforing_hjarter_sexkort_invit_n0",
       "nodes": [
@@ -2852,10 +2855,10 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♥ överför till spader; öppnaren fullföljer med 2♠",
-        "Svarshanden har minst sex spader och 9 hp",
-        "3♠ efter fullföljd överföring är invit; öppnaren väljer slutbud"
+        "1NT = 15–17 hp och jämn fördelning.",
+        "2♥ överför till spader; 2♠ fullföljer.",
+        "Svarshanden har minst sex kort i spader och invitstyrka: normalt 9 hp eller 10+ när parets gemensamma spelpoäng är 22–25.",
+        "Efter 3M-inviten: öppnaren bjuder 4M vid minst 8-kortsfit och 26 gemensamma spelpoäng, 3NT vid 26 gemensamma honnörspoäng utan 8-kortsfit, annars pass."
       ],
       "root": "t28_overforing_spader_sexkort_invit_n0",
       "nodes": [
