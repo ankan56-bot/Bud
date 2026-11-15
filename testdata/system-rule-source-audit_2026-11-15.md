@@ -32,7 +32,7 @@ Sidan anger också att ett enkelt inkliv normalt visar 12–17 hp, med särskild
 - Det tidigare sexkortskravet för egna 2-nivåinkliv är en regel om inklivarens eget bud; det får inte förväxlas med partnerns svar.
 
 ### Slutsats
-Svar efter 1-högfärgs-/1-ruterinkliv kan implementeras enligt tabellen på sida 7, och den avgränsade implementationen finns nu i `rattningsmotor.js` version 7.1 med tester i `testdata/overcall-responses.test.js`. Hoppande 2-högfärgsinkliv har en hänvisning till svag-två-strukturen men behöver en separat, försiktig implementering eftersom invit-/spärrgränsen inte är numeriskt definierad. 2-lägesinkliv i lågfärg, hoppande 3-nivåinkliv och 2NT-inkliv förblir ej täckta. T29–T32 beskriver svar efter motståndarnas inkliv över vår öppning och är inte samma situation; de är dessutom märkta `analysis_only`.
+Svar efter 1-högfärgs-/1-ruterinkliv implementeras enligt tabellen på sida 7 i `rattningsmotor.js` version 7.2, med tester i `testdata/overcall-responses.test.js`. För hoppande 2-högfärgsinkliv visar motorn nu källans betydelser för 2NT-invit, 3 i öppningsfärgen som spärrhöjning, ny färg som krav, 3NT som slutbud och hopp i ny färg som renons/slaminvit. Den ger däremot inget automatiskt huvudbud, eftersom systemtexten inte anger numerisk styrkegräns/prioritet mellan dessa alternativ. 2-lägesinkliv i lågfärg, hoppande 3-nivåinkliv och 2NT-inkliv förblir ej täckta. T29–T32 beskriver svar efter motståndarnas inkliv över vår öppning och är inte samma situation; de är dessutom märkta `analysis_only`.
 
 ## 2. Återbud efter upplysningsdubbling
 
@@ -106,6 +106,6 @@ Det finns ett närliggande 2NT-exempel på sida 3, men det fastställer inte öp
 
 - Källan har lästs i sin helhet: 8 sidor, Nordisk standard 2012-08-22.
 - Denna rapport skiljer nu mellan uttryckliga källregler, närliggande men ej överförbara exempel och verkliga luckor.
-- Svarstabellen efter 1-högfärgs-/1-ruterinkliv är implementerad, version 7.1. Slutlig CI-körning för den uppdaterade testsviten inväntas.
+- Svarstabellen efter 1-högfärgs-/1-ruterinkliv är implementerad, version 7.2. För hoppande 2-högfärgsinkliv visas källstödda budbetydelser men inget automatiskt huvudbud där styrkegräns saknas.
 - Övriga nämnda svarslägen och de två andra prioriterade luckorna är inte ändrade.
 - `main` är orörd.
