@@ -110,3 +110,8 @@ Reproducerbar generator och tester finns i `testdata/generate-theme-deals.js` oc
 De 47 ej täckta positionerna är samlade i `testdata/uncovered_cases_47.json` och grupperade i `testdata/uncovered_analysis_47.md`. Prioritet ett är de 26 konkurrensfallen; därefter sekvens-/turordningsluckor (10), handspecifika luckor (9), ett fall av svarshandens andra bud och ett osäkert fall. Dessa är täckningsluckor, inte bevis för att referensauktionernas pass är fel eller rätt. Jämför med konkreta tidigare exempel i `LOGG_BUDREGLER.md` innan några nya villkor implementeras.
 
 GitHub Actions har passerat på commit med både dataset-/reproducerbarhetstester och AI seat isolation-tester. Ingen regel har ändrats i detta analyssteg.
+
+
+## AI-informationsgräns
+
+`seat-view.js` version 0.2.0 är nu striktare: AI-agenten får en whitelistad vy; okända `publicState`-fält och dolda hand-/seat-mappar avvisas, och dummy får endast exponeras efter `dummyExposed: true`. Sex automatiska tester täcker gränsen. Detta är ännu inte inkopplat i spelmotorn, men API-gränsen ska återanvändas när agentgränssnittet byggs.
