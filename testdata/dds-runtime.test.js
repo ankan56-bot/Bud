@@ -11,10 +11,12 @@ test("DDS WebAssembly binary is valid and exposes the expected solver API", asyn
   const binaryLoader = fs.readFileSync(
     path.join(__dirname, "..", "dds-runtime", "dds_web_wasm_bin.js"), "utf8"
   );
-  const base64Block = binaryLoader.match(/const DDS_WEB_WASM_BASE64 =([\\s\\S]*?);/);
-  assert.ok(base64Block, "embedded DDS binary loader exists");
+  const base64Start = binaryLoader.indexOf("const DDS_WEB_WASM_BASE64 =");
+  assert.ok(base64Start >= 0, "embedded DDS binary loader exists");
+  const base64End = binaryLoader.indexOf(";", base64Start);
+  const base64Block = binaryLoader.slice(base64Start, base64End);
   const embedded = Buffer.from(
-    Array.from(base64Block[1].matchAll(/"([^"]+)"/g), m => m[1]).join(""),
+    Array.from(base64Block.matchAll(/"([^"]+)"/g), m => m[1]).join(""),
     "base64"
   );
   assert.deepEqual(embedded, bytes, "embedded browser binary matches the standalone WASM file");
@@ -36,7 +38,7 @@ test("browser integration wires COI, WebAssembly loading and DDS table calculati
   assert.match(integration, /window\.crossOriginIsolated/);
   assert.match(integration, /SharedArrayBuffer/);
   assert.match(integration, /createDdsModule/);
-  assert.match(integration, /wasmBinary:window\\.ddsWebWasmBytes\\(\\)/);
+  assert.ok(integration.includes("wasmBinary:window.ddsWebWasmBytes()"));
   assert.match(integration, /dds_web_calc_table/);
   assert.match(html, /<script src="coi-serviceworker\.js"><\/script>/);
   assert.match(html, /<script src="dds-integration\.js"><\/script>/);
