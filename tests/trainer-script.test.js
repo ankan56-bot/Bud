@@ -36,7 +36,9 @@ test("solo mode lets one human choose any compass seat or both North and South",
   assert.match(html, /function seatView\(s\)\{return s===me\?handBlock\(st,s\):seatHtml\(st,s,rel\(s\)\)\}/);
 });
 
-test("the selected human seat remains fixed throughout a solo deal", () => {
+test("seat selection can be changed between deals to inspect all table positions", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  assert.ok(html.includes("function setSeat(s){if(s===null&&state&&state.hands&&(state.humanSeats||['N','S']).length===1){alert('Du kan inte byta spelplats under en soloträningsgiv"));
+  assert.match(html, /function setSeat\(s\)\{if\(s===null&&seat\)lastSeat=seat;seat=s;/);
+  assert.match(html, /Du spelar Öst\./);
+  assert.match(html, /Du spelar Väst\./);
 });
