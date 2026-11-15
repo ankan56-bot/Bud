@@ -1,0 +1,125 @@
+{
+  "version": "0.1.0",
+  "title": "Första temabaserade träningsuppsättningen",
+  "targetDeals": 140,
+  "dealsPerTheme": 10,
+  "generation": {
+    "source": "Budtraning.html existing biasedDeal/theme generator",
+    "reproducibleSeeds": true,
+    "distribution": {
+      "typical": 7,
+      "borderline": 3
+    },
+    "validateThemeBeforeSave": true,
+    "validate52UniqueCards": true,
+    "status": "pending_generation_and_validation"
+  },
+  "themes": [
+    {
+      "id": "alla",
+      "title": "Alla slags givar",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "nt",
+      "title": "1NT, Stayman och överföringar",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "stenberg",
+      "title": "Stenberg 2NT (stöd i hög- och lågfärg)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "tva",
+      "title": "2♣-öppning (starka givar)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "rkc",
+      "title": "Essfråga (RKC) – alla färger",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "slam",
+      "title": "Slambudgivning i färg (kontrollbud och RKC)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "slamnt",
+      "title": "Slambudgivning i sang",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "trumf",
+      "title": "Trumfstöd (stödbud i färg)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "sang",
+      "title": "Sanghänder (1NT/2NT och svar)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "invit",
+      "title": "Inviter (invit eller utgång)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "tvafarg",
+      "title": "Tvåfärgshänder (andra bud)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "svag",
+      "title": "Svaga öppningar och spärrbud",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "dubbling",
+      "title": "Upplysningsdubbling (dubbla och svara, alltid störd)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "inkliv",
+      "title": "Inkliv och dubbling (alla bjuder)",
+      "target": 10,
+      "dealIds": [],
+      "status": "pending"
+    }
+  ],
+  "evaluation": {
+    "runCorrectionEngine": true,
+    "captureUncoveredAndOptional": true,
+    "aiAnalysis": "pending_development_analysis",
+    "dds": "use_as_hindsight_cross_check_only",
+    "regressionBaseline": "same fixed deals for every motor version"
+  },
+  "note": "This is a manifest only. It does not claim that the 140 deals have already been generated or AI-reviewed."
+}
