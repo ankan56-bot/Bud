@@ -7,7 +7,7 @@
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
 - Rättningsmotor: version 7.3.
-- Rättningsmotor Git-blob SHA: `d3e30962f170dba09a246aedbecb86280bbf67bb`.
+- Rättningsmotor Git-blob SHA: `ac8e58ae13245e7d4a34722b373053c977bb6f82`.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`. Generatorn registrerar den exakta Git-blob-hashen för den rättningsmotor som användes.
