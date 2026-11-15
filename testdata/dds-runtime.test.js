@@ -3,7 +3,9 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const createDdsModule = require("../dds-runtime/dds_web_wasm.js");
+const ddsScriptPath = path.resolve(__dirname, "..", "dds-runtime", "dds_web_wasm.js");
+globalThis.document = { currentScript: { src: ddsScriptPath } };
+const createDdsModule = require(ddsScriptPath);
 const dataset = JSON.parse(fs.readFileSync(
   path.join(__dirname, "theme_deals_140.json"), "utf8"
 ));
@@ -22,7 +24,7 @@ function toPbn(hands) {
   return "N:" + ["N", "E", "S", "W"].map(one).join(" ");
 }
 
-test("DDS WebAssembly calculates a deterministic 20-cell double-dummy table", async () => {
+test("DDS WebAssembly calculates a deterministic 20-cell double-dummy table", { timeout: 120000 }, async () => {
   const wasmPath = path.join(__dirname, "..", "dds-runtime", "dds_web_wasm.wasm");
   const wasmBinary = new Uint8Array(fs.readFileSync(wasmPath));
   const module = await createDdsModule({ wasmBinary, noInitialRun: true });
