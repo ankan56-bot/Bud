@@ -51,6 +51,8 @@ jobs:
         run: node --test testdata/seat-view.test.js
       - name: Run player role tests
         run: node --test testdata/player-roles.test.js
+      - name: Run RKC final-pass regression tests
+        run: node --test testdata/rkc-final-pass.test.js
       - name: Validate DDS WebAssembly assets and browser wiring
         run: node --test testdata/dds-runtime.test.js
       - name: Upload regenerated theme dataset
