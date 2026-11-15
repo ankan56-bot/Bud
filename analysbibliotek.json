@@ -3613,7 +3613,7 @@
             "Pass"
           ],
           "meaning": "Öppnaren beskriver sin hand efter Stenberg 2NT.",
-          "analysis": "Svarshanden har visat 13+ HTP och minst fyrkortsstöd i hjärter. Öppnaren väljer återbud efter den egna handens HTP och fördelning. En enda singleton i sidofärg visas på 3-nivån. Utan singleton visar 15+ HTP 3♥; en balanserad hand med 12–14 hp visar 3NT; 20+ HTP går direkt till utgång. Void ska inte räknas som singleton.",
+          "analysis": "Svarshanden har visat 13+ HTP och minst fyrkortsstöd i hjärter. Öppnaren väljer återbud efter den egna handens HTP och fördelning. En enda singleton i sidofärg visas på 3-nivån. Utan singleton visar 15+ HTP 3♥; en balanserad hand med 12–14 hp visar 3NT. Void ska inte räknas som singleton.",
           "branches": [
             {
               "call": "3♣",
@@ -3639,11 +3639,6 @@
               "call": "3NT",
               "next": "t34_h_3nt",
               "label": "12–14 hp, balanserad utan singleton"
-            },
-            {
-              "call": "4♥",
-              "next": "t34_h_4h",
-              "label": "20+ HTP – utgång"
             }
           ],
           "handProfile": {
@@ -3737,23 +3732,6 @@
           }
         },
         {
-          "id": "t34_h_4h",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "4♥"
-          ],
-          "meaning": "4♥ visar 20+ HTP – utgång.",
-          "analysis": "Öppnaren har minst 20 HTP och går direkt till utgång i den överenskomna trumffärgen.",
-          "branches": [],
-          "handProfile": {
-            "opener": "20+ HTP",
-            "responder": "13+ HTP, minst fyra hjärter"
-          }
-        },
-        {
           "id": "t34_s_n0",
           "sequence": [
             "1♠",
@@ -3788,11 +3766,6 @@
               "call": "3NT",
               "next": "t34_s_3nt",
               "label": "12–14 hp, balanserad utan singleton"
-            },
-            {
-              "call": "4♠",
-              "next": "t34_s_4s",
-              "label": "20+ HTP – utgång"
             }
           ],
           "handProfile": {
@@ -3882,23 +3855,6 @@
           "branches": [],
           "handProfile": {
             "opener": "12–14 hp, balanserad, ingen singleton",
-            "responder": "13+ HTP, minst fyra spader"
-          }
-        },
-        {
-          "id": "t34_s_4s",
-          "sequence": [
-            "1♠",
-            "Pass",
-            "2NT",
-            "Pass",
-            "4♠"
-          ],
-          "meaning": "4♠ visar 20+ HTP – utgång.",
-          "analysis": "Öppnaren har minst 20 HTP och går direkt till utgång i den överenskomna trumffärgen.",
-          "branches": [],
-          "handProfile": {
-            "opener": "20+ HTP",
             "responder": "13+ HTP, minst fyra spader"
           }
         }
