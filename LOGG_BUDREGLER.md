@@ -398,3 +398,30 @@ De 75 luckorna är sparade med giv-ID, auktion, hand och motivering i `testdata/
 4. Köra samma fasta 140 givare efter varje ändring och jämföra mot baslinjen.
 
 Regressionstestfilen `tests/reverse-hps.test.js` omfattar nu **19 isolerade fall**, samtliga passerar.
+
+
+## Svar efter partnerns inkliv – regelgranskning och korrigering
+
+En genomgång av de ej täckta fallen i 140-givarsbaslinjen ledde till en direkt jämförelse mellan `respOvercall()` och systemunderlaget. Motorn hade fel intervall för sangsvar och stödhöjningar och saknade naturliga färgsvar samt hoppande färgsvar.
+
+Funktionen är nu omarbetad enligt de uttryckliga systemreglerna:
+- 1NT: 8–10 hp, balanserad hand och håll.
+- 2NT: 11–13 hp, balanserad hand och bra håll.
+- 3NT: 14+ hp, balanserad hand och bra håll.
+- Enkel/dubbel/trippel höjning: 6–9 hp med 3/4/5-korts stöd.
+- Ny färg: 8+ hp och 5+ kort om lägsta budet ligger på 1-nivån; 10+ hp om det krävs 2-nivån.
+- Hopp i ny färg: 14+ hp och bra 6+-färg, utgångskrav.
+- Överbud: 10+ hp och 3+ stöd.
+- Pass när inget av systemets uttryckliga svarsvillkor uppfylls.
+
+Tio nya regressionstester täcker stödhöjningar, 1NT/2NT/3NT, ny färg på 1- och 2-nivån, hoppande färgbud, överbud och pass. Den isolerade sviten omfattar nu **30 testfall**, samtliga passerar.
+
+### 140-givarsbaslinje efter ändringen
+
+- Täckning: 516/590 turer (**87,6 %**), tidigare 515/590 (**87,3 %**).
+- Ej täckta turer: 74, tidigare 75.
+- Ostört: fortsatt 100 %.
+- Stört: förbättrad täckning i inklivstemat från 60,9 % till 83,3 %.
+- 0 krascher och 0 olagliga kontraktsbud.
+
+Baslinjefilen har uppdaterats med aktuell motorversion och samtliga kvarvarande luckor. Att totalprocenten bara ökar marginellt beror på att nya korrekta svar förändrar auktionernas fortsättning och därmed blottlägger andra ännu ej beskrivna konkurrenssekvenser. De nya buden är inte tillagda enbart för att höja täckningsprocenten; de följer systemunderlaget.
