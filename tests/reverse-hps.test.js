@@ -1180,10 +1180,10 @@ function assessReverse(shape, honors) {
 }
 
 // After a two-suit rebid and a 2NT invite, opener accepts with 3NT
-// when all four suits are stopped and partnership HCP reaches 26.
+// when all four suits are stopped.
 {
-  const opener = ['DA', 'DQ', 'D2', 'D3', 'CA', 'CK', 'C2', 'C3', 'HK', 'H2', 'H3', 'SK', 'S2'];
-  const responder = ['SA', 'SQ', 'S4', 'S5', 'HQ', 'HJ', 'H4', 'DJ', 'D4', 'D5', 'CJ', 'C4', 'C5'];
+  const opener = ['SK', 'S2', 'HK', 'H2', 'D4', 'DA', 'DQ', 'DJ', 'D9', 'C6', 'C5', 'CJ', 'C2'];
+  const responder = ['S9', 'SA', 'S6', 'S4', 'H8', 'H6', 'H4', 'D10', 'D6', 'DK', 'CA', 'C10', 'C7'];
   const hands = makeDealFromPair('S', opener, responder);
   const bids = [
     { s: 'S', c: '1D' }, { s: 'W', c: 'P' },
@@ -1195,11 +1195,11 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, '3N');
 }
 
-// After 2NT-3C-3S, a balanced responder with 26+ combined HCP and no
+// After 2NT-3C-3S, a balanced responder with 25+ combined HCP and no
 // eight-card spade fit chooses 3NT.
 {
-  const responder = ['CA', 'C2', 'C3', 'DQ', 'D2', 'D3', 'H4', 'H5', 'H6', 'H7', 'S4', 'S5', 'S6'];
-  const opener = ['SA', 'SK', 'S2', 'S3', 'HA', 'HK', 'H8', 'DA', 'DK', 'D8', 'C5', 'C6', 'C7'];
+  const responder = ['SK', 'SJ', 'S2', 'H3', 'HJ', 'H2', 'H5', 'D4', 'D10', 'C10', 'C8', 'C4', 'C3'];
+  const opener = ['S10', 'SQ', 'SA', 'S4', 'HK', 'H7', 'HA', 'D8', 'D6', 'C5', 'C6', 'CA', 'CK'];
   const hands = makeDealFromPair('S', responder, opener);
   const bids = [
     { s: 'N', c: '2N' }, { s: 'E', c: 'P' },
