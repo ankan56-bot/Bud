@@ -29,7 +29,7 @@ test("solo bot assignment survives bid submission and undo state copies", () => 
   assert.match(html, /Ensam mot tre robotar/);
 });
 
-test("solo mode assigns exactly one human even when the device was set to both seats", () => {
+test("solo mode assigns exactly one human and makes the default seat explicit", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  assert.match(html, /function humanSeatsForNewDeal\(\)\{return playerMode==='solo'\?\[seat==='S'\?'S':'N'\]:\['N','S'\]\}/);
+  assert.match(html, /function humanSeatsForNewDeal\(\)\{if\(playerMode!=='solo'\)return \['N','S'\];if\(seat==='X'\)\{seat='N';try\{localStorage\.setItem\('bt_seat','N'\)\}catch\(e\)\{\}\}return \[seat==='S'\?'S':'N'\]\}/);
 });
