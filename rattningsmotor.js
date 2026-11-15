@@ -610,18 +610,18 @@ var Rattning = (function(){
     else{exp='P';why='Ingen inklivshand ('+hp+' hp): pass.'}
     return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
-  function respOvercall(h,oc,last,ob){
+  function respOvercall(h,oc,last,ob,partnerHand){
     var s=st_(oc),os=ob?st_(ob):null,L=h.L,hp=h.hp;
     // Nordisk standard s. 7 ger en svarstabell för inkliv på 1-nivån
     // (1 högfärg eller 1 ruter). Andra inklivsnivåer har egna/otillräckliga
     // källregler och får inte ärva denna tabell.
-    var goodJumpMajor=false;
-    if(lv(oc)===2&&maj(s)&&/^1[CDHS]$/.test(ob||'')&&s!==os){
-      var weakMajorHonors=[14,13,12,11].filter(function(n){return h.has(s,n)}).length;
-      var weakMajorIntermediates=[10,9,8].filter(function(n){return h.has(s,n)}).length;
-      goodJumpMajor=L[s]>=6&&(weakMajorHonors>=2||(weakMajorHonors>=1&&weakMajorIntermediates>=2));
+    var goodJumpMajor=false,overcallerHp=partnerHand?partnerHand.hp:0;
+    if(partnerHand&&lv(oc)===2&&maj(s)&&/^1[CDHS]$/.test(ob||'')&&s!==os){
+      var weakMajorHonors=[14,13,12,11].filter(function(n){return partnerHand.has(s,n)}).length;
+      var weakMajorIntermediates=[10,9,8].filter(function(n){return partnerHand.has(s,n)}).length;
+      goodJumpMajor=partnerHand.L[s]>=6&&(weakMajorHonors>=2||(weakMajorHonors>=1&&weakMajorIntermediates>=2));
     }
-    if(goodJumpMajor&&hp>=6&&hp<=10){
+    if(goodJumpMajor&&overcallerHp>=6&&overcallerHp<=10){
       // Ett hoppande 2-högfärgsinkliv följer svag-två-strukturen. Källan
       // anger budens betydelse men inte styrkegränsen mellan invit och spärr.
       var weakTwoMeaning=function(c){
@@ -929,7 +929,7 @@ var Rattning = (function(){
       if(d===1&&!oppAfter.length&&oppBefore.length===1){
         if(f==='X')return respDouble(h,oppBefore[0].c,last);
         if(f==='1N')return ntResp(h,0);
-        if(isBid(f))return respOvercall(h,f,last,oppBefore[0].c);
+        if(isBid(f))return respOvercall(h,f,last,oppBefore[0].c,st.hands[pt]?H(st.hands[pt]):null);
       }
       return nc('Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.');
     }
