@@ -29,7 +29,7 @@ test("5C response to partner's 4NT ace ask is not mistaken for a final game cont
     { s: "W", c: "P" },
     { s: "N", c: "P" }
   ];
-  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 6);
+  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 8);
   assert.equal(result?.exp, "6S");
   assert.doesNotMatch(result?.why || "", /Partnern har redan bjudit utgång/);
 });
