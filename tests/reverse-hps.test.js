@@ -923,8 +923,8 @@ function assessReverse(shape, honors) {
 
 // Two side singletons after Stenberg also have no documented priority.
 {
-  const north = ['C2', 'D2', 'HA', 'H2', 'H3', 'HK', 'H4', 'H5', 'SA', 'SQ', 'S2', 'S3', 'S4'];
-  const south = ['CA', 'CK', 'CQ', 'C3', 'DA', 'DK', 'DQ', 'D3', 'H6', 'H7', 'H8', 'SK', 'SJ'];
+  const north = ['C2', 'D2', 'H14', 'H2', 'H3', 'H13', 'H4', 'H5', 'S14', 'S12', 'S2', 'S3', 'S4'];
+  const south = ['C14', 'C13', 'C12', 'C3', 'D14', 'D13', 'D12', 'D3', 'H6', 'H7', 'H8', 'S13', 'S11'];
   const hands = makeDealFromPair('N', north, south);
   const bids = [
     { s: 'N', c: '1H' }, { s: 'E', c: 'P' },
@@ -1152,8 +1152,8 @@ function assessReverse(shape, honors) {
 
 // After 1NT-2C-2S, an 8-card major fit below 26 playing points is passed.
 {
-  const north = ['SA', 'SK', 'S2', 'S3', 'HA', 'H2', 'H3', 'DK', 'D2', 'D3', 'CQ', 'C2', 'C3'];
-  const south = ['SQ', 'SJ', 'S4', 'S5', 'H4', 'H5', 'H6', 'D4', 'D5', 'D6', 'C4', 'C5', 'C6'];
+  const north = ['S14', 'S13', 'S2', 'S3', 'H14', 'H2', 'H3', 'D13', 'D2', 'D3', 'C12', 'C2', 'C3'];
+  const south = ['S12', 'S11', 'S4', 'S5', 'H4', 'H5', 'H6', 'D4', 'D5', 'D6', 'C4', 'C5', 'C6'];
   const hands = makeDealFromPair('S', south, north);
   const bids = [
     { s: 'N', c: '1N' }, { s: 'E', c: 'P' },
@@ -1167,7 +1167,7 @@ function assessReverse(shape, honors) {
 
 // After 1C-2C, a balanced 18-HCP opener chooses 3NT before a minor game.
 {
-  const opener = ['CA', 'CK', 'C2', 'C3', 'DA', 'DK', 'D2', 'HQ', 'H2', 'H3', 'SQ', 'S2', 'S3'];
+  const opener = ['C14', 'C13', 'C2', 'C3', 'D14', 'D13', 'D2', 'H12', 'H2', 'H3', 'S12', 'S2', 'S3'];
   const responder = ['C4', 'C5', 'C6', 'C7', 'D4', 'D5', 'D6', 'H4', 'H5', 'H6', 'S5', 'S6', 'S7'];
   const hands = makeDealFromPair('S', opener, responder);
   const bids = [
@@ -1182,8 +1182,8 @@ function assessReverse(shape, honors) {
 // After a two-suit rebid and a 2NT invite, opener accepts with 3NT
 // when all four suits are stopped.
 {
-  const opener = ['SK', 'S2', 'HK', 'H2', 'D4', 'DA', 'DQ', 'DJ', 'D9', 'C6', 'C5', 'CJ', 'C2'];
-  const responder = ['S9', 'SA', 'S6', 'S4', 'H8', 'H6', 'H4', 'D10', 'D6', 'DK', 'CA', 'C10', 'C7'];
+  const opener = ['S13', 'S2', 'H13', 'H2', 'D4', 'D14', 'D12', 'D11', 'D9', 'C6', 'C5', 'C11', 'C2'];
+  const responder = ['S9', 'S14', 'S6', 'S4', 'H8', 'H6', 'H4', 'D10', 'D6', 'D13', 'C14', 'C10', 'C7'];
   const hands = makeDealFromPair('S', opener, responder);
   const bids = [
     { s: 'S', c: '1D' }, { s: 'W', c: 'P' },
@@ -1198,8 +1198,8 @@ function assessReverse(shape, honors) {
 // After 2NT-3C-3S, a balanced responder with 25+ combined HCP and no
 // eight-card spade fit chooses 3NT.
 {
-  const responder = ['SK', 'SJ', 'S2', 'H3', 'HJ', 'H2', 'H5', 'D4', 'D10', 'C10', 'C8', 'C4', 'C3'];
-  const opener = ['S10', 'SQ', 'SA', 'S4', 'HK', 'H7', 'HA', 'D8', 'D6', 'C5', 'C6', 'CA', 'CK'];
+  const responder = ['S13', 'S11', 'S2', 'H3', 'H11', 'H2', 'H5', 'D4', 'D10', 'C10', 'C8', 'C4', 'C3'];
+  const opener = ['S10', 'S12', 'S14', 'S4', 'H13', 'H7', 'H14', 'D8', 'D6', 'C5', 'C6', 'C14', 'C13'];
   const hands = makeDealFromPair('S', responder, opener);
   const bids = [
     { s: 'N', c: '2N' }, { s: 'E', c: 'P' },
