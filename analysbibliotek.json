@@ -1,6 +1,6 @@
 {
-  "version": "0.5.7",
-  "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.7 utökar ostörd budgivning med öppnarens återbud efter 1 över 1: balanserade intervall, egen färg, stöd, andra färg, reverse, hopp i andra färg, splinter och 4-4-4-1.",
+  "version": "0.5.8",
+  "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.8 förtydligar 4-4-4-1 som exempel i stödåterbudet efter 1♥–1♠ och undviker dubbla sekvensnoder.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -5138,10 +5138,10 @@
             "2♠"
           ],
           "meaning": "2♠ efter 1♥–1♠ – stöd i svarsfärgen",
-          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns.",
+          "analysis": "Öppnaren visar minst fyra kort i svarsfärgen. Lägre höjning visar 12–16 HTP; enkelhopp visar 17–19 HTP. Vid 20+ HTP går öppnaren till utgång i högfärg. Vid 20+ HTP med lågfärgsstöd saknas ett säkert specificerat återbud i motorn och analysen ska markera det som otäckt i stället för att hitta på ett bud. HTP används här eftersom trumfstöd finns. En viktig specialform är 4-4-4-1: exempelvis 4♠-4♥-4♦-1♣ öppnar 1♥ enligt prioriteten H > S > C > D. Efter partnerns 1♠ finns fyra korts spaderstöd. Handen är obalanserad, och återbudet ska styras av HTP – inte behandlas som en balanserad sanghand.",
           "branches": [],
           "handProfile": {
-            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg.",
+            "opener": "4+ kort i svarsfärgen. 12–16 HTP = lägsta höjning; 17–19 HTP = enkelhopp; 20+ HTP = utgång om svarsfärgen är högfärg. Exempel: 4♠-4♥-4♦-1♣ öppnar 1♥ och har sedan 4-korts spaderstöd.",
             "responder": "Svarshanden har visat minst fyra kort i sin färg. Öppnarens återbud fastställer fit och visar HTP-intervall."
           }
         },
@@ -5211,23 +5211,6 @@
           "handProfile": {
             "opener": "Minst 13 STP, 4+ spaderstöd och singel/renons i ruter (i detta exempel).",
             "responder": "Svarshanden har visat minst fyra spader; öppnarens splinter fastställer spaderfit och visar korthet i ruter."
-          }
-        },
-        {
-          "id": "t39_4441",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "1♠",
-            "Pass",
-            "2♠"
-          ],
-          "meaning": "2♠ efter 1♥–1♠ – 4-4-4-1 och trumfstöd",
-          "analysis": "En öppnarhand med 4-4-4-1 kan ha fyra kort i svarsfärgen och därmed stödja partnerns 1♠. Den ska värderas med HTP i spader när fit finns. Exempelvis 4♠-4♥-4♦-1♣ är inte balanserad; om den öppnar 1♥ enligt färgprioriteten och partnern svarar 1♠ finns fyrkortsstöd. Stödåterbudets nivå styrs av HTP: 12–16 lägsta höjning, 17–19 enkelhopp, 20+ utgång i högfärg. Det är viktigt att inte kalla 4-4-4-1 balanserad.",
-          "branches": [],
-          "handProfile": {
-            "opener": "4-4-4-1 är obalanserad. Exakt singelfärg och fyrkortsfärger avgör öppningsbudet och om svarsfärgen har stöd.",
-            "responder": "Minst fyra spader; partnerns 1♠ visar minst fyra spader. 8+ korts fit när öppnarhanden har fyra spader."
           }
         }
       ]
