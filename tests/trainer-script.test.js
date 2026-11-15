@@ -91,8 +91,8 @@ test("room readiness counts distinct valid seat owners, not raw presence records
   const end = html.indexOf("function seatOwnerName", start);
   assert.ok(start >= 0 && end > start, "room seat ownership helpers should exist");
   const source = html.slice(start, end);
+  const now = 1_800_000_000_000;
   function ready(count, players) {
-    const now = 1_800_000_000_000;
     Object.values(players).forEach(p => { if (p.at == null) p.at = now; });
     const context = { SEATS: ["N", "E", "S", "W"], roomPlayers: players, roomConfig: { count },
       playerId: "self", Date: { now: () => now } };
