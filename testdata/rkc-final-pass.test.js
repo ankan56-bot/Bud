@@ -72,7 +72,7 @@ test("two keycards and a club void are shown by 6C when clubs are below trumps",
 });
 
 test("two keycards and a heart void above spade trumps are shown by 6S", () => {
-  const hand = ["S14", "S10", "S9", "S8", "D14", "D13", "D12", "D11", "D10", "D9", "D8", "D7", "C14"];
+  const hand = ["S14", "S10", "S9", "S8", "D14", "D13", "D12", "D11", "D10", "D9", "D8", "D7", "C13"];
   const result = responseFromSouthHand(hand);
   assert.equal(result?.exp, "6S");
 });
