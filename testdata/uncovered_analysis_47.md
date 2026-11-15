@@ -81,3 +81,10 @@ De här positionerna är pass efter varierande motståndarsvar/fortsättningar. 
 **Kodobservation:** `nodeForRaw()` har en särskild dispatch för `oppBefore`, men går till en generell ej täckt-nod när motståndarinblandningen inte matchar dess snäva mönster. Det förklarar varför flera olika fortsättningar hamnar i samma generiska feltext. Det är en täckningsbegränsning, inte belägg för att passen är rätt eller fel.
 
 **Nästa regelgranskning:** separera (1) svar efter motståndarnas dubbling av vår öppning, (2) återbud efter partnerns svar på vår upplysningsdubbling, och (3) ny budgivning när motståndarna kliver in igen. För varje kategori måste vi hitta uttrycklig systemkälla och testhänder. Ingen regel ändras i detta steg.
+
+
+## Fördjupad granskning av konkurrens-/försvarsluckorna
+
+De 26 poster som i den första orsaksgrupperingen hamnade under motståndarnas bud har nu granskats mot `LOGG_BUDREGLER.md` och T29–T33. Förtydligande: 22 är egentliga konkurrens-/dubblingssituationer; fyra är försvarspass efter motståndarnas naturliga 1♣–1♠–2♣–5♣-sekvens. Rapporten `testdata/competition-gaps-26-audit.md` listar alla 26 positioner med handens HCP/fördelning och jämförelser med tidigare givexempel.
+
+Två tydliga handbaserade kandidater finns i T29–T33: `trumf-02-bid-3` matchar T29 men har en överlappning mellan 2♥ och spärrande 3♥ vid 6 HCP/fem hjärter; `trumf-05-bid-3` matchar T32:s 3♣-profil (4 HCP/fem klöver). Båda är fortfarande `analysis_only`. `dubbling-09-bid-3` (1♥–Dbl, 2 HCP/två hjärter) saknar ett definierat passalternativ i T33. Loggens Giv 7, 10, 13, 19, 21, 22, 24 och 25 ger strukturella jämförelser men ingen komplett regelkälla för de 26 fallen. Inga budregler har ändrats.
