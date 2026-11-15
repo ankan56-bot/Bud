@@ -268,3 +268,5 @@ GitHub Actions körning `43664406782` godkände samtliga steg: deterministisk ge
 - DDS har inte använts som budfacit.
 
 `main` är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
+
+- För hoppande 2-högfärgsinkliv hänvisar sida 7 till svag-två-strukturen. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, inte invit – detta stämmer även med användarens uttryckliga korrigering 2026-11-12. 2NT är invit med 2+ stöd, men systemkällan anger ingen exakt styrkegräns mellan 2NT-invit och spärrhöjningen. Därför har ingen sådan svarsmotorregel lagts till ännu.
