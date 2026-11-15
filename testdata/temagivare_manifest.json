@@ -339,7 +339,20 @@
     "aiAnalysis": "pending_development_analysis",
     "dds": "use_as_hindsight_cross_check_only",
     "regressionBaseline": "same fixed deals for every motor version",
-    "status": "ready_for_engine_regression"
+    "status": "baseline_run",
+    "baselinePath": "testdata/temagivare_140_baseline.json",
+    "baselineEngineBlobSha": "3ae5ca795280c5266ac86d256a8ff3eee79ff75e",
+    "baselineSummary": {
+      "nsTurns": 590,
+      "covered": 515,
+      "uncovered": 75,
+      "coveragePercent": 87.3,
+      "ostordCoveragePercent": 100,
+      "stordCoveragePercent": 82,
+      "exceptions": 0,
+      "illegalRecommendations": 0,
+      "completedAuctions": 140
+    }
   },
-  "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. They have not yet been AI-reviewed or DDS-cross-checked."
+  "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
 }
