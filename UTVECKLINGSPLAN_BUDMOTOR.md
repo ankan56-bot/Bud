@@ -103,3 +103,10 @@ Detta innebär inte att spelmotorn eller AI-spelarna byggs i detta delsteg. För
 De 47 ej täckta buden är nästa analysmål. De ska granskas mot budsekvens, handvillkor och befintlig systemdokumentation innan analysbibliotek eller kompletterande budlogik ändras. Referensauktionerna är genererade med samma befintliga system och är därför en täckningsbaslinje, inte oberoende facit. Klassificering typisk/gränsnära och DDS-kontroll återstår.
 
 Reproducerbar generator och tester finns i `testdata/generate-theme-deals.js` och `testdata/theme-deals.test.js`. GitHub Actions körning 43658747827 har passerat regenerering och dataset-/reproducerbarhetstester. Workflowet utökas även med testet för AI-positionernas informationsgräns.
+
+
+## Prioriterad analys av ej täckta lägen
+
+De 47 ej täckta positionerna är samlade i `testdata/uncovered_cases_47.json` och grupperade i `testdata/uncovered_analysis_47.md`. Prioritet ett är de 26 konkurrensfallen; därefter sekvens-/turordningsluckor (10), handspecifika luckor (9), ett fall av svarshandens andra bud och ett osäkert fall. Dessa är täckningsluckor, inte bevis för att referensauktionernas pass är fel eller rätt. Jämför med konkreta tidigare exempel i `LOGG_BUDREGLER.md` innan några nya villkor implementeras.
+
+GitHub Actions har passerat på commit med både dataset-/reproducerbarhetstester och AI seat isolation-tester. Ingen regel har ändrats i detta analyssteg.
