@@ -1,6 +1,6 @@
 {
-  "version": "0.6.1",
-  "description": "Analysbibliotek med 41 budträd och utökad detaljering av stark 2♣-öppning, 2♦-väntan och svarshandens fortsättningar. Ostörd budgivning prioriteras; störd budgivning är fortsatt pausad.",
+  "version": "0.6.2",
+  "description": "Analysbibliotek med 42 budträd och 254 noder. Utökat med stark 2♣, svagt lågfärgsrelä efter 1NT och superaccept av överföring; endast dokumenterade motorregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -2696,6 +2696,23 @@
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
           }
+        },
+        {
+          "id": "t27_superaccept",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "Superaccept av hjärteröverföring",
+          "analysis": "Öppnaren kan i stället för normal accept på 2♥ bjuda 3♥ med 17 hp och minst fyra hjärter. Detta är ett frivilligt alternativ i motorn; 2♥ är det vanliga återbudet.",
+          "handProfile": {
+            "opener": "17 hp och minst fyra hjärter efter 1NT-öppning.",
+            "responder": "Minst fem hjärter; överföringen 2♦ är fullföljd på 3-nivån."
+          },
+          "branches": []
         }
       ]
     },
@@ -2913,6 +2930,23 @@
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
           }
+        },
+        {
+          "id": "t28_superaccept",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Superaccept av spaderöverföring",
+          "analysis": "Öppnaren kan i stället för normal accept på 2♠ bjuda 3♠ med 17 hp och minst fyra spader. Detta är ett frivilligt alternativ i motorn; 2♠ är det vanliga återbudet.",
+          "handProfile": {
+            "opener": "17 hp och minst fyra spader efter 1NT-öppning.",
+            "responder": "Minst fem spader; överföringen 2♥ är fullföljd på 3-nivån."
+          },
+          "branches": []
         }
       ]
     },
@@ -6240,6 +6274,114 @@
             "opener": "Minst fem kort i ruter; utgångskrav.",
             "responder": "6+ hp och minst fyra spader. Motorns fortsättning prioriterar högfärg före sang."
           }
+        }
+      ]
+    },
+    {
+      "id": "T42_1NT_SVAG_LAGFARGSRELA",
+      "title": "1NT – svagt relä med lång lågfärg",
+      "tags": [
+        "1NT",
+        "2♠",
+        "relä",
+        "lågfärg",
+        "ostörd budgivning"
+      ],
+      "conditions": [
+        "Norr öppnar 1NT = 15–17 hp och jämn hand.",
+        "Svarshanden har under 8 hp och minst sex kort i en lågfärg, eller 5-5 i lågfärgerna.",
+        "2♠ är artificiellt relä; det visar inte spader.",
+        "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre klöver, annars 2NT med längre ruter eller lika längd.",
+        "Fortsättningen efter öppnarens reläsvar är inte specificerad i den nuvarande motorn och dokumenteras därför inte med påhittade slutbud."
+      ],
+      "root": "t42_n0",
+      "nodes": [
+        {
+          "id": "t42_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ – artificiellt relä med svag lågfärgshand",
+          "analysis": "Svarshanden har en svag hand under 8 hp och lång lågfärg: minst sex klöver eller ruter, alternativt 5-5 i lågfärgerna. 2♠ är ett relä för att hitta rätt lågfärg och lovar inte spader.",
+          "handProfile": {
+            "opener": "1NT = 15–17 hp, balanserad hand.",
+            "responder": "Under 8 hp; minst 6 klöver eller ruter, alternativt 5-5 i lågfärgerna."
+          },
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t42_n2",
+              "label": "Längre ruter eller lika längd i lågfärgerna"
+            },
+            {
+              "call": "3♣",
+              "next": "t42_n3",
+              "label": "Längre klöver"
+            }
+          ]
+        },
+        {
+          "id": "t42_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass"
+          ],
+          "meaning": "Öppnarens svar på 2♠-reläet",
+          "analysis": "Öppnaren väljer mellan 2NT och 3♣ utifrån längden i lågfärgerna. 2NT visar längre ruter eller lika längd; 3♣ visar längre klöver.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad 1NT-hand. Längre ruter eller lika långa lågfärger: 2NT; längre klöver: 3♣.",
+            "responder": "Under 8 hp, lång lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t42_n2",
+              "label": "Ruter minst lika lång som klöver"
+            },
+            {
+              "call": "3♣",
+              "next": "t42_n3",
+              "label": "Klöver längre än ruter"
+            }
+          ]
+        },
+        {
+          "id": "t42_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT – längre ruter eller lika längd i lågfärgerna",
+          "analysis": "Öppnaren visar att ruter är längre än klöver eller att lågfärgerna är lika långa. Budet är en del av det artificiella reläet, inte en invit i sang i denna sekvens. Svarshandens fortsättning är inte definierad i nuvarande motor.",
+          "handProfile": {
+            "opener": "15–17 hp, 1NT-hand; ruter minst lika lång som klöver.",
+            "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": []
+        },
+        {
+          "id": "t42_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ – längre klöver",
+          "analysis": "Öppnaren visar att klöver är längre än ruter. Budet är reläsvar, inte ett naturligt krav på att svarshanden ska ha klöverstöd. Svarshandens fortsättning är inte definierad i nuvarande motor.",
+          "handProfile": {
+            "opener": "15–17 hp, 1NT-hand; klöver längre än ruter.",
+            "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+          },
+          "branches": []
         }
       ]
     }
