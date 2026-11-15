@@ -20,8 +20,8 @@ const SOURCE = {
   generator: "Budtraning.html existing newDeal/biasedDeal generator",
   generatorBlobSha: "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
   rulesEngine: "rattningsmotor.js",
-  rulesEngineVersion: "6.8",
-  rulesEngineBlobSha: "91ff70847d29074c24932ae4c3c7c1ea39ba4272",
+  rulesEngineVersion: "6.9",
+  rulesEngineBlobSha: "0a0c5636d8522c62fbca2172ab2ed0d2499cdfdb",
   branchBase: "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
 };
 
