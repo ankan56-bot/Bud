@@ -344,4 +344,25 @@ function assessReverse(shape, honors) {
   assert.equal(item.bedomning, 'ej_täckt');
 }
 
-console.log('Bridge bidding regression tests passed (18 cases).');
+ 
+// A competitive auction where opener gets another turn after responder passes
+// is legal; it must be reported as an uncovered competitive continuation,
+// not as an invalid turn-order pattern.
+{
+  const hands = makeDeal(
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14], H: [13], S: [12] }
+  );
+  const bids = [
+    { s: 'N', c: '1D' },
+    { s: 'E', c: '1H' },
+    { s: 'S', c: 'P' },
+    { s: 'W', c: '2H' },
+    { s: 'N', c: 'P' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 4);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /Partnern har passat/);
+}
+
+console.log('Bridge bidding regression tests passed (19 cases).');
