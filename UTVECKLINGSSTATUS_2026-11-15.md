@@ -271,20 +271,32 @@ GitHub Actions körning `43665028981` godkände samtliga steg: deterministisk ge
 
 - För hoppande 2-högfärgsinkliv hänvisar sida 7 till svag-två-strukturen. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, inte invit – detta stämmer även med användarens uttryckliga korrigering 2026-11-12. 2NT är invit med 2+ stöd. Motorn visar nu dessa betydelser samt ny färg/3NT/hopp som betydelser, men väljer inget huvudbud eftersom källan saknar numerisk styrkegräns och prioritering.
 
-## Fortsatt verifiering – engine 7.5 (2026-11-15)
+## Aktuellt verifierat läge – engine 8.3 (2026-11-15)
 
-- Gemensam trumflängdsbonus är fastställd och regressionstestad: 9 gemensamma trumf ger +1 poäng; 10 eller fler ger +2 poäng. Tidigare felaktigt +3 vid 10+ är korrigerat.
-- Stenbergens individuella HTP är fortsatt honnörspoäng plus stödpoäng i sidofärgerna, endast när svarshanden har minst fyra trumf. Den får inte partnerskapets trumflängdsbonus.
-- Partnerskapets spelstyrka börjar med båda händerna HCP, lägger till sidofärgernas stödpoäng en gång per hand vid minst åtta gemensamma trumf och lägger därefter till den gemensamma trumflängdsbonusen. Sang använder enbart HCP.
-- Ny regression kontrollerar 8-, 9- och 10-kortsfit samt att 10+ ger exakt +2. Stenbergstesterna kontrollerar 13+ HTP och att tre trumf inte räcker för Stenberg.
-- Temabaslinjen är regenererad från engine 7.5: 140 givare, 594 rätt, 37 ej täckta, 0 fel och 0 valfria. Stenbergtemats tio givare uppfyller 13+ HTP och 4+ stöd.
-- temagivare_manifest.json är synkroniserad med den aktuella motorns versions- och blob-hash. Nytt test hindrar att manifestets källmetadata driver isär från datasetet.
-- main är fortsatt orörd; ändringarna ligger på work/theme-dataset-analysis. Senaste CI-körning för manifestkontrollen inväntas.
+### Korrigering av poängvärdering
+- Partnerskapets gemensamma trumflängdsbonus följer användarens fastställda regel: 9 gemensamma trumf ger +1; 10 eller fler ger +3. Den tidigare noteringen om +2 vid 10+ var felaktig och ska inte användas.
+- Bonusen läggs till först vid minst 8 gemensamma trumf. Fördelnings-/stödpoäng räknas separat för båda händerna och endast en gång per hand. Sang värderas med honnörspoäng utan trumfbonus.
+- Reverse kräver 18+ honnörspoäng och minst 5-4-fördelning enligt källtexten. Stödpoäng från en obekräftad fyrkortsfärg får inte användas för att nå 18-gränsen.
+- HTP som visas för en hand är villkorad av relevant trumfstöd/fit, egen 6+ färg eller 5-5. Vid Stenberg 2NT visas svarshandens HTP i öppningsfärgen, men endast i ostörd sekvens.
 
-## Fördjupad poängkontroll – engine 7.9
+### Stenberg – källregler och korrigering
+- Svarshandens 2NT kräver minst 13 HTP och minst 4 trumfkort.
+- Öppnarens återbud efter Stenberg: singel visas på 3-nivån; 15+ HTP utan singel visar extra styrka med 3 i trumffärgen; 12-14 HCP med balanserad hand visar 3NT.
+- Koden hade tidigare en felaktig gräns på 16+ och prioriterade stark HTP före singleton. Detta är rättat till 15+ och singleton prioriteras enligt systemtexten.
+- Regressioner testar 13+ HTP i svarshanden, visad HTP, 15+ utan singel, singleton före styrkebud och 12-14 balanserad 3NT.
 
-- Reverse i öppnarens andra bud får inte nå 18-gränsen genom stödpoäng i en obekräftad fyrkortsfärg. Reverse kräver 18+ honnörspoäng; stödpoäng används bara när källans villkor för trumfstöd, egen 6+ färg eller 5-5 är uppfyllda.
-- HTP som visas per bud är nu villkorad: minst 8 gemensamma trumf, egen 6+ färg eller egen 5-5 där den valda färgen ingår. Annars visas enbart hp. En Stenberg-2NT-respons hämtar HTP från partnerns öppningsfärg, men endast i ostörd sekvens.
-- Regressionstester täcker reverse med 16 hp men 18 råa htp, Stenbergens visade HTP, 9-/10-/11-kortsfit och att bonusen är +1 vid nio samt +2 från tio trumf.
-- Motorn är version 7.9 och temamanifestets versions-/blobmetadata är synkroniserad. Temadatasetet kommer att regenereras av CI för denna version.
-- En tidigare GitHub Actions-körning har fastnat som in_progress utan uppdaterade steg; senaste körningen för 7.9 står därför i kö. Inga CI-resultat för 7.9 hävdas ännu.
+### Temabaslinje och CI
+- rattningsmotor.js är version 8.3.
+- temagivare_manifest.json och theme_deals_140.json är synkroniserade med exakt engine-blob.
+- Datasetet innehåller 140 reproducerbara givare, 591 rätt, 38 ej täckta, 0 fel och 0 valfria. Stenbergtemat har 0 ej täckta positioner; RKC-temat 0 ej täckta.
+- Full GitHub Actions-körning 43698112340 slutfördes med success: deterministisk regenerering, dataset/reproducerbarhet, auktion-dispatch, inklivssvar, luckskydd, analysbiblioteksmatchning, strukturerade handvillkor/profiler, AI-seat-isolering, spelarroller, RKC och DDS-paketering.
+- Workflowen använder nu engine-versionen automatiskt i baslinjens commitmeddelande och separerar concurrency per commit-SHA för att undvika att en fastnad körning blockerar ny verifiering.
+- Den verifierade baslinjen är committad av CI som f69c218 (Update theme deal baseline for correction engine 8.3).
+
+### Kvarstående avgränsningar
+- Temagivarnas 7 typiska/3 gränsnära klassificering är ännu inte genomförd för samtliga teman. De ska inte märkas som typiska/gränsnära utan verifierbara beslutströsklar.
+- De 38 ej täckta budpositionerna är inte automatiskt felaktiga bud; luckorna kräver fortsatt källgranskning innan nya regler införs.
+- DDS-paketeringen är testad i CI, men faktisk DDS-beräkning i Safari är fortfarande inte verifierad. DDS används inte som budfacit.
+- Den långsiktiga arkitekturen människa i Nord, AI i Syd och separata AI i Öst/Väst är fortsatt ett krav; den fullständiga spelande AI:n är inte färdig.
+
+main är fortsatt orörd. Allt arbete ligger på work/theme-dataset-analysis.
