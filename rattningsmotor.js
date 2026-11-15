@@ -725,20 +725,63 @@ var Rattning = (function(){
     return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
   function respDouble(h,ob,last){
-    var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[];
-    var un=SU.filter(function(s){return s!==os});
+    var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[],un=SU.filter(function(s){return s!=='N'&&s!==os;});
+    var best=un.slice().sort(function(a,b){
+      if(L[b]!==L[a])return L[b]-L[a];
+      return SU.indexOf(b)-SU.indexOf(a);
+    })[0];
+    var bestLen=best?L[best]:0,bestHtp=best?h.htp(best):hp;
     var means=function(c){
-      if(c==='1N')return '6-10 hp och håll i öppningsfärgen.';if(c==='2N')return '11-12 hp och håll i öppningsfärgen.';if(c==='3N')return '13-16 hp och håll i öppningsfärgen.';
-      if(c==='P')return 'Pass: bara med många kort i öppningsfärgen.';
-      if(isBid(c)&&c[1]===os)return 'Överbud: 10+ hp, krav.';
-      if(isBid(c)&&c[1]!=='N'){var lo=lowest(c[1],ob);return c===lo?'Färg på lägsta nivå: 0-9 hp, okrav.':lv(c)===lv(lo)+1?(lv(c)>=3?'Hopp till 3-läget: 11-12 stp, 5+ färg.':'Hopp i färg: 6-10 stp, 5+ färg.'):null}
-      return null};
-    var best=un.slice().sort(function(a,b){return L[b]-L[a]||SU.indexOf(b)-SU.indexOf(a)})[0];
-    if(L[os]>=5&&h.good(os)){exp='P';why='Många kort i öppningsfärgen: pass är rätt.'}
-    else if(hp<=9){exp=lowest(best,ob);why='0-9 hp: färg på lägsta nivå ('+SYM[best]+').'}
-    else if(hp<=12){if(L[best]>=5&&lv(lowest(best,ob))<3){exp=(3)+best;alt=[lowest(os,ob)];why='11-12 stp och 5+ färg: hopp till 3-läget.'}else if(h.bal&&h.stop(os)){exp='2N';alt=[lowest(os,ob)];why='11-12 hp med håll: 2NT.'}else{exp=lowest(os,ob);why='10+ hp: överbud i deras färg (krav).'}}
-    else if(hp<=16){if(L[best]>=5&&lv(lowest(best,ob))<=2){exp=lowest(best,ob);alt=[lowest(os,ob)];why='6-10 stp: hopp till 2-läget.'}else if(h.bal&&h.stop(os)){exp='3N';alt=[lowest(os,ob)];why='13-16 hp med håll: 3NT.'}else{exp=lowest(os,ob);why='10+ hp: överbud i deras färg (krav).'}}
-    else{if(h.bal&&h.stop(os)){exp='3N';alt=[lowest(os,ob)];why='13-16 hp med håll: 3NT.'}else{exp=lowest(os,ob);why='10+ hp: överbud i deras färg (krav).'}}
+      if(c==='1N')return '6-9 hp, balanserad hand och håll i öppningsfärgen.';
+      if(c==='2N')return '10-12 hp, balanserad hand och håll i öppningsfärgen.';
+      if(c==='3N')return '13+ hp, balanserad hand och håll i öppningsfärgen.';
+      if(c==='P')return 'Pass endast med många kort i öppningsfärgen.';
+      if(isBid(c)&&c[1]===os)return '10+ hp: överbud i motståndarnas färg, krav.';
+      if(isBid(c)&&c[1]!=='N'){
+        var low=lowest(c[1],ob),jumpBid=jump(c[1],ob);
+        if(c===low)return '0-7 hp: färg på lägsta nivå (kan vara 3 kort).';
+        if(c===jumpBid&&h.htp(c[1])>=8&&h.htp(c[1])<=9&&L[c[1]]>=4)
+          return '8-9 htp och 4+ färg: hopp i färgen.';
+        if(c==='3'+c[1]&&h.htp(c[1])>=10&&h.htp(c[1])<=12&&L[c[1]]>=5)
+          return '10-12 htp och helst 5+ färg: hopp till 3-nivån.';
+      }
+      return null;
+    };
+
+    // Pass är endast aktuellt när svarshanden har en lång och bra färg
+    // i motståndarnas öppningsfärg (möjlighet att straffpassa UD).
+    if(L[os]>=5&&h.good(os)){
+      exp='P';why='Minst 5 kort och bra kvalitet i öppningsfärgen: straffpass.';
+    }
+    // Naturliga sangsvar med håll och balanserad hand.
+    else if(h.bal&&h.stop(os)&&hp>=6&&hp<=9){
+      exp='1N';why=hp+' hp, balanserad hand med håll: 1NT.';
+    }
+    else if(h.bal&&h.stop(os)&&hp>=10&&hp<=12){
+      exp='2N';why=hp+' hp, balanserad hand med håll: 2NT.';
+    }
+    else if(h.bal&&h.stop(os)&&hp>=13){
+      exp='3N';why=hp+' hp, balanserad hand med håll: 3NT.';
+    }
+    // 0-7 hp: billigaste färg, även med bara tre kort.
+    else if(hp<=7&&best&&bestLen>=3){
+      exp=lowest(best,ob);why=hp+' hp: billigaste objudna färg ('+SYM[best]+'), även med 3 kort.';
+    }
+    // 8-9 HTP: hopp i 4+-färg.
+    else if(best&&bestLen>=4&&bestHtp>=8&&bestHtp<=9){
+      var j=jump(best,ob);
+      if(j&&ok(j,ob)){exp=j;why=bestHtp+' htp och '+bestLen+' kort i '+SYM[best]+': hopp i färgen.';}
+    }
+    // 10-12 HTP: hopp till 3-nivån, helst med 5+ kort.
+    if(!exp&&best&&bestLen>=5&&bestHtp>=10&&bestHtp<=12&&ok('3'+best,ob)){
+      exp='3'+best;why=bestHtp+' htp och '+bestLen+' kort i '+SYM[best]+': hopp till 3-nivån.';
+    }
+    // 10+ hp: överbud är krav när inget lämpligare svar har visats.
+    if(!exp&&hp>=10){
+      var cue=lowest(os,ob);
+      if(cue&&ok(cue,ob)){exp=cue;why=hp+' hp: överbud i motståndarnas färg, krav.';}
+    }
+    if(!exp)return NC('Svar efter upplysningsdubbling: handen uppfyller inget uttryckligt svarsvillkor i systemunderlaget.',means,'dubbling');
     return {exp:exp,alt:alt,why:why||'',means:means,conv:'dubbling',soft:true};
   }
 
