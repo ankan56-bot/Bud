@@ -238,10 +238,12 @@ function generateDataset() {
       const auction = makeReferenceAuction(generated, api, Rattning);
       if (theme.id === "stenberg") {
         const openingIndex = auction.bids.findIndex(bid => /^[1][CDHS]$/.test(bid.c));
-        const responseIndex = openingIndex + 1;
         const opening = auction.bids[openingIndex];
+        const responseIndex = auction.bids.findIndex((bid, position) =>
+          position > openingIndex && bid.s === (opening.s === "N" ? "S" : "N"));
         const response = auction.bids[responseIndex];
-        if (!opening || !response || response.s === opening.s || response.c !== "2N") {
+        if (!opening || !response || response.c !== "2N" ||
+            auction.bids.slice(openingIndex + 1, responseIndex).some(bid => bid.c !== "P")) {
           throw new Error("Stenberg deal does not contain an uninterrupted 2NT response: " + theme.id + " #" + (index + 1));
         }
         const responseTrial = auction.bids.slice(0, responseIndex + 1);
@@ -267,8 +269,7 @@ function generateDataset() {
         checks: {
           uniqueCards: uniqueCards.size, thirteenCardsPerSeat: true,
           themeCondition: true, quietModeCondition, auctionErrors: 0,
-          openingNTValidated: true, openingStrongTwoValidated: true,
-          stenbergbidValidated: theme.id !== "stenberg" || true
+          openingNTValidated: true, openingStrongTwoValidated: true
         },
         correction: { version: Rattning.version, summary: judged.summary, items }
       };
