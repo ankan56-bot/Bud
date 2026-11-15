@@ -152,6 +152,69 @@ function makeReferenceAuction(deal, api, Rattning) {
   return state;
 }
 
+function classifyDeal(deal, api) {
+  if (deal.theme !== "nt") {
+    return {
+      caseType: "unclassified",
+      classification: {
+        status: "pending",
+        reason: "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      }
+    };
+  }
+
+  const opener = deal.dealer;
+  const responder = opener === "N" ? "S" : "N";
+  const openerHcp = api.hpOf(deal.hands[opener]);
+  const responderHcp = api.hpOf(deal.hands[responder]);
+  const responderShape = api.shapeOf(deal.hands[responder]);
+  const firstCall = deal.bids.find(bid => bid.c !== "P");
+  if (!firstCall || firstCall.s !== opener || firstCall.c !== "1N") {
+    throw new Error("NT theme lacks its expected 1NT opening: " + deal.id);
+  }
+  if (!balanced(deal.hands[opener], api) || openerHcp < 15 || openerHcp > 17) {
+    throw new Error("NT theme violates the hard 1NT opening rule: " + deal.id);
+  }
+  if (responderHcp < 8 || (responderShape.H < 4 && responderShape.S < 4)) {
+    throw new Error("NT theme responder does not meet the documented theme condition: " + deal.id);
+  }
+
+  const evidence = [];
+  if (openerHcp === 15) evidence.push({
+    rule: "1NT opening strength",
+    observed: "15 HCP",
+    boundary: "15-17 HCP",
+    distance: 0,
+    rationale: "Öppnarens styrka ligger på systemets nedre tillåtna gräns."
+  });
+  if (openerHcp === 17) evidence.push({
+    rule: "1NT opening strength",
+    observed: "17 HCP",
+    boundary: "15-17 HCP",
+    distance: 0,
+    rationale: "Öppnarens styrka ligger på systemets övre tillåtna gräns."
+  });
+  if (responderHcp === 8) evidence.push({
+    rule: "Response to 1NT in this theme",
+    observed: "8 HCP",
+    boundary: "8+ HCP",
+    distance: 0,
+    rationale: "Svarshanden ligger precis på temats lägsta styrkegräns."
+  });
+
+  const borderline = evidence.length > 0;
+  return {
+    caseType: borderline ? "borderline" : "typical",
+    classification: {
+      status: "rule_evidence",
+      dimensions: evidence,
+      rationale: borderline
+        ? "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+        : "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+    }
+  };
+}
+
 function generateDataset() {
   const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
   const { api, Rattning } = loadRuntime();
@@ -189,9 +252,12 @@ function generateDataset() {
         nr: item.nr, seat: item.plats, bid: item.bud, grade: item.bedomning,
         suggested: item.battre || "", reason: item.motivering || ""
       }));
+      const classification = classifyDeal({ id, theme: theme.id, dealer: generated.dealer,
+        hands: generated.hands, bids: auction.bids }, api);
       const deal = {
         id, theme: theme.id, themeTitle: theme.title, mode, seed,
-        caseType: "unclassified", dealer: generated.dealer,
+        caseType: classification.caseType, classification: classification.classification,
+        dealer: generated.dealer,
         hands: generated.hands, bids: auction.bids,
         checks: {
           uniqueCards: uniqueCards.size, thirteenCardsPerSeat: true,
@@ -223,7 +289,7 @@ function generateDataset() {
       seedScheme: "(7919 * (indexWithinTheme + 1) + themeId.length * 104729 + (mode === 'ostord' ? 17 : 0)) >>> 0",
       dealsPerTheme: 10,
       modeDistribution: "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
-      caseClassification: "unclassified; classification requires rule-boundary evidence",
+      caseClassification: "NT theme classified from explicit system boundaries; other themes remain unclassified pending equivalent evidence.",
       openingNT: "A first non-pass 1NT call requires 15-17 HCP; a first non-pass 2NT call requires 20-21 HCP. Both require a balanced 4333/4432/5332 hand."
     },
     validation: {
