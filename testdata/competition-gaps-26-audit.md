@@ -11,7 +11,8 @@ Granskningen jämför sekvenserna med tidigare exempel i `LOGG_BUDREGLER.md` (Gi
 | Delgrupp | Antal | Vad saknas |
 |---|---:|---|
 | Första svar/fortsättning efter motståndarnas inkliv eller dubbling | 12 | Stöd, naturliga svar, sang, färgbud eller pass efter olika inklivsnivåer |
-| Återbud efter partnerns svar på upplysningsdubbling | 9 | Dubblerarens återbud utifrån egen hand och partnerns svar |
+| Återbud efter partnerns svar på upplysningsdubbling | 8 | Dubblerarens återbud utifrån egen hand och partnerns svar |
+| Återbud från inklivaren efter partnerns hoppstöd | 1 | Fortsättning efter 1♥-inkliv och partnerns 3♥ |
 | Försvar efter motståndarnas öppning och svar/återbud | 4 | Försvarspass när motståndarna bygger en naturlig auktion |
 | **Totalt** | **25** | |
 
