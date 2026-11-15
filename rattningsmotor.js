@@ -1296,8 +1296,15 @@ var Rattning = (function(){
           return {exp:'4S',alt:[],why:'Reverse 1♦–1♥–2♠. Minst 8-korts spaderfit och '+totalS+' gemensamma spelpoäng (26+): SH ska bjuda 4♠.',means:function(c){return c==='4S'?'Utgång i ♠: minst 8-korts fit och 26+ gemensamma spelpoäng.':null},conv:'reverse och utgång'};
         }
       }
-      if(!opener&&d===3&&ours[1].c==='1N')
+      if(!opener&&d===3&&ours[1].c==='1N'){
+        var openerHandAfter1NT=H(st.hands[pt]);
+        // 4-4-4-1-öppnaren har visat en andra fyrkortsfärg på 2-nivån.
+        // Svarshandens fortsättning ska därför bedömas som efter en tvåfärgshand,
+        // inte enligt den begränsade svaga 1NT-svarsfunktionen.
+        if(openerHandAfter1NT.shape==='4441')
+          return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,st.hands[pt]);
         return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
+      }
       if(!opener&&d===3){
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
