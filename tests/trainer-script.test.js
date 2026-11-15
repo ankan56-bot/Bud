@@ -335,3 +335,28 @@ test("stale room presence history cannot reclaim seats after reconnect", () => {
   assert.ok(html.includes("isFreshRoomPresence(o)&&isNewerRoomPresence(o,lastPresenceEventTime[m.p.id])"));
   assert.ok(html.includes("freshPresence={id:m.p.id,name:m.p.name||'',seat:m.p.seat||null,at:Date.now()}"));
 });
+
+
+test("room seat claims cannot exceed the configured participant count", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function roomSeatOwners()");
+  const end = html.indexOf("\\nfunction claimRoomSeat", start);
+  assert.ok(start >= 0 && end > start, "room seat claim helpers should exist");
+  const now = 1_800_000_000_000;
+  function allowed(count, playerId, players, seat) {
+    Object.values(players).forEach(p => { if (p.at == null) p.at = now; });
+    const context = { SEATS: ["N", "E", "S", "W"], roomPlayers: players, roomConfig: { count },
+      playerId, Date: { now: () => now } };
+    vm.runInNewContext(html.slice(start, end), context);
+    return context.roomSeatClaimAllowed(seat);
+  }
+  assert.equal(allowed(1, "b", { a: { seat: "N" } }, "E"), false,
+    "a one-player room must not accept a second human");
+  assert.equal(allowed(1, "a", { a: { seat: "N" } }, "X"), true,
+    "the sole player may switch to controlling both North and South");
+  assert.equal(allowed(2, "c", { a: { seat: "N" }, b: { seat: "S" } }, "N"), false);
+  assert.equal(allowed(3, "d", { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" } }, "W"), false,
+    "a full three-player room must not accept a fourth participant");
+  assert.equal(allowed(3, "b", { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" } }, "W"), true,
+    "an existing participant may move to an unoccupied seat");
+});
