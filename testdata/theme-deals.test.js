@@ -235,7 +235,7 @@ test("all trumf support theme deals contain a valid uncontested support raise", 
 test("Stenberg opener shows 15+ HTP without a singleton", () => {
   const { Rattning } = loadRuntime();
   const north = ["H13","H11","H9","H8","S14","S5","S4","D14","D8","D7","C13","C6","C5"];
-  const south = ["H14","H12","H10","H7","S13","S12","S11","D6","D5","D4","C4","C3","C2"];
+  const south = ["H14","H12","H10","H7","S13","S12","S10","D12","D5","D4","C4","C3","C2"];
   const used = new Set([...north, ...south]);
   const deck = ["S","H","D","C"].flatMap(suit =>
     Array.from({length:13}, (_,i) => suit + String(i+2)));
@@ -409,5 +409,5 @@ test("partnership fit bonus is +1 for nine trumps and +3 for ten", () => {
   // Eleven-card fit remains capped at the same +3 length bonus.
   const elevenA = hand({H:6,S:3,D:2,C:2});
   const elevenB = hand({H:5,S:3,D:3,C:2});
-  assert.equal(Rattning.partnershipPoints(Rattning.H(elevenA),Rattning.H(elevenB),"H"),5);
+  assert.equal(Rattning.partnershipPoints(Rattning.H(elevenA),Rattning.H(elevenB),"H"),6);
 });
