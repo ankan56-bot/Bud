@@ -329,7 +329,7 @@ var Rattning = (function(){
       return {exp:'3N',alt:[],why:hp+' hp (maximum): accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='2N'){
-      return NC('Efter Stayman 1NT–2♣–2'+M+'–2NT måste öppnaren väga 3NT mot eventuell fit i den andra högfärgen. Exakt fortsättning är inte fastställd; öppnarens egen 4-kortsfärg räcker inte för att rekommendera 4'+M+'.','Stayman');
+      return NC('Efter Stayman 1NT–2♣–2'+M+'–2NT måste öppnaren väga 3NT mot eventuell fit i den andra högfärgen. Exakt fortsättning är inte fastställd; öppnarens egen 4-kortsfärg räcker inte för att rekommendera 4'+M+'.',null,'Stayman');
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3'+M){
       var gameSuit='4'+M;
