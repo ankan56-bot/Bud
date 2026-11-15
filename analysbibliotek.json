@@ -1,5 +1,5 @@
 {
-  "version": "0.5.9",
+  "version": "0.6.0",
   "description": "Analysbibliotek med detaljerade handprofiler och budträd. Version 0.5.9 dokumenterar och korrigerar 4-4-4-1-öppnarens återbud efter partnerns 1NT.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -5269,6 +5269,255 @@
           "handProfile": {
             "opener": "Exakt 4-4-4-1. 12–17 hp: bjud lägsta möjliga andra fyrkortsfärg på 2-nivån, trots endast fyra kort; pass är också tillåtet. 18–19 hp: 2NT.",
             "responder": "Har svarat 1NT. Detta är ett särskilt återbud för 4-4-4-1 och inte ett vanligt balanserat återbud."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T40_SVARSHANDENS_ANDRA_BUD_EFTER_OPPNARENS_ATERBUD",
+      "title": "Ostörd budgivning – svarshandens andra bud efter öppnarens återbud",
+      "tags": [
+        "ostörd budgivning",
+        "svarshandens andra bud",
+        "fit",
+        "invit",
+        "utgång",
+        "preferens",
+        "fjärde färg"
+      ],
+      "conditions": [
+        "Budgivningen är ostörd.",
+        "Öppnaren har gjort sitt andra bud efter svarshandens första svar.",
+        "Beskrivningarna följer nuvarande rättningsmotor; luckor markeras uttryckligen."
+      ],
+      "root": "Svarshanden väger samman öppnarens återbud, egen fördelning och styrka. Vid fastställd färgfit används gemensamma spelpoäng; i sang används honnörspoäng.",
+      "nodes": [
+        {
+          "id": "t40_support_raise",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "Öppnaren höjer svarshandens högfärg – svarshandens andra bud",
+          "analysis": "Öppnaren visar minst fyra spader och minst 8-korts gemensam fit. Svarshanden räknar gemensamma spelpoäng: honnörspoäng plus fördelningspoäng utanför trumf och längdbonus i trumf (9 trumf = +1, 10 eller fler = +2). I högfärg är 26+ gemensamma spelpoäng utgång; 22–25 invit; under 22 pass. I lågfärg används 28+ för utgång och 24–27 för invit; under 24 pass. Detta är motorns gränser i denna gren.",
+          "branches": [
+            {
+              "call": "4♠",
+              "next": null,
+              "label": "8+ korts spaderfit och minst 26 gemensamma spelpoäng"
+            },
+            {
+              "call": "3♠",
+              "next": null,
+              "label": "8+ korts spaderfit och 22–25 gemensamma spelpoäng – invit"
+            },
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "8+ korts spaderfit men under 22 gemensamma spelpoäng"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst 4 spader. Öppnarens 2♠ efter 1♥–1♠ visar stöd i svarshandens färg.",
+            "responder": "Minst 4 spader visade i första svarsronden. 26+ gemensamma spelpoäng = 4♠; 22–25 = 3♠ invit; under 22 = pass."
+          }
+        },
+        {
+          "id": "t40_balanced_rebid",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "Öppnaren återbjuder 1NT – svarshandens andra bud",
+          "analysis": "Öppnaren visar en balanserad hand med 12–14 hp. Svarshanden söker först en gemensam högfärg med minst 8 kort. Finns sådan fit: 26+ gemensamma spelpoäng ger 4 i högfärgen; 22–25 ger 3 i högfärgen som invit. Om ingen sådan högfärgsfit når dessa nivåer bedöms sang med sammanlagda honnörspoäng: 26+ = 3NT, 22–25 = 2NT invit, under 22 = pass. Sang räknas med honnörspoäng, inte fördelningspoäng.",
+          "branches": [
+            {
+              "call": "4♥/4♠",
+              "next": null,
+              "label": "Minst 8-korts högfärgsfit och 26+ gemensamma spelpoäng"
+            },
+            {
+              "call": "3♥/3♠",
+              "next": null,
+              "label": "Minst 8-korts högfärgsfit och 22–25 gemensamma spelpoäng – invit"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Ingen tillräcklig högfärgsfit och 26+ gemensamma hp"
+            },
+            {
+              "call": "2NT",
+              "next": null,
+              "label": "Ingen tillräcklig högfärgsfit och 22–25 gemensamma hp – invit"
+            },
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Under invitnivån"
+            }
+          ],
+          "handProfile": {
+            "opener": "Balanserad hand, 12–14 hp efter 1♥–1♠–1NT.",
+            "responder": "Räkna högfärgsfit först. Med minst 8 kort används spelpoäng i färg; utan sådan fit används enbart gemensamma hp i sang."
+          }
+        },
+        {
+          "id": "t40_own_suit_rebid",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Öppnaren återbjuder sin egen färg – svarshandens andra bud",
+          "analysis": "Öppnarens återbud i egen färg visar minst fem kort i öppningsfärgen i denna fortsättningsgren; normalt sex kort när ingen annan sidofärg med fyra kort finns. Svarshanden kontrollerar först om det finns minst 8 korts fit i öppningsfärgen. Med 26+ gemensamma spelpoäng i högfärg bjuds utgång; med 22–25 invit; under 22 pass. Om fit saknas används sammanlagda honnörspoäng: 26+ ger 3NT, 22–25 ger 2NT invit, annars pass. Motorns gren omfattar öppnare med minst fem kort.",
+          "branches": [
+            {
+              "call": "4♥",
+              "next": null,
+              "label": "Minst 8-korts hjärterfit och 26+ gemensamma spelpoäng"
+            },
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "Minst 8-korts hjärterfit och 22–25 gemensamma spelpoäng – invit"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "Ingen fit och 26+ gemensamma hp"
+            },
+            {
+              "call": "2NT",
+              "next": null,
+              "label": "Ingen fit och 22–25 gemensamma hp – invit"
+            },
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Under invitnivån"
+            }
+          ],
+          "handProfile": {
+            "opener": "Återbud i öppningsfärgen. Motorns respondergren kräver minst fem kort; normalt visar återbudet sex kort när ingen sidofärg med fyra kort finns.",
+            "responder": "Minst 8-korts fit: färgtrösklarna 26/22. Utan fit: 26/22 gemensamma hp för sang."
+          }
+        },
+        {
+          "id": "t40_two_suit_rebid",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "1♥"
+          ],
+          "meaning": "Öppnaren visar två färger – svarshandens andra bud",
+          "analysis": "Öppnaren har visat minst fyra klöver och minst fyra hjärter. Återbudet kan vara en reverse och därmed visa starkare hand, men svarshandens fortsättning styrs i denna motordel främst av egen hp och preferens. Med högst 9 hp väljs preferens till en av öppnarens visade färger om svarshanden har minst två kort där; motorn väljer färgen med längst gemensam längd. Med 10–12 hp bjuder en balanserad svarshand 2NT som invit. En obalanserad hand på 10–12 hp kan visa preferens om sådan finns; annars är situationen inte täckt. Med 13+ hp bjuds fjärde färg på lägsta lagliga nivå som utgångskrav. I exemplet 1♣–1♦–1♥ blir det 1♠. Om fjärde färg saknas används preferens om möjligt, annars 3NT. Någon separat poängmodell för preferens är inte definierad i denna gren.",
+          "branches": [
+            {
+              "call": "2♣/2♥",
+              "next": null,
+              "label": "Högst 9 hp: preferens till bästa gemensamma färg, om minst två kort finns där"
+            },
+            {
+              "call": "2NT",
+              "next": null,
+              "label": "10–12 hp och balanserad hand – invit"
+            },
+            {
+              "call": "1♠",
+              "next": null,
+              "label": "13+ hp: fjärde färg på lägsta nivå – utgångskrav i sekvensen 1♣–1♦–1♥"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "13+ hp när fjärde färg saknas och preferens inte kan väljas"
+            }
+          ],
+          "handProfile": {
+            "opener": "Minst 4 klöver och 4 hjärter. Beroende på färgrangordning och styrka kan 1♥ vara en reverse; öppnarens styrka ska inte antas vara begränsad.",
+            "responder": "0–9 hp: preferens om minst två kort i en av öppnarens färger. 10–12 hp: 2NT med balanserad hand, annars preferens om tillgänglig. 13+ hp: fjärde färg som utgångskrav; i exemplet 1♣–1♦–1♥ bjuds 1♠."
+          }
+        },
+        {
+          "id": "t40_4441_special",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1NT",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "4-4-4-1-öppnaren visar andra fyrkortsfärg – svarshandens andra bud",
+          "analysis": "Specialfallet: öppnaren har 4-4-4-1 och efter 1♥–1NT bjuder 2♦ trots att ruter bara är en fyrkortsfärg. Svarshanden behandlar öppnarens två visade färger som öppningsfärgen och den nya fyrkortsfärgen. Med högst 9 hp och minst två kort i någon av dessa färger väljs preferens till färgen med bäst gemensam längd. Med 10–12 hp och balanserad hand bjuds 2NT invit; med obalanserad hand kan preferens bjudas om minst två kort finns i någon av färgerna. Med 13+ hp bjuder motorn fjärde färg som utgångskrav. I just 1♥–1NT–2♦ väljer nuvarande kod 3♣ (den första återstående färgen i motorns interna färgordning). Det är en teknisk standardisering, inte en uttryckligen fastställd systemregel: både ♣ och ♠ är objudna färger här och vilken som ska väljas behöver bekräftas innan vi låser konventionen.",
+          "branches": [
+            {
+              "call": "2♥/2♦",
+              "next": null,
+              "label": "Högst 9 hp: preferens till en av öppnarens två färger"
+            },
+            {
+              "call": "2NT",
+              "next": null,
+              "label": "10–12 hp och balanserad hand – invit"
+            },
+            {
+              "call": "3♣ (nuvarande motorkod)",
+              "next": null,
+              "label": "13+ hp: motorn väljer 3♣ som fjärde färg i denna sekvens; färgvalet är ännu inte systembekräftat"
+            }
+          ],
+          "handProfile": {
+            "opener": "Exakt 4-4-4-1, 12–17 hp: visar en annan fyrkortsfärg på 2-nivån efter partnerns 1NT; pass var också möjligt i öppnarens tur. 18–19 hp: 2NT.",
+            "responder": "Efter 1♥–1NT–2♦: 0–9 hp = preferens om minst två kort i hjärter eller ruter; 10–12 hp balanserad = 2NT invit; 13+ hp = utgångskrav via fjärde färg. Motorn väljer för närvarande 3♣, men valet mellan ♣ och ♠ är inte uttryckligen fastställt i systemunderlaget."
+          }
+        },
+        {
+          "id": "t40_responder_after_1nt_response",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1NT",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "Svarshandens andra bud efter 1NT-svar",
+          "analysis": "Detta är den vanliga 1NT-svarshanden (inte specialfallet 4-4-4-1). Nuvarande motor täcker ett begränsat svagt andra bud: 6–9 hp och minst sex kort i en egen färg får bjudas på 3-nivån när 3-nivån också är den lägsta lagliga nivån (t.ex. 3♣ efter öppnarens 2♦), eller 3 i öppningsfärgen. Budet är inte krav. Med högst 9 hp utan en sådan täckt sexkortsfärg passar svarshanden. Viktig lucka: om en ny färg kan bjudas på 2-nivån, exempelvis 2♠ efter 1♥–1NT–2♥, godkänner den nuvarande koden inte det budet och rekommenderar pass. Detta behöver en uttrycklig systemregel innan logiken ändras. Med 10+ hp är fortsättningen inte definierad i den här motordelen och ska markeras ej täckt.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": null,
+              "label": "6–9 hp och minst 6 klöver efter 2♦; 3♣ är lägsta lagliga nivå och ej krav"
+            },
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "6–9 hp och minst 6 hjärter; återbud i öppningsfärgen på 3-nivån, ej krav"
+            },
+            {
+              "call": "Pass",
+              "next": null,
+              "label": "Högst 9 hp utan en färg som uppfyller motorns begränsade återbudsvillkor"
+            },
+            {
+              "call": "Ej täckt",
+              "next": null,
+              "label": "10+ hp eller ny färg som kan bjudas på 2-nivån – kräver systemförtydligande"
+            }
+          ],
+          "handProfile": {
+            "opener": "Har öppnat 1♥ och gjort ett naturligt återbud, här 2♥.",
+            "responder": "6–9 hp + minst 6 kort i egen färg: motorn tillåter ett 3-bud när 3 är lägsta lagliga nivå, eller 3 i öppningsfärgen; budet är ej krav. Högst 9 hp utan sådan färg: pass. 10+ hp och nya färger som kan bjudas på 2-nivån: ej täckt/regel behöver förtydligas."
           }
         }
       ]

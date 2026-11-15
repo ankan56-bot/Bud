@@ -1176,12 +1176,21 @@ var Rattning = (function(){
       return nc('Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.');
     }
 
+    // Svarshandens andra bud efter 1NT-svar måste hanteras före de generella
+    // reglerna för tredje/fjärde färg, annars fångas sekvensen för tidigt.
+    if(!opener&&d===3&&ours[1].c==='1N'){
+      var openerHandAfter1NT=H(st.hands[pt]);
+      if(openerHandAfter1NT.shape==='4441')
+        return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,st.hands[pt]);
+      return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
+    }
+
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
       var s1=ours[0].c[1], s2=ours[1].c[1];
 
       if(d===3 && !opener && ours[2].c === '2'+s1 && isBid(b.c) && b.c[1]!==s1 && b.c[1]!==s2 && b.c[1]!=='N'){
-        if(hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg (konstgjort): 13+ hp, utgångskrav. Berättar inget om färgen.',means:function(c){return c===b.c?'Fjärde färg (utgångskrav).':null},conv:'Fjärde färg'};
-        if(hp>=10) return {exp:b.c,alt:[],why:'Tredje färg: 10+ hp, rondkrav. Kan bjudas med 3 kort om det är ett håll.',means:function(c){return c===b.c?'Tredje färg (rondkrav).':null},conv:'Tredje färg'};
+        if(h.hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg (konstgjort): 13+ hp, utgångskrav. Berättar inget om färgen.',means:function(c){return c===b.c?'Fjärde färg (utgångskrav).':null},conv:'Fjärde färg'};
+        if(h.hp>=10) return {exp:b.c,alt:[],why:'Tredje färg: 10+ hp, rondkrav. Kan bjudas med 3 kort om det är ett håll.',means:function(c){return c===b.c?'Tredje färg (rondkrav).':null},conv:'Tredje färg'};
         return NC('Tredje färg kräver minst 10 hp.', null, 'Tredje färg');
       }
 
@@ -1296,8 +1305,6 @@ var Rattning = (function(){
           return {exp:'4S',alt:[],why:'Reverse 1♦–1♥–2♠. Minst 8-korts spaderfit och '+totalS+' gemensamma spelpoäng (26+): SH ska bjuda 4♠.',means:function(c){return c==='4S'?'Utgång i ♠: minst 8-korts fit och 26+ gemensamma spelpoäng.':null},conv:'reverse och utgång'};
         }
       }
-      if(!opener&&d===3&&ours[1].c==='1N')
-        return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
       if(!opener&&d===3){
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
