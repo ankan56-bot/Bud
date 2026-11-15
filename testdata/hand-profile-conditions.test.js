@@ -16,7 +16,7 @@ function node(treeId, nodeId) {
   return found;
 }
 
-test("all 114 existing hand-profile nodes have role-specific structured profiles", () => {
+test("all 119 hand-profile nodes have role-specific structured profiles", () => {
   let count = 0;
   let roleProfiles = 0;
   for (const tree of library.trees) {
