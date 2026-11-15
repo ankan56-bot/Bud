@@ -16,6 +16,14 @@ test("competitive analysis trees match legal auctions containing pass rounds", (
       bids: ["1H", "P", "1S", "P", "P"]
     },
     {
+      id: "T30_1S_2H_KONKURRENS",
+      bids: ["1S", "P", "2H", "P", "P"]
+    },
+    {
+      id: "T31_1D_1S_KONKURRENS",
+      bids: ["1D", "P", "1S", "P", "P"]
+    },
+    {
       id: "T32_1C_1H_KONKURRENS",
       bids: ["1C", "P", "1H", "P", "P"]
     },
