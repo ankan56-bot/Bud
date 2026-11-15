@@ -61,7 +61,7 @@ function assessMajorRaise(shape, honors, call) {
     { s: 'S', c: call },
     { s: 'W', c: 'P' }
   ];
-  return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-2);
+  return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
 function assessReverse(shape, honors) {
