@@ -581,3 +581,13 @@ Ett ytterligare test verifierar den uttryckliga regeln för hoppinkliv: 6–10 h
 Den handvillkorsstyrda kompletterande matcharen är nu ansluten till granskningsvyn efter avslutad giv. Den visar endast kandidater när grundmotorn markerat den aktuella budpositionen som ej täckt. Varje förslag märks tydligt som ej godkänt och visar faktisk budgivning, kandidat, alternativ, osäkerhet och källa. Grundsystemets automatiska rättning ändras inte.
 
 Matchningen fungerar även när givaren har passat före öppningsbudet; den söker efter den relevanta sekvensen i slutet av den aktuella budhistoriken. Sju tester för det kompletterande lagret passerar.
+
+
+### Tvetydigheter i kompletterande svar efter 1♥–Dbl
+
+Matcharen har nu uttryckliga tester för tre överlapp som finns i det befintliga analysunderlaget:
+- Exakt 10 hp kan passa både redubbling och balanserat 1NT.
+- Exakt 6 hp med 4+ hjärter kan passa både enkelhöjning 2♥ och spärrande 3♥.
+- En jämn hand med 5 spader kan passa både 1♠ och 1NT.
+
+Dessa har inte lösts genom påhittad prioritering. Matcharen visar samtliga kandidater och noterar att överenskommelsen saknar prioritet. Det kompletterande lagret har nu **9/9 godkända tester**.
