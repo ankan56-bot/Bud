@@ -1,0 +1,67 @@
+# Granskning av analysbibliotekets konkurrensträd T29–T33
+
+## Syfte och avgränsning
+
+Analysbiblioteket `analysbibliotek.json` version 0.5.5 innehåller fem träd för svar efter motståndarnas inkliv eller dubbling:
+
+| Träd | Sekvens | Dokumenterat innehåll |
+|---|---|---|
+| T29 | 1♥ – (1♠) | 2♥ enkel höjning, 2♠ stödvisande cue-bid, 3♥ spärrande hoppstöd, 1NT med spaderhåll, 2♦ naturligt |
+| T30 | 1♠ – (2♥) | 2♠ enkel höjning, 3♥ cue-bid, 3♠ spärrande hoppstöd, 2NT med hjärterhåll, 3♣ naturligt |
+| T31 | 1♦ – (1♠) | 2♦ enkel höjning, 2♠ cue-bid, 3♦ spärrande hoppstöd, 1NT med spaderhåll, 2♣ naturligt |
+| T32 | 1♣ – (1♥) | 2♣ enkel höjning, 2♥ cue-bid, 3♣ spärrande hoppstöd, 1♠ naturligt, 1NT med hjärterhåll |
+| T33 | 1♥ – (Dbl) | Redubbling med 10+ hp, 2♥ enkel höjning, 3♥ spärrande hoppstöd, 1♠ naturligt, 1NT utan hjärterfit |
+
+Träden är tydligt formulerade som paröverenskommelser, men biblioteket saknar fält för källa, godkännandestatus och auktoritet. De är därför **befintligt dokumenterat analysunderlag**, inte automatiskt bekräftade grundsystemregler. Deras handprofiler är dessutom fritext; analysmotorn kan inte maskinellt avgöra om en viss hand uppfyller villkoren.
+
+## Matchning mot de 47 ej täckta positionerna
+
+Tre av de 47 positionerna har en exakt sekvensmotsvarighet i T29–T33:
+
+1. `trumf-02-bid-3`: 1♥–(1♠). Handen har 6 hp och fyra hjärter. T29 anger 2♥ med minst tre hjärter och cirka 6–9 hp. Detta är en stark kandidat till 2♥.
+2. `trumf-05-bid-3`: 1♣–(1♥). Handen har 4 hp och fem klöver. T32 anger 3♣ som spärrande hoppstöd med normalt fem eller fler klöver och cirka 0–6 hp. Detta är en stark kandidat till 3♣.
+3. `dubbling-09-bid-3`: 1♥–(Dbl). Handen har 2 hp och två hjärter. Den uppfyller inte någon av de uttryckligen listade svarstyperna i T33; pass anges inte uttryckligen i trädet.
+
+Dessa två tydliga kandidater ska inte automatiskt göras till rättningsregler innan träden har bekräftats som en del av det fastställda systemet. T33 ger inte tillräckligt stöd för att fastställa pass i det tredje fallet.
+
+De övriga sex positionerna i den tidigare gruppen med nio handspecifika luckor gäller andra sekvenser, bland annat inkliv på 2-/3-nivån och svar efter ett hoppande inkliv. De täcks inte av T29–T33.
+
+## Viktig skillnad: olika dubblingssituationer
+
+T33 gäller svarshandens första bud när motståndarna dubblar vår öppning (exempelvis 1♥–Dbl).
+
+Det är inte samma sak som:
+- svar efter att partnern har dubblat motståndarnas öppning (`respDouble()` i rättningsmotorn), eller
+- dubblerarens återbud efter att partnern har svarat på den egna upplysningsdubblingen.
+
+De sju återbudspositionerna efter egen upplysningsdubbling i konkurrensgranskningen är fortfarande en separat och odokumenterad fas. T33 kan inte användas för att fylla den luckan.
+
+## Analysmotorns matchning – korrigering
+
+T29–T33 har komprimerade sekvenser som avsiktligt utelämnar passrundor. Den tidigare `findMatch()` jämförde dessa ordagrant mot hela auktionen, inklusive pass. Därför kunde träden inte matchas i normala auktioner med pass mellan buden.
+
+Korrigering genomförd:
+- T29–T33 har fått explicit metadata `ignorePasses: true`.
+- `analysmotor.js` filtrerar bort pass endast för träd med den metadataflaggan.
+- Övriga träd behåller sin exakta passkänsliga sekvensmatchning.
+- Separata tester kontrollerar T29, T32 och T33 i auktioner med passrundor samt att vanliga träd inte får ändrad matchning.
+
+Detta gör analysinnehållet tillgängligt i rätt auktion. Det innebär inte att analysmotorn väljer bud automatiskt eller att fritextvillkoren blir maskinellt verifierade.
+
+## Korrigering av turordningsdiagnos
+
+De tio sekvensfallen där öppnaren återkommer efter partnerns pass i konkurrensbudgivning klassades tidigare felaktigt som ett turordningsfel. Rättningsmotorn har nu en avgränsad igenkänning av just detta giltiga läge och visar i stället att öppnarens återbud efter partnerns pass och motståndarnas inkliv saknar täckning. Inget budförslag läggs till.
+
+Ett regressionstest kontrollerar samtliga tio positioner och säkerställer att de fortfarande är ej täckta, men inte felaktigt beskrivs som ogiltig turordning.
+
+## Kvarstående arbete
+
+1. Bekräfta om T29–T33 ska upphöjas till fastställda systemregler eller ligga kvar som analys-/kompletterande överenskommelser.
+2. Om de godkänns, omvandla relevanta handprofiler till strukturerade villkor och bygg handbaserade rättningstester.
+3. Definiera svar efter 2-/3-nivåinkliv och 2NT-inkliv.
+4. Hitta auktoritativt underlag för dubblerarens återbud efter partnerns svar på upplysningsdubbling.
+5. Definiera öppnarens tredje bud efter 1♣–1♠–2♣–2NT.
+
+## Avgränsning
+
+Ingen av T29–T33 har gjorts till automatisk grundsystemregel. Ingen ny bridgekonvention har hittats på. Korrigeringarna i analysmotorn och turordningsdiagnosen är tekniska matchnings-/klassificeringsändringar, inte ändringar av budsystemet. `main` är orörd.
