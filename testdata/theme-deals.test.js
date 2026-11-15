@@ -337,4 +337,9 @@ test("partnership fit bonus is +1 for nine trumps and +2 for ten", () => {
   const tenA = hand({H:5,S:3,D:3,C:2});
   const tenB = hand({H:5,S:3,D:3,C:2});
   assert.equal(Rattning.partnershipPoints(Rattning.H(tenA),Rattning.H(tenB),"H"),4);
+
+  // Eleven-card fit still receives only +2, not a larger length bonus.
+  const elevenA = hand({H:6,S:3,D:2,C:2});
+  const elevenB = hand({H:5,S:3,D:3,C:2});
+  assert.equal(Rattning.partnershipPoints(Rattning.H(elevenA),Rattning.H(elevenB),"H"),5);
 });
