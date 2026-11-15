@@ -162,3 +162,12 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - Efterhandsanalysen kan kontrollera budgivarens faktiska hand mot noden. Detta får inte användas av AI under pågående budgivning; seat-view-gränsen gäller fortsatt.
 - Nya regressionstester i `testdata/hand-conditions.test.js`.
 - GitHub Actions körning `43660192227` passerade på commit `09bab5a909dfacce5f65b15825b682e8617089f2`; alla fem handvillkorstester passerade och övriga dataset-, analys-, AI-seat- och rolltester passerade. Dokumentationskörning `43660201574` passerade också. `main` är orörd.
+
+
+## Utökade strukturerade handprofiler
+
+- `analysbibliotek.json` 0.5.9: 114 noder med tidigare handProfile-text strukturerade till 228 `handConditionsByRole`-profiler. 134 är fullt maskinellt kontrollerbara; 94 kräver även manuell bedömning. Alla är `analysis_only`.
+- 11 noder utan ursprunglig handprofil har lämnats orörda.
+- `analysmotor.js` 1.0.6: väljer öppnar-/svarshandsprofil efter faktisk budgivare och hanterar pass i sekvensen korrekt. Kvalitativa alternativ leder till `manual_review`, inte falsk automatisk underkänning.
+- Nya tester: `testdata/hand-profile-conditions.test.js`; workflow-steget är tillagt.
+- GitHub Actions för senaste ändringar inväntas.
