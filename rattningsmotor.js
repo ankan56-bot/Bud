@@ -1079,7 +1079,9 @@ var Rattning = (function(){
     if(b.c==='P'&&lastCall&&side(lastCall.s)===side(me)){
       var ls=st_(lastCall.c),ll=lv(lastCall.c);
       var partnerHasGame=(ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5);
-      if(partnerHasGame)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+      // 4NT med fastställd trumf är RKC-fråga, inte slutbud.
+      var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
+      if(partnerHasGame&&!partnerHasRkcAsk)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
     // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
