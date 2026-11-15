@@ -260,7 +260,7 @@ function assessReverse(shape, honors) {
 {
   const item = assessOpenerRebid(
     { C: 4, D: 4, H: 4, S: 1 },
-    { H: [14, 13, 12], D: [14], C: [11] },
+    { H: [14, 13], D: [14], C: [11] },
     'P'
   );
   assert.equal(item.bedomning, 'rätt');
@@ -282,7 +282,7 @@ function assessReverse(shape, honors) {
 {
   const item = assessOpenerRebid(
     { C: 3, D: 3, H: 4, S: 3 },
-    { H: [14, 13, 12], D: [14, 13], C: [11] },
+    { H: [14, 13], D: [14, 13], C: [11] },
     '3H'
   );
   assert.equal(item.bedomning, 'rätt');
