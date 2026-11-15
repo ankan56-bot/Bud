@@ -128,6 +128,28 @@ function assessOvercallResponse(opponentOpen, partnerOvercall, shape, honors, ca
   return Rattning.judge({ hands, dealer: 'E', bids }).items.at(-1);
 }
 
+function assessWeakTwoResponse(opening, shape, honors, call) {
+  const hands = makeDealFor('S', shape, honors, opening[1]);
+  const bids = [
+    { s: 'N', c: opening },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: call }
+  ];
+  return Rattning.nodeFor({ hands, dealer: 'N', bids }, 2);
+}
+
+function assessWeakTwoOpenerRebid(opening, shape, honors, response, call) {
+  const hands = makeDealFor('N', shape, honors, opening[1]);
+  const bids = [
+    { s: 'N', c: opening },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: response },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: call }
+  ];
+  return Rattning.nodeFor({ hands, dealer: 'N', bids }, 4);
+}
+
 function assessStenbergOpener(shape, honors, call) {
   const hands = makeDealFor('N', shape, honors, 'H');
   const bids = [
@@ -949,4 +971,85 @@ function assessReverse(shape, honors) {
   assert.equal(item.hp, 15);
 }
 
-console.log('Bridge bidding regression tests passed (66 cases).');
+// A new suit after a weak two is forcing with 5+ cards; no 15 hp threshold is stated.
+{
+  const node = assessWeakTwoResponse(
+    '2D',
+    { C: 3, D: 2, H: 3, S: 5 },
+    { S: [11], H: [11], C: [11] },
+    '2S'
+  );
+  assert.equal(node.exp, '2S');
+  assert.match(node.why, /5\+ kort.*forcing|5\+ kort.*krav/i);
+}
+
+// 2NT after a weak two is invitational with 9-10 hp and at least 2-card support.
+{
+  const node = assessWeakTwoResponse(
+    '2H',
+    { C: 4, D: 3, H: 2, S: 4 },
+    { H: [14], S: [14], C: [11] },
+    '2N'
+  );
+  assert.equal(node.exp, '2N');
+}
+
+// 9-10 hp without the required 2-card support is not automatically 2NT.
+{
+  const node = assessWeakTwoResponse(
+    '2H',
+    { C: 4, D: 4, H: 1, S: 4 },
+    { C: [14], D: [14], S: [11] },
+    '2N'
+  );
+  assert.equal(node.exp, null);
+}
+
+// A weak hand with 3+ support makes the preemptive 3-level raise, not an invit.
+{
+  const node = assessWeakTwoResponse(
+    '2H',
+    { C: 3, D: 3, H: 4, S: 3 },
+    { H: [12], D: [11], S: [11], C: [11] },
+    '3H'
+  );
+  assert.equal(node.exp, '3H');
+  assert.match(node.why, /spärrande.*ej invit/i);
+}
+
+// A weak hand without 3+ support or a 5+ side suit passes.
+{
+  const node = assessWeakTwoResponse(
+    '2H',
+    { C: 4, D: 3, H: 2, S: 4 },
+    { C: [11], D: [11], S: [11] },
+    'P'
+  );
+  assert.equal(node.exp, 'P');
+}
+
+// After 2D-2NT, a 9-10 hp opener rebids 3NT, not the illegal 4D.
+{
+  const node = assessWeakTwoOpenerRebid(
+    '2D',
+    { C: 2, D: 6, H: 3, S: 2 },
+    { D: [14, 13], C: [12] },
+    '2N',
+    '3N'
+  );
+  assert.equal(node.exp, '3N');
+}
+
+// After 2H-2NT, a 9-10 hp opener rebids 4H.
+{
+  const node = assessWeakTwoOpenerRebid(
+    '2H',
+    { C: 3, D: 2, H: 6, S: 2 },
+    { H: [14, 13], C: [12] },
+    '2N',
+    '4H'
+  );
+  assert.equal(node.exp, '4H');
+}
+
+console.log('Bridge bidding regression tests passed (73 cases).');
