@@ -20,3 +20,11 @@ test("the app keeps legacy two-human sessions as the default for old saved deals
   assert.match(html, /m\.humanSeats\|\|\['N','S'\]/);
   assert.match(html, /humanSeats:st\.humanSeats\|\|\['N','S'\]/);
 });
+
+test("solo bot assignment survives bid submission and undo state copies", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const copies = html.match(/focus:st\.focus,hands:st\.hands,dealer:st\.dealer,humanSeats:st\.humanSeats\|\|\['N','S'\],bids:/g) || [];
+  assert.equal(copies.length, 3, "submit, undo and keyboard/button bid paths must retain humanSeats");
+  assert.match(html, /function isBot\(s,st\)/);
+  assert.match(html, /Ensam mot tre robotar/);
+});
