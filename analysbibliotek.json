@@ -2833,7 +2833,7 @@
             "3♥"
           ],
           "meaning": "Superaccept av hjärteröverföring",
-          "analysis": "Öppnaren kan i stället för normal accept på 2♥ bjuda 3♥ med 17 hp och minst fyra hjärter. Detta är ett frivilligt alternativ i motorn; 2♥ är det vanliga återbudet.",
+          "analysis": "Öppnaren kan i stället för normal accept på 2♥ bjuda 3♥ med 17 hp och minst fyra hjärter. Detta är ett frivilligt alternativ i motorn; 2♥ är det vanliga återbudet. Fortsättningen efter superaccept är ännu inte definierad i motorn. 4NT efter denna superacceptsekvens känns inte heller igen som RKC i nuvarande kod; lämnas till senare systembeslut.",
           "handProfile": {
             "opener": "17 hp och minst fyra hjärter efter 1NT-öppning.",
             "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
@@ -3067,7 +3067,7 @@
             "3♠"
           ],
           "meaning": "Superaccept av spaderöverföring",
-          "analysis": "Öppnaren kan i stället för normal accept på 2♠ bjuda 3♠ med 17 hp och minst fyra spader. Detta är ett frivilligt alternativ i motorn; 2♠ är det vanliga återbudet.",
+          "analysis": "Öppnaren kan i stället för normal accept på 2♠ bjuda 3♠ med 17 hp och minst fyra spader. Detta är ett frivilligt alternativ i motorn; 2♠ är det vanliga återbudet. Fortsättningen efter superaccept är ännu inte definierad i motorn. 4NT efter denna superacceptsekvens känns inte heller igen som RKC i nuvarande kod; lämnas till senare systembeslut.",
           "handProfile": {
             "opener": "17 hp och minst fyra spader efter 1NT-öppning.",
             "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
