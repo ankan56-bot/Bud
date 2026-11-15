@@ -125,3 +125,56 @@ test("responder passes after the asker fixes the no-trump final contract at 5NT"
   assert.equal(result?.exp, "P");
   assert.match(result?.why || "", /Pass efter att frågeställaren har fastställt sangslutbudet/);
 });
+
+
+function dealWithNorth(north) {
+  const deck = [];
+  for (const suit of ["S", "H", "D", "C"]) {
+    for (let rank = 14; rank >= 2; rank--) deck.push(suit + rank);
+  }
+  const chosen = new Set(north);
+  const rest = deck.filter(card => !chosen.has(card));
+  return {
+    N: north,
+    E: rest.slice(0, 13),
+    S: rest.slice(13, 26),
+    W: rest.slice(26, 39)
+  };
+}
+
+function askerAfterAmbiguousResponse(north) {
+  const hands = dealWithNorth(north);
+  const bids = [
+    { s: "N", c: "1S" }, { s: "E", c: "P" },
+    { s: "S", c: "2S" }, { s: "W", c: "P" },
+    { s: "N", c: "4N" }, { s: "E", c: "P" },
+    { s: "S", c: "5C" }, { s: "W", c: "P" },
+    { s: "N", c: "5D" }, { s: "E", c: "P" },
+    { s: "S", c: "5S" }, { s: "W", c: "P" },
+    { s: "N", c: "P" }
+  ];
+  return Rattning.nodeFor({ hands, dealer: "N", bids }, 12);
+}
+
+test("after 5C then 5S retreat, asker with three aces bids 6S", () => {
+  const north = ["SA", "HA", "DA", "SK", "SQ", "SJ", "S10", "S9", "H2", "D2", "C2", "C3", "C4"];
+  const result = askerAfterAmbiguousResponse(north);
+  assert.equal(Rattning.H(north).aces, 3);
+  assert.equal(result?.exp, "6S", JSON.stringify(result));
+  assert.match(result?.why || "", /3 egna ess/);
+});
+
+test("after 5C then 5S retreat, asker with only two aces does not get the documented 6S continuation", () => {
+  const north = ["SA", "HA", "SK", "SQ", "SJ", "S10", "S9", "S8", "H2", "D2", "C2", "C3", "C4"];
+  const result = askerAfterAmbiguousResponse(north);
+  assert.equal(Rattning.H(north).aces, 2);
+  assert.equal(result?.exp, null, JSON.stringify(result));
+  assert.match(result?.why || "", /inte ett entydigt nästa bud|inte uttryckligen fastställd/i);
+});
+
+test("after 5D then 5S retreat, asker with four aces bids 6S", () => {
+  const north = ["SA", "HA", "DA", "CA", "SK", "SQ", "SJ", "S10", "S9", "H2", "D2", "C2", "C3"];
+  const result = askerAfterAmbiguousResponse(north);
+  assert.equal(Rattning.H(north).aces, 4);
+  assert.equal(result?.exp, "6S", JSON.stringify(result));
+});
