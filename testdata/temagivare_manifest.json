@@ -285,8 +285,108 @@
     "status": "baseline_complete",
     "referenceAuction": "generated_from_existing_rule_engine_not_independent_facit",
     "result": {
-      "rätt": 578,
-      "ej_täckt": 49
+      "rätt": 583,
+      "ej_täckt": 47
+    },
+    "themeStats": {
+      "alla": {
+        "deals": 10,
+        "bids": 92,
+        "uncovered": 6,
+        "optional": 0,
+        "wrong": 0
+      },
+      "nt": {
+        "deals": 10,
+        "bids": 100,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "stenberg": {
+        "deals": 10,
+        "bids": 91,
+        "uncovered": 2,
+        "optional": 0,
+        "wrong": 0
+      },
+      "tva": {
+        "deals": 10,
+        "bids": 112,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "rkc": {
+        "deals": 10,
+        "bids": 118,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "slam": {
+        "deals": 10,
+        "bids": 87,
+        "uncovered": 2,
+        "optional": 0,
+        "wrong": 0
+      },
+      "slamnt": {
+        "deals": 10,
+        "bids": 100,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "trumf": {
+        "deals": 10,
+        "bids": 74,
+        "uncovered": 6,
+        "optional": 0,
+        "wrong": 0
+      },
+      "sang": {
+        "deals": 10,
+        "bids": 84,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "invit": {
+        "deals": 10,
+        "bids": 66,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "tvafarg": {
+        "deals": 10,
+        "bids": 89,
+        "uncovered": 6,
+        "optional": 0,
+        "wrong": 0
+      },
+      "svag": {
+        "deals": 10,
+        "bids": 58,
+        "uncovered": 0,
+        "optional": 0,
+        "wrong": 0
+      },
+      "dubbling": {
+        "deals": 10,
+        "bids": 68,
+        "uncovered": 15,
+        "optional": 0,
+        "wrong": 0
+      },
+      "inkliv": {
+        "deals": 10,
+        "bids": 54,
+        "uncovered": 10,
+        "optional": 0,
+        "wrong": 0
+      }
     }
   },
   "note": "The 140 deals are generated with the existing seeded theme generator and validated for hand integrity, theme conditions and legal auction structure. The stored auction is a deterministic coverage reference, not an independent optimal auction. Typical/borderline labels remain unclassified pending review."
