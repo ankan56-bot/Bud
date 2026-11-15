@@ -283,7 +283,13 @@
       },
       "notes": "Human-readable condition; structured fields should be used wherever possible.",
       "seatRole": "opener|responder|overcaller|doubler",
-      "balanced": "true|false|null"
+      "balanced": "true|false|null",
+      "stoppers": [
+        "S",
+        "H",
+        "D",
+        "C"
+      ]
     },
     "recommendation": "Call or pass",
     "rationale": "Why this is a reasonable bridge decision",
