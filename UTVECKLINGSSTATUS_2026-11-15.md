@@ -166,8 +166,13 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 
 ## Utökade strukturerade handprofiler
 
-- `analysbibliotek.json` 0.5.9: 114 noder med tidigare handProfile-text strukturerade till 228 `handConditionsByRole`-profiler. 134 är fullt maskinellt kontrollerbara; 94 kräver även manuell bedömning. Alla är `analysis_only`.
+- `analysbibliotek.json` 0.5.9: 119 noder med tidigare handProfile-text strukturerade till 228 `handConditionsByRole`-profiler. 134 är fullt maskinellt kontrollerbara; 94 kräver även manuell bedömning. Alla är `analysis_only`.
 - 11 noder utan ursprunglig handprofil har lämnats orörda.
 - `analysmotor.js` 1.0.6: väljer öppnar-/svarshandsprofil efter faktisk budgivare och hanterar pass i sekvensen korrekt. Kvalitativa alternativ leder till `manual_review`, inte falsk automatisk underkänning.
 - Nya tester: `testdata/hand-profile-conditions.test.js`; workflow-steget är tillagt.
 - GitHub Actions för senaste ändringar inväntas.
+
+
+## Slutlig täckning i denna etapp
+
+`analysbibliotek.json` är version 0.5.11 med 119 av 125 noder strukturerade (238 rollprofiler). 137 profiler är fullt maskinellt kontrollerbara och 101 kräver också manuell bedömning. De sex kvarvarande noderna tillhör T01, som avsiktligt är inkompatibelt eftersom det bygger på Jacoby 2NT i stället för fastställd Stenberg 2NT. T02, T03 och T05 fick profiler från uttryckliga källvillkor. `analysmotor.js` är version 1.0.6. Nya profiltäckningstester 6/6 passerade i GitHub Actions körning 43660594300; den körningen innehåller även de övriga workflow-testerna.
