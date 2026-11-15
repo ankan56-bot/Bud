@@ -6,7 +6,7 @@
   "use strict";
   const SEATS = ["N", "E", "S", "W"];
   const PUBLIC_STATE_KEYS = new Set(["playedCards","currentTrick","trickHistory","contract","declarer","dummy","dummyExposed","tricksTaken","trickNumber","nextToPlay","openingLead"]);
-  const PRIVATE_KEYS = new Set(["hands","allHands","hiddenHands","privateHands","otherHands","fullDeal","dealHands","northHand","eastHand","southHand","westHand"]);
+  const PRIVATE_KEYS = new Set(["hands","allHands","hiddenHands","privateHands","otherHands","fullDeal","dealHands","northHand","eastHand","southHand","westHand","cardsBySeat","handsBySeat","N","E","S","W","north","east","south","west"]);
   function clone(value) {
     if (Array.isArray(value)) return value.map(clone);
     if (value && typeof value === "object") { const out = {}; Object.keys(value).forEach(key => { out[key] = clone(value[key]); }); return out; }
