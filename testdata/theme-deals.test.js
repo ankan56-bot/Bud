@@ -43,7 +43,7 @@ test("fixed seeds reproduce hands, auctions and correction results", () => {
     assert.equal(regenerated.deals[i].seed, stored.deals[i].seed);
     assert.equal(JSON.stringify(regenerated.deals[i].hands), JSON.stringify(stored.deals[i].hands), stored.deals[i].id);
     assert.equal(JSON.stringify(regenerated.deals[i].bids), JSON.stringify(stored.deals[i].bids), stored.deals[i].id);
-    assert.deepEqual(regenerated.deals[i].correction, stored.deals[i].correction, stored.deals[i].id + " correction");
+    assert.equal(JSON.stringify(regenerated.deals[i].correction), JSON.stringify(stored.deals[i].correction), stored.deals[i].id + " correction");
   }
 });
 
