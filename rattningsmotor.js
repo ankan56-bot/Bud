@@ -382,26 +382,35 @@ var Rattning = (function(){
   /* ––––– SVAG TVÅA (Plus) ––––– */
   function resp2w(h,oc){
     var o=st_(oc),L=h.L,hp=h.hp,exp,why,alt=[];
+    var newSuits=SU.filter(function(s){return s!==o&&L[s]>=5;})
+      .sort(function(a,b){if(L[b]!==L[a])return L[b]-L[a];return SU.indexOf(b)-SU.indexOf(a);});
+    var preempt=hp<=8&&L[o]>=3;
+    var invite=hp>=9&&hp<=10&&L[o]>=2;
     var means=function(c){
-      if(c==='3'+o)return 'Invit, 14-16 stp, 3+ stöd.';
-      if(c==='4'+o)return 'Utgång, 13-16 stp, 5+ kort (eller 4+ med stöd).';
-      if(c==='3N')return 'Slutbud.';
-      if(c==='2N')return 'Invit, 9-10 hp, 2+ stöd.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&(lv(c)>=2))return 'Ny färg: 15-16 hp, rondkrav, minst 5-kortsfärg.';
-      if(c==='P')return 'Pass: 0-8 hp.';
-      return null};
-    if(hp>=15){
-      var ns=SU.filter(function(s){return s!==o&&L[s]>=5}).sort(function(a,b){return L[b]-L[a]})[0];
-      if(ns) {exp=lowest(ns,oc);why=hp+' hp och 5+ '+SYM[ns]+': ny färg (krav).'}
+      if(c==='3'+o)return 'Spärrande höjning: minst 3 korts stöd, ej invit.';
+      if(c==='2N')return 'Invit: 9-10 hp och minst 2 korts stöd.';
+      if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
+      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, krav till minst 3 i öppningsfärgen.';
+      return null;
+    };
+    if(newSuits.length&&(preempt||invite)){
+      return NC('Handen uppfyller både villkoret för egen 5+ färg och ett stöd-bud efter svag tvåa. REF anger ingen prioritet mellan dessa alternativ.');
     }
-    if(!exp){
-      if(hp<=8){exp='P';why='0-8 hp: pass.'}
-      else if(hp>=9&&hp<=10){exp='2N';why='9-10 hp och 2+ stöd: 2NT invit.'}
-      else if(hp>=14&&hp<=16){if(L[o]>=3){exp='3'+o;why='14-16 stp och 3+ stöd: 3 i färgen (invit).'}else{exp='P';why='14-16 hp utan stöd: pass.'}}
-      else if(hp>=13&&L[o]>=5){exp='4'+o;why='13-16 stp och långt stöd: 4 i färgen (utgång).'}
-      else{exp='P';why=hp+' hp utan lämpligt bud: pass.'}
+    if(newSuits.length){
+      exp=lowest(newSuits[0],oc);
+      why='5+ kort i '+SYM[newSuits[0]]+': ny färg, krav till minst 3 i öppningsfärgen.';
+    }else if(preempt){
+      exp='3'+o;
+      why='Svag hand med 3+ stöd: spärrande höjning till 3 i öppningsfärgen, ej invit.';
+    }else if(invite){
+      exp='2N';
+      why=hp+' hp och 2+ stöd: invit 2NT.';
+    }else if(hp<=8){
+      exp='P';why=hp+' hp utan 3+ stöd eller egen 5+ färg: pass.';
+    }else{
+      return NC('Svar efter svag tvåa: handen passar inte de uttryckligen angivna villkoren för 5+ färg, spärrhöjning eller 2NT-invit.');
     }
-    return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:true};
+    return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};
   }
   function open2w(h,oc,r){
     var o=st_(oc),hp=h.hp,exp,why,alt=[];
@@ -410,8 +419,18 @@ var Rattning = (function(){
       if(r==='3'+o){if(c==='P')return 'Pass: minimum (6-8 hp).';if(c==='4'+o)return 'Maximum (9-10 hp).'}
       if(r==='2N'&&c==='P')return 'Pass (efter minimumsinvit).';
       return null};
-    if(r==='2N'){exp=hp<=8?'3'+o:'4'+o;alt=hp>=9&&maj(o)?['3N']:[];why=hp<=8?'6-8 hp: minimum, 3 i färgen.':'9-10 hp: maximum, 4 i färgen.';return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:true}}
-    if(r==='3'+o){exp=hp<=8?'P':'4'+o;alt=[];why=hp<=8?'6-8 hp: pass.':'9-10 hp: maximum, utgång 4 i färgen.';return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};}
+    if(r==='2N'){
+      if(hp>=6&&hp<=8){exp='3'+o;why=hp+' hp: minimum, 3 i öppningsfärgen.';return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};}
+      if(hp>=9&&hp<=10){
+        exp=maj(o)?'4'+o:'3N';
+        why=hp+' hp: maximum efter 2NT-invit; '+(maj(o)?'4 i högfärgen.':'3NT efter lågfärgsöppning.');
+        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};
+      }
+      return NC('Öppnarens styrka efter 2NT-invit ligger utanför de uttryckligen angivna 6-8/9-10 hp-intervallen.',means,'svag tvåa');
+    }
+    if(r==='3'+o){
+      return NC('Svarshandens 3-bud är spärrande och ej invit. Öppnarens fortsättning efter spärrhöjningen specificeras inte i REF.',means,'svag tvåa');
+    }
     if(isBid(r)&&r[1]!==o&&r[1]!=='N'){
       return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa'};
     }
@@ -1538,7 +1557,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'6.9'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.0'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
