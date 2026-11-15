@@ -162,3 +162,8 @@ Ingen av rapporterna inför nya systemregler. De skiljer mellan teknisk dispatch
 2. Definiera svar efter 2-/3-nivåinkliv och 2NT-inkliv.
 3. Definiera dubblerarens återbud efter partnerns svar på upplysningsdubbling.
 4. Definiera öppnarens tredje bud efter 1♣–1♠–2♣–2NT.
+
+
+## Version- och CI-kontroll efter diagnostikkorrigeringen
+
+Rättningsmotorn är nu version 6.7. `testdata/generate-theme-deals.js` är pinnad till den exakta blobben för 6.7, och samtliga 140 sparade givare anger samma motorversion. Baslinjerapporten är uppdaterad. Senaste fullständiga GitHub Actions-körning `43659958289` passerade; den verifierade reproducerbarheten och samtliga teststeg, inklusive auktionens dispatch, analysbibliotekets fem konkurrensträd, seat isolation och spelarroller.
