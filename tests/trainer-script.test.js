@@ -28,3 +28,8 @@ test("solo bot assignment survives bid submission and undo state copies", () => 
   assert.match(html, /function isBot\(s,st\)/);
   assert.match(html, /Ensam mot tre robotar/);
 });
+
+test("solo mode assigns exactly one human even when the device was set to both seats", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  assert.match(html, /function humanSeatsForNewDeal\(\)\{return playerMode==='solo'\?\[seat==='S'\?'S':'N'\]:\['N','S'\]\}/);
+});
