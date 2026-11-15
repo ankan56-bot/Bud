@@ -1443,8 +1443,10 @@ var Rattning = (function(){
       }
       var valuationSuit=suit;
       if(b.c==='2N'){
-        var firstContract=bids.filter(function(x){return isBid(x.c)})[0];
-        if(firstContract&&firstContract.s===partner(b.s)&&/^1[CDHS]$/.test(firstContract.c)){
+        var firstContractIndex=bids.findIndex(function(x){return isBid(x.c)});
+        var firstContract=firstContractIndex>=0?bids[firstContractIndex]:null;
+        var uncontestedStenberg=firstContractIndex>=0&&bids.slice(firstContractIndex+1,i).every(function(x){return x.c==='P'});
+        if(uncontestedStenberg&&firstContract&&firstContract.s===partner(b.s)&&/^1[CDHS]$/.test(firstContract.c)){
           var candidateSuit=firstContract.c[1];
           if(hand.L[candidateSuit]>=4)valuationSuit=candidateSuit;
         }
@@ -1468,7 +1470,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.8'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.9'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
