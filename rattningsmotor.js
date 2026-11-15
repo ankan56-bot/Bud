@@ -1295,7 +1295,7 @@ var Rattning = (function(){
         if((t1==='2D'&&t2==='2H'&&ours[3].c==='3N')||(t1==='2H'&&t2==='2S'&&ours[3].c==='3N')){
             return ntOpener3NTChoice(h, t1==='2D'?'H':'S');
         }
-        if((t1==='2D'&&t2==='2H')||(t1==='2H'&&t2==='2S'))return ntOpenerInvit(h,t1==='2D'?'H':'S',ours[3].c);
+        if((t1==='2D'&&t2==='2H')||(t1==='2H'&&t2==='2S'))return ntOpenerInvit(h,t1==='2D'?'H':'S',ours[3].c,st.hands[pt]);
         return ntOpener3(h,ours[1].c,ours[2].c,ours[3].c,st.hands[pt]);
       }
       return nc('Fortsättningen i 1NT/2NT-systemet beskrivs inte i dokumentet.');
