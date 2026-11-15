@@ -857,24 +857,26 @@ function assessReverse(shape, honors) {
 
 // Two side singletons after 1H-2H have no documented priority.
 {
-  const item = assessOpenerRebid(
-    { C: 1, D: 1, H: 6, S: 5 },
-    { H: [14, 13], S: [14, 12] },
-    '3C'
-  );
-  assert.equal(item.bedomning, 'ej_täckt');
-  assert.match(item.motivering, /singel i flera sidofärger/i);
+  const hands = makeDealFor('S', { C: 1, D: 1, H: 6, S: 5 }, { H: [14, 13], S: [14, 12] }, 'H');
+  const bids = [
+    { s: 'S', c: '1H' }, { s: 'W', c: 'P' },
+    { s: 'N', c: '2H' }, { s: 'E', c: 'P' }, { s: 'S', c: '3C' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'S', bids }, 4);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /singel i flera sidofärger/i);
 }
 
 // Two side singletons after Stenberg also have no documented priority.
 {
-  const item = assessStenbergOpener(
-    { C: 1, D: 1, H: 6, S: 5 },
-    { H: [14, 13], S: [14, 12], D: [11] },
-    '3C'
-  );
-  assert.equal(item.bedomning, 'ej_täckt');
-  assert.match(item.motivering, /Flera sidofärger är singel/i);
+  const hands = makeDealFor('N', { C: 1, D: 1, H: 6, S: 5 }, { H: [14, 13], S: [14, 12], D: [11] }, 'H');
+  const bids = [
+    { s: 'N', c: '1H' }, { s: 'E', c: 'P' },
+    { s: 'S', c: '2N' }, { s: 'W', c: 'P' }, { s: 'N', c: '3C' }
+  ];
+  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 4);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /Flera sidofärger är singel/i);
 }
 
 // A new suit over a weak two is forcing, but the opener's exact rebid is unspecified.
