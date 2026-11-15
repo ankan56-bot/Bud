@@ -26,8 +26,10 @@ jobs:
         run: node tests/supplementary-logic.test.js
       - name: Verify all fixed undisturbed deals
         run: node tests/ostord-coverage.test.js
-      - name: Upload undisturbed verification report
+      - name: Run 100-deal undisturbed stress test
+        run: node tests/ostord-100.test.js
+      - name: Upload undisturbed verification reports
         uses: actions/upload-artifact@v4
         with:
           name: ostord-validation
-          path: testdata/ostord_validation_latest.json
+          path: |\n            testdata/ostord_validation_latest.json\n            testdata/ostord_100_validation_latest.json
