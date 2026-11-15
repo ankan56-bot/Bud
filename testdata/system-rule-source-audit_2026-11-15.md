@@ -92,14 +92,14 @@ Det finns ett närliggande 2NT-exempel på sida 3, men det fastställer inte öp
 |---|---|---|
 | Svar efter partnerns 1-högfärgs-/1-ruterinkliv | Svarstabellen på sida 7, med angivna nivåer och handvillkor | Applicera tabellen generellt på 2-/3-nivå eller 2NT-inkliv |
 | Återbud efter upplysningsdubbling | Sida 8 ger dubblarens grundkrav och partnerns första svar | Hitta på dubblarens senare återbud eller återanvända `respDouble()` |
-| Öppnarens tredje bud efter 2NT | Det specifika 1♥–1♠–2♣–2NT-exemplet kan användas i just den sekvensen | Överföra 3♥-fortsättningen till 1♣–1♠–2♣–2NT |
+| Öppnarens tredje bud efter 2NT | Endast svarshandens 2NT-beskrivning i det närliggande exemplet är tydlig | Använda den motsägelsefulla 3♥-raden som facit eller överföra den till 1♣–1♠–2♣–2NT |
 
 ## Nästa tekniska steg
 
 1. Kör regression på den implementerade 1-nivåtabellen och kontrollera den genererade 140-givarsbaslinjen.
-2. Utred den separata hänvisningen för hoppande 2-högfärgsinkliv; behåll den ej täckt där val mellan invit och spärr inte kan avgöras säkert.
+2. Behåll hoppande 2-högfärgsinkliv utan automatiskt huvudbud där val mellan invit, spärrhöjning och ny färg inte kan avgöras säkert. Visa de källstödda budbetydelserna i analysen.
 3. Behåll de åtta dubblaråterbuden som ej täckta; ingen motorregel införs utan kompletterande systemkälla eller uttryckligt godkänt partnerskapsbeslut.
-4. Behåll öppnarens tredje bud i 1♣–1♠–2♣–2NT som ej täckt. Lägg däremot ett positivt regressionstest för det dokumenterade exemplet 1♥–1♠–2♣–2NT–3♥ med dess uttryckliga handvillkor.
+4. Behåll öppnarens tredje bud i 1♣–1♠–2♣–2NT som ej täckt. Koda inte 3♥-raden i det närliggande 1♥–1♠–2♣–2NT-exemplet förrän motsägelsen i originaltexten har retts ut.
 5. Kör hela 140-givarsbaslinjen och befintliga regressionstester efter varje avgränsad ändring. Ingen DDS-bedömning ska användas som budfacit.
 
 ## Verifieringsstatus
