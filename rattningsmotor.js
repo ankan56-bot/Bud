@@ -615,6 +615,26 @@ var Rattning = (function(){
     // Nordisk standard s. 7 ger en svarstabell för inkliv på 1-nivån
     // (1 högfärg eller 1 ruter). Andra inklivsnivåer har egna/otillräckliga
     // källregler och får inte ärva denna tabell.
+    if(lv(oc)===2&&maj(s)&&/^1[CDHS]$/.test(ob||'')&&s!==os&&hp>=6&&hp<=10&&L[s]>=6&&h.good(s)){
+      // Ett hoppande 2-högfärgsinkliv följer svag-två-strukturen. Källan
+      // anger budens betydelse men inte styrkegränsen mellan invit och spärr.
+      var weakTwoMeaning=function(c){
+        if(c==='3'+s&&L[s]>=3)return 'Spärrhöjning med 3+ stöd; inte invit.';
+        if(c==='2N'&&L[s]>=2)return 'Invitbud med 2+ stöd.';
+        if(c==='3N')return 'Slutbud.';
+        if(isBid(c)&&c.length===2){
+          var x=st_(c);
+          if(SU.indexOf(x)>=0&&x!==s&&x!==os&&L[x]>=5&&c===lowest(x,last)){
+            return 'Ny färg med 5+ kort; krav till minst 3 i partnerns öppningsfärg.';
+          }
+          if(SU.indexOf(x)>=0&&x!==s&&x!==os&&L[x]===0&&c===jump(x,last)){
+            return 'Hopp i ny färg visar renons och slaminvit.';
+          }
+        }
+        return null;
+      };
+      return NC('Hoppande 2-högfärgsinkliv: Nordisk standard hänvisar till svag-två-strukturen. Den anger både 2NT-invit med 2+ stöd och spärrhöjning med 3+ stöd, men ingen numerisk gräns/prioritering mellan dessa val. Därför ges inget automatiskt huvudbud.',weakTwoMeaning,'svag tvåa');
+    }
     if(lv(oc)!==1||!os){
       return NC('Nordisk standard anger inte denna svarstabell för inkliv på denna nivå. Tabellen på s. 7 gäller 1-högfärgs-/1-ruterinkliv.',null,'inkliv');
     }
@@ -1351,7 +1371,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.1'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.2'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
