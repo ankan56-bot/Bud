@@ -87,4 +87,34 @@ function assessReverse(shape, honors) {
   assert.match(item.motivering, /20 HPS/);
 }
 
-console.log('Reverse/HPS regression tests passed (4 cases).');
+
+// With an actual 8-card fit, support points are counted even though the
+// opener's own shape is only 5-4-2-2.
+{
+  const deck = [];
+  for (const suit of ['C', 'D', 'H', 'S']) {
+    for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
+  }
+  const north = ['S14', 'S13', 'S7', 'S6', 'S5', 'H14', 'H12', 'H8', 'H7', 'D13', 'D4', 'C11', 'C3'];
+  const south = ['S2', 'S3', 'S4'];
+  const rest = deck.filter(card => !north.includes(card) && !south.includes(card));
+  south.push(...rest.slice(0, 10));
+  const remaining = deck.filter(card => !north.includes(card) && !south.includes(card));
+  const hands = {
+    N: north,
+    E: remaining.slice(0, 13),
+    S: south,
+    W: remaining.slice(13, 26)
+  };
+  const bids = [
+    { s: 'N', c: '1S' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: '2S' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: 'P' }
+  ];
+  const item = Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
+  assert.equal(item.htp, 19, '8-card support fit allows support points');
+}
+
+console.log('Reverse/HPS regression tests passed (5 cases).');
