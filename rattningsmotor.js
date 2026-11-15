@@ -242,10 +242,10 @@ var Rattning = (function(){
 
     var means=function(c){
       if(c===splBid && L[M]>=6) return 'Splinter: singel/renons i '+SYM[splSuit]+' och 6+ kort i trumffärgen. 14+ stp.';
-      if(/^3[HS]$/.test(c))return 'Invit: 3 i öppnarens visade högfärg (8-9 stp).';
-      if(c==='2N')return 'Invit (8-9 hp); efter Stayman visar sang att man har 4♠ (annars hade man bjudit högfärgen).';
-      if(c==='3N')return 'Utgång i sang (10-15 hp); efter Stayman visar det 4♠ (eller ingen fit).';
-      if(c==='4H'||c==='4S')return 'Slutbud i högfärgen (10-15 stp).';
+      if(/^3[HS]$/.test(c))return 'Invit: 3 i öppnarens visade högfärg med minst 8-korts fit och 22–25 gemensamma spelpoäng.';
+      if(c==='2N')return 'Balanserad invit till 3NT vid 22–25 gemensamma honnörspoäng; efter Stayman kan 2NT även visa den andra fyrkortshögfärgen enligt den aktuella fortsättningen.';
+      if(c==='3N')return 'Utgång i sang med minst 26 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
+      if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit och minst 26 gemensamma spelpoäng.';
       return null};
     if(M&&L[M]>=4&&opener&&L[M]+opener.L[M]>=8){
       if(fitPoints>=26){exp='4'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';}
@@ -269,10 +269,10 @@ var Rattning = (function(){
     var L=h.L,hp=h.hp,exp,why,alt=[];
     var means=function(c){
       if(c==='P')return '0-8 hp med minst 5 kort i överföringsfärgen: svagt slutbud.';
-      if(c==='2N')return '8-9 hp och exakt 5 kort i överföringsfärgen: invit.';
-      if(c==='3'+M)return '8-9 stp och minst 6 kort i överföringsfärgen: invit.';
+      if(c==='2N')return '9 hp och exakt 5 kort i överföringsfärgen: invit.';
+      if(c==='3'+M)return '9 hp och minst 6 kort i överföringsfärgen: invit.';
       if(c==='3N')return 'Välj utgång med jämn hand och exakt 5-korts '+SYM[M]+'.';
-      if(c==='4'+M)return '10-15 stp och minst 6 kort i överföringsfärgen: utgång i högfärgen.';
+      if(c==='4'+M)return '10–15 hp och minst 6 kort i överföringsfärgen: utgång i högfärgen.';
       if(c==='4C'||c==='4D')return 'Kontrollbud och slamintresse i '+SYM[M]+'.';
       if(c==='4N')return 'Essfråga (RKC) med '+SYM[M]+' som trumf.';
       if(M==='H'&&c==='2S')return '6+ hp, minst 5♥ och 4+♠: rondkrav.';
@@ -289,7 +289,7 @@ var Rattning = (function(){
       }
     }
     else{
-      return {exp:null,alt:[],why:hp+' hp: 17+ visar slamintresse med 4 i lågfärg (kontrollbud) eller 4NT (RKC). Valet mellan dem är inte definierat.',means:means,conv:'överföring'};
+      return {exp:null,alt:[],why:hp+' hp: 16+ visar slamintresse med 4 i lågfärg (kontrollbud) eller 4NT (RKC). Valet mellan dem är inte definierat.',means:means,conv:'överföring'};
     }
     if(hp>=6&&hp<=9){
       if(M==='H'&&L.H>=5&&L.S>=4)alt.push('2S');
