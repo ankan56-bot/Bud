@@ -874,7 +874,7 @@ function fanHtml(cards){
 function seatHtml(st,s,rel){
    var lc=null,last=-1;st.bids.forEach(function(b,i){if(b.s===s){lc=b.c;last=i}});
    var latest=last===st.bids.length-1,pass=lc==='P';
-   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+handHtml(st.hands[s])+'<span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
+   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+'<span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
  }
 function handBlock(st,me){
   var lc=null,last=-1;
