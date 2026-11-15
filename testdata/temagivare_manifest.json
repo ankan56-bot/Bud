@@ -379,7 +379,21 @@
     "supplementaryApprovalStatus": "unreviewed",
     "supplementaryTestPath": "tests/supplementary-logic.test.js",
     "supplementaryTestCount": 15,
-    "supplementaryTestsPassed": 15
+    "supplementaryTestsPassed": 15,
+    "undisturbedVerification": {
+      "status": "pending_ci_run",
+      "scriptPath": "tests/ostord-coverage.test.js",
+      "workflowPath": ".github/workflows/undisturbed-validation.yml",
+      "targetDeals": 36,
+      "expectedNsTurns": 170,
+      "requiredCoveragePercent": 100,
+      "requiredExceptions": 0,
+      "requiredIllegalRecommendations": 0,
+      "requiredInvalidAuctions": 0,
+      "note": "This is a fresh verification gate. Do not update the baseline engine SHA or claim the new result until the workflow artifact confirms the run."
+    },
+    "competitiveBiddingStatus": "paused",
+    "competitiveBiddingRemaining": 68
   },
   "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
 }
