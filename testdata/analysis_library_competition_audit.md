@@ -2,7 +2,7 @@
 
 ## Syfte och avgränsning
 
-Analysbiblioteket `analysbibliotek.json` version 0.5.5 innehåller fem träd för svar efter motståndarnas inkliv eller dubbling:
+Analysbiblioteket `analysbibliotek.json` version 0.5.11 innehåller fem träd för svar efter motståndarnas inkliv eller dubbling:
 
 | Träd | Sekvens | Dokumenterat innehåll |
 |---|---|---|
