@@ -124,3 +124,22 @@ test("replayed room-action messages are accepted only within the live freshness 
   assert.equal(context.isFreshRoomAction({}, now), false);
   assert.equal(context.isFreshRoomAction({ time: "not-a-time" }, now), false);
 });
+
+test("room state synchronization uses ntfy server chronology rather than per-device revision counters", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function isNewerRoomState(");
+  const end = html.indexOf("\nfunction executeRoomAction", start);
+  assert.ok(start >= 0 && end > start, "server-time state ordering helper should exist");
+  const context = {};
+  vm.runInNewContext(html.slice(start, html.indexOf("\n", start)), context);
+  const latest = 1_800_000_000_000;
+  assert.equal(context.isNewerRoomState({ time: latest / 1000 }, latest), true,
+    "events at the same server timestamp remain ordered by the SSE stream");
+  assert.equal(context.isNewerRoomState({ time: (latest + 1000) / 1000 }, latest), true);
+  assert.equal(context.isNewerRoomState({ time: (latest - 1000) / 1000 }, latest), false,
+    "a delayed older state must not overwrite a newer state");
+  assert.equal(context.isNewerRoomState({}, latest), false);
+  assert.equal(context.isNewerRoomState({ time: "invalid" }, latest), false);
+  assert.match(html, /lastStateEventTime=0/);
+  assert.match(html, /rev=Math\.max\(rev,Number\(m\.v\)\|\|0\);adopt\(m\.st\)/);
+});
