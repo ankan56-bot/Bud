@@ -79,3 +79,18 @@ Ingen extern AI-tjänst ska krävas av den publicerade hemsidan. Analys som ska 
 ## Avgränsning för publicerad webbplats
 
 Stora simuleringar och analyskörningar ska ske i utvecklingsmiljö, inte i besökarens webbläsare. Webbplatsen ska bara hämta den färdiga, validerade kunskapen och använda DDS för enskilda givar när det behövs.
+
+
+## Framtida spelarkitektur: människa Nord, AI Syd/Öst/Väst
+
+En central framtida användning är att användaren spelar Nord medan AI spelar Syd som partner och Öst/Väst som motståndare. Arkitekturen ska därför från början stödja fyra separata spelarinstanser:
+
+- Nord: mänsklig inmatning.
+- Syd: AI-partner.
+- Öst och Väst: varsin AI-motståndare.
+
+**Informationssäkerhet är ett hårt krav.** Varje AI-beslut ska få endast den aktuella spelarens egen hand, budhistorik, sårbarhet, givinformation och den information som lagligen blivit offentlig genom budgivningen (och senare spelet). En AI får aldrig få partnerns eller motståndarnas dolda kort. Undvik en gemensam beslutsfunktion som tar emot alla fyra händer; använd i stället ett gränssnitt i stil med decide({ seat, ownHand, auction, vulnerability, publicState, system }). Den exakta API-formen fastställs när spelmotorn byggs, men informationsgränsen ska testas automatiskt.
+
+DDS får fortsatt användas med alla fyra händer i en separat efterhandsanalys/testprocess. Den får inte läcka in i spelaragenternas beslutsunderlag under en pågående giv.
+
+Detta innebär inte att spelmotorn eller AI-spelarna byggs i detta delsteg. Först färdigställs och verifieras rättningsmotor, temagivare, analysvillkor och budlogik. Därefter kan spelmotorn byggas ovanpå samma regel- och kunskapslager.
