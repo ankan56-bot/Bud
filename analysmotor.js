@@ -76,7 +76,7 @@ function evaluateMatchedHand(match,bids,hands){
  if(!match||!match.node||!Array.isArray(bids)||!hands)return null;
  const calls=bids.filter(b=>b&&b.c!=="P");
  const sequenceCalls=(match.node.sequence||[]).filter(c=>normalizeCall(c)!=="Pass");
- const index=match.length-1,entry=calls[index],last=sequenceCalls[sequenceCalls.length-1];
+ const index=sequenceCalls.length-1,entry=calls[index],last=sequenceCalls[sequenceCalls.length-1];
  if(!entry||!last||normalizeCall(callText(entry.c))!==normalizeCall(last))return null;
  const hand=hands[entry.s];
  if(!hand)return null;
