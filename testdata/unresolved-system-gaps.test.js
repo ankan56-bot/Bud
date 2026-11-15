@@ -49,3 +49,11 @@ test("responses after unsupported overcall levels remain uncovered", () => {
     assert.equal(result?.exp || null, null, id + " must remain uncovered until its own continuation rule is specified");
   }
 });
+
+test("jump 2-major overcall explains weak-two calls without inventing their priority", () => {
+  const result = grade("inkliv-07-bid-4");
+  assert.equal(result?.exp || null, null);
+  assert.match(result.means("3S") || "", /spärrhöjning.*3\+ stöd.*inte invit/i);
+  assert.match(result.means("2N") || "", /invitbud.*2\+ stöd/i);
+  assert.match(result.means("3H") || "", /ny färg.*5\+ kort.*krav/i);
+});
