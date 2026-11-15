@@ -91,3 +91,8 @@ Två tydliga handbaserade kandidater finns i T29–T33: `trumf-02-bid-3` matchar
 
 
 **Ytterligare precisering av de nio senare återbuden:** åtta är återbud från den som gjort upplysningsdubblingen efter partnerns svar. `inkliv-02-bid-6` är i stället inklivarens återbud efter partnerns hoppstöd 3♥. Dessa kräver separata beslutsgrenar.
+
+
+## Separat inventering av återbud efter upplysningsdubbling
+
+Åtta fall där dubbleraren ska återkomma efter partnerns svar har fått en egen hand-/auktionsinventering i `testdata/double-rebid-8-audit.md`. Dubblerarens styrka varierar 12–19 HCP, partnerns 3–9 HCP och partnerns svarsfärger varierar. Loggens Giv 13 och 22 handlar om andra situationer och ger inte den saknade återbudsregeln. `inkliv-02-bid-6` har särskilts som ett nionde fall i den bredare gruppen: naturligt 1♥-inkliv följt av partnerns 3♥-hoppstöd, inte en upplysningsdubbling. Ingen regel eller rekommendation har lagts till.
