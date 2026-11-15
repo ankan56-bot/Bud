@@ -316,6 +316,9 @@ var Rattning = (function(){
   }
   function ntOpener3(h,k1,k2,k3){
     var L=h.L,hp=h.hp;
+    if(k1==='2S'&&((k2==='2N'&&(k3==='3C'||k3==='3D'))||(k2==='3C'&&k3==='3D'))){
+      return {exp:'P',alt:[],why:'Svarshanden har valt slutbud i lågfärg efter 2♠-reläet. Pass avslutar budgivningen.',means:function(c){return c==='P'?'Pass efter svarshandens val av lågfärg.':null},conv:'1NT-svar'};
+    }
     var M = st_(k2);
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='2N'){
       var means=function(c){if(c==='P')return 'Minimum: passar på inviten.';if(c==='3N')return 'Maximum: tackar ja med 3NT.';if(c==='4'+M)return 'Maximum med trumfstöd: tackar ja med utgång.';return null};
@@ -1095,9 +1098,12 @@ var Rattning = (function(){
     // Om den som nu ska bjuda senast var den som bjöd för paret har
     // partnern passat. Det är en giltig auktion, men konkurrensåterbudet
     // efter partnerns pass måste bedömas som ej täckt – inte som fel turordning.
-    if(ours.length&&ours[ours.length-1].s===me)
+    var weakMinorRelayFinalPass = b.c==='P'&&ours.length===3&&ours[0].c==='1N'&&ours[1].c==='2S'&&ours[2].c==='3C'&&ours[0].s===me&&ours[2].s===me;
+    if(ours.length&&ours[ours.length-1].s===me&&!weakMinorRelayFinalPass)
       return nc('Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.');
     var d=ours.length,opener=ours[0].s===me,f=ours[0].c;
+    if(weakMinorRelayFinalPass&&opener&&d===3)
+      return {exp:'P',alt:[],why:'Svarshanden passar på öppnarens 3♣-reläsvar. Pass avslutar budgivningen i 3♣.',means:function(c){return c==='P'?'Pass efter svarshandens signoff.':null},conv:'1NT-svar'};
     var c1=f,fs=c1[1]; // Deklareras nu här för att undvika bugg
 
     // Slut på en naturlig preferens till öppningsfärgen.
