@@ -36,3 +36,18 @@ test("valid opener rebids after partner pass are not diagnosed as turn-order err
     assert.equal(result?.exp || null, null, deal.id + " must remain uncovered, not receive an invented call");
   }
 });
+
+test("opener's third bid after responder's second bid gets its own uncovered diagnosis", () => {
+  const { Rattning } = loadRuntime();
+  const deal = uncovered.find(c => c.id === "alla-01-bid-9");
+  assert.ok(deal, "the regression case must exist");
+  const index = deal.uncoveredBid.number - 1;
+  const result = Rattning.nodeFor({
+    hands: deal.hands,
+    dealer: deal.dealer,
+    bids: deal.auction
+  }, index);
+  assert.equal(result?.exp || null, null);
+  assert.match(result?.why || "", /Öppnarens tredje bud efter 1 i färg/);
+  assert.doesNotMatch(result?.why || "", /Svarshandens andra bud/);
+});
