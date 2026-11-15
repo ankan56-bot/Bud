@@ -221,3 +221,33 @@ test("room coordinator election is deterministic and fails over after stale pres
   context.roomPlayers.b.at = now - 46_000;
   assert.equal(context.roomCoordinator(), "c", "remaining client becomes coordinator");
 });
+
+
+test("human room bids are coordinator-validated and only accepted from the owner of the acting seat", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function executeRoomAction(");
+  const end = html.indexOf("\nfunction requestRoomAction", start);
+  assert.ok(start >= 0 && end > start, "room action executor should exist");
+  const source = html.slice(start, end);
+  const calls = [];
+  const state = { id: "deal", seed: 42, no: 1, mode: "stord", focus: "alla",
+    hands: { N: [], E: [], S: [], W: [] }, dealer: "N", humanSeats: ["N", "S"], bids: [], rep: 0 };
+  const context = {
+    state, roomSeatOwners: () => ({ N: "alice", S: "bob" }),
+    turn: () => "N", isBot: () => false, legal: () => true,
+    save: next => calls.push(next),
+    roomConfig: { count: 2 }, roomReady: () => true,
+    modeSel: "stord", focusSel: "alla", playerId: "coordinator",
+    humanSeatsForNewDeal: () => ["N", "S"], newSeed: () => 99,
+    newDeal: () => state, ended: () => false
+  };
+  vm.runInNewContext(source, context);
+  context.executeRoomAction("call", { seat: "N", call: "1NT" }, "mallory");
+  assert.equal(calls.length, 0, "a different participant cannot bid for North");
+  context.executeRoomAction("call", { seat: "N", call: "1NT" }, "alice");
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].bids[0].s, "N");
+  assert.equal(calls[0].bids[0].c, "1NT");
+  assert.match(html, /requestRoomAction\('call',\{seat:me,call:c\}\)/);
+  assert.match(html, /sameRoomState\(m\.baseState,pack\(state\)\)/);
+});
