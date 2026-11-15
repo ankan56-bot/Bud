@@ -64,6 +64,8 @@ jobs:
         run: node tests/rkc-1430-major.test.js
       - name: Run 100-deal 1♥/1♠ validation
         run: node tests/one-major-100.test.js
+      - name: Run 1♥/1♠ invit acceptance tests
+        run: node tests/one-major-invit.test.js
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
