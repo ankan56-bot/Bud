@@ -498,3 +498,39 @@ De 68 ej täckta turerna i senaste 140-givarsbaslinjen är samtliga i störda l�
 - 1: annan odokumenterad fortsättning.
 
 Det bekräftar att ostörd budgivning och de flesta grundsvar nu är väl täckta. Nästa stora utvecklingsområde är uttryckliga konkurrenssekvenser. Jag håller dessa luckor separata från regelkorrigeringarna: vi ska inte höja täckningen genom att hitta på svar som inte finns i systemunderlaget.
+
+
+## Poängmodell och reverse – återkontroll mot den senast fastställda rättningsmallen
+
+Återkontrollen mot de uttryckliga besluten från 2026-11-15 hittade två avvikelser och en saknad gränskontroll.
+
+### Gemensamma spelpoäng
+- 8 trumf: ingen trumflängdsbonus.
+- 9 trumf: +1.
+- 10 eller fler trumf: **+3** (motorn hade felaktigt +2).
+- Fördelningspoäng räknas bara när minst 8 gemensamma trumfkort är fastställda.
+- I sang räknas endast HP, även vid 3NT, 6NT och 7NT.
+
+Poängfunktionen är korrigerad. Fyra direkta regressionstester täcker 8-, 9- och 10-kortsfit samt sang utan fördelningspoäng.
+
+### Reverse
+Rättningsmallen säger:
+- Minst 18 HPS.
+- Minst 5 kort i öppningsfärgen och minst 4 i den nya färgen.
+- Den nya färgen ska vara högre rankad än öppningsfärgen och svarsfärgen.
+- Trumfen behöver inte vara fastställd.
+- En 5-4-hand utan stöd räknar endast HP; HTP får inte skapas av en obekräftad 4-kortsfärg.
+
+Motorn krävde tidigare bara sammanlagt 9 kort i de två färgerna. Det kunde felaktigt godkänna 4-5 som reverse. Nu krävs uttryckligen 5-4 i rätt riktning. Ett 4-5-läge går i stället till lägsta naturliga färgbud och får inte felaktigt hoppa som reverse.
+
+Fem nya/utökade regressionstester täcker dessa poäng- och reversegränser. Testsviten omfattar nu **52 fall**, samtliga passerar.
+
+### Omkörning av fasta testgivare
+140-givarsbaslinjen har körts om med motor 6.7:
+- 536/604 budpositioner täckta (**88,7 %**).
+- 68 ej täckta, oförändrat eftersom ändringarna gäller poänggränser och reverse-form.
+- 174/174 ostörda positioner täckta.
+- 140/140 auktioner avslutade och validerade.
+- 0 undantag, 0 olagliga kontraktsbud och 0 valideringsfel.
+
+Baslinjen är uppdaterad med aktuell motor-SHA. Ändringarna ligger fortsatt på `work/hps-reverse-audit`; `main` är orörd.
