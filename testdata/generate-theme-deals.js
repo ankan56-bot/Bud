@@ -21,7 +21,7 @@ const SOURCE = {
   generatorBlobSha: "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
   rulesEngine: "rattningsmotor.js",
   rulesEngineVersion: "6.8",
-  rulesEngineBlobSha: "2168d6bf62757e46f4a3a1d144273ca6597670ac",
+  rulesEngineBlobSha: "91ff70847d29074c24932ae4c3c7c1ea39ba4272",
   branchBase: "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
 };
 
