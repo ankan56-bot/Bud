@@ -68,7 +68,7 @@ var Rattning = (function(){
         if(s!==trump){var n=h.L[s];total+=n===0?3:n===1?2:n===2?1:0;}
       });
     });
-    if(fit===9)total+=1;else if(fit>=10)total+=3;
+    if(fit===9)total+=1;else if(fit>=10)total+=2;
     return total;
   }
 
