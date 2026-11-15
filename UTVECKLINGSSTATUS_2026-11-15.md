@@ -253,11 +253,11 @@ Andra inklivsnivåer är uttryckligen avgränsade och får inte automatiskt anv�
 - Exakt tidigare lucka `inkliv-05`: 8 hp och fem hjärter efter partnerns 1♥ ger nu 4♥.
 - Ett tidigare för lågt stödbud med 4 hp och fyrkortsstöd har tagits bort; källan anger 6–9 hp.
 
-**Ny temabaslinje engine 7.1:**
+**Ny temabaslinje engine 7.3:**
 - 140 reproducerbara givare.
 - 590 rätt, 0 fel, 0 valfria, 43 ej täckta.
 - Inklivstemat har 9 ej täckta positioner i stället för 10.
-- `testdata/theme_deals_140.json` är regenererad med engine 7.1; generatorn registrerar nu exakt Git-blob-hash för den använda motorn.
+- `testdata/theme_deals_140.json` är regenererad med engine 7.3; generatorn registrerar nu exakt Git-blob-hash för den använda motorn.
 - `testdata/theme_deals_140_report.md` uppdaterad.
 
 GitHub Actions körning `43665028981` godkände samtliga steg: deterministisk generering, datasettest, auktion-dispatch, ny inklivstestsvit, analysbibliotek, strukturerade handvillkor/profiler, spelarroller, seat-isolering och DDS-paketering.
