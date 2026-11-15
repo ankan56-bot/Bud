@@ -105,3 +105,11 @@ GitHub Actions körning `43658789320` passerade med success inklusive regenereri
 
 
 Senaste verifiering av informationsgränsen: GitHub Actions körning `43658949390` passerade efter att `seat-view.js` blockerar även nästlade seat-keyed handobjekt. Både dataset-/reproducerbarhetstester och samtliga AI seat isolation-tester passerade.
+
+
+## Spelarroller – arkitekturgrund
+
+- `player-roles.js` version 1.0.0 definierar standarduppställningen Nord människa, Syd AI-partner, Öst/Väst AI-motståndare. Roller kan överskrivas per position.
+- `seat-view.js` version 0.2.0 ger en AI-position endast egen hand och tillåten offentlig information; okända fält och dolda hand-/seat-mappar avvisas. Dummy kräver `dummyExposed: true`.
+- Automatiska tester finns i `testdata/player-roles.test.js` och `testdata/seat-view.test.js`. GitHub Actions kör nu båda dessa utöver temagivartesterna.
+- Ingen spelmotor eller AI-budgivare är ännu inkopplad. Detta säkrar gränssnittet som senare agentkod ska använda.
