@@ -1,5 +1,5 @@
 {
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -1037,6 +1037,12 @@
               "hcp": {
                 "min": 6,
                 "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3,
+                  "max": 4
+                }
               }
             }
           }
