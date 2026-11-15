@@ -8,9 +8,14 @@ on:
     branches:
       - main
 
+concurrency:
+  group: theme-deals-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   theme-deals:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
