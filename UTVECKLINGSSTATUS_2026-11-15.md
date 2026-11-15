@@ -69,3 +69,17 @@ Detta är ett arkitekturkrav, inte ett påstående om att tvåspelar-/fyrspelar-
 - Lagt till `testdata/seat-view.test.js`. Fyra Node-tester har körts lokalt och passerat: endast egen hand exponeras, datan kopieras och fryses, ogiltig position/hand avvisas och endast uttryckligen tillförd offentlig information skickas vidare.
 
 Begränsning: detta är en isolerad byggsten, ännu inte inkopplad i en AI-budgivare eller spelmotor. Anroparen måste konstruera `publicState` enbart av lagligt offentlig information. Temagivarna 140 st är fortfarande inte genererade; nästa arbetsblock är att göra den befintliga webbgeneratorn körbar i en testmiljö och därefter generera och validera givarna.
+
+
+## Temagivare – första reproducerbara baslinjen
+
+- `testdata/theme_deals_140.json` innehåller nu 140 givare: 10 för vart och ett av de 14 temana.
+- Givarna genererades med den befintliga `newDeal`/`biasedDeal`-logiken i `Budtraning.html`, inte med en separat approximativ generator. Seeds är fasta och dokumenterade i datasetet och manifestet.
+- För teman där båda lägena är möjliga används 5 störda och 5 ostörda givare. Dubbling och inkliv är störda enligt temats befintliga generator.
+- Samtliga 140 har 52 unika kort, 13 kort per hand, godkänt temavillkor och referensauktioner utan strukturella fel enligt `Rattning.validateAuction`.
+- Rättningsmotorn 6.6 bedömde 627 relevanta Nord/Syd-bud i referensauktionerna: 578 rätt, 49 ej täckta, 0 fel och 0 valfria.
+- De 49 ej täckta fördelas: alla 6, Stenberg 2, RKC 2, slambudgivning i färg 2, trumfstöd 6, tvåfärgshänder 6, dubbling 15 och inkliv 10. Övriga teman hade 0.
+- `testdata/theme_deals_140_report.md` redovisar resultatet per tema. `testdata/generate-theme-deals.js` är en Node-generator som läser den faktiska HTML-generatorn och rättningsmotorn. `testdata/theme-deals.test.js` testar antal, kortintegritet, auktioner och reproducerbarhet.
+- En GitHub Actions-workflow har lagts till för att regenerera datasetet och köra testerna på push/PR. Någon körning har ännu inte kunnat verifieras i GitHub Actions (API-listningen visade 0 körningar), så den är inte redovisad som godkänd.
+
+Viktig begränsning: referensauktionerna är deterministiska täckningsspår byggda från befintlig rättningsmotor och träningssidans Öst/Väst-logik. De är inte oberoende expertbud eller ett självständigt strategiskt facit. Alla givars typklass är `unclassified`; 7 typiska/3 gränsnära ska inte påstås förrän manuell/regelbaserad klassificering har gjorts. DDS har inte körts.
