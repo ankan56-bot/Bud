@@ -16,8 +16,7 @@ function deal() {
   };
 }
 
-test("5C response to partner's 4NT ace ask is not mistaken for a final game contract", () => {
-  const hands = deal();
+function askAfterResponse(response) {
   const bids = [
     { s: "N", c: "1S" },
     { s: "E", c: "P" },
@@ -25,11 +24,17 @@ test("5C response to partner's 4NT ace ask is not mistaken for a final game cont
     { s: "W", c: "P" },
     { s: "N", c: "4N" },
     { s: "E", c: "P" },
-    { s: "S", c: "5C" },
+    { s: "S", c: response },
     { s: "W", c: "P" },
     { s: "N", c: "P" }
   ];
-  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 8);
-  assert.equal(result?.exp, "6S");
-  assert.doesNotMatch(result?.why || "", /Partnern har redan bjudit utgång/);
-});
+  return Rattning.nodeFor({ hands: deal(), dealer: "N", bids }, 8);
+}
+
+for (const response of ["5C", "5D"]) {
+  test(response + " response to partner's 4NT ace ask continues the agreed spade slam investigation", () => {
+    const result = askAfterResponse(response);
+    assert.equal(result?.exp, "6S");
+    assert.doesNotMatch(result?.why || "", /Partnern har redan bjudit utgång/);
+  });
+}
