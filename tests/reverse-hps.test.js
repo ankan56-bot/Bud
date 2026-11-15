@@ -305,7 +305,7 @@ function assessReverse(shape, honors) {
 {
   const item = assessStenbergOpener(
     { C: 3, D: 3, H: 4, S: 3 },
-    { H: [14, 13, 12], D: [14, 13], C: [11] },
+    { H: [14, 13], D: [14, 13], C: [11] },
     '3H'
   );
   assert.equal(item.bedomning, 'rätt');
