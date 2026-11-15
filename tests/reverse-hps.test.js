@@ -80,6 +80,18 @@ function assessMajorRaise(shape, honors, call) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
+function assessOpenerRebid(shape, honors, call) {
+  const hands = makeDealFor('S', shape, honors, 'H');
+  const bids = [
+    { s: 'S', c: '1H' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: '2H' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: call }
+  ];
+  return Rattning.judge({ hands, dealer: 'S', bids }).items.at(-1);
+}
+
 function assessReverse(shape, honors) {
   const hands = makeDeal(shape, honors);
   const bids = [
@@ -228,4 +240,49 @@ function assessReverse(shape, honors) {
   assert.equal(item.htp, 10);
 }
 
-console.log('Reverse/HPS and raise regression tests passed (10 cases).');
+ 
+// After 1H-2H, 16 HTP is still a pass, not a singleton-showing rebid.
+{
+  const item = assessOpenerRebid(
+    { C: 4, D: 4, H: 4, S: 1 },
+    { H: [14, 13, 12], D: [14], C: [11] },
+    'P'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 16);
+}
+
+// At 17 HTP with a singleton, opener shows the singleton at the lowest level.
+{
+  const item = assessOpenerRebid(
+    { C: 4, D: 4, H: 4, S: 1 },
+    { H: [14, 13, 12], D: [14], C: [12] },
+    '2S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 17);
+}
+
+// At 17 HTP without a singleton, opener invites with 3H.
+{
+  const item = assessOpenerRebid(
+    { C: 3, D: 3, H: 4, S: 3 },
+    { H: [14, 13, 12], D: [14, 13], C: [11] },
+    '3H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 17);
+}
+
+// 20 HTP is the game threshold after the major raise.
+{
+  const item = assessOpenerRebid(
+    { C: 4, D: 4, H: 4, S: 1 },
+    { H: [14, 13, 12], D: [14, 13], C: [12] },
+    '4H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 20);
+}
+
+console.log('Bridge bidding regression tests passed (14 cases).');
