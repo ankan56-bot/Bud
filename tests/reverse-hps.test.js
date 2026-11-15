@@ -901,4 +901,52 @@ function assessReverse(shape, honors) {
   assert.match(node.why, /forcing till minst 3.*Öppnarens återbud/i);
 }
 
-console.log('Bridge bidding regression tests passed (62 cases).');
+// 0-7 hp after takeout double: choose the cheapest unbid suit, not the longest.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 2, H: 3, S: 5 },
+    { S: [14, 13] },
+    '1H'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.match(item.motivering, /billigaste objudna färg/);
+}
+
+// 1NT after takeout double needs a stopper, but REF does not require a balanced hand.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 5, D: 1, H: 4, S: 3 },
+    { D: [14], H: [13], S: [11] },
+    '1N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.hp, 8);
+}
+
+// 2NT after takeout double: 10-12 hp and stopper, even when unbalanced.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 5, D: 1, H: 4, S: 3 },
+    { D: [14], H: [14], S: [13] },
+    '2N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.hp, 11);
+}
+
+// 3NT after takeout double: 13+ hp and stopper, even when unbalanced.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 5, D: 1, H: 4, S: 3 },
+    { D: [14], H: [14, 13], S: [14] },
+    '3N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.hp, 15);
+}
+
+console.log('Bridge bidding regression tests passed (66 cases).');
