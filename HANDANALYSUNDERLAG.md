@@ -1,0 +1,53 @@
+# Handanalysunderlag – Nordisk standard
+
+**Version:** 1.0 · **Datum:** 2026-11-15  
+**Syfte:** Gemensamt underlag för rättningsmotor, analysbibliotek och pedagogisk handanalys. Grundsystemets uttryckliga regler har företräde. Luckor ska markeras som ej täckta, inte fyllas med antaganden.
+
+## 1. Poängvärdering
+
+### Honnörspoäng (HP)
+- Ess = 4, kung = 3, dam = 2, knekt = 1.
+- HP räknas alltid.
+
+### HTP / stödpoäng
+- Stöd-/fördelningspoäng får räknas när trumffärgen är etablerad och handen har stöd i den färgen.
+- Renons = +3, singleton = +2, dubbelton = +1 i sidofärg.
+- Korthet i trumffärgen ger inte kortfärgspoäng.
+- I sang räknas enbart HP; ingen korthets- eller trumflängdsbonus.
+
+### Gemensam trumflängdsbonus
+- 8 gemensamma trumfkort: ingen extra längdpoäng.
+- 9 gemensamma trumfkort: +1.
+- 10 eller fler gemensamma trumfkort: +2 (inte +3).
+- Denna bonus läggs till utöver respektive hands kortfärgspoäng; den ersätter inte korthetspoängen.
+
+## 2. Stenberg 2NT
+
+- Svarshandens 2NT efter 1♥/1♠ visar 13+ HTP och minst fyra korts stöd; utgångskrav.
+- Void får inte behandlas som singleton.
+- Öppnaren visar exakt en singleton i sidofärg på 3-nivån.
+- Flera möjliga singletonfärger utan uttrycklig prioritet ska lämnas ej täckta i råmotorn.
+- 15+ HTP utan singleton: 3M.
+- 12–14 HP och balanserad hand utan singleton: 3NT.
+- 20+ HTP: utgång i öppningsfärgen.
+
+## 3. Öppnarens återbud efter 1M–2M
+
+- 2M visar minst fyra korts stöd och begränsad svarshand enligt grundsystemets intervall.
+- Högst 16 HTP hos öppnaren: pass.
+- 17–19 HTP med exakt en singleton i sidofärg: visa singletonfärgen på 3-nivån.
+- 17–19 HTP utan singleton: 3M (invit).
+- 20+ HTP: 4M.
+- Flera singletonfärger utan prioritet: ej täckt; välj inte godtycklig färg.
+
+## 4. Konkurrensbudgivning – pausad
+
+Konkurrensbudgivningen är pausad. Kvarvarande luckor från 140-givarsanalysen bevaras i baslinjen och utvecklingsloggen. De ska inte påverka eller sänka kvaliteten i den ostörda motorn. Återuppta först efter separat beslut och fortsatt avstämning mot REF.
+
+## 5. Valideringsprinciper
+
+1. Skilj systemkorrekthet från strategisk spelstyrka och DDS-efterhandsanalys.
+2. Visa endast rekommendationer som stöds av grundsystemet eller tydligt märkta, godkända kompletteringar.
+3. Visa inte en budrekommendation om flera regler konkurrerar utan dokumenterad prioritet.
+4. Samma fasta testgivare används vid varje motorändring.
+5. En ny ostörd analys ska redovisa täckning, ej täckta lägen, tekniska undantag och olagliga rekommendationer separat.
