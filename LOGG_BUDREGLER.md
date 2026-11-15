@@ -354,3 +354,47 @@ Motorn använde tidigare 16+ HTP för 3M och kunde dessutom välja 3NT för en o
 4. Obalanserad minimumhand utan singel lämnas ej täckt i stället för att få ett påhittat bud.
 
 Fyra nya regressionstester täcker 15 HTP utan singel, balanserad 14 hp, 15+ HTP med singel samt obalanserad minimum utan singel. Den totala isolerade testsviten omfattar nu **18 fall**, samtliga passerar.
+
+
+## Första fasta temagivaruppsättningen – 140 givare
+
+**Datum:** 2026-11-15  
+**Status:** Genererad, validerad och incheckad på `work/hps-reverse-audit`.
+
+Jag återanvände den befintliga deterministiska generatorn i `Budtraning.html` i stället för att hitta på nya givvillkor. Resultatet är 10 unika givare per vart och ett av de 14 träningstemana:
+- 12 vanliga teman: 7 störda och 3 ostörda givare per tema.
+- Dubbling och inkliv: 10 störda givare per tema, eftersom störning är själva temat.
+
+Alla 140 givare klarade kontroll av 52 unika kort, 13 kort per hand, temavillkor, lägesvillkor och global unikhet. Källfilen är `testdata/temagivare_140.json`; manifestet är uppdaterat.
+
+### Första motorbaslinjen
+
+Korrigeringsmotorn kördes mot alla 140 givare. N/S använde `Rattning.nodeFor`; E/V använde appens befintliga `botCall` i störda lägen och passade i ostörda lägen. Detta är ett täcknings- och tekniskt säkerhetsprov, inte ett oberoende facit för bridgekorrekthet.
+
+- 140/140 auktioner avslutades.
+- 590 bedömda turer för N/S.
+- 515 täckta och 75 ej täckta: **87,3 % total täckning**.
+- Ostört läge: 174/174 täckta (**100 %**).
+- Stört läge: 341/416 täckta (**82,0 %**).
+- 0 undantag/krascher och 0 olagliga kontraktsbud rekommenderade.
+
+Täckning per tema:
+- 100 %: NT, 2♣, RKC, sangslam och inviter.
+- 90,9 %: färgslam.
+- 89,7 %: svaga öppningar/spärr.
+- 78,4 %: Stenberg.
+- 66,7 %: trumfstöd.
+- 65,2 %: alla slags givar.
+- 60,9 %: inkliv.
+- 47,1 %: upplysningsdubbling.
+
+De 75 luckorna är sparade med giv-ID, auktion, hand och motivering i `testdata/temagivare_140_baseline.json`. De största grupperna gäller konkurrensbudgivning: motståndarnas inkliv, flera motståndarb bud och återbud efter att partnern passat. Ostört läge är redan helt täckt i denna körning.
+
+### Nästa prioritering
+
+1. Täcka konkurrensfortsättningar efter inkliv och dubbling utan att hitta på regler utanför systemunderlaget.
+2. Fördjupa Stenberg- och trumfstödssekvenser där motståndarna stör.
+3. Gå igenom de 8 handtypsluckorna mot regelsammanfattningen.
+4. Köra samma fasta 140 givare efter varje ändring och jämföra mot baslinjen.
+
+Regressionstestfilen `tests/reverse-hps.test.js` omfattar nu **19 isolerade fall**, samtliga passerar.
