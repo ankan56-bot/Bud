@@ -5492,10 +5492,10 @@
             "2♥"
           ],
           "meaning": "Svarshandens andra bud efter 1NT-svar",
-          "analysis": "Detta är den vanliga 1NT-svarshanden (inte specialfallet 4-4-4-1). Motorn täcker ett svagt andra bud: 6–9 hp och minst sex kort i en egen färg får bjudas på 3-nivån. Om det är en ny färg måste det vara den lägsta lagliga nivån efter öppnarens återbud; om det är öppningsfärgen återbjuds den på 3-nivån. Budet är inte krav. Med högst 9 hp utan en egen sexkortsfärg passar svarshanden. Med 10+ hp är fortsättningen inte definierad i den här motordelen och ska markeras ej täckt, inte gissas.",
+          "analysis": "Detta är den vanliga 1NT-svarshanden (inte specialfallet 4-4-4-1). Motorn täcker ett svagt andra bud: 6–9 hp och minst sex kort i en egen färg får bjudas på lägsta lagliga nivå (exempelvis 2♠ efter 2♥). Om det är en ny färg måste det vara den lägsta lagliga nivån efter öppnarens återbud; om det är öppningsfärgen återbjuds den på lägsta lagliga nivå. Budet är inte krav. Med högst 9 hp utan en egen sexkortsfärg passar svarshanden. Med 10+ hp är fortsättningen inte definierad i den här motordelen och ska markeras ej täckt, inte gissas.",
           "branches": [
             {
-              "call": "3♠",
+              "call": "2♠",
               "next": null,
               "label": "6–9 hp och minst 6 spader – ny färg på lägsta lagliga nivå, ej krav"
             },
@@ -5517,7 +5517,7 @@
           ],
           "handProfile": {
             "opener": "Har öppnat 1♥ och gjort ett naturligt återbud, här 2♥.",
-            "responder": "6–9 hp + minst 6 kort i egen färg: bjud den på 3-nivån, ej krav. Högst 9 hp utan sexkortsfärg: pass. 10+ hp: fortsättningen är inte fastställd i den här motordelen."
+            "responder": "6–9 hp + minst 6 kort i egen färg: bjud den på lägsta lagliga nivå, ej krav. Högst 9 hp utan sexkortsfärg: pass. 10+ hp: fortsättningen är inte fastställd i den här motordelen."
           }
         }
       ]
