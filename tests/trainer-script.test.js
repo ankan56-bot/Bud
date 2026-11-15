@@ -80,7 +80,7 @@ test("shared actions are routed through a room coordinator", () => {
   assert.match(html, /requestRoomAction\('next'\)/);
   assert.match(html, /requestRoomAction\('undo'\)/);
   assert.match(html, /requestRoomAction\('theme'/);
-  assert.match(html, /baseState:pack\(state\)/);
+  assert.match(html, /baseState:roomActionState\(state\)/);
   assert.match(html, /roomConfig\.count&&!roomReady\(\)/);
 });
 
@@ -167,7 +167,7 @@ test("room actions are accepted only for the exact auction state the player acte
   assert.equal(context.sameRoomState(stateA, stateLater), false,
     "a request based on an earlier auction must be rejected");
   assert.equal(context.sameRoomState(stateA, null), false);
-  assert.match(html, /sameRoomState\(m\.baseState,pack\(state\)\)/);
+  assert.match(html, /sameRoomState\(m\.baseState,roomActionState\(state\)\)/);
 });
 
 
@@ -262,7 +262,7 @@ test("human room bids are coordinator-validated and only accepted from the owner
   assert.equal(calls[0].bids[0].s, "N");
   assert.equal(calls[0].bids[0].c, "1NT");
   assert.match(html, /requestRoomAction\('call',\{seat:me,call:c\}\)/);
-  assert.match(html, /sameRoomState\(m\.baseState,pack\(state\)\)/);
+  assert.match(html, /sameRoomState\(m\.baseState,roomActionState\(state\)\)/);
 });
 
 
