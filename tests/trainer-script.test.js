@@ -339,15 +339,19 @@ test("stale room presence history cannot reclaim seats after reconnect", () => {
 
 test("room seat claims cannot exceed the configured participant count", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  const start = html.indexOf("function roomSeatOwners()");
-  const end = html.indexOf("\nfunction claimRoomSeat", start);
-  assert.ok(start >= 0 && end > start, "room seat claim helpers should exist");
+  function sourceOf(name) {
+    const start = html.indexOf("function " + name + "(");
+    const end = html.indexOf("\\nfunction ", start + 10);
+    assert.ok(start >= 0 && end > start, name + " helper should exist");
+    return html.slice(start, end);
+  }
+  const source = ["roomSeatOwners", "roomAssignedPlayers", "roomSeatClaimAllowed"].map(sourceOf).join("\\n");
   const now = 1_800_000_000_000;
   function allowed(count, playerId, players, seat) {
     Object.values(players).forEach(p => { if (p.at == null) p.at = now; });
     const context = { SEATS: ["N", "E", "S", "W"], roomPlayers: players, roomConfig: { count },
       playerId, Date: { now: () => now } };
-    vm.runInNewContext(html.slice(start, end), context);
+    vm.runInNewContext(source, context);
     return context.roomSeatClaimAllowed(seat);
   }
   assert.equal(allowed(1, "b", { a: { seat: "N" } }, "E"), false,
