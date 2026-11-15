@@ -931,8 +931,14 @@ var Rattning = (function(){
       if(d===2&&opener&&f==='X'&&oppBefore.length===1&&!oppAfter.length){
         var doubledPartnerSuit=st_(ours[1].c);
         if(SU.indexOf(doubledPartnerSuit)>=0&&h.L[doubledPartnerSuit]<3&&h.hp>=18){
+          var opponentOpeningSuit=st_(oppBefore[0].c);
           return NC('Nordisk standard s. 8 anger att dubblarens egen färg eller sang utan stöd visar 18+ hp, men anger inte vilket av dessa återbud som ska väljas.',function(c){
-            return isBid(c)&&(st_(c)==='N'||SU.indexOf(st_(c))>=0)?'Egen färg eller sang utan stöd visar 18+ hp.':null;
+            if(!isBid(c))return null;
+            var suit=st_(c);
+            if(suit==='N')return 'Sang utan stöd i partnerns svarsfärg visar 18+ hp.';
+            if(SU.indexOf(suit)>=0&&suit!==doubledPartnerSuit&&suit!==opponentOpeningSuit)
+              return 'Egen färg utan stöd i partnerns svarsfärg visar 18+ hp.';
+            return null;
           },'upplysningsdubbling');
         }
       }
