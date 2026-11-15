@@ -2352,5 +2352,15 @@
         "S": 3
       }
     }
-  ]
+  ],
+  "auctionValidation": {
+    "validator": "Rattning.validateAuction",
+    "checkedAuctions": 140,
+    "validAuctions": 140,
+    "errors": 0,
+    "turnOrderErrors": 0,
+    "contractOrderErrors": 0,
+    "invalidDoubleOrRedoubleErrors": 0,
+    "exceptions": 0
+  }
 }
