@@ -486,8 +486,7 @@ var Rattning = (function(){
         var x=low(s2);
         var reverseCandidate=SU.indexOf(s2)>SU.indexOf(o)&&SU.indexOf(s2)>SU.indexOf(rs)&&lv(r)===1;
         var reverse=reverseCandidate&&L[o]>=5&&L[s2]>=4;
-        var reverseSupport=rs!=='N'&&L[rs]>=4?rs:null;
-        var hps=handHps(h,reverseSupport);
+        var hps=handHps(h,null);
         if(reverse){
           reverseBid=(lv(r)+1)+s2;
           if(hps>=18){
