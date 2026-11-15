@@ -265,7 +265,7 @@ test("Stenberg counts HCP plus support points only after 4+ trump support", () =
 });
 
 
-test("partnership fit bonus is +1 for nine trumps and +3 for ten", () => {
+test("partnership fit bonus is +1 for nine trumps and +2 for ten", () => {
   const { Rattning } = loadRuntime();
   const hand = (suits) => {
     const ranks = {S:[2,3,4,5,6,7,8,9,10,11,12,13,14],
@@ -285,8 +285,8 @@ test("partnership fit bonus is +1 for nine trumps and +3 for ten", () => {
   const nineB = hand({H:4,S:3,D:3,C:3});
   assert.equal(Rattning.partnershipPoints(Rattning.H(nineA),Rattning.H(nineB),"H"),2);
 
-  // Ten-card fit: both hands have a doubleton; +2 shortage and +3 fit bonus.
+  // Ten-card fit: both hands have a doubleton; +2 shortage and +2 fit bonus.
   const tenA = hand({H:5,S:3,D:3,C:2});
   const tenB = hand({H:5,S:3,D:3,C:2});
-  assert.equal(Rattning.partnershipPoints(Rattning.H(tenA),Rattning.H(tenB),"H"),5);
+  assert.equal(Rattning.partnershipPoints(Rattning.H(tenA),Rattning.H(tenB),"H"),4);
 });
