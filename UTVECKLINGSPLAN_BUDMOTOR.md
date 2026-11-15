@@ -98,8 +98,8 @@ Detta innebär inte att spelmotorn eller AI-spelarna byggs i detta delsteg. För
 
 ## Första verifierade temabaslinjen
 
-`testdata/theme_deals_140.json` är den fasta baslinjen: 10 givare per tema, fasta seeds, 52 unika kort per giv och 13 kort per hand. Temagenereringen återanvänder den befintliga logiken i `Budtraning.html`. Rättningsmotor 6.6 gav 578 rätt och 49 ej täckta bedömningar av 627 relevanta Nord/Syd-bud, utan felaktiga bedömningar. Se `testdata/theme_deals_140_report.md` för fördelning per tema.
+`testdata/theme_deals_140.json` är den fasta baslinjen: 10 givare per tema, fasta seeds, 52 unika kort per giv och 13 kort per hand. Temagenereringen återanvänder den befintliga logiken i `Budtraning.html`. Rättningsmotor 6.6 gav 583 rätt och 47 ej täckta bedömningar av 630 relevanta Nord/Syd-bud, utan felaktiga bedömningar. Se `testdata/theme_deals_140_report.md` för fördelning per tema.
 
-De 49 ej täckta buden är nästa analysmål. De ska granskas mot budsekvens, handvillkor och befintlig systemdokumentation innan analysbibliotek eller kompletterande budlogik ändras. Referensauktionerna är genererade med samma befintliga system och är därför en täckningsbaslinje, inte oberoende facit. Klassificering typisk/gränsnära och DDS-kontroll återstår.
+De 47 ej täckta buden är nästa analysmål. De ska granskas mot budsekvens, handvillkor och befintlig systemdokumentation innan analysbibliotek eller kompletterande budlogik ändras. Referensauktionerna är genererade med samma befintliga system och är därför en täckningsbaslinje, inte oberoende facit. Klassificering typisk/gränsnära och DDS-kontroll återstår.
 
 Reproducerbar generator och tester finns i `testdata/generate-theme-deals.js` och `testdata/theme-deals.test.js`. GitHub Actions-workflow är tillagd, men dess första körning är ännu inte verifierad.
