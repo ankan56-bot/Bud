@@ -513,7 +513,7 @@ var Rattning = (function(){
   }
 
   /* ––––– ÖPPNARENS ANDRA BUD (Plus) ––––– */
-  function reb1(h,oc,r){
+  function reb1(h,oc,r,partnerCards){
     var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false,reverseBid=null;
 
     var splSuit = SU.filter(function(s){return s!==o&&s!==rs&&L[s]<=1})[0];
@@ -550,6 +550,16 @@ var Rattning = (function(){
       return {exp:exp,alt:alt,why:why,means:means,conv:'Stenberg',soft:soft};
     }
     if(rs===o){
+      // 3M is an invit with 10–12 HTP and at least four-card support.
+      // Accept only when the partnership reaches the agreed 26 playing-point game threshold.
+      if(lv(r)===3&&maj(o)){
+        var inviter=H(partnerCards||[]),majorFit=h.L[o]+inviter.L[o];
+        var combinedMajorPoints=partnershipPoints(h,inviter,o);
+        if(majorFit>=8&&combinedMajorPoints>=26){
+          return {exp:'4'+o,alt:[],why:majorFit+'-korts fit i '+SYM[o]+' och '+combinedMajorPoints+' gemensamma spelpoäng: acceptera 3'+SYM[o]+'-inviten till utgång.',means:function(c){return c==='4'+o?'Accepterar högfärgsinvit med 26+ gemensamma spelpoäng.':null},conv:'invit i högfärg'};
+        }
+        return {exp:'P',alt:[],why:majorFit+'-korts fit i '+SYM[o]+' men endast '+combinedMajorPoints+' gemensamma spelpoäng: under 26, avslå inviten och passa.',means:function(c){return c==='P'?'Avslår 3'+SYM[o]+'-inviten under 26 gemensamma spelpoäng.':null},conv:'invit i högfärg'};
+      }
       if(lv(r)===2&&maj(o)){var t=h.htp(o);
         if(t>=20){exp='4'+o;why=t+' htp: utgång (20+).'}
         else if(t>=17){
@@ -1339,7 +1349,7 @@ var Rattning = (function(){
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
       if(!opener&&d===1)return resp1(h,c1);
-      if(opener&&d===2)return reb1(h,c1,ours[1].c);
+      if(opener&&d===2)return reb1(h,c1,ours[1].c,st.hands[pt]);
       if(!opener&&d===3&&isBid(ours[2].c) && ours[2].c[1]!=='N') {
          var M = st_(ours[0].c);
          if (ours[2].c[1] !== M && ours[2].c[1] !== 'N' && ours[2].c[0] >= '3') {
