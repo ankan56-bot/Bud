@@ -383,3 +383,32 @@ test("queued messages from a previous room connection are ignored", () => {
   assert.equal(context.isCurrentRoomConnection("NEW", currentSource), true);
   assert.ok(html.includes("if(!isCurrentRoomConnection(connectedRoom,source))return;"));
 });
+
+
+test("switching rooms clears the old auction and pending sync/bot timers", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function resetRoomSession()");
+  const end = html.indexOf("\\nfunction connect(", start);
+  assert.ok(start >= 0 && end > start, "room reset helper should exist");
+  const cleared = [];
+  const context = {
+    roomSyncTimer: 11, roomSyncing: true, lastStateEventTime: 123_000,
+    lastPresenceEventTime: { p: 120_000 }, seenRoomActions: { action: true },
+    botTimer: 22, state: { hands: { N: [] } }, rev: 9,
+    clearTimeout: id => cleared.push(id)
+  };
+  vm.runInNewContext(html.slice(start, end), context);
+  context.resetRoomSession();
+  assert.deepEqual(cleared, [11, 22]);
+  assert.equal(context.roomSyncTimer, null);
+  assert.equal(context.roomSyncing, false);
+  assert.equal(context.lastStateEventTime, 0);
+  assert.deepEqual(Object.keys(context.lastPresenceEventTime), []);
+  assert.deepEqual(Object.keys(context.seenRoomActions), []);
+  assert.equal(context.botTimer, null);
+  assert.equal(context.state.menu, true);
+  assert.equal(context.state.hands, undefined);
+  assert.equal(context.rev, 0);
+  assert.ok(html.includes("resetRoomSession();room=v;"));
+  assert.ok(html.includes("resetRoomSession();room='';"));
+});
