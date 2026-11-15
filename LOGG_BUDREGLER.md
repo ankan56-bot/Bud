@@ -450,3 +450,15 @@ Jämförelsen mot den uttryckliga UD-regeln visade att `respDouble()` hade flera
 - 0 krascher och 0 olagliga kontraktsbud.
 
 Dubblingstemat ligger fortfarande på 47,1 %. Granskningen av kvarvarande exempel visar att många luckor gäller **dubblerarens återbud efter partnerns färgsvar** eller **fortsättningen när motståndarna dubblar vår öppning**. Dessa fortsättningar är inte definierade i den aktuella UD-regeln; de ska därför inte fyllas med antaganden.
+
+
+### Formell auktionvalidering av samtliga 140 givare
+
+Efter täckningskörningen kördes även `Rattning.validateAuction()` på varje färdig auktion:
+- 140/140 auktioner giltiga.
+- 0 turordningsfel.
+- 0 olagliga kontraktsbud.
+- 0 ogiltiga dubblingar/redubblingar.
+- 0 undantag.
+
+Detta kompletterar täckningsmåttet: de ej täckta buden är regel-/sekvensluckor, inte felaktigt konstruerade auktioner.
