@@ -574,3 +574,10 @@ Detta är ett första separat analyslager, inte en ändring av de 140 givarnas g
 ### Sista gränstestet för hoppinkliv
 
 Ett ytterligare test verifierar den uttryckliga regeln för hoppinkliv: 6–10 hp och en bra sexkortsfärg. Testet passerar. Grundsystemets regressionstestsvit är nu **55/55 godkänd**; de sex testerna för det separata kompletterande kunskapslagret är fortsatt godkända.
+
+
+### Kandidatmatchning visas separat i givargranskningen
+
+Den handvillkorsstyrda kompletterande matcharen är nu ansluten till granskningsvyn efter avslutad giv. Den visar endast kandidater när grundmotorn markerat den aktuella budpositionen som ej täckt. Varje förslag märks tydligt som ej godkänt och visar faktisk budgivning, kandidat, alternativ, osäkerhet och källa. Grundsystemets automatiska rättning ändras inte.
+
+Matchningen fungerar även när givaren har passat före öppningsbudet; den söker efter den relevanta sekvensen i slutet av den aktuella budhistoriken. Sju tester för det kompletterande lagret passerar.
