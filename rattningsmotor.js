@@ -1100,14 +1100,14 @@ var Rattning = (function(){
           return nc('Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.');
         }
         if(b.c==='P'){
-          if(h.hp<18)return {exp:'P',alt:[],why:h.hp+' h.hp utan stöd för partnerns svar: pass. Egen färg/NT efter dubbling kräver 18+ h.hp.',means:function(c){return c==='P'?'Pass under 18 h.hp utan stöd efter upplysningsdubbling.':null},conv:'dubbling'};
-          return nc('18+ h.hp utan stöd: REF tillåter egen färg/NT, men anger inte vilket återbud som ska väljas. Pass kan därför inte bedömas automatiskt.');
+          if(h.hp<18)return {exp:'P',alt:[],why:h.hp+' hp utan stöd för partnerns svar: pass. Egen färg/NT efter dubbling kräver 18+ hp.',means:function(c){return c==='P'?'Pass under 18 hp utan stöd efter upplysningsdubbling.':null},conv:'dubbling'};
+          return nc('18+ hp utan stöd: REF tillåter egen färg/NT, men anger inte vilket återbud som ska väljas. Pass kan därför inte bedömas automatiskt.');
         }
         if(isBid(b.c)&&(b.c[1]==='N'||(b.c[1]!==responseSuit&&b.c[1]!==oppBefore[0].c[1]))){
-          if(h.hp>=18)return {exp:b.c,alt:[],why:h.hp+' h.hp utan stöd för partnerns svar: egen färg/NT efter upplysningsdubbling är tillåtet från 18 h.hp.',means:function(c){return c===b.c?'Egen färg/NT efter upplysningsdubbling utan stöd: 18+ h.hp.':null},conv:'dubbling'};
-          return {exp:'P',alt:[],why:h.hp+' h.hp utan stöd: egen färg/NT efter dubbling kräver 18+ h.hp; pass i stället.',means:function(c){return c==='P'?'Pass under 18 h.hp utan stöd.':null},conv:'dubbling'};
+          if(h.hp>=18)return {exp:b.c,alt:[],why:h.hp+' hp utan stöd för partnerns svar: egen färg/NT efter upplysningsdubbling är tillåtet från 18 hp.',means:function(c){return c===b.c?'Egen färg/NT efter upplysningsdubbling utan stöd: 18+ hp.':null},conv:'dubbling'};
+          return {exp:'P',alt:[],why:h.hp+' hp utan stöd: egen färg/NT efter dubbling kräver 18+ hp; pass i stället.',means:function(c){return c==='P'?'Pass under 18 hp utan stöd.':null},conv:'dubbling'};
         }
-        return nc('Dubblerarens återbud är varken pass eller en egen färg/NT enligt den uttryckliga 18 h.hp-regeln.');
+        return nc('Dubblerarens återbud är varken pass eller en egen färg/NT enligt den uttryckliga 18 hp-regeln.');
       }
       return nc('Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.');
     }
