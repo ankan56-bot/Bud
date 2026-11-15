@@ -488,6 +488,8 @@ var Rattning = (function(){
       if(isBid(c)&&st_(c)===o&&rs!==o)return 'Egen färg.';
       if(c==='1N'||c==='2N'&&lv(r)===1&&r!=='1N')return c==='1N'?'12-14 hp, balanserad (NT på lägsta nivå).':'18-19 hp, balanserad (hopp i NT).';
       if(r==='1N'&&c==='2N')return '18-19 hp, balanserad (2NT när partnern bjöd 1NT).';
+      if(r==='1N'&&c==='P')return 'Pass: 12-17 hp med 4-4-4-1 får stanna i 1NT.';
+      if(r==='1N'&&isBid(c)&&c[1]!=='N'&&c[1]!==o)return '4-4-4-1: visar en annan fyrkortsfärg på 2-nivån trots bara fyra kort.';
       if(r==='1N'&&c==='P')return 'Pass: 12-14 balanserad.';
       if(isBid(c)&&st_(c)!=='N'&&st_(c)!==o&&st_(c)!==rs)return 'Andra färg.';
       return null};
@@ -537,6 +539,13 @@ var Rattning = (function(){
       else if(hp<=17){exp=jump(o,r);why='Egen 6+ färg: enkelhopp (15-17).'}
       else if(hp>=18){exp=maj(o)?'4'+o:NC('Dokumentet anger inte budet för denna hand.',means).exp;why='Egen 6+ högfärg, 18+: utgång.'}
       else return NC('Dokumentet anger inte budet för denna hand.',means);
+    }else if(r==='1N'&&h.shape==='4441'){
+      if(hp>=18&&hp<=19){exp='2N';why='4-4-4-1 med 18-19 hp: bjud 2NT.';}
+      else if(hp>=12&&hp<=17){
+        var fourCardRebids=SU.filter(function(s){return s!==o&&L[s]===4;}).sort(function(a,b){return rk(low(a))-rk(low(b));});
+        if(fourCardRebids.length){exp=low(fourCardRebids[0]);alt=['P'];why='4-4-4-1 med '+hp+' hp efter 1NT: visa den lägsta möjliga andra fyrkortsfärgen på 2-nivån trots bara fyra kort. Pass på 1NT är också tillåtet.';}
+        else return NC('4-4-4-1 efter 1NT men ingen annan fyrkortsfärg kan visas enligt budordningen.',means);
+      }else return NC('4-4-4-1 efter 1NT: styrkan ligger utanför de angivna 12-19 hp-intervallen.',means);
     }else if(h.bal){
       if(r==='1N'){if(hp<=14){exp='P';why='Balanserad 12-14: pass efter partnerns 1NT.'}else if(hp>=18&&hp<=19){exp='2N';why='Balanserad 18-19: 2NT.'}else return NC('Dokumentet anger inte budet för denna styrka.',means)}
       else if(hp<=14){exp=low('N');why='Balanserad 12-14: NT på lägsta nivå.'}
