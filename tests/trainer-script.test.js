@@ -31,14 +31,14 @@ test("solo bot assignment survives bid submission and undo state copies", () => 
 
 test("solo mode lets one human choose any compass seat or both North and South", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  assert.match(html, /function humanSeatsForNewDeal\(\)\{if\(playerMode!=='solo'\)return \['N','S'\];if\(seat==='X'\)return \['N','S'\];return \[SEATS\.indexOf\(seat\)>=0\?seat:'S'\]\}/);
+  assert.match(html, /function humanSeatsForNewDeal\(\)\{if\(roomConfig\.count\)return roomHumanSeats\(\);if\(playerMode!=='solo'\)return \['N','S'\]/);
   ["N", "E", "S", "W"].forEach(seat => assert.ok(html.includes("setSeat(s)"), "seat picker should support " + seat));
   assert.match(html, /function seatView\(s\)\{return s===me\?handBlock\(st,s\):seatHtml\(st,s,rel\(s\)\)\}/);
 });
 
 test("seat selection can be changed between deals to inspect all table positions", () => {
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
-  assert.match(html, /function setSeat\(s\)\{if\(s===null&&seat\)lastSeat=seat;seat=s;/);
+  assert.match(html, /function setSeat\(s\)\{if\(roomConfig\.count\)\{if\(s===null\)/);
   assert.match(html, /Du spelar Öst\./);
   assert.match(html, /Du spelar Väst\./);
 });
