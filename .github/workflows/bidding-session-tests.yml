@@ -1,0 +1,29 @@
+name: Bidding session tests
+
+on:
+  pull_request:
+    paths:
+      - "budgivning-session.js"
+      - "tests/**"
+      - ".github/workflows/bidding-session-tests.yml"
+  push:
+    branches:
+      - main
+      - "feature/**"
+    paths:
+      - "budgivning-session.js"
+      - "tests/**"
+      - ".github/workflows/bidding-session-tests.yml"
+
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run bidding session tests
+        run: node --test tests/budgivning-session.test.js
