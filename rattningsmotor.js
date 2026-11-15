@@ -1377,10 +1377,13 @@ var Rattning = (function(){
     // Om rålogiken annars skulle passa (eller saknar täckning), kontrollera
     // om partnerskapet har nått utgångs- eller slamnivå.
     var priorPartnershipCalls=st&&st.bids?st.bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===side(st.bids[i].s)}).length:0;
+    // Generic missed-game/ slam rescue must not override an explicit RKC
+    // response or the deliberately uncovered continuation after that reply.
+    var hasRkcContext=!!(st&&st.bids&&st.bids.slice(0,i).some(function(x){return x&&x.c==='4N'&&side(x.s)===side(st.bids[i].s)})&&rkcTrumpFromAuction(st.bids.slice(0,i),side(st.bids[i].s)));
     var highestBefore=null;
     if(st&&st.bids)st.bids.slice(0,i).forEach(function(x){if(x&&isBid(x.c)&&(!highestBefore||rk(x.c)>rk(highestBefore)))highestBefore=x.c;});
     var rawIllegal=!!(node&&node.exp&&isBid(node.exp)&&highestBefore&&rk(node.exp)<=rk(highestBefore));
-    if(st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
+    if(st&&st.bids&&st.bids[i]&&!hasRkcContext&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
