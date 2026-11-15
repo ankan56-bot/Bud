@@ -534,3 +534,14 @@ Fem nya/utökade regressionstester täcker dessa poäng- och reversegränser. Te
 - 0 undantag, 0 olagliga kontraktsbud och 0 valideringsfel.
 
 Baslinjen är uppdaterad med aktuell motor-SHA. Ändringarna ligger fortsatt på `work/hps-reverse-audit`; `main` är orörd.
+
+
+### Förtydligande av 1-nivåns inkliv
+
+Den fullständiga systemtexten i appen preciserar att 10+-undantaget gäller **1-nivåns högfärgsinkliv med bra 5+-färg**. Det gäller inte ett inkliv i lågfärg. Jag justerade därför logiken:
+- 1♥/1♠: 10+ hp med bra 5+-färg.
+- 1♣/1♦: normalgränsen 12+ hp, minst 5 kort.
+- 2-nivå: 12+ hp och minst 6 kort.
+- 17+ hp hanteras enligt den separata UD-regeln och dess prioritet.
+
+Två nya regressionstester verifierar skillnaden mellan 1-lägets högfärg och lågfärg. Testsviten är nu **54/54 godkänd**. 140-givarskörningen är upprepad: 88,7 % täckning, 0 krascher och 140/140 giltiga auktioner.
