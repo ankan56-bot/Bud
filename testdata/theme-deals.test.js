@@ -165,11 +165,12 @@ test("all Stenberg theme deals contain a genuine 13+ HTP, 4+ support 2NT respons
     const openingIndex = deal.bids.findIndex(bid => /^[1][CDHS]$/.test(bid.c));
     assert.ok(openingIndex >= 0, deal.id + ": missing suit opening");
     const opening = deal.bids[openingIndex];
-    const responseIndex = openingIndex + 1;
+    const responseIndex = deal.bids.findIndex((bid, position) =>
+      position > openingIndex && bid.s === (opening.s === "N" ? "S" : "N"));
     const response = deal.bids[responseIndex];
     assert.ok(response, deal.id + ": missing response");
-    assert.notEqual(response.s, opening.s, deal.id);
     assert.equal(response.c, "2N", deal.id);
+    assert.ok(deal.bids.slice(openingIndex + 1, responseIndex).every(bid => bid.c === "P"), deal.id);
     const shape = api.shapeOf(deal.hands[response.s]);
     assert.ok(shape[opening.c[1]] >= 4, deal.id + ": fewer than 4-card support");
     const node = Rattning.nodeFor({
