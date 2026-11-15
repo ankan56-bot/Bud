@@ -27,4 +27,14 @@ Rumsmeddelanden transporteras via ntfy. Spelarlista hålls aktuell med återkomm
 Den här etappen gäller budgivning och automatisk turhantering. Kortspel med en mänsklig spelare och tre kortspelsrobotar är ännu inte implementerat. DDS används inte som ersättning för en dold-informations-AI; kortspelsroboten måste senare fatta beslut utifrån endast den information en spelare lagligen känner till.
 
 ## Tester
-GitHub Actions kör sessionskärnans Node-tester, syntaxkontroll av inline-JavaScript och regressionskontroller av lobby, närvaro, namn, återanslutning och gemensamma åtgärder.
+GitHub Actions kör sessionskärnans Node-tester, syntaxkontroll av inline-JavaScript, bridgebudregressioner, RKC-/invittester och deterministiska givvalideringar för 1♥/1♠ samt ostörd budgivning.
+
+Senaste kompletta körningen:
+- 30/30 sessions- och tränartester godkända.
+- 82 bridgebudregressioner, 15 kompletterande matcher, 16 RKC-tester, 4 invittester och 3 manuella handtester godkända.
+- 100 giv med 1♥/1♠: 526/527 beslut täckta (99,8 %), inga undantag eller otillåtna bud.
+- Fast ostörd korpus: 166/167 beslut täckta (99,4 %). Den enda uttryckligen kvarstående luckan är obalanserad invitstyrka utan högfärgsfit efter Stayman, exempelvis 1NT–2♣–2♦.
+- Oberoende 100-givsurval ostört: 532/533 beslut täckta (99,8 %), inga undantag eller otillåtna bud.
+- Ytterligare 100- och 200-givsurval körs som explorativa täckningsrapporter; de rapporterar ej definierade grenar utan att dölja dem.
+
+Testsviten skiljer avsiktligt mellan fel (undantag, olagliga bud, ogiltiga eller ofärdiga auktioner) och ännu ej definierade systemgrenar.
