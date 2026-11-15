@@ -859,7 +859,7 @@ function hpInfo(h){
   return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].join('-');
 }
 function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
-function setSeat(s){if(s===null&&state&&state.hands&&!ended(state)&&(state.humanSeats||['N','S']).length===1){alert('Du kan inte byta spelplats mitt i en solobudgivning. Avsluta given eller starta en ny först.');return}if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
+function setSeat(s){if(s===null&&state&&state.hands&&(state.humanSeats||['N','S']).length===1){alert('Du kan inte byta spelplats under en soloträningsgiv. Gå tillbaka till menyn först.');return}if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
 
 var pickL=null,pickS=null,pickO=null;
 function clr(){pickL=null;pickS=null;pickO=null;hintText=''}
