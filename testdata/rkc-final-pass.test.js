@@ -31,18 +31,11 @@ function askAfterResponse(response) {
   return Rattning.nodeFor({ hands: deal(), dealer: "N", bids }, 8);
 }
 
-for (const response of ["5C", "5D"]) {
-  test(response + " response to partner's 4NT ace ask continues the agreed spade slam investigation", () => {
+for (const response of ["5C", "5D", "5H", "5S"]) {
+  test(response + " trump RKC response does not invent an unsupported asker continuation", () => {
     const result = askAfterResponse(response);
-    assert.equal(result?.exp, "6S");
-    assert.doesNotMatch(result?.why || "", /Partnern har redan bjudit utgång/);
-  });
-}
-
-for (const response of ["5H", "5S"]) {
-  test(response + " response to 4NT continues to the agreed spade slam level", () => {
-    const result = askAfterResponse(response);
-    assert.equal(result?.exp, "6S");
+    assert.equal(result?.exp, null);
+    assert.match(result?.why || "", /inte ett entydigt nästa bud|inte uttryckligen fastställd/i);
   });
 }
 
