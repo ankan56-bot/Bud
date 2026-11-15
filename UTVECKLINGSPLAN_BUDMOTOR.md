@@ -140,3 +140,17 @@ Efter upplysningsdubbling och partnerns svar gäller enligt REF: utan stöd krä
 - Med 3+ stöd är återbudet ej täckt tills systemunderlaget anger fortsättningen.
 
 Detta har minskat luckorna i dubblingstemat. Senaste motor 7.1: 78/78 grundtester, 15/15 kompletterande tester, 538/606 positioner täckta (88,8 %), 100 % ostört och 84,4 % stört.
+
+
+## Pausad konkurrensbudgivning och ny arbetsgren (2026-11-15)
+
+Konkurrensbudgivningen pausas tills vidare. De återstående 68 ej täckta positionerna i 140-givarsbaslinjen ska bevaras som arbetslista; de ska inte fyllas med antagna regler. Fortsatt arbete ska ske separat från den ostörda budgivningen.
+
+Ny arbetsgren: `work/undisturbed-validation`, skapad från `work/hps-reverse-audit`. Denna gren fokuserar på att verifiera ostörd budgivning, bevara 100 % täckning och synkronisera rättningsmotor, analysnoder och handanalysunderlag. `main` lämnas orörd.
+
+Genomförda synkroniseringar i denna arbetsomgång:
+- Gemensam trumfbonus: 9 kort ger +1; 10 eller fler ger +2 (inte +3). Kortfärgspoäng räknas separat enligt handens korthet.
+- Analysbiblioteket har kompletterats med Stenberg 2NT och öppnarens återbud efter 1M–2M.
+- Singletonprioritet får inte hittas på när flera sidofärger är singel; void räknas inte som singleton.
+
+Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat kräver 100 % täckning, noll tekniska undantag och noll olagliga rekommendationer. Därefter granskas noder och handanalys mot de faktiska resultaten.
