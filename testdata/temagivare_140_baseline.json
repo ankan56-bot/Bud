@@ -1,40 +1,40 @@
 {
-  "version": "1.6.0",
+  "version": "1.8.0",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
-  "corpusBlobSha": "bf287f919494617fb8a4f9629578f548623e649f",
+  "corpusBlobSha": "29c2992e78bf9b959f98ba572df99e9a66d6e365",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "387f78d8988b2365d395187aa8db71cd17bcde3b",
-  "engineVersion": "6.9",
+  "engineBlobSha": "e5e8f8b637dd6e49fec36b897cf8184ca2467ecf",
+  "engineVersion": "7.0",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
   "previousBaseline": {
-    "engineBlobSha": "6bd4bd7d1b913b0e4171878e43f80ee0998235ee",
+    "engineBlobSha": "387f78d8988b2365d395187aa8db71cd17bcde3b",
     "coveragePercent": 88.7,
     "uncovered": 68
   },
   "stats": {
     "deals": 140,
     "validDeals": 140,
-    "nsTurns": 604,
-    "covered": 536,
-    "uncovered": 68,
-    "ewTurns": 599,
+    "nsTurns": 605,
+    "covered": 533,
+    "uncovered": 72,
+    "ewTurns": 601,
     "exceptions": 0,
     "illegal": 0,
     "auctionsEnded": 140,
-    "calls": 1203
+    "calls": 1206
   },
-  "coveragePercent": 88.7,
+  "coveragePercent": 88.1,
   "modeStats": {
     "stord": {
-      "turns": 430,
-      "covered": 362,
-      "uncovered": 68,
-      "coveragePercent": 84.2
+      "turns": 435,
+      "covered": 363,
+      "uncovered": 72,
+      "coveragePercent": 83.4
     },
     "ostord": {
-      "turns": 174,
-      "covered": 174,
+      "turns": 170,
+      "covered": 170,
       "uncovered": 0,
       "coveragePercent": 100
     }
@@ -42,10 +42,10 @@
   "themeStats": {
     "alla": {
       "deals": 10,
-      "nsTurns": 49,
-      "covered": 30,
-      "uncovered": 19,
-      "coveragePercent": 61.2
+      "nsTurns": 50,
+      "covered": 29,
+      "uncovered": 21,
+      "coveragePercent": 58
     },
     "nt": {
       "deals": 10,
@@ -120,9 +120,9 @@
     "svag": {
       "deals": 10,
       "nsTurns": 28,
-      "covered": 26,
-      "uncovered": 2,
-      "coveragePercent": 92.9
+      "covered": 24,
+      "uncovered": 4,
+      "coveragePercent": 85.7
     },
     "dubbling": {
       "deals": 10,
@@ -148,15 +148,15 @@
   "topUncoveredReasons": [
     {
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
-      "count": 28
-    },
-    {
-      "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
-      "count": 16
+      "count": 27
     },
     {
       "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.",
-      "count": 13
+      "count": 15
+    },
+    {
+      "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
+      "count": 15
     },
     {
       "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
@@ -164,7 +164,7 @@
     },
     {
       "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
-      "count": 1
+      "count": 5
     }
   ],
   "uncovered": [
@@ -225,6 +225,66 @@
         "C": 4,
         "D": 0,
         "H": 4,
+        "S": 5
+      }
+    },
+    {
+      "dealId": "alla-02",
+      "theme": "alla",
+      "mode": "stord",
+      "seat": "N",
+      "auction": "N:P E:2D S:P W:2H N:P",
+      "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.",
+      "hand": [
+        "C4",
+        "H11",
+        "D8",
+        "S11",
+        "C5",
+        "S14",
+        "S2",
+        "C12",
+        "C3",
+        "C7",
+        "H9",
+        "H13",
+        "C9"
+      ],
+      "hp": 11,
+      "shape": {
+        "C": 6,
+        "D": 1,
+        "H": 3,
+        "S": 3
+      }
+    },
+    {
+      "dealId": "alla-02",
+      "theme": "alla",
+      "mode": "stord",
+      "seat": "S",
+      "auction": "N:P E:2D S:P W:2H N:P E:P S:P",
+      "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.",
+      "hand": [
+        "S8",
+        "D2",
+        "S5",
+        "S13",
+        "H4",
+        "C13",
+        "H12",
+        "D3",
+        "C8",
+        "H5",
+        "D9",
+        "S3",
+        "S4"
+      ],
+      "hp": 8,
+      "shape": {
+        "C": 2,
+        "D": 3,
+        "H": 3,
         "S": 5
       }
     },
@@ -1489,12 +1549,42 @@
       }
     },
     {
+      "dealId": "svag-02",
+      "theme": "svag",
+      "mode": "stord",
+      "seat": "N",
+      "auction": "N:2D E:P S:2H W:P N:P",
+      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
+      "hand": [
+        "D14",
+        "S3",
+        "C8",
+        "S4",
+        "D12",
+        "S5",
+        "D13",
+        "C9",
+        "D3",
+        "H7",
+        "C3",
+        "D7",
+        "D9"
+      ],
+      "hp": 9,
+      "shape": {
+        "C": 3,
+        "D": 6,
+        "H": 1,
+        "S": 3
+      }
+    },
+    {
       "dealId": "svag-03",
       "theme": "svag",
       "mode": "stord",
       "seat": "S",
-      "auction": "S:2D W:P N:P E:X S:P",
-      "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
+      "auction": "S:2D W:P N:2S E:P S:P",
+      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
       "hand": [
         "D10",
         "C2",
@@ -1519,31 +1609,61 @@
       }
     },
     {
-      "dealId": "svag-03",
+      "dealId": "svag-06",
       "theme": "svag",
       "mode": "stord",
       "seat": "N",
-      "auction": "S:2D W:P N:P E:X S:P W:P N:P",
-      "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
+      "auction": "N:2H E:P S:3C W:P N:P",
+      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
       "hand": [
-        "C9",
-        "S8",
-        "D13",
-        "H10",
-        "S4",
-        "H5",
-        "S12",
         "H11",
-        "C7",
+        "S4",
+        "C11",
+        "H14",
         "C12",
-        "S14",
-        "S7",
-        "S6"
+        "S6",
+        "D6",
+        "C4",
+        "H2",
+        "H3",
+        "S8",
+        "H10",
+        "H6"
       ],
-      "hp": 12,
+      "hp": 8,
       "shape": {
         "C": 3,
         "D": 1,
+        "H": 6,
+        "S": 3
+      }
+    },
+    {
+      "dealId": "svag-07",
+      "theme": "svag",
+      "mode": "stord",
+      "seat": "S",
+      "auction": "S:2S W:P N:3C E:P S:P",
+      "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
+      "hand": [
+        "S9",
+        "C13",
+        "H11",
+        "S3",
+        "H9",
+        "D10",
+        "S14",
+        "S5",
+        "S10",
+        "C9",
+        "H5",
+        "D2",
+        "S2"
+      ],
+      "hp": 8,
+      "shape": {
+        "C": 2,
+        "D": 2,
         "H": 3,
         "S": 6
       }
