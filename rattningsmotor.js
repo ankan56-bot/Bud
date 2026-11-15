@@ -677,7 +677,10 @@ var Rattning = (function(){
     // 2-nivån 12-17 hp och minst 6 kort.
     var simple=un.filter(function(s){
       var lo=lowest(s,ob),lev=lv(lo);
-      if(lev===1)return hp>=10&&hp<=16&&L[s]>=5&&h.good(s);
+      if(lev===1){
+        if(maj(s))return hp>=10&&hp<=16&&L[s]>=5&&h.good(s);
+        return hp>=12&&hp<=16&&L[s]>=5;
+      }
       if(lev===2)return hp>=12&&hp<=16&&L[s]>=6;
       return false;
     }).sort(function(a,b){
