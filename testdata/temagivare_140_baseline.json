@@ -1,36 +1,36 @@
 {
-  "version": "1.8.3",
+  "version": "1.9.0",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
   "corpusBlobSha": "41bfa07645a79b92c61d4a6fd3820b4d95925cf5",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "96d434eff151f3c42cb11cad1c1b2ce00e288483",
-  "engineVersion": "7.0",
+  "engineBlobSha": "e94d92bb59b8ba5781c2868a1c1ab8f61ac4ed22",
+  "engineVersion": "7.1",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
   "previousBaseline": {
-    "engineBlobSha": "c229eee273aca0d2dd61a5ed77bb4ceeaf357572",
-    "coveragePercent": 88.1,
-    "uncovered": 72
+    "engineBlobSha": "96d434eff151f3c42cb11cad1c1b2ce00e288483",
+    "coveragePercent": 88.3,
+    "uncovered": 71
   },
   "stats": {
     "deals": 140,
     "validDeals": 140,
     "nsTurns": 606,
-    "covered": 535,
-    "uncovered": 71,
+    "covered": 538,
+    "uncovered": 68,
     "ewTurns": 602,
     "exceptions": 0,
     "illegal": 0,
     "auctionsEnded": 140,
     "calls": 1208
   },
-  "coveragePercent": 88.3,
+  "coveragePercent": 88.8,
   "modeStats": {
     "stord": {
       "turns": 436,
-      "covered": 365,
-      "uncovered": 71,
-      "coveragePercent": 83.7
+      "covered": 368,
+      "uncovered": 68,
+      "coveragePercent": 84.4
     },
     "ostord": {
       "turns": 170,
@@ -127,9 +127,9 @@
     "dubbling": {
       "deals": 10,
       "nsTurns": 34,
-      "covered": 16,
-      "uncovered": 18,
-      "coveragePercent": 47.1
+      "covered": 19,
+      "uncovered": 15,
+      "coveragePercent": 55.9
     },
     "inkliv": {
       "deals": 10,
@@ -159,12 +159,16 @@
       "count": 15
     },
     {
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
-      "count": 10
-    },
-    {
       "reason": "Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.",
       "count": 4
+    },
+    {
+      "reason": "Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.",
+      "count": 4
+    },
+    {
+      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
+      "count": 3
     }
   ],
   "uncovered": [
@@ -1734,7 +1738,7 @@
       "mode": "stord",
       "seat": "S",
       "auction": "E:1H S:X W:P N:1S E:P S:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
+      "reason": "Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.",
       "hand": [
         "S12",
         "C9",
@@ -1764,7 +1768,7 @@
       "mode": "stord",
       "seat": "N",
       "auction": "W:1C N:X E:P S:1D W:P N:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
+      "reason": "Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.",
       "hand": [
         "C2",
         "D5",
@@ -1786,66 +1790,6 @@
         "D": 4,
         "H": 4,
         "S": 3
-      }
-    },
-    {
-      "dealId": "dubbling-04",
-      "theme": "dubbling",
-      "mode": "stord",
-      "seat": "S",
-      "auction": "E:1S S:X W:P N:2N E:P S:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
-      "hand": [
-        "H11",
-        "S9",
-        "D4",
-        "S14",
-        "C5",
-        "H4",
-        "C11",
-        "D2",
-        "D14",
-        "H8",
-        "C6",
-        "H14",
-        "C7"
-      ],
-      "hp": 14,
-      "shape": {
-        "C": 4,
-        "D": 3,
-        "H": 4,
-        "S": 2
-      }
-    },
-    {
-      "dealId": "dubbling-05",
-      "theme": "dubbling",
-      "mode": "stord",
-      "seat": "N",
-      "auction": "W:1S N:X E:P S:2N W:P N:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
-      "hand": [
-        "D6",
-        "C4",
-        "H13",
-        "C2",
-        "S8",
-        "H2",
-        "H12",
-        "D14",
-        "D11",
-        "C11",
-        "C12",
-        "S2",
-        "D2"
-      ],
-      "hp": 13,
-      "shape": {
-        "C": 4,
-        "D": 4,
-        "H": 3,
-        "S": 2
       }
     },
     {
@@ -2124,7 +2068,7 @@
       "mode": "stord",
       "seat": "N",
       "auction": "W:1C N:X E:P S:1D W:P N:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
+      "reason": "Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.",
       "hand": [
         "S4",
         "S8",
@@ -2146,36 +2090,6 @@
         "D": 4,
         "H": 3,
         "S": 5
-      }
-    },
-    {
-      "dealId": "dubbling-10",
-      "theme": "dubbling",
-      "mode": "stord",
-      "seat": "N",
-      "auction": "W:1S N:X E:P S:1N W:P N:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
-      "hand": [
-        "H7",
-        "D14",
-        "H13",
-        "S9",
-        "H12",
-        "C14",
-        "D3",
-        "H5",
-        "S12",
-        "C6",
-        "D5",
-        "D8",
-        "C7"
-      ],
-      "hp": 15,
-      "shape": {
-        "C": 3,
-        "D": 4,
-        "H": 4,
-        "S": 2
       }
     },
     {
@@ -2244,7 +2158,7 @@
       "mode": "stord",
       "seat": "N",
       "auction": "W:1H N:X E:P S:1S W:P N:P",
-      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
+      "reason": "Dubbleraren har 3+ stöd i partnerns svarsfärg. REF anger inte dubblerarens fortsättning med stöd.",
       "hand": [
         "D2",
         "S3",
