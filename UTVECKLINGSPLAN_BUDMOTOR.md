@@ -125,3 +125,8 @@ Spelmotorn där Syd spelar mot en människa i Nord är pausad enligt användaren
 - Odefinierade fortsättningar lämnas ej täckta.
 
 Aktuell teststatus: 73 grundsystemstester och 15 kompletterande tester passerar. 140 deterministiska givare är validerade; alla auktioner är giltiga och ostörd täckning är 100 %. Fortsätt prioritera att granska de återstående störda sekvenserna och Stenberg-/återbudsgränserna.
+
+
+### Slutlig kontroll – svaga tvåor och konkurrens
+
+Flera egna 5+ färger efter svag tvåa har nu också gjorts ej täckta när REF saknar prioritetsregel. Testsviten är 74/74 för grundmotorn och 15/15 för kompletterande matchning. Senaste 140-givarsbaslinjen: 535/606 täckta positioner (88,3 %), 100 % ostört, 83,7 % stört, 0 tekniska fel och 140/140 giltiga auktioner. Den aktuella svag-02-givaren använder seed 93000004.
