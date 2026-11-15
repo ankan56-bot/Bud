@@ -205,3 +205,51 @@ test("all trumf support theme deals contain a valid uncontested support raise", 
     assert.equal(node.exp, response.c, deal.id);
   }
 });
+
+
+test("Stenberg counts HCP plus support points only after 4+ trump support", () => {
+  const { Rattning } = loadRuntime();
+
+  // 12 HCP, four hearts and one doubleton: 12 HCP + 1 support point = 13 HTP.
+  const twelvePlusOne = [
+    "S14", "S2",
+    "H14", "H2", "H3", "H4",
+    "D14", "D2", "D3",
+    "C2", "C3", "C4", "C5"
+  ];
+  const supported = Rattning.H(twelvePlusOne);
+  assert.equal(supported.hp, 12);
+  assert.equal(supported.htp("H"), 13);
+
+  // Same 12 HCP with a balanced 4-3-3-3 hand: no shortage points.
+  const twelveFlat = [
+    "S14", "S2", "S3",
+    "H14", "H2", "H3", "H4",
+    "D14", "D2", "D3",
+    "C2", "C3", "C4"
+  ];
+  const balanced = Rattning.H(twelveFlat);
+  assert.equal(balanced.hp, 12);
+  assert.equal(balanced.htp("H"), 12);
+
+  // With only three trumps, the response logic must not use shortage points
+  // to manufacture Stenberg; it evaluates the hand on HCP alone.
+  const threeTrumpHand = [
+    "S14", "S2",
+    "H14", "H2", "H3",
+    "D14", "D2", "D3", "D4", "D5",
+    "C2", "C3", "C4"
+  ];
+  const result = Rattning.nodeFor({
+    hands: {
+      N: ["S3","S4","S5","S6","S7","H5","H6","H7","H8","D6","D7","C6","C7"],
+      E: ["S8","S9","S10","S11","S12","H9","H10","H11","H12","D8","D9","C8","C9"],
+      S: threeTrumpHand,
+      W: ["S13","S2","H13","D10","D11","D12","D13","C10","C11","C12","C13","C14","H2"]
+    },
+    dealer: "N",
+    bids: [{s:"N",c:"1H"},{s:"E",c:"P"},{s:"S",c:"P"},{s:"W",c:"P"}]
+  }, 2);
+  assert.notEqual(result.exp, "2N");
+  assert.notEqual(result.conv, "Stenberg");
+});
