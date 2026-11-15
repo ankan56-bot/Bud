@@ -3,7 +3,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
-const { evaluateHandConditions } = require("../analysmotor.js");
+const { evaluateHandConditions, evaluateMatchedHand } = require("../analysmotor.js");
 const library = JSON.parse(fs.readFileSync(
   path.join(__dirname, "..", "analysbibliotek.json"), "utf8"
 ));
@@ -98,4 +98,30 @@ test("invalid or incomplete hands are rejected safely", () => {
   assert.equal(evaluateHandConditions(["S14"], t29SimpleRaise).status, "invalid_hand");
   const duplicate = Array(13).fill("S14");
   assert.equal(evaluateHandConditions(duplicate, t29SimpleRaise).status, "invalid_hand");
+});
+
+test("post-deal analysis evaluates the bidder's own hand after pass rounds", () => {
+  const fittingHand = [
+    "S14", "S2", "S3",
+    "H13", "H2", "H3", "H4",
+    "D11", "D2", "D3",
+    "C2", "C3", "C4"
+  ];
+  const match = {
+    length: 3,
+    tree: { ignorePasses: true },
+    node: {
+      sequence: ["1♥", "1♠", "2♥"],
+      handConditions: t29SimpleRaise
+    }
+  };
+  const bids = [
+    { s: "S", c: "1H" }, { s: "W", c: "P" },
+    { s: "N", c: "1S" }, { s: "E", c: "P" },
+    { s: "N", c: "2H" }, { s: "E", c: "P" }
+  ];
+  const result = evaluateMatchedHand(match, bids, { N: fittingHand });
+  assert.equal(result.seat, "N");
+  assert.equal(result.status, "match");
+  assert.equal(result.hcp, 8);
 });
