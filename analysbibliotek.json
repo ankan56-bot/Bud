@@ -1,5 +1,5 @@
 {
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -2986,6 +2986,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst trekortsstöd i hjärter, cirka 6–9 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 9
+            },
+            "suitLengths": {
+              "H": {
+                "min": 3
+              }
+            }
           }
         },
         {
@@ -3001,6 +3014,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst trekortsstöd i hjärter och cirka 10+ hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "H": {
+                "min": 3
+              }
+            }
           }
         },
         {
@@ -3016,6 +3041,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Normalt fyrkortsstöd i hjärter och cirka 0–6 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 0,
+              "max": 6
+            },
+            "suitLengths": {
+              "H": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3031,6 +3069,23 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Cirka 6–10 hp, jämn hand, normalt högst två hjärter och spaderstopper"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "balanced": true,
+            "suitLengths": {
+              "H": {
+                "max": 2
+              }
+            },
+            "manual": [
+              "Spaderstopper krävs; stopper bedöms separat."
+            ]
           }
         },
         {
@@ -3046,6 +3101,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fem ruter och cirka 10+ hp; budet är forcing en rond enligt denna överenskommelse"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "D": {
+                "min": 5
+              }
+            }
           }
         }
       ],
@@ -3121,6 +3188,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst trekortsstöd i spader, cirka 6–9 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 9
+            },
+            "suitLengths": {
+              "S": {
+                "min": 3
+              }
+            }
           }
         },
         {
@@ -3136,6 +3216,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst trekortsstöd i spader och cirka 10+ hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "S": {
+                "min": 3
+              }
+            }
           }
         },
         {
@@ -3151,6 +3243,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Normalt fyrkortsstöd i spader och cirka 0–6 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 0,
+              "max": 6
+            },
+            "suitLengths": {
+              "S": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3166,6 +3271,23 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Cirka 10–12 hp, jämn hand, hjärterstopper och normalt högst två spader"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10,
+              "max": 12
+            },
+            "balanced": true,
+            "suitLengths": {
+              "S": {
+                "max": 2
+              }
+            },
+            "manual": [
+              "Hjärterstopper krävs; stopper bedöms separat."
+            ]
           }
         },
         {
@@ -3181,6 +3303,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "C": {
+                "min": 5
+              }
+            }
           }
         }
       ],
@@ -3256,6 +3390,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fyrkortsstöd i ruter, cirka 6–9 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 9
+            },
+            "suitLengths": {
+              "D": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3271,6 +3418,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fyrkortsstöd i ruter och cirka 10+ hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "D": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3286,6 +3445,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fem ruter och cirka 0–6 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 0,
+              "max": 6
+            },
+            "suitLengths": {
+              "D": {
+                "min": 5
+              }
+            }
           }
         },
         {
@@ -3301,6 +3473,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Cirka 6–10 hp, jämn hand, spaderstopper och begränsat ruterstöd"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "balanced": true,
+            "manual": [
+              "Spaderstopper krävs; stopper bedöms separat.",
+              "Begränsat ruterstöd anges i fritext och har ingen fastställd numerisk gräns."
+            ]
           }
         },
         {
@@ -3316,6 +3501,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "C": {
+                "min": 5
+              }
+            }
           }
         }
       ],
@@ -3391,6 +3588,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fyrkortsstöd i klöver, cirka 6–9 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 9
+            },
+            "suitLengths": {
+              "C": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3406,6 +3616,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fyrkortsstöd i klöver och cirka 10+ hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "C": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3421,6 +3643,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Normalt femkortsstöd i klöver och cirka 0–6 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 0,
+              "max": 6
+            },
+            "suitLengths": {
+              "C": {
+                "min": 5
+              }
+            }
           }
         },
         {
@@ -3436,6 +3671,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fyrkortsspader och cirka 6+ hp; forcing en rond"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6
+            },
+            "suitLengths": {
+              "S": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3451,6 +3698,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Cirka 6–10 hp, jämn hand och hjärterstopper"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "balanced": true,
+            "manual": [
+              "Hjärterstopper krävs; stopper bedöms separat."
+            ]
           }
         }
       ],
@@ -3526,6 +3785,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst cirka 10 hp, normalt utan tre- eller fyrkortsstöd i hjärter"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 10
+            },
+            "suitLengths": {
+              "H": {
+                "max": 2
+              }
+            }
           }
         },
         {
@@ -3541,6 +3812,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst trekortsstöd i hjärter, cirka 6–9 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 9
+            },
+            "suitLengths": {
+              "H": {
+                "min": 3
+              }
+            }
           }
         },
         {
@@ -3556,6 +3840,19 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Normalt fyrkortsstöd i hjärter och cirka 0–6 hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 0,
+              "max": 6
+            },
+            "suitLengths": {
+              "H": {
+                "min": 4
+              }
+            }
           }
         },
         {
@@ -3571,6 +3868,18 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Minst fem spader och cirka 6+ hp"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6
+            },
+            "suitLengths": {
+              "S": {
+                "min": 5
+              }
+            }
           }
         },
         {
@@ -3586,6 +3895,20 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Cirka 6–10 hp, jämn hand, normalt utan trekortsstöd i hjärter"
+          },
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "balanced": true,
+            "suitLengths": {
+              "H": {
+                "max": 2
+              }
+            }
           }
         }
       ],
@@ -3607,5 +3930,6 @@
       "counting": "Dessa är fördelnings-/stödpoäng och inte honnörspoäng. Räkna kortfärgspoäng endast i färgkontrakt med överenskommen trumf; korthet i trumffärgen ger inte kortfärgspoäng."
     },
     "noTrumpRestriction": "I sang (NT) räknas inga fördelnings- eller stöldpoäng för renons, singel eller dubbelton. Trumflängdsbonus för 9 eller 10+ gemensamma kort gäller inte i sang."
-  }
+  },
+  "handConditionSchemaVersion": 1
 }
