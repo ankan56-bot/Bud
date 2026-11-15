@@ -671,10 +671,12 @@ function connect(){
   connState='ansluter';
   try{
     es=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');
-    es.onopen=function(){connState='online';if(state)render()};
+    es.onopen=function(){connState='online';startPresence();render()};
     es.onerror=function(){connState='offline';if(state)render()};
     es.onmessage=function(ev){
       try{var o=JSON.parse(ev.data);if(o.event&&o.event!=='message')return;var m=JSON.parse(o.message);
+        if(m.type==='presence'&&m.p&&m.p.id!==playerId){roomPlayers[m.p.id]=m.p;render();return}
+        if(m.type==='room-config'&&m.config&&m.config.count>=1&&m.config.count<=4&&!roomConfig.count){roomConfig=m.config;render();return}
         if(m.from===sender||!(m.v>rev))return;rev=m.v;adopt(m.st)}catch(e){}
     };
   }catch(e){connState='offline'}
@@ -890,7 +892,7 @@ function hpInfo(h){
   return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].join('-');
 }
 function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
-function setSeat(s){if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
+function setSeat(s){if(roomConfig.count){if(s===null){releaseRoomSeat();return}claimRoomSeat(s);return}if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
 
 var pickL=null,pickS=null,pickO=null;
 function clr(){pickL=null;pickS=null;pickO=null;hintText=''}
@@ -922,6 +924,7 @@ function handBlock(st,me){
 }
 function render(){
   if(!room){roomScreen();return}
+  if(roomConfig.count&&(!seat||!roomReady())){roomLobby();return}
   if(!seat){
     app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Välj vilken plats du vill spela från den här enheten.</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Nord</b><span>Du spelar Nord.</span></button><button id="sE" class="seatpick'+(lastSeat==='E'?' on':'')+'"><b>Öst</b><span>Du spelar Öst.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd.</span></button><button id="sW" class="seatpick'+(lastSeat==='W'?' on':'')+'"><b>Väst</b><span>Du spelar Väst.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Både Nord och Syd</b><span>Du spelar båda platserna på samma enhet.</span></button></div></div>';
     ['N','E','S','W'].forEach(function(s){document.getElementById('s'+s).onclick=function(){setSeat(s)}});
@@ -1000,7 +1003,7 @@ function render(){
   };
 }
 
-if(room)connect();
+if(room){try{var oldSeat=localStorage.getItem('bt_seat');if(oldSeat)seat=oldSeat}catch(e){}connect()}
 render();
 })();
 </script>
