@@ -338,3 +338,19 @@ Testsviten `tests/reverse-hps.test.js` omfattar nu **14 isolerade fall** och pas
 - 0 undantag/krascher och 0 olagliga kontraktsbud.
 
 Giv 174 är nu täckt efter korrigeringen av 17–19 HTP-gränsen efter 1♥–2♥. Kvar som ej täckta i denna körning är giv 110, 115, 150 och 191. Testet är fortfarande ett rök-/täckningsprov med passande motståndare, inte ett oberoende korrekthetsfacit.
+
+
+### Uppföljning – öppnarens svar efter Stenberg 2NT
+
+En ny kontroll mot Stenberg-regeln hittade ytterligare en gränsavvikelse:
+- Källregeln anger 3M med 15+ HTP utan singel.
+- 3NT är 12–14 hp med balanserad hand.
+- En singel ska visas med färgbud på 3-nivån.
+
+Motorn använde tidigare 16+ HTP för 3M och kunde dessutom välja 3NT för en obalanserad hand utan singel. Detta är korrigerat:
+1. Singel visas först, även när handen samtidigt har 15+ HTP.
+2. Utan singel visas 3M från 15 HTP.
+3. 3NT används bara för balanserad hand med 12–14 hp.
+4. Obalanserad minimumhand utan singel lämnas ej täckt i stället för att få ett påhittat bud.
+
+Fyra nya regressionstester täcker 15 HTP utan singel, balanserad 14 hp, 15+ HTP med singel samt obalanserad minimum utan singel. Den totala isolerade testsviten omfattar nu **18 fall**, samtliga passerar.
