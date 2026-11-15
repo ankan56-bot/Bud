@@ -1441,10 +1441,18 @@ var Rattning = (function(){
       for(var ai=i;ai>=0;ai--){
         if(bids[ai].s===b.s && isBid(bids[ai].c) && bids[ai].c[1]!=='N'){agreed=bids[ai].c[1];break;}
       }
-      var twoFive=Object.keys(hand.L).filter(function(s){return hand.L[s]>=5}).length>=2;
-      var hasFit=suit&&hand.L[suit]+partnerHand.L[suit]>=8;
-      var mayCountShortness=suit&&(hand.L[suit]>=6||twoFive||hasFit);
-      item.hp=hand.hp;item.htp=mayCountShortness?hand.htp(suit):hand.hp;item.langd=hand.L;
+      var valuationSuit=suit;
+      if(b.c==='2N'){
+        var firstContract=bids.filter(function(x){return isBid(x.c)})[0];
+        if(firstContract&&firstContract.s===partner(b.s)&&/^1[CDHS]$/.test(firstContract.c)){
+          var candidateSuit=firstContract.c[1];
+          if(hand.L[candidateSuit]>=4)valuationSuit=candidateSuit;
+        }
+      }
+      var twoFive=valuationSuit&&hand.L[valuationSuit]>=5&&Object.keys(hand.L).filter(function(s){return hand.L[s]>=5}).length>=2;
+      var hasFit=valuationSuit&&hand.L[valuationSuit]+partnerHand.L[valuationSuit]>=8;
+      var mayCountShortness=valuationSuit&&(hand.L[valuationSuit]>=6||twoFive||hasFit);
+      item.hp=hand.hp;item.htp=mayCountShortness?hand.htp(valuationSuit):hand.hp;item.langd=hand.L;
       if(agreed && hand.L[agreed]+partnerHand.L[agreed]>=8){
         item.handtyp='Trumfstöd ('+SYM[agreed]+')';
       }else{
@@ -1460,7 +1468,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.7'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.8'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
