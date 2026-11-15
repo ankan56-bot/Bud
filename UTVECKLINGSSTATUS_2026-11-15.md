@@ -270,3 +270,13 @@ GitHub Actions körning `43665028981` godkände samtliga steg: deterministisk ge
 `main` är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
 
 - För hoppande 2-högfärgsinkliv hänvisar sida 7 till svag-två-strukturen. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, inte invit – detta stämmer även med användarens uttryckliga korrigering 2026-11-12. 2NT är invit med 2+ stöd. Motorn visar nu dessa betydelser samt ny färg/3NT/hopp som betydelser, men väljer inget huvudbud eftersom källan saknar numerisk styrkegräns och prioritering.
+
+## Fortsatt verifiering – engine 7.5 (2026-11-15)
+
+- Gemensam trumflängdsbonus är fastställd och regressionstestad: 9 gemensamma trumf ger +1 poäng; 10 eller fler ger +2 poäng. Tidigare felaktigt +3 vid 10+ är korrigerat.
+- Stenbergens individuella HTP är fortsatt honnörspoäng plus stödpoäng i sidofärgerna, endast när svarshanden har minst fyra trumf. Den får inte partnerskapets trumflängdsbonus.
+- Partnerskapets spelstyrka börjar med båda händerna HCP, lägger till sidofärgernas stödpoäng en gång per hand vid minst åtta gemensamma trumf och lägger därefter till den gemensamma trumflängdsbonusen. Sang använder enbart HCP.
+- Ny regression kontrollerar 8-, 9- och 10-kortsfit samt att 10+ ger exakt +2. Stenbergstesterna kontrollerar 13+ HTP och att tre trumf inte räcker för Stenberg.
+- Temabaslinjen är regenererad från engine 7.5: 140 givare, 594 rätt, 37 ej täckta, 0 fel och 0 valfria. Stenbergtemats tio givare uppfyller 13+ HTP och 4+ stöd.
+- temagivare_manifest.json är synkroniserad med den aktuella motorns versions- och blob-hash. Nytt test hindrar att manifestets källmetadata driver isär från datasetet.
+- main är fortsatt orörd; ändringarna ligger på work/theme-dataset-analysis. Senaste CI-körning för manifestkontrollen inväntas.
