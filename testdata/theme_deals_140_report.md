@@ -6,8 +6,8 @@
 - Samtliga givare har 52 unika kort och 13 kort per hand.
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
-- Rättningsmotor: version 7.2.
-- Rättningsmotor Git-blob SHA: `51a53595ece2b902eeb925e2b148a8b4b109a0e4`.
+- Rättningsmotor: version 7.3.
+- Rättningsmotor Git-blob SHA: `d3e30962f170dba09a246aedbecb86280bbf67bb`.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`. Generatorn registrerar den exakta Git-blob-hashen för den rättningsmotor som användes.
@@ -66,7 +66,8 @@ Nordisk standard, sida 7, anger att svar efter 1-högfärgs-/1-ruterinkliv ska f
 - infört hopp i ny färg med 14+ hp, bra 6+ färg och utgångskrav;
 - infört överbud med 10+ hp och 3+ stöd;
 - lämnat andra inklivsnivåer ej täckta i stället för att ärva fel svarstabell;
-- beskrivit betydelsen av svar efter hoppande 2-högfärgsinkliv enligt svag-två-strukturen, men inte valt mellan 2NT-invit, spärrhöjning och ny färg eftersom källan saknar numerisk prioritering.
+- beskrivit betydelsen av svar efter hoppande 2-högfärgsinkliv enligt svag-två-strukturen, men inte valt mellan 2NT-invit, spärrhöjning och ny färg eftersom källan saknar numerisk prioritering;
+- beskrivit 18+-betydelsen när en upplysningsdubblare utan stöd återbjuder egen färg/NT, utan att välja vilket återbud som ska användas.
 
 Ett tidigare ej täckt testfall, `inkliv-05`, har nu korrekt rekommendation 4♥: 8 hp och femkortsstöd efter partnerns 1♥-inkliv. Ett tidigare felaktigt lågt stöd-bud (4 hp med fyrkortsstöd) har tagits bort; källan anger 6–9 hp.
 
@@ -92,4 +93,4 @@ node --test testdata/player-roles.test.js
 node --test testdata/dds-runtime.test.js
 ```
 
-Senaste fullständiga verifiering: GitHub Actions körning `43664859992` – samtliga steg godkända, inklusive deterministisk regenerering, inklivstester, skyddstester för ej täckta luckor och DDS-paketering.
+Senaste fullständiga verifiering: GitHub Actions körning `43665028981` – samtliga steg godkända, inklusive deterministisk regenerering, inklivstester, skyddstester för ej täckta luckor och DDS-paketering.
