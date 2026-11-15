@@ -39,9 +39,9 @@ test("one-level overcall response: support raises follow 6-9 hp and 3/4/5-card s
 });
 
 test("one-level overcall response: NT ranges and opening-suit stopper", () => {
-  assert.equal(response("1D", "1H", hand([14,9,7],[11,8,5],[13,9,7],[9,6,2,3])).exp, "1N");
-  assert.equal(response("1D", "1H", hand([13,12,8],[11,9,5],[14,9,7],[11,8,3,2])).exp, "2N");
-  assert.equal(response("1D", "1H", hand([14,13,12],[11,8,5],[14,9,7],[9,6,3,2])).exp, "3N");
+  assert.equal(response("1C", "1D", hand([11,9,7,4],[14,9,7,4],[9,6],[13,9,7])).exp, "1N");
+  assert.equal(response("1H", "1S", hand([9,7],[13,9,7],[14,11,9,7],[13,9,7,6])).exp, "2N");
+  assert.equal(response("1H", "1S", hand([9,7],[14,9,7],[14,13,9,7],[12,11,9,7])).exp, "3N");
 });
 
 test("one-level overcall response: new suit is forcing with the documented HCP threshold", () => {
