@@ -316,7 +316,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Konventionskonflikt att lösa i nästa etapp: analysbiblioteket anger RKC 1430, medan nuvarande svarsfunktion i rattningsmotor.js fortfarande mappar 4NT-svar enligt 0314. Denna leverans stannar vid 4NT och ändrar inte svaren.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. RKC 1430 är synkroniserat i analysbibliotek och rättningsmotor. Fortsättningen efter nyckelkortssvaren hanteras separat och lämnas ej täckt där systemregler saknas.",
           "branches": [
             {
               "call": "Pass",
@@ -630,7 +630,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Konventionskonflikt att lösa i nästa etapp: analysbiblioteket anger RKC 1430, medan nuvarande svarsfunktion i rattningsmotor.js fortfarande mappar 4NT-svar enligt 0314. Denna leverans stannar vid 4NT och ändrar inte svaren.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. RKC 1430 är synkroniserat i analysbibliotek och rättningsmotor. Fortsättningen efter nyckelkortssvaren hanteras separat och lämnas ej täckt där systemregler saknas.",
           "branches": [
             {
               "call": "Pass",
@@ -750,7 +750,7 @@
             "2♠"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: exakt fem spader och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex spader – 4♠ vid minst 26 gemensamma spelpoäng, annars 3♠-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Konventionskonflikt att lösa i nästa etapp: analysbiblioteket anger RKC 1430, medan nuvarande svarsfunktion i rattningsmotor.js fortfarande mappar 4NT-svar enligt 0314. Denna leverans stannar vid 4NT och ändrar inte svaren.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: exakt fem spader och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex spader – 4♠ vid minst 26 gemensamma spelpoäng, annars 3♠-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. RKC 1430 är synkroniserat i analysbibliotek och rättningsmotor. Fortsättningen efter nyckelkortssvaren hanteras separat och lämnas ej täckt där systemregler saknas.",
           "branches": [
             {
               "call": "Pass",
@@ -6681,7 +6681,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 med hjärter som trumf efter fullföljd hjärteröverföring.",
-          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två hjärter i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i hjärter. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två hjärter i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i hjärter. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt hjärteröverföringen.",
             "responder": "Minst fem hjärter och slamintresse; 4NT används som RKC om den vägen väljs."
@@ -6700,7 +6700,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 med spader som trumf efter fullföljd spaderöverföring.",
-          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två spader i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i spader. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två spader i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i spader. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen.",
             "responder": "Minst fem spader och slamintresse; 4NT används som RKC om den vägen väljs."
@@ -6723,7 +6723,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 efter att Stayman hittat hjärterfit och paret gått till 4♥.",
-          "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat hjärterstöd med 3♥. Efter öppnarens 4♥ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat hjärterstöd med 3♥. Efter öppnarens 4♥ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra hjärter.",
             "responder": "Minst fyra hjärter; paret har minst åtta hjärter tillsammans."
@@ -6746,7 +6746,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 efter att Stayman hittat spaderfit och paret gått till 4♠.",
-          "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat spaderstöd med 3♠. Efter öppnarens 4♠ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat spaderstöd med 3♠. Efter öppnarens 4♠ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra spader.",
             "responder": "Minst fyra spader; paret har minst åtta spader tillsammans."
@@ -6767,7 +6767,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 efter Stayman och direkt utgång i hjärter.",
-          "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat minst fyra hjärter genom att bjuda 4♥. Hjärterfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat minst fyra hjärter genom att bjuda 4♥. Hjärterfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra hjärter.",
             "responder": "Minst fyra hjärter; minst åtta hjärter tillsammans och utgångsstyrka."
@@ -6788,7 +6788,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 efter Stayman och direkt utgång i spader.",
-          "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat minst fyra spader genom att bjuda 4♠. Spaderfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. VIKTIGT FÖR NÄSTA ETAPP: analysbibliotekets systemkonvention är RKC 1430, men den befintliga svarsfunktionen i rattningsmotor.js implementerar för närvarande 0314. Inga svar efter 4NT har ändrats i denna leverans; mappningen måste synkroniseras innan svaren används.",
+          "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat minst fyra spader genom att bjuda 4♠. Spaderfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra spader.",
             "responder": "Minst fyra spader; minst åtta spader tillsammans och utgångsstyrka."
