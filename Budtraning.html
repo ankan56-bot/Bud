@@ -933,7 +933,7 @@ function handBlock(st,me){
 }
 function render(){
   if(!room){roomScreen();return}
-  if(roomConfig.count&&(!state||!state.hands||!seat)){roomLobby();return}
+  if(!roomConfig.count||!state||!state.hands||!seat){roomLobby();return}
   if(!seat){
     app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Välj vilken plats du vill spela från den här enheten.</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Nord</b><span>Du spelar Nord.</span></button><button id="sE" class="seatpick'+(lastSeat==='E'?' on':'')+'"><b>Öst</b><span>Du spelar Öst.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd.</span></button><button id="sW" class="seatpick'+(lastSeat==='W'?' on':'')+'"><b>Väst</b><span>Du spelar Väst.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Både Nord och Syd</b><span>Du spelar båda platserna på samma enhet.</span></button></div></div>';
     ['N','E','S','W'].forEach(function(s){document.getElementById('s'+s).onclick=function(){setSeat(s)}});
