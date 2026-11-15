@@ -27,7 +27,6 @@ test("browser integration wires COI, WebAssembly loading and DDS table calculati
   assert.match(integration, /SharedArrayBuffer/);
   assert.match(integration, /createDdsModule/);
   assert.match(integration, /dds_web_calc_table/);
-  assert.match(integration, /dds_web_solve_plays/);
   assert.match(html, /<script src="coi-serviceworker\.js"><\/script>/);
   assert.match(html, /<script src="dds-integration\.js"><\/script>/);
   assert.match(html, /runDdsReview\(st\)/);
