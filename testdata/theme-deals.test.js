@@ -112,17 +112,16 @@ test("NT theme classification is evidence-based and preserves every hard rule", 
     acc[deal.caseType] = (acc[deal.caseType] || 0) + 1;
     return acc;
   }, {});
-  assert.equal(counts.typical, 6);
-  assert.equal(counts.borderline, 4);
+  assert.equal(counts.typical, 10);
+  assert.equal(counts.borderline || 0, 0);
   for (const deal of nt) {
     assert.equal(deal.classification.status, "rule_evidence", deal.id);
     assert.ok(deal.classification.rationale.length > 0, deal.id);
-    if (deal.caseType === "borderline") {
-      assert.ok(deal.classification.dimensions.length > 0, deal.id);
-      assert.ok(deal.classification.dimensions.every(item => item.distance === 0), deal.id);
-    } else {
-      assert.equal(deal.classification.dimensions.length, 0, deal.id);
-    }
+    assert.equal(deal.caseType, "typical", deal.id);
+    assert.ok(deal.classification.dimensions.some(item =>
+      item.rule === "1NT opening" &&
+      item.boundary === "15-17 HCP and balanced"
+    ), deal.id);
   }
   for (const deal of stored.deals.filter(deal => deal.theme !== "nt")) {
     assert.equal(deal.caseType, "unclassified", deal.id);
