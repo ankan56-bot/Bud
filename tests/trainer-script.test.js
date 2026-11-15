@@ -244,6 +244,10 @@ test("human room bids are coordinator-validated and only accepted from the owner
   vm.runInNewContext(source, context);
   context.executeRoomAction("call", { seat: "N", call: "1NT" }, "mallory");
   assert.equal(calls.length, 0, "a different participant cannot bid for North");
+  context.turn = () => "E";
+  context.executeRoomAction("call", { seat: "E", call: "1C" }, "alice");
+  assert.equal(calls.length, 0, "a human cannot impersonate a bot seat");
+  context.turn = () => "N";
   context.executeRoomAction("call", { seat: "N", call: "1NT" }, "alice");
   assert.equal(calls.length, 1);
   assert.equal(calls[0].bids[0].s, "N");
