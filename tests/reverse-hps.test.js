@@ -413,8 +413,8 @@ function assessReverse(shape, honors) {
 {
   const item = assessOvercallResponse(
     '1D', '1H',
-    { C: 3, D: 3, H: 3, S: 4 },
-    { D: [14], H: [13], S: [12] },
+    { C: 4, D: 3, H: 2, S: 4 },
+    { D: [14], S: [13], C: [12] },
     '1N'
   );
   assert.equal(item.bedomning, 'rätt');
@@ -422,8 +422,8 @@ function assessReverse(shape, honors) {
 {
   const item = assessOvercallResponse(
     '1D', '1H',
-    { C: 3, D: 3, H: 3, S: 4 },
-    { D: [14, 13], H: [12], S: [11], C: [11] },
+    { C: 4, D: 3, H: 2, S: 4 },
+    { D: [14, 13], S: [12], C: [11], H: [11] },
     '2N'
   );
   assert.equal(item.bedomning, 'rätt');
@@ -431,8 +431,8 @@ function assessReverse(shape, honors) {
 {
   const item = assessOvercallResponse(
     '1D', '1H',
-    { C: 3, D: 3, H: 3, S: 4 },
-    { D: [14, 13], H: [14, 13] },
+    { C: 4, D: 3, H: 2, S: 4 },
+    { D: [14, 13], S: [14, 13] },
     '3N'
   );
   assert.equal(item.bedomning, 'rätt');
