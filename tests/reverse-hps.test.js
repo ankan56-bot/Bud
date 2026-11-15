@@ -49,6 +49,7 @@ function assessReverse(shape, honors) {
     { D: [14, 13], S: [14, 12], H: [13], C: [12] }
   );
   assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 18, '5-4 without 6+ suit or 5-5 has no STP');
   assert.match(item.motivering, /18 HPS/);
 }
 
@@ -60,6 +61,7 @@ function assessReverse(shape, honors) {
     { D: [14, 13], S: [13, 12, 11], H: [12, 11], C: [11] }
   );
   assert.equal(item.bedomning, 'fel');
+  assert.equal(item.htp, 17, '5-4 shortness must not be counted as STP');
   assert.equal(item.battre, '2♦');
 }
 
@@ -70,6 +72,7 @@ function assessReverse(shape, honors) {
     { D: [14, 13], S: [14, 12], H: [13], C: [11] }
   );
   assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 20, '6+ suit allows STP');
   assert.match(item.motivering, /20 HPS/);
 }
 
@@ -80,6 +83,7 @@ function assessReverse(shape, honors) {
     { D: [14, 13], S: [14, 12], H: [13], C: [11] }
   );
   assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.htp, 20, '5-5 shape allows STP');
   assert.match(item.motivering, /20 HPS/);
 }
 
