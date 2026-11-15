@@ -83,6 +83,19 @@ function assessMajorRaise(shape, honors, call) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
+function assessTakeoutDoubleResponse(opponentOpen, shape, honors, call) {
+  const hands = makeDealFor('S', shape, honors, 'H');
+  const bids = [
+    { s: 'E', c: opponentOpen },
+    { s: 'S', c: 'P' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: 'X' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: call }
+  ];
+  return Rattning.judge({ hands, dealer: 'E', bids }).items.at(-1);
+}
+
 function assessOvercallResponse(opponentOpen, partnerOvercall, shape, honors, call) {
   const supportSuit = partnerOvercall[1];
   const hands = makeDealFor('S', shape, honors, supportSuit);
@@ -502,4 +515,93 @@ function assessReverse(shape, honors) {
   assert.equal(item.bedomning, 'rätt');
 }
 
-console.log('Bridge bidding regression tests passed (30 cases).');
+ 
+// Responses to partner's takeout double: 0-7 hp bids the cheapest unbid suit.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 2, D: 1, H: 3, S: 7 },
+    { S: [13], H: [12] },
+    '1S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// 1NT: 6-9 hp with a stopper.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14], S: [13], H: [11] },
+    '1N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// 2NT: 10-12 hp with a stopper.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14, 13], S: [12], H: [11], C: [11] },
+    '2N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// 3NT: 13+ hp with a stopper.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { D: [14, 13], S: [14, 13] },
+    '3N'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// 8-9 HTP and a 4+ suit: jump in the suit.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 3, H: 3, S: 4 },
+    { S: [14], H: [13], C: [11] },
+    '2S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// 10-12 HTP and a 5+ suit: jump to the 3-level.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 2, H: 3, S: 5 },
+    { S: [14, 13], H: [12], C: [11] },
+    '3S'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// 10+ hp without a suitable NT or suit jump: cue-bid is forcing.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 4, H: 3, S: 3 },
+    { C: [14, 11], H: [13], S: [12] },
+    '2D'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+// Pass only with a long, good holding in the opponent's opening suit.
+{
+  const item = assessTakeoutDoubleResponse(
+    '1D',
+    { C: 3, D: 5, H: 3, S: 2 },
+    { D: [14, 13], C: [12], H: [11] },
+    'P'
+  );
+  assert.equal(item.bedomning, 'rätt');
+}
+
+console.log('Bridge bidding regression tests passed (38 cases).');
