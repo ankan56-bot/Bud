@@ -672,7 +672,7 @@ function assessReverse(shape, honors) {
   const node = assessOpeningOvercall(
     '1D',
     { C: 2, D: 3, H: 3, S: 5 },
-    { S: [14, 13], C: [14], D: [13], H: [12], C: [11] },
+    { S: [14, 13], C: [14, 11], D: [13], H: [12] },
     'X'
   );
   assert.equal(node.exp, 'X');
