@@ -324,3 +324,17 @@ Gränserna är nu korrigerade till pass upp till 16, invit/ny färg från 17 och
 
 Testsviten `tests/reverse-hps.test.js` omfattar nu **14 isolerade fall** och passerar med aktuell motor.
 
+
+
+### Omkörning efter svarshöjnings- och återbudsfixarna
+
+100-givars smoke-testet kördes om efter de senaste ändringarna. Samma seed och givmaterial användes.
+
+- 100/100 givare med korrekt kortintegritet.
+- 100/100 auktioner avslutades.
+- 757 budpositioner behandlades.
+- 361 bedömda turer för Norr/Syd.
+- 357 täckta och 4 ej täckta: **98,9 % täckning**.
+- 0 undantag/krascher och 0 olagliga kontraktsbud.
+
+Giv 174 är nu täckt efter korrigeringen av 17–19 HTP-gränsen efter 1♥–2♥. Kvar som ej täckta i denna körning är giv 110, 115, 150 och 191. Testet är fortfarande ett rök-/täckningsprov med passande motståndare, inte ett oberoende korrekthetsfacit.
