@@ -1,5 +1,5 @@
 {
-  "version": "0.5.10",
+  "version": "0.5.11",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -586,7 +586,7 @@
                 }
               },
               "manual": [
-                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Cirka 6–9 hp, tre- eller fyrkortsstöd i hjärter"
+                "Kvalitativt eller ungefärligt villkor kräver manuell bedömning: Cirka 6–9 hp, tre- eller fyrkortsstöd i hjärter"
               ]
             }
           }
