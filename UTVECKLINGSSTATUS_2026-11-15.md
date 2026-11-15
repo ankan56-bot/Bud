@@ -152,3 +152,13 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - Senaste fullständiga GitHub Actions-körning `43659958289` är `success`. Reproducerbarhetsdiffen är ren och workflow-jobbet passerade samtliga teststeg.
 - Analysbiblioteket är version 0.5.5 och analysmotorn 1.0.3. T29–T33 matchar nu sina komprimerade sekvenser även när lagliga passrundor förekommer.
 - `main` är fortfarande orörd. Arbetsgrenen ligger 80 commits före `main` och 0 bakom.
+
+
+## Strukturerade handvillkor – senaste implementation
+
+- `analysbibliotek.json` version 0.5.6: schema version 1 och 25 strukturerade handprofiler på bladnoderna i T29–T33.
+- `analysmotor.js` version 1.0.5: HCP-, färglängds- och balanseradhetskontroll, validering av 13 unika kort och tre resultatnivåer: match, no_match, manual_review.
+- Stopperkrav och oklara uttryck som "begränsat stöd" markeras för manuell kontroll; inga antagna definitioner.
+- Efterhandsanalysen kan kontrollera budgivarens faktiska hand mot noden. Detta får inte användas av AI under pågående budgivning; seat-view-gränsen gäller fortsatt.
+- Nya regressionstester i `testdata/hand-conditions.test.js`.
+- CI för den senaste ändringen är ännu inte verifierad. `main` är orörd.
