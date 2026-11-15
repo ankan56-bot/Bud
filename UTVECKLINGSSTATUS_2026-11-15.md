@@ -230,3 +230,41 @@ Den tidigare inventeringen och 47-fallsanalysen ovan är historiska ögonblicksb
 - Detta är ett statiskt paketerings-/integrationsprov. Ett försök att köra den trådade DDS-motorn direkt i Node fastnade och har därför inte räknats som verifiering av solverns körning.
 - Faktisk DDS-beräkning i Safari/GitHub Pages är fortfarande inte verifierad. Ingen DDS-resultatdata har använts som budfacit.
 - Det statiska DDS-testet passerade i GitHub Actions körning `43662387692`.
+
+
+## Källstyrd regeländring – 2026-11-15 (engine 7.1)
+
+Originaldokumentet `Nordisk standard, 2012-08-22` (8 sidor, tidigare uppladdat i ChatGPT Library) har nu lästs. Källgranskningen finns i `testdata/system-rule-source-audit_2026-11-15.md`.
+
+**Implementerat:** svar efter partnerns 1-högfärgs-/1-ruterinkliv enligt tabellen på sida 7:
+- 1NT 8–10 hp, balanserad med håll.
+- 2NT 11–13 hp, balanserad med bra håll.
+- 3NT 14+ hp, balanserad med bra håll.
+- Enkel/dubbel/trippel höjning med 6–9 hp och 3/4/5-kortsstöd.
+- Ny färg: 8+ hp på 1-nivån, 10+ hp på 2-nivån, 5+ kort och rondkrav.
+- Hopp i ny färg: 14+ hp, bra 6+ färg, utgångskrav.
+- Överbud: 10+ hp och 3+ stöd.
+
+Andra inklivsnivåer är uttryckligen avgränsade och får inte automatiskt använda samma tabell. Hoppande 2-högfärgsinkliv hänvisas i källan till svag-två-strukturen, men gränsen mellan invit och spärrhöjning är inte numeriskt definierad. 2-lägesinkliv i lågfärg, hoppande 3-nivåinkliv och 2NT-inkliv är därför fortsatt ej täckta.
+
+**Regression:**
+- Ny testfil: `testdata/overcall-responses.test.js`.
+- Verifierar stöd 3/4/5 kort, NT-intervall, ny färg på 1-/2-nivå, hoppande ny färg, överbud och att andra inklivsnivåer inte ärver tabellen.
+- Exakt tidigare lucka `inkliv-05`: 8 hp och fem hjärter efter partnerns 1♥ ger nu 4♥.
+- Ett tidigare för lågt stödbud med 4 hp och fyrkortsstöd har tagits bort; källan anger 6–9 hp.
+
+**Ny temabaslinje engine 7.1:**
+- 140 reproducerbara givare.
+- 590 rätt, 0 fel, 0 valfria, 43 ej täckta.
+- Inklivstemat har 9 ej täckta positioner i stället för 10.
+- `testdata/theme_deals_140.json` är regenererad med engine 7.1; generatorn registrerar nu exakt Git-blob-hash för den använda motorn.
+- `testdata/theme_deals_140_report.md` uppdaterad.
+
+GitHub Actions körning `43664406782` godkände samtliga steg: deterministisk generering, datasettest, auktion-dispatch, ny inklivstestsvit, analysbibliotek, strukturerade handvillkor/profiler, spelarroller, seat-isolering och DDS-paketering.
+
+**Fortfarande ej ändrat:**
+- Åtta återbud från den som gjort upplysningsdubblingen efter partnerns svar. Sida 8 ger dubblarens grundstyrka och partnerns första svar, men ingen återbudsstruktur.
+- Öppnarens tredje bud efter 1♣–1♠–2♣–2NT. Det närliggande exemplet på sida 3 gäller en annan sekvens och har dessutom en motsägelsefull förklaring för 3♥.
+- DDS har inte använts som budfacit.
+
+`main` är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
