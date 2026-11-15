@@ -635,7 +635,7 @@ var Rattning = (function(){
     if(L[s]>=3&&hp>=10){
       var cue=lowest(os,last);
       if(ok(cue,last)){
-        return {exp:cue,alt:[],why:hp+' hp och '+L[s+'']+'-kortsstöd: överbud i motståndarnas färg enligt Nordisk standard s. 7.',means:function(c){return c===cue?'10+ hp och 3+ stöd i partnerns inklivsfärg.':null},conv:'svar på inkliv',soft:false};
+        return {exp:cue,alt:[],why:hp+' hp och '+L[s]+'-kortsstöd: överbud i motståndarnas färg enligt Nordisk standard s. 7.',means:function(c){return c===cue?'10+ hp och 3+ stöd i partnerns inklivsfärg.':null},conv:'svar på inkliv',soft:false};
       }
     }
 
@@ -1351,7 +1351,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.0'};
+  return {judge:judgeComplete,H:H,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'7.1'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
