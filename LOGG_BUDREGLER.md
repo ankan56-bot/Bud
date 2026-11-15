@@ -743,3 +743,11 @@ Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen
 - En riktad CI-körning hittade dessutom att den generella slutbudskontrollen behandlade partnerns 4NT som ett färdigt sang-/utgångsbud och därför svarade Pass innan RKC-svarsfunktionen nåddes. Kontrollen är nu justerad: 4NT med fastställd trumf går vidare till RKC-svar.
 
 - RKC 1430:s förklarande text i rättningsmotorn har synkroniserats med samma 1430-svar. Fortsättningen efter partnerns 5♣/5♦/5♥/5♠ lämnas nu uttryckligen ej täckt tills frågeställarens hantering av 1/4- respektive 0/3-tvety­digheten och slamgränserna är definierad. Motorn ska inte automatiskt bjuda 6M.
+
+### 100-givarskontroll för 1♥/1♠
+- 100 deterministiska ostörda givar med 1♥/1♠ som öppningstema: 43 öppningar 1♥ och 57 öppningar 1♠.
+- 527 beslut för Nord/Syd granskades; 526 täckta = 99,8 %.
+- 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga auktioner, 0 ofärdiga auktioner och 0 fel i kortfördelningen.
+- Den enda ej täckta sekvensen var seed 202615834: 1♠–2♦–3♥–Pass. Det är en 10–12 hp obalanserad svarshand utan preferens till öppnarens två visade färger. Denna lucka är redan uttryckligen markerad i systemunderlaget som ej täckt; jag har inte hittat på ett nytt bud.
+- Biblioteket på arbetsgrenen: v0.6.4, 44 träd, 269 noder, 271 grenar (166 länkade, 105 utan nästa nod). Inga saknade grenmål. De befintliga 26 dubbla sekvenserna är äldre överlapp mellan parallella träd; det nya spader-RKC-trädet skapar ingen ny dubbel sekvens.
+- Rättningsmotorn uppdaterad till v7.3. CI har verifierat syntax, bibliotek, ordinarie regressionstester, 12 RKC 1430-fall för båda högfärgerna, 100-givarskontrollen och analysmotorns kompatibilitet.
