@@ -288,7 +288,12 @@
             {
               "call": "2♥",
               "next": "t03_n1",
-              "label": "Öppnaren accepterar överföringen"
+              "label": "Normal fullföljd överföring"
+            },
+            {
+              "call": "3♥",
+              "next": "t27_superaccept",
+              "label": "Superaccept: 17 hp och minst fyra hjärter"
             }
           ],
           "handProfile": {
@@ -486,18 +491,18 @@
             },
             {
               "call": "2♥",
-              "next": null,
-              "label": "Öppnaren visar fyrkortshjärter – annan fortsättning krävs"
+              "next": "t24_stayman_hjarter_invit_n0",
+              "label": "Öppnaren visar 4+ hjärter"
             },
             {
               "call": "2♠",
-              "next": null,
-              "label": "Öppnaren visar fyrkortsspader – annan fortsättning krävs"
+              "next": "t25_stayman_spader_invit_n0",
+              "label": "Öppnaren visar 4+ spader utan 4+ hjärter"
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning",
-            "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+            "opener": "15–17 hp, balanserad 1NT-hand",
+            "responder": "Minst 8 hp och minst en fyrkortshögfärg; 5+ högfärg överförs i stället."
           }
         },
         {
@@ -529,8 +534,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, högfärgerna saknar fyrkortsstöd",
-            "responder": "8–9 hp, jämn fördelning"
+            "opener": "15–17 hp, jämn fördelning, ingen fyrkortshögfärg",
+            "responder": "Balanserad hand; 22–25 gemensamma honnörspoäng för 2NT-invit eller minst 26 för 3NT."
           }
         },
         {
@@ -596,7 +601,12 @@
             {
               "call": "2♥",
               "next": "t07_n1",
-              "label": "Öppnaren fullföljer överföringen"
+              "label": "Normal fullföljd överföring"
+            },
+            {
+              "call": "3♥",
+              "next": "t27_superaccept",
+              "label": "Superaccept: 17 hp och minst fyra hjärter"
             }
           ],
           "handProfile": {
@@ -710,7 +720,12 @@
             {
               "call": "2♠",
               "next": "t08_n1",
-              "label": "Öppnaren fullföljer överföringen"
+              "label": "Normal fullföljd överföring"
+            },
+            {
+              "call": "3♠",
+              "next": "t28_superaccept",
+              "label": "Superaccept: 17 hp och minst fyra spader"
             }
           ],
           "handProfile": {
