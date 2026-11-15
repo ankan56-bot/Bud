@@ -12,16 +12,21 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const crypto = require("node:crypto");
 
 const ROOT = path.resolve(__dirname, "..");
 const MANIFEST_PATH = path.join(__dirname, "temagivare_manifest.json");
 const OUTPUT_PATH = path.join(__dirname, "theme_deals_140.json");
+const RULES_CONTENT = fs.readFileSync(path.join(ROOT, "rattningsmotor.js"), "utf8");
+const RULES_VERSION = (RULES_CONTENT.match(/version:'([^']+)'/) || [])[1];
+const GIT_BLOB_HEADER = Buffer.from("blob " + Buffer.byteLength(RULES_CONTENT) + "\0");
+const RULES_BLOB_SHA = crypto.createHash("sha1").update(GIT_BLOB_HEADER).update(RULES_CONTENT).digest("hex");
 const SOURCE = {
   generator: "Budtraning.html existing newDeal/biasedDeal generator",
   generatorBlobSha: "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
   rulesEngine: "rattningsmotor.js",
-  rulesEngineVersion: "7.0",
-  rulesEngineBlobSha: "4e7acc9e4f87d8c699654997f874db43032811c4",
+  rulesEngineVersion: RULES_VERSION,
+  rulesEngineBlobSha: RULES_BLOB_SHA,
   branchBase: "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
 };
 
