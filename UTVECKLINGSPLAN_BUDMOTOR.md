@@ -130,3 +130,8 @@ Senaste AI-seat regression: GitHub Actions körning `43658949390` passerade med 
 
 
 Fördjupningen av dubblingsfallen finns i `testdata/uncovered_analysis_47.md`. Av 47 ej täckta positioner förekommer dubbling i 16, och de är uppdelade efter var i auktionen luckan uppstår: svar efter motståndarens dubbling av öppningen, dubblerarens återbud efter partnerns svar, ny motståndarinblandning och övriga passpositioner. Detta ska styra nästa granskning av dispatchlogiken.
+
+
+## Konkurrensgranskning – 26 positioner
+
+`testdata/competition_audit_26.md` innehåller den handvisa genomgången av de 26 konkurrenspositionerna. Den identifierar den tekniska luckan i `nodeForRaw()` (`oppBefore`/`oppAfter`) och skiljer mellan flera motståndarbud, svar efter dubbling av vår öppning, dubblerarens återbud och senare konkurrens. Giv 13 i `LOGG_BUDREGLER.md` är ett närliggande konkret exempel på 1♠–X–2♠, men inte tillräckligt för att härleda ett fullständigt regelträd. Inga grundregler eller motorgrenar har ändrats; saknade regler ska fortsatt markeras ej täckta.
