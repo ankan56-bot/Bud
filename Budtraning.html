@@ -681,8 +681,41 @@ function reviewHtml(st){
  
     h+='</article>';
   });
-  h+='</div></div>';
+  h+='</div></div><div id="supp-review" class="card" style="display:none"></div>';
   return h;
+}
+function runSupplementaryReview(st){
+  if(!window.BudAnalys||!window.BudAnalys.loadSupplementary)return;
+  window.BudAnalys.loadSupplementary().then(function(logic){
+    var base=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]});
+    var findings=[];
+    for(var i=1;i<(st.bids||[]).length;i++){
+      var prior=st.bids.slice(0,i),actual=st.bids[i];
+      var last=prior[prior.length-1];
+      if(!last)continue;
+      var next={N:'E',E:'S',S:'W',W:'N'}[last.s];
+      if(actual.s!==next)continue;
+      var item=(base.items||[]).filter(function(x){return x.nr===i+1})[0];
+      if(!item||item.bedomning!=='ej_täckt')continue;
+      var matches=window.BudAnalys.findSupplementary(logic,prior,st.hands,next);
+      if(matches.length)findings.push({nr:i+1,seat:next,actual:actual.c,matches:matches});
+    }
+    var el=document.getElementById('supp-review');
+    if(!el||!findings.length)return;
+    var h='<p class="status">Kompletterande analys – ej grundsystem</p>';
+    h+='<p class="mu">Separata, ännu ogranskade kandidater för bud som grundsystemet inte täcker. De påverkar inte automatisk rättning och är inte godkända systemregler.</p>';
+    findings.forEach(function(f){
+      h+='<article class="review-item mid"><div class="top"><b>Bud '+f.nr+' · '+NAME[f.seat]+' · faktiskt bud '+esc(txt(f.actual))+'</b><span class="tag">EJ GODKÄNT</span></div>';
+      f.matches.forEach(function(m){
+        h+='<p><b>Kandidat:</b> '+fmt(m.recommendation)+' — '+esc(m.rationale)+'</p>';
+        if(m.alternatives&&m.alternatives.length)h+='<p><b>Alternativ:</b> '+m.alternatives.map(function(a){return esc(txt(a.call)+' – '+a.reason)}).join(' · ')+'</p>';
+        if(m.notes&&m.notes.length)h+='<p class="mu">'+m.notes.map(esc).join(' · ')+'</p>';
+        h+='<p class="mu">Status: '+esc(m.approvalStatus)+' · Säkerhet: '+esc(m.confidence)+' · Källa: '+esc(m.provenance)+'</p>';
+      });
+      h+='</article>';
+    });
+    el.innerHTML=h;el.style.display='';
+  }).catch(function(){});
 }
 function connLabel(){return 'Rum '+room+' · '+connState}
 function roomScreen(){
@@ -813,6 +846,7 @@ function render(){
   h+='</aside></main>';
   app.innerHTML=h;
   if(end&&window.runDdsReview)window.runDdsReview(st);
+  if(end&&window.BudAnalys&&window.BudAnalys.loadSupplementary)runSupplementaryReview(st);
   document.getElementById('sw').onclick=function(){setSeat(null)};
   var cb=document.getElementById('cpb');if(cb)cb.onclick=function(){var c=makeCode();try{navigator.clipboard.writeText(c)}catch(e){}var q=prompt('Din spelkod är kopierad. Klistra in partnerns kod här för att synka manuellt (lämna tomt för att avbryta):','');if(q&&!applyCode(q))alert('Koden gick inte att läsa.')};
   var fb=document.getElementById('fsb');if(fb)fb.onclick=function(){try{var d=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(d.requestFullscreen||d.webkitRequestFullscreen).call(d)}}catch(e){}};
