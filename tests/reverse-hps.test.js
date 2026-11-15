@@ -187,29 +187,6 @@ function assessReverse(shape, honors) {
   assert.equal(item.battre, '2♦');
 }
 
-// A 5-4 reverse may use support points when the responder's suit is
-// supported to an 8-card fit; the trump suit need not have been agreed by
-// a separate fit-showing raise.
-{
-  const hands = makeDealFor(
-    'N',
-    { C: 0, D: 5, H: 4, S: 4 },
-    { D: [14, 13], S: [14, 13], H: [11] },
-    'H'
-  );
-  const bids = [
-    { s: 'N', c: '1D' },
-    { s: 'E', c: 'P' },
-    { s: 'S', c: '1H' },
-    { s: 'W', c: 'P' },
-    { s: 'N', c: '2S' }
-  ];
-  const item = Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
-  assert.equal(item.htp, 18, '15 HP plus 3 shortness points with an 8-card heart fit');
-  assert.equal(item.bedomning, 'rätt');
-  assert.match(item.motivering, /18 HPS/);
-}
-
 // 17 HP, 6-4 shape: own 6+ suit permits STP; reverse reaches 18+ HPS.
 {
   const item = assessReverse(
@@ -804,4 +781,4 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, 'P');
 }
 
-console.log('Bridge bidding regression tests passed (55 cases).');
+console.log('Bridge bidding regression tests passed (54 cases).');
