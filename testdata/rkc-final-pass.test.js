@@ -54,11 +54,11 @@ function dealWithSouth(south) {
   };
 }
 
-function responseFromSouthHand(south) {
+function responseFromSouthHand(south, trump = "S") {
   const hands = dealWithSouth(south);
   const bids = [
-    { s: "N", c: "1S" }, { s: "E", c: "P" },
-    { s: "S", c: "2S" }, { s: "W", c: "P" },
+    { s: "N", c: "1" + trump }, { s: "E", c: "P" },
+    { s: "S", c: "2" + trump }, { s: "W", c: "P" },
     { s: "N", c: "4N" }, { s: "E", c: "P" },
     { s: "S", c: "P" }
   ];
@@ -76,6 +76,13 @@ test("two keycards and a heart void below spade trumps are shown by 6H", () => {
   const hand = ["S14", "S10", "S9", "S8", "D14", "D13", "D12", "D11", "D10", "D9", "D8", "D7", "C13"];
   const result = responseFromSouthHand(hand);
   assert.equal(result?.exp, "6H");
+});
+
+test("two keycards and a spade void above heart trumps are shown by 6H", () => {
+  const hand = ["H13", "H10", "H9", "H8", "D14", "D10", "D9", "D8", "C12", "C11", "C10", "C9", "C8"];
+  const result = responseFromSouthHand(hand, "H");
+  assert.deepEqual(Rattning.H(hand).L, { C: 5, D: 4, H: 4, S: 0 });
+  assert.equal(result?.exp, "6H", JSON.stringify(result));
 });
 
 test("a documented no-trump four-ace ask uses 5NT as the final contract after fewer than four aces", () => {
