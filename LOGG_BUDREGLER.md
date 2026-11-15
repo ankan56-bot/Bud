@@ -208,3 +208,35 @@ Kört syntetiska gränsfall direkt mot `Rattning.nodeFor()`, med korrekt normali
 - 26 gemensamma honnörspoäng: 3NT (utgång).
 
 **Slutsats:** De isolerade gränstesterna följer de avsedda intervallen. Ingen ändring av poänggränserna behövs efter detta test. Fortsatt kontroll av budval och handtyper sker i regressionstestet.
+
+
+## Reverse och HPS – korrigering mot rättningsmallen
+
+**Datum:** 2026-11-15  
+**Status:** Implementerat och isolerat regressionstestat på `work/hps-reverse-audit`. `main` är inte ändrad.
+
+Rättningsmallen i `Budtraning.html` anger:
+- HP: E=4, K=3, D=2, Kn=1.
+- STP räknas vid stöd eller med egen 6+-färg/5-5.
+- HTP/HPS = HP + STP.
+- Öppnarens stigande (reverse) budgivning kräver 18+ och minst 5-4.
+
+Granskningen hittade två avvikelser i rättningsmotorn:
+1. Reverse-detekteringen byggde på den lägsta budnivån i den nya färgen och kunde därför missa själva reversebudet på 2-nivån.
+2. `h.htp(s2)` kunde ge STP för en 5-4-hand enbart på grund av korthet i sidofärger. Det strider mot rättningsmallens villkor för egen STP.
+
+Ändring i `rattningsmotor.js`:
+- Reverse identifieras när den nya färgen ligger över både öppningsfärgen och svarshandens färg; budet läggs på 2-nivån.
+- Gränsen är 18+ HPS även när trumf inte är fastställd.
+- HPS för egen hand beräknas enligt mallens formvillkor: STP för egen 6+-färg eller 5-5; en ren 5-4-hand får inte automatiskt STP.
+- Under 18 HPS rekommenderas återbud i öppningsfärgen när handen har minst 5 kort där.
+
+Nytt test: `tests/reverse-hps.test.js`. Fyra isolerade fall verifierades:
+1. 18 HP och 5-4: reverse godkänns.
+2. 17 HP och 5-4 med singelton/dubbelton: reverse underkänns; 2 i öppningsfärgen föreslås.
+3. 17 HP och 6-4: STP enligt 6+-färgsregeln ger 20 HPS; reverse godkänns.
+4. 17 HP och 5-5: STP enligt 5-5-regeln ger 20 HPS; reverse godkänns.
+
+**Verifiering:** JavaScript-syntaxkontroll och samtliga fyra isolerade regressionfall passerade mot version 6.6. Fullständig temagivar-/200-givarsregression återstår.
+
+**Viktigt om GitHub-grenar:** Vid återstarten var `main` 90 commits före `feature/two-player-dds` (som fortfarande pekade på commit `f96e664`). Arbetet har därför startats från aktuella `main` i den nya grenen `work/hps-reverse-audit`. Varken `main` eller den äldre grenen har ändrats.
