@@ -106,3 +106,21 @@ test("room readiness counts distinct valid seat owners, not raw presence records
   assert.equal(ready(3, { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" } }), true);
   assert.equal(ready(4, { a: { seat: "N" }, b: { seat: "E" }, c: { seat: "S" }, d: { seat: "W" } }), true);
 });
+
+
+test("replayed room-action messages are accepted only within the live freshness window", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function isFreshRoomAction(");
+  const end = html.indexOf("\nfunction executeRoomAction", start);
+  assert.ok(start >= 0 && end > start, "freshness guard should exist before room actions");
+  const source = html.slice(start, end);
+  const context = {};
+  vm.runInNewContext(source, context);
+  const now = 1_800_000_000_000;
+  assert.equal(context.isFreshRoomAction({ time: now / 1000 }, now), true);
+  assert.equal(context.isFreshRoomAction({ time: (now - 59_000) / 1000 }, now), true);
+  assert.equal(context.isFreshRoomAction({ time: (now - 61_000) / 1000 }, now), false,
+    "old ntfy history must not replay room actions after reconnect");
+  assert.equal(context.isFreshRoomAction({}, now), false);
+  assert.equal(context.isFreshRoomAction({ time: "not-a-time" }, now), false);
+});
