@@ -716,3 +716,59 @@ Arbetet fortsätter på `work/undisturbed-validation` separat från konkurrenssp
 - Analysbiblioteket uppdaterat med Stenberg 2NT och återbud efter 1M–2M enligt motorversion 7.1.
 - Flera singletonfärger utan dokumenterad prioritet ger ingen automatisk rekommendation. Void är inte singleton.
 - Ännu ej verifierat: ny ostörd 140-givarskörning efter ändringen. Den ska dokumenteras först när CI/körning har bekräftat resultatet.
+
+
+## 1♥/1♠ till utgång och RKC 4NT – pågående arbete (2026-11-15)
+
+Utvecklingsspåret `feature/one-major-to-game-4nt` har startats från aktuell `main`. Arbetet omfattar ostörd budgivning efter 1♥ och 1♠, från svarshandens första bud via öppnarens återbud och svarshandens fortsättning till utgång eller 4NT med överenskommen trumf. Störd budgivning är fortsatt pausad.
+
+### Första verifierbara ändringen
+- Rättat en verklig konventionskonflikt: analysbiblioteket angav RKC 1430, men `rkcReply()` i rättningsmotorn svarade enligt 0314.
+- Motorn använder nu RKC 1430 när trumf är fastställd: 5♣ = 1/4 nyckelkort, 5♦ = 0/3, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam.
+- Tagit bort motorns odokumenterade 5NT-svar för 3 nyckelkort och renons från den här svarsmappningen; det ingår inte i den dokumenterade 1430-överenskommelsen.
+- Förtydligat att 2NT efter 1♥/1♠ är Stenberg (13+ HTP och minst fyra korts stöd), inte Jacoby. Void räknas inte som singleton.
+- Befintligt hjärterträd T01 har korrigerats till Stenberg/RKC 1430. Nytt spaderträd T44 beskriver motsvarande sekvens efter 1♠.
+- Lagt till sex riktade regressionstester som kontrollerar 1-, 4-, 0- och 3-nyckelkort samt två nyckelkort med/utan trumfdam.
+- CI har utökats så att dessa tester körs på arbetsgrenen.
+
+### Kvar att göra i detta spår
+- Täcka samtliga svar efter 1♥/1♠, inklusive stöd, 1 över 1, 2 över 1, 1NT, Stenberg och spärrhöjningar.
+- Slutföra öppnarens och svarshandens fortsättningar efter 1 över 1 fram till utgång; komplettera luckor i T39/T40.
+- Slutföra svarshandens fortsättningar efter Stenbergåterbuden i T34.
+- Kontrollera RKC 1430 genom hela auktionen, inklusive frågeställarens fortsättning efter 5♣/5♦/5♥/5♠. Slamval ska inte hittas på där kontrollinformation saknas.
+- Köra riktade handprofiler och 100 deterministiska ostörda givare med 1♥/1♠ som tema, och redovisa täckning, felbud, olagliga bud och undantag separat.
+
+Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen ny täckningsprocent hävdas innan testerna har körts.
+
+- En riktad CI-körning hittade dessutom att den generella slutbudskontrollen behandlade partnerns 4NT som ett färdigt sang-/utgångsbud och därför svarade Pass innan RKC-svarsfunktionen nåddes. Kontrollen är nu justerad: 4NT med fastställd trumf går vidare till RKC-svar.
+
+- RKC 1430:s förklarande text i rättningsmotorn har synkroniserats med samma 1430-svar. Fortsättningen efter partnerns 5♣/5♦/5♥/5♠ lämnas nu uttryckligen ej täckt tills frågeställarens hantering av 1/4- respektive 0/3-tvety­digheten och slamgränserna är definierad. Motorn ska inte automatiskt bjuda 6M.
+
+### 100-givarskontroll för 1♥/1♠
+- 100 deterministiska ostörda givar med 1♥/1♠ som öppningstema: 43 öppningar 1♥ och 57 öppningar 1♠.
+- 527 beslut för Nord/Syd granskades; 526 täckta = 99,8 %.
+- 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga auktioner, 0 ofärdiga auktioner och 0 fel i kortfördelningen.
+- Den enda ej täckta sekvensen var seed 202615834: 1♠–2♦–3♥–Pass. Det är en 10–12 hp obalanserad svarshand utan preferens till öppnarens två visade färger. Denna lucka är redan uttryckligen markerad i systemunderlaget som ej täckt; jag har inte hittat på ett nytt bud.
+- Biblioteket på arbetsgrenen: v0.6.4, 44 träd, 269 noder, 271 grenar (166 länkade, 105 utan nästa nod). Inga saknade grenmål. De befintliga 26 dubbla sekvenserna är äldre överlapp mellan parallella träd; det nya spader-RKC-trädet skapar ingen ny dubbel sekvens.
+- Rättningsmotorn uppdaterad till v7.3. CI har verifierat syntax, bibliotek, ordinarie regressionstester, 12 RKC 1430-fall för båda högfärgerna, 100-givarskontrollen och analysmotorns kompatibilitet.
+
+### Komplettering av 3M-invit
+- Rättningsmotorn hanterar nu både 1♥–3♥ och 1♠–3♠: svarshanden visar normalt 10–12 HTP och minst fyra trumfkort.
+- Öppnaren räknar gemensamma spelpoäng med trumf. 26+ och minst 8-korts fit ger 4M; annars pass.
+- Riktade tester för båda högfärgerna: 4/4 godkända (minimum avslår, tillägg accepterar).
+- Analysbiblioteket har kompletterats med spaderträdet T45. Biblioteket är nu v0.6.5, 45 träd och 271 noder.
+- Rättningsmotorn är v7.4.
+
+- Extra RKC-säkerhet: handen med alla fem nyckelkort (fyra ess + trumfkungen) har inget uttryckligt svar i den dokumenterade 1430-tabellen. Motorn lämnar nu detta fall ej täckt i stället för att felaktigt klassificera det som två nyckelkort. Två ytterligare tester täcker detta för både hjärter och spader.
+- RKC-testsviten omfattar nu 16 kontroller, inklusive naturligt etablerad fit efter 1M–2M och Stenbergfit efter 1M–2NT.
+- Rättningsmotorn uppdaterad till v7.5.
+
+- Ytterligare test avslöjade att den generella reservkontrollen för missad utgång kunde skriva över ett korrekt ej täckt RKC-fall och föreslå 6M. Den kontrollen är nu avstängd i RKC-kontext, så 1430-svar och ej definierade fortsättningar inte överskrivs av generisk poänglogik.
+- Rättningsmotorn uppdaterad till v7.6.
+
+### Kvarstående avgränsningar för 1♥/1♠
+- Färgprov efter 1M–2M–3x finns strukturellt i T21/T22, men kriteriet för vad som räknas som hjälp i provfärgen är inte fastställt. Ingen automatisk 3M/4M-rekommendation läggs till där.
+- Efter Stenberg 1M–2NT–3x är 4NT RKC-svaret tekniskt täckt när frågan ställs, men exakt när svarshanden ska välja 4NT i stället för andra fortsättningar är inte numeriskt definierat. Ingen sådan tröskel har hittats på.
+- 1♠–2♦–3♥ med 10–12 hp obalanserad svarshand utan preferens är den enda ej täckta situationen i 100-givarsprovet.
+- 4-4-4-1 efter 1M–1NT har fortfarande ett ej systembekräftat val av fjärde färg i vissa 13+ hp-lägen.
+- Efter 4NT är RKC-svaren 1430 implementerade för 0–4 nyckelkort. Alla fem nyckelkort och frågeställarens fortsättning efter svaren är uttryckligen ej täckta tills reglerna är fastställda.

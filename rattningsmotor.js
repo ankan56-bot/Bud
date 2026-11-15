@@ -513,7 +513,7 @@ var Rattning = (function(){
   }
 
   /* ––––– ÖPPNARENS ANDRA BUD (Plus) ––––– */
-  function reb1(h,oc,r){
+  function reb1(h,oc,r,partnerCards){
     var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false,reverseBid=null;
 
     var splSuit = SU.filter(function(s){return s!==o&&s!==rs&&L[s]<=1})[0];
@@ -550,6 +550,16 @@ var Rattning = (function(){
       return {exp:exp,alt:alt,why:why,means:means,conv:'Stenberg',soft:soft};
     }
     if(rs===o){
+      // 3M is an invit with 10–12 HTP and at least four-card support.
+      // Accept only when the partnership reaches the agreed 26 playing-point game threshold.
+      if(lv(r)===3&&maj(o)){
+        var inviter=H(partnerCards||[]),majorFit=h.L[o]+inviter.L[o];
+        var combinedMajorPoints=partnershipPoints(h,inviter,o);
+        if(majorFit>=8&&combinedMajorPoints>=26){
+          return {exp:'4'+o,alt:[],why:majorFit+'-korts fit i '+SYM[o]+' och '+combinedMajorPoints+' gemensamma spelpoäng: acceptera 3'+SYM[o]+'-inviten till utgång.',means:function(c){return c==='4'+o?'Accepterar högfärgsinvit med 26+ gemensamma spelpoäng.':null},conv:'invit i högfärg'};
+        }
+        return {exp:'P',alt:[],why:majorFit+'-korts fit i '+SYM[o]+' men endast '+combinedMajorPoints+' gemensamma spelpoäng: under 26, avslå inviten och passa.',means:function(c){return c==='P'?'Avslår 3'+SYM[o]+'-inviten under 26 gemensamma spelpoäng.':null},conv:'invit i högfärg'};
+      }
       if(lv(r)===2&&maj(o)){var t=h.htp(o);
         if(t>=20){exp='4'+o;why=t+' htp: utgång (20+).'}
         else if(t>=17){
@@ -661,7 +671,6 @@ var Rattning = (function(){
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
-    var vd=h.singles().some(function(s){return h.L[s]===0});
     var exp,why;
     var means=function(c){
       if(!T_){
@@ -672,17 +681,22 @@ var Rattning = (function(){
         if(c==='5N')return '4 ess av 4.';
         return null;
       }
-      if(c==='5C')return '0 eller 3 ess (av 5).';
-      if(c==='5D')return '1 eller 4 ess (av 5).';
-      if(c==='5H')return '2 ess utan trumfdam.';
-      if(c==='5S')return '2 ess med trumfdam.';
-      if(c==='5N')return '3 ess och renons.';
+      if(c==='5C')return '1 eller 4 nyckelkort (av 5).';
+      if(c==='5D')return '0 eller 3 nyckelkort (av 5).';
+      if(c==='5H')return '2 nyckelkort utan trumfdam.';
+      if(c==='5S')return '2 nyckelkort med trumfdam.';
+      if(c==='5N')return null;
       return null;
     };
 
+    if (T_ && kc === 5) {
+        return NC('Alla fem nyckelkort finns. Bibliotekets RKC 1430-tabell anger inte ett särskilt svar för fem av fem; motorn lämnar därför detta fall ej täckt i stället för att felaktigt tolka det som två nyckelkort.',means,'RKC 1430');
+    }
     if (T_) {
-        if (kc === 0 || kc === 3) exp = (kc === 3 && vd) ? '5N' : '5C';
-        else if (kc === 1 || kc === 4) exp = '5D';
+        // Systemets avtalade RKC 1430: 5C=1/4, 5D=0/3,
+        // 5H=2 utan trumfdam, 5S=2 med trumfdam.
+        if (kc === 1 || kc === 4) exp = '5C';
+        else if (kc === 0 || kc === 3) exp = '5D';
         else exp = q ? '5S' : '5H';
     } else {
         if (h.aces === 0) exp = '5C';
@@ -692,49 +706,27 @@ var Rattning = (function(){
         else exp = '5N';
     }
 
-    why = T_ ? (kc + ' ess inklusive trumfkungen. Svar enligt 0314.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
-    return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
+    why = T_ ? (kc + ' nyckelkort inklusive trumfkungen. Svar enligt RKC 1430.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
+    return {exp:exp,alt:[],why:why,means:means,conv:T_?'RKC 1430':'Fyr-essfråga utan trumf'};
   }
   function rkcNextStep(h,T_,r){
+    if(T_){
+      return NC('Efter svaret på RKC 1430 behöver frågeställaren väga in sina egna nyckelkort och skilja mellan de dubbla svaren 1/4 respektive 0/3. Fortsättningsregeln efter 5♣, 5♦, 5♥ eller 5♠ är ännu inte fastställd; motorn ska därför inte automatiskt bjuda slam.');
+    }
     var exp,why;
     var means=function(c){
-      if(c==='5N')return 'Frågar efter trumfdamen (eller antal kungar i sang).';
-      if(c==='6'+T_)return 'Lillslam i trumffärgen.';
-      if(c==='7'+T_)return 'Storslam i trumffärgen.';
+      if(c==='5N')return 'Fyr-essfråga: alla fyra ess.';
       if(c==='6N')return 'Lillslam i sang.';
       if(c==='7N')return 'Storslam i sang.';
       if(c==='P')return 'Pass.';
       return null;
     };
-    if (T_) {
-        if (r === '5N') {
-            if (h.has(T_, 12)) {
-                if (h.kings >= 3) { exp = '7'+T_; why = 'Trumfdamen och alla kungar finns: Storslam.'; }
-                else { exp = '6'+T_; why = 'Trumfdamen finns, men kungar saknas: Lillslam.'; }
-            } else {
-                exp = '6'+T_; why = 'Trumfdamen saknas: Lillslam.';
-            }
-        } else if (r === '6'+T_ || r === '7'+T_) {
-            exp = 'P'; why = 'Slutbud.';
-        } else {
-            exp = '6'+T_; why = 'Lillslam.';
-        }
-    } else {
-        // I fyr-essvarianten är 5NT svaret som visar alla fyra ess.
-        // Det går därför inte att använda 5NT som kungfråga efter det svaret.
-        if (r === '5N') {
-            exp = '6N'; why = 'Alla fyra ess finns. Bjud 6NT och avsluta budgivningen; ingen kungfråga används.';
-        } else if (/^5[CDHS]$/.test(r)) {
-            exp = '5N'; why = 'Svaret visar färre än fyra ess. 5NT används som sangslutbud, inte som kungfråga.';
-        } else if (r === '6N' || r === '7N') {
-            exp = 'P'; why = 'Slutbud.';
-        } else if (r === 'P') {
-            exp = 'P'; why = 'Pass efter fastställt sangslutbud.';
-        } else {
-            exp = '6N'; why = 'Lillslam i sang.';
-        }
-    }
-    return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
+    if(r==='5N'){exp='6N';why='Alla fyra ess finns. Bjud 6NT och avsluta budgivningen; ingen kungfråga används.';}
+    else if(/^5[CDHS]$/.test(r)){exp='5N';why='Svaret visar färre än fyra ess. 5NT används som sangslutbud, inte som kungfråga.';}
+    else if(r==='6N'||r==='7N'){exp='P';why='Slutbud.';}
+    else if(r==='P'){exp='P';why='Pass efter fastställt sangslutbud.';}
+    else{exp='6N';why='Lillslam i sang.';}
+    return {exp:exp,alt:[],why:why,means:means,conv:'Fyr-essfråga utan trumf'};
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
@@ -1078,7 +1070,10 @@ var Rattning = (function(){
     if(b.c==='P'&&lastCall&&side(lastCall.s)===side(me)){
       var ls=st_(lastCall.c),ll=lv(lastCall.c);
       var partnerHasGame=(ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5);
-      if(partnerHasGame)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+      // 4NT med fastställd trumf är RKC-fråga, inte slutbud.
+      var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
+      var partnerRkcReply=/^5[CDHS]$/.test(lastCall.c)&&prior.some(function(x){return x.s===me&&x.c==='4N'})&&!!rkcTrumpFromAuction(prior,side(me));
+      if(partnerHasGame&&!partnerHasRkcAsk&&!partnerRkcReply)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
     // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
@@ -1357,7 +1352,7 @@ var Rattning = (function(){
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
       if(!opener&&d===1)return resp1(h,c1);
-      if(opener&&d===2)return reb1(h,c1,ours[1].c);
+      if(opener&&d===2)return reb1(h,c1,ours[1].c,st.hands[pt]);
       if(!opener&&d===3&&isBid(ours[2].c) && ours[2].c[1]!=='N') {
          var M = st_(ours[0].c);
          if (ours[2].c[1] !== M && ours[2].c[1] !== 'N' && ours[2].c[0] >= '3') {
@@ -1382,10 +1377,13 @@ var Rattning = (function(){
     // Om rålogiken annars skulle passa (eller saknar täckning), kontrollera
     // om partnerskapet har nått utgångs- eller slamnivå.
     var priorPartnershipCalls=st&&st.bids?st.bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===side(st.bids[i].s)}).length:0;
+    // Generic missed-game/ slam rescue must not override an explicit RKC
+    // response or the deliberately uncovered continuation after that reply.
+    var hasRkcContext=!!(st&&st.bids&&st.bids.slice(0,i).some(function(x){return x&&x.c==='4N'&&side(x.s)===side(st.bids[i].s)})&&rkcTrumpFromAuction(st.bids.slice(0,i),side(st.bids[i].s)));
     var highestBefore=null;
     if(st&&st.bids)st.bids.slice(0,i).forEach(function(x){if(x&&isBid(x.c)&&(!highestBefore||rk(x.c)>rk(highestBefore)))highestBefore=x.c;});
     var rawIllegal=!!(node&&node.exp&&isBid(node.exp)&&highestBefore&&rk(node.exp)<=rk(highestBefore));
-    if(st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
+    if(st&&st.bids&&st.bids[i]&&!hasRkcContext&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
@@ -1449,7 +1447,7 @@ var Rattning = (function(){
       'svag tvåa':'En svag tvåöppning visar 6–10 hp och exakt 6 kort i ♦ eller högfärg, med bra färgkvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8). 3 i öppningsfärgen är invit (14-16 stp), 2NT är invit (9-10 hp).',
       'öppnarens 2:a bud':'Öppnarens andra bud preciserar styrka och fördelning efter svarshandens första bud.',
       'RKC':'RKC är essfråga. När trumf är fastställd räknas fyra ess plus trumfkungen som femte ess.',
-      'Blackwood 5 ess':'Blackwood 5 ess (0314) används när trumf är fastställd. 5♣ = 0 eller 3, 5♦ = 1 eller 4, 5♥ = 2 utan dam, 5♠ = 2 med dam. Efter 5NT kan fortsatt budgivning följa RKC-reglerna för fastställd trumf.',
+      'RKC 1430':'RKC 1430 används när trumf är fastställd. 5♣ = 1 eller 4 nyckelkort, 5♦ = 0 eller 3, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam.',
       'Fyr-essfråga utan trumf':'Fyr-essfråga utan fastställd trumf används bara i uttryckligen överenskomna sangsekvenser: 1NT–4NT, 1NT–2♣–2♦–4NT, 2NT–4NT, 2NT–3♣–3♦–4NT och 2♣–2♦–2NT–4NT. 5♣ = 0 ess, 5♦ = 1 ess, 5♥ = 2 ess, 5♠ = 3 ess, 5NT = 4 ess. Efter 5NT bjuder frågeställaren 6NT och därefter pass. Ingen kungfråga används.',
       'inkliv':'Ett inkliv visar normalt 12–17 hp och minst 5 kort i färgen (2-nivån kräver 6 kort). 1NT-inkliv visar 15–17 hp och håll i öppningsfärgen. Vid inkliv efter 1NT stängs Stayman/överföring av. Ny färg 2-nivå = invit, 3-nivå = krav.',
       'dubbling':'Upplysningsdubbling (UD) visar minst 12 hp och 3+ kort i objudna färger. Negativ dubbling (av SH) visar 6+ hp och 4-korts objuden högfärg. Stöddubbling (av ÖH) visar exakt 3-korts stöd. Dubbelt efter 1NT-inkl = UD, invit+.',
@@ -1728,7 +1726,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.2'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.6'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
