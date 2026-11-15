@@ -80,11 +80,11 @@ Begränsning: detta är en isolerad byggsten, ännu inte inkopplad i en AI-budgi
 - Rättningsmotorn 6.6 bedömde 630 relevanta Nord/Syd-bud i korrigerade referensauktioner: 583 rätt, 47 ej täckta, 0 fel och 0 valfria.
 - De 47 ej täckta fördelas: alla 6, Stenberg 2, slambudgivning i färg 2, trumfstöd 6, tvåfärgshänder 6, dubbling 15 och inkliv 10. Övriga teman hade 0.
 - `testdata/theme_deals_140_report.md` redovisar resultatet per tema. `testdata/generate-theme-deals.js` är en Node-generator som läser den faktiska HTML-generatorn och rättningsmotorn. `testdata/theme-deals.test.js` testar antal, kortintegritet, auktioner och reproducerbarhet.
-- En GitHub Actions-workflow har lagts till för att regenerera datasetet och köra testerna på push/PR. Någon körning har ännu inte kunnat verifieras i GitHub Actions (API-listningen visade 0 körningar), så den är inte redovisad som godkänd.
+- En GitHub Actions-workflow har lagts till för att regenerera datasetet och köra testerna på push/PR. GitHub Actions körning 43658747827 slutfördes med success: regenerering, oförändrat dataset och samtliga dataset-/reproducerbarhetstester passerade. Test för AI-positionernas informationsgräns läggs också in i workflowet.
 
 Viktig begränsning: referensauktionerna är deterministiska täckningsspår byggda från befintlig rättningsmotor och träningssidans Öst/Väst-logik. De är inte oberoende expertbud eller ett självständigt strategiskt facit. Alla givars typklass är `unclassified`; 7 typiska/3 gränsnära ska inte påstås förrän manuell/regelbaserad klassificering har gjorts. DDS har inte körts.
 
 
 ## Korrigering av referensauktionernas läge
 
-Den första exporterade baslinjen använde störd Öst/Väst-bot även på givarna märkta ostörd. GitHub Actions upptäckte att regenerering gav avvikande budsekvenser. Generatorn har korrigerats så att referensauktionen använder varje givs faktiska läge. Den korrigerade baslinjen har därför 583 rätt och 47 ej täckta (i stället för den preliminära 578/49). Korrigerad dataset, rapport och lista över ej täckta positioner är uppdaterade. Den senaste automatiska körningen behöver inväntas innan CI kan markeras godkänd.
+Den första exporterade baslinjen använde störd Öst/Väst-bot även på givarna märkta ostörd. GitHub Actions upptäckte att regenerering gav avvikande budsekvenser. Generatorn har korrigerats så att referensauktionen använder varje givs faktiska läge. Den korrigerade baslinjen har därför 583 rätt och 47 ej täckta (i stället för den preliminära 578/49). Korrigerad dataset, rapport och lista över ej täckta positioner är uppdaterade. Korrigeringen verifierades av GitHub Actions körning 43658747827 (success).
