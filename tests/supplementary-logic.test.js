@@ -33,6 +33,18 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
   assert.equal(matches[0].relationshipToSystem, 'must_not_override');
 }
 
+// At exactly 10 hp, the redouble and balanced 1NT candidates overlap.
+{
+  const hands = {
+    N: [], E: [],
+    S: makeHand({ C: 3, D: 4, H: 2, S: 4 }, { C: [14], D: [13, 12], S: [11] }),
+    W: []
+  };
+  const matches = A.findSupplementary(logic, bids, hands);
+  assert.deepEqual(matches.map(x => x.recommendation), ['XX', '1N']);
+  assert(matches.every(x => x.notes.some(n => /Överlapp/.test(n))));
+}
+
 // 6-9 hp and 3+ hearts: natural competitive raise.
 {
   const hands = {
@@ -42,6 +54,18 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
   };
   const matches = A.findSupplementary(logic, bids, hands);
   assert.deepEqual(matches.map(x => x.recommendation), ['2H']);
+}
+
+// At 6 hp with 4 hearts, simple support and preemptive jump both match.
+{
+  const hands = {
+    N: [], E: [],
+    S: makeHand({ C: 3, D: 3, H: 4, S: 3 }, { S: [14], D: [12] }),
+    W: []
+  };
+  const matches = A.findSupplementary(logic, bids, hands);
+  assert.deepEqual(matches.map(x => x.recommendation), ['2H', '3H']);
+  assert(matches.every(x => x.notes.some(n => /Överlapp/.test(n))));
 }
 
 // 0-6 hp and 4+ hearts: preemptive jump support.
@@ -104,4 +128,4 @@ const bids = [{ s: 'N', c: '1H' }, { s: 'E', c: 'X' }];
   assert.equal(A.findSupplementary(logic, [{ s: 'N', c: '1S' }, { s: 'E', c: 'X' }], hands).length, 0);
 }
 
-console.log('Supplementary bidding matcher passed (7 cases).');
+console.log('Supplementary bidding matcher passed (9 cases).');
