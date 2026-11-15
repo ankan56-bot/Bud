@@ -844,7 +844,7 @@ function mySeat(st){if(seat!=='X')return seat;var t=turn(st);return (t==='N'||t=
 function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s,st))return st.bids[i].s;return null}
 function submitCall(st,me,c){
   var nb=st.bids.concat([{s:me,c:c}]);clr();
-  save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
+  save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,humanSeats:st.humanSeats||['N','S'],bids:nb,review:null,rep:st.rep||0});
   
 }
 function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s,st))return seat==='X'||st.bids[i].s===seat}return false}
@@ -852,7 +852,7 @@ function undoBid(){
   var st=state,i;
   for(i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s,st))break;
   if(i<0||(seat!=='X'&&st.bids[i].s!==seat))return;
-  clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
+  clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,humanSeats:st.humanSeats||['N','S'],bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
 }
 function hpInfo(h){
   var L=shapeOf(h);
@@ -964,7 +964,7 @@ function render(){
   if(go)go.onclick=function(){
     var c=curPick();if(!c||!legal(st,c,me))return;
     var nb=st.bids.concat([{s:me,c:c}]);clr();
-    save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
+    save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,humanSeats:st.humanSeats||['N','S'],bids:nb,review:null,rep:st.rep||0});
     
   };
 }
