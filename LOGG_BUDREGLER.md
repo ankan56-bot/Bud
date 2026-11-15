@@ -545,3 +545,27 @@ Den fullständiga systemtexten i appen preciserar att 10+-undantaget gäller **1
 - 17+ hp hanteras enligt den separata UD-regeln och dess prioritet.
 
 Två nya regressionstester verifierar skillnaden mellan 1-lägets högfärg och lågfärg. Testsviten är nu **54/54 godkänd**. 140-givarskörningen är upprepad: 88,7 % täckning, 0 krascher och 140/140 giltiga auktioner.
+
+
+## Kompletterande kunskapslager – första handvillkorsstyrda kandidater
+
+För att hantera luckor i konkurrensbudgivningen utan att förvandla förslag till grundsystemregler har `kompletterande_budlogik.json` byggts ut till version 0.2.0.
+
+Fem kandidater för sekvensen 1♥–Dbl har strukturerats från det befintliga analysbibliotekets T33:
+- Redubbling med cirka 10+ hp och normalt utan hjärterstöd.
+- 2♥ med 3+ stöd och cirka 6–9 hp.
+- 3♥ som spärrande hoppstöd med normalt 4+ hjärter och 0–6 hp.
+- 1♠ med 5+ spader och cirka 6+ hp.
+- 1NT med jämn hand, cirka 6–10 hp och normalt utan 3+ hjärter.
+
+Alla fem är uttryckligen märkta `unreviewed`, `supplementary_only` och `must_not_override`. De påverkar inte rättningsmotorns grundregler och får inte användas som automatiskt facit.
+
+I `analysmotor.js` finns nu en separat matchare som:
+- kräver exakt aktuell budsekvens och rätt nästa spelare;
+- kontrollerar HCP, färglängder och jämn fördelning mot strukturerade handvillkor;
+- använder endast den aktuella budgivarens hand, inte dolda kort;
+- returnerar samtliga matchande kandidater med osäkerhet och granskningsstatus.
+
+Ett avsiktligt överlapp mellan 1♠ och 1NT för jämna händer med fem spader dokumenteras i stället för att en prioritet hittas på. Sex nya tester täcker kandidaterna och matchningen. Grundmotorns 54 regressionstester är oförändrade.
+
+Detta är ett första separat analyslager, inte en ändring av de 140 givarnas grundsystemstäckning.
