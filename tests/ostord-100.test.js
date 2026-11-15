@@ -137,15 +137,15 @@ assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
-// One deliberately unresolved case remains from the manual review:
-// after 1H-1NT the opener's rebid is not yet defined by the system owner.
+// One deliberately unresolved case remains: an unbalanced invit-strength
+// responder after Stayman has found no usable major-suit fit.
 const acceptedUncovered = [{
-  dealId: 'ostord-100-042',
-  reason: 'Dokumentet anger inte budet för denna hand.'
+  dealId: 'ostord-100-088',
+  reason: 'Ingen fit, obalanserad svarshand och invitstyrka efter Stayman: fortsatt bud är inte definierat.'
 }];
 assert.deepEqual(
   report.uncovered.map(x => ({ dealId: x.dealId, reason: x.reason })),
   acceptedUncovered,
-  'Only the explicitly deferred 1H-1NT opener rebid may remain uncovered.'
+  'Only the explicitly undefined unbalanced Stayman continuation may remain uncovered.'
 );
 assert.equal(report.coveragePercent, 99.8, 'The stress test must report the one explicitly deferred decision honestly.');

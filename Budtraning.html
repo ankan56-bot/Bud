@@ -150,6 +150,22 @@ button:disabled{opacity:.3;cursor:default}
 .report-dialog textarea{display:block;width:100%;min-height:130px;resize:vertical;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,system-ui,sans-serif;user-select:text;-webkit-user-select:text}
 .report-dialog .row{justify-content:flex-end;margin-top:14px}
 @media(max-width:600px){.seat .hand div{font-size:9px;letter-spacing:-.35px}.report-dialog{padding:16px}}
+
+/* När spelaren sitter Öst/Väst staplas de stående korten vertikalt
+   så att bordets befintliga bredd kan behållas. */
+.seatL .fan,.seatR .fan{flex-direction:column;align-items:center;padding:0}
+.seatL .cd,.seatR .cd{width:46px;height:68px;flex-basis:46px;margin-left:0;margin-top:-54px}
+.seatL .cd:first-child,.seatR .cd:first-child{margin-top:0}
+.seatL .cd b,.seatR .cd b{font-size:19px}
+.seatL .cd i,.seatR .cd i{font-size:21px}
+.seatL .cd::after,.seatR .cd::after{font-size:30px;right:4px;bottom:4px}
+@media(max-width:600px){
+ .seatL .cd,.seatR .cd{width:24px;height:55px;flex-basis:24px;margin-left:0;margin-top:-43px;padding:3px 2px}
+ .seatL .cd:first-child,.seatR .cd:first-child{margin-top:0}
+ .seatL .cd b,.seatR .cd b{font-size:12px}
+ .seatL .cd i,.seatR .cd i{font-size:13px}
+ .seatL .cd::after,.seatR .cd::after{font-size:18px;right:2px;bottom:3px}
+}
 </style>
 </head>
 <body>
@@ -162,7 +178,11 @@ button:disabled{opacity:.3;cursor:default}
 var SU=['C','D','H','S','N'],SYM={C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},RK={14:'E',13:'K',12:'D',11:'Kn',10:'T'};
 var SEATS=['N','E','S','W'],NAME={N:'Norr',E:'Öst',S:'Syd',W:'Väst'};
 var app=document.getElementById('app');
-var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random,botTimer=null;
+var lastSeat=null,modeSel='stord',state=null,seat=null,pick=null,loaded=true,busy=false,rng=Math.random,botTimer=null,playerMode='partner',playerName='';
+var playerId='',roomConfig={count:0,bothNS:false},roomPlayers={},presenceTimer=null,seenRoomActions={},lastPresenceEventTime={},pendingRoomCount=0;
+try{playerId=localStorage.getItem('bt_player_id')||'';if(!playerId){playerId='p'+Math.random().toString(36).slice(2,11);localStorage.setItem('bt_player_id',playerId)}}catch(e){playerId='p'+Math.random().toString(36).slice(2,11)}
+try{playerName=localStorage.getItem('bt_player_name')||''}catch(e){}
+try{playerMode=localStorage.getItem('bt_player_mode')||'partner'}catch(e){}
 showHp=true;
 
 var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: lå=♣/♦, hö=♥/♠, hp: E4 K3 D2 Kn1; stödpoäng vid stöd eller egen 6+färg/5-5: renons 3, singel 2, dubbelton 1; htp=hp+stp. Balanserad hand: 4333, 4432, 5332.\n"+
@@ -180,7 +200,14 @@ var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: 
 "UPPLYSNINGSDUBBLING (D): 12+ hp och minst 3 kort i objudna färger, eller 17+ alla fördelningar. Utan stöd som bjuder egen färg/NT efter dubbling: 18+ hp. Svar: 1NT 6-9 hp håll i öppningsfärgen; 2NT 10-12 håll; 3NT 13+ håll; färg på lägsta nivå 0-7 hp (i värsta fall 3-kort); hopp i färg 8-9 htp 4+färg; hopp till 3-läget 10-12 htp helst 5+färg; överbud 10+ hp krav; pass bara med många kort i öppningsfärgen. Försvar mot spärröppningar (2 och högre): D = UD eller 17+ hp; 2NT 16-18 balanserad; överbud = hållfråga.";
 
 function side(s){return s==='N'||s==='S'?0:1}
-function isBot(s){return s==='E'||s==='W'}
+function isBot(s,st){var humans=st&&Array.isArray(st.humanSeats)?st.humanSeats:['N','S'];return !humans.includes(s)}
+function roomSeatOwners(){var owners={},now=Date.now(),singleOwner=null;Object.keys(roomPlayers).sort().forEach(function(id){var p=roomPlayers[id];if(!p||!p.seat||id!==playerId&&now-(p.at||0)>=45000)return;if(p.seat==='X'&&roomConfig.count!==1||p.seat!=='X'&&SEATS.indexOf(p.seat)<0)return;if(roomConfig.count===1){if(singleOwner&&singleOwner!==id)return;singleOwner=id}if(p.seat==='X'){if(!owners.N)owners.N=id;if(!owners.S)owners.S=id}else if(SEATS.indexOf(p.seat)>=0&&!owners[p.seat])owners[p.seat]=id});return owners}
+function roomHumanSeats(){var o=roomSeatOwners();return SEATS.filter(function(s){return !!o[s]})}
+function roomAssignedPlayers(){var o=roomSeatOwners(),ids=[];Object.keys(o).forEach(function(s){if(ids.indexOf(o[s])<0)ids.push(o[s])});return ids}
+function roomReady(){var n=roomAssignedPlayers().length;if(!roomConfig.count||n!==roomConfig.count)return false;if(roomConfig.count===2){var o=roomSeatOwners();return !!o.N&&!!o.S&&o.N!==o.S}return n===roomConfig.count}
+function seatOwnerName(s){var o=roomSeatOwners(),id=o[s];if(id&&roomPlayers[id])return roomPlayers[id].name||('Spelare '+(Object.keys(roomPlayers).sort().indexOf(id)+1));return 'Buddie'}
+function humanSeatsForNewDeal(){if(roomConfig.count)return roomHumanSeats();if(playerMode!=='solo')return ['N','S'];if(seat==='X')return ['N','S'];return [SEATS.indexOf(seat)>=0?seat:'S']}
+function setPlayerMode(mode){playerMode=mode==='solo'?'solo':'partner';try{localStorage.setItem('bt_player_mode',playerMode)}catch(e){}render()}
 function partner(s){return SEATS[(SEATS.indexOf(s)+2)%4]}
 function rank(c){return (+c[0])*5+SU.indexOf(c[1])}
 function isBid(c){return c!=='P'&&c!=='X'&&c!=='XX'}
@@ -539,7 +566,7 @@ function strategicBotFallback(st,botSeat,node){
   return null;
 }
 function botCall(st,botSeat){
-  if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(botSeat)!==side(seat)))return R('P');
+  if(st.mode==='ostord'){var hs=st.humanSeats||['N','S'];if(!hs.some(function(h){return side(h)===side(botSeat)}))return R('P')}
   var trial=st.bids.concat([{s:botSeat,c:'P'}]);
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
@@ -550,17 +577,18 @@ function botCall(st,botSeat){
 }
 function advance(st){
   var g=0;
-  while(!ended(st)&&isBot(turn(st))&&g++<30){var s=turn(st),r=botCall(st,s);st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c})}
+  while(!ended(st)&&isBot(turn(st),st)&&g++<30){var s=turn(st),r=botCall(st,s);st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c})}
   return st;
 }
-function newDeal(no,mode,focus,seed){
+function newDeal(no,mode,focus,seed,humanSeats){
   rng=mulberry(seed);
   if(focus==='dubbling'||focus==='inkliv')mode='stord';
   var hd=biasedDeal(mode,focus),dl=hd.dealer;delete hd.dealer;
   if(!dl)dl=themeDealer(hd,focus||'alla');
-  return {id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],review:null,rep:0};
+  var humans=Array.isArray(humanSeats)&&humanSeats.length?SEATS.filter(function(s){return humanSeats.indexOf(s)>=0}):['N','S'];
+  return {id:'g'+seed,seed:seed,no:no,mode:mode,focus:focus||'alla',hands:hd,dealer:dl,bids:[],humanSeats:humans,review:null,rep:0};
 }
-function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:(st.rep||0)+1,h:[]})}
+function replay(st){return build({no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,humanSeats:st.humanSeats||['N','S'],rep:(st.rep||0)+1,h:[]})}
 function handHtml(cards){
   var out='';
   ['S','H','D','C'].forEach(function(s){
@@ -605,20 +633,45 @@ function auctionHtml(st,end){
   if(!end)h+='<div class="ac cur">…</div>';
   return h+'</div>';
 }
-var savedFlag=false,copied=false,room='',rev=0,es=null,connState='offline',sender=Math.random().toString(36).slice(2,8);
+var savedFlag=false,copied=false,room='',rev=0,lastStateEventTime=0,roomSyncTimer=null,roomSyncing=false,es=null,connState='offline',sender=Math.random().toString(36).slice(2,8);
+function persistRoomConfig(){try{if(room&&roomConfig.count)localStorage.setItem('bt_room_config_'+room,JSON.stringify(roomConfig))}catch(e){}}
+function restoreRoomConfig(){try{var c=room&&JSON.parse(localStorage.getItem('bt_room_config_'+room)||'null');if(c&&c.count>=1&&c.count<=4)roomConfig=c}catch(e){}}
+try{room=localStorage.getItem('bt_room')||'';restoreRoomConfig()}catch(e){}
 function newSeed(){return Math.floor(Math.random()*1000000000)}
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function sendRoom(m){if(!room)return;try{fetch('https://ntfy.sh/'+topic(),{method:'POST',body:JSON.stringify(m)}).catch(function(){})}catch(e){}}
+function announcePresence(){if(!room)return;var p={id:playerId,name:playerName||'',seat:seat||null,at:Date.now()};roomPlayers[playerId]=p;sendRoom({type:'presence',from:playerId,p:p})}
+function startPresence(){if(presenceTimer)clearInterval(presenceTimer);announcePresence();presenceTimer=setInterval(function(){announcePresence();var now=Date.now();Object.keys(roomPlayers).forEach(function(id){if(id!==playerId&&now-(roomPlayers[id].at||0)>45000)delete roomPlayers[id]});if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot();if(!state||!state.hands)render()},15000)}
+function markRoomSync(){roomSyncing=true;if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=setTimeout(function(){roomSyncTimer=null;roomSyncing=false;if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot()},1800)}
+function chooseRoomCount(n){if(roomConfig.count||pendingRoomCount)return;pendingRoomCount=n;sendRoom({type:'room-config',from:playerId,config:{count:n,bothNS:false}});render()}
+function roomSeatClaimAllowed(s){var owners=roomSeatOwners(),assigned=roomAssignedPlayers();if(s==='X'&&roomConfig.count!==1)return false;if(s!=='X'&&SEATS.indexOf(s)<0)return false;if(roomConfig.count===2&&s!=='N'&&s!=='S')return false;if(s!=='X'&&owners[s]&&owners[s]!==playerId)return false;if(roomConfig.count===1&&assigned.some(function(id){return id!==playerId}))return false;if(roomConfig.count>1&&assigned.length>=roomConfig.count&&assigned.indexOf(playerId)<0)return false;return true}
+function claimRoomSeat(s){if(!roomSeatClaimAllowed(s)){alert('Platsen kan inte väljas. Rummet har redan rätt antal spelare eller platsen är upptagen.');return}if(roomConfig.count===1&&s==='X')roomConfig.bothNS=true;seat=s;lastSeat=s;roomPlayers[playerId]={id:playerId,name:playerName||'',seat:s,at:Date.now()};try{localStorage.setItem('bt_seat',s)}catch(e){}announcePresence();render()}
+function releaseRoomSeat(){seat=null;roomPlayers[playerId]={id:playerId,name:playerName||'',seat:null,at:Date.now()};try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence();render()}
+function roomLobby(){var html='<div class="hero"><h1>Spelarrum</h1><p class="mu">Rum '+esc(room)+' · '+(connState==='online'?'Ansluten':'Ansluter…')+'</p>';if(!roomConfig.count){html+='<div class="card"><p class="status">Hur många spelare?</p><div class="modes">';for(var n=1;n<=4;n++)html+='<button class="seatpick" data-count="'+n+'"><b>'+n+' spelare</b></button>';html+='</div></div>'}else{html+='<div class="card"><p class="status">'+roomConfig.count+' spelare</p>'+(roomConfig.count===1?'<p class="mu">Välj en plats eller spela både Nord och Syd.</p>':roomConfig.count===2?'<p class="mu">Ni spelar Nord och Syd. Öst och Väst sköts av Buddie.</p>':'<p class="mu">Välj varsin plats runt bordet. Buddie fyller den sista platsen om ni är tre.</p>')+'<div class="modes" style="margin-top:12px">';['N','E','S','W'].forEach(function(s){var id=roomSeatOwners()[s],assigned=Object.keys(roomSeatOwners()).length,bot=(!id&&roomConfig.count===1&&assigned>0)||(!id&&roomConfig.count===2&&(s==='E'||s==='W'))||(!id&&roomConfig.count===3&&assigned>=3);var label=id?(roomPlayers[id].name||'Spelare')+' ('+NAME[s]+')':bot?'Buddie':assigned?'Väntar på spelare':'Välj plats';html+='<button class="seatpick" data-seat="'+s+'" '+(id&&id!==playerId||bot?'disabled':'')+'><b>'+NAME[s]+'</b><span>'+esc(label)+'</span></button>'});html+='</div>';if(roomConfig.count===1)html+='<div style="margin-top:12px"><button class="seatpick" data-seat="X" style="width:100%"><b>Både Nord och Syd</b><span>En spelare styr båda platserna.</span></button></div>';var seated=roomAssignedPlayers().length;html+='<p class="status" style="margin-top:16px">'+(roomReady()?'Alla spelare är redo':'Väntar på spelare ('+seated+'/'+roomConfig.count+')')+'</p>';html+='<p class="status" style="margin-top:18px">Budgivning</p><div class="modes"><button id="room-stord" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Motståndarna kan kliva in och dubbla.</span></button><button id="room-ostord" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar.</span></button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-focus="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>';if(seat)html+='<p class="mu">Du sitter: '+(seat==='X'?'Nord och Syd':NAME[seat])+'</p><button id="leave-seat" class="sm">Byt plats</button>';html+='<div style="margin-top:12px"><button id="lobby-start" class="pri" '+(roomReady()?'':'disabled')+'>Starta träning</button></div></div>'}html+='<div class="row" style="margin-top:14px"><button id="lobby-room-change" class="sm">Byt rum</button></div></div>';app.innerHTML=html;Array.prototype.forEach.call(app.querySelectorAll('[data-count]'),function(b){b.onclick=function(){chooseRoomCount(+b.getAttribute('data-count'))}});Array.prototype.forEach.call(app.querySelectorAll('[data-seat]'),function(b){b.onclick=function(){claimRoomSeat(b.getAttribute('data-seat'))}});var rm1=document.getElementById('room-stord'),rm2=document.getElementById('room-ostord');if(rm1)rm1.onclick=function(){setSel('stord',focusSel);render()};if(rm2)rm2.onclick=function(){setSel('ostord',focusSel);render()};Array.prototype.forEach.call(app.querySelectorAll('[data-focus]'),function(b){b.onclick=function(){setSel(modeSel,b.getAttribute('data-focus'));render()}});var leave=document.getElementById('leave-seat');if(leave)leave.onclick=releaseRoomSeat;var start=document.getElementById('lobby-start');if(start)start.onclick=function(){if(!roomReady())return;requestRoomAction('start')};document.getElementById('lobby-room-change').onclick=function(){try{localStorage.removeItem('bt_room_config_'+room)}catch(e){}resetRoomSession();room='';seat=null;roomConfig={count:0,bothNS:false};roomPlayers={};try{localStorage.removeItem('bt_room');localStorage.removeItem('bt_seat')}catch(e){}if(es)es.close();if(presenceTimer)clearInterval(presenceTimer);connState='offline';render()}}
+function roomCoordinator(){var now=Date.now(),ids=Object.keys(roomPlayers).filter(function(id){return roomPlayers[id]&&(id===playerId||now-(roomPlayers[id].at||0)<45000)}).sort();return ids[0]||playerId}
+function isRoomBotCoordinator(){return !roomConfig.count||roomCoordinator()===playerId}
+function isFreshRoomPresence(event,now){var t=event&&Number(event.time);if(!isFinite(t)||t<=0)return false;var current=now==null?Date.now():now;return Math.abs(current-t*1000)<45000}
+function isNewerRoomPresence(event,lastTime){var t=event&&Number(event.time);return isFinite(t)&&t>0&&t*1000>=Number(lastTime||0)}
+function isFreshRoomAction(event,now){var t=event&&Number(event.time);if(!isFinite(t)||t<=0)return false;var current=now==null?Date.now():now;return Math.abs(current-t*1000)<60000}
+function isNewerRoomState(event,lastTime){var t=event&&Number(event.time);return isFinite(t)&&t>0&&t*1000>=Number(lastTime||0)}
+function sameRoomState(a,b){try{return JSON.stringify(a)===JSON.stringify(b)}catch(e){return false}}
+function roomActionState(st){return st&&st.hands?pack(st):{menu:true,no:(st&&st.no)||0}}
+function executeRoomAction(action,data,actor){if(action==='call'){var who=data&&data.seat,call=data&&data.call,owners=roomSeatOwners();if(!state||!state.hands||!who||!call||turn(state)!==who||isBot(who,state)||owners[who]!==actor||!legal(state,call,who))return;var next=state.bids.concat([{s:who,c:call}]);save({id:state.id,seed:state.seed,no:state.no,mode:state.mode,focus:state.focus,hands:state.hands,dealer:state.dealer,humanSeats:state.humanSeats||['N','S'],bids:next,review:null,rep:state.rep||0});return}if(action==='theme'){modeSel=data&&data.mode==='ostord'?'ostord':'stord';focusSel=data&&data.focus||'alla';save({menu:true,no:state&&state.no||0,mode:modeSel,focus:focusSel});return}if(action==='start'){if(!roomReady()||state&&state.hands&&!ended(state))return;var hs=humanSeatsForNewDeal(),no=state&&state.no?state.no+1:1;playerMode=hs.length===1?'solo':'partner';save(newDeal(no,modeSel,focusSel,newSeed(),hs));return}if(!state||!state.hands)return;if(action==='next'&&ended(state)){if(roomConfig.count&&!roomReady())return;save(newDeal(state.no+1,state.mode,state.focus,newSeed(),roomConfig.count?roomHumanSeats():(state.humanSeats||['N','S'])));return}if(action==='replay'&&ended(state)){if(roomConfig.count&&!roomReady())return;var again=replay(state);if(roomConfig.count)again.humanSeats=roomHumanSeats();save(again);return}if(action==='menu'){clr();save({menu:true,no:state.no,mode:state.mode,focus:state.focus});return}if(action==='undo'&&state&&state.hands){var i;for(i=state.bids.length-1;i>=0;i--)if(!isBot(state.bids[i].s,state))break;if(i>=0)save({id:state.id,seed:state.seed,no:state.no,mode:state.mode,focus:state.focus,hands:state.hands,dealer:state.dealer,humanSeats:state.humanSeats||['N','S'],bids:state.bids.slice(0,i),review:null,rep:state.rep||0});return}}
+function requestRoomAction(action,data){if(!roomConfig.count)return;var req=playerId+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,6);if(roomCoordinator()===playerId){executeRoomAction(action,data,playerId);return}sendRoom({type:'room-action',from:playerId,action:action,data:data||null,request:req,baseState:roomActionState(state)})}
 function pack(st){
-  if(!st||!st.hands)return {menu:true,no:(st&&st.no)||0,mode:modeSel,focus:focusSel};
-  return {no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:st.rep||0,h:st.bids.filter(function(b){return !isBot(b.s)}).map(function(b){return b.s+b.c})};
+  if(!st||!st.hands)return {menu:true,no:(st&&st.no)||0,mode:modeSel,focus:focusSel,playerMode:playerMode};
+  return {no:st.no,seed:st.seed,mode:st.mode,focus:st.focus,rep:st.rep||0,playerMode:(st.humanSeats||['N','S']).length===1?'solo':'partner',humanSeats:st.humanSeats||['N','S'],h:st.bids.filter(function(b){return !isBot(b.s,st)}).map(function(b){return b.s+b.c})};
 }
 function build(m){
-  var st=newDeal(m.no,m.mode,m.focus,m.seed);st.rep=m.rep||0;
+  var st=newDeal(m.no,m.mode,m.focus,m.seed,m.humanSeats||['N','S']);st.rep=m.rep||0;
   advance(st);
   (m.h||[]).forEach(function(x){var s=x[0],c=x.slice(1);if(ended(st)||turn(st)!==s||!legal(st,c,s))return;st.bids.push({s:s,c:c});advance(st)});
   return st;
 }
 function adopt(p){
+  if(p.playerMode==='solo'||p.playerMode==='partner')playerMode=p.playerMode;
+  else if(Array.isArray(p.humanSeats))playerMode=p.humanSeats.length===1?'solo':'partner';
+  try{localStorage.setItem('bt_player_mode',playerMode)}catch(e){}
   if(p.menu){state={menu:true,no:p.no};modeSel=p.mode||'stord';focusSel=p.focus||'alla'}
   else state=build(p);
   clr();render();
@@ -628,27 +681,33 @@ function send(m){
   if(!room)return;
   try{fetch('https://ntfy.sh/'+topic(),{method:'POST',body:JSON.stringify(m)}).catch(function(){})}catch(e){}
 }
+function isCurrentRoomConnection(connectedRoom,source){return room===connectedRoom&&es===source}
+function resetRoomSession(){if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=null;roomSyncing=false;lastStateEventTime=0;lastPresenceEventTime={};seenRoomActions={};if(botTimer)clearTimeout(botTimer);botTimer=null;state={menu:true,no:0};rev=0}
 function connect(){
   if(es){try{es.close()}catch(e){}}
   if(!room)return;
   connState='ansluter';
   try{
-    es=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');
-    es.onopen=function(){connState='online';if(state)render()};
-    es.onerror=function(){connState='offline';if(state)render()};
-    es.onmessage=function(ev){
+    var connectedRoom=room,source=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');es=source;
+    source.onopen=function(){if(!isCurrentRoomConnection(connectedRoom,source))return;connState='online';startPresence();markRoomSync();render()};
+    source.onerror=function(){if(!isCurrentRoomConnection(connectedRoom,source))return;connState='offline';roomSyncing=true;if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=null;if(state)render()};
+    source.onmessage=function(ev){
+      if(!isCurrentRoomConnection(connectedRoom,source))return;
       try{var o=JSON.parse(ev.data);if(o.event&&o.event!=='message')return;var m=JSON.parse(o.message);
-        if(m.from===sender||!(m.v>rev))return;rev=m.v;adopt(m.st)}catch(e){}
+        if(m.type==='presence'&&m.p&&m.p.id!==playerId&&isFreshRoomPresence(o)&&isNewerRoomPresence(o,lastPresenceEventTime[m.p.id])){lastPresenceEventTime[m.p.id]=Number(o.time)*1000;var previous=roomPlayers[m.p.id],freshPresence={id:m.p.id,name:m.p.name||'',seat:m.p.seat||null,at:Date.now()};if(!previous||freshPresence.at>=(previous.at||0)){roomPlayers[m.p.id]=freshPresence;var ownersNow=roomSeatOwners(),lost=seat==='X'?(ownersNow.N!==playerId||ownersNow.S!==playerId):(seat&&ownersNow[seat]!==playerId);if(lost){seat=null;try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence()}if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot()}render();return}
+        if(m.type==='room-config'&&m.config&&m.config.count>=1&&m.config.count<=4&&!roomConfig.count){roomConfig=m.config;pendingRoomCount=0;persistRoomConfig();render();return}
+        if(m.type==='room-action'&&isFreshRoomAction(o)&&m.action&&m.request&&sameRoomState(m.baseState,roomActionState(state))&&roomCoordinator()===playerId&&!seenRoomActions[m.request]){seenRoomActions[m.request]=true;executeRoomAction(m.action,m.data,m.from);return}
+        if(m.from===sender||!m.st)return;markRoomSync();if(!isNewerRoomState(o,lastStateEventTime))return;lastStateEventTime=Number(o.time)*1000;rev=Math.max(rev,Number(m.v)||0);adopt(m.st)}catch(e){}
     };
   }catch(e){connState='offline'}
 }
 function scheduleBot(){
   if(botTimer){clearTimeout(botTimer);botTimer=null}
   var st=state;
-  if(!st||!st.hands||ended(st)||!isBot(turn(st)))return;
+  if(roomSyncing||!st||!st.hands||ended(st)||!isBot(turn(st),st)||!isRoomBotCoordinator())return;
   botTimer=setTimeout(function(){
     botTimer=null;
-    if(state!==st||ended(st)||!isBot(turn(st)))return;
+    if(roomSyncing||state!==st||ended(st)||!isBot(turn(st),st)||roomConfig.count&&roomCoordinator()!==playerId)return;
     var s=turn(st),r=botCall(st,s);
     st.bids.push(r.e?{s:s,c:r.c,e:r.e}:{s:s,c:r.c});
     rev++;render();send({v:rev,from:sender,st:pack(st)});
@@ -670,7 +729,7 @@ function copyText(t,done){
 }
 function reviewPrompt(st){
   var auc=st.bids.map(function(b,i){return (i+1)+'. '+NAME[b.s]+': '+txt(b.c)+(b.e?' [robotens avsikt: '+b.e+']':'')}).join('\n');
-  return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Spelarna är Norr och Syd (partners); Öst och Väst är enkla robotar vars bud inte ska bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. För varje bud av Norr och Syd (och Öst/Västs bud som inte är pass, kort): förklara vad budet visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
+  return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Mänskliga platser: "+(st.humanSeats||['N','S']).map(function(s){return NAME[s]}).join(', ')+". Robotplatser: "+SEATS.filter(function(s){return isBot(s,st)}).map(function(s){return NAME[s]}).join(', ')+". Robotbud ska inte bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. Bedöm endast bud som lagts av mänskliga spelare. För varje sådant bud: förklara vad det visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
 }
 function reviewHtml(st){
   var result;
@@ -748,10 +807,11 @@ function runSupplementaryReview(st){
 }
 function connLabel(){return 'Rum '+room+' · '+connState}
 function roomScreen(){
-  app.innerHTML='<div class="hero start"><img class="brand-art" src="bridge-brand-transparent.png" alt="Jonas Bridge budgivning – Nordisk standard" fetchpriority="high" loading="eager" decoding="sync"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
+  app.innerHTML='<div class="hero start"><img class="brand-art" src="bridge-brand-transparent.png" alt="Jonas Bridge budgivning – Nordisk standard" fetchpriority="high" loading="eager" decoding="sync"><h1>Budträning</h1><p class="mu">Nordisk standard. Skriv samma rumskod på båda enheterna för att spela tillsammans.</p><div class="card"><p class="status">Rumskod</p><input id="rc" maxlength="12" autocapitalize="characters" autocomplete="off" style="width:100%;font:600 28px/1.2 ui-monospace,Menlo,monospace;letter-spacing:4px;text-transform:uppercase;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)" placeholder="T.EX. K7M2QX"><p class="status" style="margin-top:16px">Namn (valfritt)</p><input id="player-name" maxlength="24" autocomplete="nickname" placeholder="Ditt namn" style="width:100%;font:16px/1.3 -apple-system,system-ui,sans-serif;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)"><div class="row" style="margin-top:12px"><button id="rg">Skapa ny kod</button><button id="rj" class="pri" style="flex:1;min-height:52px;font-size:18px">Anslut</button></div><p class="mu" style="margin-top:10px">Båda måste skriva exakt samma kod. Koden fungerar som ett privat rum och kan vara vad som helst, minst 5 tecken.</p></div></div>';
   var inp=document.getElementById('rc');
+  document.getElementById('player-name').value=playerName;
   document.getElementById('rg').onclick=function(){var c='',a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';for(var i=0;i<6;i++)c+=a[Math.floor(Math.random()*a.length)];inp.value=c};
-  document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}room=v;try{localStorage.setItem('bt_room',room)}catch(e){}connect();render()};
+  document.getElementById('rj').onclick=function(){var v=inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length<5){inp.style.borderColor='#d24a3a';return}playerName=(document.getElementById('player-name').value||'').trim().slice(0,24);try{localStorage.setItem('bt_player_name',playerName)}catch(e){}resetRoomSession();room=v;roomConfig={count:0,bothNS:false};roomPlayers={};seat=null;try{localStorage.setItem('bt_room',room);localStorage.removeItem('bt_seat')}catch(e){}restoreRoomConfig();connect();render()};
 }
 function loadSaved(){try{return JSON.parse(localStorage.getItem('bt_saved')||'[]')}catch(e){return []}}
 function putSaved(l){try{localStorage.setItem('bt_saved',JSON.stringify(l))}catch(e){}}
@@ -834,33 +894,35 @@ function attachSaved(){
 }
 var score={},hintText='',hintBusy=false,showHp=false,focusSel='alla';
 function mySeat(st){if(seat!=='X')return seat;var t=turn(st);return (t==='N'||t==='S')?t:'N'}
-function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))return st.bids[i].s;return null}
+function lastHumanSeat(st){for(var i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s,st))return st.bids[i].s;return null}
 function submitCall(st,me,c){
-  var nb=st.bids.concat([{s:me,c:c}]);clr();
-  save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
-  
+  clr();
+  if(roomConfig.count){requestRoomAction('call',{seat:me,call:c});return}
+  var nb=st.bids.concat([{s:me,c:c}]);
+  save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,humanSeats:st.humanSeats||['N','S'],bids:nb,review:null,rep:st.rep||0});
 }
-function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s))return seat==='X'||st.bids[i].s===seat}return false}
+function canUndo(st){for(var i=st.bids.length-1;i>=0;i--){if(!isBot(st.bids[i].s,st))return !!roomConfig.count||seat==='X'||st.bids[i].s===seat}return false}
 function undoBid(){
+  if(roomConfig.count){requestRoomAction('undo');return}
   var st=state,i;
-  for(i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s))break;
+  for(i=st.bids.length-1;i>=0;i--)if(!isBot(st.bids[i].s,st))break;
   if(i<0||(seat!=='X'&&st.bids[i].s!==seat))return;
-  clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
+  clr();save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,humanSeats:st.humanSeats||['N','S'],bids:st.bids.slice(0,i),review:null,rep:st.rep||0});
 }
 function hpInfo(h){
   var L=shapeOf(h);
   return hpOf(h)+' hp · '+[L.S,L.H,L.D,L.C].join('-');
 }
-function setSel(m,f){modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
-function setSeat(s){if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
+function setSel(m,f){if(roomConfig.count){requestRoomAction('theme',{mode:m,focus:f});return}modeSel=m;focusSel=f;if(!state||!state.hands){state=state||{menu:true,no:0};rev++;send({v:rev,from:sender,st:pack(state)})}}
+function setSeat(s){if(roomConfig.count){if(s===null){if(state&&state.hands&&!ended(state)){alert('Du kan byta plats när given är färdig.');return}releaseRoomSeat();return}claimRoomSeat(s);return}if(s===null&&seat)lastSeat=seat;seat=s;clr();try{if(s)localStorage.setItem('bt_seat',s);else localStorage.removeItem('bt_seat')}catch(e){}render()}
 
 var pickL=null,pickS=null,pickO=null;
 function clr(){pickL=null;pickS=null;pickO=null;hintText=''}
 function curPick(){return pickO||(pickL&&pickS?pickL+pickS:null)}
 function oppList(st){
-  var l=st.bids.filter(function(b){return side(b.s)===1&&b.c!=='P'&&b.e});
+  var l=st.bids.filter(function(b){return isBot(b.s,st)&&b.c!=='P'&&b.e});
   if(!l.length)return '';
-  return '<p class="mu" style="margin:8px 0 0"><b>Öst/Väst:</b> '+l.map(function(b){var parts=(b.e||'').split(' · '),why=(parts.length>2?parts.slice(2):parts.slice(1)).join(' · ').trim();if(why.length>95)why=why.slice(0,92)+'…';return NAME[b.s]+' '+fmt(b.c)+(why?' – '+esc(why):'')}).join(' · ')+'</p>';
+  return '<p class="mu" style="margin:8px 0 0"><b>Robotar:</b> '+l.map(function(b){var parts=(b.e||'').split(' · '),why=(parts.length>2?parts.slice(2):parts.slice(1)).join(' · ').trim();if(why.length>95)why=why.slice(0,92)+'…';return NAME[b.s]+' '+fmt(b.c)+(why?' – '+esc(why):'')}).join(' · ')+'</p>';
 }
 function fanHtml(cards){
   var o='';
@@ -873,30 +935,33 @@ function fanHtml(cards){
 }
 function seatHtml(st,s,rel){
    var lc=null,last=-1;st.bids.forEach(function(b,i){if(b.s===s){lc=b.c;last=i}});
-   var latest=last===st.bids.length-1,pass=lc==='P';
-   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+NAME[s]+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+'<span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
+   var latest=last===st.bids.length-1,pass=lc==='P',nm=roomConfig.count?seatOwnerName(s):NAME[s];
+   return '<div class="seat'+(!ended(st)&&turn(st)===s?' turn':'')+'"><span class="nm">'+esc(nm)+' ('+NAME[s]+')'+(s===st.dealer?'<span class="dl">D</span>':'')+'</span>'+(rel?'<small>'+rel+'</small>':'')+'<span class="bks">'+new Array(14).join('<i class="bk"></i>')+'</span><span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>';
  }
+
 function handBlock(st,me){
   var lc=null,last=-1;
   st.bids.forEach(function(b,i){if(b.s===me){lc=b.c;last=i}});
   var latest=last===st.bids.length-1,pass=lc==='P';
-  return '<div class="row"><span class="nm">'+NAME[me]+(seat==='X'?' · på tur':' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'<span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">'+(showHp?'Dölj poäng':'Visa poäng')+'</button>'+(showHp?'<span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span>':'')+'</div>';
+  return '<div class="row"><span class="nm">'+(roomConfig.count?esc(seatOwnerName(me))+' ('+NAME[me]+')':(playerName?esc(playerName)+' ('+NAME[me]+')':NAME[me]))+(seat==='X'?(turn(st)===me?' · på tur':''):' · du')+'</span>'+(me===st.dealer?'<span class="dl" style="margin:0">D</span>':'')+'<span class="lc'+(latest?' latest':'')+(pass?' pass':'')+'">'+(lc!==null?fmt(lc):'&nbsp;')+'</span></div>'+fanHtml(st.hands[me])+'<div class="row"><button id="hpb" class="sm ghost">'+(showHp?'Dölj poäng':'Visa poäng')+'</button>'+(showHp?'<span class="chip" style="background:rgba(0,0,0,.28);color:#f1ecdc;border-color:rgba(255,255,255,.2)">'+hpInfo(st.hands[me])+'</span>':'')+'</div>';
 }
 function render(){
   if(!room){roomScreen();return}
+  if(!roomConfig.count||!state||!state.hands||!seat){roomLobby();return}
   if(!seat){
-    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Vem sitter vid den här enheten?</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Norr</b><span>Du spelar Norr på den här enheten.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd på den här enheten.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Båda på en enhet</b><span>Du spelar både Norr och Syd på den här enheten.</span></button></div></div>';
-    document.getElementById('sN').onclick=function(){setSeat('N')};
-    document.getElementById('sS').onclick=function(){setSeat('S')};
+    app.innerHTML='<div class="hero"><h1>Budträning</h1><p class="mu">Nordisk standard. Välj vilken plats du vill spela från den här enheten.</p><div class="modes" style="margin-top:18px"><button id="sN" class="seatpick'+(lastSeat==='N'?' on':'')+'"><b>Nord</b><span>Du spelar Nord.</span></button><button id="sE" class="seatpick'+(lastSeat==='E'?' on':'')+'"><b>Öst</b><span>Du spelar Öst.</span></button><button id="sS" class="seatpick'+(lastSeat==='S'?' on':'')+'"><b>Syd</b><span>Du spelar Syd.</span></button><button id="sW" class="seatpick'+(lastSeat==='W'?' on':'')+'"><b>Väst</b><span>Du spelar Väst.</span></button></div><div style="margin-top:14px"><button id="sX" class="seatpick'+(lastSeat==='X'?' on':'')+'" style="width:100%;min-height:90px"><b>Både Nord och Syd</b><span>Du spelar båda platserna på samma enhet.</span></button></div></div>';
+    ['N','E','S','W'].forEach(function(s){document.getElementById('s'+s).onclick=function(){setSeat(s)}});
     document.getElementById('sX').onclick=function(){setSeat('X')};
     return;
   }
   if(!state||!state.hands){
-    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Öst och Väst lägger sig i. Träna inkliv, dubbling och spärr.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+reportToolsHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
+    app.innerHTML='<div class="hero start"><h1>Budträning</h1><p class="mu">Nordisk standard</p><p class="status" style="margin-top:14px">Välj budgivning</p><div class="modes mode-grid"><button id="m1" class="mode'+(modeSel==='stord'?' on':'')+'"><b>Alla bjuder</b><span>Motståndarna kan kliva in, dubbla och spärra.</span></button><button id="m2" class="mode'+(modeSel==='ostord'?' on':'')+'"><b>Ostörd budgivning</b><span>Motståndarna passar. Träna ert eget system.</span></button></div><p class="status" style="margin-top:16px">Spelform</p><div class="modes"><button id="pm1" class="mode'+(playerMode==='solo'?' on':'')+'"><b>Ensam mot tre robotar</b><span>Du spelar vald plats (Nord eller Syd). De tre andra platserna sköts av robotar.</span></button><button id="pm2" class="mode'+(playerMode==='partner'?' on':'')+'"><b>Två människor</b><span>Nord och Syd är mänskliga. Öst och Väst är robotar.</span></button></div><div style="margin-top:12px"><button id="go2" class="pri start-button">Starta träning</button></div><p class="status" style="margin-top:16px">Vad vill ni träna?</p><div class="foc">'+FOC.map(function(f){return '<button class="ft'+(f[0]===focusSel?' on':'')+'" data-f="'+f[0]+'">'+f[1]+'</button>'}).join('')+'</div>'+savedHtml()+reportToolsHtml()+'<div class="row" style="margin-top:14px"><button id="sw" class="sm">Byt plats</button><button id="rm" class="sm">Byt rum</button></div></div>';
     var no=(state&&state.no)||0;
     var b1=document.getElementById('m1'),b2=document.getElementById('m2');
     b1.onclick=function(){setSel('stord',focusSel);b1.classList.add('on');b2.classList.remove('on')};
-    document.getElementById('go2').onclick=function(){clr();save(newDeal(no+1,modeSel,focusSel,newSeed()))};
+    document.getElementById('pm1').onclick=function(){setPlayerMode('solo')};
+    document.getElementById('pm2').onclick=function(){setPlayerMode('partner')};
+    document.getElementById('go2').onclick=function(){clr();save(newDeal(no+1,modeSel,focusSel,newSeed(),humanSeatsForNewDeal()))};
     b2.onclick=function(){setSel('ostord',focusSel);b2.classList.add('on');b1.classList.remove('on')};
     document.getElementById('sw').onclick=function(){setSeat(null)};
     document.getElementById('rm').onclick=function(){room='';try{localStorage.removeItem('bt_room')}catch(e){}if(es)es.close();connState='offline';render()};
@@ -905,21 +970,22 @@ function render(){
     return;
   }
   var st=state,me=mySeat(st),end=ended(st),t=turn(st),mine=!end&&t===me;
-  var base='S',pos={l:'W',t:'N',r:'E'},x=ctx(st);
+  var pos={l:'W',t:'N',r:'E'},x=ctx(st);
+  function seatView(s){return (s===me||(seat==='X'&&(s==='N'||s==='S')))?handBlock(st,s):seatHtml(st,s,rel(s))}
   function rel(s){return s===partner(me)?'Partner':''}
-  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(seat==='X'?'En enhet':'Du är '+NAME[me])+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+'Rapportera giv'+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
+  var h='<header class="bar"><div class="brand"><b>♠</b>Budträning</div><div class="row"><span class="chip hi">Giv '+st.no+(st.rep?' · omspel':'')+'</span><span class="chip">'+(st.mode==='ostord'?'Ostörd':'Alla bjuder')+'</span>'+(st.focus&&st.focus!=='alla'?'<span class="chip">'+focLabel(st.focus)+'</span>':'')+'<span class="chip">'+(roomConfig.count?(seat==='X'?esc(seatOwnerName('N'))+' (Nord och Syd)':esc(seatOwnerName(me))+' ('+NAME[me]+')'):(seat==='X'?(playerName?esc(playerName)+' · N/S':'En enhet'):(playerName?esc(playerName)+' ('+NAME[me]+')':'Du är '+NAME[me])))+'</span><span class="chip">'+connLabel()+'</span></div><div class="row"><button id="sv" class="sm">'+'Rapportera giv'+'</button><button id="md" class="sm">Byt tema</button><button id="sw" class="sm">Byt plats</button><button id="cpb" class="sm">Spelkod</button><button id="fsb" class="sm">Helskärm</button></div></header><main class="main">';
   var hbx=x.lb?'<div class="hb">'+fmt(x.lb)+(x.dbl===1?' <small>X</small>':x.dbl===2?' <small>XX</small>':'')+'</div><div class="hl">'+(end?'Slutkontrakt · ':'Högsta bud · ')+NAME[x.lbS]+'</div>':'<div class="hl">'+(end?'Alla passade':'Ingen har bjudit än')+'</div>';
   h+='<div class="board-column">';
   if(end){
-    function seatHand(seat,label){var p=handPoints(st.hands[seat]);return '<div class="hand-seat '+({N:'north',S:'south',E:'east',W:'west'}[seat])+'"><b>'+label+' ('+p.hp+' hp)</b>'+handHtml(st.hands[seat])+'</div>'}
+    function seatHand(seat,label){var p=handPoints(st.hands[seat]),display=roomConfig.count?seatOwnerName(seat)+' ('+label+')':label;return '<div class="hand-seat '+({N:'north',S:'south',E:'east',W:'west'}[seat])+'"><b>'+esc(display)+' ('+p.hp+' hp)</b>'+handHtml(st.hands[seat])+'</div>'}
     h+='<section class="table end">'+seatHand('N','Norr')+seatHand('W','Väst')+'<div class="center">'+hbx+'</div>'+seatHand('E','Öst')+seatHand('S','Syd')+'</section>';
     h+='<div id="dds-review" class="card dds-panel"><p class="status">Teoretiskt optimalt kontrakt</p><p class="mu">Väntar på DDS…</p></div>';
   }else{
-    h+='<section class="table"><div class="seatT">'+(pos.t===me?handBlock(st,me):seatHtml(st,pos.t,rel(pos.t)))+'</div><div class="seatL">'+seatHtml(st,pos.l,rel(pos.l))+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatHtml(st,pos.r,rel(pos.r))+'</div><div class="mine">'+(base===me?handBlock(st,me):seatHtml(st,base,rel(base)))+'</div></section>';
+    h+='<section class="table"><div class="seatT">'+seatView('N')+'</div><div class="seatL">'+seatView('W')+'</div><div class="center">'+hbx+'</div><div class="seatR">'+seatView('E')+'</div><div class="mine">'+seatView('S')+'</div></section>';
   }
   h+='</div><aside class="side"><div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><p class="status" style="margin:0">Budgivning</p>'+(canUndo(st)?'<button id="undo" class="sm">Ångra mitt senaste bud</button>':'')+'</div><div class="ascroll">'+auctionHtml(st,end)+'</div></div>';
   if(end){
-    h+='<div class="card"><p class="status">'+contractText(st)+'</p>'+oppList(st)+'<div class="row" style="margin-top:12px"><button id="rp">Spela om given</button><button id="nd" class="pri">Ny giv</button></div></div>'+reviewHtml(st);
+    h+='<div class="card"><p class="status">'+contractText(st)+'</p>'+oppList(st)+'<div class="row" style="margin-top:12px"><button id="rp" '+(roomConfig.count&&!roomReady()?'disabled':'')+'>Spela om given</button><button id="nd" class="pri" '+(roomConfig.count&&!roomReady()?'disabled':'')+'>Ny giv</button></div>'+(roomConfig.count&&!roomReady()?'<p class="mu">Väntar på spelare innan nästa giv.</p>':'')+'</div>'+reviewHtml(st);
   }else if(mine){
     h+='<div class="card"><p class="status">'+(seat==='X'?NAME[me]+' bjuder':'Din tur att bjuda')+'</p><div class="lv">';
     for(var l=1;l<=7;l++){var okL=SU.some(function(s){return legal(st,l+s,me)});h+='<button data-l="'+l+'" '+(okL?'':'disabled ')+(pickL===l?'class="on"':'')+'>'+l+'</button>'}
@@ -936,12 +1002,12 @@ function render(){
   document.getElementById('sw').onclick=function(){setSeat(null)};
   var cb=document.getElementById('cpb');if(cb)cb.onclick=function(){var c=makeCode();try{navigator.clipboard.writeText(c)}catch(e){}var q=prompt('Din spelkod är kopierad. Klistra in partnerns kod här för att synka manuellt (lämna tomt för att avbryta):','');if(q&&!applyCode(q))alert('Koden gick inte att läsa.')};
   var fb=document.getElementById('fsb');if(fb)fb.onclick=function(){try{var d=document.documentElement;if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{(d.requestFullscreen||d.webkitRequestFullscreen).call(d)}}catch(e){}};
-  document.getElementById('md').onclick=function(){clr();setSel(st.mode||'stord',st.focus||'alla');save({menu:true,no:st.no})};
+  document.getElementById('md').onclick=function(){if(roomConfig.count){requestRoomAction('menu');return}clr();setSel(st.mode||'stord',st.focus||'alla');save({menu:true,no:st.no})};
   document.getElementById('sv').onclick=saveDeal;
   var hb=document.getElementById('hpb');if(hb)hb.onclick=function(){showHp=!showHp;try{localStorage.setItem('bt_hp',showHp?'1':'0')}catch(e){}render()};
   var un=document.getElementById('undo');if(un)un.onclick=undoBid;
-  var nd=document.getElementById('nd');if(nd)nd.onclick=function(){clr();save(newDeal(st.no+1,st.mode,st.focus,newSeed()))};
-  var rp=document.getElementById('rp');if(rp)rp.onclick=function(){clr();save(replay(st))};
+  var nd=document.getElementById('nd');if(nd)nd.onclick=function(){clr();if(roomConfig.count)requestRoomAction('next');else save(newDeal(st.no+1,st.mode,st.focus,newSeed(),st.humanSeats||['N','S']))};
+  var rp=document.getElementById('rp');if(rp)rp.onclick=function(){clr();if(roomConfig.count)requestRoomAction('replay');else save(replay(st))};
   Array.prototype.forEach.call(app.querySelectorAll('[data-l]'),function(b){
     b.onclick=function(){pickL=+b.getAttribute('data-l');pickO=null;if(pickS&&!legal(st,pickL+pickS,me))pickS=null;if(pickS){submitCall(st,me,pickL+pickS);return}render()};
   });
@@ -955,12 +1021,12 @@ function render(){
   if(go)go.onclick=function(){
     var c=curPick();if(!c||!legal(st,c,me))return;
     var nb=st.bids.concat([{s:me,c:c}]);clr();
-    save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,bids:nb,review:null,rep:st.rep||0});
+    save({id:st.id,seed:st.seed,no:st.no,mode:st.mode,focus:st.focus,hands:st.hands,dealer:st.dealer,humanSeats:st.humanSeats||['N','S'],bids:nb,review:null,rep:st.rep||0});
     
   };
 }
 
-if(room)connect();
+if(room){try{var oldSeat=localStorage.getItem('bt_seat');if(oldSeat)seat=oldSeat}catch(e){}connect()}
 render();
 })();
 </script>

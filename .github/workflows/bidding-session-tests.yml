@@ -1,0 +1,45 @@
+name: Bidding session tests
+
+on:
+  pull_request:
+    paths:
+      - "budgivning-session.js"
+      - "tests/**"
+      - "Budtraning.html"
+      - ".github/workflows/bidding-session-tests.yml"
+  push:
+    branches:
+      - main
+      - "feature/**"
+    paths:
+      - "budgivning-session.js"
+      - "tests/**"
+      - "Budtraning.html"
+      - ".github/workflows/bidding-session-tests.yml"
+
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run bidding session and trainer integration tests
+        run: node --test tests/budgivning-session.test.js tests/trainer-script.test.js
+      - name: Run bidding engine regression suite
+        run: |
+          node tests/reverse-hps.test.js
+          node tests/supplementary-logic.test.js
+          node tests/rkc-1430-major.test.js
+          node tests/one-major-invit.test.js
+          node tests/ostord-manual-rules.test.js
+      - name: Run deterministic bidding deal validations
+        run: |
+          node tests/one-major-100.test.js
+          node tests/ostord-coverage.test.js
+          node tests/ostord-100.test.js
+          node tests/ostord-100-second.test.js
+          node tests/ostord-400.test.js
