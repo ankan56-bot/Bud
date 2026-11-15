@@ -6744,6 +6744,48 @@
             "responder": "Minst fyra spader; paret har minst åtta spader tillsammans."
           },
           "branches": []
+        },
+        {
+          "id": "t43_n6",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4♥",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 efter Stayman och direkt utgång i hjärter.",
+          "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat minst fyra hjärter genom att bjuda 4♥. Hjärterfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, minst fyra hjärter.",
+            "responder": "Minst fyra hjärter; minst åtta hjärter tillsammans och utgångsstyrka."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n7",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC 1430 efter Stayman och direkt utgång i spader.",
+          "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat minst fyra spader genom att bjuda 4♠. Spaderfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, minst fyra spader.",
+            "responder": "Minst fyra spader; minst åtta spader tillsammans och utgångsstyrka."
+          },
+          "branches": []
         }
       ]
     }
