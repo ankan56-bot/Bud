@@ -240,3 +240,15 @@ Nytt test: `tests/reverse-hps.test.js`. Fyra isolerade fall verifierades:
 **Verifiering:** JavaScript-syntaxkontroll och samtliga fyra isolerade regressionfall passerade mot version 6.6. Fullständig temagivar-/200-givarsregression återstår.
 
 **Viktigt om GitHub-grenar:** Vid återstarten var `main` 90 commits före `feature/two-player-dds` (som fortfarande pekade på commit `f96e664`). Arbetet har därför startats från aktuella `main` i den nya grenen `work/hps-reverse-audit`. Varken `main` eller den äldre grenen har ändrats.
+
+
+### Uppföljning – enhetlig HPS-visning
+
+Vid fortsatt granskning upptäcktes att rättningsresultatets visade `htp`-värde fortfarande beräknades mot den senast bjudna färgen även när handen varken hade stöd, egen 6+-färg eller 5-5. Det kunde visa exempelvis 19 HTP för en 17 HP 5-4-hand, trots att dessa STP inte får räknas enligt mallen.
+
+Detta är nu samlat i funktionen `handHps()`:
+- Med stöd används stödpoäng i den stödda färgen.
+- Utan stöd räknas STP endast med egen 6+-färg eller 5-5.
+- En 5-4-hand utan stöd visar endast HP.
+
+Regressionstesten kontrollerar nu även det visade HPS-värdet: 18, 17, 20 respektive 20 i de fyra fallen. Samtliga fyra fall passerar efter ändringen.
