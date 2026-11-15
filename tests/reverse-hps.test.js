@@ -673,6 +673,17 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, '1S');
 }
 
+// Jump overcall: 6-10 hp and a good 6-card major.
+{
+  const node = assessOpeningOvercall(
+    '1D',
+    { C: 3, D: 2, H: 6, S: 2 },
+    { H: [13, 12], C: [11] },
+    '2H'
+  );
+  assert.equal(node.exp, '2H');
+}
+
 // A 1-level minor overcall does not use the 10+ major-suit exception.
 {
   const node = assessOpeningOvercall(
@@ -781,4 +792,4 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, 'P');
 }
 
-console.log('Bridge bidding regression tests passed (54 cases).');
+console.log('Bridge bidding regression tests passed (55 cases).');
