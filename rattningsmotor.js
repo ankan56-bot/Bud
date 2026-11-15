@@ -503,7 +503,8 @@ var Rattning = (function(){
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
-    var vd=h.singles().some(function(s){return h.L[s]===0});
+    var voids=SU.filter(function(s){return h.L[s]===0;});
+    var vd=voids.length>0;
     var exp,why;
     var means=function(c){
       if(!T_){
@@ -519,13 +520,19 @@ var Rattning = (function(){
       if(c==='5H')return '2 ess utan trumfdam.';
       if(c==='5S')return '2 ess med trumfdam.';
       if(c==='5N')return '3 ess och renons.';
+      if(/^6[CDHS]$/.test(c))return '2 ess och renons i den bjudna färgen.';
       return null;
     };
 
     if (T_) {
         if (kc === 0 || kc === 3) exp = (kc === 3 && vd) ? '5N' : '5C';
         else if (kc === 1 || kc === 4) exp = '5D';
-        else exp = q ? '5S' : '5H';
+        else if (voids.length===1) {
+          var voidSuit=voids[0];
+          exp=(SU.indexOf(voidSuit)>SU.indexOf(T_)?'6'+T_:'6'+voidSuit);
+        } else if (voids.length>1) {
+          return NC('Två ess och flera renonser: Nordisk standard anger 6 i färg för renons, men väljer inte vilken renons som ska visas.', means, 'Blackwood 5 ess');
+        } else exp = q ? '5S' : '5H';
     } else {
         if (h.aces === 0) exp = '5C';
         else if (h.aces === 1) exp = '5D';
