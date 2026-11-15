@@ -1,25 +1,30 @@
 # Fleranvändarstöd för budgivningen
 
 ## Aktuellt läge
-Budgivningen i `Budtraning.html` stöder nu två spelformer:
+Rummet har nu ett gemensamt lobbyflöde:
+- Första anslutna spelaren väljer **1–4 spelare**.
+- **1 spelare:** väljer valfri plats eller styr både Nord och Syd.
+- **2 spelare:** väljer varsin plats Nord/Syd; Öst och Väst är Buddie.
+- **3 spelare:** väljer valfri plats; Buddie fyller den fjärde platsen.
+- **4 spelare:** alla fyra platser är mänskliga.
+- Namn, spelar-ID och plats synkroniseras mellan anslutna enheter. Namn är valfritt.
+- Lobby visar **Väntar på spelare** tills det begärda antalet spelare har valt plats.
+- Rumsinställning och egen plats sparas lokalt så att enheten kan återansluta efter att webbläsaren stängts.
+- Platsbyte är låst under en pågående giv; platsen kan lämnas när given är klar.
 
-- **Ensam mot tre robotar:** en människa väljer Nord eller Syd; de tre övriga platserna sköts automatiskt.
-- **Två människor:** Nord och Syd är mänskliga platser; Öst och Väst är robotar. Det fungerar även när spelarna sitter på varsin enhet i samma rum.
-- **Båda på en enhet:** båda N/S-platserna styrs manuellt, med robotar i Öst/Väst.
+## Gemensam budgivning
+Varje giv har en explicit lista över mänskliga platser (`humanSeats`). Alla övriga platser är Buddie. Befintlig `botCall`, `legal` och `advance` används fortsatt; ingen separat uppsättning bridgebudregler har skapats.
 
-Spelformen sparas lokalt och skickas med i den synkroniserade givinformationen. Äldre sparade givarsessioner utan platsinställning tolkas fortsatt som två mänskliga N/S-platser, så befintliga träningsrum behåller sitt beteende.
+Tema och budgivningsläge synkroniseras i rummet. Gemensamma åtgärder som start, ny giv, omspel och ångra skickas till en vald rumssamordnare så att flera samtidiga tryck inte ska skapa flera olika givar. Bud från mänskliga spelare fortsätter att synkroniseras som tidigare.
 
-## Botfördelning och budmotor
-Varje giv har en explicit lista över mänskliga platser (`humanSeats`). Alla övriga platser är robotar. Den befintliga `botCall`, `legal` och `advance` används fortsatt; ingen separat uppsättning bridgebudregler har skapats.
+## Transport och begränsningar
+Rumsmeddelanden transporteras via ntfy. Spelarlista hålls aktuell med återkommande närvaromeddelanden och gamla deltagare tas bort efter timeout. Platskonflikter avgörs deterministiskt mellan klienterna. Det är dock inte en serverbaserad transaktionell låsning: vid samtidiga anslutningar eller nätverksavbrott kan det fortfarande uppstå tillfälliga skillnader. Därför krävs praktiskt test med två separata enheter innan funktionen betraktas som produktionssäker.
 
 ## Fristående sessionskärna
-`budgivning-session.js` är en UI-oberoende sessionsmodell för 1–4 mänskliga platser. Den använder injicerade funktioner för budvalidering och botbud och duplicerar därför inte bridgebudreglerna. Den är testad separat och utgör grund för fortsatt utveckling av sessioner.
+`budgivning-session.js` är en UI-oberoende sessionsmodell för 1–4 mänskliga platser. Den använder injicerade funktioner för budvalidering och botbud och duplicerar därför inte bridgebudreglerna.
 
 ## Avgränsning
 Den här etappen gäller budgivning och automatisk turhantering. Kortspel med en mänsklig spelare och tre kortspelsrobotar är ännu inte implementerat. DDS används inte som ersättning för en dold-informations-AI; kortspelsroboten måste senare fatta beslut utifrån endast den information en spelare lagligen känner till.
 
 ## Tester
-GitHub Actions kör:
-- sessionskärnans Node-tester
-- syntaxkontroll av inline-JavaScript i `Budtraning.html`
-- kompatibilitetskontroll för äldre sessioner utan `humanSeats`
+GitHub Actions kör sessionskärnans Node-tester, syntaxkontroll av inline-JavaScript och regressionskontroller av lobby, närvaro, namn, återanslutning och gemensamma åtgärder.
