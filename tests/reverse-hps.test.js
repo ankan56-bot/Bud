@@ -1167,7 +1167,7 @@ function assessReverse(shape, honors) {
 
 // After 1C-2C, a balanced 18-HCP opener chooses 3NT before a minor game.
 {
-  const opener = ['CA', 'CK', 'CQ', 'C2', 'DA', 'DK', 'D2', 'H Q', 'H J', 'H2', 'S J', 'S2', 'S3'].map(x => x.replace(' ', ''));
+  const opener = ['CA', 'CK', 'C2', 'C3', 'DA', 'DK', 'D2', 'HQ', 'H2', 'H3', 'SQ', 'S2', 'S3'];
   const responder = ['C3', 'C4', 'C5', 'C6', 'D3', 'D4', 'D5', 'H3', 'H4', 'H5', 'S4', 'S5', 'S6'];
   const hands = makeDealFromPair('S', opener, responder);
   const bids = [
@@ -1183,10 +1183,7 @@ function assessReverse(shape, honors) {
 // when all four suits are stopped and partnership HCP reaches 26.
 {
   const opener = ['DA', 'DQ', 'D2', 'D3', 'CA', 'CK', 'C2', 'C3', 'HK', 'H2', 'H3', 'SK', 'S2'];
-  const responder = ['SA', 'S3', 'S4', 'S5', 'HK2', 'H4', 'H5', 'DK', 'D4', 'D5', 'CQ', 'C4', 'C5'];
-  // Normalize the responder's cards to unique physical cards.
-  responder[4] = 'H6';
-  responder[7] = 'D6';
+  const responder = ['SA', 'SQ', 'S4', 'S5', 'HQ', 'HJ', 'H4', 'DJ', 'D4', 'D5', 'CJ', 'C4', 'C5'];
   const hands = makeDealFromPair('S', opener, responder);
   const bids = [
     { s: 'S', c: '1D' }, { s: 'W', c: 'P' },
