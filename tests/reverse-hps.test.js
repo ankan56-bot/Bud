@@ -874,9 +874,12 @@ function assessReverse(shape, honors) {
     { s: 'N', c: '1H' }, { s: 'E', c: 'P' },
     { s: 'S', c: '2N' }, { s: 'W', c: 'P' }, { s: 'N', c: '3C' }
   ];
-  const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 4);
-  assert.equal(node.exp, null);
-  assert.match(node.why, /Flera sidofärger är singel/i);
+  const state = { hands, dealer: 'N', bids };
+  const raw = Rattning.nodeForRaw(state, 4);
+  assert.equal(raw.exp, null);
+  assert.match(raw.why, /Flera sidofärger är singel/i);
+  const node = Rattning.nodeFor(state, 4);
+  assert.equal(node.exp, '4H', 'The separate game-point safety check still finds the mandatory major game after Stenberg.');
 }
 
 // A new suit over a weak two is forcing, but the opener's exact rebid is unspecified.
