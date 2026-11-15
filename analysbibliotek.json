@@ -311,7 +311,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Observera: motorn tolkar senare 4NT som RKC med hjärter som trumf, men överföringsaccepten i sig verifierar inte separat en 8-korts fit.",
           "branches": [
             {
               "call": "Pass",
@@ -370,7 +370,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning; 2♥ efter överföring visar minst två hjärter enligt motorbeskrivningen.",
+            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen. Exakt hjärterlängd/stöd är inte uttryckligen lovat.",
             "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
@@ -624,7 +624,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Observera: motorn tolkar senare 4NT som RKC med hjärter som trumf, men överföringsaccepten i sig verifierar inte separat en 8-korts fit.",
           "branches": [
             {
               "call": "Pass",
@@ -683,7 +683,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning; 2♥ efter överföring visar minst två hjärter enligt motorbeskrivningen.",
+            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen. Exakt hjärterlängd/stöd är inte uttryckligen lovat.",
             "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
@@ -743,7 +743,7 @@
             "2♠"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem spader, eller 4♠ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat.",
+          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: 3NT med jämn hand och exakt fem spader, eller 4♠ med minst sex. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. Observera: motorn tolkar senare 4NT som RKC med spader som trumf, men överföringsaccepten i sig verifierar inte separat en 8-korts fit.",
           "branches": [
             {
               "call": "Pass",
@@ -802,7 +802,7 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning; 2♠ efter överföring visar minst två spader enligt motorbeskrivningen.",
+            "opener": "15–17 hp, balanserad 1NT-hand; 2♠ fullföljer den artificiella överföringen. Exakt spaderlängd/stöd är inte uttryckligen lovat.",
             "responder": "Minst fem spader; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
@@ -6610,7 +6610,7 @@
     },
     {
       "id": "T43_1NT_4NT_ENDPOINTS",
-      "title": "1NT – 4NT: essfråga utan trumf och RKC efter fit",
+      "title": "1NT – 4NT: fyr-essfråga utan trumf och RKC efter överföring/fit",
       "tags": [
         "1NT",
         "4NT",
@@ -6673,7 +6673,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 med hjärter som trumf efter fullföljd hjärteröverföring.",
-          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp.",
+          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Systemlucka att bevaka: den artificiella överföringsaccepten lovar inte uttryckligen 2+ kort i trumffärgen, medan motorn ändå tolkar 4NT som RKC i färgen. Ingen 8-kortsfitkontroll görs i denna sekvens.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt hjärteröverföringen.",
             "responder": "Minst fem hjärter och slamintresse; 4NT används som RKC om den vägen väljs."
@@ -6692,7 +6692,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC 1430 med spader som trumf efter fullföljd spaderöverföring.",
-          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp.",
+          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Systemlucka att bevaka: den artificiella överföringsaccepten lovar inte uttryckligen 2+ kort i trumffärgen, medan motorn ändå tolkar 4NT som RKC i färgen. Ingen 8-kortsfitkontroll görs i denna sekvens.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen.",
             "responder": "Minst fem spader och slamintresse; 4NT används som RKC om den vägen väljs."
