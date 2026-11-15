@@ -127,3 +127,6 @@ Senaste AI-seat regression: GitHub Actions körning `43658949390` passerade med 
 - AI-kod ska få `createSeatView(gameState, seat, publicState)`-resultatet och aldrig själva `gameState`-objektet. Fullständiga händer får bara användas av givhantering och separat efterhandskontroll.
 - Dummy får läggas i offentlig vy först när `dummyExposed === true`.
 - Detta är en testad arkitekturgrund, inte en färdig spelande agent eller spelmotor.
+
+
+Fördjupningen av dubblingsfallen finns i `testdata/uncovered_analysis_47.md`. Av 47 ej täckta positioner förekommer dubbling i 16, och de är uppdelade efter var i auktionen luckan uppstår: svar efter motståndarens dubbling av öppningen, dubblerarens återbud efter partnerns svar, ny motståndarinblandning och övriga passpositioner. Detta ska styra nästa granskning av dispatchlogiken.
