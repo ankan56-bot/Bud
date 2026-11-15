@@ -22,6 +22,16 @@ function response(opening, overcall, cards) {
   return Rattning.nodeFor({ hands: { S: cards }, dealer: "W", bids }, 3);
 }
 
+test("audited inkliv-05 deal: 8 hp and five-card heart support calls 4H", () => {
+  const cards = ["D14","H5","H7","D3","H12","C9","C3","C12","H6","S7","D7","H10","D2"];
+  assert.equal(response("1C", "1H", cards).exp, "4H");
+});
+
+test("four-card support with only 4 hp does not receive an invented raise", () => {
+  const result = response("1C", "1H", hand([9,7,4],[13,12,8,6],[9,7,4],[9,6]));
+  assert.equal(result.exp, null);
+});
+
 test("one-level overcall response: support raises follow 6-9 hp and 3/4/5-card support", () => {
   assert.equal(response("1C", "1H", hand([9,7,4],[13,12,11],[8,6,3],[9,6,2,3])).exp, "2H");
   assert.equal(response("1C", "1H", hand([9,7,4],[13,12,11,8],[11,8,6],[9,6,2])).exp, "3H");
