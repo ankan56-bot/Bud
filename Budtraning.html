@@ -201,7 +201,7 @@ var REF="REGLER (enda källan – Nordisk standard 2012-08-22). Förkortningar: 
 
 function side(s){return s==='N'||s==='S'?0:1}
 function isBot(s,st){var humans=st&&Array.isArray(st.humanSeats)?st.humanSeats:['N','S'];return !humans.includes(s)}
-function roomSeatOwners(){var owners={};Object.keys(roomPlayers).sort().forEach(function(id){var p=roomPlayers[id];if(!p||!p.seat)return;if(p.seat==='X'){if(!owners.N)owners.N=id;if(!owners.S)owners.S=id}else if(SEATS.indexOf(p.seat)>=0&&!owners[p.seat])owners[p.seat]=id});return owners}
+function roomSeatOwners(){var owners={},now=Date.now();Object.keys(roomPlayers).sort().forEach(function(id){var p=roomPlayers[id];if(!p||!p.seat||id!==playerId&&now-(p.at||0)>=45000)return;if(p.seat==='X'){if(!owners.N)owners.N=id;if(!owners.S)owners.S=id}else if(SEATS.indexOf(p.seat)>=0&&!owners[p.seat])owners[p.seat]=id});return owners}
 function roomHumanSeats(){var o=roomSeatOwners();return SEATS.filter(function(s){return !!o[s]})}
 function roomAssignedPlayers(){var o=roomSeatOwners(),ids=[];Object.keys(o).forEach(function(s){if(ids.indexOf(o[s])<0)ids.push(o[s])});return ids}
 function roomReady(){var n=roomAssignedPlayers().length;if(!roomConfig.count||n!==roomConfig.count)return false;if(roomConfig.count===2){var o=roomSeatOwners();return !!o.N&&!!o.S&&o.N!==o.S}return n===roomConfig.count}
