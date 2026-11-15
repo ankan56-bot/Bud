@@ -758,3 +758,7 @@ Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen
 - Riktade tester för båda högfärgerna: 4/4 godkända (minimum avslår, tillägg accepterar).
 - Analysbiblioteket har kompletterats med spaderträdet T45. Biblioteket är nu v0.6.5, 45 träd och 271 noder.
 - Rättningsmotorn är v7.4.
+
+- Extra RKC-säkerhet: handen med alla fem nyckelkort (fyra ess + trumfkungen) har inget uttryckligt svar i den dokumenterade 1430-tabellen. Motorn lämnar nu detta fall ej täckt i stället för att felaktigt klassificera det som två nyckelkort. Två ytterligare tester täcker detta för både hjärter och spader.
+- RKC-testsviten omfattar nu 16 kontroller, inklusive naturligt etablerad fit efter 1M–2M och Stenbergfit efter 1M–2NT.
+- Rättningsmotorn uppdaterad till v7.5.
