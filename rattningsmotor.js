@@ -412,6 +412,9 @@ var Rattning = (function(){
       return null};
     if(r==='2N'){exp=hp<=8?'3'+o:'4'+o;alt=hp>=9&&maj(o)?['3N']:[];why=hp<=8?'6-8 hp: minimum, 3 i färgen.':'9-10 hp: maximum, 4 i färgen.';return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:true}}
     if(r==='3'+o){exp=hp<=8?'P':'4'+o;alt=[];why=hp<=8?'6-8 hp: pass.':'9-10 hp: maximum, utgång 4 i färgen.';return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};}
+    if(isBid(r)&&r[1]!==o&&r[1]!=='N'&&L[r[1]]>=5){
+      return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa'};
+    }
     return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'svag tvåa'};
   }
 
@@ -441,7 +444,10 @@ var Rattning = (function(){
 
     if(r==='2N'){
       var sg=h.singles().filter(function(s){return L[s]===1&&s!==o});
-      if(sg.length){var s1=sg[0];exp='3'+s1;why='Singel i '+SYM[s1]+': visa den på 3-nivå.';if(sg.length>1)alt=sg.slice(1).map(function(s){return '3'+s});soft=true}
+      if(sg.length>1){
+        return {exp:null,alt:[],why:'Flera sidofärger är singel. Systemunderlaget anger ingen prioritet mellan dem; välj inte ett godtyckligt 3-bud.',means:means,conv:'Stenberg'};
+      }
+      if(sg.length===1){var s1=sg[0];exp='3'+s1;why='Singel i '+SYM[s1]+': visa den på 3-nivå.';soft=true}
       else if(h.htp(o)>=15){exp='3'+o;why=h.htp(o)+' htp utan singel: 3 i färgen (15+).';}
       else if(h.bal&&h.hp>=12&&h.hp<=14){exp='3N';why=h.hp+' hp, balanserad hand utan singel: 3NT.'}
       else return {exp:null,alt:[],why:'Efter Stenberg: utan 15+ htp, singel eller balanserad 12-14 hp anger dokumentet inte budet.',means:means,conv:'Stenberg'};
@@ -450,9 +456,12 @@ var Rattning = (function(){
     if(rs===o){
       if(lv(r)===2&&maj(o)){var t=h.htp(o);
         if(t>=20){exp='4'+o;why=t+' htp: utgång (20+).'}
-        else if(t>=17){var sg2=h.singles().filter(function(s){return L[s]<=1&&s!==o});
-          if(sg2.length){exp=lowest(sg2[0],r);alt=['3'+o];why=t+' htp med singel: ny färg (17-19).'}
-          else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (17-19, invit).'}}
+        else if(t>=17){
+          var sg2=SU.filter(function(s){return s!==o&&L[s]===1});
+          if(sg2.length>1)return {exp:null,alt:[],why:'17-19 HTP och singel i flera sidofärger. Systemunderlaget anger ingen prioritet mellan färgerna; välj inte ett godtyckligt återbud.',means:means,conv:'trumfstöd'};
+          if(sg2.length===1){exp=lowest(sg2[0],r);alt=['3'+o];why=t+' htp med singel: ny färg (17-19).'}
+          else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (17-19, invit).'}
+        }
         else{exp='P';why=t+' htp: högst 16, pass.'}
         return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
       if(!maj(o)&&lv(r)>=2&&h.hp<=14){
@@ -1056,27 +1065,26 @@ var Rattning = (function(){
 
     // Motståndarinblandning efter 1NT-öppning
     if(oppAfter.length){
-      if (c1=== '1N' && d===1 && oppAfter.length===1) {
-          var oppBid = oppAfter[0].c;
-          if (!opener) {
-              if (b.c==='X') return {exp:'X', alt:[], why:'Upplysningsdubbling: invit+, 3+ i objudna färger.', conv:'dubbling'};
-              if (isBid(b.c) && st_(b.c) !== 'N') {
-                  if (lv(b.c) === 2) return {exp:b.c, alt:[], why:'Naturligt, invit med 5+ färg (Stayman/överföring avstängt).', conv:'inkliv'};
-                  if (lv(b.c) === 3) return {exp:b.c, alt:[], why:'Naturligt, utgångskrav med 5+ färg.', conv:'inkliv'};
-              }
-          }
+      if(c1==='1N'&&d===1&&oppAfter.length===1&&!opener){
+        var interferenceSuit=oppAfter[0].c[1];
+        if(b.c==='X'){
+          var unbidAfterNT=SU.filter(function(s){return s!==interferenceSuit;});
+          if(!unbidAfterNT.every(function(s){return h.L[s]>=3;}))
+            return NC('Upplysningsdubbling efter 1NT kräver minst invitstyrka och 3+ kort i alla objudna färger; handen saknar minst ett uttryckligt fördelningsvillkor.');
+          return NC('Handen har 3+ kort i objudna färger, men den exakta styrkegränsen för minst invit efter 1NT är inte numeriskt definierad i REF. Ingen automatisk dubblingsrekommendation ges.');
+        }
+        if(isBid(b.c)&&st_(b.c)!=='N'&&(lv(b.c)===2||lv(b.c)===3)){
+          if(h.L[st_(b.c)]<5)
+            return NC('Naturligt färgbud efter motståndarinkliv över 1NT kräver minst 5 kort i färgen.');
+          return NC((lv(b.c)===2?'Invitstyrkan':'Utgångskravet')+' för naturligt färgbud efter motståndarinkliv över 1NT saknar numerisk handgräns i REF. Färglängden räcker inte ensam för automatisk rättning.');
+        }
       }
 
-      if (d===1 && oppAfter.length===1 && opener && b.c==='X') {
-          if (h.L[st_(f)] === 3) return {exp:'X', alt:[], why:'Stöddubbling: exakt 3-korts stöd i öppningsfärgen.', conv:'dubbling'};
-          return {exp:'X', alt:[], why:'Dubbling visar 3-korts stöd (du har '+h.L[st_(f)]+').', conv:'dubbling'};
+      if(d===1&&oppAfter.length===1&&!opener&&b.c==='X'){
+        return NC('Negativ dubbling efter 1 i färg finns inte definierad i den fastställda REF-systemtexten. Den får därför inte räknas som ett automatiskt grundsystembud.');
       }
-      if (d===1 && oppAfter.length===1 && !opener && b.c==='X') {
-          var os = oppAfter[0].c[1];
-          var un = SU.filter(function(s){return s!==os});
-          var has4 = un.filter(function(s){return h.L[s]===4});
-          if (has4.length > 0) return {exp:'X', alt:[], why:'Negativ dubbling: visar 4-korts '+SYM[has4[0]]+'.', conv:'dubbling'};
-          return {exp:'X', alt:[], why:'Negativ dubbling: visar 4-kort i objuden högfärg.', conv:'dubbling'};
+      if(d===1&&oppAfter.length===1&&opener&&b.c==='X'){
+        return NC('Öppnarens dubbling efter motståndarinkliv och partnerns pass (reopenings-/stöddubbling) är inte definierad i REF-systemtexten.');
       }
       return nc('Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.');
     }
@@ -1523,7 +1531,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.7'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'6.8'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
