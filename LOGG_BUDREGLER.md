@@ -677,3 +677,28 @@ Slutlig verifiering mot motor 7.0:
 - 606 N/S-positioner: 535 täckta, 71 ej täckta (**88,3 %**).
 - Stört: 365/436 (**83,7 %**); ostört: 170/170 (**100 %**).
 - 140/140 giltiga och avslutade auktioner; 0 undantag och 0 olagliga rekommendationer.
+
+
+## Slutlig komplettering: dubblerarens återbud efter upplysningsdubbling
+
+Vid genomgång av REF-raden om upplysningsdubbling hittades en uttrycklig regel som saknades i motorn: **utan stöd får dubbleraren bjuda egen färg eller sang först med 18+ hp**.
+
+Detta är nu implementerat i den faktiska återbudsturen efter att partnern har svarat på upplysningsdubblingen:
+- Utan 3+ stöd i partnerns svarsfärg och under 18 hp: pass rekommenderas i stället för egen färg/NT.
+- Utan stöd och 18+ hp: egen färg/NT kan godkännas.
+- Med 3+ stöd i partnerns svarsfärg: återbudet lämnas ej täckt eftersom REF inte anger hur dubbleraren ska fortsätta med stöd.
+- Om handen har 18+ hp utan stöd men spelaren passar, lämnas exakt återbud ej täckt; REF anger styrkekravet men inte vilken färg/NT som ska väljas.
+
+Fyra riktade regressionstester täcker 18 hp-gränsen och stödgränsen. Grundsviten är nu **78/78**.
+
+### Slutlig motor 7.1-baslinje
+- 140 givare, alla tema-/lägesvaliderade.
+- 606 N/S-positioner: **538 täckta, 68 ej täckta (88,8 %)**.
+- Stört: 368/436 (**84,4 %**).
+- Ostört: 170/170 (**100 %**).
+- Dubblingstemat förbättrat från 47,1 % till **55,9 %**.
+- 140/140 auktioner avslutade och validerade.
+- 0 undantag och 0 olagliga kontraktsrekommendationer.
+- Kompletterande matchare: 25 kandidater, 15/15 tester.
+
+Kvarvarande luckor domineras av motståndarinblandning och partnerpass där REF saknar fortsättningsregler. De ska inte fyllas med antagna standardkonventioner.
