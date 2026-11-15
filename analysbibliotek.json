@@ -1,5 +1,5 @@
 {
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -350,6 +350,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, jämn fördelning, ingen femkortshögfärg",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 4
+                },
+                "S": {
+                  "max": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -436,6 +468,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, jämn fördelning, ingen femkortshögfärg",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 4
+                },
+                "S": {
+                  "max": 4
+                }
+              }
+            }
           }
         },
         {
@@ -459,6 +523,30 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, högfärgerna saknar fyrkortsstöd",
             "responder": "8–9 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, högfärgerna saknar fyrkortsstöd",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, jämn fördelning",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         },
         {
@@ -489,6 +577,30 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "8–9 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, jämn fördelning",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         }
       ]
@@ -529,6 +641,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "0–7 hp, enfärgshand, minst fem hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "0–7 hp, enfärgshand, minst fem hjärter",
+              "hcp": {
+                "min": 0,
+                "max": 7
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 0–7 hp, enfärgshand, minst fem hjärter"
+              ]
+            }
           }
         },
         {
@@ -552,6 +695,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "0–7 hp, minst fem hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "0–7 hp, minst fem hjärter",
+              "hcp": {
+                "min": 0,
+                "max": 7
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ]
@@ -592,6 +763,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "0–7 hp, enfärgshand, minst fem spader"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "0–7 hp, enfärgshand, minst fem spader",
+              "hcp": {
+                "min": 0,
+                "max": 7
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 0–7 hp, enfärgshand, minst fem spader"
+              ]
+            }
           }
         },
         {
@@ -615,6 +817,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "0–7 hp, minst fem spader"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "0–7 hp, minst fem spader",
+              "hcp": {
+                "min": 0,
+                "max": 7
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ]
@@ -648,6 +878,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "10–15 hp, jämn fördelning, ingen femkortshögfärg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "10–15 hp, jämn fördelning, ingen femkortshögfärg",
+              "hcp": {
+                "min": 10,
+                "max": 15
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 4
+                },
+                "S": {
+                  "max": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -692,6 +954,40 @@
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem hjärter",
             "responder": "6–9 hp, trumfstöd med minst tre hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningsstyrka, minst fem hjärter",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningsstyrka, minst fem hjärter"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, trumfstöd med minst tre hjärter",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, trumfstöd med minst tre hjärter"
+              ]
+            }
           }
         },
         {
@@ -720,6 +1016,32 @@
           "handProfile": {
             "opener": "Öppningsstyrka med tillägg, minst fem hjärter",
             "responder": "Begränsad höjning, 6–9 hp, tre- eller fyrkorts hjärterstöd"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningsstyrka med tillägg, minst fem hjärter",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningsstyrka med tillägg, minst fem hjärter"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Begränsad höjning, 6–9 hp, tre- eller fyrkorts hjärterstöd",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              }
+            }
           }
         }
       ]
@@ -761,6 +1083,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "10+ hp, minst fyra hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "10+ hp, minst fyra hjärter",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -802,6 +1156,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "10+ hp, minst fyra spader"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "10+ hp, minst fyra spader",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -850,6 +1236,35 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "8–9 hp, jämn fördelning, fyrkortshjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, jämn fördelning, fyrkortshjärter",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         },
         {
@@ -871,6 +1286,38 @@
           "handProfile": {
             "opener": "16–17 hp, fyra hjärter eller lämpliga stödvärden enligt parets överenskommelse",
             "responder": "Cirka 8–9 hp och minst fyra hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp, fyra hjärter eller lämpliga stödvärden enligt parets överenskommelse",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 8–9 hp och minst fyra hjärter",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -915,6 +1362,40 @@
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem hjärter",
             "responder": "10–12 hp, minst fyra hjärter, trumfstöd"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningsstyrka, minst fem hjärter",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningsstyrka, minst fem hjärter"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "10–12 hp, minst fyra hjärter, trumfstöd",
+              "hcp": {
+                "min": 10,
+                "max": 12
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 10–12 hp, minst fyra hjärter, trumfstöd"
+              ]
+            }
           }
         },
         {
@@ -932,6 +1413,35 @@
           "handProfile": {
             "opener": "Öppningshand med tillägg och minst fem hjärter",
             "responder": "Invitstyrka enligt parets system, normalt 10–12 hp, med hjärterstöd"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med tillägg och minst fem hjärter",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med tillägg och minst fem hjärter"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Invitstyrka enligt parets system, normalt 10–12 hp, med hjärterstöd",
+              "hcp": {
+                "min": 10,
+                "max": 12
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Invitstyrka enligt parets system, normalt 10–12 hp, med hjärterstöd"
+              ]
+            }
           }
         }
       ]
@@ -976,6 +1486,40 @@
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem spader",
             "responder": "6–9 hp, minst tre spader, trumfstöd"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningsstyrka, minst fem spader",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningsstyrka, minst fem spader"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader, trumfstöd",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, trumfstöd"
+              ]
+            }
           }
         },
         {
@@ -1004,6 +1548,37 @@
           "handProfile": {
             "opener": "Minst fem spader och tillägg utöver öppningsminimum",
             "responder": "6–9 hp, minst tre spader"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader och tillägg utöver öppningsminimum",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem spader och tillägg utöver öppningsminimum"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              }
+            }
           }
         }
       ]
@@ -1048,6 +1623,32 @@
           "handProfile": {
             "opener": "Öppningsstyrka, minst fem hjärter",
             "responder": "Svag hand, normalt femkortsstöd, spärrande trumfstöd"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningsstyrka, minst fem hjärter",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningsstyrka, minst fem hjärter"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Svag hand, normalt femkortsstöd, spärrande trumfstöd",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Svag hand, normalt femkortsstöd, spärrande trumfstöd",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         }
       ]
@@ -1083,6 +1684,41 @@
           "handProfile": {
             "opener": "16–17 hp, jämn fördelning, lämpliga honnörer",
             "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp, jämn fördelning, lämpliga honnörer",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 16–17 hp, jämn fördelning, lämpliga honnörer"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, jämn fördelning, ingen femkortshögfärg",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 4
+                },
+                "S": {
+                  "max": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -1116,6 +1752,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "10–15 hp, jämn fördelning, ingen fyrkortshögfärg att undersöka"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "10–15 hp, jämn fördelning, ingen fyrkortshögfärg att undersöka",
+              "hcp": {
+                "min": 10,
+                "max": 15
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 3
+                },
+                "S": {
+                  "max": 3
+                }
+              }
+            }
           }
         }
       ]
@@ -1175,6 +1843,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem hjärter, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1207,6 +1906,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem hjärter, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1234,6 +1964,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem hjärter, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1261,6 +2022,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem hjärter, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1282,6 +2074,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem hjärter, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ]
@@ -1341,6 +2164,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem spader, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1373,6 +2227,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem spader, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1400,6 +2285,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem spader, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1427,6 +2343,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem spader, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -1448,6 +2395,37 @@
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
             "responder": "8–9 hp, minst fem spader, invit efter överföring"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15–17 hp, jämn hand; stöd och honnörskvalitet avgör"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "8–9 hp, minst fem spader, invit efter överföring",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ]
@@ -1503,6 +2481,40 @@
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem hjärter, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem hjärter, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1531,6 +2543,40 @@
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem hjärter, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem hjärter, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1559,6 +2605,40 @@
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem hjärter, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem hjärter, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1587,6 +2667,40 @@
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem hjärter, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem hjärter, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1604,6 +2718,40 @@
           "handProfile": {
             "opener": "Minst fem hjärter, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem hjärter, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem hjärter, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre hjärter, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre hjärter, bedömer honnörer och fördelning"
+              ]
+            }
           }
         }
       ]
@@ -1659,6 +2807,40 @@
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem spader, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1687,6 +2869,40 @@
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem spader, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1715,6 +2931,40 @@
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem spader, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1743,6 +2993,40 @@
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem spader, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+              ]
+            }
           }
         },
         {
@@ -1760,6 +3044,40 @@
           "handProfile": {
             "opener": "Minst fem spader, öppningsstyrka med tillägg",
             "responder": "6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader, öppningsstyrka med tillägg",
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Minst fem spader, öppningsstyrka med tillägg"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "6–9 hp, minst tre spader, bedömer honnörer och fördelning",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 3
+                }
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 6–9 hp, minst tre spader, bedömer honnörer och fördelning"
+              ]
+            }
           }
         }
       ]
@@ -1810,6 +3128,29 @@
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, jämn fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Utgångsstyrka; söker 4–4-fit eller väljer sang",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Utgångsstyrka; söker 4–4-fit eller väljer sang",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -1833,6 +3174,29 @@
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, jämn fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Utgångsstyrka; söker 4–4-fit eller väljer sang",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Utgångsstyrka; söker 4–4-fit eller väljer sang",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -1861,6 +3225,29 @@
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, jämn fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Utgångsstyrka; söker 4–4-fit eller väljer sang",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Utgångsstyrka; söker 4–4-fit eller väljer sang",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -1889,6 +3276,29 @@
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, jämn fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Utgångsstyrka; söker 4–4-fit eller väljer sang",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Utgångsstyrka; söker 4–4-fit eller väljer sang",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -1908,6 +3318,29 @@
           "handProfile": {
             "opener": "20–21 hp, jämn fördelning",
             "responder": "Utgångsstyrka; söker 4–4-fit eller väljer sang"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, jämn fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Utgångsstyrka; söker 4–4-fit eller väljer sang",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Utgångsstyrka; söker 4–4-fit eller väljer sang",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         }
       ]
@@ -1952,6 +3385,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -1981,6 +3447,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2006,6 +3505,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2037,6 +3569,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2058,6 +3623,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2079,6 +3677,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2098,6 +3729,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
             "responder": "Fyra hjärter, minst cirka 10 hp"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra hjärter",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra hjärter, minst cirka 10 hp",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -2142,6 +3805,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2171,6 +3867,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2196,6 +3925,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2227,6 +3989,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2248,6 +4043,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2269,6 +4097,39 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         },
         {
@@ -2288,6 +4149,38 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
             "responder": "Fyra spader, minst cirka 10 hp"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, minst fyra spader",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Fyra spader, minst cirka 10 hp",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 4
+                }
+              }
+            }
           }
         }
       ]
@@ -2332,6 +4225,42 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, ingen fyrkortshögfärg",
             "responder": "Jämn hand, ingen fyrkortshögfärg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning, ingen fyrkortshögfärg",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 3
+                },
+                "S": {
+                  "max": 3
+                }
+              }
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Jämn hand, ingen fyrkortshögfärg",
+              "balanced": true,
+              "suitLengths": {
+                "H": {
+                  "max": 3
+                },
+                "S": {
+                  "max": 3
+                }
+              }
+            }
           }
         },
         {
@@ -2361,6 +4290,29 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "Cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 8–9 hp för invit eller minst cirka 10 hp för utgång",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              }
+            }
           }
         },
         {
@@ -2386,6 +4338,30 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "Cirka 8–9 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 8–9 hp, jämn fördelning",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         },
         {
@@ -2417,6 +4393,30 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "Cirka 8–9 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 8–9 hp, jämn fördelning",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         },
         {
@@ -2438,6 +4438,29 @@
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
             "responder": "Cirka 8–9 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15 hp eller svaga spelvärden",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15 hp eller svaga spelvärden",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 8–9 hp, jämn fördelning",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         },
         {
@@ -2457,6 +4480,29 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "Minst cirka 10 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst cirka 10 hp, jämn fördelning",
+              "hcp": {
+                "min": 10
+              },
+              "balanced": true
+            }
           }
         },
         {
@@ -2478,6 +4524,32 @@
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden",
             "responder": "Cirka 8–9 hp, jämn fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp eller motsvarande goda spelvärden",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 16–17 hp eller motsvarande goda spelvärden"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 8–9 hp, jämn fördelning",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "balanced": true
+            }
           }
         }
       ]
@@ -2523,6 +4595,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2552,6 +4652,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2577,6 +4705,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2613,6 +4769,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2634,6 +4818,33 @@
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15 hp eller svaga spelvärden",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15 hp eller svaga spelvärden",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2655,6 +4866,37 @@
           "handProfile": {
             "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp, jämn hand, högst två kort i trumffärgen",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 16–17 hp, jämn hand, högst två kort i trumffärgen"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2674,6 +4916,33 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "Minst sex hjärter, normalt minst cirka 10 hp"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, normalt minst cirka 10 hp",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2695,6 +4964,36 @@
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex hjärter, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 6
+                }
+              }
+            }
           }
         }
       ]
@@ -2740,6 +5039,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2769,6 +5096,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2794,6 +5149,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2830,6 +5213,34 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2851,6 +5262,33 @@
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15 hp eller svaga spelvärden",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 15 hp eller svaga spelvärden",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2872,6 +5310,37 @@
           "handProfile": {
             "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp, jämn hand, högst två kort i trumffärgen",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 16–17 hp, jämn hand, högst två kort i trumffärgen"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2891,6 +5360,33 @@
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
             "responder": "Minst sex spader, normalt minst cirka 10 hp"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, jämn fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, normalt minst cirka 10 hp",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         },
         {
@@ -2912,6 +5408,36 @@
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
             "responder": "Minst sex spader, cirka 8–9 hp för invit"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
+              "hcp": {
+                "min": 16,
+                "max": 17
+              },
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: 16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst sex spader, cirka 8–9 hp för invit",
+              "hcp": {
+                "min": 8,
+                "max": 9
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 6
+                }
+              }
+            }
           }
         }
       ]
@@ -2971,6 +5497,27 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Svarshanden väljer mellan stöd, sang eller egen färg",
+              "manual": [
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -3000,6 +5547,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst trekortsstöd i hjärter, cirka 6–9 hp",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              }
+            }
           }
         },
         {
@@ -3028,6 +5597,27 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst trekortsstöd i hjärter och cirka 10+ hp",
+              "hcp": {
+                "min": 10
+              }
+            }
           }
         },
         {
@@ -3057,6 +5647,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Normalt fyrkortsstöd i hjärter och cirka 0–6 hp",
+              "hcp": {
+                "min": 0,
+                "max": 6
+              }
+            }
           }
         },
         {
@@ -3090,6 +5702,32 @@
               "Spaderstopper krävs; stopper bedöms separat."
             ],
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 6–10 hp, jämn hand, normalt högst två hjärter och spaderstopper",
+              "hcp": {
+                "min": 6,
+                "max": 10
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Cirka 6–10 hp, jämn hand, normalt högst två hjärter och spaderstopper"
+              ]
+            }
           }
         },
         {
@@ -3118,6 +5756,32 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem ruter och cirka 10+ hp; budet är forcing en rond enligt denna överenskommelse",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "D": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ],
@@ -3178,6 +5842,27 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Svarshanden väljer mellan stöd, sang eller egen färg",
+              "manual": [
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -3207,6 +5892,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst trekortsstöd i spader, cirka 6–9 hp",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              }
+            }
           }
         },
         {
@@ -3235,6 +5942,27 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst trekortsstöd i spader och cirka 10+ hp",
+              "hcp": {
+                "min": 10
+              }
+            }
           }
         },
         {
@@ -3264,6 +5992,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Normalt fyrkortsstöd i spader och cirka 0–6 hp",
+              "hcp": {
+                "min": 0,
+                "max": 6
+              }
+            }
           }
         },
         {
@@ -3297,6 +6047,32 @@
               "Hjärterstopper krävs; stopper bedöms separat."
             ],
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 10–12 hp, jämn hand, hjärterstopper och normalt högst två spader",
+              "hcp": {
+                "min": 10,
+                "max": 12
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Cirka 10–12 hp, jämn hand, hjärterstopper och normalt högst två spader"
+              ]
+            }
           }
         },
         {
@@ -3325,6 +6101,32 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "C": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ],
@@ -3385,6 +6187,27 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Svarshanden väljer mellan stöd, sang eller egen färg",
+              "manual": [
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -3414,6 +6237,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fyrkortsstöd i ruter, cirka 6–9 hp",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              }
+            }
           }
         },
         {
@@ -3442,6 +6287,27 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fyrkortsstöd i ruter och cirka 10+ hp",
+              "hcp": {
+                "min": 10
+              }
+            }
           }
         },
         {
@@ -3471,6 +6337,33 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem ruter och cirka 0–6 hp",
+              "hcp": {
+                "min": 0,
+                "max": 6
+              },
+              "suitLengths": {
+                "D": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -3500,6 +6393,32 @@
               "Begränsat ruterstöd anges i fritext och har ingen fastställd numerisk gräns."
             ],
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 6–10 hp, jämn hand, spaderstopper och begränsat ruterstöd",
+              "hcp": {
+                "min": 6,
+                "max": 10
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Cirka 6–10 hp, jämn hand, spaderstopper och begränsat ruterstöd"
+              ]
+            }
           }
         },
         {
@@ -3528,6 +6447,32 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem klöver och cirka 10+ hp; forcing en rond enligt denna överenskommelse",
+              "hcp": {
+                "min": 10
+              },
+              "suitLengths": {
+                "C": {
+                  "min": 5
+                }
+              }
+            }
           }
         }
       ],
@@ -3588,6 +6533,27 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Svarshanden väljer mellan stöd, sang eller egen färg",
+              "manual": [
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -3617,6 +6583,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fyrkortsstöd i klöver, cirka 6–9 hp",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              }
+            }
           }
         },
         {
@@ -3645,6 +6633,27 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fyrkortsstöd i klöver och cirka 10+ hp",
+              "hcp": {
+                "min": 10
+              }
+            }
           }
         },
         {
@@ -3674,6 +6683,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Normalt femkortsstöd i klöver och cirka 0–6 hp",
+              "hcp": {
+                "min": 0,
+                "max": 6
+              }
+            }
           }
         },
         {
@@ -3702,6 +6733,27 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fyrkortsspader och cirka 6+ hp; forcing en rond",
+              "hcp": {
+                "min": 6
+              }
+            }
           }
         },
         {
@@ -3730,6 +6782,32 @@
               "Hjärterstopper krävs; stopper bedöms separat."
             ],
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 6–10 hp, jämn hand och hjärterstopper",
+              "hcp": {
+                "min": 6,
+                "max": 10
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Cirka 6–10 hp, jämn hand och hjärterstopper"
+              ]
+            }
           }
         }
       ],
@@ -3790,6 +6868,27 @@
           "handProfile": {
             "opener": "Öppningshand med normal öppningsstyrka",
             "responder": "Svarshanden väljer mellan stöd, sang eller egen färg"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Svarshanden väljer mellan stöd, sang eller egen färg",
+              "manual": [
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            }
           }
         },
         {
@@ -3818,6 +6917,27 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst cirka 10 hp, normalt utan tre- eller fyrkortsstöd i hjärter",
+              "hcp": {
+                "min": 10
+              }
+            }
           }
         },
         {
@@ -3847,6 +6967,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst trekortsstöd i hjärter, cirka 6–9 hp",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              }
+            }
           }
         },
         {
@@ -3876,6 +7018,28 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Normalt fyrkortsstöd i hjärter och cirka 0–6 hp",
+              "hcp": {
+                "min": 0,
+                "max": 6
+              }
+            }
           }
         },
         {
@@ -3904,6 +7068,32 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Minst fem spader och cirka 6+ hp",
+              "hcp": {
+                "min": 6
+              },
+              "suitLengths": {
+                "S": {
+                  "min": 5
+                }
+              }
+            }
           }
         },
         {
@@ -3934,6 +7124,29 @@
               }
             },
             "authority": "analysis_only"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningshand med normal öppningsstyrka",
+              "manual": [
+                "Kvalitativt eller systemberoende villkor kräver manuell bedömning: Öppningshand med normal öppningsstyrka",
+                "Ingen numerisk handegenskap kunde utläsas säkert ur handprofilen."
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 6–10 hp, jämn hand, normalt utan trekortsstöd i hjärter",
+              "hcp": {
+                "min": 6,
+                "max": 10
+              },
+              "balanced": true
+            }
           }
         }
       ],
@@ -3956,5 +7169,12 @@
     },
     "noTrumpRestriction": "I sang (NT) räknas inga fördelnings- eller stöldpoäng för renons, singel eller dubbelton. Trumflängdsbonus för 9 eller 10+ gemensamma kort gäller inte i sang."
   },
-  "handConditionSchemaVersion": 1
+  "handConditionSchemaVersion": 1,
+  "handProfileCoverage": {
+    "nodesWithProfiles": 114,
+    "nodesStructured": 114,
+    "roleProfiles": 228,
+    "machineCheckable": 184,
+    "manualOnly": 44
+  }
 }
