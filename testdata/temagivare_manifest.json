@@ -365,8 +365,8 @@
     "supplementaryCandidateCount": 5,
     "supplementaryApprovalStatus": "unreviewed",
     "supplementaryTestPath": "tests/supplementary-logic.test.js",
-    "supplementaryTestCount": 6,
-    "supplementaryTestsPassed": 6
+    "supplementaryTestCount": 7,
+    "supplementaryTestsPassed": 7
   },
   "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
 }
