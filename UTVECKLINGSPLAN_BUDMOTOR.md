@@ -102,4 +102,4 @@ Detta innebär inte att spelmotorn eller AI-spelarna byggs i detta delsteg. För
 
 De 47 ej täckta buden är nästa analysmål. De ska granskas mot budsekvens, handvillkor och befintlig systemdokumentation innan analysbibliotek eller kompletterande budlogik ändras. Referensauktionerna är genererade med samma befintliga system och är därför en täckningsbaslinje, inte oberoende facit. Klassificering typisk/gränsnära och DDS-kontroll återstår.
 
-Reproducerbar generator och tester finns i `testdata/generate-theme-deals.js` och `testdata/theme-deals.test.js`. GitHub Actions-workflow är tillagd, men dess första körning är ännu inte verifierad.
+Reproducerbar generator och tester finns i `testdata/generate-theme-deals.js` och `testdata/theme-deals.test.js`. GitHub Actions körning 43658747827 har passerat regenerering och dataset-/reproducerbarhetstester. Workflowet utökas även med testet för AI-positionernas informationsgräns.
