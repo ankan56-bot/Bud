@@ -924,7 +924,7 @@ function assessReverse(shape, honors) {
 // Two side singletons after Stenberg also have no documented priority.
 {
   const north = ['C2', 'D2', 'H14', 'H2', 'H3', 'H13', 'H4', 'H5', 'S14', 'S12', 'S2', 'S3', 'S4'];
-  const south = ['C14', 'C13', 'C12', 'C3', 'D14', 'D13', 'D12', 'D3', 'H6', 'H7', 'H8', 'S13', 'S11'];
+  const south = ['C14', 'C4', 'C5', 'D13', 'D4', 'D5', 'H6', 'H7', 'H8', 'H9', 'S5', 'S6', 'S7'];
   const hands = makeDealFromPair('N', north, south);
   const bids = [
     { s: 'N', c: '1H' }, { s: 'E', c: 'P' },
