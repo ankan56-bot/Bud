@@ -59,7 +59,7 @@ Samtliga 47 ej täckta bedömningar är pass i den genererade referensauktionen.
 | Svarshandens andra bud efter 1 i färg | 1 |
 | Handtyp eller fortsättning kan inte avgöras säkert | 1 |
 
-Den största gruppen gäller konkurrensbudgivning där motståndarna ingriper. Därefter kommer öppnarens återbud efter partnerns pass i konkurrensbudgivning och lägen där dokumentet inte specificerar budet för handen. Exakta budsekvenser, positioner och fyra händer finns i `testdata/uncovered_cases_47.json`.
+Den största gruppen gäller motståndarnas bud före den ej täckta positionen. En fördjupning visar att 22 av de 26 är egentliga konkurrens-/dubblingssituationer; de övriga fyra är försvarspass efter motståndarnas naturliga öppning och svar (1♣–1♠–2♣–5♣). Därefter kommer öppnarens återbud efter partnerns pass i konkurrensbudgivning och lägen där dokumentet inte specificerar budet för handen. Exakta budsekvenser, positioner och fyra händer finns i `testdata/uncovered_cases_47.json`.
 
 ## Körning
 
