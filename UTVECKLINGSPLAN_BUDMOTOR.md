@@ -191,3 +191,10 @@ Nya regressionstester finns i `testdata/hand-profile-conditions.test.js` och kö
 
 
 **Tillägg för T02, T03 och T05:** de fem noderna i dessa tre kompatibla träd har nu fått handprofiler direkt från trädens befintliga villkor. Ungefärliga intervall (t.ex. "cirka" och "normalt") är märkta för manuell bedömning. T01 har inte kompletterats eftersom dess Jacoby 2NT-konvention strider mot parets fastställda Stenberg 2NT.
+
+
+## Fördjupad granskning av konkurrens-/försvarsluckorna
+
+De 26 poster som i den första orsaksgrupperingen hamnade under motståndarnas bud har nu granskats mot `LOGG_BUDREGLER.md` och T29–T33. Förtydligande: 22 är egentliga konkurrens-/dubblingssituationer; fyra är försvarspass efter motståndarnas naturliga 1♣–1♠–2♣–5♣-sekvens. Rapporten `testdata/competition-gaps-26-audit.md` listar alla 26 positioner med handens HCP/fördelning och jämförelser med tidigare givexempel.
+
+Två tydliga handbaserade kandidater finns i T29–T33: `trumf-02-bid-3` matchar T29 men har en överlappning mellan 2♥ och spärrande 3♥ vid 6 HCP/fem hjärter; `trumf-05-bid-3` matchar T32:s 3♣-profil (4 HCP/fem klöver). Båda är fortfarande `analysis_only`. `dubbling-09-bid-3` (1♥–Dbl, 2 HCP/två hjärter) saknar ett definierat passalternativ i T33. Loggens Giv 7, 10, 13, 19, 21, 22, 24 och 25 ger strukturella jämförelser men ingen komplett regelkälla för de 26 fallen. Inga budregler har ändrats.
