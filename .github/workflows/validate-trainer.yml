@@ -1,7 +1,7 @@
 name: Validate bridge trainer
 on:
   push:
-    branches: [feature/two-player-dds, work/hps-reverse-audit]
+    branches: [feature/two-player-dds, work/hps-reverse-audit, feature/one-major-to-game-4nt]
   workflow_dispatch:
 jobs:
   validate:
@@ -60,6 +60,8 @@ jobs:
           NODE
       - name: Run supplementary matcher tests
         run: node tests/supplementary-logic.test.js
+      - name: Run major-suit RKC 1430 tests
+        run: node tests/rkc-1430-major.test.js
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
