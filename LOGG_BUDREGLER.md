@@ -702,3 +702,17 @@ Fyra riktade regressionstester täcker 18 hp-gränsen och stödgränsen. Grundsv
 - Kompletterande matchare: 25 kandidater, 15/15 tester.
 
 Kvarvarande luckor domineras av motståndarinblandning och partnerpass där REF saknar fortsättningsregler. De ska inte fyllas med antagna standardkonventioner.
+
+
+## Pausad konkurrensbudgivning – överlämning (2026-11-15)
+
+Konkurrensbudgivningen är pausad på användarens uttryckliga beslut. De kvarvarande ej täckta störda sekvenserna sparas som öppet arbete och ska inte lösas genom gissningar. Den senaste blandade baslinjen hade 68 ej täckta positioner, samtliga i störd budgivning; ostörd budgivning var 170/170 (100 %). De återstående orsakerna är främst motståndarnas inkliv efter vår öppning, partnerpass följt av fortsatt konkurrens, upprepade motståndarbud, svaga tvåor och dubblerarens återbud med stöd.
+
+Arbetet fortsätter på `work/undisturbed-validation` separat från konkurrensspåret. `work/hps-reverse-audit` bevaras som tidigare arbetsgren och `main` ändras inte.
+
+## Synkronisering av ostörd logik och analysnoder (2026-11-15)
+
+- Korrigerad gemensam trumflängdsbonus: 9 gemensamma trumfkort = +1; 10 eller fler = +2. Kortfärgspoäng (renons +3, singel +2, dubbelton +1 per hand) räknas separat i färgkontrakt med minst 8 gemensamma trumfkort. Sang ger inga sådana poäng.
+- Analysbiblioteket uppdaterat med Stenberg 2NT och återbud efter 1M–2M enligt motorversion 7.1.
+- Flera singletonfärger utan dokumenterad prioritet ger ingen automatisk rekommendation. Void är inte singleton.
+- Ännu ej verifierat: ny ostörd 140-givarskörning efter ändringen. Den ska dokumenteras först när CI/körning har bekräftat resultatet.
