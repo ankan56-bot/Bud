@@ -51,3 +51,32 @@ test("room entry has an optional persistent player name", () => {
   assert.ok(html.includes("esc(playerName)+' ('+NAME[me]+')'"));
   assert.match(html, /\.seatL \.fan,\.seatR \.fan\{flex-direction:column/);
 });
+
+test("shared room lobby supports player counts one through four and waiting seats", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  assert.match(html, /Hur många spelare\?/);
+  assert.match(html, /data-count=\"'\+n\+'\"/);
+  assert.match(html, /Väntar på spelare/);
+  assert.match(html, /Buddie/);
+  assert.match(html, /function roomHumanSeats\(\)/);
+  assert.match(html, /function roomReady\(\)/);
+});
+
+test("room membership persists and is synchronized with player names and seats", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  assert.match(html, /bt_player_id/);
+  assert.match(html, /bt_room_config_/);
+  assert.match(html, /type:'presence'/);
+  assert.match(html, /function announcePresence\(\)/);
+  assert.match(html, /function restoreRoomConfig\(\)/);
+  assert.match(html, /seatOwnerName\(s\)/);
+});
+
+test("shared actions are routed through a room coordinator", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  assert.match(html, /function roomCoordinator\(\)/);
+  assert.match(html, /function requestRoomAction\(action\)/);
+  assert.match(html, /type:'room-action'/);
+  assert.match(html, /requestRoomAction\('next'\)/);
+  assert.match(html, /requestRoomAction\('undo'\)/);
+});
