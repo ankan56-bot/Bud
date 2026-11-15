@@ -197,6 +197,9 @@ test("all Stenberg theme deals contain a genuine 13+ HTP, 4+ support 2NT respons
     assert.ok(shape[opening.c[1]] >= 4, deal.id + ": fewer than 4-card support");
     const htp = Rattning.H(deal.hands[response.s]).htp(opening.c[1]);
     assert.ok(htp >= 13, deal.id + ": Stenberg requires at least 13 HTP, got " + htp);
+    const judged = Rattning.judge({ hands: deal.hands, dealer: deal.dealer, bids: deal.bids });
+    const responseItem = judged.items.find(item => item.nr === responseIndex + 1);
+    assert.equal(responseItem.htp, htp, deal.id + ": Stenberg response should display HTP in the agreed suit");
     const node = Rattning.nodeFor({
       hands: deal.hands, dealer: deal.dealer, bids: deal.bids.slice(0, responseIndex + 1)
     }, responseIndex);
