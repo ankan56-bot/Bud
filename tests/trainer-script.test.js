@@ -48,5 +48,6 @@ test("room entry has an optional persistent player name", () => {
   assert.match(html, /Namn \(valfritt\)/);
   assert.match(html, /id="player-name"/);
   assert.match(html, /localStorage\.setItem\('bt_player_name',playerName\)/);
-  assert.match(html, /playerName\?'\+esc\(playerName\)\+' \('/);
+  assert.ok(html.includes("esc(playerName)+' ('+NAME[me]+')'"));
+  assert.match(html, /\.seatL \.fan,\.seatR \.fan\{flex-direction:column/);
 });
