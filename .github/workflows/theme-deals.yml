@@ -68,6 +68,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add testdata/theme_deals_140.json
           if ! git diff --cached --quiet; then
-            git commit -m "Update theme deal baseline for correction engine 7.1"
+            RULES_VERSION=$(sed -n "s/.*version:\x27\([^\x27]*\)\x27.*/\1/p" rattningsmotor.js | head -n 1)
+          git commit -m "Update theme deal baseline for correction engine ${RULES_VERSION}"
             git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
