@@ -263,3 +263,30 @@ test("Stenberg counts HCP plus support points only after 4+ trump support", () =
   assert.notEqual(result.exp, "2N");
   assert.notEqual(result.conv, "Stenberg");
 });
+
+
+test("partnership fit bonus is +1 for nine trumps and +3 for ten", () => {
+  const { Rattning } = loadRuntime();
+  const hand = (suits) => {
+    const ranks = {S:[2,3,4,5,6,7,8,9,10,11,12,13,14],
+                   H:[2,3,4,5,6,7,8,9,10,11,12,13,14],
+                   D:[2,3,4,5,6,7,8,9,10,11,12,13,14],
+                   C:[2,3,4,5,6,7,8,9,10,11,12,13,14]};
+    return Object.entries(suits).flatMap(([s,n]) => ranks[s].slice(0,n).map(r => s+r));
+  };
+
+  // Eight-card fit: 4-4 trumps, 3-3-3 side suits, no shortage points.
+  const eightA = hand({H:4,S:3,D:3,C:3});
+  const eightB = hand({H:4,S:3,D:3,C:3});
+  assert.equal(Rattning.partnershipPoints(Rattning.H(eightA),Rattning.H(eightB),"H"),0);
+
+  // Nine-card fit: one hand has a doubleton; +1 shortage and +1 fit bonus.
+  const nineA = hand({H:5,S:3,D:3,C:2});
+  const nineB = hand({H:4,S:3,D:3,C:3});
+  assert.equal(Rattning.partnershipPoints(Rattning.H(nineA),Rattning.H(nineB),"H"),2);
+
+  // Ten-card fit: both hands have a doubleton; +2 shortage and +3 fit bonus.
+  const tenA = hand({H:5,S:3,D:3,C:2});
+  const tenB = hand({H:5,S:3,D:3,C:2});
+  assert.equal(Rattning.partnershipPoints(Rattning.H(tenA),Rattning.H(tenB),"H"),5);
+});
