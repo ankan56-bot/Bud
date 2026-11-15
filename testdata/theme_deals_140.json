@@ -7,7 +7,7 @@
     "rulesEngine": "rattningsmotor.js",
     "rulesEngineVersion": "6.6",
     "rulesEngineBlobSha": "d4ce527e25000d447e3f8e9b688dcb4e5fa9b774",
-    "branchBase": "main"
+    "branchBase": "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
   },
   "generation": {
     "seedScheme": "(7919 * (indexWithinTheme + 1) + themeId.length * 104729 + (mode === 'ostord' ? 17 : 0)) >>> 0",
@@ -29,8 +29,8 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 578,
-      "ej_täckt": 49
+      "rätt": 583,
+      "ej_täckt": 47
     },
     "themeStats": {
       "alla": {
@@ -63,8 +63,8 @@
       },
       "rkc": {
         "deals": 10,
-        "bids": 111,
-        "uncovered": 2,
+        "bids": 118,
+        "uncovered": 0,
         "optional": 0,
         "wrong": 0
       },
@@ -91,7 +91,7 @@
       },
       "sang": {
         "deals": 10,
-        "bids": 80,
+        "bids": 84,
         "uncovered": 0,
         "optional": 0,
         "wrong": 0
@@ -7955,11 +7955,11 @@
         },
         {
           "s": "E",
-          "c": "3H"
+          "c": "P"
         },
         {
           "s": "S",
-          "c": "P"
+          "c": "2N"
         },
         {
           "s": "W",
@@ -7967,6 +7967,34 @@
         },
         {
           "s": "N",
+          "c": "3S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "4S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "6S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
           "c": "P"
         }
       ],
@@ -7979,7 +8007,7 @@
       },
       "correction": {
         "version": "6.6",
-        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
+        "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -7990,28 +8018,44 @@
             "reason": "14 hp med längsta färgen ♠ (5 kort): 1 i färg (12-19 hp)."
           },
           {
-            "nr": 2,
-            "seat": "Öst",
-            "bid": "3♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
-          },
-          {
             "nr": 3,
             "seat": "Syd",
-            "bid": "Pass",
-            "grade": "ej_täckt",
+            "bid": "2NT",
+            "grade": "rätt",
             "suggested": "",
-            "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+            "reason": "18 htp med 4+ stöd: Stenberg 2NT (13+)."
           },
           {
             "nr": 5,
             "seat": "Norr",
-            "bid": "Pass",
-            "grade": "ej_täckt",
+            "bid": "3♠",
+            "grade": "rätt",
             "suggested": "",
-            "reason": "Budgivningen följer inte ett turordnat mönster som dokumentet beskriver."
+            "reason": "16 htp utan singel: 3 i färgen (16+ stp)."
+          },
+          {
+            "nr": 7,
+            "seat": "Syd",
+            "bid": "4♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "9-korts fit i ♠ och 35 gemensamma spelpoäng: utgång."
+          },
+          {
+            "nr": 9,
+            "seat": "Norr",
+            "bid": "6♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 35 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+          },
+          {
+            "nr": 11,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
           }
         ]
       }
@@ -14551,11 +14595,27 @@
         },
         {
           "s": "E",
-          "c": "3H"
+          "c": "P"
         },
         {
           "s": "S",
-          "c": "X"
+          "c": "1N"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "2N"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "3N"
         },
         {
           "s": "W",
@@ -14579,7 +14639,7 @@
       },
       "correction": {
         "version": "6.6",
-        "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -14590,28 +14650,36 @@
             "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
           },
           {
-            "nr": 2,
-            "seat": "Öst",
-            "bid": "3♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
-          },
-          {
             "nr": 3,
             "seat": "Syd",
-            "bid": "X",
+            "bid": "1NT",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Mot spärröppning: dubbling = upplysningsdubbling eller 18+."
+            "reason": "Balanserad (fördelning 4432) med 15-17 hp öppnas 1NT."
           },
           {
             "nr": 5,
             "seat": "Norr",
+            "bid": "2NT",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "11 hp utan högfärgsfit att söka: 3NT."
+          },
+          {
+            "nr": 7,
+            "seat": "Syd",
+            "bid": "3NT",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 26 poäng. 26+ honnörspoäng i sang innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
+          },
+          {
+            "nr": 9,
+            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
           }
         ]
       }
