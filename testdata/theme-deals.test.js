@@ -180,3 +180,26 @@ test("all Stenberg theme deals contain a genuine 13+ HTP, 4+ support 2NT respons
     assert.equal(node.exp, "2N", deal.id);
   }
 });
+
+
+test("all trumf support theme deals contain a valid uncontested support raise", () => {
+  const { api, Rattning } = loadRuntime();
+  const deals = stored.deals.filter(deal => deal.theme === "trumf");
+  assert.equal(deals.length, 10);
+  for (const deal of deals) {
+    const openingIndex = deal.bids.findIndex(bid => /^[1][CDHS]$/.test(bid.c));
+    const opening = deal.bids[openingIndex];
+    assert.ok(opening, deal.id + ": missing suit opening");
+    const responseIndex = deal.bids.findIndex((bid, position) =>
+      position > openingIndex && bid.s === (opening.s === "N" ? "S" : "N"));
+    const response = deal.bids[responseIndex];
+    assert.ok(response, deal.id + ": missing support response");
+    assert.ok(deal.bids.slice(openingIndex + 1, responseIndex).every(bid => bid.c === "P"), deal.id);
+    assert.ok(/^[23][CDHS]$/.test(response.c) && response.c[1] === opening.c[1], deal.id);
+    assert.ok(api.shapeOf(deal.hands[response.s])[opening.c[1]] >= 4, deal.id);
+    const node = Rattning.nodeFor({
+      hands: deal.hands, dealer: deal.dealer, bids: deal.bids.slice(0, responseIndex + 1)
+    }, responseIndex);
+    assert.equal(node.exp, response.c, deal.id);
+  }
+});
