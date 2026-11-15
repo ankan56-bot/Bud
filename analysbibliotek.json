@@ -1,5 +1,5 @@
 {
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -228,7 +228,38 @@
               "next": null,
               "label": "Slutbud med svagare svarshand"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "20–21 hp, balanserad fördelning",
+            "responder": "Cirka 11–12 hp, balanserad fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, balanserad fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 11–12 hp, balanserad fördelning",
+              "hcp": {
+                "min": 11,
+                "max": 12
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Cirka 11–12 hp, balanserad fördelning"
+              ]
+            }
+          }
         },
         {
           "id": "t02_n1",
@@ -250,7 +281,38 @@
               "next": null,
               "label": "Maximum och lämpliga värden – accepterar"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "20–21 hp, balanserad fördelning",
+            "responder": "Cirka 11–12 hp, balanserad fördelning"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "20–21 hp, balanserad fördelning",
+              "hcp": {
+                "min": 20,
+                "max": 21
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 11–12 hp, balanserad fördelning",
+              "hcp": {
+                "min": 11,
+                "max": 12
+              },
+              "balanced": true,
+              "manual": [
+                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Cirka 11–12 hp, balanserad fördelning"
+              ]
+            }
+          }
         }
       ]
     },
@@ -286,7 +348,42 @@
               "next": "t03_n1",
               "label": "Öppnaren accepterar överföringen"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, balanserad fördelning",
+            "responder": "Normalt 0–7 hp, minst fem hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, balanserad fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Normalt 0–7 hp, minst fem hjärter",
+              "hcp": {
+                "min": 0,
+                "max": 7
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Normalt 0–7 hp, minst fem hjärter"
+              ]
+            }
+          }
         },
         {
           "id": "t03_n1",
@@ -305,7 +402,42 @@
               "next": null,
               "label": "Slutbud 2♥ – svag hand, signoff"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, balanserad fördelning",
+            "responder": "Normalt 0–7 hp, minst fem hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "15–17 hp, balanserad fördelning",
+              "hcp": {
+                "min": 15,
+                "max": 17
+              },
+              "balanced": true
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Normalt 0–7 hp, minst fem hjärter",
+              "hcp": {
+                "min": 0,
+                "max": 7
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Normalt 0–7 hp, minst fem hjärter"
+              ]
+            }
+          }
         }
       ]
     },
@@ -418,7 +550,46 @@
               "next": null,
               "label": "Slutbud 2♥ – ingen utgångsinvit"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningsstyrka, minst fem hjärter",
+            "responder": "Cirka 6–9 hp, tre- eller fyrkortsstöd i hjärter"
+          },
+          "handConditionsByRole": {
+            "opener": {
+              "schemaVersion": 1,
+              "seat": "opener",
+              "authority": "analysis_only",
+              "sourceText": "Öppningsstyrka, minst fem hjärter",
+              "suitLengths": {
+                "H": {
+                  "min": 5
+                }
+              },
+              "manual": [
+                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Öppningsstyrka, minst fem hjärter"
+              ]
+            },
+            "responder": {
+              "schemaVersion": 1,
+              "seat": "responder",
+              "authority": "analysis_only",
+              "sourceText": "Cirka 6–9 hp, tre- eller fyrkortsstöd i hjärter",
+              "hcp": {
+                "min": 6,
+                "max": 9
+              },
+              "suitLengths": {
+                "H": {
+                  "min": 3,
+                  "max": 4
+                }
+              },
+              "manual": [
+                "Kvalitativt, ungefärligt eller systemberoende villkor kräver manuell bedömning: Cirka 6–9 hp, tre- eller fyrkortsstöd i hjärter"
+              ]
+            }
+          }
         }
       ]
     },
@@ -7168,10 +7339,10 @@
   },
   "handConditionSchemaVersion": 1,
   "handProfileCoverage": {
-    "nodesWithProfiles": 114,
-    "nodesStructured": 114,
-    "roleProfiles": 228,
-    "machineCheckable": 134,
-    "manualReview": 94
+    "nodesWithProfiles": 119,
+    "nodesStructured": 119,
+    "roleProfiles": 238,
+    "machineCheckable": 138,
+    "manualReview": 100
   }
 }
