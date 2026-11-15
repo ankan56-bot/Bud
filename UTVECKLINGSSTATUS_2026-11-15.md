@@ -221,3 +221,12 @@ Den tidigare inventeringen och 47-fallsanalysen ovan är historiska ögonblicksb
 - GitHub Actions har passerat på engine 7.0-baslinjen, inklusive dataset/reproducerbarhet, auktion-dispatch, analysbiblioteksmatchning, strukturerade handvillkor/profiler, AI-seat-isolering och rolltester. Senast bekräftade kompletta körning: `43661555698`.
 
 `main` är fortsatt orörd. Arbetet ligger på `work/theme-dataset-analysis`. DDS har inte använts som budfacit och Safari-körning har inte verifierats.
+
+
+## DDS – verifierad paketering, ej verifierad körning i webbläsare
+
+- `dds-runtime/dds_web_wasm.wasm` kompileras i Node-testet och exporterar de förväntade funktionerna `dds_web_calc_table`, `dds_web_solve_plays` och `dds_web_solve_leads` samt minnesfunktionerna.
+- `testdata/dds-runtime.test.js` kontrollerar binärfilens giltighet, exports och att `dds-integration.js`, `Budtraning.html` och `coi-serviceworker.js` är sammankopplade med rätt API och Cross-Origin-Isolation-krav.
+- Detta är ett statiskt paketerings-/integrationsprov. Ett försök att köra den trådade DDS-motorn direkt i Node fastnade och har därför inte räknats som verifiering av solverns körning.
+- Faktisk DDS-beräkning i Safari/GitHub Pages är fortfarande inte verifierad. Ingen DDS-resultatdata har använts som budfacit.
+- Det statiska DDS-testet passerade i GitHub Actions körning `43662280379`.
