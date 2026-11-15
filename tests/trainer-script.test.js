@@ -33,7 +33,7 @@ test("solo mode lets one human choose any compass seat or both North and South",
   const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
   assert.match(html, /function humanSeatsForNewDeal\(\)\{if\(roomConfig\.count\)return roomHumanSeats\(\);if\(playerMode!=='solo'\)return \['N','S'\]/);
   ["N", "E", "S", "W"].forEach(seat => assert.ok(html.includes("setSeat(s)"), "seat picker should support " + seat));
-  assert.match(html, /function seatView\(s\)\{return s===me\?handBlock\(st,s\):seatHtml\(st,s,rel\(s\)\)\}/);
+  assert.match(html, /function seatView\(s\)\{return \(s===me\|\|\(seat==='X'&&\(s==='N'\|\|s==='S'\)\)\)\?handBlock\(st,s\):seatHtml\(st,s,rel\(s\)\)\}/);
 });
 
 test("seat selection can be changed between deals to inspect all table positions", () => {
