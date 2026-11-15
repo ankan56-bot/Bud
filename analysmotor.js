@@ -70,6 +70,16 @@ function evaluateHandConditions(hand,conditions){
  if(manual.length)return {status:"manual_review",matches:null,hcp,shape,failures:[],manual};
  return {status:"match",matches:true,hcp,shape,failures:[],manual:[]};
 }
+// Post-deal analysis only: this reads the actual hand after the auction.
+function evaluateMatchedHand(match,bids,hands){
+ if(!match||!match.node||!match.node.handConditions||!Array.isArray(bids)||!hands)return null;
+ const calls=bids.filter(b=>b&&b.c!=="P");
+ const index=match.length-1,entry=calls[index];
+ if(!entry||normalizeCall(callText(entry.c))!==normalizeCall(match.node.sequence[match.node.sequence.length-1]))return null;
+ const hand=hands[entry.s];
+ if(!hand)return null;
+ return {seat:entry.s,...evaluateHandConditions(hand,match.node.handConditions)};
+}
 function lengths(hand){
  const L={S:0,H:0,D:0,C:0};(hand||[]).forEach(c=>{if(L[c[0]]!==undefined)L[c[0]]++});return L;
 }
@@ -89,6 +99,7 @@ function ruleSummary(result){
 function buildReport(st,ruleResult,ddsResult){
  const match=findMatch(global.BudAnalysLibrary||{trees:[]},st.bids);
  const fits=fitSummary(st.hands),rules=ruleSummary(ruleResult),findings=[];
+ const handReview=evaluateMatchedHand(match,st.bids,st.hands);
  const actual=ddsResult&&ddsResult.actual,best=ddsResult&&ddsResult.best;
  if(best){
   const game=best.strain==="N"?best.level>=3:(best.strain==="S"||best.strain==="H"?best.level>=4:best.level>=5);
@@ -113,7 +124,7 @@ function buildReport(st,ruleResult,ddsResult){
   source:"Rattningsmotor v"+((global.Rattning&&global.Rattning.version)||"?")+" + analysbibliotek",
   ruleErrors:rules.errors,uncovered:rules.uncovered,optional:rules.optional,
   fits:fits,theoreticalFindings:findings,
-  library:match?{treeId:match.tree.id,title:match.tree.title,conditions:match.tree.conditions||[],sequence:match.node.sequence||[],meaning:match.node.meaning||"",analysis:match.node.analysis||"",exact:match.exact}:null,
+  library:match?{treeId:match.tree.id,title:match.tree.title,conditions:match.tree.conditions||[],sequence:match.node.sequence||[],meaning:match.node.meaning||"",analysis:match.node.analysis||"",exact:match.exact,handReview}:null,
   dds:ddsResult||null,
   knowledgeBoundary:"DDS använder samtliga fyra händer. En spelare under budgivningen känner bara till sin egen hand och informationen som partnerns och motståndarnas bud lagligen visar. Därför är DDS-facit en efterhandsjämförelse, inte automatiskt ett bud som paret kunde känna till."
  };
@@ -126,6 +137,13 @@ function render(report){
   if(report.library.conditions.length)h+='<p>Förutsättningar: '+report.library.conditions.map(escapeHtml).join(" · ")+'</p>';
   if(report.library.meaning)h+='<p>'+escapeHtml(report.library.meaning)+'</p>';
   if(report.library.analysis)h+='<p>'+escapeHtml(report.library.analysis)+'</p>';
+  if(report.library.handReview){
+   const r=report.library.handReview;
+   const label=r.status==="match"?"Maskinellt verifierade handvillkor uppfyllda":r.status==="no_match"?"Handen uppfyller inte de maskinella villkoren":"Manuell kontroll krävs för återstående handvillkor";
+   h+='<p><b>'+label+'</b> · '+escapeHtml(r.seat)+' · '+r.hcp+' hp · '+escapeHtml(Object.values(r.shape).join("-"))+'</p>';
+   if(r.failures.length)h+='<p>'+r.failures.map(escapeHtml).join(" · ")+'</p>';
+   if(r.manual.length)h+='<p>Ej maskinellt avgjort: '+r.manual.map(escapeHtml).join(" · ")+'</p>';
+  }
  }
  h+='</section>';
  if(report.ruleErrors.length){
@@ -155,7 +173,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.0.4",loadLibrary,findMatch,treeCompatible,evaluateHandConditions,buildReport,analyze,
+ version:"1.0.5",loadLibrary,findMatch,treeCompatible,evaluateHandConditions,evaluateMatchedHand,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
