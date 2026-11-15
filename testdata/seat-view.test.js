@@ -35,6 +35,7 @@ test("dummy cards are allowed only after dummy is exposed",()=>{
 test("private nested hand data is rejected",()=>{
  const state=sampleState();
  assert.throws(()=>createSeatView(state,"N",{playedCards:[{hand:["SA"]}]}),/Private hand data/);
+ assert.throws(()=>createSeatView(state,"N",{playedCards:{N:["SA","HK"]}}),/Private hand data/);
 });
 test("invalid seats and missing hands are rejected",()=>{
  assert.throws(()=>createSeatView(sampleState(),"X"),/Unknown bridge seat/);
