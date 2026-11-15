@@ -130,3 +130,13 @@ Aktuell teststatus: 73 grundsystemstester och 15 kompletterande tester passerar.
 ### Slutlig kontroll – svaga tvåor och konkurrens
 
 Flera egna 5+ färger efter svag tvåa har nu också gjorts ej täckta när REF saknar prioritetsregel. Testsviten är 74/74 för grundmotorn och 15/15 för kompletterande matchning. Senaste 140-givarsbaslinjen: 535/606 täckta positioner (88,3 %), 100 % ostört, 83,7 % stört, 0 tekniska fel och 140/140 giltiga auktioner. Den aktuella svag-02-givaren använder seed 93000004.
+
+
+### Dubblerarens återbud – uttrycklig 18 hp-regel
+
+Efter upplysningsdubbling och partnerns svar gäller enligt REF: utan stöd kräver egen färg/NT minst 18 hp. Motorn kontrollerar nu dubblerarens faktiska andra tur:
+- Under 18 hp utan stöd: pass i stället för egen färg/NT.
+- 18+ hp utan stöd: egen färg/NT kan godkännas.
+- Med 3+ stöd är återbudet ej täckt tills systemunderlaget anger fortsättningen.
+
+Detta har minskat luckorna i dubblingstemat. Senaste motor 7.1: 78/78 grundtester, 15/15 kompletterande tester, 538/606 positioner täckta (88,8 %), 100 % ostört och 84,4 % stört.
