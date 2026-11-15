@@ -176,3 +176,10 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 ## Slutlig täckning i denna etapp
 
 `analysbibliotek.json` är version 0.5.11 med 119 av 125 noder strukturerade (238 rollprofiler). 137 profiler är fullt maskinellt kontrollerbara och 101 kräver också manuell bedömning. De sex kvarvarande noderna tillhör T01, som avsiktligt är inkompatibelt eftersom det bygger på Jacoby 2NT i stället för fastställd Stenberg 2NT. T02, T03 och T05 fick profiler från uttryckliga källvillkor. `analysmotor.js` är version 1.0.6. Nya profiltäckningstester 6/6 passerade i GitHub Actions körning 43660594300; den körningen innehåller även de övriga workflow-testerna.
+
+
+## Fördjupad granskning av konkurrens-/försvarsluckorna
+
+De 26 poster som i den första orsaksgrupperingen hamnade under motståndarnas bud har nu granskats mot `LOGG_BUDREGLER.md` och T29–T33. Förtydligande: 22 är egentliga konkurrens-/dubblingssituationer; fyra är försvarspass efter motståndarnas naturliga 1♣–1♠–2♣–5♣-sekvens. Rapporten `testdata/competition-gaps-26-audit.md` listar alla 26 positioner med handens HCP/fördelning och jämförelser med tidigare givexempel.
+
+Två tydliga handbaserade kandidater finns i T29–T33: `trumf-02-bid-3` matchar T29 men har en överlappning mellan 2♥ och spärrande 3♥ vid 6 HCP/fem hjärter; `trumf-05-bid-3` matchar T32:s 3♣-profil (4 HCP/fem klöver). Båda är fortfarande `analysis_only`. `dubbling-09-bid-3` (1♥–Dbl, 2 HCP/två hjärter) saknar ett definierat passalternativ i T33. Loggens Giv 7, 10, 13, 19, 21, 22, 24 och 25 ger strukturella jämförelser men ingen komplett regelkälla för de 26 fallen. Inga budregler har ändrats.
