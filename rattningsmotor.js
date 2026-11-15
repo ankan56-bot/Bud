@@ -129,12 +129,12 @@ var Rattning = (function(){
     function pickBest(cs){var b=cs[0];cs.forEach(function(s){if(L[s]>L[b])b=s});return b}
 
     var means=function(c){
-      if(c==='P')return 'Pass: under 6 hp.';
+      if(c==='P')return 'Pass: under 6 htp.';
       if(c==='1N')return '6-10 hp, förnekar 4-korts stöd och färg på 1-nivå. Lovar ej jämn hand.';
       if(c==='2N')return 'Stenberg: 13+ htp, 4+ stöd, utgångskrav.';
       if(isBid(c)&&st_(c)===o){var l=lv(c);
-        if(l===2)return '6-10 htp, 4+ stöd.';
-        if(l===3)return '11-12 htp, 4+ stöd.';
+        if(l===2)return '6-9 htp, 4+ stöd.';
+        if(l===3)return '10-12 htp, 4+ stöd.';
         if(l===4)return M?'Spärrbud, max 12 htp, bra stöd och svitad hand.':'Spärrbud, max 9 htp, bra stöd och svitad hand.'}
       if(isBid(c)&&st_(c)!=='N'&&st_(c)!==o){var lo=lowest(st_(c),oc),l2=lv(c);
         if(c===lo&&l2===1)return '1 över 1: 6+ hp, 4+ färg, rondkrav.';
@@ -144,8 +144,8 @@ var Rattning = (function(){
 
     if(M&&sup){
       if(htp<6){exp='P';why='Bara '+htp+' htp med stöd: för svag för att svara.'}
-      else if(htp<=10){exp='2'+o;why=htp+' htp med 4+ stöd i högfärgen: 2 i färgen (6-10 stp).'}
-      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (11-12 stp).'}
+      else if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i högfärgen: 2 i färgen (6-9 stp).'}
+      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (10-12 stp).'}
       else{exp='2N';why=htp+' htp med 4+ stöd: Stenberg 2NT (13+).'}
     }else if(hp<6&&(!sup||htp<6)){exp='P';why='Under 6 hp: pass.'}
     else if(!M&&sup&&cand.some(maj)){var cm=cand.filter(maj);exp=lowest(pickBest(cm),oc);why='Stöd i lågfärg men egen 4+ högfärg: visa högfärgen först (sök högfärg).';
