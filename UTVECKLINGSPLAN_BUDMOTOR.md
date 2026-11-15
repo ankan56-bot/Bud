@@ -146,3 +146,19 @@ Den första manuella genomgången är nu dokumenterad i fyra separata rapporter:
 - `testdata/final_gaps_2.md` – öppnarens tredje bud efter 1♣–1♠–2♣–2NT och svar efter 1♠–2♠–3♥.
 
 Ingen av rapporterna inför nya systemregler. De skiljer mellan teknisk dispatchlucka, missvisande diagnostext och faktiskt saknat systemunderlag. Nästa steg är att återfinna den exakta auktoritativa systemtexten för svar efter inkliv, konkurrenssekvenser och öppnarens fortsättningar innan avgränsade kodändringar görs.
+
+
+## Analysbibliotekets konkurrensträd och tekniska korrigeringar
+
+- Granskat T29–T33 i `analysbibliotek.json`. De beskriver svar efter 1♥–(1♠), 1♠–(2♥), 1♦–(1♠), 1♣–(1♥) och 1♥–(Dbl). Biblioteket saknar godkännandestatus/källfält, så träden är dokumenterat analysunderlag men inte automatiskt fastställda grundsystemregler.
+- Två av de tidigare ej täckta händerna har tydliga kandidatbud i befintliga träd: `trumf-02-bid-3` passar T29:s 2♥-höjning (6 hp, 4 hjärter); `trumf-05-bid-3` passar T32:s spärrande 3♣ (4 hp, 5 klöver). De är inte införda i rättningsmotorn i väntan på auktoritetsbekräftelse.
+- T33 matchar `dubbling-09-bid-3`, men handen passar inte någon av trädets listade svarstyper; pass är inte uttryckligen beskrivet.
+- `analysbibliotek.json` version 0.5.5 har fått `ignorePasses:true` för T29–T33 eftersom dessa sekvenser är komprimerade och utelämnar pass. `analysmotor.js` 1.0.3 använder flaggan endast för dessa träd. Regressionstest täcker samtliga fem mönster och att vanliga träd behåller passkänslighet.
+- `rattningsmotor.js` har fått en avgränsad dispatch-/diagnostikkorrigering: öppnaren som återkommer efter partnerns pass och motståndarnas inkliv klassas inte längre felaktigt som ogiltig turordning. Positionen förblir ej täckt och inget bud föreslås.
+- Nya tester: `testdata/auction-dispatch.test.js` och `testdata/analysis-library-match.test.js`. Baslinjen `theme_deals_140.json`, `uncovered_cases_47.json` och analysrapporten har uppdaterats för den nya diagnostexten.
+
+### Fortsatt prioritering
+1. Få auktoritetsstatus för T29–T33 fastställd innan deras bud blir rättningsregler.
+2. Definiera svar efter 2-/3-nivåinkliv och 2NT-inkliv.
+3. Definiera dubblerarens återbud efter partnerns svar på upplysningsdubbling.
+4. Definiera öppnarens tredje bud efter 1♣–1♠–2♣–2NT.
