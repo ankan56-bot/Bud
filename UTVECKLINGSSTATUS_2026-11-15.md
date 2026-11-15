@@ -113,3 +113,12 @@ Senaste verifiering av informationsgränsen: GitHub Actions körning `4365894939
 - `seat-view.js` version 0.2.0 ger en AI-position endast egen hand och tillåten offentlig information; okända fält och dolda hand-/seat-mappar avvisas. Dummy kräver `dummyExposed: true`.
 - Automatiska tester finns i `testdata/player-roles.test.js` och `testdata/seat-view.test.js`. GitHub Actions kör nu båda dessa utöver temagivartesterna.
 - Ingen spelmotor eller AI-budgivare är ännu inkopplad. Detta säkrar gränssnittet som senare agentkod ska använda.
+
+
+## Senaste fortsättning: konkurrensbudgivning
+
+- GitHub Actions körning `43659094671` slutfördes med `success` på commit `1696fb6a4aae0a6615f4835c6235bee6e0fcc0b3`.
+- `testdata/competition_audit_26.md` dokumenterar 26 ej täckta konkurrenspositioner med budsekvens, position, HCP och fördelning.
+- Kodgranskningen visar att `nodeForRaw()` har begränsad hantering av `oppBefore` och `oppAfter`; efter konkurrensbud går många legitima fortsättningar till generisk ej täckt. Det är en täckningsbegränsning, inte belägg för att pass är fel.
+- Giv 13 i `LOGG_BUDREGLER.md` är ett närliggande exempel (1♠–X–2♠), men tillgängligt underlag fastställer inte ett helt system för svar/återbud efter dubbling.
+- Ingen budregel eller rättningskod ändrades. Nästa steg är att få fram/återfinna uttryckligt systemunderlag för dessa separata situationer innan implementation.
