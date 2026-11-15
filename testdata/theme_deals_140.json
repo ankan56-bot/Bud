@@ -29,8 +29,8 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 583,
-      "ej_täckt": 47
+      "rätt": 588,
+      "ej_täckt": 45
     },
     "themeStats": {
       "alla": {
@@ -105,8 +105,8 @@
       },
       "tvafarg": {
         "deals": 10,
-        "bids": 89,
-        "uncovered": 6,
+        "bids": 98,
+        "uncovered": 4,
         "optional": 0,
         "wrong": 0
       },
@@ -254,7 +254,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -404,7 +404,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -538,7 +538,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -660,7 +660,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -822,7 +822,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 4 (Norr och Syd).",
         "items": [
           {
@@ -1028,7 +1028,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1210,7 +1210,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1400,7 +1400,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1574,7 +1574,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1740,7 +1740,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1906,7 +1906,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2072,7 +2072,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2238,7 +2238,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2404,7 +2404,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2570,7 +2570,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2736,7 +2736,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2902,7 +2902,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3068,7 +3068,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3234,7 +3234,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3400,7 +3400,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3566,7 +3566,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3724,7 +3724,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3862,7 +3862,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -4020,7 +4020,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4186,7 +4186,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4360,7 +4360,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4526,7 +4526,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4676,7 +4676,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4834,7 +4834,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5000,7 +5000,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5182,7 +5182,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5372,7 +5372,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5546,7 +5546,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5712,7 +5712,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5878,7 +5878,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6052,7 +6052,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6234,7 +6234,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6408,7 +6408,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6574,7 +6574,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6748,7 +6748,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6930,7 +6930,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7112,7 +7112,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7294,7 +7294,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7468,7 +7468,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7642,7 +7642,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7824,7 +7824,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8006,7 +8006,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8188,7 +8188,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8370,7 +8370,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8552,7 +8552,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8718,7 +8718,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8856,7 +8856,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -9006,7 +9006,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9156,7 +9156,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9306,7 +9306,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9456,7 +9456,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9622,7 +9622,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9788,7 +9788,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9954,7 +9954,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10128,7 +10128,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10294,7 +10294,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10460,7 +10460,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10626,7 +10626,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10800,7 +10800,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10982,7 +10982,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11148,7 +11148,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11306,7 +11306,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11464,7 +11464,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11622,7 +11622,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11788,7 +11788,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11938,7 +11938,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12068,7 +12068,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -12218,7 +12218,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12368,7 +12368,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -12514,7 +12514,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -12680,7 +12680,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12830,7 +12830,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12980,7 +12980,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13130,7 +13130,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13280,7 +13280,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13430,7 +13430,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13588,7 +13588,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13754,7 +13754,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13912,7 +13912,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14062,7 +14062,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14212,7 +14212,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14354,7 +14354,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14488,7 +14488,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14638,7 +14638,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14804,7 +14804,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14954,7 +14954,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15088,7 +15088,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15222,7 +15222,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15356,7 +15356,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15498,7 +15498,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15640,7 +15640,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15782,7 +15782,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15924,7 +15924,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16066,7 +16066,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16208,7 +16208,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16366,7 +16366,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16520,7 +16520,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -16670,7 +16670,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16715,81 +16715,73 @@
       "mode": "stord",
       "seed": 764779,
       "caseType": "unclassified",
-      "dealer": "N",
+      "dealer": "S",
       "hands": {
         "N": [
-          "H12",
-          "D4",
-          "D2",
-          "H5",
-          "S14",
+          "H10",
+          "H11",
+          "H8",
+          "S11",
+          "S7",
+          "H13",
+          "C2",
+          "H3",
+          "S12",
+          "C3",
           "D12",
-          "D11",
-          "D14",
-          "C10",
-          "H9",
-          "H2",
-          "C14",
-          "D5"
+          "S6",
+          "S10"
         ],
         "E": [
-          "H7",
-          "S8",
-          "S12",
-          "H11",
-          "C11",
-          "S7",
-          "C12",
+          "S4",
+          "C10",
+          "H5",
+          "H6",
+          "D2",
+          "S13",
+          "C13",
+          "D3",
+          "D11",
+          "C4",
+          "S14",
           "S9",
-          "S3",
-          "C7",
-          "S2",
-          "D9",
-          "H13"
+          "D10"
         ],
         "S": [
-          "H8",
-          "C3",
-          "C4",
-          "H10",
-          "H14",
-          "D10",
-          "C6",
-          "H4",
-          "C13",
-          "C9",
+          "C5",
+          "S3",
+          "D14",
+          "D8",
           "D13",
+          "C11",
+          "H12",
           "C8",
-          "S11"
+          "C14",
+          "C12",
+          "S5",
+          "D7",
+          "D6"
         ],
         "W": [
-          "S10",
-          "C2",
-          "H6",
-          "C5",
-          "H3",
-          "S4",
-          "D7",
-          "S5",
-          "D6",
-          "S6",
-          "D3",
-          "S13",
-          "D8"
+          "H4",
+          "D5",
+          "C9",
+          "H9",
+          "C6",
+          "H14",
+          "D9",
+          "S8",
+          "H7",
+          "S2",
+          "C7",
+          "H2",
+          "D4"
         ]
       },
       "bids": [
         {
-          "s": "N",
-          "c": "1D"
-        },
-        {
-          "s": "E",
-          "c": "2S"
-        },
-        {
           "s": "S",
-          "c": "P"
+          "c": "1D"
         },
         {
           "s": "W",
@@ -16797,6 +16789,34 @@
         },
         {
           "s": "N",
+          "c": "1H"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "2C"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "3C"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
           "c": "P"
         }
       ],
@@ -16808,40 +16828,48 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
-        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
+        "version": "6.9",
+        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Norr",
+            "seat": "Syd",
             "bid": "1♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "17 hp med längsta färgen ♦ (6 kort): 1 i färg (12-19 hp)."
-          },
-          {
-            "nr": 2,
-            "seat": "Öst",
-            "bid": "2♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
+            "reason": "16 hp med längsta färgen ♦ (5 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "ej_täckt",
+            "seat": "Norr",
+            "bid": "1♥",
+            "grade": "rätt",
             "suggested": "",
-            "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet."
+            "reason": "6+ hp och en 4+ färg på 1-nivå: 1 över 1."
           },
           {
             "nr": 5,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "ej_täckt",
+            "seat": "Syd",
+            "bid": "2♣",
+            "grade": "rätt",
             "suggested": "",
-            "reason": "Öppnarens återbud efter partnerns pass och motståndarnas inkliv beskrivs inte i dokumentet."
+            "reason": "Andra färgen på lägsta nivå: 12-17 hp med 5-4."
+          },
+          {
+            "nr": 7,
+            "seat": "Norr",
+            "bid": "3♣",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "9 hp: svag hand, preferens till bästa gemensamma färg."
+          },
+          {
+            "nr": 9,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerns 3-nivåhöjning i lågfärg är invitativ. Pass med minimum; utgångskontrollen fångar 28+ spelpoäng."
           }
         ]
       }
@@ -16946,7 +16974,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -17104,7 +17132,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17239,7 +17267,7 @@
         },
         {
           "s": "S",
-          "c": "2H"
+          "c": "3D"
         },
         {
           "s": "W",
@@ -17247,7 +17275,7 @@
         },
         {
           "s": "N",
-          "c": "6D"
+          "c": "5D"
         },
         {
           "s": "E",
@@ -17255,10 +17283,18 @@
         },
         {
           "s": "S",
-          "c": "P"
+          "c": "6D"
         },
         {
           "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
           "c": "P"
         }
       ],
@@ -17270,8 +17306,8 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "6.9",
+        "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -17292,22 +17328,30 @@
           {
             "nr": 5,
             "seat": "Syd",
-            "bid": "2♥",
+            "bid": "3♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Splinter: singel/renons i ♥, 13+ stp."
+            "reason": "17 htp med stöd: enkelhopp (17-19)."
           },
           {
             "nr": 7,
             "seat": "Norr",
+            "bid": "5♦",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "10-korts fit i ♦ och 35 gemensamma spelpoäng: utgång enligt våra gränser (28+)."
+          },
+          {
+            "nr": 9,
+            "seat": "Syd",
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
             "reason": "Partnerskapets sammanlagda styrka är 35 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
-            "nr": 9,
-            "seat": "Syd",
+            "nr": 11,
+            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -17452,7 +17496,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17603,7 +17647,7 @@
         },
         {
           "s": "N",
-          "c": "2H"
+          "c": "2D"
         },
         {
           "s": "E",
@@ -17611,7 +17655,7 @@
         },
         {
           "s": "S",
-          "c": "6D"
+          "c": "5D"
         },
         {
           "s": "W",
@@ -17619,10 +17663,18 @@
         },
         {
           "s": "N",
-          "c": "P"
+          "c": "6D"
         },
         {
           "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
           "c": "P"
         }
       ],
@@ -17634,8 +17686,8 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "6.9",
+        "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -17656,22 +17708,30 @@
           {
             "nr": 5,
             "seat": "Norr",
-            "bid": "2♥",
+            "bid": "2♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Splinter: singel/renons i ♥, 13+ stp."
+            "reason": "4+ stöd i ♦ och 16 htp: lägsta höjning (12-16)."
           },
           {
             "nr": 7,
             "seat": "Syd",
+            "bid": "5♦",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "9-korts fit i ♦ och 34 gemensamma spelpoäng: utgång enligt våra gränser (28+)."
+          },
+          {
+            "nr": 9,
+            "seat": "Norr",
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
             "reason": "Partnerskapets sammanlagda styrka är 34 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
-            "nr": 9,
-            "seat": "Norr",
+            "nr": 11,
+            "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -17800,7 +17860,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17942,7 +18002,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18076,7 +18136,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18210,7 +18270,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18328,7 +18388,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18454,7 +18514,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18580,7 +18640,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18698,7 +18758,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18832,7 +18892,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18982,7 +19042,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19132,7 +19192,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19278,7 +19338,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -19416,7 +19476,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -19562,7 +19622,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -19708,7 +19768,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -19870,7 +19930,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20016,7 +20076,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20162,7 +20222,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20308,7 +20368,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20454,7 +20514,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -20616,7 +20676,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20754,7 +20814,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20892,7 +20952,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21030,7 +21090,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21160,7 +21220,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21290,7 +21350,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21420,7 +21480,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21550,7 +21610,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21680,7 +21740,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21818,7 +21878,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21956,7 +22016,7 @@
         "auctionErrors": 0
       },
       "correction": {
-        "version": "6.8",
+        "version": "6.9",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
