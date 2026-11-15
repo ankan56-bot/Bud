@@ -76,10 +76,13 @@ function findSupplementary(logic,bids,hands,seat){
  if(next!==expectedNext)return [];
  return entries.filter(entry=>{
   const prefix=normalizeSequence(entry.auctionPrefix||[]);
-  if(prefix.length!==q.length||!prefix.every((v,i)=>v===q[i]))return false;
+  if(prefix.length>q.length)return false;
+  const offset=q.length-prefix.length;
+  if(!prefix.every((v,i)=>v===q[offset+i]))return false;
+  const openingSeat=bids[offset]&&bids[offset].s;
   const role=entry.handConditions&&entry.handConditions.seatRole;
-  if(role==="responder"&&next!==partnerSeat(bids[0].s))return false;
-  if(role==="opener"&&next!==bids[0].s)return false;
+  if(role==="responder"&&next!==partnerSeat(openingSeat))return false;
+  if(role==="opener"&&next!==openingSeat)return false;
   if(!handMatches(entry.handConditions,hands&&hands[next]))return false;
   return true;
  }).map(entry=>({
