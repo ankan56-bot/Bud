@@ -686,7 +686,7 @@ function connect(){
     es.onerror=function(){connState='offline';if(state)render()};
     es.onmessage=function(ev){
       try{var o=JSON.parse(ev.data);if(o.event&&o.event!=='message')return;var m=JSON.parse(o.message);
-        if(m.type==='presence'&&m.p&&m.p.id!==playerId){var previous=roomPlayers[m.p.id];if(!previous||(m.p.at||0)>=(previous.at||0)){roomPlayers[m.p.id]=m.p;var ownersNow=roomSeatOwners(),lost=seat==='X'?(ownersNow.N!==playerId||ownersNow.S!==playerId):(seat&&ownersNow[seat]!==playerId);if(lost){seat=null;try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence()}}render();return}
+        if(m.type==='presence'&&m.p&&m.p.id!==playerId){var previous=roomPlayers[m.p.id];if(!previous||(m.p.at||0)>=(previous.at||0)){roomPlayers[m.p.id]=m.p;var ownersNow=roomSeatOwners(),lost=seat==='X'?(ownersNow.N!==playerId||ownersNow.S!==playerId):(seat&&ownersNow[seat]!==playerId);if(lost){seat=null;try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence()}if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot()}render();return}
         if(m.type==='room-config'&&m.config&&m.config.count>=1&&m.config.count<=4&&!roomConfig.count){roomConfig=m.config;pendingRoomCount=0;persistRoomConfig();render();return}
         if(m.type==='room-action'&&isFreshRoomAction(o)&&m.action&&m.request&&sameRoomState(m.baseState,pack(state))&&roomCoordinator()===playerId&&!seenRoomActions[m.request]){seenRoomActions[m.request]=true;executeRoomAction(m.action,m.data,m.from);return}
         if(m.from===sender||!m.st||!isNewerRoomState(o,lastStateEventTime))return;lastStateEventTime=Number(o.time)*1000;rev=Math.max(rev,Number(m.v)||0);adopt(m.st)}catch(e){}
