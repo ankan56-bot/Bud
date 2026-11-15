@@ -24,3 +24,5 @@ jobs:
         run: git diff --exit-code -- testdata/theme_deals_140.json
       - name: Run dataset and reproducibility tests
         run: node --test testdata/theme-deals.test.js
+      - name: Run AI seat isolation tests
+        run: node --test testdata/seat-view.test.js
