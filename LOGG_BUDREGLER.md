@@ -283,3 +283,31 @@ Samtliga tio fall passerar. JavaScript-syntaxkontroll passerar.
 
 Regelsammanfattningen nämner även spärrhöjning till 4♥/4♠ (max 12 HTP) respektive 4♣/4♦ (max 9 HTP). Den anger däremot inte tillräckligt tydligt vilken minsta trumflängd/fördelning som skiljer dessa spärrhöjningar från vanliga 2-/3-höjningar. Den delen lämnas därför uttryckligen som ej fullständigt implementerad; ingen handvillkorsregel har hittats på.
 
+
+
+## 100-givars smoke test – aktuella motorn
+
+**Datum:** 2026-11-15  
+**Underlag:** `bridge_100_deals_round2.json`, seed 20261115, 100 givare.  
+**Motor:** `rattningsmotor.js` version 6.6 på `work/hps-reverse-audit`.
+
+Alla 100 givare normaliserades från A/K/Q/J/T till 14/13/12/11/10 och kontrollerades för 52 unika kort och 13 kort per hand. Därefter kördes en reproducerbar självspels-/röksekvens: Norr och Syd använde motorns rekommendationer, Öst och Väst passade. Syftet var att hitta krascher, olagliga rekommendationer och otillräckligt täckta tillstånd – inte att använda motorns egna bud som oberoende facit.
+
+Resultat:
+- 100/100 givare hade korrekt kortintegritet.
+- 100/100 auktioner avslutades.
+- 759 budpositioner behandlades.
+- 362 bedömda turer för Norr/Syd.
+- 357/362 turer hade en uttrycklig rekommendation: **98,6 % täckning** i just denna testkörning.
+- 5 turer var ej täckta.
+- 0 undantag/krascher.
+- 0 olagliga kontraktsbud rekommenderade.
+
+De fem ej täckta fallen är sparade som nästa analyskö:
+- Giv 110: svarshandens andra bud efter 1 i färg, efter 1♣–1♠–2♦–3♣.
+- Giv 115: fortsättning efter 1NT–2♠–3♣–3♦.
+- Giv 150: fortsättning efter partnerns spärröppning 4♣.
+- Giv 174: fortsättning efter 1♥–2♥–2♠.
+- Giv 191: fortsättning efter 1♥–1♠–2♥–3♥.
+
+**Begränsning:** Detta är ett tekniskt täcknings-/rökprov där motståndarna alltid passar. Det bevisar inte att varje rekommendation är bridgekorrekt. De fem luckorna ska granskas mot systemreglerna innan ny logik läggs till.
