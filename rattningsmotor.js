@@ -869,7 +869,10 @@ var Rattning = (function(){
           (askerFixedNoTrump&&lastCall&&lastCall.s===asker&&lastCall.c==='5N'&&me!==asker)
         );
       }
-      if(partnerHasGame&&!aceAskResponse)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+      var pendingPartnerAceAsk=lastCall&&lastCall.c==='4N'&&lastCall.s===pt&&(
+        !!rkcTrumpFromAuction(prior,side(me))||agreedNoTrumpAceAsk(prior,side(me))
+      );
+      if(partnerHasGame&&!aceAskResponse&&!pendingPartnerAceAsk)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
     // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
