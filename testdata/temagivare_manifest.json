@@ -362,11 +362,11 @@
     "regressionTestCount": 55,
     "regressionTestsPassed": 55,
     "supplementaryCandidatePath": "kompletterande_budlogik.json",
-    "supplementaryCandidateCount": 5,
+    "supplementaryCandidateCount": 25,
     "supplementaryApprovalStatus": "unreviewed",
     "supplementaryTestPath": "tests/supplementary-logic.test.js",
-    "supplementaryTestCount": 9,
-    "supplementaryTestsPassed": 9
+    "supplementaryTestCount": 15,
+    "supplementaryTestsPassed": 15
   },
   "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
 }
