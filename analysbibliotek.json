@@ -1146,10 +1146,10 @@
         "Pass"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♦ överför till hjärter; 2♥ fullföljer överföringen",
-        "Svarshanden har minst fem hjärter och cirka 8–9 hp",
-        "Efter 2NT väljer öppnaren mellan pass, 3♥, 3NT och 4♥"
+        "1NT = 15–17 hp och jämn fördelning.",
+        "2♦ överför till hjärter; 2♥ fullföljer.",
+        "Svarshanden har exakt fem kort i hjärter och 9 hp; 8 hp eller mindre passar.",
+        "Efter 2NT inviterar svarshanden; öppnaren passar med 15 hp, bjuder 3NT med 16–17 och färre än tre trumfkort, eller 4H med 16–17 och minst tre trumfkort."
       ],
       "root": "t19_0",
       "nodes": [
@@ -1168,11 +1168,6 @@
           "analysis": "Svarshanden har cirka 8–9 hp och minst fem hjärter. Öppnaren måste väga samman styrka, honnörskvalitet och trumfstöd. 3♥ visar att öppnaren föredrar hjärter med stöd; 3NT är alternativet när sanghanden är bättre än trumfhanden.",
           "branches": [
             {
-              "call": "3♥",
-              "next": "t19_1",
-              "label": "3♥ – accepterar med hjärterstöd"
-            },
-            {
               "call": "3NT",
               "next": "t19_2",
               "label": "3NT – accepterar utan lämpligt trumfstöd"
@@ -1190,39 +1185,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
-          }
-        },
-        {
-          "id": "t19_1",
-          "sequence": [
-            "1NT",
-            "Pass",
-            "2♦",
-            "Pass",
-            "2♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♥"
-          ],
-          "meaning": "3♥ – accepterar med hjärterstöd",
-          "analysis": "Öppnaren har tillräcklig styrka för att acceptera inviten och minst trekortsstöd i hjärter. Svarshanden kan passa med nedre delen av inviten eller gå till 4♥ med extra fördelning och goda honnörer. Sang väljs bort eftersom en fungerande högfärgsfit är känd.",
-          "branches": [
-            {
-              "call": "Pass",
-              "next": null,
-              "label": "Inviten avslås – stanna i 2NT"
-            },
-            {
-              "call": "4♥",
-              "next": null,
-              "label": "Svarshanden har övre invitstyrka och går till utgång"
-            }
-          ],
-          "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         },
         {
@@ -1238,7 +1201,7 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT – accepterar utan lämpligt trumfstöd",
+          "meaning": "3NT – öppnaren accepterar inviten utan minst trekortsstöd.",
           "analysis": "Öppnaren accepterar inviten men saknar lämpligt hjärterstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♥ väljs bort eftersom en säker trumffit inte är etablerad.",
           "branches": [
             {
@@ -1248,8 +1211,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+            "opener": "16–17 hp och färre än tre kort i trumffärgen; accepterar med 3NT.",
+            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         },
         {
@@ -1265,7 +1228,7 @@
             "Pass",
             "4♥"
           ],
-          "meaning": "4♥ – maximum med starkt hjärterstöd",
+          "meaning": "4H – öppnaren accepterar inviten med minst trekortsstöd.",
           "analysis": "Öppnaren har maximum och starkt hjärterstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♥. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
           "branches": [
             {
@@ -1275,8 +1238,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+            "opener": "16–17 hp och minst tre kort i trumffärgen; accepterar med 4H.",
+            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         },
         {
@@ -1296,8 +1259,8 @@
           "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem hjärter; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem hjärter, invit efter överföring"
+            "opener": "15 hp – minimum, inviten avslås.",
+            "responder": "Exakt fem kort i hjärter och 9 hp; 2NT är invit efter överföringen."
           }
         }
       ]
@@ -1312,10 +1275,10 @@
         "Pass"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♥ överför till spader; 2♠ fullföljer överföringen",
-        "Svarshanden har minst fem spader och cirka 8–9 hp",
-        "Efter 2NT väljer öppnaren mellan pass, 3♠, 3NT och 4♠"
+        "1NT = 15–17 hp och jämn fördelning.",
+        "2♥ överför till spader; 2♠ fullföljer.",
+        "Svarshanden har exakt fem kort i spader och 9 hp; 8 hp eller mindre passar.",
+        "Efter 2NT inviterar svarshanden; öppnaren passar med 15 hp, bjuder 3NT med 16–17 och färre än tre trumfkort, eller 4S med 16–17 och minst tre trumfkort."
       ],
       "root": "t20_0",
       "nodes": [
@@ -1334,11 +1297,6 @@
           "analysis": "Svarshanden har cirka 8–9 hp och minst fem spader. Öppnaren väger samman styrka, honnörskvalitet och trumfstöd. 3♠ visar att öppnaren föredrar spader med stöd; 3NT är alternativet när sanghanden är bättre.",
           "branches": [
             {
-              "call": "3♠",
-              "next": "t20_1",
-              "label": "3♠ – accepterar med spaderstöd"
-            },
-            {
               "call": "3NT",
               "next": "t20_2",
               "label": "3NT – accepterar utan lämpligt trumfstöd"
@@ -1356,39 +1314,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem spader, invit efter överföring"
-          }
-        },
-        {
-          "id": "t20_1",
-          "sequence": [
-            "1NT",
-            "Pass",
-            "2♥",
-            "Pass",
-            "2♠",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3♠"
-          ],
-          "meaning": "3♠ – accepterar med spaderstöd",
-          "analysis": "Öppnaren har tillräcklig styrka för att acceptera inviten och minst trekortsstöd i spader. Svarshanden kan passa med nedre delen av inviten eller gå till 4♠ med extra fördelning och goda honnörer. Sang väljs bort eftersom en fungerande högfärgsfit är känd.",
-          "branches": [
-            {
-              "call": "Pass",
-              "next": null,
-              "label": "Inviten avslås – stanna i 2NT"
-            },
-            {
-              "call": "4♠",
-              "next": null,
-              "label": "Svarshanden har övre invitstyrka och går till utgång"
-            }
-          ],
-          "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         },
         {
@@ -1404,7 +1330,7 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT – accepterar utan lämpligt trumfstöd",
+          "meaning": "3NT – öppnaren accepterar inviten utan minst trekortsstöd.",
           "analysis": "Öppnaren accepterar inviten men saknar lämpligt spaderstöd. Med jämn hand och tillräcklig sangstyrka blir 3NT rätt kontraktstyp. 4♠ väljs bort eftersom en säker trumffit inte är etablerad.",
           "branches": [
             {
@@ -1414,8 +1340,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+            "opener": "16–17 hp och färre än tre kort i trumffärgen; accepterar med 3NT.",
+            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         },
         {
@@ -1431,7 +1357,7 @@
             "Pass",
             "4♠"
           ],
-          "meaning": "4♠ – maximum med starkt spaderstöd",
+          "meaning": "4S – öppnaren accepterar inviten med minst trekortsstöd.",
           "analysis": "Öppnaren har maximum och starkt spaderstöd, ofta fyrkortsstöd. Med extra spelstyrka går öppnaren direkt till 4♠. 3NT väljs bort eftersom högfärgsfitten ger bättre kontroll över trumfen.",
           "branches": [
             {
@@ -1441,8 +1367,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+            "opener": "16–17 hp och minst tre kort i trumffärgen; accepterar med 4S.",
+            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         },
         {
@@ -1462,8 +1388,8 @@
           "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem spader; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, jämn hand; stöd och honnörskvalitet avgör",
-            "responder": "8–9 hp, minst fem spader, invit efter överföring"
+            "opener": "15 hp – minimum, inviten avslås.",
+            "responder": "Exakt fem kort i spader och 9 hp; 2NT är invit efter överföringen."
           }
         }
       ]
@@ -2518,7 +2444,7 @@
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning",
         "2♦ överför till hjärter; öppnaren fullföljer med 2♥",
-        "Svarshanden har minst sex hjärter och cirka 8–9 hp",
+        "Svarshanden har minst sex hjärter och 9 hp",
         "3♥ efter fullföljd överföring är invit; öppnaren väljer slutbud"
       ],
       "root": "t27_overforing_hjarter_sexkort_invit_n0",
@@ -2543,7 +2469,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2572,7 +2498,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2597,7 +2523,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2633,7 +2559,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2654,7 +2580,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2675,7 +2601,7 @@
           "branches": [],
           "handProfile": {
             "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2715,7 +2641,7 @@
           "branches": [],
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
-            "responder": "Minst sex hjärter, cirka 8–9 hp för invit"
+            "responder": "Minst sex hjärter, 9 hp för invit"
           }
         },
         {
@@ -2752,7 +2678,7 @@
       "conditions": [
         "1NT = 15–17 hp och jämn fördelning",
         "2♥ överför till spader; öppnaren fullföljer med 2♠",
-        "Svarshanden har minst sex spader och cirka 8–9 hp",
+        "Svarshanden har minst sex spader och 9 hp",
         "3♠ efter fullföljd överföring är invit; öppnaren väljer slutbud"
       ],
       "root": "t28_overforing_spader_sexkort_invit_n0",
@@ -2777,7 +2703,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
@@ -2806,7 +2732,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
@@ -2831,7 +2757,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
@@ -2867,7 +2793,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning; minst trekortsstöd för högfärgsutgång",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
@@ -2888,7 +2814,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
@@ -2909,7 +2835,7 @@
           "branches": [],
           "handProfile": {
             "opener": "16–17 hp, jämn hand, högst två kort i trumffärgen",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
@@ -2949,7 +2875,7 @@
           "branches": [],
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden, minst tre kort i trumffärgen",
-            "responder": "Minst sex spader, cirka 8–9 hp för invit"
+            "responder": "Minst sex spader, 9 hp för invit"
           }
         },
         {
