@@ -621,32 +621,85 @@ var Rattning = (function(){
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
   function overcall(h,ob,last){
     var hp=h.hp,L=h.L,os=ob[1],lvl=lv(ob),exp,why,alt=[];
+    var un=SU.filter(function(s){return s!=='N'&&s!==os;});
+    var takeout=hp>=12&&un.every(function(s){return L[s]>=3});
     var means=function(c){
-      if(c==='X')return 'Upplysningsdubbling: 12+ hp och minst 3 kort i objudna färger.';
-      if(c==='1N')return 'Inkliv 1NT: 15-17 hp och håll i öppningsfärgen.';
-      if(c==='P')return 'Pass.';
-      if(isBid(c)&&c[1]!=='N'){var lo=lowest(c[1],ob);
-        if(c===lo)return 'Enkelt inkliv: 12-17 hp, 5+ färg'+(lv(c)===2?' (2-nivån kräver normalt 6+ färg)':'')+'.';
-        if(lv(c)===lv(lo)+1)return 'Hoppande inkliv: 6-10 hp och 6+ färg.'}
-      if(c==='2N')return 'Försvar mot spärr: 16-18 hp balanserad.';
-      return null};
+      if(c==='X')return 'Upplysningsdubbling: 12+ hp och 3+ kort i alla objudna färger, eller 17+ hp oavsett fördelning.';
+      if(c==='1N')return 'Inkliv 1NT: 15-17 hp, balanserad hand och håll i öppningsfärgen.';
+      if(c==='2N')return 'Försvar mot spärr: 16-18 hp, balanserad hand.';
+      if(c==='P')return 'Pass: handen uppfyller inget inklivsvillkor.';
+      if(isBid(c)&&c[1]!=='N'){
+        var lo=lowest(c[1],ob);
+        if(c===lo){
+          if(lv(c)===1)return 'Enkelt inkliv på 1-nivån: 10+ hp, bra 5+ färg.';
+          if(lv(c)===2)return 'Enkelt inkliv på 2-nivån: 12-17 hp och 6+ färg.';
+        }
+        if(c===jump(c[1],ob))return 'Hoppande inkliv: 6-10 hp och 6+ färg.';
+      }
+      return null;
+    };
+
+    // Försvar mot spärröppning (2-nivå eller högre).
     if(lvl>=2){
-      var un=SU.filter(function(s){return s!==os});var tk=hp>=12&&un.every(function(s){return L[s]>=3})&&L[os]<=2;
-      if(tk||hp>=18){exp='X';why='Mot spärröppning: dubbling = upplysningsdubbling eller 18+.'}
-      else if(h.bal&&hp>=15&&hp<=18&&ok('2N',last)){exp='2N';why='15-18 balanserad: 2NT.'}
-      else{exp='P';why='Ingen dubblingshand: pass.'}
+      if(h.bal&&hp>=16&&hp<=18&&ok('2N',last)){
+        exp='2N';why=hp+' hp balanserad: 2NT enligt spärrförsvaret.';
+      }else if(takeout||hp>=17){
+        exp='X';why=takeout?'12+ hp och 3+ kort i alla objudna färger: upplysningsdubbling mot spärr.':'17+ hp: dubbling mot spärr oavsett fördelning.';
+      }else{
+        exp='P';why='Ingen dubblingshand eller balanserad 16-18-hand för 2NT: pass.';
+      }
       return {exp:exp,alt:alt,why:why,means:means,conv:'dubbling',soft:true};
     }
-    var un2=SU.filter(function(s){return s!==os});
-    var takeout=hp>=12&&un2.every(function(s){return L[s]>=3})&&L[os]<=2;
-    var five=un2.filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]||(SU.indexOf(b)-SU.indexOf(a))})[0];
-    var okOver=function(s){var x=lowest(s,ob);return lv(x)<=2&&(lv(x)>1||hp>=10&&h.good(s)||!maj(s)&&hp>=12)&&(hp>=12||(lv(x)===1&&maj(s)&&hp>=10&&h.good(s)))};
-    if(hp>=18&&(takeout||true)&&h.bal===false&&hp>=17&&five===undefined&&!takeout){exp='X';why='18+ hp: dubbling visar alla fördelningar.'}
-    else if(hp>=15&&hp<=17&&h.bal&&h.stop(os)&&ok('1N',ob)&&lvl===1){exp='1N';why='15-17 hp balanserad med håll i '+SYM[os]+': 1NT.';if(takeout)alt.push('X')}
-    else if(takeout&&!(five&&okOver(five))){exp='X';why='12+ hp med minst 3 kort i objudna färger och kort i '+SYM[os]+': upplysningsdubbling.'}
-    else if(five&&okOver(five)){exp=lowest(five,ob);why=hp+' hp och 5+ '+SYM[five]+': enkelt inkliv.';if(takeout)alt.push('X')}
-    else if(hp>=6&&hp<=10&&un2.some(function(s){return L[s]>=6})){var s6=un2.filter(function(s){return L[s]>=6})[0];exp=jump(s6,ob);why='6-10 hp och 6+ '+SYM[s6]+': hoppande inkliv.'}
-    else{exp='P';why='Ingen inklivshand ('+hp+' hp): pass.'}
+
+    // 1NT-inkliv: 15-17 hp, balanserad och håll.
+    if(hp>=15&&hp<=17&&h.bal&&h.stop(os)&&ok('1N',ob)){
+      exp='1N';why=hp+' hp, balanserad hand med håll i '+SYM[os]+': 1NT.';
+      if(takeout)alt.push('X');
+      return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
+    }
+
+    // Upplysningsdubbling: 12+ hp med 3+ i samtliga objudna färger,
+    // eller 17+ hp oavsett fördelning.
+    if(takeout){
+      exp='X';why='12+ hp och minst 3 kort i alla objudna färger: upplysningsdubbling.';
+      return {exp:exp,alt:alt,why:why,means:means,conv:'dubbling',soft:true};
+    }
+    if(hp>=17){
+      exp='X';why='17+ hp: dubbling oavsett fördelning.';
+      return {exp:exp,alt:alt,why:why,means:means,conv:'dubbling',soft:true};
+    }
+
+    // Enkelt inkliv: 1-nivån 10+ hp och bra 5+ färg;
+    // 2-nivån 12-17 hp och minst 6 kort.
+    var simple=un.filter(function(s){
+      var lo=lowest(s,ob),lev=lv(lo);
+      if(lev===1)return hp>=10&&hp<=16&&L[s]>=5&&h.good(s);
+      if(lev===2)return hp>=12&&hp<=16&&L[s]>=6;
+      return false;
+    }).sort(function(a,b){
+      if(L[b]!==L[a])return L[b]-L[a];
+      return SU.indexOf(b)-SU.indexOf(a);
+    });
+    if(simple.length){
+      exp=lowest(simple[0],ob);
+      why=hp+' hp och '+L[simple[0]]+' kort i '+SYM[simple[0]]+': enkelt inkliv.';
+      return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
+    }
+
+    // Hoppande inkliv: 6-10 hp och 6+ färg.
+    var jumpSuits=un.filter(function(s){return L[s]>=6&&hp>=6&&hp<=10;}).sort(function(a,b){
+      if(L[b]!==L[a])return L[b]-L[a];
+      return SU.indexOf(b)-SU.indexOf(a);
+    });
+    for(var ji=0;ji<jumpSuits.length;ji++){
+      var js=jumpSuits[ji],jb=jump(js,ob);
+      if(jb&&ok(jb,ob)&&(!maj(js)||lv(jb)!==2||h.good(js))){
+        exp=jb;why=hp+' hp och '+L[js]+' kort i '+SYM[js]+': hoppande inkliv.';
+        return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
+      }
+    }
+
+    exp='P';why='Ingen inklivshand enligt systemets styrke- och färglängdskrav: pass.';
     return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
   function respOvercall(h,oc,last,ob){
