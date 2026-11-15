@@ -773,7 +773,7 @@ function reportBody(r){
     'HÄNDER'];
   ['N','E','S','W'].forEach(function(s){lines.push(NAME[s]+': '+r.hands[s])});
   lines.push('','BUDGIVNING');
-  r.bids.forEach(function(b,i){lines.push((i+1)+'. '+b.name+': '+b.call+(b.explanation?' — '+b.explanation:''))});
+  r.bids.forEach(function(b,i){lines.push((i+1)+'. '+b.name+': '+b.call)});
   lines.push('','BETATESTARENS KOMMENTAR',r.comment||'(Ingen kommentar)','',
     'Reproducerbar giv: slumpfrö '+r.seed+'; givnummer '+r.dealNo+'.');
   return lines.join('\n');
