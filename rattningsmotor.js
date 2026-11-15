@@ -652,18 +652,77 @@ var Rattning = (function(){
   function respOvercall(h,oc,last,ob){
     var s=st_(oc),os=ob?ob[1]:null,L=h.L,hp=h.hp,exp,why,alt=[];
     var means=function(c){
-      if(c==='1N')return '9-12 hp, balanserad, håll i öppningsfärgen.';if(c==='2N')return '10-12 hp, balanserad, bra håll.';if(c==='3N')return '13-16 hp, balanserad, bra håll.';
-      if(isBid(c)&&c[1]===s){var d=lv(c)-lv(oc);return d===1?(lv(oc)===1?'Enkel höjning: 6-10 stp, 3-korts stöd.':'Enkel höjning: 8-11 stp, 3-korts stöd.'):d===2?('Dubbel höjning: '+(lv(oc)===1?'8-11 stp':'11-12 stp')+', 4-korts stöd.'):'Trippel höjning: 8-11 stp, 5-korts stöd.'}
-      if(isBid(c)&&c[1]===os)return 'Överbud (deras färg): 10+ hp och 3+ stöd.';
-      if(isBid(c)&&c[1]!=='N')return lv(c)>lv(lowest(c[1],last))?'Hopp i ny färg: 14+ hp, bra 6+ färg, utgångskrav.':'Ny färg: 10+ hp, 5+ färg, rondkrav.';
-      if(c==='P')return 'Pass.';return null};
-    if(L[s]>=3&&hp<=7&&lv(oc)===1){var t=L[s]>=5?3:L[s]>=4?2:1;var e=(lv(oc)+t)+s;if(ok(e,last)&&lv(e)<=4){exp=e;why=L[s]+' kort stöd och '+hp+' hp: '+(t===1?'enkel':t===2?'dubbel':'trippel')+' höjning.'}}
-    if(!exp&&L[s]>=3&&hp>=8&&hp<=11&&lv(oc)===2){var t2=L[s]>=5?2:1;var e2=(lv(oc)+t2)+s;if(ok(e2,last)){exp=e2;why=L[s]+' kort stöd och '+hp+' stp: höjning.'}}
-    if(!exp&&L[s]>=3&&hp>=10&&os&&lv(oc)===1){exp=lowest(os,last);why='10+ hp och 3+ stöd: överbud i deras färg.'}
-    if(!exp&&h.bal&&hp>=9&&hp<=12&&h.stop(os)&&ok('1N',last)){exp='1N';why='9-12 hp med håll: 1NT.'}
-    if(!exp&&h.bal&&hp>=10&&hp<=12&&h.stop(os)&&ok('2N',last)){exp='2N';why='10-12 hp med håll: 2NT.'}
-    if(!exp&&h.bal&&hp>=13&&hp<=16&&h.stop(os)&&ok('3N',last)){exp='3N';why='13-16 hp med håll: 3NT.'}
-    return {exp:exp||null,alt:[],why:why||'Dokumentet anger inte budet för denna hand.',means:means,conv:'inkliv',soft:true};
+      if(c==='1N')return '8-10 hp, balanserad hand med håll i öppningsfärgen.';
+      if(c==='2N')return '11-13 hp, balanserad hand med bra håll.';
+      if(c==='3N')return '14+ hp, balanserad hand med bra håll.';
+      if(isBid(c)&&c[1]===s){
+        var d=lv(c)-lv(oc);
+        if(d===1)return '6-9 hp och 3-korts stöd: enkel höjning.';
+        if(d===2)return '6-9 hp och 4-korts stöd: dubbel höjning.';
+        if(d===3)return '6-9 hp och 5-korts stöd: trippel höjning.';
+      }
+      if(isBid(c)&&c[1]===os)return '10+ hp och 3+ stöd: överbud i motståndarnas färg.';
+      if(isBid(c)&&c[1]!=='N'){
+        var base=lowest(c[1],last),need=base&&lv(base)>=2?10:8;
+        if(c===base)return need+'+ hp och 5+ färg: rondkrav.';
+        if(c===jump(c[1],last))return '14+ hp, bra 6+ färg: utgångskrav.';
+      }
+      if(c==='P')return 'Pass när inget av systemets svarsbud uppfylls.';
+      return null;
+    };
+
+    // Stöd visas först: 6-9 hp med 3/4/5-korts stöd ger enkel/dubbel/trippel höjning.
+    if(L[s]>=3&&hp>=6&&hp<=9){
+      var steps=L[s]>=5?3:L[s]>=4?2:1;
+      var raise=(lv(oc)+steps)+s;
+      if(ok(raise,last)){
+        exp=raise;
+        why=hp+' hp och '+L[s]+'-korts stöd: '+(steps===1?'enkel':steps===2?'dubbel':'trippel')+' höjning.';
+      }
+    }
+
+    // 10+ hp och 3+ stöd: överbud i öppningsfärgen.
+    if(!exp&&L[s]>=3&&hp>=10&&os){
+      var cue=lowest(os,last);
+      if(ok(cue,last)){exp=cue;why='10+ hp och '+L[s]+'-korts stöd: överbud i motståndarnas färg.';}
+    }
+
+    // Sangbud med håll i motståndarnas öppningsfärg.
+    if(!exp&&h.bal&&hp>=8&&hp<=10&&h.stop(os)&&ok('1N',last)){
+      exp='1N';why='8-10 hp, balanserad hand med håll: 1NT.';
+    }
+    if(!exp&&h.bal&&hp>=11&&hp<=13&&h.stop(os)&&ok('2N',last)){
+      exp='2N';why='11-13 hp, balanserad hand med bra håll: 2NT.';
+    }
+    if(!exp&&h.bal&&hp>=14&&h.stop(os)&&ok('3N',last)){
+      exp='3N';why='14+ hp, balanserad hand med bra håll: 3NT.';
+    }
+
+    // Ny färg: 8+ hp på 1-nivån, 10+ hp om svaret måste avges på 2-nivån.
+    // Hopp i ny färg kräver 14+ hp och en bra 6+-färg.
+    if(!exp){
+      var suits=['S','H','D','C'].filter(function(x){return x!==s&&x!==os&&L[x]>=5;});
+      suits.sort(function(a,b){
+        if(L[b]!==L[a])return L[b]-L[a];
+        return ['S','H','C','D'].indexOf(a)-['S','H','C','D'].indexOf(b);
+      });
+      for(var si=0;si<suits.length&&!exp;si++){
+        var ns=suits[si],base=lowest(ns,last);
+        if(hp>=14&&L[ns]>=6&&h.good(ns)){
+          var jumpBid=jump(ns,last);
+          if(jumpBid&&ok(jumpBid,last)){
+            exp=jumpBid;why='14+ hp och bra 6+-färg i '+SYM[ns]+': hoppande färgbud, utgångskrav.';
+          }
+        }
+        if(!exp&&base&&hp>=(lv(base)>=2?10:8)){
+          exp=base;why=hp+' hp och '+L[ns]+' kort i '+SYM[ns]+': ny färg på lägsta nivå, rondkrav.';
+        }
+      }
+    }
+
+    // Pass är rätt när handen inte når något av de uttryckliga svarsbuden.
+    if(!exp){exp='P';why='Ingen höjning, sang, överbud eller ny färg uppfyller systemkraven: pass.';}
+    return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
   function respDouble(h,ob,last){
     var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[];
