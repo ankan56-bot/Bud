@@ -741,3 +741,5 @@ Utvecklingsspåret `feature/one-major-to-game-4nt` har startats från aktuell `m
 Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen ny täckningsprocent hävdas innan testerna har körts.
 
 - En riktad CI-körning hittade dessutom att den generella slutbudskontrollen behandlade partnerns 4NT som ett färdigt sang-/utgångsbud och därför svarade Pass innan RKC-svarsfunktionen nåddes. Kontrollen är nu justerad: 4NT med fastställd trumf går vidare till RKC-svar.
+
+- RKC 1430:s förklarande text i rättningsmotorn har synkroniserats med samma 1430-svar. Fortsättningen efter partnerns 5♣/5♦/5♥/5♠ lämnas nu uttryckligen ej täckt tills frågeställarens hantering av 1/4- respektive 0/3-tvety­digheten och slamgränserna är definierad. Motorn ska inte automatiskt bjuda 6M.
