@@ -925,8 +925,7 @@ var Rattning = (function(){
       var afterMyAsk=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c)});
       if(afterMyAsk.length){
         var response=afterMyAsk[0].c;
-        if(isBid(b.c) && /^([56][CDHSN])$/.test(b.c))return rkcNextStep(h,rkcTrumpFromAuction(prior,side(me)),response);
-        if(b.c==='P' && (last==='6N'||last==='7N'||last==='5N'))return {exp:'P',alt:[],why:'Pass efter fastställt sangslutbud.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
+        if(isBid(b.c)||b.c==='P')return rkcNextStep(h,rkcTrumpFromAuction(prior,side(me)),response);
       }
     }
 
