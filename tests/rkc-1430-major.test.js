@@ -5,11 +5,15 @@
 const assert = require('node:assert/strict');
 const Rattning = require('../rattningsmotor.js');
 
-const filler = ['S2','S3','S4','S5','S6','S7','S8','S9','S10','S11','S12','D2','D3'];
 function answer(hand) {
   assert.equal(hand.length, 13);
+  assert.equal(new Set(hand).size, 13, 'North must have 13 distinct cards');
+  const deck = [];
+  for (const suit of ['S','H','D','C']) for (let rank=2; rank<=14; rank++) deck.push(suit+rank);
+  const remaining = deck.filter(card => !hand.includes(card));
+  assert.equal(remaining.length, 39);
   const st = {
-    hands: { N: hand, E: filler, S: filler, W: filler },
+    hands: { N: hand, E: remaining.slice(0,13), S: remaining.slice(13,26), W: remaining.slice(26,39) },
     bids: [
       {s:'N',c:'1H'}, {s:'E',c:'P'},
       {s:'S',c:'2N'}, {s:'W',c:'P'},
