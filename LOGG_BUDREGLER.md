@@ -388,7 +388,7 @@ Täckning per tema:
 - 60,9 %: inkliv.
 - 47,1 %: upplysningsdubbling.
 
-De 75 luckorna är sparade med giv-ID, auktion, hand och motivering i `testdata/temagivare_140_baseline.json`. De största grupperna gäller konkurrensbudgivning: motståndarnas inkliv, flera motståndarb bud och återbud efter att partnern passat. Ostört läge är redan helt täckt i denna körning.
+De 75 luckorna är sparade med giv-ID, auktion, hand och motivering i `testdata/temagivare_140_baseline.json`. De största grupperna gäller konkurrensbudgivning: motståndarnas inkliv, flera motståndsbud och återbud efter att partnern passat. Ostört läge är redan helt täckt i denna körning.
 
 ### Nästa prioritering
 
