@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Kompletterande bridgebedömningar utanför eller utöver uttryckliga regler i grundsystemet. Får aldrig skriva över grundsystemet. Poster är förslag tills de har granskats och godkänts.",
   "authority": "supplementary_only",
   "status": "initial_schema_no_approved_rules",
@@ -247,6 +247,858 @@
       ],
       "recommendation": "1N",
       "rationale": "Naturligt sangsvar med jämn hand och utan tydlig hjärterfit."
+    },
+    {
+      "id": "supp_t29_2h",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1H",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 9
+        },
+        "shape": {
+          "H": {
+            "min": 3,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T29_1H_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2H",
+      "rationale": "Enkel hjärterhöjning med minst trekortsstöd och begränsad styrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T29_1H_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t29_cue",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1H",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "H": {
+            "min": 3,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T29_1H_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2S",
+      "rationale": "Stödvisande cue-bid med minst invitstyrka och hjärterstöd.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T29_1H_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t29_3h",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1H",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 0,
+          "max": 6
+        },
+        "shape": {
+          "H": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T29_1H_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "3H",
+      "rationale": "Spärrande hoppstöd med normalt fyrkortsstöd och svag honnörsstyrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T29_1H_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t29_1nt",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1H",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 10
+        },
+        "shape": {
+          "H": {
+            "min": 0,
+            "max": 2
+          }
+        },
+        "balanced": true,
+        "stoppers": [
+          "S"
+        ],
+        "notes": "Kandidat från T29_1H_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "1N",
+      "rationale": "Naturligt sangsvar med jämn hand, högst två hjärter och spaderstopper.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T29_1H_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t29_2d",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1H",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "D": {
+            "min": 5,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T29_1H_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2D",
+      "rationale": "Naturligt ruterbud med minst fem ruter och cirka 10+ hp; forcing en rond enligt parets överenskommelse.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T29_1H_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t30_2s",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1S",
+        "2H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 9
+        },
+        "shape": {
+          "S": {
+            "min": 3,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T30_1S_2H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2S",
+      "rationale": "Enkel spaderhöjning med minst trekortsstöd och begränsad styrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T30_1S_2H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t30_cue",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1S",
+        "2H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "S": {
+            "min": 3,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T30_1S_2H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "3H",
+      "rationale": "Stödvisande cue-bid i hjärter med minst invitstyrka och spaderstöd.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T30_1S_2H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t30_3s",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1S",
+        "2H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 0,
+          "max": 6
+        },
+        "shape": {
+          "S": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T30_1S_2H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "3S",
+      "rationale": "Spärrande hoppstöd med normalt fyrkortsstöd och svag honnörsstyrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T30_1S_2H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t30_2nt",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1S",
+        "2H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 12
+        },
+        "shape": {
+          "S": {
+            "min": 0,
+            "max": 2
+          }
+        },
+        "balanced": true,
+        "stoppers": [
+          "H"
+        ],
+        "notes": "Kandidat från T30_1S_2H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2N",
+      "rationale": "Naturligt 2NT med jämn hand, hjärterstopper och normalt högst två spader.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T30_1S_2H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t30_3c",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1S",
+        "2H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "C": {
+            "min": 5,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T30_1S_2H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "3C",
+      "rationale": "Naturligt klöverbud med minst fem klöver och cirka 10+ hp; forcing en rond enligt överenskommelsen.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T30_1S_2H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t31_2d",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1D",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 9
+        },
+        "shape": {
+          "D": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T31_1D_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2D",
+      "rationale": "Enkel ruterhöjning med minst fyrkortsstöd och begränsad styrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T31_1D_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t31_cue",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1D",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "D": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T31_1D_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2S",
+      "rationale": "Stödvisande cue-bid med minst invitstyrka och ruterstöd.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T31_1D_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t31_3d",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1D",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 0,
+          "max": 6
+        },
+        "shape": {
+          "D": {
+            "min": 5,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T31_1D_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "3D",
+      "rationale": "Spärrande hoppstöd med minst fem ruter och svag honnörsstyrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T31_1D_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t31_1nt",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1D",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 10
+        },
+        "shape": {
+          "D": {
+            "min": 0,
+            "max": 3
+          }
+        },
+        "balanced": true,
+        "stoppers": [
+          "S"
+        ],
+        "notes": "Kandidat från T31_1D_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "1N",
+      "rationale": "Naturligt 1NT med jämn hand, spaderstopper och begränsat ruterstöd (högst tre ruter i denna strukturerade tolkning).",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T31_1D_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t31_2c",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1D",
+        "1S"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "C": {
+            "min": 5,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T31_1D_1S_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2C",
+      "rationale": "Naturligt klöverbud med minst fem klöver och cirka 10+ hp; forcing en rond.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T31_1D_1S_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t32_2c",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1C",
+        "1H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 9
+        },
+        "shape": {
+          "C": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T32_1C_1H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2C",
+      "rationale": "Enkel klöverhöjning med minst fyrkortsstöd och begränsad styrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T32_1C_1H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t32_cue",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1C",
+        "1H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "C": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T32_1C_1H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "2H",
+      "rationale": "Stödvisande cue-bid med minst invitstyrka och klöverstöd.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T32_1C_1H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t32_3c",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1C",
+        "1H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 0,
+          "max": 6
+        },
+        "shape": {
+          "C": {
+            "min": 5,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T32_1C_1H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "3C",
+      "rationale": "Spärrande hoppstöd med normalt femkortsstöd och svag honnörsstyrka.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T32_1C_1H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t32_1s",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1C",
+        "1H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 37
+        },
+        "shape": {
+          "S": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "stoppers": [],
+        "notes": "Kandidat från T32_1C_1H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "1S",
+      "rationale": "Naturligt spaderbud på enläget med minst fyrkortsspader och cirka 6+ hp; forcing en rond.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T32_1C_1H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
+    },
+    {
+      "id": "supp_t32_1nt",
+      "topic": "konkurrensbudgivning",
+      "auctionPrefix": [
+        "1C",
+        "1H"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 10
+        },
+        "shape": {
+          "C": {
+            "min": 0,
+            "max": 3
+          },
+          "S": {
+            "min": 0,
+            "max": 3
+          }
+        },
+        "balanced": true,
+        "stoppers": [
+          "H"
+        ],
+        "notes": "Kandidat från T32_1C_1H_KONKURRENS i analysbiblioteket; handvillkor är strukturerade från trädets beskrivning och är inte godkända som grundsystem."
+      },
+      "recommendation": "1N",
+      "rationale": "Naturligt 1NT med jämn hand, hjärterstopper och utan fyrkortsstöd i klöver eller egen fyrkortsspader.",
+      "alternatives": [],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Endast den aktuella svarshandens kort och den lagliga budsekvensen.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder dolda kort och är inte grund för budrekommendationen."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T32_1C_1H_KONKURRENS. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, inte grundsystem.",
+        "Överenskommelsen i analysbiblioteket behöver granskas innan automatisk budgivning."
+      ]
     }
   ],
   "entrySchema": {
