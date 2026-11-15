@@ -15,6 +15,7 @@
     if (!SEATS.includes(seat)) throw new Error("Ogiltig plats: " + seat);
   }
   function nextSeat(seat) {
+    assertSeat(seat);
     return SEATS[(SEATS.indexOf(seat) + 1) % 4];
   }
   function turn(session) {
@@ -35,22 +36,34 @@
     if (new Set(seats).size !== seats.length) throw new Error("Varje plats kan bara tilldelas en människa.");
     return SEATS.filter(s => seats.includes(s));
   }
+  function validateHands(hands) {
+    if (!hands || !SEATS.every(s => Array.isArray(hands[s]) && hands[s].length === 13)) {
+      throw new Error("En giltig giv med 13 kort per spelare krävs.");
+    }
+    const cards = SEATS.flatMap(s => hands[s]);
+    if (cards.some(c => typeof c !== "string" || !c.length) || new Set(cards).size !== 52) {
+      throw new Error("Given måste innehålla 52 unika kort.");
+    }
+  }
   function createSession(config) {
     config = config || {};
     const humanSeats = normalizeHumanSeats(config.humanSeats || ["S"]);
-    assertSeat(config.dealer || "N");
-    if (!config.hands || !SEATS.every(s => Array.isArray(config.hands[s]) && config.hands[s].length === 13)) {
-      throw new Error("En giltig giv med 13 kort per spelare krävs.");
-    }
-    const bids = (config.bids || []).map(b => {
+    const dealer = config.dealer || "N";
+    assertSeat(dealer);
+    validateHands(config.hands);
+    const bids = [];
+    (config.bids || []).forEach(b => {
       assertSeat(b.seat);
       if (typeof b.call !== "string" || !b.call) throw new Error("Ogiltigt bud i auktionen.");
-      return { seat: b.seat, call: b.call, explanation: b.explanation || "" };
+      if (auctionEnded(bids)) throw new Error("Auktionen innehåller bud efter avslut.");
+      const expected = SEATS[(SEATS.indexOf(dealer) + bids.length) % 4];
+      if (b.seat !== expected) throw new Error("Fel budordning: väntade " + expected + " men fick " + b.seat + ".");
+      bids.push({ seat: b.seat, call: b.call, explanation: b.explanation || "" });
     });
     const session = {
       version: 1,
       id: config.id || null,
-      dealer: config.dealer || "N",
+      dealer,
       mode: config.mode || "stord",
       focus: config.focus || "alla",
       humanSeats,
