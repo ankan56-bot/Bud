@@ -5,6 +5,7 @@ on:
     paths:
       - "budgivning-session.js"
       - "tests/**"
+      - "Budtraning.html"
       - ".github/workflows/bidding-session-tests.yml"
   push:
     branches:
@@ -26,4 +27,4 @@ jobs:
         with:
           node-version: 22
       - name: Run bidding session tests
-        run: node --test tests/budgivning-session.test.js
+        run: node --test tests/*.test.js
