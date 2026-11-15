@@ -449,11 +449,11 @@ var Rattning = (function(){
     }
     if(rs===o){
       if(lv(r)===2&&maj(o)){var t=h.htp(o);
-        if(t>=19){exp='4'+o;why=t+' htp: utgång.'}
-        else if(t>=16){var sg2=h.singles().filter(function(s){return L[s]<=1&&s!==o});
-          if(sg2.length){exp=lowest(sg2[0],r);alt=['3'+o];why=t+' htp med singel: ny färg 16-18.'}
-          else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (invit).'}}
-        else{exp='P';why=t+' htp: högst 15, pass.'}
+        if(t>=20){exp='4'+o;why=t+' htp: utgång (20+).'}
+        else if(t>=17){var sg2=h.singles().filter(function(s){return L[s]<=1&&s!==o});
+          if(sg2.length){exp=lowest(sg2[0],r);alt=['3'+o];why=t+' htp med singel: ny färg (17-19).'}
+          else{exp='3'+o;why=t+' htp utan singel: 3 i färgen (17-19, invit).'}}
+        else{exp='P';why=t+' htp: högst 16, pass.'}
         return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
       if(!maj(o)&&lv(r)>=2&&h.hp<=14){
         return {exp:'P',alt:[],why:'Öppnaren har minimum eller normal styrka efter partnerns lågfärgshöjning. Pass tills vidare; starkare fortsättning kräver ytterligare stöd eller styrka.',means:means,conv:'trumfstöd'};
