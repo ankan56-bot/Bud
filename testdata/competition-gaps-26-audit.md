@@ -1,8 +1,8 @@
-# Fördjupad granskning av 26 konkurrensluckor
+# Fördjupad granskning av 26 konkurrens- och försvarsluckor
 
 ## Syfte och avgränsning
 
-De 26 positionerna är täckningsluckor i referensauktionen. Alla står som Pass därför att generatorn väljer Pass när rättningsmotorn saknar ett säkert förslag. Pass är inte därmed verifierat som korrekt. Granskningen jämför sekvenserna med:
+De 26 positionerna är täckningsluckor i referensauktionen. De är inte alla konkurrensbud i strikt mening: fyra är försvarspass efter motståndarnas naturliga öppning och svar, medan 22 gäller inkliv/dubbling eller återbud efter upplysningsdubbling. Alla står som Pass därför att generatorn väljer Pass när rättningsmotorn saknar ett säkert förslag. Pass är inte därmed verifierat som korrekt. Granskningen jämför sekvenserna med:
 - tidigare exempel i `LOGG_BUDREGLER.md` (Giv 7, 10, 13, 19, 21, 22, 24 och 25);
 - analysbibliotekets T29–T33;
 - de uttryckliga systemgränserna och de redan dokumenterade luckorna.
@@ -15,10 +15,10 @@ Loggens givbeskrivningar innehåller inte fullständiga kortlistor för dessa ex
 |---|---:|---|
 | Första svar/fortsättning efter motståndarnas inkliv eller dubbling | 13 | Stöd, naturliga svar, sang, färgbud eller pass efter olika inklivsnivåer |
 | Återbud efter partnerns svar på upplysningsdubbling | 9 | Dubblerarens återbud utifrån egen hand och partnerns svar |
-| Flera motståndarbud i samma auktion | 4 | Fortsättning efter två eller fler konkurrensbud |
+| Försvar efter motståndarnas öppning och svar/återbud | 4 | Försvarspass när motståndarna bygger en naturlig auktion |
 | **Totalt** | **26** | |
 
-De 16 positioner där dubbling förekommer har dessutom tidigare delats upp i tre svar efter motståndarnas dubbling av vår öppning, åtta återbud från dubbleraren efter partners svar och två fortsättningar efter ny motståndarinblandning, plus tre övriga passpositioner. Dessa är olika beslutssituationer och får inte slås ihop till en generell dubblingsregel.
+Av de 26 positionerna är 22 egentliga konkurrens-/dubblingssituationer och fyra försvarspositioner mot en naturlig motståndarauktions fortsättning. De 16 positioner där dubbling förekommer har dessutom tidigare delats upp i tre svar efter motståndarnas dubbling av vår öppning, åtta återbud från dubbleraren efter partners svar och två fortsättningar efter ny motståndarinblandning, plus tre övriga passpositioner. Dessa är olika beslutssituationer och får inte slås ihop till en generell dubblingsregel.
 
 ## Jämförelse mot befintliga analysnoder
 
@@ -45,7 +45,7 @@ Följande auktioner saknar en exakt match i de fem konkurrensträden:
 - 1♣–(1♥) följt av motståndarnas 2♣ och senare pass/återbud;
 - upprepade motståndarbud efter 1♣–(1♠)–(2♣)–(5♣).
 
-Detta är separata nivåer och former av konkurrens. T29–T33 ska inte generaliseras till dem utan stöd.
+Detta är försvarspositioner mot motståndarnas naturliga budsekvens, inte nödvändigtvis konkurrensbudgivning. T29–T33 ska inte generaliseras till dem utan stöd.
 
 ## Jämförelse mot LOGG_BUDREGLER.md
 
@@ -102,7 +102,7 @@ HCP och fördelning nedan gäller handen hos den spelare vars Pass står som ej 
 3. **T33-svag svarshand:** skaffa källa för när Pass är korrekt efter 1♥–(Dbl) med 2 HCP och två hjärter, alternativt dokumentera andra avsedda svar.
 4. **Dubblerarens återbud:** skapa en separat regel-/analysgren för 1♦/1♥/1♣–(Dbl)–Pass–svar–Pass. Den ska använda dubblerarens egen hand, inte partnerns dolda kort.
 5. **Nivå- och färgvarianter:** samla fler jämförbara exempel för 1♠–(3♣), 1♦–(2♠), 1♥–(2♠) och 1♠–(3♦).
-6. **Flera motståndarbud:** behandla sekvenserna med 1♣–(1♠)–(2♣)–(5♣) som egen konkurrensfas.
+6. **Försvar mot naturlig budsekvens:** granska passen efter motståndarnas 1♣–1♠–2♣–5♣ som ett separat försvarsproblem, inte som inkliv/dubbling.
 
 ## Beslut
 
