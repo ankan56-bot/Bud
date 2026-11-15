@@ -848,7 +848,7 @@ var Rattning = (function(){
         var askSide=side(asker);
         var askIsAgreed=!!rkcTrumpFromAuction(prior,askSide)||agreedNoTrumpAceAsk(prior,askSide);
         var answer=prior.slice(latestAskIndex+1).find(function(x){
-          return x.s===partner(asker)&&isBid(x.c);
+          return side(x.s)===askSide&&x.s!==asker&&isBid(x.c);
         });
         aceAskResponse=askIsAgreed&&!!answer&&/^5[CDHSN]$/.test(answer.c)&&lastCall===answer;
       }
