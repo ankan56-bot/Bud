@@ -680,15 +680,17 @@ function send(m){
   if(!room)return;
   try{fetch('https://ntfy.sh/'+topic(),{method:'POST',body:JSON.stringify(m)}).catch(function(){})}catch(e){}
 }
+function isCurrentRoomConnection(connectedRoom,source){return room===connectedRoom&&es===source}
 function connect(){
   if(es){try{es.close()}catch(e){}}
   if(!room)return;
   connState='ansluter';
   try{
-    es=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');
-    es.onopen=function(){connState='online';startPresence();markRoomSync();render()};
-    es.onerror=function(){connState='offline';roomSyncing=true;if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=null;if(state)render()};
-    es.onmessage=function(ev){
+    var connectedRoom=room,source=new EventSource('https://ntfy.sh/'+topic()+'/sse?since=all');es=source;
+    source.onopen=function(){if(!isCurrentRoomConnection(connectedRoom,source))return;connState='online';startPresence();markRoomSync();render()};
+    source.onerror=function(){if(!isCurrentRoomConnection(connectedRoom,source))return;connState='offline';roomSyncing=true;if(roomSyncTimer)clearTimeout(roomSyncTimer);roomSyncTimer=null;if(state)render()};
+    source.onmessage=function(ev){
+      if(!isCurrentRoomConnection(connectedRoom,source))return;
       try{var o=JSON.parse(ev.data);if(o.event&&o.event!=='message')return;var m=JSON.parse(o.message);
         if(m.type==='presence'&&m.p&&m.p.id!==playerId&&isFreshRoomPresence(o)&&isNewerRoomPresence(o,lastPresenceEventTime[m.p.id])){lastPresenceEventTime[m.p.id]=Number(o.time)*1000;var previous=roomPlayers[m.p.id],freshPresence={id:m.p.id,name:m.p.name||'',seat:m.p.seat||null,at:Date.now()};if(!previous||freshPresence.at>=(previous.at||0)){roomPlayers[m.p.id]=freshPresence;var ownersNow=roomSeatOwners(),lost=seat==='X'?(ownersNow.N!==playerId||ownersNow.S!==playerId):(seat&&ownersNow[seat]!==playerId);if(lost){seat=null;try{localStorage.removeItem('bt_seat')}catch(e){}announcePresence()}if(roomConfig.count&&roomCoordinator()===playerId)scheduleBot()}render();return}
         if(m.type==='room-config'&&m.config&&m.config.count>=1&&m.config.count<=4&&!roomConfig.count){roomConfig=m.config;pendingRoomCount=0;persistRoomConfig();render();return}
