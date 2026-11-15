@@ -8,14 +8,21 @@
     "reproducibleSeeds": true,
     "distribution": {
       "typical": 7,
-      "borderline": 3
+      "borderline": 3,
+      "actualByTheme": {
+        "nt": {
+          "typical": 6,
+          "borderline": 4
+        },
+        "otherThemes": "pending"
+      }
     },
     "validateThemeBeforeSave": true,
     "validate52UniqueCards": true,
     "status": "generated_and_validated_rule_constraints",
     "seedScheme": "(7919 * (indexWithinTheme + 1) + themeId.length * 104729 + (mode === 'ostord' ? 17 : 0)) >>> 0",
     "modeDistribution": "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
-    "caseClassification": "unclassified; each deal must be assessed against explicit system-rule boundaries before assigning typical or borderline",
+    "caseClassification": "NT theme classified using exact 1NT and responder minimum boundaries; remaining themes unclassified until equivalent rule evidence is implemented.",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
     "rulesEngineBlobSha": "f811670c3f26d7321ac485b4f56de8db033cc065",
     "rulesEngineVersion": "7.3",
@@ -283,7 +290,7 @@
     "aiAnalysis": "pending_development_analysis",
     "dds": "not_run",
     "regressionBaseline": "same fixed deals for every motor version",
-    "status": "baseline_complete_classification_pending",
+    "status": "partial_classification_nt_complete_other_themes_pending",
     "referenceAuction": "generated_from_existing_rule_engine_not_independent_facit",
     "result": {
       "rätt": 583,
@@ -390,5 +397,5 @@
       }
     }
   },
-  "note": "The 140 deals are generated with the existing seeded theme generator and validated for hand integrity, theme conditions, legal auction structure, and exact NT opening ranges. The stored auction is a deterministic coverage reference, not an independent optimal auction. Typical/borderline labels remain unclassified until each deal has evidence tied to a documented system rule."
+  "note": "The 140 deals are generated with the existing seeded theme generator and validated for hand integrity, theme conditions, legal auction structure, and exact NT opening ranges. The stored auction is a deterministic coverage reference, not an independent optimal auction. Typical/borderline labels remain unclassified until each deal has evidence tied to a documented system rule. The NT theme now has evidence-backed typical/borderline classifications; it yields 6 typical and 4 borderline because all four deals at the 15/17 HCP opening limits are retained as genuine boundary cases. Other themes remain explicitly unclassified."
 }
