@@ -611,20 +611,72 @@ var Rattning = (function(){
     return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
   function respOvercall(h,oc,last,ob){
-    var s=st_(oc),os=ob?ob[1]:null,L=h.L,hp=h.hp,exp,why,alt=[];
-    var means=function(c){
-      if(c==='1N')return '9-12 hp, balanserad, håll i öppningsfärgen.';if(c==='2N')return '10-12 hp, balanserad, bra håll.';if(c==='3N')return '13-16 hp, balanserad, bra håll.';
-      if(isBid(c)&&c[1]===s){var d=lv(c)-lv(oc);return d===1?(lv(oc)===1?'Enkel höjning: 6-10 stp, 3-korts stöd.':'Enkel höjning: 8-11 stp, 3-korts stöd.'):d===2?('Dubbel höjning: '+(lv(oc)===1?'8-11 stp':'11-12 stp')+', 4-korts stöd.'):'Trippel höjning: 8-11 stp, 5-korts stöd.'}
-      if(isBid(c)&&c[1]===os)return 'Överbud (deras färg): 10+ hp och 3+ stöd.';
-      if(isBid(c)&&c[1]!=='N')return lv(c)>lv(lowest(c[1],last))?'Hopp i ny färg: 14+ hp, bra 6+ färg, utgångskrav.':'Ny färg: 10+ hp, 5+ färg, rondkrav.';
-      if(c==='P')return 'Pass.';return null};
-    if(L[s]>=3&&hp<=7&&lv(oc)===1){var t=L[s]>=5?3:L[s]>=4?2:1;var e=(lv(oc)+t)+s;if(ok(e,last)&&lv(e)<=4){exp=e;why=L[s]+' kort stöd och '+hp+' hp: '+(t===1?'enkel':t===2?'dubbel':'trippel')+' höjning.'}}
-    if(!exp&&L[s]>=3&&hp>=8&&hp<=11&&lv(oc)===2){var t2=L[s]>=5?2:1;var e2=(lv(oc)+t2)+s;if(ok(e2,last)){exp=e2;why=L[s]+' kort stöd och '+hp+' stp: höjning.'}}
-    if(!exp&&L[s]>=3&&hp>=10&&os&&lv(oc)===1){exp=lowest(os,last);why='10+ hp och 3+ stöd: överbud i deras färg.'}
-    if(!exp&&h.bal&&hp>=9&&hp<=12&&h.stop(os)&&ok('1N',last)){exp='1N';why='9-12 hp med håll: 1NT.'}
-    if(!exp&&h.bal&&hp>=10&&hp<=12&&h.stop(os)&&ok('2N',last)){exp='2N';why='10-12 hp med håll: 2NT.'}
-    if(!exp&&h.bal&&hp>=13&&hp<=16&&h.stop(os)&&ok('3N',last)){exp='3N';why='13-16 hp med håll: 3NT.'}
-    return {exp:exp||null,alt:[],why:why||'Dokumentet anger inte budet för denna hand.',means:means,conv:'inkliv',soft:true};
+    var s=st_(oc),os=ob?st_(ob):null,L=h.L,hp=h.hp;
+    // Nordisk standard s. 7 ger en svarstabell för inkliv på 1-nivån
+    // (1 högfärg eller 1 ruter). Andra inklivsnivåer har egna/otillräckliga
+    // källregler och får inte ärva denna tabell.
+    if(lv(oc)!==1||!os){
+      return NC('Nordisk standard anger inte denna svarstabell för inkliv på denna nivå. Tabellen på s. 7 gäller 1-högfärgs-/1-ruterinkliv.',null,'inkliv');
+    }
+
+    // Stöd: 6-9 hp. Antalet trumfkort bestämmer enkel-, dubbel- eller trippelhöjning.
+    if(L[s]>=3&&hp>=6&&hp<=9){
+      var raiseStep=L[s]>=5?3:(L[s]===4?2:1);
+      var raise=(lv(oc)+raiseStep)+s;
+      if(ok(raise,last)){
+        return {exp:raise,alt:[],why:hp+' hp och '+L[s]+'-kortsstöd: '+(raiseStep===1?'enkel':raiseStep===2?'dubbel':'trippel')+' höjning enligt Nordisk standard s. 7.',means:function(c){
+          if(c===raise)return '6-9 hp och '+(raiseStep===1?'3':raiseStep===2?'4':'5+')+'-kortsstöd.';
+          return null;
+        },conv:'svar på inkliv',soft:false};
+      }
+    }
+
+    // Överbud i motståndarnas färg: 10+ hp och minst 3-kortsstöd.
+    if(L[s]>=3&&hp>=10){
+      var cue=lowest(os,last);
+      if(ok(cue,last)){
+        return {exp:cue,alt:[],why:hp+' hp och '+L[s+'']+'-kortsstöd: överbud i motståndarnas färg enligt Nordisk standard s. 7.',means:function(c){return c===cue?'10+ hp och 3+ stöd i partnerns inklivsfärg.':null},conv:'svar på inkliv',soft:false};
+      }
+    }
+
+    // Sangbud med håll i öppningsfärgen.
+    var nt=[];
+    if(h.bal&&h.stop(os)){
+      if(hp>=8&&hp<=10&&ok('1N',last))nt.push({call:'1N',why:'8-10 hp, balanserad hand och håll i öppningsfärgen: 1NT.',meaning:'8-10 hp, balanserad och håll i öppningsfärgen.'});
+      if(hp>=11&&hp<=13&&ok('2N',last))nt.push({call:'2N',why:'11-13 hp, balanserad hand och bra håll i öppningsfärgen: 2NT.',meaning:'11-13 hp, balanserad och bra håll i öppningsfärgen.'});
+      if(hp>=14&&ok('3N',last))nt.push({call:'3N',why:'14+ hp, balanserad hand och bra håll i öppningsfärgen: 3NT.',meaning:'14+ hp, balanserad och bra håll i öppningsfärgen.'});
+    }
+
+    // Naturlig ny färg: 8+ hp på 1-nivån, 10+ hp på 2-nivån.
+    // Hopp i ny färg: 14+ hp, bra 6+ färg och utgångskrav.
+    var suits=SU.filter(function(x){return x!==s&&x!==os&&L[x]>=5});
+    var natural=[];
+    suits.forEach(function(x){
+      if(hp>=14&&L[x]>=6&&h.good(x)){
+        var j=jump(x,last);
+        if(j&&ok(j,last))natural.push({call:j,why:'14+ hp och bra 6+ '+SYM[x]+': hopp i ny färg, utgångskrav enligt Nordisk standard s. 7.',meaning:'14+ hp, bra 6+ färg och utgångskrav.'});
+      }else{
+        var low=lowest(x,last),level=lv(low);
+        var min=level===1?8:(level===2?10:99);
+        if(L[x]>=5&&hp>=min&&ok(low,last)){
+          natural.push({call:low,why:hp+' hp och 5+ '+SYM[x]+': ny färg på lägsta nivå, rondkrav enligt Nordisk standard s. 7.',meaning:(level===1?'8+':'10+')+' hp och 5+ färg; rondkrav.'});
+        }
+      }
+    });
+
+    var choices=nt.concat(natural);
+    var unique=[];
+    choices.forEach(function(x){if(!unique.some(function(y){return y.call===x.call}))unique.push(x)});
+    if(unique.length===1){
+      var choice=unique[0];
+      return {exp:choice.call,alt:[],why:choice.why,means:function(c){return c===choice.call?choice.meaning:null},conv:'svar på inkliv',soft:false};
+    }
+    if(unique.length>1){
+      return NC('Handen uppfyller flera svarsalternativ i Nordisk standard s. 7, men dokumentet anger ingen prioritering mellan dessa alternativ.',function(c){
+        var hit=unique.find(function(x){return x.call===c});return hit?hit.meaning:null;
+      },'svar på inkliv');
+    }
+    return NC('Handen uppfyller inte något uttryckligt svarsvillkor i Nordisk standard s. 7. Pass kan inte fastställas som systemregel enbart av denna tabell.',null,'svar på inkliv');
   }
   function respDouble(h,ob,last){
     var os=ob[1],L=h.L,hp=h.hp,exp,why,alt=[];
