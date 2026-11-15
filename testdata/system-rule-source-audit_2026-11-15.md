@@ -60,7 +60,7 @@ Sidan ger dubblarens styrka och partnerns första svar, men ingen fullständig t
 De åtta fallen i `double-rebid-8-audit.md` är just dubblerarens senare återbud. De får inte lösas genom att återanvända `respDouble()`, som är svarshandens första bud efter partnerns dubbling av motståndarnas öppning. Giv 13 i loggen gäller också svarshandens stöd efter dubbling, inte dubblarens återbud.
 
 ### Slutsats
-Upplysningsdubblingens öppningsstyrka och partnerns första svar kan verifieras mot sida 8. Källan ger också 18+-betydelsen för återbud utan stöd, men den gäller inte de åtta inventerade fallen eftersom dubbleraren har 3+ stöd i samtliga. Dessa åtta återbud saknar därför fortfarande en användbar fortsättningsregel och ska förbli ej täckta.
+Upplysningsdubblingens öppningsstyrka och partnerns första svar kan verifieras mot sida 8. Motorn version 7.3 beskriver nu även 18+-betydelsen när dubblaren utan stöd återbjuder egen färg eller sang, men väljer inte mellan dessa bud. Regeln gäller inte de åtta inventerade fallen eftersom dubbleraren har 3+ stöd i samtliga. Dessa åtta återbud saknar därför fortfarande en användbar fortsättningsregel och ska förbli ej täckta.
 
 ## 3. Öppnarens tredje bud efter svarshandens 2NT
 
@@ -106,6 +106,6 @@ Det finns ett närliggande 2NT-exempel på sida 3, men det fastställer inte öp
 
 - Källan har lästs i sin helhet: 8 sidor, Nordisk standard 2012-08-22.
 - Denna rapport skiljer nu mellan uttryckliga källregler, närliggande men ej överförbara exempel och verkliga luckor.
-- Svarstabellen efter 1-högfärgs-/1-ruterinkliv är implementerad, version 7.2. För hoppande 2-högfärgsinkliv visas källstödda budbetydelser men inget automatiskt huvudbud där styrkegräns saknas.
+- Svarstabellen efter 1-högfärgs-/1-ruterinkliv är implementerad, version 7.3. För hoppande 2-högfärgsinkliv visas källstödda budbetydelser men inget automatiskt huvudbud där styrkegräns saknas. Den källstödda 18+-betydelsen efter upplysningsdubbling utan stöd visas också utan att motorn väljer ett återbud.
 - Övriga nämnda svarslägen och de två andra prioriterade luckorna är inte ändrade.
 - `main` är orörd.
