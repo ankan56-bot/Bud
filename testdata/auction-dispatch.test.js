@@ -51,3 +51,21 @@ test("opener's third bid after responder's second bid gets its own uncovered dia
   assert.match(result?.why || "", /Öppnarens tredje bud efter 1 i färg/);
   assert.doesNotMatch(result?.why || "", /Svarshandens andra bud/);
 });
+
+test("agreed no-splinter scope prevents splinter rebids after a simple major raise", () => {
+  const { Rattning } = loadRuntime();
+  const hands = {
+    S: ["S12","H4","S14","C6","S13","D8","S10","C8","D11","S3","C5","C13","C4"],
+    N: ["C12","D2","S2","H13","S9","C9","S4","H2","D6","H10","D5","H11","S6"],
+    E: ["C10","C11","H12","D3","D13","D14","S5","D12","S7","H9","H7","H8","S11"],
+    W: ["C2","C7","D7","D9","D4","H3","D10","H5","H14","H6","C14","C3","S8"]
+  };
+  const bids = [
+    { s: "S", c: "1S" }, { s: "W", c: "P" },
+    { s: "N", c: "2S" }, { s: "E", c: "P" },
+    { s: "S", c: "P" }
+  ];
+  const result = Rattning.nodeFor({ hands, dealer: "S", bids }, 4);
+  assert.equal(result?.exp, "3S");
+  assert.doesNotMatch(result?.why || "", /splinter/i);
+});
