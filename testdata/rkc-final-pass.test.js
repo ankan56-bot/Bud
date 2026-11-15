@@ -68,7 +68,8 @@ function responseFromSouthHand(south) {
 test("two keycards and a club void are shown by 6C when clubs are below trumps", () => {
   const hand = ["S14", "S10", "S9", "H14", "H13", "H12", "H11", "D10", "D13", "D12", "D11", "D9", "D8"];
   const result = responseFromSouthHand(hand);
-  assert.equal(result?.exp, "6C");
+  assert.deepEqual(Rattning.H(hand).L, { C: 0, D: 6, H: 4, S: 3 }, "test hand must contain exactly one club void");
+  assert.equal(result?.exp, "6C", JSON.stringify(result));
 });
 
 test("two keycards and a heart void above spade trumps are shown by 6S", () => {
