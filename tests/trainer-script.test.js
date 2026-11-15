@@ -80,7 +80,7 @@ test("shared actions are routed through a room coordinator", () => {
   assert.match(html, /requestRoomAction\('next'\)/);
   assert.match(html, /requestRoomAction\('undo'\)/);
   assert.match(html, /requestRoomAction\('theme'/);
-  assert.match(html, /baseRev:rev/);
+  assert.match(html, /baseState:pack\(state\)/);
   assert.match(html, /roomConfig\.count&&!roomReady\(\)/);
 });
 
@@ -142,4 +142,21 @@ test("room state synchronization uses ntfy server chronology rather than per-dev
   assert.equal(context.isNewerRoomState({ time: "invalid" }, latest), false);
   assert.match(html, /lastStateEventTime=0/);
   assert.match(html, /rev=Math\.max\(rev,Number\(m\.v\)\|\|0\);adopt\(m\.st\)/);
+});
+
+test("room actions are accepted only for the exact auction state the player acted on", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function sameRoomState(");
+  const end = html.indexOf("\nfunction executeRoomAction", start);
+  assert.ok(start >= 0 && end > start, "room-state comparison helper should exist");
+  const context = {};
+  vm.runInNewContext(html.slice(start, html.indexOf("\n", start)), context);
+  const stateA = { no: 4, seed: "abc", h: ["N1NT"] };
+  const stateSame = { no: 4, seed: "abc", h: ["N1NT"] };
+  const stateLater = { no: 4, seed: "abc", h: ["N1NT", "S2NT"] };
+  assert.equal(context.sameRoomState(stateA, stateSame), true);
+  assert.equal(context.sameRoomState(stateA, stateLater), false,
+    "a request based on an earlier auction must be rejected");
+  assert.equal(context.sameRoomState(stateA, null), false);
+  assert.match(html, /sameRoomState\(m\.baseState,pack\(state\)\)/);
 });
