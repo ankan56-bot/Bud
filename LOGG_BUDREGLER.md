@@ -237,7 +237,7 @@ Nytt test: `tests/reverse-hps.test.js`. Fyra isolerade fall verifierades:
 3. 17 HP och 6-4: STP enligt 6+-färgsregeln ger 20 HPS; reverse godkänns.
 4. 17 HP och 5-5: STP enligt 5-5-regeln ger 20 HPS; reverse godkänns.
 
-**Verifiering:** JavaScript-syntaxkontroll och samtliga fem isolerade regressionfall passerade mot version 6.6. Fullständig temagivar-/200-givarsregression återstår.
+**Verifiering:** JavaScript-syntaxkontroll och samtliga tio isolerade regressionfall passerade mot version 6.6. Fullständig temagivar-/200-givarsregression återstår.
 
 **Viktigt om GitHub-grenar:** Vid återstarten var `main` 90 commits före `feature/two-player-dds` (som fortfarande pekade på commit `f96e664`). Arbetet har därför startats från aktuella `main` i den nya grenen `work/hps-reverse-audit`. Varken `main` eller den äldre grenen har ändrats.
 
@@ -252,3 +252,34 @@ Detta är nu samlat i funktionen `handHps()`:
 - En 5-4-hand utan stöd visar endast HP.
 
 Regressionstesten kontrollerar nu även det visade HPS-värdet: 18, 17, 20 respektive 20 i de fyra fallen. Samtliga fyra fall passerar efter ändringen.
+
+
+## Svarshöjningar och Stenberg – granskning mot regelsammanfattningen
+
+**Datum:** 2026-11-15  
+**Status:** Implementerat på `work/hps-reverse-audit`, verifierat med regressionstester. `main` är inte ändrad.
+
+Granskning av den auktoritativa regelsammanfattningen i `Budtraning.html` visade att svarsfunktionens höjningsgränser låg en poäng för högt:
+- 2 i högfärg/lågfärg: 6–9 HTP (tidigare upp till 10).
+- 3 i högfärg/lågfärg: 10–12 HTP (tidigare från 11).
+
+Detta är nu korrigerat i `resp1()`. Prioriteringen att visa 4+ högfärg före lågfärgsstöd är oförändrad. 13+ HTP med 4+ högfärgsstöd går till Stenberg 2NT före eventuell splinter.
+
+En separat visningsavvikelse rättades också: vid Stenberg 2NT visades tidigare endast HP eftersom själva budet är sang. Nu hämtas stödpoängen från öppnarens färg när Stenbergsekvensen är identifierad. I övriga sekvenser räknas stödpoäng i visningen först när båda spelarna har bjudit samma färg; ett ensidigt färgbud/reverse räcker inte för att fastställa trumf.
+
+### Regressionstester
+
+`tests/reverse-hps.test.js` omfattar nu tio isolerade fall:
+- Fem HPS/reverse-fall, inklusive skillnaden mellan 5-4, 6-4, 5-5 och faktisk 8-korts fit.
+- 9 HTP med 4-korts högfärgsstöd: 2♥.
+- 10 HTP med 4-korts högfärgsstöd: 3♥.
+- 13+ HTP med 4-korts högfärgsstöd och singelton: Stenberg 2NT, inte splinter.
+- 9 HTP med lågfärgsstöd utan 4-korts högfärg: 2♣.
+- 10 HTP med lågfärgsstöd utan 4-korts högfärg: 3♣.
+
+Samtliga tio fall passerar. JavaScript-syntaxkontroll passerar.
+
+### Kvarstående precisering i källregeln
+
+Regelsammanfattningen nämner även spärrhöjning till 4♥/4♠ (max 12 HTP) respektive 4♣/4♦ (max 9 HTP). Den anger däremot inte tillräckligt tydligt vilken minsta trumflängd/fördelning som skiljer dessa spärrhöjningar från vanliga 2-/3-höjningar. Den delen lämnas därför uttryckligen som ej fullständigt implementerad; ingen handvillkorsregel har hittats på.
+
