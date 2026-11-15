@@ -8,7 +8,7 @@ const { loadRuntime } = require("./generate-theme-deals.js");
 const casesPath = path.join(__dirname, "uncovered_cases_47.json");
 const uncovered = JSON.parse(fs.readFileSync(casesPath, "utf8")).cases;
 const sequenceCases = uncovered.filter(c =>
-  /Budgivningen följer inte ett turordnat mönster/i.test(c.uncoveredBid?.reason || "")
+  /Öppnarens återbud efter partnerns pass och motståndarnas inkliv/i.test(c.uncoveredBid?.reason || "")
 );
 
 test("valid opener rebids after partner pass are not diagnosed as turn-order errors", () => {
