@@ -1,11 +1,14 @@
 {
-  "version": "0.6.2",
-  "description": "Analysbibliotek med 42 budträd och 254 noder. Utökat med stark 2♣, svagt lågfärgsrelä efter 1NT och superaccept av överföring; endast dokumenterade motorregler.",
+  "version": "0.6.3",
+  "description": "Analysbibliotek med 43 budträd. Utökat och kvalitetssäkrat 1NT-budgivningen fram till 4NT; svaren efter 4NT lämnas till nästa utvecklingsetapp.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort; 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam",
-    "jacoby": "2NT efter 1 i högfärg är Jacoby 2NT; öppnarens 3♣ visar singel/renons i klöver enligt denna prototyps överenskommelse"
+    "jacoby": "2NT efter 1 i högfärg är Jacoby 2NT; öppnarens 3♣ visar singel/renons i klöver enligt denna prototyps överenskommelse",
+    "oneNTNoTrumpAceAsk": "1NT–4NT och 1NT–2♣–2♦–4NT är uttryckligen avtalade fyr-essfrågor utan fastställd trumf: 5♣=0 ess, 5♦=1, 5♥=2, 5♠=3, 5NT=4. Svaren efter 4NT ligger utanför aktuell omfattning.",
+    "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ tolkas 4NT som RKC 1430 med överföringsfärgen som trumf. Svaren efter 4NT ligger utanför aktuell omfattning.",
+    "oneNTGameThreshold": "Efter 1NT är 3NT direkt endast när paret har minst 26 gemensamma honnörspoäng. 2NT används som invit när handen är balanserad och utgångsgränsen ännu inte nås."
   },
   "trees": [
     {
@@ -320,9 +323,9 @@
         "delkontrakt"
       ],
       "conditions": [
-        "Norr öppnar 1NT = 15–17 hp",
-        "Syd har balanserad hand med cirka 8–9 hp",
-        "Ingen högfärgsfit har konstaterats"
+        "Norr öppnar 1NT = 15–17 hp, balanserad hand.",
+        "Svarshanden har balanserad hand utan fyrkortshögfärg; normalt 8–9 hp, eller 10+ när parets sammanlagda honnörspoäng fortfarande är under 26.",
+        "2NT är invit till 3NT."
       ],
       "root": "t04_n0",
       "nodes": [
@@ -333,7 +336,7 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "2NT är en invit till 3NT och visar normalt cirka 8–9 hp efter 1NT 15–17.",
+          "meaning": "2NT är en invit till 3NT. Normalt visar det 8–9 hp; även en balanserad hand med 10+ hp använder 2NT om paret ännu inte når 26 gemensamma honnörspoäng.",
           "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har cirka 8–9 hp och också jämn fördelning. Ingen femkortshögfärg eller trumffit finns, så högfärg väljs bort och 2NT blir en invit till 3NT. Öppnaren passar med minimum och accepterar med maximum och lämpliga honnörer.",
           "branches": [
             {
@@ -349,7 +352,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+            "responder": "Balanserad hand utan fyrkortshögfärg; normalt 8–9 hp, eller 10+ hp när gemensamma honnörspoäng är under 26."
           }
         }
       ]
@@ -448,12 +451,22 @@
             "2♦"
           ],
           "meaning": "2♦ visar att öppnaren saknar fyrkortshögfärg.",
-          "analysis": "Öppnaren har visat en jämn 1NT-hand utan fyrkortshjärter eller fyrkortsspader. En högfärgsfit kan därför inte etableras på den här vägen. Med en jämn invit hand fortsätter svarshanden med 2NT i stället för att leta efter ett färgkontrakt.",
+          "analysis": "2♦ visar att öppnaren saknar fyrkortshögfärg. Med balanserad svarshand och 22–25 gemensamma honnörspoäng väljs 2NT som invit; med minst 26 väljs 3NT. Den uttryckligen avtalade fyr-essfrågan 4NT är också tillgänglig i denna sekvens.",
           "branches": [
             {
               "call": "2NT",
               "next": "t06_n2",
-              "label": "Invit till 3NT"
+              "label": "Balanserad invit till 3NT"
+            },
+            {
+              "call": "3NT",
+              "next": null,
+              "label": "26+ gemensamma honnörspoäng – direkt utgång"
+            },
+            {
+              "call": "4NT",
+              "next": "t43_n1",
+              "label": "Avtalad fyr-essfråga utan trumf"
             }
           ],
           "handProfile": {
@@ -629,9 +642,9 @@
         "utgång"
       ],
       "conditions": [
-        "1NT visar 15–17 hp och jämn fördelning",
-        "Svarshanden har cirka 10–15 hp och jämn fördelning",
-        "Ingen högfärgsfit eller lång färg som bör undersökas först"
+        "1NT = 15–17 hp och balanserad hand.",
+        "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
+        "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnaren."
       ],
       "root": "t09_n0",
       "nodes": [
@@ -642,12 +655,12 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är slutbud med tillräcklig sammanlagd styrka och jämn fördelning.",
+          "meaning": "3NT är direkt slutbud först när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Vid 22–25 och balanserad svarshand används 2NT som invit.",
           "analysis": "Öppnaren har 15–17 hp och en jämn hand. Svarshanden har en jämn hand med cirka 10–15 hp, vilket normalt ger tillräcklig styrka för sangutgång. Högfärg väljs bort eftersom ingen femkortsfärg eller känd fit finns. En lång lågfärg behöver inte undersökas när handen passar för sang och styrkan räcker till utgång.",
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "10–15 hp, jämn fördelning, ingen femkortshögfärg"
+            "responder": "Balanserad hand utan 4-korts högfärg att undersöka; tillsammans med öppnaren minst 26 gemensamma honnörspoäng."
           }
         }
       ]
@@ -734,9 +747,10 @@
         "4♥"
       ],
       "conditions": [
-        "1NT = 15–17 hp, jämn fördelning",
-        "2♣ är Stayman",
-        "Svarshanden har minst fyra hjärter och utgångsstyrka"
+        "1NT = 15–17 hp, jämn fördelning.",
+        "2♣ är Stayman; öppnarens svar visar minst fyra kort i hjärter.",
+        "Svarshanden har minst fyra kort i hjärter så att paret har minst åtta trumfkort.",
+        "4M kräver minst 26 gemensamma spelpoäng; 22–25 är invit med 3M."
       ],
       "root": "t11_n0",
       "nodes": [
@@ -759,8 +773,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "10+ hp, minst fyra hjärter"
+            "opener": "15–17 hp, jämn fördelning, minst fyra kort i hjärter",
+            "responder": "Minst fyra kort i hjärter; 8+ korts fit och minst 26 gemensamma spelpoäng för utgång."
           }
         }
       ]
@@ -775,9 +789,10 @@
         "4♠"
       ],
       "conditions": [
-        "1NT = 15–17 hp, jämn fördelning",
-        "2♣ är Stayman",
-        "Svarshanden har minst fyra spader och utgångsstyrka"
+        "1NT = 15–17 hp, jämn fördelning.",
+        "2♣ är Stayman; öppnarens svar visar minst fyra kort i spader.",
+        "Svarshanden har minst fyra kort i spader så att paret har minst åtta trumfkort.",
+        "4M kräver minst 26 gemensamma spelpoäng; 22–25 är invit med 3M."
       ],
       "root": "t12_n0",
       "nodes": [
@@ -800,8 +815,8 @@
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "10+ hp, minst fyra spader"
+            "opener": "15–17 hp, jämn fördelning, minst fyra kort i spader",
+            "responder": "Minst fyra kort i spader; 8+ korts fit och minst 26 gemensamma spelpoäng för utgång."
           }
         }
       ]
@@ -816,9 +831,10 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp, jämn fördelning",
-        "2♣ är Stayman",
-        "Svarshanden har fyrkortshjärter och cirka 8–9 hp"
+        "1NT = 15–17 hp, jämn fördelning.",
+        "2♣ är Stayman och 2♥ visar minst fyra hjärter hos öppnaren.",
+        "Svarshanden har minst fyra hjärter; paret har minst åtta trumfkort.",
+        "3♥ är invit vid 22–25 gemensamma spelpoäng; 4♥ vid minst 26."
       ],
       "root": "t13_n0",
       "nodes": [
@@ -849,7 +865,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "8–9 hp, jämn fördelning, fyrkortshjärter"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för 3♥-invit."
           }
         },
         {
@@ -869,8 +885,8 @@
           "analysis": "Svarshanden har visat en invit med hjärterstöd efter Stayman. Öppnaren har maximum inom 1NT-intervallet och tillräckligt bra stöd eller sidovärden för att acceptera. Med minimum hade öppnaren passat på 3♥.",
           "branches": [],
           "handProfile": {
-            "opener": "16–17 hp, fyra hjärter eller lämpliga stödvärden enligt parets överenskommelse",
-            "responder": "Cirka 8–9 hp och minst fyra hjärter"
+            "opener": "16–17 hp, minst fyra hjärter; accepterar invit med 4♥.",
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för 3♥-invit."
           }
         }
       ]
@@ -1062,9 +1078,9 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp, jämn fördelning",
-        "2NT visar cirka 8–9 hp och är invit",
-        "Öppnaren har maximum och lämpliga honnörsvärden"
+        "1NT = 15–17 hp, jämn fördelning.",
+        "Svarshandens 2NT är en balanserad invit; normalt 8–9 hp eller 10+ när gemensamma honnörspoäng är under 26.",
+        "Öppnaren passar med 15 hp och accepterar med 16–17 hp."
       ],
       "root": "t17_n0",
       "nodes": [
@@ -1082,7 +1098,7 @@
           "branches": [],
           "handProfile": {
             "opener": "16–17 hp, jämn fördelning, lämpliga honnörer",
-            "responder": "8–9 hp, jämn fördelning, ingen femkortshögfärg"
+            "responder": "Balanserad hand utan fyrkortshögfärg; normalt 8–9 hp eller 10+ med sammanlagt under 26 hp."
           }
         }
       ]
@@ -1097,9 +1113,9 @@
         "utgång"
       ],
       "conditions": [
-        "1NT = 15–17 hp, jämn fördelning",
-        "Svarshanden har normalt 10–15 hp och jämn fördelning",
-        "Ingen fyrkortshögfärg som ska undersökas med Stayman"
+        "1NT = 15–17 hp och balanserad hand.",
+        "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
+        "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnaren."
       ],
       "root": "t18_n0",
       "nodes": [
@@ -1110,12 +1126,12 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är ett direkt slutbud med utgångsstyrka.",
+          "meaning": "3NT är direkt slutbud först när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Vid 22–25 och balanserad svarshand används 2NT som invit.",
           "analysis": "Svarshanden har cirka 10–15 hp och jämn fördelning. Tillsammans har paret normalt tillräcklig styrka för sangutgång. Högfärg väljs bort eftersom svarshanden saknar fyrkortshögfärg som behöver undersökas och ingen trumffit är känd. En direkt 3NT beskriver handen effektivt och lämnar inte motståndarna onödig information.",
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "10–15 hp, jämn fördelning, ingen fyrkortshögfärg att undersöka"
+            "responder": "Balanserad hand utan 4-korts högfärg att undersöka; tillsammans med öppnaren minst 26 gemensamma honnörspoäng."
           }
         }
       ]
@@ -1924,10 +1940,10 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♣ är Stayman",
-        "2♥ visar minst fyra hjärter",
-        "Svarshanden har fyrkortsstöd; 3-nivån är invit och 4-nivån utgång"
+        "1NT = 15–17 hp och jämn fördelning.",
+        "2♣ är Stayman; öppnarens 2♥ visar minst fyra kort i hjärter.",
+        "Svarshanden har minst fyra kort i hjärter och paret minst åtta trumfkort.",
+        "3M är invit vid 22–25 gemensamma spelpoäng; 4M är utgång vid minst 26."
       ],
       "root": "t24_stayman_hjarter_invit_n0",
       "nodes": [
@@ -1951,7 +1967,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -1980,7 +1996,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2005,7 +2021,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2036,7 +2052,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2057,7 +2073,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2078,7 +2094,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2097,7 +2113,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra hjärter",
-            "responder": "Fyra hjärter, minst cirka 10 hp"
+            "responder": "Minst fyra hjärter och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         }
       ]
@@ -2114,10 +2130,10 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♣ är Stayman",
-        "2♠ visar minst fyra spader",
-        "Svarshanden har fyrkortsstöd; 3-nivån är invit och 4-nivån utgång"
+        "1NT = 15–17 hp och jämn fördelning.",
+        "2♣ är Stayman; öppnarens 2♠ visar minst fyra kort i spader.",
+        "Svarshanden har minst fyra kort i spader och paret minst åtta trumfkort.",
+        "3M är invit vid 22–25 gemensamma spelpoäng; 4M är utgång vid minst 26."
       ],
       "root": "t25_stayman_spader_invit_n0",
       "nodes": [
@@ -2141,7 +2157,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2170,7 +2186,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2195,7 +2211,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2226,7 +2242,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2247,7 +2263,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2268,7 +2284,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         },
         {
@@ -2287,7 +2303,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, minst fyra spader",
-            "responder": "Fyra spader, minst cirka 10 hp"
+            "responder": "Minst fyra spader och 8-korts fit; 22–25 gemensamma spelpoäng för invit eller minst 26 för direkt utgång."
           }
         }
       ]
@@ -2304,10 +2320,10 @@
         "invit"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning",
-        "2♣ är Stayman; 2♦ förnekar fyrkortshögfärg",
-        "Svarshanden har jämn hand utan fyrkortshögfärg och cirka 8–9 hp",
-        "2NT är invit; 3NT är utgång"
+        "1NT = 15–17 hp, jämn fördelning.",
+        "2♣ är Stayman; 2♦ förnekar fyrkortshögfärg.",
+        "Balanserad svarshand: 2NT invit vid 22–25 gemensamma honnörspoäng; 3NT vid minst 26.",
+        "4NT i sekvensen 1NT–2♣–2♦ är avtalad fyr-essfråga utan trumf."
       ],
       "root": "t26_n0",
       "nodes": [
@@ -2344,7 +2360,7 @@
             "2♦",
             "Pass"
           ],
-          "meaning": "Svarshanden väljer nivå efter styrkan.",
+          "meaning": "Svarshanden väljer nivå efter styrka och handtyp: 2NT med balanserad invitstyrka och 22–25 gemensamma honnörspoäng, 3NT med minst 26 gemensamma honnörspoäng eller 4NT som uttryckligen avtalad fyr-essfråga utan trumf.",
           "analysis": "Med cirka 8–9 hp inviterar svarshanden med 2NT. Med utgångsstyrka bjuder svarshanden 3NT direkt.",
           "branches": [
             {
@@ -2356,11 +2372,16 @@
               "call": "3NT",
               "next": "t26_n5",
               "label": "Direkt utgång"
+            },
+            {
+              "call": "4NT",
+              "next": "t43_n1",
+              "label": "Avtalad fyr-essfråga utan trumf"
             }
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Cirka 8–9 hp för invit eller minst cirka 10 hp för utgång"
+            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
           }
         },
         {
@@ -2385,7 +2406,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Cirka 8–9 hp, jämn fördelning"
+            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
           }
         },
         {
@@ -2416,7 +2437,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Cirka 8–9 hp, jämn fördelning"
+            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
           }
         },
         {
@@ -2437,7 +2458,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
-            "responder": "Cirka 8–9 hp, jämn fördelning"
+            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
           }
         },
         {
@@ -2456,7 +2477,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Minst cirka 10 hp, jämn fördelning"
+            "responder": "Balanserad hand utan fyrkortshögfärg; minst 26 gemensamma honnörspoäng för direkt 3NT."
           }
         },
         {
@@ -2477,7 +2498,7 @@
           "branches": [],
           "handProfile": {
             "opener": "16–17 hp eller motsvarande goda spelvärden",
-            "responder": "Cirka 8–9 hp, jämn fördelning"
+            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
           }
         }
       ]
