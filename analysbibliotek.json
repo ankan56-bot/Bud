@@ -5,10 +5,10 @@
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
-    "jacoby": "2NT efter 1♥/1♠ är Stenberg 2NT i detta system: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTNoTrumpAceAsk": "1NT–4NT och 1NT–2♣–2♦–4NT är uttryckligen avtalade fyr-essfrågor utan fastställd trumf: 5♣=0 ess, 5♦=1, 5♥=2, 5♠=3, 5NT=4. Svaren efter 4NT ligger utanför aktuell omfattning.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ tolkas 4NT som RKC 1430 med överföringsfärgen som trumf. Svaren efter 4NT ligger utanför aktuell omfattning.",
-    "oneNTGameThreshold": "Efter 1NT är 3NT direkt endast när paret har minst 26 gemensamma honnörspoäng. 2NT används som invit när handen är balanserad och utgångsgränsen ännu inte nås."
+    "oneNTGameThreshold": "Efter 1NT är 3NT direkt endast när paret har minst 26 gemensamma honnörspoäng. 2NT används som invit när handen är balanserad och utgångsgränsen ännu inte nås.",
+    "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton."
   },
   "trees": [
     {
