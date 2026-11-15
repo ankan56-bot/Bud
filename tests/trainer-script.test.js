@@ -443,3 +443,15 @@ test("room menu actions ignore device-local theme preferences when validating th
   assert.match(html, /sameRoomState\(m\.baseState,roomActionState\(state\)\)/);
   assert.match(html, /baseState:roomActionState\(state\)/);
 });
+
+test("releasing a seat after a completed deal preserves the shared auction state", () => {
+  const html = fs.readFileSync(path.join(__dirname, "..", "Budtraning.html"), "utf8");
+  const start = html.indexOf("function releaseRoomSeat()");
+  const end = html.indexOf("\\nfunction ", start);
+  assert.ok(start >= 0 && end > start, "seat release helper should exist");
+  const source = html.slice(start, end);
+  assert.doesNotMatch(source, /state\s*=\s*\{\s*menu\s*:/,
+    "leaving a seat must not make the local auction diverge from the coordinator's completed deal");
+  assert.match(source, /seat=null/);
+  assert.match(source, /announcePresence\(\)/);
+});
