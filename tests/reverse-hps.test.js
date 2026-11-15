@@ -1168,7 +1168,7 @@ function assessReverse(shape, honors) {
 // After 1C-2C, a balanced 18-HCP opener chooses 3NT before a minor game.
 {
   const opener = ['CA', 'CK', 'C2', 'C3', 'DA', 'DK', 'D2', 'HQ', 'H2', 'H3', 'SQ', 'S2', 'S3'];
-  const responder = ['C3', 'C4', 'C5', 'C6', 'D3', 'D4', 'D5', 'H3', 'H4', 'H5', 'S4', 'S5', 'S6'];
+  const responder = ['C4', 'C5', 'C6', 'C7', 'D4', 'D5', 'D6', 'H4', 'H5', 'H6', 'S5', 'S6', 'S7'];
   const hands = makeDealFromPair('S', opener, responder);
   const bids = [
     { s: 'S', c: '1C' }, { s: 'W', c: 'P' },
