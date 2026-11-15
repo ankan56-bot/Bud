@@ -244,4 +244,4 @@ Den tidigare inventeringen och 47-fallsanalysen ovan är historiska ögonblicksb
 - `testdata/dds-runtime.test.js` kontrollerar binärfilens giltighet, exports och att `dds-integration.js`, `Budtraning.html` och `coi-serviceworker.js` är sammankopplade med rätt API och Cross-Origin-Isolation-krav.
 - Detta är ett statiskt paketerings-/integrationsprov. Ett försök att köra den trådade DDS-motorn direkt i Node fastnade och har därför inte räknats som verifiering av solverns körning.
 - Faktisk DDS-beräkning i Safari/GitHub Pages är fortfarande inte verifierad. Ingen DDS-resultatdata har använts som budfacit.
-- Det statiska DDS-testet passerade i GitHub Actions körning `43662280379`.
+- Det statiska DDS-testet passerade i GitHub Actions körning `43662387692`.
