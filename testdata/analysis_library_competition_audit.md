@@ -89,3 +89,6 @@ Villkor som inte kan avgöras säkert enbart från 13 kort – särskilt stopper
 Efterhandsanalysen använder `evaluateMatchedHand()` för att kontrollera den faktiska budgivarens hand mot den matchade noden. Detta är uttryckligen efterhandsanalys med full handinformation – funktionen får inte användas som beslutsunderlag för AI under pågående budgivning. AI-agenternas seat-view/informationsgräns är fortsatt separat.
 
 Nya tester i `testdata/hand-conditions.test.js` täcker schema, positiv och negativ matchning, manuell stopperbedömning, ogiltiga händer och kopplingen till rätt budgivares hand i en auktion med passrundor.
+
+
+**Auktoritetsmarkering:** samtliga 25 `handConditions` är dessutom märkta `authority: "analysis_only"`. Detta hindrar att maskinläsbara analysprofiler misstas för godkända grundsystemregler. De får användas för att beskriva och kontrollera efterhandsanalys, inte för att ensamma generera bud i spelmotorn.
