@@ -13,7 +13,7 @@
     "seedScheme": "(7919 * (indexWithinTheme + 1) + themeId.length * 104729 + (mode === 'ostord' ? 17 : 0)) >>> 0",
     "dealsPerTheme": 10,
     "modeDistribution": "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
-    "caseClassification": "unclassified; classification requires rule-boundary evidence",
+    "caseClassification": "NT theme classified from explicit system boundaries; other themes remain unclassified pending equivalent evidence.",
     "openingNT": "A first non-pass 1NT call requires 15-17 HCP; a first non-pass 2NT call requires 20-21 HCP. Both require a balanced 4333/4432/5332 hand."
   },
   "validation": {
@@ -142,6 +142,10 @@
       "mode": "stord",
       "seed": 426835,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -309,6 +313,10 @@
       "mode": "stord",
       "seed": 434754,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -452,6 +460,10 @@
       "mode": "stord",
       "seed": 442673,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -571,6 +583,10 @@
       "mode": "stord",
       "seed": 450592,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -710,6 +726,10 @@
       "mode": "stord",
       "seed": 458511,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -921,6 +941,10 @@
       "mode": "ostord",
       "seed": 466447,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -1088,6 +1112,10 @@
       "mode": "ostord",
       "seed": 474366,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -1287,6 +1315,10 @@
       "mode": "ostord",
       "seed": 482285,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -1470,6 +1502,10 @@
       "mode": "ostord",
       "seed": 490204,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -1637,6 +1673,10 @@
       "mode": "ostord",
       "seed": 498123,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -1803,7 +1843,12 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "stord",
       "seed": 217377,
-      "caseType": "unclassified",
+      "caseType": "typical",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [],
+        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -1970,7 +2015,12 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "stord",
       "seed": 225296,
-      "caseType": "unclassified",
+      "caseType": "typical",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [],
+        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -2137,7 +2187,20 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "stord",
       "seed": 233215,
-      "caseType": "unclassified",
+      "caseType": "borderline",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [
+          {
+            "rule": "1NT opening strength",
+            "observed": "15 HCP",
+            "boundary": "15-17 HCP",
+            "distance": 0,
+            "rationale": "Öppnarens styrka ligger på systemets nedre tillåtna gräns."
+          }
+        ],
+        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -2304,7 +2367,12 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "stord",
       "seed": 241134,
-      "caseType": "unclassified",
+      "caseType": "typical",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [],
+        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -2471,7 +2539,12 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "stord",
       "seed": 249053,
-      "caseType": "unclassified",
+      "caseType": "typical",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [],
+        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -2638,7 +2711,20 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 256989,
-      "caseType": "unclassified",
+      "caseType": "borderline",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [
+          {
+            "rule": "1NT opening strength",
+            "observed": "15 HCP",
+            "boundary": "15-17 HCP",
+            "distance": 0,
+            "rationale": "Öppnarens styrka ligger på systemets nedre tillåtna gräns."
+          }
+        ],
+        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -2805,7 +2891,12 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 264908,
-      "caseType": "unclassified",
+      "caseType": "typical",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [],
+        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -2972,7 +3063,12 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 272827,
-      "caseType": "unclassified",
+      "caseType": "typical",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [],
+        "rationale": "Typisk giv: 1NT-öppningen ligger inne i intervallet och svarshanden över miniminivån."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -3139,7 +3235,27 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 280746,
-      "caseType": "unclassified",
+      "caseType": "borderline",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [
+          {
+            "rule": "1NT opening strength",
+            "observed": "17 HCP",
+            "boundary": "15-17 HCP",
+            "distance": 0,
+            "rationale": "Öppnarens styrka ligger på systemets övre tillåtna gräns."
+          },
+          {
+            "rule": "Response to 1NT in this theme",
+            "observed": "8 HCP",
+            "boundary": "8+ HCP",
+            "distance": 0,
+            "rationale": "Svarshanden ligger precis på temats lägsta styrkegräns."
+          }
+        ],
+        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -3306,7 +3422,20 @@
       "themeTitle": "1NT, Stayman och överföringar",
       "mode": "ostord",
       "seed": 288665,
-      "caseType": "unclassified",
+      "caseType": "borderline",
+      "classification": {
+        "status": "rule_evidence",
+        "dimensions": [
+          {
+            "rule": "1NT opening strength",
+            "observed": "17 HCP",
+            "boundary": "15-17 HCP",
+            "distance": 0,
+            "rationale": "Öppnarens styrka ligger på systemets övre tillåtna gräns."
+          }
+        ],
+        "rationale": "Gränsfall: minst en relevant, dokumenterad styrkegräns träffas exakt."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -3474,6 +3603,10 @@
       "mode": "stord",
       "seed": 845751,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -3641,6 +3774,10 @@
       "mode": "stord",
       "seed": 853670,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -3792,6 +3929,10 @@
       "mode": "stord",
       "seed": 861589,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -3931,6 +4072,10 @@
       "mode": "stord",
       "seed": 869508,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -4098,6 +4243,10 @@
       "mode": "stord",
       "seed": 877427,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -4265,6 +4414,10 @@
       "mode": "ostord",
       "seed": 885363,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -4448,6 +4601,10 @@
       "mode": "ostord",
       "seed": 893282,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -4599,6 +4756,10 @@
       "mode": "ostord",
       "seed": 901201,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -4750,6 +4911,10 @@
       "mode": "ostord",
       "seed": 909120,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -4917,6 +5082,10 @@
       "mode": "ostord",
       "seed": 917039,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -5084,6 +5253,10 @@
       "mode": "stord",
       "seed": 322106,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -5283,6 +5456,10 @@
       "mode": "stord",
       "seed": 330025,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -5466,6 +5643,10 @@
       "mode": "stord",
       "seed": 337944,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -5633,6 +5814,10 @@
       "mode": "stord",
       "seed": 345863,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -5800,6 +5985,10 @@
       "mode": "stord",
       "seed": 353782,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -5967,6 +6156,10 @@
       "mode": "ostord",
       "seed": 361718,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -6150,6 +6343,10 @@
       "mode": "ostord",
       "seed": 369637,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -6333,6 +6530,10 @@
       "mode": "ostord",
       "seed": 377556,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -6500,6 +6701,10 @@
       "mode": "ostord",
       "seed": 385475,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -6667,6 +6872,10 @@
       "mode": "ostord",
       "seed": 393394,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -6850,6 +7059,10 @@
       "mode": "stord",
       "seed": 322106,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -7033,6 +7246,10 @@
       "mode": "stord",
       "seed": 330025,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -7216,6 +7433,10 @@
       "mode": "stord",
       "seed": 337944,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -7399,6 +7620,10 @@
       "mode": "stord",
       "seed": 345863,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -7566,6 +7791,10 @@
       "mode": "stord",
       "seed": 353782,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -7749,6 +7978,10 @@
       "mode": "ostord",
       "seed": 361718,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -7932,6 +8165,10 @@
       "mode": "ostord",
       "seed": 369637,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -8115,6 +8352,10 @@
       "mode": "ostord",
       "seed": 377556,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -8298,6 +8539,10 @@
       "mode": "ostord",
       "seed": 385475,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -8481,6 +8726,10 @@
       "mode": "ostord",
       "seed": 393394,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -8664,6 +8913,10 @@
       "mode": "stord",
       "seed": 426835,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -8815,6 +9068,10 @@
       "mode": "stord",
       "seed": 434754,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -8954,6 +9211,10 @@
       "mode": "stord",
       "seed": 442673,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -9105,6 +9366,10 @@
       "mode": "stord",
       "seed": 450592,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -9256,6 +9521,10 @@
       "mode": "stord",
       "seed": 458511,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -9407,6 +9676,10 @@
       "mode": "ostord",
       "seed": 466447,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -9558,6 +9831,10 @@
       "mode": "ostord",
       "seed": 474366,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -9741,6 +10018,10 @@
       "mode": "ostord",
       "seed": 482285,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -9892,6 +10173,10 @@
       "mode": "ostord",
       "seed": 490204,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -10075,6 +10360,10 @@
       "mode": "ostord",
       "seed": 498123,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -10242,6 +10531,10 @@
       "mode": "stord",
       "seed": 636293,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -10409,6 +10702,10 @@
       "mode": "stord",
       "seed": 644212,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -10576,6 +10873,10 @@
       "mode": "stord",
       "seed": 652131,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -10743,6 +11044,10 @@
       "mode": "stord",
       "seed": 660050,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -10926,6 +11231,10 @@
       "mode": "stord",
       "seed": 667969,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -11109,6 +11418,10 @@
       "mode": "ostord",
       "seed": 675905,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -11260,6 +11573,10 @@
       "mode": "ostord",
       "seed": 683824,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -11427,6 +11744,10 @@
       "mode": "ostord",
       "seed": 691743,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -11578,6 +11899,10 @@
       "mode": "ostord",
       "seed": 699662,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -11745,6 +12070,10 @@
       "mode": "ostord",
       "seed": 707581,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -11912,6 +12241,10 @@
       "mode": "stord",
       "seed": 531564,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -12047,6 +12380,10 @@
       "mode": "stord",
       "seed": 539483,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -12186,6 +12523,10 @@
       "mode": "stord",
       "seed": 547402,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -12337,6 +12678,10 @@
       "mode": "stord",
       "seed": 555321,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -12488,6 +12833,10 @@
       "mode": "stord",
       "seed": 563240,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -12651,6 +13000,10 @@
       "mode": "ostord",
       "seed": 571176,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -12802,6 +13155,10 @@
       "mode": "ostord",
       "seed": 579095,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -12953,6 +13310,10 @@
       "mode": "ostord",
       "seed": 587014,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -13104,6 +13465,10 @@
       "mode": "ostord",
       "seed": 594933,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -13255,6 +13620,10 @@
       "mode": "ostord",
       "seed": 602852,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -13406,6 +13775,10 @@
       "mode": "stord",
       "seed": 426835,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -13557,6 +13930,10 @@
       "mode": "stord",
       "seed": 434754,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -13724,6 +14101,10 @@
       "mode": "stord",
       "seed": 442673,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -13891,6 +14272,10 @@
       "mode": "stord",
       "seed": 450592,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -14042,6 +14427,10 @@
       "mode": "stord",
       "seed": 458511,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -14193,6 +14582,10 @@
       "mode": "ostord",
       "seed": 466447,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -14344,6 +14737,10 @@
       "mode": "ostord",
       "seed": 474366,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -14479,6 +14876,10 @@
       "mode": "ostord",
       "seed": 482285,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -14614,6 +15015,10 @@
       "mode": "ostord",
       "seed": 490204,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -14781,6 +15186,10 @@
       "mode": "ostord",
       "seed": 498123,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -14948,6 +15357,10 @@
       "mode": "stord",
       "seed": 531564,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -15083,6 +15496,10 @@
       "mode": "stord",
       "seed": 539483,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -15218,6 +15635,10 @@
       "mode": "stord",
       "seed": 547402,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -15353,6 +15774,10 @@
       "mode": "stord",
       "seed": 555321,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -15488,6 +15913,10 @@
       "mode": "stord",
       "seed": 563240,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -15639,6 +16068,10 @@
       "mode": "ostord",
       "seed": 571176,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -15774,6 +16207,10 @@
       "mode": "ostord",
       "seed": 579095,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -15925,6 +16362,10 @@
       "mode": "ostord",
       "seed": 587014,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16060,6 +16501,10 @@
       "mode": "ostord",
       "seed": 594933,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16211,6 +16656,10 @@
       "mode": "ostord",
       "seed": 602852,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16346,6 +16795,10 @@
       "mode": "stord",
       "seed": 741022,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16529,6 +16982,10 @@
       "mode": "stord",
       "seed": 748941,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16668,6 +17125,10 @@
       "mode": "stord",
       "seed": 756860,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16819,6 +17280,10 @@
       "mode": "stord",
       "seed": 764779,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -16986,6 +17451,10 @@
       "mode": "stord",
       "seed": 772698,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -17125,6 +17594,10 @@
       "mode": "ostord",
       "seed": 780634,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -17292,6 +17765,10 @@
       "mode": "ostord",
       "seed": 788553,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -17475,6 +17952,10 @@
       "mode": "ostord",
       "seed": 796472,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -17674,6 +18155,10 @@
       "mode": "ostord",
       "seed": 804391,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -17857,6 +18342,10 @@
       "mode": "ostord",
       "seed": 812310,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -18024,6 +18513,10 @@
       "mode": "stord",
       "seed": 426835,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -18143,6 +18636,10 @@
       "mode": "stord",
       "seed": 434754,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -18294,6 +18791,10 @@
       "mode": "stord",
       "seed": 442673,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -18413,6 +18914,10 @@
       "mode": "stord",
       "seed": 450592,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -18532,6 +19037,10 @@
       "mode": "stord",
       "seed": 458511,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -18667,6 +19176,10 @@
       "mode": "ostord",
       "seed": 466447,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -18786,6 +19299,10 @@
       "mode": "ostord",
       "seed": 474366,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -18905,6 +19422,10 @@
       "mode": "ostord",
       "seed": 482285,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -19056,6 +19577,10 @@
       "mode": "ostord",
       "seed": 490204,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -19207,6 +19732,10 @@
       "mode": "ostord",
       "seed": 498123,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -19358,6 +19887,10 @@
       "mode": "stord",
       "seed": 845751,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -19505,6 +20038,10 @@
       "mode": "stord",
       "seed": 853670,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -19644,6 +20181,10 @@
       "mode": "stord",
       "seed": 861589,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -19791,6 +20332,10 @@
       "mode": "stord",
       "seed": 869508,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "N",
       "hands": {
         "N": [
@@ -19954,6 +20499,10 @@
       "mode": "stord",
       "seed": 877427,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -20101,6 +20650,10 @@
       "mode": "stord",
       "seed": 885346,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -20248,6 +20801,10 @@
       "mode": "stord",
       "seed": 893265,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -20395,6 +20952,10 @@
       "mode": "stord",
       "seed": 901184,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -20542,6 +21103,10 @@
       "mode": "stord",
       "seed": 909103,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "S",
       "hands": {
         "N": [
@@ -20705,6 +21270,10 @@
       "mode": "stord",
       "seed": 917022,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -20852,6 +21421,10 @@
       "mode": "stord",
       "seed": 636293,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -20983,6 +21556,10 @@
       "mode": "stord",
       "seed": 644212,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -21114,6 +21691,10 @@
       "mode": "stord",
       "seed": 652131,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -21245,6 +21826,10 @@
       "mode": "stord",
       "seed": 660050,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -21376,6 +21961,10 @@
       "mode": "stord",
       "seed": 667969,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -21523,6 +22112,10 @@
       "mode": "stord",
       "seed": 675888,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -21654,6 +22247,10 @@
       "mode": "stord",
       "seed": 683807,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "W",
       "hands": {
         "N": [
@@ -21785,6 +22382,10 @@
       "mode": "stord",
       "seed": 691726,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -21916,6 +22517,10 @@
       "mode": "stord",
       "seed": 699645,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
@@ -22063,6 +22668,10 @@
       "mode": "stord",
       "seed": 707564,
       "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
       "dealer": "E",
       "hands": {
         "N": [
