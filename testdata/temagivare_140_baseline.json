@@ -1,31 +1,36 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
   "corpusBlobSha": "bf287f919494617fb8a4f9629578f548623e649f",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "3ae5ca795280c5266ac86d256a8ff3eee79ff75e",
+  "engineBlobSha": "d035263a5423078a0cb54dc3301a888b6281e330",
   "engineVersion": "6.6",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
+  "previousBaseline": {
+    "engineBlobSha": "3ae5ca795280c5266ac86d256a8ff3eee79ff75e",
+    "coveragePercent": 87.3,
+    "uncovered": 75
+  },
   "stats": {
     "deals": 140,
     "validDeals": 140,
-    "nsTurns": 590,
-    "covered": 515,
-    "uncovered": 75,
-    "ewTurns": 582,
+    "nsTurns": 596,
+    "covered": 522,
+    "uncovered": 74,
+    "ewTurns": 588,
     "exceptions": 0,
     "illegal": 0,
     "auctionsEnded": 140,
-    "calls": 1172
+    "calls": 1184
   },
-  "coveragePercent": 87.3,
+  "coveragePercent": 87.6,
   "modeStats": {
     "stord": {
-      "turns": 416,
-      "covered": 341,
-      "uncovered": 75,
-      "coveragePercent": 82
+      "turns": 422,
+      "covered": 348,
+      "uncovered": 74,
+      "coveragePercent": 82.5
     },
     "ostord": {
       "turns": 174,
@@ -37,10 +42,10 @@
   "themeStats": {
     "alla": {
       "deals": 10,
-      "nsTurns": 46,
-      "covered": 30,
+      "nsTurns": 47,
+      "covered": 31,
       "uncovered": 16,
-      "coveragePercent": 65.2
+      "coveragePercent": 66
     },
     "nt": {
       "deals": 10,
@@ -51,10 +56,10 @@
     },
     "stenberg": {
       "deals": 10,
-      "nsTurns": 37,
+      "nsTurns": 38,
       "covered": 29,
-      "uncovered": 8,
-      "coveragePercent": 78.4
+      "uncovered": 9,
+      "coveragePercent": 76.3
     },
     "tva": {
       "deals": 10,
@@ -86,10 +91,10 @@
     },
     "trumf": {
       "deals": 10,
-      "nsTurns": 36,
+      "nsTurns": 38,
       "covered": 24,
-      "uncovered": 12,
-      "coveragePercent": 66.7
+      "uncovered": 14,
+      "coveragePercent": 63.2
     },
     "sang": {
       "deals": 10,
@@ -107,10 +112,10 @@
     },
     "tvafarg": {
       "deals": 10,
-      "nsTurns": 51,
+      "nsTurns": 52,
       "covered": 47,
-      "uncovered": 4,
-      "coveragePercent": 92.2
+      "uncovered": 5,
+      "coveragePercent": 90.4
     },
     "svag": {
       "deals": 10,
@@ -128,16 +133,16 @@
     },
     "inkliv": {
       "deals": 10,
-      "nsTurns": 23,
-      "covered": 14,
-      "uncovered": 9,
-      "coveragePercent": 60.9
+      "nsTurns": 24,
+      "covered": 20,
+      "uncovered": 4,
+      "coveragePercent": 83.3
     }
   },
   "topUncoveredReasons": [
     {
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
-      "count": 27
+      "count": 32
     },
     {
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
@@ -148,12 +153,8 @@
       "count": 10
     },
     {
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "count": 8
-    },
-    {
       "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
-      "count": 8
+      "count": 10
     },
     {
       "reason": "Fortsättningen beskrivs inte i dokumentet.",
@@ -342,36 +343,6 @@
       }
     },
     {
-      "dealId": "alla-04",
-      "theme": "alla",
-      "mode": "stord",
-      "seat": "S",
-      "auction": "S:P W:1S N:2D E:P S:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "hand": [
-        "S3",
-        "D12",
-        "C8",
-        "C11",
-        "S9",
-        "H11",
-        "H5",
-        "D5",
-        "C3",
-        "S6",
-        "C13",
-        "H6",
-        "S5"
-      ],
-      "hp": 7,
-      "shape": {
-        "C": 4,
-        "D": 2,
-        "H": 3,
-        "S": 4
-      }
-    },
-    {
       "dealId": "alla-05",
       "theme": "alla",
       "mode": "stord",
@@ -496,7 +467,7 @@
       "theme": "alla",
       "mode": "stord",
       "seat": "N",
-      "auction": "N:1D E:2C S:P W:P N:P",
+      "auction": "N:1D E:2C S:P W:2H N:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "S14",
@@ -519,6 +490,36 @@
         "D": 4,
         "H": 3,
         "S": 3
+      }
+    },
+    {
+      "dealId": "alla-06",
+      "theme": "alla",
+      "mode": "stord",
+      "seat": "S",
+      "auction": "N:1D E:2C S:P W:2H N:P E:P S:P",
+      "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
+      "hand": [
+        "C2",
+        "S7",
+        "S3",
+        "S5",
+        "D5",
+        "H4",
+        "D3",
+        "D4",
+        "H6",
+        "D6",
+        "C6",
+        "H13",
+        "S4"
+      ],
+      "hp": 3,
+      "shape": {
+        "C": 2,
+        "D": 4,
+        "H": 3,
+        "S": 4
       }
     },
     {
@@ -796,7 +797,7 @@
       "theme": "stenberg",
       "mode": "stord",
       "seat": "S",
-      "auction": "S:1S W:3C N:P E:P S:P",
+      "auction": "S:1S W:3C N:P E:4C S:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "H2",
@@ -818,6 +819,36 @@
         "C": 2,
         "D": 4,
         "H": 3,
+        "S": 4
+      }
+    },
+    {
+      "dealId": "stenberg-06",
+      "theme": "stenberg",
+      "mode": "stord",
+      "seat": "N",
+      "auction": "S:1S W:3C N:P E:4C S:P W:P N:P",
+      "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
+      "hand": [
+        "C10",
+        "S4",
+        "D14",
+        "H6",
+        "H13",
+        "S7",
+        "S13",
+        "S3",
+        "D11",
+        "D10",
+        "H12",
+        "C2",
+        "H3"
+      ],
+      "hp": 13,
+      "shape": {
+        "C": 2,
+        "D": 3,
+        "H": 4,
         "S": 4
       }
     },
@@ -1276,7 +1307,7 @@
       "theme": "trumf",
       "mode": "stord",
       "seat": "S",
-      "auction": "S:1H W:2D N:P E:P S:P",
+      "auction": "S:1H W:2D N:P E:3C S:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "C2",
@@ -1299,6 +1330,36 @@
         "D": 3,
         "H": 5,
         "S": 4
+      }
+    },
+    {
+      "dealId": "trumf-05",
+      "theme": "trumf",
+      "mode": "stord",
+      "seat": "N",
+      "auction": "S:1H W:2D N:P E:3C S:P W:P N:P",
+      "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
+      "hand": [
+        "S5",
+        "H6",
+        "D9",
+        "S4",
+        "C9",
+        "H4",
+        "S3",
+        "D6",
+        "H5",
+        "S6",
+        "H3",
+        "S13",
+        "S2"
+      ],
+      "hp": 3,
+      "shape": {
+        "C": 1,
+        "D": 2,
+        "H": 4,
+        "S": 6
       }
     },
     {
@@ -1336,7 +1397,7 @@
       "theme": "trumf",
       "mode": "stord",
       "seat": "N",
-      "auction": "N:1C E:2H S:P W:P N:P",
+      "auction": "N:1C E:2H S:P W:2S N:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "C7",
@@ -1357,6 +1418,36 @@
       "shape": {
         "C": 5,
         "D": 4,
+        "H": 2,
+        "S": 2
+      }
+    },
+    {
+      "dealId": "trumf-06",
+      "theme": "trumf",
+      "mode": "stord",
+      "seat": "S",
+      "auction": "N:1C E:2H S:P W:2S N:P E:P S:P",
+      "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
+      "hand": [
+        "D2",
+        "D11",
+        "H2",
+        "D5",
+        "C8",
+        "D7",
+        "C9",
+        "S3",
+        "D10",
+        "C12",
+        "H5",
+        "C5",
+        "S11"
+      ],
+      "hp": 4,
+      "shape": {
+        "C": 4,
+        "D": 5,
         "H": 2,
         "S": 2
       }
@@ -1486,7 +1577,7 @@
       "theme": "tvafarg",
       "mode": "stord",
       "seat": "S",
-      "auction": "S:1C W:2S N:P E:P S:P",
+      "auction": "S:1C W:2S N:P E:3S S:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "H6",
@@ -1509,6 +1600,36 @@
         "D": 3,
         "H": 4,
         "S": 1
+      }
+    },
+    {
+      "dealId": "tvafarg-06",
+      "theme": "tvafarg",
+      "mode": "stord",
+      "seat": "N",
+      "auction": "S:1C W:2S N:P E:3S S:P W:P N:P",
+      "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
+      "hand": [
+        "D3",
+        "S4",
+        "C7",
+        "C13",
+        "S3",
+        "D5",
+        "D10",
+        "S12",
+        "D14",
+        "C8",
+        "C6",
+        "H11",
+        "D11"
+      ],
+      "hp": 11,
+      "shape": {
+        "C": 4,
+        "D": 5,
+        "H": 1,
+        "S": 3
       }
     },
     {
@@ -2142,62 +2263,32 @@
       }
     },
     {
-      "dealId": "inkliv-01",
-      "theme": "inkliv",
-      "mode": "stord",
-      "seat": "N",
-      "auction": "E:1D S:3C W:P N:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "hand": [
-        "D6",
-        "S2",
-        "C3",
-        "C14",
-        "D3",
-        "H2",
-        "D5",
-        "H3",
-        "S10",
-        "S13",
-        "H5",
-        "S5",
-        "D8"
-      ],
-      "hp": 7,
-      "shape": {
-        "C": 2,
-        "D": 4,
-        "H": 3,
-        "S": 4
-      }
-    },
-    {
       "dealId": "inkliv-02",
       "theme": "inkliv",
       "mode": "stord",
-      "seat": "N",
-      "auction": "E:1D S:3C W:P N:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
+      "seat": "S",
+      "auction": "E:1D S:3C W:P N:4C E:P S:P",
+      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
-        "H6",
-        "S3",
-        "D8",
-        "C3",
-        "C11",
-        "H2",
-        "C10",
-        "D14",
-        "S4",
-        "H13",
-        "H9",
-        "S6",
-        "D4"
+        "S7",
+        "H5",
+        "C14",
+        "S2",
+        "C5",
+        "C12",
+        "D9",
+        "H3",
+        "C9",
+        "S13",
+        "D11",
+        "C2",
+        "C7"
       ],
-      "hp": 8,
+      "hp": 10,
       "shape": {
-        "C": 3,
-        "D": 3,
-        "H": 4,
+        "C": 6,
+        "D": 2,
+        "H": 2,
         "S": 3
       }
     },
@@ -2229,36 +2320,6 @@
         "D": 2,
         "H": 6,
         "S": 1
-      }
-    },
-    {
-      "dealId": "inkliv-04",
-      "theme": "inkliv",
-      "mode": "stord",
-      "seat": "S",
-      "auction": "W:1H N:2S E:P S:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "hand": [
-        "H7",
-        "C3",
-        "S3",
-        "H9",
-        "D8",
-        "H11",
-        "D7",
-        "S11",
-        "S9",
-        "C9",
-        "D11",
-        "D12",
-        "H3"
-      ],
-      "hp": 5,
-      "shape": {
-        "C": 2,
-        "D": 4,
-        "H": 4,
-        "S": 3
       }
     },
     {
@@ -2295,119 +2356,29 @@
       "dealId": "inkliv-06",
       "theme": "inkliv",
       "mode": "stord",
-      "seat": "N",
-      "auction": "E:1C S:2H W:P N:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "hand": [
-        "C9",
-        "H9",
-        "D7",
-        "C13",
-        "S8",
-        "S5",
-        "D6",
-        "H5",
-        "H6",
-        "D2",
-        "D13",
-        "D11",
-        "D5"
-      ],
-      "hp": 7,
-      "shape": {
-        "C": 2,
-        "D": 6,
-        "H": 3,
-        "S": 2
-      }
-    },
-    {
-      "dealId": "inkliv-07",
-      "theme": "inkliv",
-      "mode": "stord",
       "seat": "S",
-      "auction": "W:1C N:2D E:P S:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
+      "auction": "E:1C S:2H W:P N:3H E:P S:P",
+      "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
+        "H4",
+        "C3",
+        "H3",
         "S10",
-        "C3",
-        "D4",
-        "H7",
-        "H2",
-        "D5",
-        "C10",
-        "D10",
-        "H14",
-        "H9",
-        "H8",
-        "S8",
-        "D8"
-      ],
-      "hp": 4,
-      "shape": {
-        "C": 2,
-        "D": 4,
-        "H": 5,
-        "S": 2
-      }
-    },
-    {
-      "dealId": "inkliv-09",
-      "theme": "inkliv",
-      "mode": "stord",
-      "seat": "N",
-      "auction": "E:1D S:3C W:P N:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "hand": [
-        "H7",
-        "C3",
-        "H10",
-        "S11",
-        "C6",
-        "D7",
-        "S6",
-        "S9",
-        "H9",
+        "H11",
+        "H12",
+        "S3",
+        "D9",
         "S4",
-        "D12",
-        "H14",
-        "S8"
+        "C2",
+        "D8",
+        "H13",
+        "H7"
       ],
-      "hp": 7,
+      "hp": 6,
       "shape": {
         "C": 2,
         "D": 2,
-        "H": 4,
-        "S": 5
-      }
-    },
-    {
-      "dealId": "inkliv-10",
-      "theme": "inkliv",
-      "mode": "stord",
-      "seat": "S",
-      "auction": "W:1D N:2S E:P S:P",
-      "reason": "Dokumentet anger inte budet för denna hand.",
-      "hand": [
-        "H11",
-        "D6",
-        "D12",
-        "H9",
-        "S8",
-        "D11",
-        "H10",
-        "S10",
-        "S11",
-        "C7",
-        "D8",
-        "D5",
-        "C2"
-      ],
-      "hp": 5,
-      "shape": {
-        "C": 2,
-        "D": 5,
-        "H": 3,
+        "H": 6,
         "S": 3
       }
     }
