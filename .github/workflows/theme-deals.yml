@@ -31,6 +31,8 @@ jobs:
         run: node --test testdata/theme-deals.test.js
       - name: Run auction dispatch regression tests
         run: node --test testdata/auction-dispatch.test.js
+      - name: Run documented overcall response tests
+        run: node --test testdata/overcall-responses.test.js
       - name: Run analysis library matching tests
         run: node --test testdata/analysis-library-match.test.js
       - name: Run structured hand condition tests
