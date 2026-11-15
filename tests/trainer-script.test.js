@@ -313,7 +313,7 @@ test("room reconnect holds bot turns until replayed state messages go quiet", ()
   assert.equal(scheduledBots, 1, "the coordinator resumes bots after the replay quiet period");
   assert.ok(html.includes("if(roomSyncing||!st||!st.hands"));
   assert.ok(html.includes("if(roomSyncing||state!==st"));
-  assert.ok(html.includes("es.onopen=function(){connState='online';startPresence();markRoomSync()"));
+  assert.ok(html.includes("source.onopen=function(){if(!isCurrentRoomConnection(connectedRoom,source))return;connState='online';startPresence();markRoomSync()"));
 });
 
 
