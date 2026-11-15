@@ -13,7 +13,7 @@ const sequenceCases = uncovered.filter(c =>
 
 test("valid opener rebids after partner pass are not diagnosed as turn-order errors", () => {
   const { Rattning } = loadRuntime();
-  assert.equal(sequenceCases.length, 9, "the audited regression set should contain ten cases");
+  assert.equal(sequenceCases.length, 9, "the audited regression set should contain nine cases");
 
   for (const deal of sequenceCases) {
     const index = deal.uncoveredBid.number - 1;
