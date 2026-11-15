@@ -751,3 +751,10 @@ Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen
 - Den enda ej täckta sekvensen var seed 202615834: 1♠–2♦–3♥–Pass. Det är en 10–12 hp obalanserad svarshand utan preferens till öppnarens två visade färger. Denna lucka är redan uttryckligen markerad i systemunderlaget som ej täckt; jag har inte hittat på ett nytt bud.
 - Biblioteket på arbetsgrenen: v0.6.4, 44 träd, 269 noder, 271 grenar (166 länkade, 105 utan nästa nod). Inga saknade grenmål. De befintliga 26 dubbla sekvenserna är äldre överlapp mellan parallella träd; det nya spader-RKC-trädet skapar ingen ny dubbel sekvens.
 - Rättningsmotorn uppdaterad till v7.3. CI har verifierat syntax, bibliotek, ordinarie regressionstester, 12 RKC 1430-fall för båda högfärgerna, 100-givarskontrollen och analysmotorns kompatibilitet.
+
+### Komplettering av 3M-invit
+- Rättningsmotorn hanterar nu både 1♥–3♥ och 1♠–3♠: svarshanden visar normalt 10–12 HTP och minst fyra trumfkort.
+- Öppnaren räknar gemensamma spelpoäng med trumf. 26+ och minst 8-korts fit ger 4M; annars pass.
+- Riktade tester för båda högfärgerna: 4/4 godkända (minimum avslår, tillägg accepterar).
+- Analysbiblioteket har kompletterats med spaderträdet T45. Biblioteket är nu v0.6.5, 45 träd och 271 noder.
+- Rättningsmotorn är v7.4.
