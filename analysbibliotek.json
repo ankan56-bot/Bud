@@ -3740,7 +3740,7 @@
             "Pass"
           ],
           "meaning": "Öppnaren beskriver sin hand efter Stenberg 2NT.",
-          "analysis": "Samma struktur gäller efter 1♠–2NT: exakt en singleton i sidofärg visas på 3-nivån; 15+ HTP utan singleton ger 3♠; 12–14 hp balanserad utan singleton ger 3NT; 20+ HTP ger 4♠. Flera singletonfärger saknar prioritet.",
+          "analysis": "Samma struktur gäller efter 1♠–2NT: exakt en singleton i sidofärg visas på 3-nivån; 15+ HTP utan singleton ger 3♠; 12–14 hp balanserad utan singleton ger 3NT; högre styrka kan fångas av den separata game-safety-kontrollen om gemensamma spelpoäng räcker. Flera singletonfärger saknar prioritet.",
           "branches": [
             {
               "call": "3♣",
