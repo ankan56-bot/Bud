@@ -846,11 +846,23 @@ var Rattning = (function(){
       if(latestAskIndex>=0){
         var asker=prior[latestAskIndex].s;
         var askSide=side(asker);
-        var askIsAgreed=!!rkcTrumpFromAuction(prior,askSide)||agreedNoTrumpAceAsk(prior,askSide);
-        var answer=prior.slice(latestAskIndex+1).find(function(x){
+        // Bedöm själva frågesekvensen fram till 4NT. Senare svarbud
+        // får inte göra att den avtalade sekvensen slutar kännas igen.
+        var auctionThroughAsk=prior.slice(0,latestAskIndex+1);
+        var askIsAgreed=!!rkcTrumpFromAuction(auctionThroughAsk,askSide)||
+          agreedNoTrumpAceAsk(auctionThroughAsk,askSide);
+        var callsAfterAsk=prior.slice(latestAskIndex+1);
+        var answer=callsAfterAsk.find(function(x){
           return side(x.s)===askSide&&x.s!==asker&&isBid(x.c);
         });
-        aceAskResponse=askIsAgreed&&!!answer&&/^5[CDHSN]$/.test(answer.c)&&lastCall===answer;
+        var askerFixedNoTrump=callsAfterAsk.some(function(x){
+          return x.s===asker&&x.c==='5N'&&answer&&
+            callsAfterAsk.indexOf(x)>callsAfterAsk.indexOf(answer);
+        });
+        aceAskResponse=askIsAgreed&&!!answer&&(
+          (/^5[CDHSN]$/.test(answer.c)&&lastCall===answer&&me===asker)||
+          (askerFixedNoTrump&&lastCall&&lastCall.s===asker&&lastCall.c==='5N'&&me!==asker)
+        );
       }
       if(partnerHasGame&&!aceAskResponse)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
