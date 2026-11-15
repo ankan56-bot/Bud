@@ -144,7 +144,7 @@ function buildReport(st,ruleResult,ddsResult){
   source:"Rattningsmotor v"+((global.Rattning&&global.Rattning.version)||"?")+" + analysbibliotek",
   ruleErrors:rules.errors,uncovered:rules.uncovered,optional:rules.optional,
   fits:fits,theoreticalFindings:findings,
-  library:match?{treeId:match.tree.id,title:match.tree.title,conditions:match.tree.conditions||[],sequence:match.node.sequence||[],meaning:match.node.meaning||"",analysis:match.node.analysis||"",exact:match.exact}:null,
+  library:match?{treeId:match.tree.id,title:match.tree.title,conditions:match.tree.conditions||[],sequence:match.node.sequence||[],meaning:match.node.meaning||"",analysis:match.node.analysis||"",handProfile:match.node.handProfile||null,exact:match.exact}:null,
   dds:ddsResult||null,
   knowledgeBoundary:"DDS använder samtliga fyra händer. En spelare under budgivningen känner bara till sin egen hand och informationen som partnerns och motståndarnas bud lagligen visar. Därför är DDS-facit en efterhandsjämförelse, inte automatiskt ett bud som paret kunde känna till."
  };
@@ -157,6 +157,7 @@ function render(report){
   if(report.library.conditions.length)h+='<p>Förutsättningar: '+report.library.conditions.map(escapeHtml).join(" · ")+'</p>';
   if(report.library.meaning)h+='<p>'+escapeHtml(report.library.meaning)+'</p>';
   if(report.library.analysis)h+='<p>'+escapeHtml(report.library.analysis)+'</p>';
+  if(report.library.handProfile){h+='<p><b>Handprofil</b></p>';Object.keys(report.library.handProfile).forEach(function(role){h+='<p>'+escapeHtml(role)+': '+escapeHtml(report.library.handProfile[role])+'</p>';});}
  }
  h+='</section>';
  if(report.ruleErrors.length){

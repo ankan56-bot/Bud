@@ -1,6 +1,6 @@
 {
-  "version": "0.5.5",
-  "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Grundsystemets Stenberg och återbud efter 1M–2M är uppdaterade enligt den aktuella rättningsmotorn.",
+  "version": "0.5.6",
+  "description": "Utökat fristående bibliotek med budträd och systemmässigt detaljerade handprofiler. Nya noder beskriver ostörd öppning och svar efter 1 i färg samt skiljer 4-4-4-1-fördelningar från artificiell fjärde färg. Grundsystemets regler är oförändrade.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -4174,6 +4174,405 @@
           "handProfile": {
             "opener": "Högst 16 HTP",
             "responder": "6–12 HTP, minst fyra spader"
+          }
+        }
+      ]
+    },
+    {
+      "id": "T36_OPPNING_HANDPROFILER",
+      "title": "Ostörd budgivning – detaljerade handprofiler för öppning 1 i färg",
+      "tags": [
+        "ostörd",
+        "öppning",
+        "handprofil",
+        "fördelning",
+        "1 i färg"
+      ],
+      "conditions": [
+        "Ostörd budgivning.",
+        "Öppningsreglerna i rattningsmotorn är oförändrade.",
+        "Fyrkortsfärger prioriteras H > S > C > D; femkortsfärger 5-5 prioriteras S > H > D > C."
+      ],
+      "root": "t36_1c",
+      "nodes": [
+        {
+          "id": "t36_1c",
+          "sequence": [
+            "1♣"
+          ],
+          "meaning": "Öppning 1♣ – handprofil",
+          "analysis": "Öppningen visar normalt 12–19 hp och klöver som vald öppningsfärg. Klöver är normalt längsta färgen; vid likalånga fyrkortsfärger gäller H > S > C > D. En 4-4-4-1-hand måste därför bedömas efter exakt vilka färger som är fyrkortsfärger, inte beskrivas som en generell 1♣-hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp; klöver vald enligt längd- och prioritetsregeln. Vanligen 5+ klöver; 4 klöver endast när fyrkortsprioriteten leder till klöver.",
+            "responder": "Svarshanden har ännu inte beskrivit sin hand."
+          }
+        },
+        {
+          "id": "t36_1d",
+          "sequence": [
+            "1♦"
+          ],
+          "meaning": "Öppning 1♦ – handprofil",
+          "analysis": "Öppningen visar normalt 12–19 hp och ruter som vald öppningsfärg. Ruter är normalt längsta färgen. Vid 4-4-läge väljs ruter inte framför hjärter, spader eller klöver; prioritetsordningen är H > S > C > D.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp; ruter vald enligt längd- och prioritetsregeln. Vanligen 5+ ruter; fyrkorts ruter endast när ingen högre prioriterad fyrkortsfärg konkurrerar.",
+            "responder": "Svarshanden har ännu inte beskrivit sin hand."
+          }
+        },
+        {
+          "id": "t36_1h",
+          "sequence": [
+            "1♥"
+          ],
+          "meaning": "Öppning 1♥ – handprofil",
+          "analysis": "Öppningen visar normalt 12–19 hp och minst fyra hjärter. Hjärter väljs före spader, klöver och ruter vid likalånga fyrkortsfärger. Fördelningen 4-4-4-1 i ordningen ♠-♥-♦-♣ har fyra hjärter och fyra spader; hjärter prioriteras. Detta är en konkret fördelningsklass, inte en generell beskrivning av alla 1♥-öppningar.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp; minst 4 hjärter. 4-4-4-1 (♠-♥-♦-♣) är en möjlig fyrkortshand där hjärter väljs före spader.",
+            "responder": "Svarshanden har ännu inte beskrivit sin hand."
+          }
+        },
+        {
+          "id": "t36_1s",
+          "sequence": [
+            "1♠"
+          ],
+          "meaning": "Öppning 1♠ – handprofil",
+          "analysis": "Öppningen visar normalt 12–19 hp och minst fyra spader. Spader väljs när den är längsta färgen eller vinner enligt fyrkortsprioriteten efter hjärter. Fördelningen 4-1-4-4 i ordningen ♠-♥-♦-♣ har fyra spader, en hjärter, fyra ruter och fyra klöver; spader prioriteras framför klöver och ruter.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp; minst 4 spader. 4-1-4-4 (♠-♥-♦-♣) är en specifik form i 4-4-4-1-familjen.",
+            "responder": "Svarshanden har ännu inte beskrivit sin hand."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T37_SVAR_1_I_FARG_HANDPROFILER",
+      "title": "Ostörd budgivning – svarshandens fördelnings- och styrkeprofiler efter 1 i färg",
+      "tags": [
+        "ostörd",
+        "svar",
+        "1 över 1",
+        "1NT",
+        "2 över 1",
+        "handprofil"
+      ],
+      "conditions": [
+        "Ostörd budgivning.",
+        "Profilerna återger befintliga regler i resp1(); inga nya budöverenskommelser skapas.",
+        "Skilj mellan HP och HTP när trumfstöd finns."
+      ],
+      "root": "t37_1c1d",
+      "nodes": [
+        {
+          "id": "t37_1c1d",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦"
+          ],
+          "meaning": "1♦ efter 1♣",
+          "analysis": "6+ hp och minst fyra ruter. Rondkrav. Om svarshanden även har en högfärg som kan bjudas på 1-nivån måste hela fördelningen beaktas.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald klöveröppning.",
+            "responder": "6+ hp, 4+ ruter; rondkrav en rond."
+          }
+        },
+        {
+          "id": "t37_1c1h",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥"
+          ],
+          "meaning": "1♥ efter 1♣",
+          "analysis": "6+ hp och minst fyra hjärter. Rondkrav. Högfärg prioriteras framför att visa lågfärgsstöd när högfärgen kan bjudas på 1-nivån.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald klöveröppning.",
+            "responder": "6+ hp, 4+ hjärter; rondkrav en rond."
+          }
+        },
+        {
+          "id": "t37_1c1s",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♠"
+          ],
+          "meaning": "1♠ efter 1♣",
+          "analysis": "6+ hp och minst fyra spader. Rondkrav. Beskriv hela handens färglängder; enstaka exempel räcker inte för att täcka alla kombinationer.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald klöveröppning.",
+            "responder": "6+ hp, 4+ spader; rondkrav en rond."
+          }
+        },
+        {
+          "id": "t37_1d1h",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥"
+          ],
+          "meaning": "1♥ efter 1♦",
+          "analysis": "6+ hp och minst fyra hjärter. Rondkrav; naturligt färgbud som visar hjärterlängd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald ruteröppning.",
+            "responder": "6+ hp, 4+ hjärter; rondkrav en rond."
+          }
+        },
+        {
+          "id": "t37_1d1s",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠"
+          ],
+          "meaning": "1♠ efter 1♦",
+          "analysis": "6+ hp och minst fyra spader. Rondkrav. Om handen även har ruterstöd visas den bjudbara högfärgen först enligt systemets prioritering.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald ruteröppning.",
+            "responder": "6+ hp, 4+ spader; rondkrav en rond."
+          }
+        },
+        {
+          "id": "t37_1h1s",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠"
+          ],
+          "meaning": "1♠ efter 1♥",
+          "analysis": "6+ hp och minst fyra spader. Rondkrav; enda möjliga 1-över-1-budet i en högre färg efter 1♥.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, minst fyra hjärter.",
+            "responder": "6+ hp, 4+ spader; rondkrav en rond."
+          }
+        },
+        {
+          "id": "t37_1c1nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♣",
+          "analysis": "6–10 hp. Förnekar fyra klöverstöd och en egen 4+ färg som kan bjudas på 1-nivån. 1NT lovar inte jämn hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald klöveröppning.",
+            "responder": "6–10 hp; under 4 klöverstöd; ingen bjudbar 4+ färg på 1-nivån; inte nödvändigtvis balanserad."
+          }
+        },
+        {
+          "id": "t37_1d1nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♦",
+          "analysis": "6–10 hp. Förnekar fyra ruterstöd och en egen 4+ färg som kan bjudas på 1-nivån. Budet lovar inte jämn hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, vald ruteröppning.",
+            "responder": "6–10 hp; under 4 ruterstöd; ingen bjudbar 4+ färg på 1-nivån; inte nödvändigtvis balanserad."
+          }
+        },
+        {
+          "id": "t37_1h1nt",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♥",
+          "analysis": "6–10 hp. Förnekar fyra hjärterstöd och en egen fyrkortsspader som kan bjudas på 1-nivån. Budet lovar inte jämn hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, minst fyra hjärter.",
+            "responder": "6–10 hp; under 4 hjärterstöd och under 4 spader; inte nödvändigtvis balanserad."
+          }
+        },
+        {
+          "id": "t37_1s1nt",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "1NT"
+          ],
+          "meaning": "1NT efter 1♠",
+          "analysis": "6–10 hp. Förnekar fyra spaderstöd och en egen färg som kan bjudas på 1-nivån. Budet lovar inte jämn hand.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–19 hp, minst fyra spader.",
+            "responder": "6–10 hp; under 4 spaderstöd; ingen bjudbar 4+ färg på 1-nivån; inte nödvändigtvis balanserad."
+          }
+        },
+        {
+          "id": "t37_1d2c",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♦",
+          "analysis": "Minst fyra klöver och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♦.",
+            "responder": "11+ hp och 4+ klöver; alternativt 10 hp med 6+ klöver av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1d2h",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♦",
+          "analysis": "Minst fyra hjärter och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♦.",
+            "responder": "11+ hp och 4+ hjärter; alternativt 10 hp med 6+ hjärter av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1d2s",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ efter 1♦",
+          "analysis": "Minst fyra spader och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♦.",
+            "responder": "11+ hp och 4+ spader; alternativt 10 hp med 6+ spader av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1h2c",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♥",
+          "analysis": "Minst fyra klöver och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♥.",
+            "responder": "11+ hp och 4+ klöver; alternativt 10 hp med 6+ klöver av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1h2d",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♥",
+          "analysis": "Minst fyra ruter och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♥.",
+            "responder": "11+ hp och 4+ ruter; alternativt 10 hp med 6+ ruter av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1s2c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♣"
+          ],
+          "meaning": "2♣ efter 1♠",
+          "analysis": "Minst fyra klöver och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♠.",
+            "responder": "11+ hp och 4+ klöver; alternativt 10 hp med 6+ klöver av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1s2d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♦"
+          ],
+          "meaning": "2♦ efter 1♠",
+          "analysis": "Minst fyra ruter och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♠.",
+            "responder": "11+ hp och 4+ ruter; alternativt 10 hp med 6+ ruter av god kvalitet."
+          }
+        },
+        {
+          "id": "t37_1s2h",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ efter 1♠",
+          "analysis": "Minst fyra hjärter och 11+ hp, eller 10 hp med sexkortsfärg av god kvalitet. Rondkrav.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♠.",
+            "responder": "11+ hp och 4+ hjärter; alternativt 10 hp med 6+ hjärter av god kvalitet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T38_FJARDE_FARG_4441",
+      "title": "Ostörd budgivning – 4-4-4-1-händer och fjärde färg",
+      "tags": [
+        "ostörd",
+        "4-4-4-1",
+        "4-1-4-4",
+        "fjärde färg",
+        "handprofil"
+      ],
+      "conditions": [
+        "Endast ostörd budgivning.",
+        "Fjärde färg är artificiell och utgångskrav enligt den dokumenterade 13+ hp-regeln.",
+        "En fyrkortsfärg får inte ensam göra fjärde-färgsbudet naturligt."
+      ],
+      "root": "t38_0",
+      "nodes": [
+        {
+          "id": "t38_0",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♣",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ efter 1♦–1♠–2♣ – fjärde färg, inte naturlig hjärter",
+          "analysis": "Tre färger har redan visats: ruter, spader och klöver. Hjärter är fjärde färg. Budet är artificiellt och utgångskrav enligt den dokumenterade fjärde-färgsregeln; det lovar inte hjärterlängd. En 4-4-4-1- eller 4-1-4-4-hand måste beskrivas med exakt färgfördelning. Fyra hjärter gör inte automatiskt fjärde-färgsbudet naturligt; hjärter ska inte beskrivas som ett naturligt tredje färgbud i denna sekvens.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppnaren har visat ruter och klöver. 4-4-4-1-former måste särskiljas efter vilken färg som är singel; ingen naturlig hjärterlängd kan härledas av sekvensen.",
+            "responder": "Svarshanden har visat spader. 3♥ är fjärde färg: artificiellt, 13+ hp, utgångskrav; det lovar inte hjärter."
           }
         }
       ]
