@@ -661,7 +661,6 @@ var Rattning = (function(){
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
-    var vd=h.singles().some(function(s){return h.L[s]===0});
     var exp,why;
     var means=function(c){
       if(!T_){
@@ -672,17 +671,19 @@ var Rattning = (function(){
         if(c==='5N')return '4 ess av 4.';
         return null;
       }
-      if(c==='5C')return '0 eller 3 ess (av 5).';
-      if(c==='5D')return '1 eller 4 ess (av 5).';
-      if(c==='5H')return '2 ess utan trumfdam.';
-      if(c==='5S')return '2 ess med trumfdam.';
-      if(c==='5N')return '3 ess och renons.';
+      if(c==='5C')return '1 eller 4 nyckelkort (av 5).';
+      if(c==='5D')return '0 eller 3 nyckelkort (av 5).';
+      if(c==='5H')return '2 nyckelkort utan trumfdam.';
+      if(c==='5S')return '2 nyckelkort med trumfdam.';
+      if(c==='5N')return null;
       return null;
     };
 
     if (T_) {
-        if (kc === 0 || kc === 3) exp = (kc === 3 && vd) ? '5N' : '5C';
-        else if (kc === 1 || kc === 4) exp = '5D';
+        // Systemets avtalade RKC 1430: 5C=1/4, 5D=0/3,
+        // 5H=2 utan trumfdam, 5S=2 med trumfdam.
+        if (kc === 1 || kc === 4) exp = '5C';
+        else if (kc === 0 || kc === 3) exp = '5D';
         else exp = q ? '5S' : '5H';
     } else {
         if (h.aces === 0) exp = '5C';
