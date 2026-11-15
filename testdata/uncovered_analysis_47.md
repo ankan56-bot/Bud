@@ -40,3 +40,44 @@ Summa: 47.
 - `LOGG_BUDREGLER.md`: tidigare dokumenterade testobservationer och uttryckliga systemkrav.
 
 Nästa steg är att jämföra de 26 konkurrensfallen mot loggens konkreta givexempel och regeltexter, och därefter formulera testbara kandidater. Ingen kodändring ska göras förrän ett handvillkor och en regelkälla är tydliga.
+
+
+## Fördjupning: de 16 ej täckta positionerna med dubbling i sekvensen
+
+Dessa 16 positioner ska inte behandlas som en enda regeltyp. Budsekvenserna visar minst fyra olika situationer:
+
+### A. Svar efter att motståndaren dubblat partnerns öppning (3 positioner)
+- `dubbling-02-bid-3`: S:1D W:X N:P; position Norr, Pass.
+- `dubbling-04-bid-3`: N:1D E:X S:P; position Syd, Pass.
+- `dubbling-09-bid-3`: S:1H W:X N:P; position Norr, Pass.
+
+Detta är inte samma situation som svar på partnerns upplysningsdubbling. I rättningsmotorns nuvarande dispatch finns `respDouble()` för svar när partnern har dubblat motståndarnas öppning. Den täcker inte automatiskt svarshandens val efter att motståndaren har dubblat vår öppning. Vi behöver kontrollera om systemet föreskriver redubbling, naturliga svar eller andra prioriteringar innan en sådan gren byggs.
+
+### B. Dubblerarens återbud efter partners svar (8 positioner)
+- `dubbling-01-bid-6`: W:1D N:X E:P S:1S W:P N:P; position Norr, Pass.
+- `dubbling-03-bid-6`: W:1D N:X E:P S:1H W:P N:P; position Norr, Pass.
+- `dubbling-05-bid-6`: E:1H S:X W:P N:2D E:P S:P; position Syd, Pass.
+- `dubbling-06-bid-6`: E:1C S:X W:P N:1D E:P S:P; position Syd, Pass.
+- `dubbling-07-bid-6`: E:1H S:X W:P N:2D E:P S:P; position Syd, Pass.
+- `dubbling-08-bid-6`: W:1C N:X E:P S:1H W:P N:P; position Norr, Pass.
+- `dubbling-10-bid-6`: E:1H S:X W:P N:2C E:P S:P; position Syd, Pass.
+- `inkliv-09-bid-6`: E:1D S:X W:P N:1S E:P S:P; position Syd, Pass.
+
+Det här är återbud från den spelare som först dubblade, efter att partnern har svarat och motståndarna har passat. Rättningsmotorn lämnar dessa som ej täckta. De ska granskas utifrån dubblerarens ursprungliga hand, partnerns svarsfärg och om pass från öppningssidan är en del av sekvensen.
+
+### C. Fortsättning efter ytterligare motståndarinblandning (2 positioner)
+- `dubbling-04-bid-7`: N:1D E:X S:P W:2N N:P E:P S:P; position Syd, Pass.
+- `dubbling-09-bid-7`: S:1H W:X N:P E:3S S:P W:P N:P; position Norr, Pass.
+
+Här har motståndarna lagt ett nytt bud efter den första dubblingen och partnerskapet måste ompröva. Detta är skilt från ett ostört återbud efter dubbling.
+
+### D. Övriga passpositioner i dubblingssekvenser (3 positioner)
+- `dubbling-02-bid-5`: S:1D W:X N:P E:P S:P; position Syd, Pass.
+- `dubbling-04-bid-5`: N:1D E:X S:P W:2N N:P; position Norr, Pass.
+- `dubbling-09-bid-5`: S:1H W:X N:P E:3S S:P; position Syd, Pass.
+
+De här positionerna är pass efter varierande motståndarsvar/fortsättningar. De kräver samma exakta sekvenskontroll och ska inte generaliseras från A–C.
+
+**Kodobservation:** `nodeForRaw()` har en särskild dispatch för `oppBefore`, men går till en generell ej täckt-nod när motståndarinblandningen inte matchar dess snäva mönster. Det förklarar varför flera olika fortsättningar hamnar i samma generiska feltext. Det är en täckningsbegränsning, inte belägg för att passen är rätt eller fel.
+
+**Nästa regelgranskning:** separera (1) svar efter motståndarnas dubbling av vår öppning, (2) återbud efter partnerns svar på vår upplysningsdubbling, och (3) ny budgivning när motståndarna kliver in igen. För varje kategori måste vi hitta uttrycklig systemkälla och testhänder. Ingen regel ändras i detta steg.
