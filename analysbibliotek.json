@@ -2998,7 +2998,8 @@
               "H": {
                 "min": 3
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3025,7 +3026,8 @@
               "H": {
                 "min": 3
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3053,7 +3055,8 @@
               "H": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3085,7 +3088,8 @@
             },
             "manual": [
               "Spaderstopper krävs; stopper bedöms separat."
-            ]
+            ],
+            "authority": "analysis_only"
           }
         },
         {
@@ -3112,7 +3116,8 @@
               "D": {
                 "min": 5
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         }
       ],
@@ -3200,7 +3205,8 @@
               "S": {
                 "min": 3
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3227,7 +3233,8 @@
               "S": {
                 "min": 3
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3255,7 +3262,8 @@
               "S": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3287,7 +3295,8 @@
             },
             "manual": [
               "Hjärterstopper krävs; stopper bedöms separat."
-            ]
+            ],
+            "authority": "analysis_only"
           }
         },
         {
@@ -3314,7 +3323,8 @@
               "C": {
                 "min": 5
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         }
       ],
@@ -3402,7 +3412,8 @@
               "D": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3429,7 +3440,8 @@
               "D": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3457,7 +3469,8 @@
               "D": {
                 "min": 5
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3485,7 +3498,8 @@
             "manual": [
               "Spaderstopper krävs; stopper bedöms separat.",
               "Begränsat ruterstöd anges i fritext och har ingen fastställd numerisk gräns."
-            ]
+            ],
+            "authority": "analysis_only"
           }
         },
         {
@@ -3512,7 +3526,8 @@
               "C": {
                 "min": 5
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         }
       ],
@@ -3600,7 +3615,8 @@
               "C": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3627,7 +3643,8 @@
               "C": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3655,7 +3672,8 @@
               "C": {
                 "min": 5
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3682,7 +3700,8 @@
               "S": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3709,7 +3728,8 @@
             "balanced": true,
             "manual": [
               "Hjärterstopper krävs; stopper bedöms separat."
-            ]
+            ],
+            "authority": "analysis_only"
           }
         }
       ],
@@ -3796,7 +3816,8 @@
               "H": {
                 "max": 2
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3824,7 +3845,8 @@
               "H": {
                 "min": 3
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3852,7 +3874,8 @@
               "H": {
                 "min": 4
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3879,7 +3902,8 @@
               "S": {
                 "min": 5
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         },
         {
@@ -3908,7 +3932,8 @@
               "H": {
                 "max": 2
               }
-            }
+            },
+            "authority": "analysis_only"
           }
         }
       ],
