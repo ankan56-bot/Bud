@@ -355,8 +355,12 @@
       "auctionValidationValid": 140,
       "auctionValidationErrors": 0,
       "previousCoveragePercent": 87.7,
-      "previousUncovered": 73
-    }
+      "previousUncovered": 73,
+      "regressionTestCount": 47,
+      "regressionTestsPassed": 47
+    },
+    "regressionTestCount": 47,
+    "regressionTestsPassed": 47
   },
   "note": "The 140 deals are generated deterministically and validated for card integrity, theme conditions, mode conditions and uniqueness. The first engine coverage baseline is recorded separately; AI review and DDS hindsight cross-check remain pending."
 }
