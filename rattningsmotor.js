@@ -808,9 +808,9 @@ var Rattning = (function(){
     var jump8=rankedSuits(un.filter(function(s){var p=h.htp(s);return L[s]>=4&&p>=8&&p<=9;}))[0];
     var jump10=rankedSuits(un.filter(function(s){var p=h.htp(s);return L[s]>=5&&p>=10&&p<=12;}))[0];
     var means=function(c){
-      if(c==='1N')return '6-9 hp, balanserad hand och håll i öppningsfärgen.';
-      if(c==='2N')return '10-12 hp, balanserad hand och håll i öppningsfärgen.';
-      if(c==='3N')return '13+ hp, balanserad hand och håll i öppningsfärgen.';
+      if(c==='1N')return '6-9 hp och håll i öppningsfärgen.';
+      if(c==='2N')return '10-12 hp och håll i öppningsfärgen.';
+      if(c==='3N')return '13+ hp och håll i öppningsfärgen.';
       if(c==='P')return 'Pass endast med många kort i öppningsfärgen.';
       if(isBid(c)&&c[1]===os)return '10+ hp: överbud i motståndarnas färg, krav.';
       if(isBid(c)&&c[1]!=='N'){
@@ -829,7 +829,7 @@ var Rattning = (function(){
     if(L[os]>=5&&h.good(os)){
       exp='P';why='Minst 5 kort och bra kvalitet i öppningsfärgen: straffpass.';
     }
-    // Naturliga sangsvar med håll och balanserad hand.
+    // Naturliga sangsvar med håll; REF anger ingen separat balansgräns.
     else if(h.stop(os)&&hp>=6&&hp<=9){
       exp='1N';why=hp+' hp, balanserad hand med håll: 1NT.';
     }
