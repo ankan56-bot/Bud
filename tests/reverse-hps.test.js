@@ -1100,7 +1100,7 @@ function assessReverse(shape, honors) {
     '3H'
   );
   assert.equal(node.exp, '3H');
-  assert.match(node.why, /18 hp.*utan stöd/i);
+  assert.match(node.why, /19 hp.*utan stöd/i);
 }
 
 // A natural own-suit rebid below 18 hp without support should be pass.
