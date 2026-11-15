@@ -232,6 +232,27 @@ test("all trumf support theme deals contain a valid uncontested support raise", 
 });
 
 
+test("Stenberg opener shows 15+ HTP without a singleton", () => {
+  const { Rattning } = loadRuntime();
+  const north = ["H14","H12","H9","H8","S14","S13","S2","D12","D3","D2","C7","C6","C5"];
+  const south = ["H13","H11","H10","H7","S12","S11","S10","D11","D10","D9","C4","C3","C2"];
+  const used = new Set([...north, ...south]);
+  const deck = ["S","H","D","C"].flatMap(suit =>
+    Array.from({length:13}, (_,i) => suit + String(i+2)));
+  const remaining = deck.filter(card => !used.has(card));
+  const hands = { N:north, E:remaining.slice(0,13), S:south, W:remaining.slice(13) };
+  const bids = [
+    {s:"N",c:"1H"}, {s:"E",c:"P"}, {s:"S",c:"2N"},
+    {s:"W",c:"P"}, {s:"N",c:"3H"}
+  ];
+  const node = Rattning.nodeFor({hands, dealer:"N", bids}, 4);
+  assert.equal(Rattning.H(north).hp, 15);
+  assert.equal(Rattning.H(north).htp("H"), 15);
+  assert.equal(node.conv, "Stenberg");
+  assert.equal(node.exp, "3H");
+  assert.match(node.why, /15\+ stp/);
+});
+
 test("Stenberg counts HCP plus support points only after 4+ trump support", () => {
   const { Rattning } = loadRuntime();
 
