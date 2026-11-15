@@ -999,6 +999,7 @@ var Rattning = (function(){
       }
       if(!opener&&d===1)return resp1(h,c1);
       if(opener&&d===2)return reb1(h,c1,ours[1].c);
+      if(opener&&d===4)return nc('Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.');
       if(!opener&&d===3&&isBid(ours[2].c) && ours[2].c[1]!=='N') {
          var M = st_(ours[0].c);
          if (ours[2].c[1] !== M && ours[2].c[1] !== 'N' && ours[2].c[0] >= '3') {
