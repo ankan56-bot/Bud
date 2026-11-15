@@ -72,6 +72,13 @@ test("two keycards and a club void are shown by 6C when clubs are below trumps",
   assert.equal(result?.exp, "6C", JSON.stringify(result));
 });
 
+test("three keycards and a void are shown by 5NT", () => {
+  const hand = ["S14", "S13", "S10", "S9", "D14", "D10", "D9", "D8", "H10", "H9", "H8", "H7", "H6"];
+  const result = responseFromSouthHand(hand);
+  assert.deepEqual(Rattning.H(hand).L, { C: 0, D: 4, H: 5, S: 4 });
+  assert.equal(result?.exp, "5N", JSON.stringify(result));
+});
+
 test("two keycards and a heart void below spade trumps are shown by 6H", () => {
   const hand = ["S14", "S10", "S9", "S8", "D14", "D13", "D12", "D11", "D10", "D9", "D8", "D7", "C13"];
   const result = responseFromSouthHand(hand);
