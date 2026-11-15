@@ -232,7 +232,7 @@ Den tidigare inventeringen och 47-fallsanalysen ovan är historiska ögonblicksb
 - Det statiska DDS-testet passerade i GitHub Actions körning `43662387692`.
 
 
-## Källstyrd regeländring – 2026-11-15 (engine 7.1)
+## Källstyrd regeländring – 2026-11-15 (engine 7.2)
 
 Originaldokumentet `Nordisk standard, 2012-08-22` (8 sidor, tidigare uppladdat i ChatGPT Library) har nu lästs. Källgranskningen finns i `testdata/system-rule-source-audit_2026-11-15.md`.
 
@@ -248,7 +248,7 @@ Originaldokumentet `Nordisk standard, 2012-08-22` (8 sidor, tidigare uppladdat i
 Andra inklivsnivåer är uttryckligen avgränsade och får inte automatiskt använda samma tabell. Hoppande 2-högfärgsinkliv hänvisas i källan till svag-två-strukturen, men gränsen mellan invit och spärrhöjning är inte numeriskt definierad. 2-lägesinkliv i lågfärg, hoppande 3-nivåinkliv och 2NT-inkliv är därför fortsatt ej täckta.
 
 **Regression:**
-- Ny testfil: `testdata/overcall-responses.test.js`.
+- Nya testfiler: `testdata/overcall-responses.test.js` och `testdata/unresolved-system-gaps.test.js`.
 - Verifierar stöd 3/4/5 kort, NT-intervall, ny färg på 1-/2-nivå, hoppande ny färg, överbud och att andra inklivsnivåer inte ärver tabellen.
 - Exakt tidigare lucka `inkliv-05`: 8 hp och fem hjärter efter partnerns 1♥ ger nu 4♥.
 - Ett tidigare för lågt stödbud med 4 hp och fyrkortsstöd har tagits bort; källan anger 6–9 hp.
@@ -260,7 +260,7 @@ Andra inklivsnivåer är uttryckligen avgränsade och får inte automatiskt anv�
 - `testdata/theme_deals_140.json` är regenererad med engine 7.1; generatorn registrerar nu exakt Git-blob-hash för den använda motorn.
 - `testdata/theme_deals_140_report.md` uppdaterad.
 
-GitHub Actions körning `43664406782` godkände samtliga steg: deterministisk generering, datasettest, auktion-dispatch, ny inklivstestsvit, analysbibliotek, strukturerade handvillkor/profiler, spelarroller, seat-isolering och DDS-paketering.
+GitHub Actions körning `43664859992` godkände samtliga steg: deterministisk generering, datasettest, auktion-dispatch, ny inklivstestsvit, analysbibliotek, strukturerade handvillkor/profiler, spelarroller, seat-isolering och DDS-paketering.
 
 **Fortfarande ej ändrat:**
 - Åtta återbud från den som gjort upplysningsdubblingen efter partnerns svar. Sida 8 ger dubblarens grundstyrka och partnerns första svar, men ingen återbudsstruktur.
@@ -269,4 +269,4 @@ GitHub Actions körning `43664406782` godkände samtliga steg: deterministisk ge
 
 `main` är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
 
-- För hoppande 2-högfärgsinkliv hänvisar sida 7 till svag-två-strukturen. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, inte invit – detta stämmer även med användarens uttryckliga korrigering 2026-11-12. 2NT är invit med 2+ stöd, men systemkällan anger ingen exakt styrkegräns mellan 2NT-invit och spärrhöjningen. Därför har ingen sådan svarsmotorregel lagts till ännu.
+- För hoppande 2-högfärgsinkliv hänvisar sida 7 till svag-två-strukturen. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, inte invit – detta stämmer även med användarens uttryckliga korrigering 2026-11-12. 2NT är invit med 2+ stöd. Motorn visar nu dessa betydelser samt ny färg/3NT/hopp som betydelser, men väljer inget huvudbud eftersom källan saknar numerisk styrkegräns och prioritering.
