@@ -28,7 +28,13 @@
       "svag-09",
       "svag-10"
     ],
-    "regeneratedReason": "Revalidated weak-two response conditions after correcting response and opener rebid logic and removing arbitrary multiple-suit priorities."
+    "regeneratedReason": "Revalidated weak-two response conditions after correcting response and opener rebid logic and removing arbitrary multiple-suit priorities.",
+    "regeneratedSeeds": {
+      "svag-02": 93000004,
+      "svag-05": 93000001,
+      "svag-09": 93000002,
+      "svag-10": 93000003
+    }
   },
   "themes": [
     {
