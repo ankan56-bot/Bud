@@ -338,7 +338,7 @@ function assessReverse(shape, honors) {
 {
   const item = assessStenbergOpener(
     { C: 2, D: 4, H: 5, S: 2 },
-    { H: [14, 13, 12], D: [14], C: [11] },
+    { H: [14, 13], D: [14], C: [11] },
     'P'
   );
   assert.equal(item.bedomning, 'ej_täckt');
