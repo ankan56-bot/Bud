@@ -29,7 +29,7 @@
 - Flera möjliga singletonfärger utan uttrycklig prioritet ska lämnas ej täckta i råmotorn.
 - 15+ HTP utan singleton: 3M.
 - 12–14 HP och balanserad hand utan singleton: 3NT.
-- 20+ HTP: utgång i öppningsfärgen.
+- Om styrkan når utgångsnivå men den exakta fortsättningen inte är fastställd av Stenbergregeln, ska rånoden inte hitta på ett återbud. Den separata game-safety-kontrollen kan väga in 26+ gemensamma spelpoäng.
 
 ## 3. Öppnarens återbud efter 1M–2M
 
