@@ -1,36 +1,36 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "generatedDate": "2026-11-15",
   "corpusPath": "testdata/temagivare_140.json",
   "corpusBlobSha": "bf287f919494617fb8a4f9629578f548623e649f",
   "enginePath": "rattningsmotor.js",
-  "engineBlobSha": "d035263a5423078a0cb54dc3301a888b6281e330",
+  "engineBlobSha": "84db4a0213d3494498e3b48ad01c65f15634d5f4",
   "engineVersion": "6.6",
   "simulation": "N/S use Rattning.nodeFor; E/W use existing botCall in stord mode and pass in ostord mode. This measures rule coverage and runtime/auction safety, not independent bridge correctness.",
   "previousBaseline": {
-    "engineBlobSha": "3ae5ca795280c5266ac86d256a8ff3eee79ff75e",
-    "coveragePercent": 87.3,
-    "uncovered": 75
+    "engineBlobSha": "84db4a0213d3494498e3b48ad01c65f15634d5f4",
+    "coveragePercent": 87.6,
+    "uncovered": 74
   },
   "stats": {
     "deals": 140,
     "validDeals": 140,
-    "nsTurns": 596,
+    "nsTurns": 595,
     "covered": 522,
-    "uncovered": 74,
-    "ewTurns": 588,
+    "uncovered": 73,
+    "ewTurns": 587,
     "exceptions": 0,
     "illegal": 0,
     "auctionsEnded": 140,
-    "calls": 1184
+    "calls": 1182
   },
-  "coveragePercent": 87.6,
+  "coveragePercent": 87.7,
   "modeStats": {
     "stord": {
-      "turns": 422,
+      "turns": 421,
       "covered": 348,
-      "uncovered": 74,
-      "coveragePercent": 82.5
+      "uncovered": 73,
+      "coveragePercent": 82.7
     },
     "ostord": {
       "turns": 174,
@@ -119,10 +119,10 @@
     },
     "svag": {
       "deals": 10,
-      "nsTurns": 29,
+      "nsTurns": 28,
       "covered": 26,
-      "uncovered": 3,
-      "coveragePercent": 89.7
+      "uncovered": 2,
+      "coveragePercent": 92.9
     },
     "dubbling": {
       "deals": 10,
@@ -146,7 +146,7 @@
     },
     {
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
-      "count": 21
+      "count": 20
     },
     {
       "reason": "Motståndarna har bjudit flera gånger: situationen beskrivs inte i dokumentet.",
@@ -1667,7 +1667,7 @@
       "theme": "svag",
       "mode": "stord",
       "seat": "N",
-      "auction": "S:2D W:P N:P E:X S:P W:2H N:P",
+      "auction": "S:2D W:P N:P E:X S:P W:P N:P",
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "C9",
@@ -1690,36 +1690,6 @@
         "D": 1,
         "H": 3,
         "S": 6
-      }
-    },
-    {
-      "dealId": "svag-03",
-      "theme": "svag",
-      "mode": "stord",
-      "seat": "S",
-      "auction": "S:2D W:P N:P E:X S:P W:2H N:P E:P S:P",
-      "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
-      "hand": [
-        "D10",
-        "C2",
-        "C14",
-        "D14",
-        "C5",
-        "D8",
-        "H7",
-        "H4",
-        "D3",
-        "D6",
-        "D12",
-        "H3",
-        "S9"
-      ],
-      "hp": 10,
-      "shape": {
-        "C": 3,
-        "D": 6,
-        "H": 3,
-        "S": 1
       }
     },
     {
@@ -2057,7 +2027,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "S",
-      "auction": "S:1S W:X N:P E:2H S:P",
+      "auction": "S:1S W:X N:P E:1N S:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "D8",
@@ -2087,7 +2057,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "S:1S W:X N:P E:2H S:P W:P N:P",
+      "auction": "S:1S W:X N:P E:1N S:P W:P N:P",
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "H11",
@@ -2147,7 +2117,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "N:1C E:X S:P W:1D N:P",
+      "auction": "N:1C E:X S:P W:3D N:P",
       "reason": "Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.",
       "hand": [
         "S9",
@@ -2177,7 +2147,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "S",
-      "auction": "N:1C E:X S:P W:1D N:P E:P S:P",
+      "auction": "N:1C E:X S:P W:3D N:P E:P S:P",
       "reason": "Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "H3",
@@ -2237,7 +2207,7 @@
       "theme": "dubbling",
       "mode": "stord",
       "seat": "N",
-      "auction": "W:1S N:X E:P S:2H W:P N:P",
+      "auction": "W:1S N:X E:P S:1N W:P N:P",
       "reason": "Motståndarna har lagt sig i: fortsättningen beskrivs inte i dokumentet.",
       "hand": [
         "H7",
