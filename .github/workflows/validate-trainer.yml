@@ -76,8 +76,9 @@ jobs:
           const A = require('./analysmotor.js');
           const lib = require('./analysbibliotek.json');
           if (A.version !== '1.1.0') throw new Error('Unexpected analysis engine version');
-          const incompatible = lib.trees.find(t => t.id === 'T01_RKC_HJARTER');
-          if (A.treeCompatible(incompatible)) throw new Error('Jacoby prototype must not override Stenberg rules');
+          const heartRkc = lib.trees.find(t => t.id === 'T01_RKC_HJARTER');
+          const spadeRkc = lib.trees.find(t => t.id === 'T44_RKC_1430_SPADER_STENBERG');
+          if (!A.treeCompatible(heartRkc) || !A.treeCompatible(spadeRkc)) throw new Error('Stenberg RKC 1430 trees must be compatible with the authoritative system');
           const hit = A.findMatch(lib, [{c:'1N'},{c:'P'},{c:'2D'},{c:'P'},{c:'2H'},{c:'P'}]);
           if (!hit) throw new Error('Analysis library sequence matching failed');
           console.log('Offline analysis engine OK; matched ' + hit.tree.id);
