@@ -1,6 +1,6 @@
 {
-  "version": "0.1.0",
-  "description": "Kompletterande bridgebedömningar utanför eller utöver uttryckliga regler i grundsystemet. Får aldrig skriva över grundsystemet.",
+  "version": "0.2.0",
+  "description": "Kompletterande bridgebedömningar utanför eller utöver uttryckliga regler i grundsystemet. Får aldrig skriva över grundsystemet. Poster är förslag tills de har granskats och godkänts.",
   "authority": "supplementary_only",
   "status": "initial_schema_no_approved_rules",
   "confidenceLevels": [
@@ -9,7 +9,242 @@
     "low",
     "unreviewed"
   ],
-  "entries": [],
+  "entries": [
+    {
+      "id": "supp_1h_x_redouble_10plus",
+      "topic": "svar_efter_motstandardubbling",
+      "auctionPrefix": [
+        "1H",
+        "X"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 10,
+          "max": 37
+        },
+        "shape": {
+          "H": {
+            "min": 0,
+            "max": 2
+          }
+        },
+        "balanced": null,
+        "notes": "Minst cirka 10 hp och normalt högst två hjärter; redubbling visar styrka utan tydligt stöd."
+      },
+      "alternatives": [
+        {
+          "call": "2H",
+          "reason": "Välj enkel höjning i stället när handen har minst tre hjärter och cirka 6–9 hp."
+        }
+      ],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Egen hand och den lagliga budsekvensen 1H–X.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder alla fyra händer och får inte avgöra budförslaget."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T33_1H_DBL_SVAR. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, aldrig en grundsystemregel.",
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+      ],
+      "recommendation": "XX",
+      "rationale": "Redubbling visar normalt minst 10 hp och ingen tydlig hjärterfit. Avsikten är att markera styrka och möjlighet att straffa motståndarna om de fortsätter."
+    },
+    {
+      "id": "supp_1h_x_2h_support",
+      "topic": "svar_efter_motstandardubbling",
+      "auctionPrefix": [
+        "1H",
+        "X"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 9
+        },
+        "shape": {
+          "H": {
+            "min": 3,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "notes": "Minst trekortsstöd i hjärter och cirka 6–9 hp."
+      },
+      "alternatives": [
+        {
+          "call": "XX",
+          "reason": "Med cirka 10+ hp och normalt utan tre- eller fyrkortsstöd."
+        }
+      ],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Egen hand och den lagliga budsekvensen 1H–X.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder alla fyra händer och får inte avgöra budförslaget."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T33_1H_DBL_SVAR. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, aldrig en grundsystemregel.",
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+      ],
+      "recommendation": "2H",
+      "rationale": "Naturlig konkurrenshöjning med minst trekortsstöd och begränsad styrka."
+    },
+    {
+      "id": "supp_1h_x_3h_preemptive",
+      "topic": "svar_efter_motstandardubbling",
+      "auctionPrefix": [
+        "1H",
+        "X"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 0,
+          "max": 6
+        },
+        "shape": {
+          "H": {
+            "min": 4,
+            "max": 13
+          }
+        },
+        "balanced": null,
+        "notes": "Normalt fyrkortsstöd i hjärter och svag honnörsstyrka."
+      },
+      "alternatives": [
+        {
+          "call": "2H",
+          "reason": "Med minst trekortsstöd och cirka 6–9 hp."
+        }
+      ],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Egen hand och den lagliga budsekvensen 1H–X.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder alla fyra händer och får inte avgöra budförslaget."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T33_1H_DBL_SVAR. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, aldrig en grundsystemregel.",
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+      ],
+      "recommendation": "3H",
+      "rationale": "Spärrande hoppstöd med lång trumffit och svag honnörsstyrka; inte invit."
+    },
+    {
+      "id": "supp_1h_x_1s_natural",
+      "topic": "svar_efter_motstandardubbling",
+      "auctionPrefix": [
+        "1H",
+        "X"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 37
+        },
+        "shape": {
+          "S": {
+            "min": 5,
+            "max": 13
+          },
+          "H": {
+            "min": 0,
+            "max": 2
+          }
+        },
+        "balanced": null,
+        "notes": "Minst fem spader och cirka 6+ hp; normalt utan hjärterfit."
+      },
+      "alternatives": [
+        {
+          "call": "2H",
+          "reason": "Med minst trekortsstöd i hjärter och begränsad styrka."
+        }
+      ],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Egen hand och den lagliga budsekvensen 1H–X.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder alla fyra händer och får inte avgöra budförslaget."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T33_1H_DBL_SVAR. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, aldrig en grundsystemregel.",
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+      ],
+      "recommendation": "1S",
+      "rationale": "Naturligt färgbud som visar minst fem spader och tillräcklig styrka för att bjuda på enläget."
+    },
+    {
+      "id": "supp_1h_x_1nt_balanced",
+      "topic": "svar_efter_motstandardubbling",
+      "auctionPrefix": [
+        "1H",
+        "X"
+      ],
+      "handConditions": {
+        "seatRole": "responder",
+        "hcp": {
+          "min": 6,
+          "max": 10
+        },
+        "shape": {
+          "H": {
+            "min": 0,
+            "max": 2
+          }
+        },
+        "balanced": true,
+        "notes": "Cirka 6–10 hp, jämn hand och normalt utan trekortsstöd i hjärter."
+      },
+      "alternatives": [
+        {
+          "call": "2H",
+          "reason": "Med minst trekortsstöd i hjärter och cirka 6–9 hp."
+        }
+      ],
+      "systemCoverage": "uncovered",
+      "relationshipToSystem": "must_not_override",
+      "informationAvailableToBidder": "Egen hand och den lagliga budsekvensen 1H–X.",
+      "ddsEvidence": {
+        "used": false,
+        "result": null,
+        "caveat": "DDS använder alla fyra händer och får inte avgöra budförslaget."
+      },
+      "confidence": "unreviewed",
+      "provenance": "Kandidat strukturerad från analysbiblioteket T33_1H_DBL_SVAR. Inte godkänd som grundsystemregel.",
+      "approvalStatus": "unreviewed",
+      "notes": [
+        "Kompletterande analys, aldrig en grundsystemregel.",
+        "Handvillkoren är preliminära och behöver granskas innan de används för automatisk budgivning."
+      ],
+      "recommendation": "1N",
+      "rationale": "Naturligt sangsvar med jämn hand och utan tydlig hjärterfit."
+    }
+  ],
   "entrySchema": {
     "id": "unique-id",
     "topic": "theme-id",
@@ -42,7 +277,9 @@
           "max": 13
         }
       },
-      "notes": "Human-readable condition; structured fields should be used wherever possible."
+      "notes": "Human-readable condition; structured fields should be used wherever possible.",
+      "seatRole": "opener|responder|overcaller|doubler",
+      "balanced": "true|false|null"
     },
     "recommendation": "Call or pass",
     "rationale": "Why this is a reasonable bridge decision",
