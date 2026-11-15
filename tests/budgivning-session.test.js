@@ -22,13 +22,12 @@ test("fördelar botplatser automatiskt och lämnar över till människa", () => 
   assert.equal(BudSession.turn(s),"S");
   assert.equal(BudSession.isHumanTurn(s),true);
 });
-test("alla botplatser kan bjuda tills auktionen åter når människa", () => {
+test("alla botplatser passar och avslutar auktionen efter mänskligt bud", () => {
   let s = BudSession.createSession({hands,dealer:"N",humanSeats:["N"]});
   s = BudSession.applyCall(s,"N","1N",legal);
   s = BudSession.advanceBots(s,()=> "P",legal);
-  assert.equal(BudSession.turn(s),"N");
   assert.equal(s.bids.length,4);
-  assert.equal(s.status,"bidding");
+  assert.equal(s.status,"complete");
 });
 test("fyra mänskliga spelare ger inga automatiska botbud", () => {
   const s = BudSession.createSession({hands,dealer:"N",humanSeats:["N","E","S","W"]});
