@@ -81,11 +81,11 @@ assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
 assert.equal(R.H(eastResponder).hp, 10);
 assert.equal(R.H(west15).hp, 15);
 assert.equal(R.H(west16).hp, 16);
-// The source does not give a numeric strength range for this natural 2NT
-// invitation. Both retrospective hands must therefore remain unclassified;
-// live advice must not infer 2NT/3NT from the hidden opener hand.
+// The natural 2NT invitation's exact range is not specified. Retrospective
+// correction may still accept with 3NT when 26 combined HCP are actually known;
+// live advice must not infer that from the hidden opener hand.
 assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, null);
-assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, null);
+assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 assert.equal(liveNt15.exp,liveNt16.exp);
