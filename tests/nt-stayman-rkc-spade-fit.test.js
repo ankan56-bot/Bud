@@ -39,7 +39,7 @@ const afterHeartSuperaccept=[
  {s:'N',c:'3H'},{s:'E',c:'P'},
  {s:'S',c:'4N'},{s:'W',c:'P'}
 ];
-const superacceptReply=R.nodeFor({hands:{N:opener},dealer:'N',bids:afterHeartSuperaccept.concat([{s:'N',c:'P'}])},afterHeartSuperaccept.length);
+const superacceptReply=R.nodeForRaw({hands:{N:opener},dealer:'N',bids:afterHeartSuperaccept.concat([{s:'N',c:'P'}])},afterHeartSuperaccept.length);
 assert.equal(superacceptReply.exp,null,
   '4NT after a transfer superaccept remains uncovered until its continuation is source-verified');
 assert.match(superacceptReply.why,/ingen fastställd trumf|inte en uttryckligen avtalad/i);
