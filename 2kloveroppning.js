@@ -22,6 +22,13 @@
   var T=api.T;
   var ok=api.ok;
   var NC=api.NC;
+  function opening(h){
+    var hp=h.hp;
+    if(hp>=22||(!h.bal&&hp>=20)){
+      return {exp:'2C',alt:[],why:h.bal?hp+' hp balanserad hand: öppna 2♣.':hp+' hp obalanserad hand: stark 2♣-öppning, utgångskrav.',conv:'2♣-öppning',means:function(b){return b==='2C'?'Utgångskrav, eller stark balanserad hand.':null}};
+    }
+    return null;
+  }
   function resp2c(h){
     var means=function(c){return c==='2D'?'Väntebud (relä): säger ingenting om ruterfärgen.':'Endast 2♦ används som första svar i detta system.'};
     return {exp:'2D',alt:[],why:'Svarshanden bjuder alltid 2♦ (väntebud) på 2♣, oavsett styrka och fördelning.',means:means,conv:'2♣-system'};
