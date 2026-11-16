@@ -796,3 +796,13 @@ Användaren har dessutom uttryckligen beslutat att slam inte ska rekommenderas f
 - motståndarna kliver in på 1-nivån och inklivarens partner därefter svarar.
 
 Detta är en separat strategisk slamspärr; vanliga utgångsbud kan fortfarande vara aktuella. En viktig konflikt att lösa före implementation är att nuvarande motor anger 12–17 HP för enkelt inkliv på 2-nivån, medan slamspärrens poängresonemang utgår från att minst 13 HP har visats. Ingen produktionslogik har ännu ändrats. Fortsättningar som inte uttryckligen stöds av källan ska lämnas ej täckta.
+### Första implementationen av BridgePlus-reglerna (2026-11-16)
+
+- Svaret 1NT efter motståndarens inkliv är ändrat från 8–10 till **6–10 HP**, med fortsatt krav på håll i inklivsfärgen.
+- Nya färgbud efter partnerns öppning tillåter nu **4 kort i lågfärg** och kräver fortsatt **5 kort i högfärg**.
+- Motorns tidigare generella ej-täckt-väg för svar efter 1♣/1♦ och 1♥/1♠-inkliv är kompletterad med dessa källregler.
+- Negativ dubbling är införd i de entydiga fyrkortslägena: 1♦–1♥–Dbl visar exakt fyra spader; 1♣–1♠–Dbl visar fyra hjärter. Den aktiva automatiska rekommendationen kräver minst 6 HP och inget 3+ stöd i öppningsfärgen. Överlapp som källan inte prioriterar lämnas ej täckt.
+- Fem eller fler hjärter efter 1♠-inkliv lämnas för naturlig budbedömning; motorn gör inte en automatisk negativ dubbling där eftersom prioriteten inte framgår av källsidan.
+- Fem riktade regressioner har lagts till i den befintliga manuella testfilen. De omfattar 6 HP + håll i 1NT, 4-korts lågfärg, 4-korts högfärg som otillräcklig ny högfärg samt båda negativa dubblingsfallen.
+
+**Inte infört ännu:** slamspärren. Motorn anger för närvarande 12–17 HP för enkelt inkliv på 2-nivån, medan slamresonemanget utgår från 13 HP. Den skillnaden ska lösas utan att ändra inklivets styrkeintervall av misstag. Slamspärren ska vara separat från handvärderingen och får inte använda motståndarnas dolda kort i livebeslut.
