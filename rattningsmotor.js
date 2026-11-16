@@ -262,7 +262,7 @@ var Rattning = (function(){
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
   }
-  function transfer2(h,M,openerCards){
+  function transfer2(h,M){
     var L=h.L,exp,why,alt=[];
     var means=function(c){
       if(c==='P')return 'Svag hand efter överföring; exakt styrkegräns är inte verifierad i Nordisk standard.';
@@ -1351,8 +1351,8 @@ var Rattning = (function(){
       if(opener&&d===2)return ntOpener(h,k,ours[1].c,st.hands[pt]);
       if(!opener&&d===3&&!k){var m1=ours[1].c,rep=ours[2].c;
         if(m1==='2C')return stay2(h,rep,st.hands[pt]);
-        if(m1==='2D'&&rep==='2H')return transfer2(h,'H',st.hands[pt]);
-        if(m1==='2H'&&rep==='2S')return transfer2(h,'S',st.hands[pt]);
+        if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
+        if(m1==='2H'&&rep==='2S')return transfer2(h,'S');
         if(m1==='2S'&&rep==='2N'){var mc=h.L.C>=h.L.D?'3C':'3D';return {exp:mc,alt:[],why:'Bjud din långa lågfärg på 3-nivå som slutbud.',means:T({'3C':'Slutbud i ♣.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
         if(m1==='2S'&&rep==='3C'){var e=h.L.C>=h.L.D?'P':'3D';return {exp:e,alt:[],why:e==='P'?'Du har ♣ som lågfärg: pass.':'Du har ♦ som lågfärg: 3♦.',means:T({P:'Slutbud: pass.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
       }
