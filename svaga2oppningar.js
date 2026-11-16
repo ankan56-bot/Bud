@@ -130,5 +130,5 @@
 
   /* ––––– ÖPPNARENS ANDRA BUD (Plus) ––––– */
 
-  return {resp2w,open2w};
+  return {opening,resp2w,open2w};
 });
