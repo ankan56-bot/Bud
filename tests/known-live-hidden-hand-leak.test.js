@@ -1,9 +1,7 @@
 "use strict";
 
-// Characterization tests for known defects: live correction currently reads
-// partner's hidden cards both after a 3M invitation and after a 1NT opening.
-// TODO: replace these with invariance tests against decideLive() once the
-// live/post-deal API separation is implemented.
+// Characterize the remaining legacy 1M invitation leak, and verify that the
+// migrated 1NT live path no longer reads the opener's hidden cards.
 const assert = require("node:assert/strict");
 const R = require("../rattningsmotor.js");
 
@@ -83,7 +81,15 @@ assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
 assert.equal(R.H(eastResponder).hp, 10);
 assert.equal(R.H(west15).hp, 15);
 assert.equal(R.H(west16).hp, 16);
-assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "2N");
-assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
+// The source does not give a numeric strength range for this natural 2NT
+// invitation. Both retrospective hands must therefore remain unclassified;
+// live advice must not infer 2NT/3NT from the hidden opener hand.
+assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, null);
+assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, null);
+const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
+const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
+assert.equal(liveNt15.exp,liveNt16.exp);
+assert.equal(liveNt15.why,liveNt16.why);
+assert.equal(liveNt15.exp,null,"unverified natural 2NT invite boundary must remain uncovered");
 
-console.log("KNOWN DEFECTS reproduced: same East hand + public auction produced Pass/4H and 2NT/3NT from West's hidden cards.");
+console.log("Legacy 1M hidden-hand leak characterized; 1NT live path is invariant and conservative.");
