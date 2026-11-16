@@ -1,12 +1,12 @@
 {
-  "version": "0.6.22",
+  "version": "0.6.23",
   "description": "Analysbibliotek med 46 budträd. Överföringsbudens kvalitativa betydelser är källgranskade; numeriska styrkegränser som saknas i originalet används inte.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
     "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
-    "oneNTGameThreshold": "25 combined HCP for no-trump game (3NT), explicitly accepted by the user on 2026-11-14. Only HCP count in no-trump; no distribution points. This is separate from 26 OTP for major-suit game and 28 OTP for minor-suit game. No later user-authored change to 26 HCP exists.",
+    "oneNTGameThreshold": "Ingen numerisk HCP-gräns för 3NT efter 1NT/Stayman är bekräftad i användarens egna tidigare meddelanden eller angiven i det tillgängliga Nordisk standard-underlaget. 25 och 26 kombinerade hp ska därför inte användas automatiskt. Endast honnörspoäng räknas i sang; inga fördelningspoäng.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
     "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
@@ -859,8 +859,8 @@
           }
         }
       ],
-      "sourceStatus": "user_confirmed",
-      "sourceStatusNote": "25 gemensamma HCP för 3NT är uttryckligen bekräftat av användaren 2026-11-14; endast hp räknas i sang."
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "3NT är slutbud, men numeriskt HCP-intervall för att välja det är inte fastställt. Ingen 25/26-gräns får antas."
     },
     {
       "id": "T10_1H_ENKEL_HOJNING",
@@ -1341,8 +1341,8 @@
           }
         }
       ],
-      "sourceStatus": "user_confirmed",
-      "sourceStatusNote": "25 gemensamma HCP för 3NT är uttryckligen bekräftat av användaren 2026-11-14; endast hp räknas i sang."
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "3NT är slutbud, men numeriskt HCP-intervall för att välja det är inte fastställt. Ingen 25/26-gräns får antas."
     },
     {
       "id": "T19",
