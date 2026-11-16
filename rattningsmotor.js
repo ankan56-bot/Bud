@@ -1394,8 +1394,8 @@ var Rattning = (function(){
         var staymanTotal=h.hp+staymanOpener.hp;
         var spadeFit=h.L.S+staymanOpener.L.S;
         var spadePoints=spadeFit>=8?partnershipPoints(h,staymanOpener,'S'):0;
-        if(h.bal&&staymanTotal>=26&&spadeFit<8){
-          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand och tillräcklig sangstyrka: 3NT.':null},conv:'2NT-Stayman'};
+        if(h.bal&&staymanTotal>=25&&spadeFit<8){
+          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 25+ hp enligt projektregeln ger 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand och 25+ gemensamma hp: 3NT.':null},conv:'2NT-Stayman',ruleStatus:'user_confirmed'};
         }
         if(spadeFit>=8&&spadePoints>=26){
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+spadePoints+' gemensamma spelpoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
@@ -1406,8 +1406,8 @@ var Rattning = (function(){
         var knownStaymanTotal=hp+opener.hp;
         var knownSpadeFit=h.L.S+opener.L.S;
         var knownSpadePoints=knownSpadeFit>=8?partnershipPoints(h,opener,'S'):0;
-        if(h.bal&&knownStaymanTotal>=26&&knownSpadeFit<8)
-          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+knownStaymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 26+ hp ger 3NT.',means:function(c){return c==='3N'?'Balanserad hand, 26+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
+        if(h.bal&&knownStaymanTotal>=25&&knownSpadeFit<8)
+          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+knownStaymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 25+ hp enligt projektregeln ger 3NT.',means:function(c){return c==='3N'?'Balanserad hand, 25+ gemensamma hp och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman',ruleStatus:'user_confirmed'};
         if(knownSpadeFit>=8&&knownSpadePoints>=26)
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+knownSpadePoints+' gemensamma spelpoäng: 26+ ger utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit och 26+ gemensamma spelpoäng.':null},conv:'2NT-Stayman'};
         return NC('Efter 2NT–3♣–3♠ når paret inte 26 poäng för 3NT/4♠ eller saknar nödvändig form. Situationen lämnas ej täckt.',null,'2NT-Stayman',true);
