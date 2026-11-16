@@ -642,9 +642,10 @@ var Rattning = (function(){
     var by={};ours.forEach(function(x){if(x.c[1]!=='N'){by[x.c[1]]=by[x.c[1]]||{};by[x.c[1]][x.s]=1}});
     var fits=SU.filter(function(k){return by[k]&&by[k].N&&by[k].S});
     if(fits.length===1)return fits[0];
-    if(ours.some(function(x){return x.c==='1N'})){
-      if(ours.some(function(x){return x.c==='2D'})&&ours.some(function(x){return x.c==='2H'}))return 'H';
-      if(ours.some(function(x){return x.c==='2H'})&&ours.some(function(x){return x.c==='2S'}))return 'S';
+    // Nordisk standard s. 7: efter Stayman är 2♥/2♠ indirekt fastställd trumf.
+    // Enbart en fullföljd överföring fastställer däremot inte trumfen i källtexten.
+    if(ours[0]==='1N'&&ours[1]==='2C'&&(ours[2]==='2H'||ours[2]==='2S'))
+      return ours[2][1];
     }
     return null;
   }
@@ -654,10 +655,7 @@ var Rattning = (function(){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX'}).map(function(x){return x.c});
     var seq=ours.join(',');
     return seq==='1N,4N' ||
-           seq==='1N,2C,2D,4N' ||
-           seq==='2N,4N' ||
-           seq==='2N,3C,3D,4N' ||
-           seq==='2C,2D,2N,4N';
+           seq==='1N,2C,2D,4N';
   }
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
@@ -665,11 +663,10 @@ var Rattning = (function(){
     var exp,why;
     var means=function(c){
       if(!T_){
-        if(c==='5C')return '0 ess av 4.';
+        if(c==='5C')return '0 eller 4 ess av 4.';
         if(c==='5D')return '1 ess av 4.';
         if(c==='5H')return '2 ess av 4.';
         if(c==='5S')return '3 ess av 4.';
-        if(c==='5N')return '4 ess av 4.';
         return null;
       }
       if(c==='5C')return '1 eller 4 nyckelkort (av 5).';
@@ -690,11 +687,10 @@ var Rattning = (function(){
         else if (kc === 0 || kc === 3) exp = '5D';
         else exp = q ? '5S' : '5H';
     } else {
-        if (h.aces === 0) exp = '5C';
+        if (h.aces === 0 || h.aces === 4) exp = '5C';
         else if (h.aces === 1) exp = '5D';
         else if (h.aces === 2) exp = '5H';
-        else if (h.aces === 3) exp = '5S';
-        else exp = '5N';
+        else exp = '5S';
     }
 
     why = T_ ? (kc + ' nyckelkort inklusive trumfkungen. Svar enligt RKC 1430.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
@@ -704,6 +700,7 @@ var Rattning = (function(){
     if(T_){
       return NC('Efter svaret på RKC 1430 behöver frågeställaren väga in sina egna nyckelkort och skilja mellan de dubbla svaren 1/4 respektive 0/3. Fortsättningsregeln efter 5♣, 5♦, 5♥ eller 5♠ är ännu inte fastställd; motorn ska därför inte automatiskt bjuda slam.');
     }
+    return NC('Nordisk standard s. 7 anger ingen fortsättningsregel efter svaren på fyr-essfrågan utan fastställd trumf. Fortsättningen lämnas därför ej täckt.');
     var exp,why;
     var means=function(c){
       if(c==='5N')return 'Fyr-essfråga: alla fyra ess.';
@@ -1555,7 +1552,7 @@ var Rattning = (function(){
       'öppnarens 2:a bud':'Öppnarens andra bud preciserar styrka och fördelning efter svarshandens första bud.',
       'RKC':'RKC är essfråga. När trumf är fastställd räknas fyra ess plus trumfkungen som femte ess.',
       'RKC 1430':'RKC 1430 används när trumf är fastställd. 5♣ = 1 eller 4 nyckelkort, 5♦ = 0 eller 3, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam.',
-      'Fyr-essfråga utan trumf':'Fyr-essfråga utan fastställd trumf används bara i uttryckligen överenskomna sangsekvenser: 1NT–4NT, 1NT–2♣–2♦–4NT, 2NT–4NT, 2NT–3♣–3♦–4NT och 2♣–2♦–2NT–4NT. 5♣ = 0 ess, 5♦ = 1 ess, 5♥ = 2 ess, 5♠ = 3 ess, 5NT = 4 ess. Efter 5NT bjuder frågeställaren 6NT och därefter pass. Ingen kungfråga används.',
+      'Fyr-essfråga utan trumf':'Nordisk standard s. 7: i de uttryckligen avtalade sangsekvenserna 1NT–4NT och 1NT–2♣–2♦–4NT räknas fyra ess. 5♣ = 0 eller 4 ess, 5♦ = 1, 5♥ = 2, 5♠ = 3. Fortsättningen efter svaret är inte definierad här.',
       'inkliv':'Ett inkliv visar normalt 12–17 hp och minst 5 kort i färgen (2-nivån kräver 6 kort). 1NT-inkliv visar 15–17 hp och håll i öppningsfärgen. Vid inkliv efter 1NT stängs Stayman/överföring av. Ny färg 2-nivå = invit, 3-nivå = krav.',
       'dubbling':'Upplysningsdubbling (UD) visar minst 12 hp och 3+ kort i objudna färger. Negativ dubbling (av SH) visar 6+ hp och 4-korts objuden högfärg. Stöddubbling (av ÖH) visar exakt 3-korts stöd. Dubbelt efter 1NT-inkl = UD, invit+.',
       'svar efter 1NT':'Efter 1 i färg–1NT och öppnarens återbud finns ett uttryckligt undantag: svarshandens andra färgbud kan vara 6–9 hp och minst 6 kort, utan att vara krav.',
