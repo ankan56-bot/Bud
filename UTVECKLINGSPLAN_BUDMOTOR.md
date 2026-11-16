@@ -1,6 +1,6 @@
 > **Aktuell styrning från 2026-11-16:** Denna notering ersätter äldre arbetsprioriteringar i dokumentets historiska avsnitt. Vi fokuserar nu på att omstrukturera och kartlägga **ostörd budgivning** innan nya budregler eller större kodändringar görs. Konkurrensbudgivningen är pausad och ska inte ändras. `main` lämnas orörd; arbetet sker på `work/undisturbed-architecture`.
 >
-> Arkitekturprinciper finns i [ARKITEKTUR_BUDMOTOR.md](ARKITEKTUR_BUDMOTOR.md) och den första täckningskartan i [KARTA_OSTORD_BUDGIVNING.md](KARTA_OSTORD_BUDGIVNING.md). Kontrakten 4♥, 4♠, 5♣, 5♦ och 3NT används som mål-/täckningsvyer, inte som separata regelmotorer. Befintlig rättningsmotor är fortsatt auktoritativ tills en regeländring har dokumenterats och verifierats.
+> Arkitekturprinciper finns i [ARKITEKTUR_BUDMOTOR.md](ARKITEKTUR_BUDMOTOR.md) och den första täckningskartan i [KARTA_OSTORD_BUDGIVNING.md](KARTA_OSTORD_BUDGIVNING.md). Den fullständiga råinventeringen av befintliga ostörda analysnoder finns i [INVENTERING_NODER_OSTORD.md](INVENTERING_NODER_OSTORD.md). Kontrakten 4♥, 4♠, 5♣, 5♦ och 3NT används som mål-/täckningsvyer, inte som separata regelmotorer. Befintlig rättningsmotor är fortsatt auktoritativ tills en regeländring har dokumenterats och verifierats.
 >
 > **Nästa grind:** fullständiggör sekvens- och handvillkorskartan för ostörd budgivning, klassificera överlapp och ej täckta fall, fastställ en kanonisk nodmodell och först därefter genomför små, testade kodändringar.
 >
