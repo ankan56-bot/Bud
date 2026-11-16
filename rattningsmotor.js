@@ -194,7 +194,19 @@ var Rattning = (function(){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs; situationen lämnas ej täckt.',means,conv,true);
     }
     else if(hp>=gl){
-      return NC('Svarshanden har utgångsnära styrka, men numeriskt HCP-krav för 3NT efter 1NT är inte bekräftat. Varken 25 eller 25 gemensamma hp antas; situationen lämnas ej täckt.',means,conv,true);
+      if(!k){
+        // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
+        var jointMin=hp+15;
+        if(!opener&&jointMin>=25){exp='3N';why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
+        else if(opener&&jointHp>=25){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';}
+        else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
+      }else{
+        var twoNTMin=hp+20;
+        if(!opener&&twoNTMin>=25){exp='3N';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
+        else if(opener&&jointHp>=25){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 25-hp-gränsen för 3NT.';}
+        else return NC('Paret når inte säkert 25 gemensamma hp för 3NT efter 2NT-öppning; situationen lämnas ej täckt.',means,conv,true);
+      }
+      soft=false;
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
