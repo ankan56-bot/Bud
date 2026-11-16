@@ -204,7 +204,7 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 7. Gör 3-lågfärgsinvit efter 1NT explicit, inklusive öppnarens pass/3NT-beslut med xx/xxx kontra topphonnör.
 8. Modellera ny färg efter Stayman som naturligt utgångskrav enligt s. 4.
 9. Modellera Stayman 2♣ med slamintresse utan egen fyrkorts högfärg, men lämna styrketröskeln öppen tills den kan beläggas.
-9. Ta bort obelagda numeriska HP-/gemensamma-poängsgränser ur systemfacit. Behåll dem endast om de kan beläggas på annan sida i samma PDF.
+10. Ta bort obelagda numeriska HP-/gemensamma-poängsgränser ur systemfacit. Behåll dem endast om de kan beläggas på annan sida i samma PDF.
 
 ### P2 – tester och nodkvalitet
 10. Skapa isolerade tester för varje tabellrad och gränsfall.
