@@ -134,7 +134,7 @@ const directTenResult=live('S',firstResponse,balancedTen);
 assert.equal(directTenResult.exp,'3N',
  '10 own HCP plus partner minimum guarantees the confirmed 25-HCP 3NT threshold: '+JSON.stringify(directTenResult));
 assert.equal(directTenResult.ruleStatus,'user_confirmed');
-const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3','S4']);
+const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H11','H2','H3','S11','S2','S3','S4']);
 assert.equal(R.H(balancedNine).hp,9);
 assert.equal(live('S',firstResponse,balancedNine).exp,null,
  '9 own HCP plus partner minimum reaches only 24 HCP; no numeric invit band is stated');
