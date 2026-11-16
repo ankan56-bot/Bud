@@ -1,0 +1,114 @@
+# Granskning: informationsgräns mellan livebudgivning och efterhandsrättning
+
+**Datum:** 2026-11-16  
+**Gren:** `work/undisturbed-architecture`  
+**Omfattning:** Ostörd budgivning, med fokus på vilka kort en spelare eller robot får använda vid sitt beslut.  
+**Status:** Granskning och riskdokumentation. Ingen produktionslogik ändrad.
+
+## Sammanfattning
+
+Granskningen har hittat en **bekräftad informationsläcka i Öst–Väst-robotens livebudgivning**. `botCall()` i `Budtraning.html` skickar hela given (`st.hands`) till `Rattning.nodeFor()`. Rättningsmotorn använder på flera ställen partnerns faktiska hand för att välja bud. Eftersom samma dispatcher används av roboten kan Buddie fatta beslut med information som en mänsklig spelare inte har.
+
+Detta är inte bara en teoretisk arkitekturrisk: anropskedjan är direkt synlig i koden. Problemet måste lösas innan robotens bud kan betraktas som ett rättvist livebeslut. Efterhandsrättning får däremot fortsatt använda alla fyra händer, tydligt märkt som efterhandsanalys.
+
+## 1. Bekräftad live-anropskedja
+
+1. `botCall(st, botSeat)` bygger en provauktion med robotens tur.
+2. Funktionen anropar `Rattning.nodeFor({hands: st.hands, dealer: st.dealer, bids: trial}, ...)`.
+3. `nodeFor()` anropar `nodeForRaw()` och kan dessutom anropa `missedGameOrSlam()`.
+4. Båda vägarna kan läsa partnerns faktiska kort via `st.hands[pt]` eller båda händerna via `st.hands[b.s]` och `st.hands[pt]`.
+
+**Konsekvens:** Samma kodväg används både för robotens livebud och för efterhandsrättning. Det finns ingen typad eller tekniskt framtvingad gräns mellan dessa två användningsfall.
+
+## 2. Dolda handreferenser i rättningsmotorn
+
+| Kodplats | Funktion/situation | Faktisk dold information | Risk i livebud |
+|---|---|---|---|
+| ca rad 516–560 | `reb1()`, accepterar 3M-invit | Partnerns längd i trumffärgen och gemensamma spelpoäng | Öppnaren kan acceptera eller avslå invit utifrån svarshandens faktiska kort i stället för budgivningens visade styrka |
+| ca rad 987–1054 | `responderSecondBid()` | Öppnarens hp, balans, färglängder, fit och gemensamma spelpoäng | Svarshanden kan välja utgång/invit/preferens med vetskap om öppnarens dolda hand |
+| ca rad 1120–1129 | 1NT-återbud och högfärgsinvit | Partnerns hp, fit och gemensamma spelpoäng | Robotens accept/pass kan styras av dold styrka och fit |
+| ca rad 1224–1227 | Svarshandens andra bud efter 1NT | Öppnarens exakta fördelning (bl.a. 4441) | Budväg väljs utifrån en dold fördelningsform |
+| ca rad 1248, 1271 | Invit-/Staymanrelaterad logik | Partnerns faktiska hand | Kan påverka val av bud och fortsättning |
+| ca rad 1286–1302 | 1NT/2NT-svar, Stayman, överföring och öppnarens fortsättning | Partnerns faktiska kort i flera hjälpfunktioner | Kan påverka svar, accept, superaccept eller fortsättning |
+| ca rad 1326 | Svar efter svag tvåöppning | Partnerns faktiska hand skickas till `resp2w()` | Måste kontrolleras funktionsvis; risk för dold handberoende logik |
+| ca rad 1341–1355 | Reverse, svarshandens andra bud och öppnarens återbud | Partnerns faktiska spaderfit, spelpoäng och kort | Kan styra bud som kräver kunskap om den dolda handen |
+| ca rad 1537–1601 | `missedGameOrSlam()` | Båda sidans faktiska händer och gemensamma fit | Hindsight-funktion; får inte användas i livebeslut |
+| ca rad 1655 ff. | `judgeComplete()` | Spelarens och partnerns faktiska händer | Efterhandsanalys; rimligt endast efter given och tydligt märkt |
+
+Radnumren är orienterande och kan ändras. Sök efter funktionsnamn och uttrycken `st.hands[pt]`, `partnerCards` och `openerHand` vid framtida ändringar.
+
+## 3. Klassificering av nuvarande anrop
+
+| Anropare | Användning | Klassificering |
+|---|---|---|
+| `botCall()` → `nodeFor()` | Öst–Väst-robotens beslut under auktionen | **LIVE – får endast använda egen hand och offentlig budhistorik** |
+| `themedOpening/Overcall/Response/Rebid()` | Skapa och kontrollera temagivare | Test-/genereringsmiljö; full given får användas för att konstruera facit, men får inte återanvändas som livepolicy |
+| `bidMeaning()` → `nodeFor()` | Förklara redan lagda bud | Efterhands-/visningskontext |
+| `reviewHtml()` → `judge()` | Rätta färdig giv | POST-DEAL |
+| `runSupplementaryReview()` | Kandidatanalys av ej täckta positioner efter given | POST-DEAL |
+| `judgeComplete()` | Fullständig rättning och handanalys | POST-DEAL |
+
+## 4. Analysmotorn och nodbiblioteket
+
+- `findMatch()` väljer den längsta sekvensprefixmatchningen i `analysbibliotek.json`. Den kontrollerar inte nodens handvillkor. Därför är den inte tillräcklig som fullständig besluts-/rättningsmatchare.
+- `treeCompatible()` filtrerar vissa uttryckligen motstridiga texter (bl.a. Jacoby och RKC-svar som inte stämmer med beslutad 1430-struktur). Det är en textbaserad spärr, inte en strukturerad regelvalidering.
+- `findSupplementary()` kontrollerar sekvensprefix, nästa spelare, roll och den aktuella spelarens handvillkor. Den läser `hands[next]`, inte partnerns kort. Det är en bättre informationsmodell, men kandidaterna är fortfarande efterhands-/utvärderingsmaterial och inte automatiskt godkända systemregler.
+- Flera noder saknar `handProfile`; sådana noder kan inte få full handvillkorsvalidering förrän profilen kompletterats.
+- Terminala grenar och saknade fortsättningsnoder måste skiljas åt i datamodellen. En gren utan `next` betyder inte automatiskt att sekvensen är ett definierat slutbud.
+
+## 5. Rekommenderad målarkitektur
+
+### Separera beslut från rättning
+
+Inför två tydliga API:er med olika indata:
+
+**Livebeslut**
+```js
+decideLive({
+  ownHand,
+  seat,
+  dealer,
+  auction
+})
+```
+
+- Innehåller inte `hands`, `partnerHand`, DDS-resultat eller något objekt som kan slå upp motståndarnas kort.
+- Partnerns och motståndarnas bud får användas som offentlig information.
+- Handvillkor får endast utvärderas mot `ownHand`.
+- För partnerns styrka/fördelning används enbart intervall och slutsatser som faktiskt följer av budsystemet; inte det verkliga värdet.
+
+**Efterhandsrättning**
+```js
+judgeDeal({
+  hands,
+  dealer,
+  auction,
+  ddsResult
+})
+```
+
+- Får använda alla fyra händer för att kontrollera vad som faktiskt fanns.
+- Ska märka slutsatser som efterhandskunskap.
+- Får inte återanvändas av livebotten som budrekommendation.
+
+### Säker migrationsordning
+
+1. Skriv tester som visar att samma `ownHand + auction` ger samma livebeslut oavsett vilka kort som ligger i de tre övriga händerna.
+2. Extrahera nuvarande regler till separata funktioner med tydliga indata. Behåll post-deal-beräkningar i rättningslagret.
+3. Ersätt varje liveberoende av partnerns faktiska kort med offentlig budinferens, eller returnera `ej täckt` om systemunderlaget inte räcker.
+4. Säkerställ att `missedGameOrSlam()` aldrig körs i livevägen.
+5. Kör befintliga regressionstester och temagivare, plus adversarial tests där dolda händer byts medan egen hand och auktion hålls konstanta.
+6. Kontrollera att tvåspelarflödet och synkroniseringen inte ändras.
+
+**Viktigt:** Detta är en arkitekturriktning, inte ett tillstånd att hitta på nya budregler. Där offentlig budinformation inte räcker ska roboten avstå från att låtsas veta partnerns hand och markera läget som ej täckt eller använda en separat, uttryckligen godkänd strategisk bedömning.
+
+## 6. Nästa kodgrind
+
+Innan någon ändring av budregler görs ska vi:
+- inventera samtliga funktioner som tar `partnerCards`, `openerHand` eller `st.hands[pt]`;
+- följa varje hjälpfunktion till dess faktiska läsningar;
+- fastställa vilka parametrar som kan göras om till offentligt härledd information;
+- skapa ett isolerat livebesluts-API och tester för dold-hand-invarians;
+- först därefter göra små, separata implementationer.
+
+Ingen ändring i denna granskning ändrar själva budsystemet.
