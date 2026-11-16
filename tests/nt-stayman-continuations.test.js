@@ -124,12 +124,12 @@ assert.equal(responderAfterStayman(
 const heartsInviteHand=['H14','H13','H12','H11','H10','S2','S3','D2','D3','D4','C2','C3','C4'];
 const heartsInvite=responderAfterStayman(heartsInviteHand,'2H');
 assert.equal(heartsInvite.exp,null);
-assert.match(heartsInvite.why,/3H efter Stayman visar invit/i);
+assert.match(heartsInvite.why,/3H är invit i öppnarens visade högfärg/i);
 
 const spadesInviteHand=['S14','S13','S12','S11','S10','H2','H3','D2','D3','D4','C2','C3','C4'];
 const spadesInvite=responderAfterStayman(spadesInviteHand,'2S');
 assert.equal(spadesInvite.exp,null);
-assert.match(spadesInvite.why,/3S efter Stayman visar invit/i);
+assert.match(spadesInvite.why,/3S är invit i öppnarens visade högfärg/i);
 const balancedAfterSpades=['S14','S13','S2','S3','H12','H11','H2','D13','D2','D3','C2','C3','C4'];
 assert.equal(R.H(balancedAfterSpades).bal,true);
 const naturalStaymanNTInvite=responderAfterStayman(balancedAfterSpades,'2S');
