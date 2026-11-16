@@ -22,12 +22,12 @@ const afterStayman2NT=[
  {s:'S',c:'4N'}
 ];
 const twoNTReply=replyAfter(afterStayman2NT);
-assert.equal(twoNTReply.exp,'5C',
-  'after Stayman 2H-2NT-4S, 4NT is RKC with spades; K♠ is one keycard');
+assert.equal(twoNTReply.exp,'5D',
+  'after Stayman 2H-2NT-4S, 4NT is RKC with spades; K♠ is one keycard; 5♦ is the 1-keycard response in Nordisk standard');
 
 const afterStayman3NT=afterStayman2NT.map((b,i)=>i===6?{s:'S',c:'3N'}:i===8?{s:'N',c:'4S'}:b);
 const threeNTReply=replyAfter(afterStayman3NT);
-assert.equal(threeNTReply.exp,'5C',
+assert.equal(threeNTReply.exp,'5D',
   'after Stayman 2H-3NT-4S, 4NT is RKC with spades; K♠ is one keycard');
 
 // A 3M superaccept completes the transfer in practice, but the PDF does not
