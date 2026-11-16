@@ -36,6 +36,15 @@ for(const [treeId,rootId,acceptId] of [
  has25Branch(treeId,rootId,'3NT');
  assert.match(findNode(treeId,acceptId).handProfile.opener,/25\+/);
 }
+const t40=findTree('T40_SVARSHANDENS_ANDRA_BUD_EFTER_OPPNARENS_ATERBUD');
+const t40Balanced=findNode('T40_SVARSHANDENS_ANDRA_BUD_EFTER_OPPNARENS_ATERBUD','t40_balanced_rebid');
+assert.match(t40Balanced.branches.find(b=>b.call==='3NT').label,/25\+/);
+assert.match(t40Balanced.branches.find(b=>b.call==='2NT').label,/22–24/);
+const t40Own=findNode('T40_SVARSHANDENS_ANDRA_BUD_EFTER_OPPNARENS_ATERBUD','t40_own_suit_rebid');
+assert.match(t40Own.branches.find(b=>b.call==='3NT').label,/25\+/);
+assert.match(t40Own.branches.find(b=>b.call==='2NT').label,/22–24/);
+assert.ok(t40);
+
 for(const [treeId,rootId,acceptId] of [
  ['T27_OVERFORING_HJARTER_SEXKORT_INVIT','t27_overforing_hjarter_sexkort_invit_n3','t27_overforing_hjarter_sexkort_invit_n5'],
  ['T28_OVERFORING_SPADER_SEXKORT_INVIT','t28_overforing_spader_sexkort_invit_n3','t28_overforing_spader_sexkort_invit_n5']
