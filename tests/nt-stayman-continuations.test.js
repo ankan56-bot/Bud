@@ -118,6 +118,18 @@ assert.equal(responderAfterStayman(
 assert.equal(responderAfterStayman(
   ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H').exp,null,
   'exactly four spades is known, but invite versus game needs a strength boundary');
+// The source also names 3M in opener's shown major as an invit.
+// The bidding meaning is recognized, but the numeric choice/acceptance
+// threshold remains uncovered rather than borrowing a generic point band.
+const heartsInviteHand=['H14','H13','H12','H11','H10','S2','S3','D2','D3','D4','C2','C3','C4'];
+const heartsInvite=responderAfterStayman(heartsInviteHand,'2H');
+assert.equal(heartsInvite.exp,null);
+assert.match(heartsInvite.why,/3H efter Stayman visar invit/i);
+
+const spadesInviteHand=['S14','S13','S12','S11','S10','H2','H3','D2','D3','D4','C2','C3','C4'];
+const spadesInvite=responderAfterStayman(spadesInviteHand,'2S');
+assert.equal(spadesInvite.exp,null);
+assert.match(spadesInvite.why,/3S efter Stayman visar invit/i);
 const gameFourSpades=['S14','S13','S12','S11','H11','H2','H3','D2','D3','D4','C2','C3','C4'];
 assert.equal(R.H(gameFourSpades).hp,11);
 const gameFourSpadesAuction=[
