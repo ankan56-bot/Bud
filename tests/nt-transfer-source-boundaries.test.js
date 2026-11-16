@@ -94,7 +94,7 @@ assert.equal(result(invitFiveFive,afterSpadeTransfer).exp,'3H','8–9 hp and 5-5
 for(const id of ['T03_OVERFORING_PASS','T07_OVERFORING_HJARTER','T08_OVERFORING_SPADER']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree, 'expected source-aligned transfer tree '+id);
-  assert.equal(tree.sourceStatus,undefined,id+' must not be marked provisional');
+  assert.equal(tree.sourceStatus,'source_verified',id+' must be marked source verified');
   assert.equal(A.treeCompatible(tree),true,id+' must be available for authoritative matching');
 }
 for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFORING_SPADER_SEXKORT_INVIT']){
