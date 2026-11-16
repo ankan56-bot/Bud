@@ -84,7 +84,7 @@ assert.equal(R.H(invitFiveHearts).hp,9);
 assert.equal(R.H(invitFiveHearts).bal,true);
 assert.equal(result(invitFiveHearts,afterHeartTransfer).exp,'2N','8–9 hp, balanced exact five hearts: 2NT invite');
 
-const invitEightHearts=hand(['H14','H13','H12','H2','H3','S14','S13','S2','D13','D2','D3','C2','C3']);
+const invitEightHearts=hand(['H14','H13','H2','H3','H4','S14','S2','S3','D2','D3','D4','C2','C3']);
 assert.equal(R.H(invitEightHearts).hp,8);
 assert.equal(R.H(invitEightHearts).bal,true);
 assert.equal(result(invitEightHearts,afterHeartTransfer).exp,'2N','8 hp starts the invit band');
@@ -99,16 +99,16 @@ assert.equal(R.H(gameFiveHearts).hp,13);
 assert.equal(R.H(gameFiveHearts).bal,true);
 assert.equal(result(gameFiveHearts,afterHeartTransfer).exp,'3N','10–15 hp, balanced exact five hearts: 3NT');
 
-const gameTenHearts=hand(['H14','H13','H12','H2','H3','S14','S13','S2','D13','D2','D3','C2','C3']);
+const gameTenHearts=hand(['H14','H13','H2','H3','H4','S14','S2','S3','D13','D2','D3','C13','C2']);
 assert.equal(R.H(gameTenHearts).hp,10);
 assert.equal(R.H(gameTenHearts).bal,true);
 assert.equal(result(gameTenHearts,afterHeartTransfer).exp,'3N','10 hp starts the game band');
 
-const gameFifteenSixHearts=hand(['H14','H13','H12','H11','H10','H9','S14','S13','D14','D13','D12','C2','C3']);
+const gameFifteenSixHearts=hand(['H14','H13','H12','H2','H3','H4','S14','S13','D14','D12','D2','C2','C3']);
 assert.equal(R.H(gameFifteenSixHearts).hp,15);
 assert.equal(result(gameFifteenSixHearts,afterHeartTransfer).exp,'4H','15 hp remains in the 10–15 game band');
 
-const overFifteenSixHearts=hand(['H14','H13','H12','H11','H10','H9','S14','S13','D14','D13','D12','C13','C2']);
+const overFifteenSixHearts=hand(['H14','H13','H12','H2','H3','H4','S14','S13','D14','D12','D2','C13','C2']);
 assert.equal(R.H(overFifteenSixHearts).hp,16);
 assert.equal(result(overFifteenSixHearts,afterHeartTransfer).exp,null,'16+ hp has no defined continuation in this table');
 
