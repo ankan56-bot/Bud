@@ -45,6 +45,8 @@ var Rattning = (function(){
   var majorFactory=(typeof module!=='undefined'&&module.exports)?require('./hogfargsbudgivning.js'):window.RattningHogfargFactory;
   var minorFactory=(typeof module!=='undefined'&&module.exports)?require('./lagfargsbudgivning.js'):window.RattningLagfargFactory;
   var majorBidding=majorFactory(sharedApi,oneResponse), minorBidding=minorFactory(sharedApi,oneResponse);
+  var stenbergFactory=(typeof module!=='undefined'&&module.exports)?require('./stenberg.js'):window.RattningStenbergFactory;
+  var stenberg=stenbergFactory(sharedApi);
 
   var twoClubFactory=(typeof module!=='undefined'&&module.exports)?require('./2kloveroppning.js'):window.Rattning2KloverFactory;
   var weakTwoFactory=(typeof module!=='undefined'&&module.exports)?require('./svaga2oppningar.js'):window.RattningSvagaTvaFactory;
@@ -79,7 +81,7 @@ var Rattning = (function(){
     : window.RattningBudbeslutFactory;
   var budbeslut=budbeslutFactory(sharedApi,{
     twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding,
-    overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord
+    stenberg:stenberg,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord
   });
   var nodeForRaw=budbeslut.nodeForRaw;
 
