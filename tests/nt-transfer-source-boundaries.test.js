@@ -103,4 +103,18 @@ for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFOR
   assert.equal(tree.sourceStatus,'provisional_source_gap',id+' remains provisional because opener acceptance is not specified');
   assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
 }
+// Direct 3NT at the user-confirmed 26 combined-HCP threshold remains
+// authoritative; unverified 2NT-invite bands and the weak-relay numeric
+// band stay provisional until their exact thresholds are confirmed.
+for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
+  const tree=lib.trees.find(t=>t.id===id);
+  assert.ok(tree);
+  assert.equal(A.treeCompatible(tree),true,id+' has a verified direct 3NT threshold');
+}
+for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG','T42_1NT_SVAG_LAGFARGSRELA']){
+  const tree=lib.trees.find(t=>t.id===id);
+  assert.ok(tree);
+  assert.equal(tree.sourceStatus,'provisional_source_gap');
+  assert.equal(A.treeCompatible(tree),false,id+' contains an unverified strength boundary');
+}
 console.log('1NT transfer source-boundary tests: passed.');
