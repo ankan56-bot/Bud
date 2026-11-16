@@ -2,7 +2,7 @@
 
 **Datum:** 2026-11-16  
 **Bas:** `analysbibliotek.json` version 0.6.5  
-**Omfattning:** 40 ostörda träd, 241 noder. De fem konkurrensträden T29–T33 är avsiktligt exkluderade och ska förbli orörda.
+**Omfattning:** 40 ostörda träd, 240 noder. De fem konkurrensträden T29–T33 är avsiktligt exkluderade och ska förbli orörda.
 
 Detta är en råinventering av befintliga noder, inte ett godkännande av deras regelinnehåll. Sekvensen visas i budordning. Grenar utan `next` redovisas som `terminal/ej länkad`; det betyder inte automatiskt att noden är färdig. Handprofil visar om `handProfile` finns i nuvarande JSON, inte om profilen är maskinellt verifierbar.
 
