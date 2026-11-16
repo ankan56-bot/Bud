@@ -1410,7 +1410,7 @@ var Rattning = (function(){
           return {exp:'3N',alt:[],why:'Balanserad svarshand och '+knownStaymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 26+ hp ger 3NT.',means:function(c){return c==='3N'?'Balanserad hand, 26+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
         if(knownSpadeFit>=8&&knownSpadePoints>=26)
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+knownSpadePoints+' gemensamma spelpoäng: 26+ ger utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit och 26+ gemensamma spelpoäng.':null},conv:'2NT-Stayman'};
-        return NC('Efter 2NT–3♣–3♠ når paret inte 26 poäng för 3NT/4♠ eller saknar nödvändig form. Situationen lämnas ej täckt.',null,'2NT-Stayman',true);
+        return {exp:'P',alt:[],why:'Efter 2NT–3♣–3♠ når paret varken 26 gemensamma honnörspoäng för 3NT eller 26 gemensamma spelpoäng med 8-korts spaderfit för 4♠. Pass.',means:function(c){return c==='P'?'Ingen sangutgång eller högfärgsutgång når sin verifierade poänggräns; pass.':null},conv:'2NT-Stayman'};
       }
       if(c1==='1N'&&!opener&&d===2){
         var opening=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&/^1[CDHS]$/.test(x.c)})[0];
