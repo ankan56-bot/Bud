@@ -1083,7 +1083,7 @@ var Rattning = (function(){
         if(total>=26)return {exp:'4'+major,alt:[],why:'Högfärgsfit ('+(L[major]+oh.L[major])+' kort) och '+total+' gemensamma spelpoäng: utgång.',means:means,conv:'svar efter öppnarens återbud'};
         if(total>=22)return {exp:'3'+major,alt:[],why:'Högfärgsfit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp >=25)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp >=25)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:totalHcp+' gemensamma honnörspoäng: invit i sang.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:totalHcp+' gemensamma honnörspoäng: under invitnivån efter balanserat återbud.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1097,7 +1097,7 @@ var Rattning = (function(){
         if(total>=threshold-4)return {exp:'3'+first,alt:[],why:fit+'-korts fit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
         return {exp:'P',alt:[],why:fit+'-korts fit men '+total+' gemensamma spelpoäng: pass.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp>=25)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: invit 2NT.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:'Ingen tillräcklig fit och under invitstyrka: pass.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1387,8 +1387,8 @@ var Rattning = (function(){
         var staymanOpener=H(st.hands[pt]);
         var staymanTotal=h.hp+staymanOpener.hp;
         var spadeFit=h.L.S+staymanOpener.L.S;
-        if(h.bal&&staymanTotal>=26&&spadeFit<8){
-          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand, 26+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
+        if(h.bal&&staymanTotal>=25&&spadeFit<8){
+          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand, 25+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
         }
         if(h.bal&&staymanTotal>=26&&spadeFit>=8){
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+staymanTotal+' gemensamma honnörspoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
