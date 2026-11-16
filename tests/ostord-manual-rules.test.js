@@ -102,6 +102,21 @@ function completeDealWithSouth(south) {
   assert.match(node.why, /6-10 hp.*håll/i);
 }
 
+// The same 6 HP balanced hand without a heart stopper must not bid 1NT.
+{
+  const hands = completeDealWithSouth([
+    'S13','S8','S6','S4','S2',
+    'H8','H5','H3',
+    'D12','D9','D4',
+    'C11','C7'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.notEqual(node.exp, '1N', '1NT requires a stopper in the overcall suit');
+}
+
 // BridgePlus s. 90: a minor may be introduced with four cards.
 // The 11 HP hand clears the ordinary two-over-one strength threshold.
 {
@@ -177,6 +192,7 @@ const report = {
     { deal: 'ostord-400-055', expected: '6D', fit: 12, jointPlayingPoints: 34 },
     { deal: 'ostord-400-068', expected: '3H', forcing: 'game' },
     { deal: 'source-90-1nt', expected: '1N', hp: 6, stopper: 'H' },
+    { deal: 'source-90-no-stopper', expected: 'not-1N', hp: 6 },
     { deal: 'source-90-four-card-minor', expected: '2C', clubLength: 4 },
     { deal: 'source-90-four-card-major', expected: 'P', spadeLength: 4 },
     { deal: 'source-91-negative-double-hearts', expected: 'X', spadeLength: 4 },
@@ -188,4 +204,4 @@ const report = {
 fs.mkdirSync('testdata', { recursive: true });
 fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\n');
 assert.equal(JSON.parse(fs.readFileSync('testdata/ostord_manual_rules_latest.json', 'utf8')).result, 'passed');
-console.log('Manual bidding rule checks passed (3 undisturbed deals + 5 source-rule regressions).');
+console.log('Manual bidding rule checks passed (3 undisturbed deals + 6 source-rule regressions).');
