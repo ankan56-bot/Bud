@@ -169,3 +169,13 @@ Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat 
 - Bekräftad liveinformationsläcka mellan `botCall()` och `Rattning.nodeFor()`: se [GRANSKNING_LIVE_OCH_EFTERHAND.md](GRANSKNING_LIVE_OCH_EFTERHAND.md). Detta måste lösas före rättvis livebudgivning.
 - Analysbibliotekets nodmatchning kontrollerar inte handprofil och roll; T40 har ogiltig root och terminala grenar är inte explicit klassificerade. Se [GRANSKNING_NODMATCHNING.md](GRANSKNING_NODMATCHNING.md).
 - Nästa tekniska steg är en ren validerare och korsreferensrapport. Inga budregler ändras innan den grinden är godkänd.
+
+
+## Fortsatt arbetsresultat 2026-11-16
+
+- Införd strukturell nodbiblioteksgranskare: `scripts/validate-analysis-library.js`.
+- Infört baslinjetest: `tests/analysis-library-audit.test.js`.
+- CI-workflowen inkluderar nu arbetsgrenen `work/undisturbed-architecture` och kör granskaren/testet.
+- Korsreferens mellan runtime och nodbibliotek dokumenterad i `KORSREFERENS_RUNTIME_NODER.md`.
+- Exakt inventering av dolda handberoenden i `GRANSKNING_LIVE_OCH_EFTERHAND.md` utökad.
+- Ingen produktionsbudlogik har ändrats. Main är fortsatt orörd.
