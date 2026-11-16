@@ -195,15 +195,15 @@ var Rattning = (function(){
     }
     else if(hp>=gl){
       if(!k&&!opener){
-        // User-confirmed no-trump game threshold: 25 combined HCP.
-        // A 1NT opener has at least 15, so 10 own HCP guarantee 3NT.
+        // Later confirmed no-trump game threshold: 26 combined HCP.
+        // A 1NT opener has at least 15, so 11 own HCP guarantee 3NT.
         var jointMin=hp+15;
-        if(jointMin>=25){
+        if(jointMin>=26){
           exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
-        }else return NC('Partnerns 1NT visar 15–17 hp. 25 gemensamma hp nås inte säkert och källan anger ingen numerisk gräns för invit/pass; situationen lämnas ej täckt.',means,conv,true);
-      }else if(!k&&jointHp<25){
-        return NC('Paret når inte 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; pass kontra invit lämnas ej täckt.',means,conv,true);
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';
+        }else return NC('Partnerns 1NT visar 15–17 hp. 26 gemensamma hp nås inte säkert och källan anger ingen numerisk gräns för invit/pass; situationen lämnas ej täckt.',means,conv,true);
+      }else if(!k&&jointHp<26){
+        return NC('Paret når inte 26 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; pass kontra invit lämnas ej täckt.',means,conv,true);
       }else{
         exp=k?n2:'3N';
         why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma hp')+': 3NT.';
@@ -231,7 +231,7 @@ var Rattning = (function(){
           // This is distinct from the 26 OTP threshold for major-suit games.
           if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte läsa partnerns dolda hp; efter given accepteras med 3NT vid minst 25 gemensamma hp.',means,'1NT-system',true);
           if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 26-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
         }
         return {exp:'P',alt:[],why:'3NT är slutbud efter 2NT-öppning enligt Nordisk standard.',means:means,conv:'2NT-system'};
     }
@@ -376,9 +376,9 @@ var Rattning = (function(){
     }
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
-      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 25 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret når 25 gemensamma honnörspoäng.';return null};
-      if(!partner)return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Livebeslutet får inte använda partnerns dolda hand; efter given är 25 gemensamma hp den bekräftade 3NT-gränsen.',meansNoMajor,'Stayman',true);
-      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret når 26 gemensamma honnörspoäng.';return null};
+      if(!partner)return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Livebeslutet får inte använda partnerns dolda hand; efter given är 26 gemensamma hp den bekräftade 3NT-gränsen.',meansNoMajor,'Stayman',true);
+      if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
@@ -1800,7 +1800,7 @@ var Rattning = (function(){
 
     var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
     var total=trump==='N'?totalHcp:partnershipPoints(a,p,trump);
-    var threshold=trump==='N'?25:(maj(trump)?26:28);
+    var threshold=trump==='N'?26:(maj(trump)?26:28);
     var gameLevel=trump==='N'?3:(maj(trump)?4:5);
     var currentSuit=st_(currentContract),currentLevel=lv(currentContract);
     var gameReached=(currentSuit==='N'&&currentLevel>=3)||
