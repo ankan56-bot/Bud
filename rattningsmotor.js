@@ -644,9 +644,9 @@ var Rattning = (function(){
     if(fits.length===1)return fits[0];
     // Nordisk standard s. 7: efter Stayman är 2♥/2♠ indirekt fastställd trumf.
     // Enbart en fullföljd överföring fastställer däremot inte trumfen i källtexten.
-    if(ours[0]==='1N'&&ours[1]==='2C'&&(ours[2]==='2H'||ours[2]==='2S'))
-      return ours[2][1];
-    }
+    if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2C'&&
+       (ours[2].c==='2H'||ours[2].c==='2S'))
+      return ours[2].c[1];
     return null;
   }
   // Fyr-essfråga utan trumf är bara avtalad i dessa uttryckliga sangsekvenser.
@@ -701,20 +701,6 @@ var Rattning = (function(){
       return NC('Efter svaret på RKC 1430 behöver frågeställaren väga in sina egna nyckelkort och skilja mellan de dubbla svaren 1/4 respektive 0/3. Fortsättningsregeln efter 5♣, 5♦, 5♥ eller 5♠ är ännu inte fastställd; motorn ska därför inte automatiskt bjuda slam.');
     }
     return NC('Nordisk standard s. 7 anger ingen fortsättningsregel efter svaren på fyr-essfrågan utan fastställd trumf. Fortsättningen lämnas därför ej täckt.');
-    var exp,why;
-    var means=function(c){
-      if(c==='5N')return 'Fyr-essfråga: alla fyra ess.';
-      if(c==='6N')return 'Lillslam i sang.';
-      if(c==='7N')return 'Storslam i sang.';
-      if(c==='P')return 'Pass.';
-      return null;
-    };
-    if(r==='5N'){exp='6N';why='Alla fyra ess finns. Bjud 6NT och avsluta budgivningen; ingen kungfråga används.';}
-    else if(/^5[CDHS]$/.test(r)){exp='5N';why='Svaret visar färre än fyra ess. 5NT används som sangslutbud, inte som kungfråga.';}
-    else if(r==='6N'||r==='7N'){exp='P';why='Slutbud.';}
-    else if(r==='P'){exp='P';why='Pass efter fastställt sangslutbud.';}
-    else{exp='6N';why='Lillslam i sang.';}
-    return {exp:exp,alt:[],why:why,means:means,conv:'Fyr-essfråga utan trumf'};
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
