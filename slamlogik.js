@@ -131,9 +131,9 @@
           exp=SU.indexOf(voidSuit)>SU.indexOf(T_) ? '6'+T_ : '6'+voidSuit;
         } else if (kc === 2 && voids.length > 1) {
           return NC('Två nyckelkort och flera renonser. Nordisk standard s. 7 anger 6 i färg för renons men väljer inte vilken av flera renonser som ska visas; läget lämnas ej täckt.',means,'RKC 1430',true);
-        } else if (kc === 1 || kc === 4) {
-          exp = '5C';
         } else if (kc === 0 || kc === 3) {
+          exp = '5C';
+        } else if (kc === 1 || kc === 4) {
           exp = '5D';
         } else if (kc === 2) {
           exp = q ? '5S' : '5H';
@@ -153,11 +153,90 @@
       : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
     return {exp:exp,alt:[],why:why,means:means,conv:T_?'RKC 1430':'Fyr-essfråga utan trumf'};
   }
-  function rkcNextStep(h,T_,r){
-    if(T_){
-      return NC('Efter RKC-svaret beskriver Nordisk standard s. 7 en fortsättning där nästa bud som inte är trumf frågar efter trumfdamen; trumfdamen förnekas med 5 i trumf och visas med 5NT eller 6 i ny färg (som också visar kung i den färgen). Källan ger dock inte en entydig, laglig fortsättningsstege för samtliga RKC 1430-svar och alla fyra möjliga trumffärger. Fortsättningen lämnas därför ej täckt i stället för att hitta på bud.',null,'RKC 1430',true);
+  function highestContract(auction){
+    var highest=null;
+    (auction||[]).forEach(function(x){if(x&&isBid(x.c)&&(!highest||rk(x.c)>rk(highest)))highest=x.c;});
+    return highest;
+  }
+  function rkcNextStep(h,T_,response,auction){
+    if(!T_)return fourAceSlamNextStep(h,response);
+    if(response!=='5C'&&response!=='5D')
+      return rkcSlamNextStep(h,T_,response,null);
+    var highest=highestContract(auction), trumpCall='5'+T_;
+    // The source says the ask is the next bid that is not trump. We only
+    // generate it where 5 in trump remains a legal denial after the ask.
+    var candidates=['5C','5D','5H','5S'];
+    for(var i=0;i<candidates.length;i++){
+      var call=candidates[i];
+      if(call[1]===T_)continue;
+      if(highest&&rk(call)<=rk(highest))continue;
+      if(rk(call)>=rk(trumpCall))continue;
+      return {exp:call,alt:[],why:'Nästa lagliga bud som inte är trumf frågar efter trumfdamen enligt Nordisk standard s. 7. Trumfdamen kan förnekas med 5 i trumf; den visas med 5NT eller 6 i ny färg (som även visar kung i den färgen).',means:function(c){return c===call?'Fråga efter trumfdam.':null},conv:'RKC – trumfdamfråga'};
     }
-    return NC('Nordisk standard s. 7 anger svaren på fyr-essfrågan utan fastställd trumf men inte frågeställarens fortsättning efter dessa svar. Fortsättningen lämnas ej täckt.',null,'Fyr-essfråga utan trumf',true);
+    return NC('Nordisk standard s. 7 säger att nästa bud som inte är trumf frågar efter trumfdamen och att den förnekas med 5 i trumf. I denna auktion finns inget lagligt 5-bud som både frågar och lämnar 5 i trumf som lagligt förnekande. Sekvensen lämnas ej täckt.',null,'RKC – trumfdamfråga',true);
+  }
+  function rkcQueenReply(h,T_,auction){
+    var highest=highestContract(auction),trumpCall='5'+T_;
+    if(!h.has(T_,12)){
+      if(!highest||rk(trumpCall)>rk(highest))
+        return {exp:trumpCall,alt:[],why:'Trumfdamen förnekas genom 5 i trumf enligt Nordisk standard s. 7.',means:function(c){return c===trumpCall?'Förnekar trumfdamen.':null},conv:'RKC – trumfdamfråga'};
+      return NC('Trumfdamen saknas men 5 i trumf är inte längre ett lagligt förnekande efter frågebudet. Källan anger ingen alternativ förnekelse; läget lämnas ej täckt.',null,'RKC – trumfdamfråga',true);
+    }
+    if(!highest||rk('5N')>rk(highest))
+      return {exp:'5N',alt:[],why:'Trumfdamen visas med 5NT enligt Nordisk standard s. 7.',means:function(c){return c==='5N'?'Visar trumfdamen.':null},conv:'RKC – trumfdamfråga'};
+    var shown=SU.filter(function(s){return s!==T_&&h.has(s,13)&&(!highest||rk('6'+s)>rk(highest));});
+    if(shown.length===1){
+      var call='6'+shown[0];
+      return {exp:call,alt:[],why:'Trumfdamen visas med 6 i ny färg; budet visar också kung i den färgen enligt Nordisk standard s. 7.',means:function(c){return c===call?'Visar trumfdamen och kung i '+SYM[shown[0]]+'.':null},conv:'RKC – trumfdamfråga'};
+    }
+    return NC('Trumfdamen finns men 5NT är inte längre lagligt. Nordisk standard tillåter 6 i ny färg som också visar kung i färgen, men handen ger inte en entydig laglig sådan färg.',null,'RKC – trumfdamfråga',true);
+  }
+  function keycardPossibilities(response){
+    if(response==='5C')return [0,3];
+    if(response==='5D')return [1,4];
+    if(response==='5H'||response==='5S')return [2];
+    if(response==='5N')return [3];
+    if(/^6[CDHS]$/.test(response))return [2];
+    return [];
+  }
+  function rkcSlamNextStep(h,T_,response,queenReply){
+    if(!T_)return fourAceSlamNextStep(h,response);
+    if((response==='5C'||response==='5D')&&queenReply==='5'+T_){
+      if(h.aces===3||h.aces===4){
+        var six='6'+T_;
+        return {exp:six,alt:[],why:'Efter ett dubbeltydigt 5-lågsvar och förnekad trumfdam bjuder frågeställaren 6 i trumf med 3 eller 4 egna ess enligt Nordisk standard s. 7. Detta uppfyller också projektregeln om högst ett saknat ess för lillslam i färg.',means:function(c){return c===six?'Lillslam: frågeställaren har 3 eller 4 ess efter förnekad trumfdam.':null},conv:'RKC – lillslam'};
+      }
+      return NC('Efter dubbeltydigt 5-lågsvar och förnekad trumfdam anger Nordisk standard 6 i trumf när frågeställaren har 3 eller 4 ess. Den egna handen har inte 3 eller 4 ess; ingen annan fortsättning är fastställd.',null,'RKC – lillslam',true);
+    }
+    var counts=keycardPossibilities(response),ownAces=h.aces,ownTrumpKing=h.has(T_,13),poss=[];
+    counts.forEach(function(kc){
+      for(var pa=0;pa<=4-ownAces;pa++){
+        var pk=kc-pa;
+        if(pk!==0&&pk!==1)continue;
+        if(pa+pk!==kc)continue;
+        poss.push({partnerAces:pa,partnerTrumpKing:pk,totalAces:ownAces+pa,totalKeycards:ownAces+pa+(ownTrumpKing?1:0)+pk});
+      }
+    });
+    if(!poss.length)return NC('RKC-svaret kan inte kombineras med frågeställarens antal ess utan motsägelse. Positionen behöver granskas.',null,'RKC – slamfortsättning',true);
+    var allSeven=poss.every(function(p){return p.totalAces===4&&p.totalKeycards===5;});
+    if(allSeven){
+      var seven='7'+T_;
+      return {exp:seven,alt:[],why:'Alla fyra essen och trumfkungen är säkrade av frågeställarens hand och RKC-svaret. Projektets storslamregel för färgkontrakt är uppfylld.',means:function(c){return c===seven?'Storslam: alla fyra ess och trumfkungen.':null},conv:'RKC – storslam'};
+    }
+    var allSmall=poss.every(function(p){return p.totalAces>=3;});
+    if(allSmall){
+      var six='6'+T_;
+      return {exp:six,alt:[],why:'Alla möjliga kortfördelningar enligt RKC-svaret visar minst 3 av de 4 essen. Högst ett ess saknas; lillslam i färg är tillåten enligt projektregeln.',means:function(c){return c===six?'Lillslam: minst 3 av 4 ess.':null},conv:'RKC – lillslam'};
+    }
+    return NC('RKC-svaret är fortfarande förenligt med både färre än 3 och minst 3 ess i partnerskapet. Eftersom lillslam i färg kräver minst 3 av 4 ess kan motorn inte välja 6- eller 7-läget säkert.',null,'RKC – slamfortsättning',true);
+  }
+  function fourAceSlamNextStep(h,response){
+    var counts=response==='5C'?[0,4]:response==='5D'?[1]:response==='5H'?[2]:response==='5S'?[3]:[];
+    var possible=[];
+    counts.forEach(function(n){if(n<=4-h.aces)possible.push(h.aces+n);});
+    if(possible.length&&possible.every(function(n){return n===4;}))
+      return {exp:'7N',alt:[],why:'Alla fyra essen är säkrade. Projektregeln tillåter 7NT när samtliga fyra ess finns.',means:function(c){return c==='7N'?'Storslam i sang: alla fyra ess.':null},conv:'Fyr-essfråga – storslam'};
+    return NC('Fyr-essvaret visar inte entydigt att partnerskapet har alla fyra ess. 7NT är därför inte tillåtet enligt projektregeln; någon separat acceptregel för 6NT är inte fastställd.',null,'Fyr-essfråga – slamfortsättning',true);
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
@@ -190,5 +269,5 @@
 
   return {rkcTrumpFromAuction:rkcTrumpFromAuction,agreedNoTrumpAceAsk:agreedNoTrumpAceAsk,
     agreedQuantitativeNoTrumpInvite:agreedQuantitativeNoTrumpInvite,rkcReply:rkcReply,
-    rkcNextStep:rkcNextStep,slamProhibitionFromAuction:slamProhibitionFromAuction};
+    rkcNextStep:rkcNextStep,rkcQueenReply:rkcQueenReply,rkcSlamNextStep:rkcSlamNextStep,fourAceSlamNextStep:fourAceSlamNextStep,slamProhibitionFromAuction:slamProhibitionFromAuction};
 });
