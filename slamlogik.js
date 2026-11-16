@@ -26,7 +26,7 @@
   function rkcTrumpFromAuction(bids,sideWanted){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&isBid(x.c)});
     for(var i=0;i<ours.length;i++){
-      if(/^1[CDHS]$/.test(ours[i].c)){
+      if(/^1[HS]$/.test(ours[i].c)){
         var opener=ours[i].s, suit=ours[i].c[1];
         for(var j=i+1;j<ours.length;j++){
           if(ours[j].s!==opener&&ours[j].c==='2N')return suit;
@@ -97,6 +97,7 @@
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
+    var voids=SU.filter(function(s){return h.L[s]===0;});
     var exp,why;
     var means=function(c){
       if(!T_){
@@ -110,34 +111,53 @@
       if(c==='5D')return '0 eller 3 nyckelkort (av 5).';
       if(c==='5H')return '2 nyckelkort utan trumfdam.';
       if(c==='5S')return '2 nyckelkort med trumfdam.';
-      if(c==='5N')return null;
+      if(c==='5N')return '3 nyckelkort och någon renons.';
+      if(/^6[CDHS]$/.test(c))return '2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf.';
       return null;
     };
 
-    if (T_ && kc === 5) {
-        return NC('Alla fem nyckelkort finns. Bibliotekets RKC 1430-tabell anger inte ett särskilt svar för fem av fem; motorn lämnar därför detta fall ej täckt i stället för att felaktigt tolka det som två nyckelkort.',means,'RKC 1430');
-    }
     if (T_) {
-        // Systemets avtalade RKC 1430: 5C=1/4, 5D=0/3,
-        // 5H=2 utan trumfdam, 5S=2 med trumfdam.
-        if (kc === 1 || kc === 4) exp = '5C';
-        else if (kc === 0 || kc === 3) exp = '5D';
-        else exp = q ? '5S' : '5H';
+        // Fem nyckelkort saknar ett uttryckligt svar i projektets RKC 1430-tabell.
+        if (kc === 5) {
+          return NC('Alla fem nyckelkort finns. RKC 1430-tabellen anger inget särskilt svar för fem av fem; läget lämnas ej täckt.',means,'RKC 1430',true);
+        }
+        // Nordisk standard s. 7: 3 nyckelkort + renons visas med 5NT.
+        if (kc === 3 && voids.length > 0) {
+          exp = '5N';
+        // Två nyckelkort + en renons visas med 6 i renonsfärgen,
+        // utom när renonsfärgen ligger högre än trumf: då visas 6 i trumf.
+        } else if (kc === 2 && voids.length === 1) {
+          var voidSuit=voids[0];
+          exp=SU.indexOf(voidSuit)>SU.indexOf(T_) ? '6'+T_ : '6'+voidSuit;
+        } else if (kc === 2 && voids.length > 1) {
+          return NC('Två nyckelkort och flera renonser. Nordisk standard s. 7 anger 6 i färg för renons men väljer inte vilken av flera renonser som ska visas; läget lämnas ej täckt.',means,'RKC 1430',true);
+        } else if (kc === 1 || kc === 4) {
+          exp = '5C';
+        } else if (kc === 0 || kc === 3) {
+          exp = '5D';
+        } else if (kc === 2) {
+          exp = q ? '5S' : '5H';
+        } else {
+          return NC('Nyckelkortsantalet saknar ett uttryckligt svar i RKC 1430-tabellen.',means,'RKC 1430',true);
+        }
     } else {
+        // Fyr-essfråga utan trumf: Nordisk standard s. 7.
         if (h.aces === 0 || h.aces === 4) exp = '5C';
         else if (h.aces === 1) exp = '5D';
         else if (h.aces === 2) exp = '5H';
         else exp = '5S';
     }
 
-    why = T_ ? (kc + ' nyckelkort inklusive trumfkungen. Svar enligt RKC 1430.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
+    why = T_
+      ? (kc + ' nyckelkort inklusive trumfkungen' + (voids.length ? ' och ' + voids.length + ' renons(er)' : '') + '. Svar enligt RKC 1430 och renonsreglerna i Nordisk standard s. 7.')
+      : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
     return {exp:exp,alt:[],why:why,means:means,conv:T_?'RKC 1430':'Fyr-essfråga utan trumf'};
   }
   function rkcNextStep(h,T_,r){
     if(T_){
-      return NC('Efter svaret på RKC 1430 behöver frågeställaren väga in sina egna nyckelkort och skilja mellan de dubbla svaren 1/4 respektive 0/3. Fortsättningsregeln efter 5♣, 5♦, 5♥ eller 5♠ är ännu inte fastställd; motorn ska därför inte automatiskt bjuda slam.');
+      return NC('Efter RKC-svaret beskriver Nordisk standard s. 7 en fortsättning där nästa bud som inte är trumf frågar efter trumfdamen; trumfdamen förnekas med 5 i trumf och visas med 5NT eller 6 i ny färg (som också visar kung i den färgen). Källan ger dock inte en entydig, laglig fortsättningsstege för samtliga RKC 1430-svar och alla fyra möjliga trumffärger. Fortsättningen lämnas därför ej täckt i stället för att hitta på bud.',null,'RKC 1430',true);
     }
-    return NC('Nordisk standard s. 7 anger ingen fortsättningsregel efter svaren på fyr-essfrågan utan fastställd trumf. Fortsättningen lämnas därför ej täckt.');
+    return NC('Nordisk standard s. 7 anger svaren på fyr-essfrågan utan fastställd trumf men inte frågeställarens fortsättning efter dessa svar. Fortsättningen lämnas ej täckt.',null,'Fyr-essfråga utan trumf',true);
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
