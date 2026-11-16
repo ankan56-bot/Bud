@@ -7715,10 +7715,10 @@
         "Svar enligt projektets RKC 1430: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
         "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7."
       ],
-      "root": "t45_n0",
+      "root": "t45rkc_n0",
       "nodes": [
         {
-          "id": "t45_n0",
+          "id": "t45rkc_n0",
           "sequence": [
             "1♣",
             "Pass",
@@ -7730,38 +7730,38 @@
           "branches": [
             {
               "call": "5♣",
-              "next": "t45_5c",
+              "next": "t45rkc_5c",
               "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♦",
-              "next": "t45_5d",
+              "next": "t45rkc_5d",
               "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♥",
-              "next": "t45_5h",
+              "next": "t45rkc_5h",
               "label": "2 nyckelkort utan trumfdam"
             },
             {
               "call": "5♠",
-              "next": "t45_5s",
+              "next": "t45rkc_5s",
               "label": "2 nyckelkort med trumfdam"
             },
             {
               "call": "5NT",
-              "next": "t45_5nt",
+              "next": "t45rkc_5nt",
               "label": "3 nyckelkort och någon renons"
             },
             {
               "call": "6♣",
-              "next": "t45_6c",
+              "next": "t45rkc_6c",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
           ]
         },
         {
-          "id": "t45_5c",
+          "id": "t45rkc_5c",
           "sequence": [
             "1♣",
             "Pass",
@@ -7775,7 +7775,7 @@
           "branches": []
         },
         {
-          "id": "t45_5d",
+          "id": "t45rkc_5d",
           "sequence": [
             "1♣",
             "Pass",
@@ -7789,7 +7789,7 @@
           "branches": []
         },
         {
-          "id": "t45_5h",
+          "id": "t45rkc_5h",
           "sequence": [
             "1♣",
             "Pass",
@@ -7803,7 +7803,7 @@
           "branches": []
         },
         {
-          "id": "t45_5s",
+          "id": "t45rkc_5s",
           "sequence": [
             "1♣",
             "Pass",
@@ -7817,7 +7817,7 @@
           "branches": []
         },
         {
-          "id": "t45_5nt",
+          "id": "t45rkc_5nt",
           "sequence": [
             "1♣",
             "Pass",
@@ -7831,7 +7831,7 @@
           "branches": []
         },
         {
-          "id": "t45_6c",
+          "id": "t45rkc_6c",
           "sequence": [
             "1♣",
             "Pass",
@@ -7862,10 +7862,10 @@
         "Svar enligt projektets RKC 1430: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
         "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7."
       ],
-      "root": "t46_n0",
+      "root": "t46rkc_n0",
       "nodes": [
         {
-          "id": "t46_n0",
+          "id": "t46rkc_n0",
           "sequence": [
             "1♦",
             "Pass",
@@ -7877,43 +7877,43 @@
           "branches": [
             {
               "call": "5♣",
-              "next": "t46_5c",
+              "next": "t46rkc_5c",
               "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♦",
-              "next": "t46_5d",
+              "next": "t46rkc_5d",
               "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♥",
-              "next": "t46_5h",
+              "next": "t46rkc_5h",
               "label": "2 nyckelkort utan trumfdam"
             },
             {
               "call": "5♠",
-              "next": "t46_5s",
+              "next": "t46rkc_5s",
               "label": "2 nyckelkort med trumfdam"
             },
             {
               "call": "5NT",
-              "next": "t46_5nt",
+              "next": "t46rkc_5nt",
               "label": "3 nyckelkort och någon renons"
             },
             {
               "call": "6♣",
-              "next": "t46_6c",
+              "next": "t46rkc_6c",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             },
             {
               "call": "6♦",
-              "next": "t46_6d",
+              "next": "t46rkc_6d",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
           ]
         },
         {
-          "id": "t46_5c",
+          "id": "t46rkc_5c",
           "sequence": [
             "1♦",
             "Pass",
@@ -7927,7 +7927,7 @@
           "branches": []
         },
         {
-          "id": "t46_5d",
+          "id": "t46rkc_5d",
           "sequence": [
             "1♦",
             "Pass",
@@ -7941,7 +7941,7 @@
           "branches": []
         },
         {
-          "id": "t46_5h",
+          "id": "t46rkc_5h",
           "sequence": [
             "1♦",
             "Pass",
@@ -7955,7 +7955,7 @@
           "branches": []
         },
         {
-          "id": "t46_5s",
+          "id": "t46rkc_5s",
           "sequence": [
             "1♦",
             "Pass",
@@ -7969,7 +7969,7 @@
           "branches": []
         },
         {
-          "id": "t46_5nt",
+          "id": "t46rkc_5nt",
           "sequence": [
             "1♦",
             "Pass",
@@ -7983,7 +7983,7 @@
           "branches": []
         },
         {
-          "id": "t46_6c",
+          "id": "t46rkc_6c",
           "sequence": [
             "1♦",
             "Pass",
@@ -7997,7 +7997,7 @@
           "branches": []
         },
         {
-          "id": "t46_6d",
+          "id": "t46rkc_6d",
           "sequence": [
             "1♦",
             "Pass",
