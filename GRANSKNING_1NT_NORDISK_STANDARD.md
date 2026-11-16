@@ -389,3 +389,15 @@ Den överenskomna avgränsningen är nu uttrycklig i både kod och analysbibliot
 - En separat arkitekturtestfil kontrollerar modulägarskap, T43:s terminala noder och att 4NT-grenarna i överföringsträden inte fortsätter i 1NT-familjen.
 
 Detta innebär inte att 4NT-arbetet är färdigbyggt. Det betyder att dess logik ligger på rätt plats och kan byggas ut separat utan att 1NT-familjen växer förbi sin överenskomna slutpunkt.
+
+## Slutlig komplettering – sangfamiljen, 2026-11-16
+
+Den sista genomgången mot original-PDF:en har även omfattat 2NT-öppningen på s. 5. Den säger uttryckligen att budgivningen sker som efter 1NT men en nivå högre. Runtime omfattar därför 2NT-öppningens första svar, Stayman, överföringar, öppnarens första svar, 21-hp-superaccept på fyrkortsstöd och direkt 3NT när svarshandens egna 5 hp garanterar 25 gemensamma hp. 2NT–4NT hålls separat som kvantitativ invit till 6NT.
+
+Följande försiktighetsregler har också låsts i kod och test:
+- Lika långa klöver/ruter efter 2♠-reläet har ingen automatisk klöverprioritet. Positionen lämnas EJ TÄCKT.
+- Stayman 2♥ följt av svarshandens 2NT/3NT och öppnarens 3♠/4♠ etablerar spaderfit. Senare 4NT klassificeras som RKC med spader som trumf, inte som hjärter-RKC enbart för att öppnaren tidigare bjöd 2♥.
+- 4NT efter överföringssuperaccept 3♥/3♠ lämnas EJ TÄCKT tills den exakta fortsättningen verifierats i systemet.
+- 2NT-öppningens senare fortsättningar som inte kan härledas säkert ur uttrycket ”en nivå högre” lämnas EJ TÄCKT. 3♠ svagt lågfärgsrelä efter 2NT har inte antagits.
+
+Alla ej täckta positioner ska sparas automatiskt i exportfilen ej-tackta-budsekvenser.json; källuckor fylls inte med antagna prioriteringar eller HP-intervall.
