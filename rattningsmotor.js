@@ -224,8 +224,13 @@ var Rattning = (function(){
       return null};
 
     if (r === b+'N') {
-        if(!k){if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet kan inte använda partnerns dolda honnörspoäng.',means,'1NT-system',true);if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-hp-gränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system'};return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT vid 26 hp.',means:means,conv:'1NT-system'};}
-        return NC('Öppnarens beslut efter 3NT-svaret på 2NT kräver ett separat verifierat kriterium; inget numeriskt intervall antas.',means,'2NT-system',true);
+        if(!k){
+          // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
+          if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte läsa partnerns dolda hp; efter given accepteras med 3NT vid minst 25 gemensamma hp.',means,'1NT-system',true);
+          if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+        }
+        return {exp:'P',alt:[],why:'3NT är slutbud efter 2NT-öppning enligt Nordisk standard.',means:means,conv:'2NT-system'};
     }
 
     if(r===c2){conv='Stayman';exp=L.H>=4?h2:L.S>=4?s2:d2;
