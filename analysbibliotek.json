@@ -382,8 +382,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Budbetydelserna är källbelagda på s. 5, men numeriska styrkegränser för svag/invit/utgång saknas. Trädet får inte användas som numerisk styrkeklassificering."
+      "sourceStatus": "source_qualitative",
+      "sourceStatusNote": "Alla betydelser och handformer i grenarna är källbelagda på s. 5, men källan anger inga numeriska HP-gränser för valet mellan svag/invit/utgång. Trädet visas som kvalitativ förklaring; rättningsmotorn gör inte styrkevalet automatiskt."
     },
     {
       "id": "T04_INVIT_2NT_PASS",
@@ -702,8 +702,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Budbetydelserna är källbelagda på s. 5, men numeriska styrkegränser för svag/invit/utgång saknas. Trädet får inte användas som numerisk styrkeklassificering."
+      "sourceStatus": "source_qualitative",
+      "sourceStatusNote": "Alla betydelser och handformer i grenarna är källbelagda på s. 5, men källan anger inga numeriska HP-gränser för valet mellan svag/invit/utgång. Trädet visas som kvalitativ förklaring; rättningsmotorn gör inte styrkevalet automatiskt."
     },
     {
       "id": "T08_OVERFORING_SPADER",
@@ -824,8 +824,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Budbetydelserna är källbelagda på s. 5, men numeriska styrkegränser för svag/invit/utgång saknas. Trädet får inte användas som numerisk styrkeklassificering."
+      "sourceStatus": "source_qualitative",
+      "sourceStatusNote": "Alla betydelser och handformer i grenarna är källbelagda på s. 5, men källan anger inga numeriska HP-gränser för valet mellan svag/invit/utgång. Trädet visas som kvalitativ förklaring; rättningsmotorn gör inte styrkevalet automatiskt."
     },
     {
       "id": "T09_1NT_DIREKT_3NT",
