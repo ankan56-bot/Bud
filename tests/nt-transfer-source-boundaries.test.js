@@ -143,10 +143,18 @@ for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   assert.ok(tree);
   assert.equal(A.treeCompatible(tree),true,id+' has a verified direct 3NT threshold');
 }
-for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG','T42_1NT_SVAG_LAGFARGSRELA']){
+for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree);
   assert.equal(tree.sourceStatus,'provisional_source_gap');
   assert.equal(A.treeCompatible(tree),false,id+' contains an unverified strength boundary');
 }
+const weakRelayTree=lib.trees.find(t=>t.id==='T42_1NT_SVAG_LAGFARGSRELA');
+assert.ok(weakRelayTree);
+assert.equal(weakRelayTree.sourceStatus,'source_qualitative');
+assert.equal(A.treeCompatible(weakRelayTree),true,
+  'weak relay meaning remains source-aligned qualitatively; numeric hand selection stays uncovered');
+assert.ok(weakRelayTree.conditions.some(x=>/dåliga kort/i.test(x)));
+assert.ok(!JSON.stringify(weakRelayTree).match(/under 8|0–7 hp|0-7 hp/i),
+  'weak relay tree must not invent a numeric HP boundary');
 console.log('1NT transfer source-boundary tests: passed.');
