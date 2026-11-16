@@ -1,8 +1,8 @@
 'use strict';
 
 // Conservative source-aligned checks for 1NT transfer continuations.
-// Nordisk standard 2012-08-22, page 5: natural shape meanings are covered;
-// qualitative invit/weak strength bands remain uncovered until verified.
+// Nordisk standard 2012-08-22, page 5: transfer strength bands are explicit;
+// the separate weak 2♠ minor relay remains qualitative and has no HP cutoff.
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
 const A=require('../analysmotor.js');
@@ -36,6 +36,16 @@ const afterSpadeTransfer=[
   {s:'S',c:'2H'},{s:'W',c:'P'},
   {s:'N',c:'2S'},{s:'E',c:'P'}
 ];
+
+// Weak 2♠ low-minor relay: source gives the shape and qualitative weakness,
+// but no numerical HCP range. Do not invent one.
+const afterOneNT=[{s:'N',c:'1N'},{s:'E',c:'P'}];
+const weakSixClubs=hand(['C14','C13','C12','C11','C10','C9','S2','S3','H2','H3','D2','D3','D4']);
+assert.equal(result(weakSixClubs,afterOneNT).exp,null,
+  '6+ clubs fits relay shape but numeric weak threshold is unspecified');
+const weakFiveFiveMinors=hand(['C14','C13','C12','C11','C10','D14','D13','D12','D11','D10','S2','H2','H3']);
+assert.equal(result(weakFiveFiveMinors,afterOneNT).exp,null,
+  '5-5 minors fits relay shape but numeric weak threshold is unspecified');
 
 // Explicit natural meanings from the source table.
 const fiveHeartFourSpade=hand(['H14','H13','H12','H11','H10','S14','S13','S12','S11','D14','D13','C14','C13']);
