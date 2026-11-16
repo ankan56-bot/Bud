@@ -8,7 +8,7 @@
  else root.RattningStenbergFactory=factory;
 })(typeof globalThis!=='undefined'?globalThis:this,function(api){
  var SU=api.SU, maj=api.maj, st_=api.st_, handHps=api.handHps;
- var H=api.H, partnershipPoints=api.partnershipPoints, NC=api.NC;
+ var H=api.H, partnershipPoints=api.partnershipPoints, NC=api.NC, sideOf=api.side;
  function accepts(opening){return !!opening&&/^1[CDHS]$/.test(opening);}
  function result(exp,why,conv,means){
    return {exp:exp,alt:[],why:why,conv:conv||'Stenberg 2NT',
@@ -59,22 +59,27 @@
        function(c){return c==='3'+openingSuit?'15+ htp, ingen singelton.':null;});
    return NC('Handen motsvarar inte någon av de angivna återbudsprofilerna efter Stenberg: varken 15+ htp utan singelton, 12–14 hp balanserad eller en singelton som kan visas. Läget lämnas ej täckt.',null,'Stenberg 2NT',true);
  }
- function responderContinuation(hand,opening,call,partnerHand,prior,rkcTrumpFromAuction,side,askSeat){
+ function responderContinuation(hand,opening,call,partnerHand,prior,rkcTrumpFromAuction,sideWanted,askSeat){
    var suit=st_(opening),fit=partnerHand?hand.L[suit]+partnerHand.L[suit]:0;
    if(call==='4N'){
      var trump=typeof rkcTrumpFromAuction==='function'&&Array.isArray(prior)
-       ?rkcTrumpFromAuction(prior.concat([{s:askSeat,c:'4N'}]),side):null;
+       ?rkcTrumpFromAuction(prior.concat([{s:askSeat,c:'4N'}]),sideWanted):null;
      if(trump)return result('4N','4NT efter fastställd trumf: överlämnas till den separata RKC-/slammodulen.','Stenberg → slammodul');
      return NC('4NT efter Stenberg kan inte verifieras som RKC med den offentliga budsekvensen. Överlämnas inte automatiskt till essfrågan.',null,'Stenberg 2NT',true);
    }
-   var isMajor=maj(suit),expected=isMajor?'4'+suit:'5'+suit;
-   if(call!==expected)return NC('Efter öppningshandens Stenbergåterbud är nästa fortsättning inte uttryckligen specificerad i Nordisk standard; läget lämnas ej täckt och sparas för expertgranskning.',null,'Stenberg 2NT',true);
-   if(!partnerHand)return NC('Slutbudet efter Stenberg kräver gemensam handanalys; den andra handen är inte tillgänglig i live-läget.',null,'Stenberg 2NT',true);
+   if(!partnerHand)return NC('Slutbudet efter Stenberg kräver gemensam handanalys; den andra handen är inte tillgänglig i live-läget.',null,'Stenberg 2NT',false);
    if(fit<8)return NC('Slutbudet kräver minst åtta korts gemensam trumf; aktuell fit är '+fit+'.',null,'Stenberg 2NT',false);
-   var points=partnershipPoints(hand,partnerHand,suit),minimum=isMajor?26:28;
-   if(points<minimum)return NC('Slutbudet kräver minst '+minimum+' gemensamma spelpoäng enligt projektets utgångsgräns; aktuell beräkning är '+points+'. Fortsättningen lämnas EJ TÄCKT.',null,'Stenberg 2NT',true);
-   return result(expected,fit+'-korts fit och '+points+' gemensamma spelpoäng: slutpunkt i '+(isMajor?'högfärgsutgång':'lågfärgsutgång')+'.','Stenberg – slutbud',
-     function(c){return c===expected?'Slutbud; Stenbergmodulen avslutas här.':null;});
+   var points=partnershipPoints(hand,partnerHand,suit),isMajor=maj(suit),minimum=isMajor?26:28;
+   var expected=isMajor?'4'+suit:'5'+suit;
+   if(points>=minimum)
+     return result(expected,fit+'-korts fit och '+points+' gemensamma spelpoäng: utgång i '+(isMajor?'högfärg':'lågfärg')+'. Stenberg är utgångskrav; pass under utgång godtas inte.','Stenberg – slutbud',
+       function(c){return c===expected?'Slutbud; Stenbergmodulen avslutas här.':null;});
+   var ownCalls=Array.isArray(prior)?prior.filter(function(x){return sideOf(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX';}):[];
+   var lastOwn=ownCalls.length?ownCalls[ownCalls.length-1]:null;
+   if(lastOwn&&lastOwn.c==='3N'&&call==='P')
+     return result('P','Öppnaren har redan nått 3NT, som är utgång. Med färre än '+minimum+' gemensamma spelpoäng enligt projektets färggräns stannar paret i 3NT.','Stenberg – 3NT-utgång',
+       function(c){return c==='P'?'Passar 3NT som redan är utgång.':null;});
+   return NC('Stenberg är utgångskrav men handen når inte projektets '+minimum+'-poängsgräns för '+(isMajor?'4'+suit:'5'+suit)+'. Nordisk standard anger inte en alternativ fortsättning i denna handtyp; läget lämnas ej täckt.',null,'Stenberg 2NT',true);
  }
  return {accepts:accepts,responder:responder,openerRebid:openerRebid,responderContinuation:responderContinuation};
 });
