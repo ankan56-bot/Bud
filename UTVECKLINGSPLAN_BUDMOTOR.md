@@ -181,3 +181,10 @@ Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat 
 - Ingen produktionsbudlogik har ändrats. Main är fortsatt orörd.
 
 - CI-kontrollen fångade ett fel i den nya validerarens träd-ID-regex (konkurrensträden exkluderades inte). Regexen är korrigerad i commit `ae576b8`; nästa workflow-körning ska verifiera att ostörd baslinje blir 40 träd/241 noder.
+
+## CI och senaste stresstest (2026-11-16)
+
+- CI körning 173 på arbetsgrenen: **success**. Syntaxkontroll, rättningsmotorns 82 regressioner, analysbibliotekets nya strukturella audit/baslinjetest, kompletterande logik (15 tester), RKC 1430 (16 tester), 100-givarsprov 1♥/1♠, invitacceptans (4 tester), applikationskoppling och offlineanalys passerade.
+- 100-givarsprovet: 527 beslut, 526 täckta (99,8 %), noll undantag, olagliga rekommendationer, ogiltiga/ofärdiga auktioner eller kortintegritetsfel.
+- Den enda ej täckta sekvensen har rekonstruerats som svar efter splinter: 1♠–2♦–3♥. Se uppdaterade analyser i `GRANSKNING_LIVE_OCH_EFTERHAND.md` och `KORSREFERENS_RUNTIME_NODER.md`.
+- Dold-hand-läckage är nu demonstrerat med två fullständiga givare där samma egen hand och auktion ger Pass respektive 4♥ beroende på partnerns dolda kort. Live-/efterhandsseparationen är därför en blockerande kvalitetsgrind, inte bara en rekommendation.
