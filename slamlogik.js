@@ -171,8 +171,7 @@
       var call=candidates[i];
       if(call[1]===T_)continue;
       if(highest&&rk(call)<=rk(highest))continue;
-      if(rk(call)>=rk(trumpCall))continue;
-      return {exp:call,alt:[],why:'Nästa lagliga bud som inte är trumf frågar efter trumfdamen enligt Nordisk standard s. 7. Trumfdamen kan förnekas med 5 i trumf; den visas med 5NT eller 6 i ny färg (som även visar kung i den färgen).',means:function(c){return c===call?'Fråga efter trumfdam.':null},conv:'RKC – trumfdamfråga'};
+      return {exp:call,alt:[],why:'Nästa lagliga bud som inte är trumf frågar efter trumfdamen enligt Nordisk standard s. 7. Om 5 i trumf fortfarande är lagligt förnekar det trumfdamen; den visas med 5NT eller 6 i ny färg (som även visar kung i den färgen). Om 5 i trumf inte längre är lagligt lämnas just förnekelsesvaret ej täckt.',means:function(c){return c===call?'Fråga efter trumfdam.':null},conv:'RKC – trumfdamfråga'};
     }
     return NC('Nordisk standard s. 7 säger att nästa bud som inte är trumf frågar efter trumfdamen och att den förnekas med 5 i trumf. I denna auktion finns inget lagligt 5-bud som både frågar och lämnar 5 i trumf som lagligt förnekande. Sekvensen lämnas ej täckt.',null,'RKC – trumfdamfråga',true);
   }
