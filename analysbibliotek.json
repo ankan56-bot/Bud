@@ -1,5 +1,5 @@
 {
-  "version": "0.6.42",
+  "version": "0.6.43",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -8791,6 +8791,282 @@
           ],
           "meaning": "Spaderdam visas och hjärterkung visas genom 6♥. Fortsätt till 6♠/7♠ endast om ess- och trumfkungskraven är säkrade.",
           "branches": []
+        }
+      ]
+    },
+    {
+      "id": "T35_STENBERG_2NT_LAGFARG",
+      "title": "Stenberg 2NT efter lågfärgsöppning",
+      "tags": [
+        "Stenberg",
+        "2NT",
+        "lågfärg",
+        "klöver",
+        "ruter",
+        "singleton",
+        "utgång"
+      ],
+      "conditions": [
+        "Svarshanden har minst 13 htp och minst fyra korts stöd i öppningsfärgen.",
+        "Efter 1♣/1♦ är 2NT Stenberg och utgångskrav.",
+        "Med stöd i lågfärg och 4+ kort i högfärg ska högfärgen visas först.",
+        "Öppnarens återbud visar 15+ htp utan singleton, singleton i den bjudna sidofärgen eller 12–14 hp balanserad hand."
+      ],
+      "root": "t35_c_n0",
+      "nodes": [
+        {
+          "id": "t35_c_n0",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass"
+          ],
+          "meaning": "Öppnaren beskriver sin hand efter Stenberg 2NT.",
+          "analysis": "Svarshanden har visat 13+ htp och minst fyrkortsstöd i klöver. Eftersom öppningen är i lågfärg ska svarshanden inte ha förbisett en 4-korts högfärg. Öppnaren visar exakt en singleton i den bjudna sidofärgen; utan singleton visar 15+ htp genom att höja öppningsfärgen till 3-nivån; 12–14 hp balanserad visas med 3NT. Flera singletoner eller renons lämnas ej täckt.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t35_c_3c",
+              "label": "15+ htp utan singleton"
+            },
+            {
+              "call": "3♦",
+              "next": "t35_c_d",
+              "label": "Singleton i ruter"
+            },
+            {
+              "call": "3♥",
+              "next": "t35_c_h",
+              "label": "Singleton i hjärter"
+            },
+            {
+              "call": "3♠",
+              "next": "t35_c_s",
+              "label": "Singleton i spader"
+            },
+            {
+              "call": "3NT",
+              "next": "t35_c_3nt",
+              "label": "12–14 hp, balanserad"
+            }
+          ],
+          "handProfile": {
+            "opener": "1 i klöver med minst fyra kort i öppningsfärgen; återbudet avgörs av singleton, balans och styrka.",
+            "responder": "13+ htp, minst fyra korts stöd i klöver och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_c_3c",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar 15+ htp och ingen singleton.",
+          "analysis": "3♣ visar 15+ htp och ingen singleton. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15+ htp, ingen singleton.",
+            "responder": "13+ htp, minst fyra korts stöd i klöver och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_c_d",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ visar exakt en singleton i ruter.",
+          "analysis": "3♦ visar exakt en singleton i ruter. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i ruter.",
+            "responder": "13+ htp, minst fyra korts stöd i klöver och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_c_h",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar exakt en singleton i hjärter.",
+          "analysis": "3♥ visar exakt en singleton i hjärter. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i hjärter.",
+            "responder": "13+ htp, minst fyra korts stöd i klöver och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_c_s",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar exakt en singleton i spader.",
+          "analysis": "3♠ visar exakt en singleton i spader. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i spader.",
+            "responder": "13+ htp, minst fyra korts stöd i klöver och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_c_3nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT visar 12–14 hp och balanserad hand.",
+          "analysis": "3NT visar 12–14 hp och balanserad hand. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad hand.",
+            "responder": "13+ htp, minst fyra korts stöd i klöver och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_d_n0",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass"
+          ],
+          "meaning": "Öppnaren beskriver sin hand efter Stenberg 2NT.",
+          "analysis": "Svarshanden har visat 13+ htp och minst fyrkortsstöd i ruter. Eftersom öppningen är i lågfärg ska svarshanden inte ha förbisett en 4-korts högfärg. Öppnaren visar exakt en singleton i den bjudna sidofärgen; utan singleton visar 15+ htp genom att höja öppningsfärgen till 3-nivån; 12–14 hp balanserad visas med 3NT. Flera singletoner eller renons lämnas ej täckt.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t35_d_c",
+              "label": "Singleton i klöver"
+            },
+            {
+              "call": "3♦",
+              "next": "t35_d_3d",
+              "label": "15+ htp utan singleton"
+            },
+            {
+              "call": "3♥",
+              "next": "t35_d_h",
+              "label": "Singleton i hjärter"
+            },
+            {
+              "call": "3♠",
+              "next": "t35_d_s",
+              "label": "Singleton i spader"
+            },
+            {
+              "call": "3NT",
+              "next": "t35_d_3nt",
+              "label": "12–14 hp, balanserad"
+            }
+          ],
+          "handProfile": {
+            "opener": "1 i ruter med minst fyra kort i öppningsfärgen; återbudet avgörs av singleton, balans och styrka.",
+            "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_d_c",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar exakt en singleton i klöver.",
+          "analysis": "3♣ visar exakt en singleton i klöver. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i klöver.",
+            "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_d_3d",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "3♦ visar 15+ htp och ingen singleton.",
+          "analysis": "3♦ visar 15+ htp och ingen singleton. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15+ htp, ingen singleton.",
+            "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_d_h",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar exakt en singleton i hjärter.",
+          "analysis": "3♥ visar exakt en singleton i hjärter. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i hjärter.",
+            "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_d_s",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar exakt en singleton i spader.",
+          "analysis": "3♠ visar exakt en singleton i spader. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "Exakt en singleton i spader.",
+            "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
+          }
+        },
+        {
+          "id": "t35_d_3nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT visar 12–14 hp och balanserad hand.",
+          "analysis": "3NT visar 12–14 hp och balanserad hand. Void ska inte behandlas som singleton. Flera singletonfärger saknar angiven prioritet i Nordisk standard.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, balanserad hand.",
+            "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
+          }
         }
       ]
     }
