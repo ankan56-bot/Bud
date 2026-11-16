@@ -1577,6 +1577,8 @@ var Rattning = (function(){
       why:node.why||'',
       conv:node.conv||'öppning',
       means:node.means,
+      soft:!!node.soft,
+      sourceGap:!!node.sourceGap,
       context:'live',
       informationBoundary:'own_hand_and_public_auction_only'
     };
