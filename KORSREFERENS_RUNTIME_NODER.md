@@ -386,13 +386,12 @@ Dessa ska inte slås ihop innan handvillkor, målgrupp, nästa beslutspunkt och 
 7. Först därefter kan vi börja mappa varje runtime-beslutsregel till kanoniska noder och låta en noddriven motor ersätta delar av hårdkodningen.
 
 **Ingen budregel har ändrats i denna rapport.** Alla osäkerheter ska fortsatt redovisas som ej täckta.
-## 6. Konkret testfynd: splinter saknar svarshandsgren
+## 6. Historiskt testfynd – splinter är borttaget
 
-100-givarsprovet körde 527 beslut, varav 526 täcktes (99,8 %), utan tekniska undantag, olagliga rekommendationer, ogiltiga auktioner eller ofärdiga auktioner. Den enda ej täckta positionen var seed `202615834`, sekvensen `1♠–Pass–2♦–Pass–3♥–Pass–?`.
+100-givarsprovet identifierade tidigare seed `202615834`, sekvensen `1♠–Pass–2♦–Pass–3♥–Pass–?`. Den dåvarande motorn tolkade 3♥ som splinter med hjärterkorthet och ruterstöd. Användaren har nu beslutat att helt ta bort splinter ur den aktuella budgivningen.
 
-Vid rekonstruktion av given visar det sig att öppnarens 3♥ är ett splinterbud med hjärterkorthet och ruterstöd (öppnarhanden är 4-4-4-1). T39 har ett splinterexempel på öppnarens återbud, men T40 saknar en svarshandsnod efter splinter. Nuvarande `responderSecondBid()` saknar också en uttrycklig splintergren och returnerar därför ej täckt.
+Den historiska tolkningen är inte längre en aktiv systemregel. Givaren ska räknas om med vanliga naturliga återbud: öppnaren har fyrkortsstöd i ruter efter 2♦, och motorn får inte längre föreslå 3♥ som splinter. Inga särskilda svar efter splinter ska implementeras. Stenberg 2NT påverkas inte.
 
-Detta ska hållas isär från vanlig tvåfärgshand/reverse. Vi behöver verifiera systemets svar efter splinter innan nod eller kod skapas. Den äldre korta klassificeringen av seedet i loggen bör inte användas som facit utan denna korrigering.
 
 ## 7. Konkret bevis på dold-hand-läckage
 
