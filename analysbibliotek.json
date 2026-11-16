@@ -6857,7 +6857,13 @@
           },
           "branches": []
         }
-      ]
+      ],
+      "moduleBoundary": {
+        "biddingFamilyModule": "sangbudgivning.js",
+        "boundary": "4NT",
+        "fourNTModule": "slamlogik.js",
+        "rule": "1NT-trädet slutar när 4NT har bjudits. Svar på 4NT och frågeställarens fortsättning hanteras endast av slamlogik.js."
+      }
     },
     {
       "id": "T44_RKC_1430_SPADER_STENBERG",
