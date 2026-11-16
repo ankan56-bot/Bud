@@ -128,6 +128,15 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♣|Pass|2♥|Pass|4NT'));
   assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♣|Pass|2♠|Pass|4NT'));
   assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♦|Pass|2♥|Pass|4NT'));
+  const t02=lib.trees.find(tree=>tree.id==='T02_KVANTITATIV_4NT');
+  assert.ok(t02);
+  assert.equal(A.treeCompatible(t02),true);
+  const quantitativeAfter=t02.nodes.find(node=>node.id==='t02_n1');
+  assert.ok(quantitativeAfter);
+  assert.deepEqual(quantitativeAfter.branches,[],
+    'the analysis tree must not invent an opener acceptance rule after 2NT–4NT');
+  assert.doesNotMatch(t02.conditions.join(' '),/11.?12 hp/i,
+    'no unsupported responder point interval may be asserted');
 }
 
 // The separately agreed 2NT–4NT sequence is quantitative, not an
