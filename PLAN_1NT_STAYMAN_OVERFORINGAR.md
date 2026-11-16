@@ -138,3 +138,14 @@ För varje sekvens ovan ska följande verifieras:
 ## E. Definition av färdig
 
 Stayman- och överföringsdelarna kan markeras färdiga när alla källbelagda grenar är representerade, regressionstesterna passerar, dolda händer inte påverkar livebeslut och alla olösta källuckor är uttryckligen märkta EJ TÄCKT. Att en lucka är korrekt markerad EJ TÄCKT är inte ett misslyckande och får inte lösas genom att hitta på en systemregel.
+
+
+## F. Genomförandestatus – uppdaterad 2026-11-16
+
+- Staymanmotorn har kompletterats så att 1NT–2♣–2♦ med obalanserad hand och femkortshögfärg inte felaktigt rekommenderar en vanlig 2M-fortsättning. Den särskilda 3M-vägen redovisas som EJ TÄCKT när styrkegränsen inte kan fastställas från källan.
+- Efter 1NT–2♣–2♥ redovisas både 2NT och 3NT som fortsättningar som visar exakt fyra spader. Överlapp med 3♥-invit eller 3m-utgångskrav markeras EJ TÄCKT när systemtexten inte anger prioritet.
+- Regressionstesterna täcker nu även överlappet mellan exakt fyra spader och fem hjärter efter 2♥, samt öppnarens pass efter 3NT när öppnaren inte har 4–4 i högfärgerna.
+- Efter spaderöverföring bevaras betydelsen av 3♥ som invit vid minst 5–5 i högfärgerna. Testet kontrollerar uttryckligen denna budbetydelse utan att hitta på en styrkegräns.
+- Befintliga överföringstester täcker fortsatt 2♠ rondkrav, 3m utgångskrav, överlapp mellan specialgrenar, 4m kontrollbud, 4M slutbud, 4NT RKC-betydelse, superaccept och öppnarens ej specificerade invitacceptans.
+
+**Verifieringsbegränsning:** Filerna och testfallen har uppdaterats på arbetsgrenen, men den här arbetskörningen har inte fått någon körningsrapport från GitHub Actions och har inte exekverat Node-testerna lokalt. Därför är kod- och teständringarna incheckade, men testresultatet är ännu inte verifierat. main är inte ändrad.
