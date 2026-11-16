@@ -1,5 +1,5 @@
 {
-  "version": "0.6.35",
+  "version": "0.6.36",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -94,17 +94,17 @@
               "label": "3 nyckelkort och någon renons"
             },
             {
-              "call": "6C",
+              "call": "6♣",
               "next": "t01_n_6c",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             },
             {
-              "call": "6D",
+              "call": "6♦",
               "next": "t01_n_6d",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             },
             {
-              "call": "6H",
+              "call": "6♥",
               "next": "t01_n_6h",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
@@ -273,7 +273,7 @@
             "Pass",
             "4NT",
             "Pass",
-            "6C"
+            "6♣"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
           "branches": [],
@@ -293,7 +293,7 @@
             "Pass",
             "4NT",
             "Pass",
-            "6D"
+            "6♦"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
           "branches": [],
@@ -313,7 +313,7 @@
             "Pass",
             "4NT",
             "Pass",
-            "6H"
+            "6♥"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
           "branches": [],
@@ -7104,17 +7104,17 @@
               "label": "3 nyckelkort och någon renons"
             },
             {
-              "call": "6C",
+              "call": "6♣",
               "next": "t44_s_6c",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             },
             {
-              "call": "6D",
+              "call": "6♦",
               "next": "t44_s_6d",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             },
             {
-              "call": "6H",
+              "call": "6♥",
               "next": "t44_s_6h",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
@@ -7239,7 +7239,7 @@
             "Pass",
             "4NT",
             "Pass",
-            "6C"
+            "6♣"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
           "branches": [],
@@ -7259,7 +7259,7 @@
             "Pass",
             "4NT",
             "Pass",
-            "6D"
+            "6♦"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
           "branches": [],
@@ -7279,7 +7279,7 @@
             "Pass",
             "4NT",
             "Pass",
-            "6H"
+            "6♥"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
           "branches": [],
