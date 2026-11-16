@@ -50,7 +50,7 @@ const fiveHeartBothMinors=hand(['H14','H13','H12','H11','H10','C14','C13','C12',
 assert.equal(result(fiveHeartBothMinors,afterHeartTransfer).exp,null,
   'no invented priority when both minor suits meet the 4-card condition');
 
-const fiveFiveMajors=hand(['S14','S13','S12','S11','S10','H14','H13','H12','H11','H10','D14','D13','C14']);
+const fiveFiveMajors=hand(['S13','S2','S3','S4','S5','H13','H12','H11','H4','H5','D2','D3','C2']);
 assert.equal(result(fiveFiveMajors,afterSpadeTransfer).exp,'3H',
   '5-5 majors after spade transfer: invitational 3H');
 
