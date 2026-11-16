@@ -130,6 +130,11 @@ const spadesInviteHand=['S14','S13','S12','S11','S10','H2','H3','D2','D3','D4','
 const spadesInvite=responderAfterStayman(spadesInviteHand,'2S');
 assert.equal(spadesInvite.exp,null);
 assert.match(spadesInvite.why,/3S efter Stayman visar invit/i);
+const balancedAfterSpades=['S14','S13','S2','S3','H12','H11','H2','D13','D2','D3','C2','C3','C4'];
+assert.equal(R.H(balancedAfterSpades).bal,true);
+const naturalStaymanNTInvite=responderAfterStayman(balancedAfterSpades,'2S');
+assert.equal(naturalStaymanNTInvite.exp,null);
+assert.match(naturalStaymanNTInvite.why,/2NT är naturlig invit efter Stayman 2♠/i);
 const gameFourSpades=['S14','S13','S12','S11','H11','H2','H3','D2','D3','D4','C2','C3','C4'];
 assert.equal(R.H(gameFourSpades).hp,11);
 const gameFourSpadesAuction=[
