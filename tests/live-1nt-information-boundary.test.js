@@ -39,8 +39,8 @@ const inviteFiveHearts=fill(['H13','H12','H11','H10','H9','S13','S2','S3','D2','
 assert.equal(live('S',afterCompletedHeartTransfer,inviteFiveHearts).exp,null,
  'balanced exact five-card transfer suit: invite is described but no numeric strength threshold is specified');
 
-// Opener's acceptance after a natural 2NT invitation has no confirmed
-// numeric threshold. Live play must not inspect responder's hidden cards.
+// 26 combined HCP accepts the natural 2NT invitation; 25 is still below game.
+// Live play must not inspect responder's hidden cards.
 const natural2NTAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2N'},{s:'W',c:'P'}
@@ -62,17 +62,16 @@ const responderEight=['C14','C4','C5','C6','D13','D4','D5','H4','H5','H6','S11',
 const responderNine=['C14','C4','C5','C6','D13','D4','D5','H11','H4','H5','S11','S4','S5'];
 assert.equal(R.H(responderEight).hp,8);
 assert.equal(R.H(responderNine).hp,9);
-assert.equal(judgeNatural2NT(responderEight).exp,null,
- 'the natural 2NT invite accept threshold is not numerically specified');
-assert.equal(judgeNatural2NT(responderNine).exp,null,
- '25 combined HCP does not imply pass or accept without a confirmed threshold');
+assert.equal(judgeNatural2NT(responderEight).exp,'P',
+ '16+8=24 HCP: opener declines below the 26-HCP game threshold');
+assert.equal(judgeNatural2NT(responderNine).exp,'P',
+ '16+9=25 HCP: 25 is invitation level, below the 26-HCP game threshold');
 const responderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(responderTen).hp,10);
-assert.equal(judgeNatural2NT(responderTen).exp,null,
- '16+10=26 HCP, but no numeric accept threshold is confirmed');
+assert.equal(judgeNatural2NT(responderTen).exp,'3N',
+ '16+10=26 HCP: opener accepts at the confirmed no-trump game threshold');
 
-// Stayman 2D–2NT is also a balanced invitation; its numeric accept
-// threshold is not specified and must remain uncovered.
+// Stayman 2D–2NT uses the same confirmed 26-HCP no-trump game threshold.
 function judgeStayman2NT(responderHand){
  const opener=['C13','C12','C2','C3','D14','D12','D11','D2','H14','H2','H3','S2','S3'];
  assert.equal(R.H(opener).hp,16);
@@ -89,10 +88,15 @@ function judgeStayman2NT(responderHand){
  const bids=auction.concat([{s:'N',c:'P'}]);
  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
 }
-assert.equal(judgeStayman2NT(responderEight).exp,null,
- 'no numeric accept threshold is stated after Stayman 2D–2NT');
-assert.equal(judgeStayman2NT(responderNine).exp,null,
- '25 combined HCP does not establish an accept/pass boundary after Stayman 2D–2NT');
+assert.equal(judgeStayman2NT(responderEight).exp,'P',
+ '16+8=24 HCP after Stayman 2D: opener declines below game');
+assert.equal(judgeStayman2NT(responderNine).exp,'P',
+ '16+9=25 HCP after Stayman 2D: below the 26-HCP game threshold');
+
+const staymanResponderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
+assert.equal(R.H(staymanResponderTen).hp,10);
+assert.equal(judgeStayman2NT(staymanResponderTen).exp,'3N',
+ '16+10=26 HCP after Stayman 2D: opener accepts with 3NT');
 
 const staymanAfter2H=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
