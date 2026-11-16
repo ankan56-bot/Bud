@@ -244,6 +244,25 @@ var Rattning = (function(){
       if(c==='3N')return 'Utgång i sang med minst 26 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
       if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit och minst 26 gemensamma spelpoäng.';
       return null};
+    // Nordisk standard s. 4: after a 2♥ Stayman answer, responder's
+    // 2NT shows exactly four spades; a new suit is natural and game-forcing
+    // (5+ major or 4+ minor). The same natural GF principle applies after 2♠.
+    if(reply==='2H'&&L.S===4){
+      return {exp:'2N',alt:[],why:'Exakt fyra spader efter Stayman 2♥: 2NT visar den andra fyrkortshögfärgen enligt Nordisk standard s. 4.',means:function(c){return c==='2N'?'Exakt fyra spader efter Stayman 2♥.':null},conv:'Stayman'};
+    }
+    var naturalNew=[];
+    if(reply==='2H'){
+      if(L.S>=5)naturalNew.push('S');
+    }else if(reply==='2S'){
+      if(L.H>=5)naturalNew.push('H');
+    }
+    ['C','D'].forEach(function(suit){if(L[suit]>=4)naturalNew.push(suit);});
+    if(naturalNew.length===1){
+      var ns=naturalNew[0],newBid=lowest(ns,reply);
+      return {exp:newBid,alt:[],why:'Ny färg efter Stayman: '+(maj(ns)?'minst fem kort i högfärgen':'minst fyra kort i lågfärgen')+' och utgångskrav enligt Nordisk standard s. 4.',means:function(c){return c===newBid?'Naturlig ny färg, utgångskrav.':null},conv:'Stayman'};
+    }
+    if(naturalNew.length>1)
+      return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman');
     if(M&&L[M]>=4&&opener&&L[M]+opener.L[M]>=8){
       if(fitPoints>=26){exp='4'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';}
       else if(fitPoints>=22){exp='3'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: invit med 3'+SYM[M]+'.';}
