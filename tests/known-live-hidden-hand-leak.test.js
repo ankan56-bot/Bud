@@ -85,8 +85,9 @@ assert.equal(R.H(west16).hp, 16);
 // The 25-HCP threshold is user-confirmed; both complete deals reach it.
 assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "3N");
 assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
-const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
-const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
+const liveAuction=ntAuction.slice(0,2); // West's 1NT, North passes; East is now to bid.
+const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:liveAuction,ownHand:eastResponder});
+const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:liveAuction,ownHand:eastResponder});
 assert.equal(liveNt15.exp,liveNt16.exp);
 assert.equal(liveNt15.exp,"3N","10 HCP plus the 15-HCP 1NT minimum guarantees 25 HCP");
 assert.equal(liveNt15.why,liveNt16.why);
