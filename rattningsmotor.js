@@ -216,9 +216,8 @@ var Rattning = (function(){
       return null};
 
     if (r === b+'N') {
-        if(!responder)return NC('2NT är en naturlig invit. Livebeslutet kan inte använda partnerns dolda honnörspoäng; efter given accepteras inviten med 3NT när paret når den bekräftade gränsen 25 gemensamma hp.',means,'1NT-system',true);
-        if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-        return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+        if(!k)return NC('2NT efter 1NT är en naturlig invit. Nordisk standard anger inte öppnarens numeriska accept-/passgräns; den tidigare föreslagna 25-hp-gränsen var inte användarbekräftad. Situationen lämnas ej täckt.',means,'1NT-system',true);
+        return NC('Öppnarens beslut efter 3NT-svaret på 2NT kräver ett separat verifierat kriterium; inget numeriskt intervall antas.',means,'2NT-system',true);
     }
 
     if(r===c2){conv='Stayman';exp=L.H>=4?h2:L.S>=4?s2:d2;
