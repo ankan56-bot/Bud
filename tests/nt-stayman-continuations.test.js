@@ -69,6 +69,8 @@ const afterStayman3NT=[
 ];
 assert.equal(judge(min44,afterStayman3NT).exp,'4S',
   '4-4 major opener may choose 4S after Stayman 3NT');
+assert.equal(judge(fourHeartsOnly,afterStayman3NT).exp,'P',
+  'opener without 4-4 majors passes after responder 3NT');
 
 // Nordisk standard s. 4 says responder normally has its own four-card
 // major (or slam interest); it does not state an 8 hp minimum for that route.
