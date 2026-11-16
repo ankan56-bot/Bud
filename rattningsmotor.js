@@ -807,10 +807,10 @@ var Rattning = (function(){
     exp='P';why='Ingen inklivshand enligt systemets styrke- och färglängdskrav: pass.';
     return {exp:exp,alt:alt,why:why,means:means,conv:'inkliv',soft:true};
   }
-  function respOvercall(h,oc,last,ob){
+  function respOvercall(h,oc,last,ob,sourcePageRules){
     var s=st_(oc),os=ob?ob[1]:null,L=h.L,hp=h.hp,exp,why,alt=[];
     var means=function(c){
-      if(c==='1N')return '6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg.';
+      if(c==='1N')return (sourcePageRules?'6-10':'8-10')+' hp, balanserad hand med håll i motståndarnas inklivsfärg.';
       if(c==='2N')return '11-13 hp, balanserad hand med bra håll.';
       if(c==='3N')return '14+ hp, balanserad hand med bra håll.';
       if(isBid(c)&&c[1]===s){
@@ -822,19 +822,20 @@ var Rattning = (function(){
       if(isBid(c)&&c[1]===os)return '10+ hp och 3+ stöd: överbud i motståndarnas färg.';
       if(isBid(c)&&c[1]!=='N'){
         var base=lowest(c[1],last),need=base&&lv(base)>=2?10:8;
-        if(c===base)return need+'+ hp och '+(c[1]==='S'||c[1]==='H'?'5+':'4+')+' färg: rondkrav.';
+        if(c===base)return need+'+ hp och '+(sourcePageRules&&(c[1]==='C'||c[1]==='D')?'4+':'5+')+' färg: rondkrav.';
         if(c===jump(c[1],last))return '14+ hp, bra 6+ färg: utgångskrav.';
       }
       if(c==='P')return 'Pass när inget av systemets svarsbud uppfylls.';
       return null;
     };
 
-    // Sangbud med håll i motståndarnas öppningsfärg.
-    if(!exp&&h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last)){
+    // BridgePlus s. 90 applies when our side opened and opponents interfered.
+    // In that context, 1NT (6-10 HP + stopper) takes priority over a simple raise.
+    if(sourcePageRules&&!exp&&h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last)){
       exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
     }
-    // Stöd visas först: 6-9 hp med 3/4/5-korts stöd ger enkel/dubbel/trippel höjning.
-    if(!exp&&L[s]>=3&&hp>=6&&hp<=9){
+    // Stöd visas först i övriga konkurrenslägen; 6-9 hp med 3/4/5-korts stöd.
+    if((!sourcePageRules||!exp)&&!exp&&L[s]>=3&&hp>=6&&hp<=9){
       var steps=L[s]>=5?3:L[s]>=4?2:1;
       var raise=(lv(oc)+steps)+s;
       if(ok(raise,last)){
@@ -849,6 +850,9 @@ var Rattning = (function(){
       if(ok(cue,last)){exp=cue;why='10+ hp och '+L[s]+'-korts stöd: överbud i motståndarnas färg.';}
     }
 
+    if(!sourcePageRules&&!exp&&h.bal&&hp>=8&&hp<=10&&h.stop(os)&&ok('1N',last)){
+      exp='1N';why='8-10 hp, balanserad hand med håll i öppningsfärgen: 1NT.';
+    }
     if(!exp&&h.bal&&hp>=11&&hp<=13&&h.stop(os)&&ok('2N',last)){
       exp='2N';why='11-13 hp, balanserad hand med bra håll: 2NT.';
     }
@@ -856,10 +860,10 @@ var Rattning = (function(){
       exp='3N';why='14+ hp, balanserad hand med bra håll: 3NT.';
     }
 
-    // Ny högfärg kräver minst 5 kort; lågfärg får bjudas med 4. Styrkekravet följer budnivån.
+    // BridgePlus-svaret efter vår öppning tillåter 4-korts lågfärg; övriga lägen behåller 5+.
     // Hopp i ny färg kräver 14+ hp och en bra 6+-färg.
     if(!exp){
-      var suits=['S','H','D','C'].filter(function(x){return x!==s&&x!==os&&L[x]>=(x==='S'||x==='H'?5:4);});
+      var suits=['S','H','D','C'].filter(function(x){return x!==s&&x!==os&&L[x]>=(sourcePageRules&&(x==='C'||x==='D')?4:5);});
       suits.sort(function(a,b){
         if(L[b]!==L[a])return L[b]-L[a];
         return ['S','H','C','D'].indexOf(a)-['S','H','C','D'].indexOf(b);
@@ -1223,7 +1227,7 @@ var Rattning = (function(){
         }
         if(negativeOvercall==='1S'&&h.L.H>=5)
           return NC('Fem eller fler hjärter efter 1♠-inkliv överlappar negativ dubbling med naturligt 2♥; källan anger ingen prioritet.');
-        return respOvercall(h,f,last,negativeOvercall);
+        return respOvercall(h,f,last,negativeOvercall,true);
       }
       if(d===1&&oppAfter.length===1&&!opener&&b.c==='X'){
         return NC('Negativ dubbling efter denna öppning/inklivskombination saknar verifierad regel i källunderlaget.');
