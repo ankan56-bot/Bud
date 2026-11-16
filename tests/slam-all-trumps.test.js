@@ -113,7 +113,7 @@ for(const viaStayman of [false,true]){
 }
 // The offline analysis library must cover minor-suit RKC as well as the
 // existing major-suit trees, including the source-defined void responses.
-for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_KLOVER','T46_RKC_1430_RUTER']){
+for(const id of ['T01_RKC_HJARTER','T44_RKC_NORDISK_SPADER_STENBERG','T45_RKC_NORDISK_KLOVER','T46_RKC_NORDISK_RUTER']){
   const tree=library.trees.find(t=>t.id===id);
   assert.ok(tree,'missing analysis tree '+id);
   assert.equal(A.treeCompatible(tree),true,id+' must be compatible with the analysis matcher');
