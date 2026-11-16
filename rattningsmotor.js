@@ -119,12 +119,15 @@ var Rattning = (function(){
     var nonPass=auction.filter(function(x){return x.c!=='P';});
     var openingCall=nonPass[0]||null;
     var isOpeningDecision=nonPass.length===0;
-    var isOneNTFamily=!!openingCall&&openingCall.c==='1N'&&
+    var ntOpeningCall=openingCall&&(openingCall.c==='1N'||openingCall.c==='2N');
+    var ntFamilyCalls=openingCall&&openingCall.c==='2N'
+      ?['2N','3C','3D','3H','3N','4N']
+      :['1N','2C','2D','2H','2S','2N','3C','3D','3H','3S','3N','4C','4D','4H','4S','4N'];
+    var isOneNTFamily=!!ntOpeningCall&&
       side(openingCall.s)===side(seat)&&
       auction.every(function(x){
         if(side(x.s)!==side(seat))return x.c==='P';
-        return x.c==='P'||x.c==='1N'||
-          ['2C','2D','2H','2S','2N','3C','3D','3H','3S','3N','4C','4D','4H','4S','4N'].indexOf(x.c)>=0;
+        return x.c==='P'||ntFamilyCalls.indexOf(x.c)>=0;
       })&&nonPass.every(function(x){return x.c!=='X'&&x.c!=='XX';});
     if(!isOpeningDecision&&!isOneNTFamily)
       return NC('Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass och ostörd 1NT-familj är aktiverade; andra sekvenser lämnas ej täckta.','', 'live');
