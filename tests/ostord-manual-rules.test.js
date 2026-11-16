@@ -106,9 +106,9 @@ function completeDealWithSouth(south) {
 // The 11 HP hand clears the ordinary two-over-one strength threshold.
 {
   const hands = completeDealWithSouth([
-    'S14','S11','S8',
-    'H8','H5',
-    'D13','D9','D6','D3',
+    'S14','S11','S8','S6',
+    'H8','H5','H2',
+    'D13','D9',
     'C12','C11','C7','C2'
   ]);
   const st = state(hands, 'N', [
@@ -121,10 +121,10 @@ function completeDealWithSouth(south) {
 // A four-card major is not enough for a new major-suit response.
 {
   const hands = completeDealWithSouth([
-    'S14','S13','S11','S8',
+    'S14','S11','S8','S6',
     'H8','H5','H3','H2',
-    'D12','D9',
-    'C11','C7','C4'
+    'D9','D4',
+    'C7','C4','C2'
   ]);
   const st = state(hands, 'N', [
     {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
@@ -157,10 +157,10 @@ function negativeDoubleDeal(south) {
 // BridgePlus s. 91: after 1C–1S, a negative double shows at least four hearts.
 {
   const hands = negativeDoubleDeal([
-    'S13','S8','S5',
+    'S11','S8','S5',
     'H14','H12','H9','H5',
-    'D8','D4',
-    'C11','C10','C3','C2'
+    'D13','D11','D8','D4',
+    'C7','C3'
   ]);
   const st = state(hands, 'N', [
     {s:'N',c:'1C'}, {s:'E',c:'1S'}, {s:'S',c:'P'}
