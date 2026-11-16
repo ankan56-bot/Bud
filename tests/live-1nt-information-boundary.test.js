@@ -95,8 +95,8 @@ assert.equal(live('S',firstResponse,balancedEight).exp,null,
 
 const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2','S3','S4']);
 assert.equal(R.H(balancedTen).hp,10);
-assert.equal(live('S',firstResponse,balancedTen).exp,'3N',
- '10 own HCP guarantees the user-confirmed 25-HCP 3NT threshold opposite 1NT minimum');
+assert.equal(live('S',firstResponse,balancedTen).exp,null,
+ '10 own HCP plus partner minimum reaches only 25, the invit level, not the 26-HCP 3NT threshold');
 const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3','S4']);
 assert.equal(R.H(balancedNine).hp,9);
 assert.equal(live('S',firstResponse,balancedNine).exp,null,
