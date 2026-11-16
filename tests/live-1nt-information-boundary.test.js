@@ -40,7 +40,7 @@ assert.equal(live('S',afterCompletedHeartTransfer,inviteFiveHearts).exp,null,
  'balanced exact five-card transfer suit: invite is described but no numeric strength threshold is specified');
 
 // Opener's acceptance after a natural 2NT invitation uses the
-// user-confirmed 25-HCP no-trump game threshold, but live play cannot see
+// later-confirmed 26-HCP no-trump game threshold, but live play cannot see
 // responder's hidden cards.
 const natural2NTAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
@@ -65,8 +65,12 @@ assert.equal(R.H(responderEight).hp,8);
 assert.equal(R.H(responderNine).hp,9);
 assert.equal(judgeNatural2NT(responderEight).exp,'P',
  '16+8=24 HCP: opener declines the natural 2NT invitation');
-assert.equal(judgeNatural2NT(responderNine).exp,'3N',
- '16+9=25 HCP: opener accepts at the confirmed no-trump game threshold');
+assert.equal(judgeNatural2NT(responderNine).exp,'P',
+ '16+9=25 HCP: opener declines below the confirmed 26-HCP no-trump game threshold');
+const responderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
+assert.equal(R.H(responderTen).hp,10);
+assert.equal(judgeNatural2NT(responderTen).exp,'3N',
+ '16+10=26 HCP: opener accepts at the confirmed no-trump game threshold');
 
 const staymanAfter2H=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
