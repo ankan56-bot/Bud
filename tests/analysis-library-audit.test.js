@@ -16,13 +16,13 @@ const expected = {
   undisturbedTrees: 41,
   undisturbedNodes: 248,
   branchEntries: 252,
-  linkedBranches: 146,
-  unlinkedBranches: 106,
+  linkedBranches: 137,
+  unlinkedBranches: 115,
   nodesWithoutOutgoing: 156,
   nodesWithoutHandProfile: 8,
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
-  crossTreeLinks: 16,
+  crossTreeLinks: 7,
   duplicateSequenceGroups: 26,
   duplicateSequenceExtraOccurrences: 28
 };
