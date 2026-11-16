@@ -235,8 +235,13 @@ var Rattning = (function(){
       if(hp>=17&&L[M]>=4&&!k){exp=(b+1)+M;alt=[b+M];why='Max (17 hp) och 4+ '+SYM[M]+': får bjuda 3 i färgen, men 2 i färgen är det vanliga.'}
       else{exp=b+M;why='Fullföljer överföringen.'}}
     else if(!k&&r==='2S'){conv='1NT-svar';exp=L.C>L.D?'3C':'2N';why=L.C>L.D?'Längre ♣ än ♦: 3♣.':'Längre ♦ än ♣ eller lika: 2NT.'}
-    else if(!k&&(r==='3C'||r==='3D')){var m=r[1];exp=[14,13,12].some(function(n){return h.has(m,n)})?'3N':'P';soft=true;
-      why=exp==='P'?'Passar med små kort (xx/xxx) i stödet.':'Topphonnör i färgen: söker 3NT.'}
+    else if(!k&&(r==='3C'||r==='3D')){
+      var m=r[1],topHonor=[14,13,12].some(function(n){return h.has(m,n)});
+      if(topHonor){exp='3N';why='Topphonnör i den bjudna lågfärgen: söker 3NT enligt Nordisk standard s. 4.';}
+      else if(L[m]===2||L[m]===3){exp='P';why='Endast xx/xxx i stödfärgen: passar enligt Nordisk standard s. 4.';}
+      else return NC('Efter invitbudet 3'+m+' är endast pass med xx/xxx i stöd eller 3NT med topphonnör uttryckligen beskrivet. Övrig stödlängd utan topphonnör lämnas ej täckt.',means,'1NT-svar',true);
+      soft=true;
+    }
     else if(r==='3N'||(!k&&r==='2N'&&false)){exp='P';why='Slutbud: pass.'}
     else return {exp:null,alt:[],why:'Öppnarens svar på detta bud beskrivs inte i dokumentet.',means:means,conv:conv};
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
