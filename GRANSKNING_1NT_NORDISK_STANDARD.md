@@ -279,14 +279,14 @@ Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exa
 
 ### Naturlig 2NT-invit efter 1NT – numerisk gräns saknas
 
-Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 26 gemensamma hp för 3NT är separerad från livebeslutet.
+Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den numeriska styrkegränsen för 3NT är inte fastställd och används därför inte i live- eller efterhandsrättning.
 
-Direkt 3NT med minst 26 gemensamma honnörspoäng är en separat användarbekräftad gräns; i sang räknas endast HP. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
+Nordisk standard beskriver 3NT som slutbud, och användaren har fastställt att endast HP ska räknas i sang. Däremot har ingen numerisk HP-gräns för 3NT uttryckligen bekräftats av användaren eller angetts i PDF:en. Den tidigare 25-hp-gränsen kom från ett tidigare assistentförslag och behandlas inte som en systemregel. Analysbibliotekets träd för direkt 3NT är därför preliminära (`provisional_source_gap`) tills en numerisk gräns bekräftas.
 
 
 ### Stayman-inviter – endast utgångsgränsen är numeriskt fastställd
 
-Efter 1NT–2♣ har nya färger nu de uttryckliga källreglerna (5+ högfärg/4+ lågfärg, utgångskrav) och 2NT efter 2♥ visar exakt fyra spader. Däremot är 2NT som naturlig invit och 3M som invit efter visad högfärg beskrivna som inviter utan numeriskt styrkeintervall i PDF:en. Därför används inte tidigare kodade 22–25- eller 8–9-gränser för att välja mellan pass och invit. Rättningsmotorn lämnar dessa fall ej täckta. Den separata, användarbekräftade 26-poängsgränsen för utgång används fortsatt när en 8-kortsfit eller sangstyrka är känd.
+Efter 1NT–2♣ har nya färger nu de uttryckliga källreglerna (5+ högfärg/4+ lågfärg, utgångskrav) och 2NT efter 2♥ visar exakt fyra spader. Däremot är 2NT som naturlig invit och 3M som invit efter visad högfärg beskrivna som inviter utan numeriskt styrkeintervall i PDF:en. Därför används inte tidigare kodade 22–25- eller 8–9-gränser för att välja mellan pass och invit. Rättningsmotorn lämnar dessa fall ej täckta. Den användarbekräftade 26-poängsgränsen gäller högfärgsutgång i de sekvenser där den har fastställts; den överförs inte automatiskt till Stayman, överföringar eller sang.
 
 
 ### Svagt lågfärgsrelä 1NT–2♠ – styrkegräns lämnas öppen
@@ -355,6 +355,8 @@ En ny läsning av själva PDF-sidan visar att tidigare text i denna granskningsf
 Sida 4 beskriver svaga/dåliga kort kvalitativt i samband med 1NT-svaren, men anger inte en numerisk gräns för när en hand utan 4-korts högfärg eller längre färg ska passa. Den tidigare automatiska passgränsen under 8 hp har därför tagits bort. När handen inte uppfyller en uttrycklig Stayman-, överförings- eller reläprofil lämnas beslutet ej täckt i stället för att motorn antar en HP-gräns.
 
 
-### Bekräftad sangutgångsgräns
+### Numerisk sangutgångsgräns ej fastställd
+
+Användaren har fastställt att endast honnörspoäng ska räknas i sang (3NT, 6NT och 7NT). Någon numerisk HP-gräns för 3NT har däremot inte uttryckligen bekräftats av användaren eller angetts i Nordisk standard. Den tidigare 25-hp-gränsen var ett tidigare assistentförslag och behandlas inte som en fastställd systemregel. Därför lämnar motorn valet av direkt 3NT ej täckt när det kräver en sådan gräns. Den separata 26-poängsgränsen för högfärgsutgång och 28 för lågfärgsutgång ska inte blandas ihop med sang.
 
 Användaren har bekräftat 26 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 11 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 10 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
