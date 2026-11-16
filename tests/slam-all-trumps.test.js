@@ -241,7 +241,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
     {s:'N',c:'3H'},{s:'E',c:'P'},
     {s:'S',c:'4N'},{s:'W',c:'P'},
     {s:'N',c:'5D'},{s:'E',c:'P'},
-    {s:'S',c:'5S'},{s:'W',c:'P'}
+    {s:'S',c:'5S'},{s:'W',c:'P'},{s:'N',c:'P'}
   ];
   const result=R.nodeFor({hands,dealer:'N',bids},12);
   assert.equal(result.exp,null,'when 5 in trump is no longer a legal denial, do not invent an alternative');
