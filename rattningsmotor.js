@@ -1533,15 +1533,25 @@ var Rattning = (function(){
       return NC('Det är inte den angivna spelarens tur enligt den offentliga budhistoriken.','', 'live');
     if(auction.length>=4&&auction.slice(-4).every(function(x){return x.c==='P';}))
       return NC('Budgivningen är redan avslutad efter fyra pass.','', 'live');
-    if(auction.some(function(x){return isBid(x.c)||x.c==='X'||x.c==='XX';}))
-      return NC('Den här budfamiljen har ännu inte migrerats till informationssäker livebedömning. Endast öppningsbeslut efter pass är för närvarande aktiverade.','', 'live');
+    var nonPass=auction.filter(function(x){return x.c!=='P';});
+    var openingCall=nonPass[0]||null;
+    var isOpeningDecision=nonPass.length===0;
+    var isOneNTFamily=!!openingCall&&openingCall.c==='1N'&&
+      side(openingCall.s)===side(seat)&&openingCall.s!==seat&&
+      auction.every(function(x){
+        if(side(x.s)!==side(seat))return x.c==='P';
+        return x.c==='P'||x.c==='1N'||
+          ['2C','2D','2H','2S','2N','3C','3D','3H','3S','3N','4C','4D','4H','4S','4N'].indexOf(x.c)>=0;
+      })&&nonPass.every(function(x){return x.c!=='X'&&x.c!=='XX';});
+    if(!isOpeningDecision&&!isOneNTFamily)
+      return NC('Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass och ostörd 1NT-familj är aktiverade; andra sekvenser lämnas ej täckta.','', 'live');
     var bids=auction.concat([{s:seat,c:'P'}]);
     var st={hands:{}};st.hands[seat]=ownHand.slice();st.dealer=dealer;st.bids=bids;
     var node;
-    try{node=nodeFor(st,bids.length-1);}
+    try{node=nodeForRaw(st,bids.length-1);}
     catch(e){return NC('Livebeslut stoppades säkert: '+e.message,'','live');}
     if(!node||!node.exp)
-      return NC(node&&node.why||'Öppningsläget är inte täckt.','', 'live');
+      return NC(node&&node.why||'Öppnings-/1NT-läget är inte täckt utan partnerns dolda hand.','', 'live');
     return {
       exp:node.exp,
       alt:(node.alt||[]).slice(),
