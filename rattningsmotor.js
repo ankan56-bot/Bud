@@ -1221,6 +1221,8 @@ var Rattning = (function(){
            ((negativeOvercall==='1H'&&h.L.S===4)||(negativeOvercall==='1S'&&h.L.H===4))){
           return {exp:'X',alt:[],why:negativeOvercall==='1H'?'Negativ dubbling: exakt fyra spader efter 1♥-inkliv.':'Negativ dubbling: fyra hjärter efter 1♠-inkliv.',means:function(c){return c==='X'?(negativeOvercall==='1H'?'Exakt fyra spader.':'Minst fyra hjärter.'):null},conv:'negativ dubbling'};
         }
+        if(negativeOvercall==='1S'&&h.L.H>=5)
+          return NC('Fem eller fler hjärter efter 1♠-inkliv överlappar negativ dubbling med naturligt 2♥; källan anger ingen prioritet.');
         return respOvercall(h,f,last,negativeOvercall);
       }
       if(d===1&&oppAfter.length===1&&!opener&&b.c==='X'){
@@ -1383,7 +1385,7 @@ var Rattning = (function(){
     for(var j=0;j<prior.length;j++){
       var call=prior[j];
       if(!call||side(call.s)===ourSide)continue;
-      var earlierOurBid=prior.slice(0,j).some(function(x){return x&&side(x.s)===ourSide&&isBid(x.c);});
+      var earlierOurBid=prior.slice(0,j).some(function(x){return x&&side(x.s)===ourSide&&/^1[CDHS]$/.test(x.c);});
       if(!earlierOurBid)continue;
       if(/^2[CDHS]$/.test(call.c)){
         return 'Motståndarna har klivit in på tvåtricksnivån; enligt den uttryckliga slamspärren får vår sida inte rekommendera slam.';
