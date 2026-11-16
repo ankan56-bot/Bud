@@ -149,3 +149,20 @@ Stayman- och överföringsdelarna kan markeras färdiga när alla källbelagda g
 - Befintliga överföringstester täcker fortsatt 2♠ rondkrav, 3m utgångskrav, överlapp mellan specialgrenar, 4m kontrollbud, 4M slutbud, 4NT RKC-betydelse, superaccept och öppnarens ej specificerade invitacceptans.
 
 **Verifieringsbegränsning:** Filerna och testfallen har uppdaterats på arbetsgrenen, men den här arbetskörningen har inte fått någon körningsrapport från GitHub Actions och har inte exekverat Node-testerna lokalt. Därför är kod- och teständringarna incheckade, men testresultatet är ännu inte verifierat. main är inte ändrad.
+
+## G. Slutstatus – sangfamiljen implementerad
+
+Den källstyrda 1NT-familjen är nu implementerad fram till och med 4NT-gränsen. Även 2NT-öppningens uttryckliga första svar och öppnarens första svar är implementerade enligt Nordisk standard s. 5, inklusive att svarssystemet ligger en nivå högre och att 2NT–4NT är kvantitativ invit.
+
+Slutliga kompletteringar:
+- Lika långa lågfärger efter 2♠-reläet ger EJ TÄCKT, inte en påhittad klöverprioritet.
+- 2NT-öppningens 4-korts Stayman kräver inte ett påhittat 5-hp-minimum.
+- 21 hp och 4+ stöd efter 2NT-öppning ger superaccept på fyran som en nivå-högre motsvarighet till 1NT-superaccepten.
+- RKC-trumfen efter Stayman 2♥–2NT/3NT–3♠/4♠ identifieras som spader när 4-4-fitten har visats.
+- 4NT efter överföringssuperaccept 3M och odefinierade fortsättningar efter 2NT lämnas EJ TÄCKT i stället för att anta en fortsättning.
+- Livebeslut för 2NT-öppning har samma informationsgräns som 1NT: endast egen hand och offentlig budhistorik.
+- Alla ej täckta beslut loggas för export och expertgranskning.
+
+**Definition av färdig uppfylld:** alla grenar som uttryckligen stöds av källan eller av användarens bekräftade projektregler är implementerade. De kvarvarande källuckorna är uttryckligen märkta EJ TÄCKT och loggas; de är inte dolda eller ersatta av antagna regler.
+
+Fullständig regression körs i GitHub Actions via validate-trainer.yml. Ingen ändring har gjorts på main.
