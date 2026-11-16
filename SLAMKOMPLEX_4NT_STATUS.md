@@ -1,33 +1,37 @@
 # 4NT och slamkomplex – verifierad status
 
 Senast uppdaterad: 2026-11-16  
-Systemkälla: **Nordisk standard, 2012-08-22**, främst sida 5 och sida 7.  
-Arbetsgren: `work/undisturbed-architecture`. `main` är inte ändrad.
+Auktoritativ källa: **Nordisk standard, 2012-08-22**, s. 5 och 7.  
+Arbetsgren: `work/undisturbed-architecture`. `main` är orörd.
 
 ## 1. Betydelsen av 4NT
 
-4NT tolkas alltid utifrån den offentliga budsekvensen. Det får inte automatiskt klassas som essfråga.
+4NT klassificeras med hela den offentliga budsekvensen. Det får inte automatiskt behandlas som essfråga.
 
-### Fastställd trumf – RKC 1430
+### Fastställd trumf – RKC enligt Nordisk standard
 
-RKC används när trumf är fastställd. Motorn identifierar nu:
+Trumf är fastställd när färgen är bjuden och höjd, eller indirekt efter 2♥/2♠ som svar på Stayman 2♣. Efter fullföljd överföring 1NT–2♦–2♥ respektive 1NT–2♥–2♠ är 4NT också uttryckligen RKC med överföringsfärgen som trumf (s. 5).
 
-- Naturligt bjuden och höjd färg – samtliga fyra färger kan vara trumf.
-- Stenberg 2NT efter 1♥ eller 1♠. 2NT efter 1♣ eller 1♦ behandlas inte som Stenberg.
-- Stayman-svar 2♥ eller 2♠, där högfärgen är indirekt fastställd enligt Nordisk standard.
-- Fullföljd överföring 1NT–2♦–2♥ respektive 1NT–2♥–2♠; 4NT är uttryckligen RKC med överföringsfärgen som trumf.
-- De särskilda Staymanfortsättningarna där öppnaren visar spaderfit efter 2NT/3NT.
+Fem nyckelkort är de fyra essen och trumfkungen. **Nordisk standards faktiska svarstabell på sida 7 är:**
 
-4NT efter en överförings-superaccept är fortsatt ej täckt när källan inte uttryckligen fastställer den fortsättningen. Motorn ska inte anta att superaccepten automatiskt ger samma RKC-överenskommelse.
+| Svar | Betydelse |
+|---|---|
+| 5♣ | 0 eller 3 nyckelkort |
+| 5♦ | 1 eller 4 nyckelkort |
+| 5♥ | 2 nyckelkort utan trumfdam |
+| 5♠ | 2 nyckelkort med trumfdam |
+| 5NT | 3 nyckelkort och någon renons |
+| 6 i färg | 2 nyckelkort och renons i bjuden färg; 6 i trumf om renonsfärgen är högre än trumf |
+
+**Viktig rättelse:** En tidigare implementation och statusrapport använde felaktigt 1430-ordningen (5♣=1/4 och 5♦=0/3). Det var inte ett uttryckligt användarbeslut och stämde inte med Nordisk standard. Koden, testerna och analysbiblioteket är nu ändrade till den tryckta ordningen ovan. Benämningen 1430 ska inte användas för denna grundtabell.
 
 ### Ingen fastställd trumf – fyr-essfråga
 
-Följande sekvenser är uttryckligen avtalade som fyr-essfråga:
-
+Följande sekvenser är uttryckligen fyr-essfråga:
 - 1NT–4NT
 - 1NT–2♣–2♦–4NT
 
-Svar enligt Nordisk standard sida 7:
+Svar enligt sida 7:
 
 | Svar | Betydelse |
 |---|---|
@@ -36,61 +40,57 @@ Svar enligt Nordisk standard sida 7:
 | 5♥ | 2 ess |
 | 5♠ | 3 ess |
 
-**5NT är inte svaret för fyra ess** i denna tabell.
+5NT är inte svaret för fyra ess.
 
 ### Kvantitativ 4NT
 
-2NT–4NT är en kvantitativ invit till 6NT, inte en essfråga. Nordisk standard anger inte en tillräckligt exakt accept-/passgräns för öppnaren. Den fortsättningen lämnas därför ej täckt tills en sådan regel är uttryckligen beslutad.
+2NT–4NT är kvantitativ invit till 6NT, inte essfråga. Systemtexten anger inte en exakt accept-/passgräns för öppnaren. Den fortsättningen lämnas därför ej täckt.
 
-## 2. RKC 1430 – projektets svarstabell
+## 2. Trumfdamfrågan efter 5♣/5♦
 
-Projektets uttryckligen valda RKC 1430-ordning är:
+Nordisk standard s. 7 anger:
+- Efter svaren 5♣ eller 5♦ frågar nästa bud som inte är trumf efter trumfdamen.
+- Trumfdamen förnekas genom 5 i trumf.
+- Trumfdamen visas genom 5NT eller 6 i ny färg; 6 i ny färg visar också kung i den färgen.
+- Efter ett dubbeltydigt 5-lågsvar bjuder frågeställaren 6 i trumf med 3 eller 4 egna ess om partnern går ner i 5 i trumf.
 
-| Svar | Betydelse |
-|---|---|
-| 5♣ | 1 eller 4 nyckelkort |
-| 5♦ | 0 eller 3 nyckelkort |
-| 5♥ | 2 nyckelkort utan trumfdam |
-| 5♠ | 2 nyckelkort med trumfdam |
+Implementation:
+- Frågan genereras bara när det finns ett lagligt 5-bud som inte är trumf och 5 i trumf fortfarande är ett lagligt förnekande.
+- Om budordningen gör detta omöjligt markeras positionen ej täckt och sparas i granskningsloggen. Motorn hittar inte på ett 6-bud som skulle ändra källans uttryckliga förnekelsebud.
+- Svarshanden förnekar med 5 i trumf om den saknar trumfdamen.
+- Med trumfdamen visas den med 5NT när det är lagligt; annars används 6 i ny färg endast när handen har en entydig sådan kung.
+- Efter förnekad trumfdam och dubbeltydigt 5♣/5♦-svar bjuder frågeställaren 6 i trumf om den egna handen har 3 eller 4 ess.
 
-Nyckelkorten är de fyra essen och trumfkungen. Denna 1430-ordning är projektets avtalade variant; den ska inte blandas ihop med den omvända 5♣/5♦-ordning som står i Nordisk standards generella RKC-tabell.
+## 3. Lillslam och storslam – projektets beslutade gränser
 
-### Renonsvisningar enligt Nordisk standard sida 7
+Dessa är uttryckliga projektregler som kompletterar systemtexten:
 
-- 5NT visar 3 nyckelkort och någon renons.
-- 6 i färg visar 2 nyckelkort och renons i den bjudna färgen.
-- Om renonsfärgen är högre än trumf visas den i stället genom 6 i trumf.
-- Två nyckelkort och flera renonser lämnas ej täckt eftersom systemtexten inte väljer vilken renons som ska visas.
-- Fem av fem nyckelkort saknar ett uttryckligt svar i projektets 1430-tabell och lämnas ej täckt.
+- **6 i färg:** tillåts när partnerskapet har minst 3 av de 4 essen (högst ett saknat ess).
+- **7NT:** kräver samtliga 4 ess.
+- **7 i färg:** kräver samtliga 4 ess och trumfkungen.
 
-## 3. Fortsättningen efter RKC-svaret
+Motorn räknar möjliga kortkombinationer som är förenliga med RKC-svaret och den egna handen. Den rekommenderar 6/7 bara när kravet är säkert uppfyllt för samtliga möjliga tolkningar av ett dubbeltydigt svar. Om både tillräcklig och otillräcklig essfördelning fortfarande är möjlig lämnas läget ej täckt.
 
-Nordisk standard sida 7 beskriver en fråga efter trumfdam efter svar på 5-läget. Den anger att trumfdamen förnekas genom 5 i trumf och visas genom 5NT eller 6 i ny färg, där 6 i ny färg också visar kung i den färgen.
+Ingen numerisk acceptregel för 6NT efter kvantitativ invit är införd.
 
-Källan ger däremot inte en entydig och fullständig laglig budstege för samtliga svar, alla fyra trumffärger och alla fortsättningslägen. Rättningsmotorn hittar därför inte på en generell fortsättning. Dessa positioner markeras **ej täckta** och sparas i den separata granskningsloggen.
+## 4. Testtäckning
 
-Efter fyr-essfråga utan trumf anger Nordisk standard inte heller en fortsättningsstege. Även dessa fortsättningar lämnas ej täckta.
-
-## 4. Tester och loggning
-
-Regressionstester täcker nu:
-
-- RKC 1430 med ♣, ♦, ♥ och ♠ som trumf.
-- Samtliga fyra ordinarie svarskategorier.
-- 5NT för 3 nyckelkort och renons.
-- 6 i färg för 2 nyckelkort och renons, inklusive regeln när renonsfärgen är högre än trumf.
-- Flera renonser och fem av fem nyckelkort som ej täckta fall.
-- Fyr-essfråga i sang, både direkt efter 1NT och efter 1NT–2♣–2♦.
-- 2NT–4NT som kvantitativ invit, skild från essfråga.
-- Att 2NT efter lågfärgsöppning inte felaktigt tolkas som Stenberg.
-
-Alla ej täckta positioner sparas i `EjTacktaLogg` både vid efterhandsrättning och i livebedömningen. Loggen deduplicerar identiska positioner och kan exporteras för expertgranskning.
+Regressionstester täcker:
+- RKC med ♣, ♦, ♥ och ♠ som trumf.
+- Den exakta RKC-svarstabellen från Nordisk standard (5♣=0/3; 5♦=1/4).
+- 5NT och 6-färgssvaren för renons.
+- Fyr-essfrågan i sang.
+- Trumfdamfråga, förnekelse med 5 i trumf och visning med 5NT.
+- 6 i färg när minst 3 ess är säkrade.
+- 7 i färg när alla fyra ess och trumfkungen är säkrade.
+- 7NT när alla fyra ess är säkrade.
+- Ej täckta budordningskonflikter loggas i `EjTacktaLogg`.
 
 ## 5. Kvar att fastställa
 
-1. Fullständig, laglig fortsättningsstege efter RKC-svar – särskilt trumfdamfrågan och fortsättningen efter svar som visar trumfdam eller renons.
-2. Fortsättning efter fyr-essfråga utan trumf.
-3. Numerisk accept-/passregel efter kvantitativt 2NT–4NT.
-4. Eventuella ytterligare 4NT-sekvenser som ska vara särskilt avtalade.
+1. Trumfdamfrågans lagliga budvägar i de trumffärger/5-svar där 5 i trumf inte kan användas som förnekelse efter frågebudet.
+2. Exakt val mellan flera möjliga 6-bud i ny färg om 5NT inte längre är lagligt och handen har flera sidokungar.
+3. Fortsättning efter fyr-essfråga när 7NT-kravet inte är uppfyllt; 6NT-acceptgränsen efter kvantitativ invit är inte specificerad.
+4. Kontrollbudssekvenserna på 4-nivån ska behandlas som ett separat delområde efter slamkomplexet.
 
-Dessa punkter ska inte fyllas med allmän bridgepraxis utan källstöd eller uttryckligt beslut.
+Alla dessa luckor ska fortsätta sparas för expertgranskning i stället för att fyllas med allmän bridgepraxis.
