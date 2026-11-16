@@ -21,6 +21,7 @@ function handWithAces(count) {
   for (const suit of ['S','H','D','C'].slice(0,count)) cards.push(suit+'14');
   for (const card of deck) {
     if(cards.length===13)break;
+    if(card.endsWith('14'))continue;
     if(!cards.includes(card))cards.push(card);
   }
   return cards;
