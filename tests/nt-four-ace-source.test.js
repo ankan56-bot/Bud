@@ -134,7 +134,10 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
 // ace ask. The invitation is identified, but opener acceptance remains
 // uncovered until a numeric maximum/minimum rule is source-confirmed.
 {
-  const hands=dealWithNorth(handWithAces(2));
+  const opener20=['S14','S13','S12','S11','H14','H13','H2','H3','D13','D2','D3','C2','C3'];
+  assert.equal(R.H(opener20).hp,20);
+  assert.equal(R.H(opener20).bal,true);
+  const hands=dealWithNorth(opener20);
   const auction=[
     {s:'N',c:'2N'},{s:'E',c:'P'},
     {s:'S',c:'4N'}
