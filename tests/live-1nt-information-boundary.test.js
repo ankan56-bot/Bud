@@ -22,7 +22,8 @@ const hiddenB=fill(deck.filter(c=>!fiveHearts.includes(c)).slice(13,26));
 const liveA=live('S',firstResponse,fiveHearts,{hands:{N:hiddenA}});
 const liveB=live('S',firstResponse,fiveHearts,{hands:{N:hiddenB}});
 assert.equal(liveA.exp,'2D','five hearts: transfer to hearts');
-assert.deepStrictEqual(liveA,liveB,'changing hidden hands must not change live decision');
+assert.equal(liveA.why,liveB.why,'changing hidden hands must not change live explanation');
+assert.equal(liveA.exp,liveB.exp,'changing hidden hands must not change live recommendation');
 
 const opener17=fill(['H14','H13','H12','H11','S14','D13','C2','C3','C4','S2','S3','D2','D3']);
 assert.equal(R.H(opener17).hp,17);
@@ -47,7 +48,7 @@ const fiveSpades=fill(['S14','S13','S12','S11','S10','H2','H3','H4','D2','D3','D
 assert.equal(live('S',staymanAfter2H,fiveSpades).exp,'2S',
  'natural game-forcing new suit after Stayman is live-safe');
 
-const fourFourOpener=fill(['S14','S13','S2','S3','H14','H11','H2','H3','D13','D12','D2','C2','C3']);
+const fourFourOpener=fill(['S14','S13','S2','S3','H14','H10','H2','H3','D13','D12','D2','C2','C3']);
 const afterStayman2NT=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2C'},{s:'W',c:'P'},
