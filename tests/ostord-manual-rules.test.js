@@ -317,6 +317,12 @@ const wrongTurn = Rattning.decideLive({
 });
 assert.equal(wrongTurn.exp, null);
 assert.match(wrongTurn.why, /inte den angivna spelarens tur/i);
+const endedAuction = Rattning.decideLive({
+  ownHand: liveOpeningHand, seat:'N', dealer:'N',
+  auction:[{s:'N',c:'P'},{s:'E',c:'P'},{s:'S',c:'P'},{s:'W',c:'P'}]
+});
+assert.equal(endedAuction.exp, null);
+assert.match(endedAuction.why, /redan avslutad/i);
 const malformedHand = Rattning.decideLive({
   ownHand: liveOpeningHand.slice(1), seat:'N', dealer:'N', auction:[]
 });
