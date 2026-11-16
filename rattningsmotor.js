@@ -642,11 +642,13 @@ var Rattning = (function(){
     var by={};ours.forEach(function(x){if(x.c[1]!=='N'){by[x.c[1]]=by[x.c[1]]||{};by[x.c[1]][x.s]=1}});
     var fits=SU.filter(function(k){return by[k]&&by[k].N&&by[k].S});
     if(fits.length===1)return fits[0];
-    // Nordisk standard s. 7: efter Stayman är 2♥/2♠ indirekt fastställd trumf.
-    // Enbart en fullföljd överföring fastställer däremot inte trumfen i källtexten.
+    // Nordisk standard s. 5: efter fullföljd överföring är 4NT uttryckligen RKC
+    // med överföringsfärgen som trumf. S. 7 anger också indirekt trumf efter
+    // 2♥/2♠ som svar på Stayman 2♣.
+    if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2D'&&ours[2].c==='2H')return 'H';
+    if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2H'&&ours[2].c==='2S')return 'S';
     if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2C'&&
-       (ours[2].c==='2H'||ours[2].c==='2S'))
-      return ours[2].c[1];
+       (ours[2].c==='2H'||ours[2].c==='2S'))return ours[2].c[1];
     return null;
   }
   // Fyr-essfråga utan trumf är bara avtalad i dessa uttryckliga sangsekvenser.
