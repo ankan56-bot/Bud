@@ -76,6 +76,8 @@
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX'}).map(function(x){return x.c});
     return ours.join(',')==='2N,4N';
   }
+  // Ägarskap för 4NT-modulen: alla svar på essfrågor/RKC och fortsättningar
+  // efter 4NT hanteras här, oberoende av vilken öppningsfamilj som ledde dit.
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
