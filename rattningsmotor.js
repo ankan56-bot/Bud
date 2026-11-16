@@ -1444,6 +1444,8 @@ var Rattning = (function(){
     }
     if(expected!==seat)
       return NC('Det är inte den angivna spelarens tur enligt den offentliga budhistoriken.','', 'live');
+    if(auction.length>=4&&auction.slice(-4).every(function(x){return x.c==='P';}))
+      return NC('Budgivningen är redan avslutad efter fyra pass.','', 'live');
     if(auction.some(function(x){return isBid(x.c)||x.c==='X'||x.c==='XX';}))
       return NC('Den här budfamiljen har ännu inte migrerats till informationssäker livebedömning. Endast öppningsbeslut efter pass är för närvarande aktiverade.','', 'live');
     var bids=auction.concat([{s:seat,c:'P'}]);
