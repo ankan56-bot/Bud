@@ -279,7 +279,7 @@ Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exa
 
 ### Naturlig 2NT-invit efter 1NT – numerisk gräns saknas
 
-Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 25 gemensamma hp för 3NT är separerad från livebeslutet.
+Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 26 gemensamma hp för 3NT är separerad från livebeslutet.
 
 Direkt 3NT med minst 26 gemensamma honnörspoäng är en separat användarbekräftad gräns; i sang räknas endast HP. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
 
@@ -329,7 +329,7 @@ Den separata överenskommelsen för 2NT–4NT har nu kodats uttryckligen som kva
 
 ### Live 3NT efter Stayman 2♦
 
-När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 10 egna hp garanteras minst 25 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 9 hp går det inte att garantera 25; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
+När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 11 egna hp garanteras minst 26 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 10 hp går det inte att garantera 26; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
 
 
 ### Öppnarens eventuella korrigering efter svarshandens 3NT efter överföring
