@@ -150,39 +150,49 @@ Nuvarande kod har den grundläggande längdjämförelsen i `ntOpener()` och slut
 
 ## 8. Tolkningen av 4NT – viktig konflikt
 
-**Källa: s. 7, avsnittet ”Slaminstrument – RKC”.**
+**Källa: Nordisk standard s. 5 och s. 7, avsnittet ”Slaminstrument – RKC”.**
 
-PDF:en skiljer mellan två lägen:
+PDF:en skiljer mellan två lägen.
 
 ### Trumf är fastställd
-Trumf är fastställd när färgen är bjuden och höjd, eller indirekt efter 2 i högfärg som svar på Stayman 2♣. Då gäller fem nyckelkort (fyra ess + trumfkungen):
-- 5♣ = 0 eller 3 ess av 5.
-- 5♦ = 1 eller 4 ess.
-- 5♥ = 2 ess utan trumfdam.
-- 5♠ = 2 ess med trumfdam.
-- 5NT = 3 ess och någon renons.
-- 6 i färg = 2 ess och renons i den bjudna färgen, med särskild nivåregel som anges på s. 7.
+
+Trumf är fastställd när färgen är bjuden och höjd, eller indirekt efter 2♥/2♠ som svar på Stayman 2♣. Efter fullföljd överföring 1NT–2♦–2♥ respektive 1NT–2♥–2♠ anger sida 5 också uttryckligen RKC med överföringsfärgen som trumf.
+
+Fem nyckelkort är fyra ess och trumfkungen. Den tryckta svarstabellen på sida 7 är:
+- 5♣ = 0 eller 3 nyckelkort.
+- 5♦ = 1 eller 4 nyckelkort.
+- 5♥ = 2 utan trumfdam.
+- 5♠ = 2 med trumfdam.
+- 5NT = 3 och någon renons.
+- 6 i färg = 2 och renons; 6 i trumf om renonsfärgen är högre än trumf.
+
+**Rättelse av tidigare implementation:** En tidigare kodversion och rapport använde omvänd 1430-ordning (5♣=1/4 och 5♦=0/3). Något uttryckligt användarbeslut om att avvika från Nordisk standard har inte hittats. Den tidigare mappningen var därför fel i förhållande till projektets auktoritativa systemkälla. Den är nu korrigerad till 5♣=0/3 och 5♦=1/4 i rättningsmotor, tester och analysbibliotek.
 
 ### Trumf är inte fastställd
+
 Då räknas endast fyra ess:
 - 5♣ = 0 eller 4 ess av 4.
 - 5♦ = 1 ess.
 - 5♥ = 2 ess.
 - 5♠ = 3 ess.
 
-### Konsekvens för nuvarande analysbibliotek
-`analysbibliotek.json` anger i `oneNTNoTrumpAceAsk` att 1NT–4NT och 1NT–2♣–2♦–4NT har svaren 5♣=0, 5♦=1, 5♥=2, 5♠=3, 5NT=4. Detta är fel mot PDF:en på två punkter:
-- 5♣ ska visa 0 eller 4, inte bara 0.
-- PDF:en anger inte 5NT som svar för fyra ess i detta läge; 5♠ visar 3 ess.
+5NT är inte svar för fyra ess.
 
-Till skillnad från en allmän slutsats om trumffit anger PDF:ens överföringstabell på s. 5 uttryckligen att 4NT efter 1NT–2♦–2♥ är RKC med hjärter som trumf och att 4NT efter 1NT–2♥–2♠ är RKC med spader som trumf. Den regeln ska därför behållas. Den är en särskild uttrycklig överenskommelse i systemet, även om en full åttakortsfit inte alltid är känd.
- 
-S. 7 ger dessutom en separat regel om indirekt fastställd trumf efter 2♥/2♠ som svar på Stayman 2♣. Därför ska 4NT efter 1NT–2♣–2♥ eller 1NT–2♣–2♠ också klassificeras som fem-ess-RKC. Efter 2♦ (ingen högfärg) är ingen trumf fastställd; 4NT är då fyr-essfråga.
+### Fortsättning efter RKC-svar
 
-### Stayman och fastställd trumf
-Efter Stayman-svar 2♥/2♠ anger PDF:en att trumf kan vara indirekt fastställd. Därför ska 4NT i dessa auktioner prövas som fem-ess-RKC enligt s. 7. Efter 2♦ (ingen högfärg) är ingen trumf fastställd; 4NT är då fyr-essfråga.
+Nordisk standard s. 7 anger att efter 5♣/5♦ frågar nästa bud som inte är trumf efter trumfdamen. 5 i trumf förnekar damen; 5NT visar den; 6 i ny färg visar damen och kung i den färgen. Efter dubbeltydigt 5-lågsvar och förnekad trumfdam bjuder frågeställaren 6 i trumf med 3 eller 4 egna ess.
 
-**Krav:** 4NT måste klassificeras med hela auktionshistoriken och fastställd trumfstatus. Ett generiskt 4NT-träd får inte användas.
+Motorn modellerar endast budvägar där den frågande färgen är laglig och 5 i trumf fortfarande kan användas som lagligt förnekande. Andra budordningslägen lämnas ej täckta och loggas.
+
+### Projektets slamgränser
+
+- 6 i färg: minst 3 av 4 ess i partnerskapet.
+- 7NT: alla 4 ess.
+- 7 i färg: alla 4 ess och trumfkungen.
+
+Motorn rekommenderar bara slam när samtliga kortkombinationer som är förenliga med det offentliga RKC-svaret uppfyller gränsen. Om svaret fortfarande tillåter både tillräcklig och otillräcklig essfördelning lämnas läget ej täckt.
+
+**Krav:** 4NT klassificeras med hela auktionshistoriken. Fyr-essfråga, RKC och kvantitativ 4NT ska hållas åtskilda.
 
 ## 9. Informationsgräns: livebeslut kontra efterhandsrättning
 
