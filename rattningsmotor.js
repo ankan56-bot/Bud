@@ -264,7 +264,7 @@ var Rattning = (function(){
       // The 2NT route shows four spades and is described as an invitation.
       // The PDF gives opener's 4-4 response (3S minimum / 4S maximum), but
       // does not state responder's numeric threshold for choosing it.
-      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen 26-hp-regel eller egen HP-gräns överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
+      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen 25-hp-regel eller egen HP-gräns överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
     }
     var naturalNew=[];
     if(reply==='2D'){
@@ -285,14 +285,14 @@ var Rattning = (function(){
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
     if(!opener){
-      // After 2♦ opener has denied a four-card major. With 11+ own HCP,
-      // partner's 15-HCP 1NT minimum guarantees the confirmed 26-HCP 3NT threshold.
-      if(reply==='2D'&&hp>=11&&h.bal)
-        return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp och ingen högfärgsfit. 3NT.',means:means,conv:'Stayman'};
-      return NC('Efter Stayman är den egna handen inte tillräcklig för att avgöra invit/pass eller utgång utan partnerns dolda hand. Undantag: 11+ hp efter 2♦ garanterar 26 hp mot 1NT-minimum och ger 3NT.',means,'Stayman',true);
+      // After 2♦ opener has denied a four-card major. With 10+ own HCP,
+      // partner's 15-HCP 1NT minimum guarantees the confirmed 25-HCP 3NT threshold.
+      if(reply==='2D'&&hp>=10&&h.bal)
+        return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp och ingen högfärgsfit. 3NT.',means:means,conv:'Stayman'};
+      return NC('Efter Stayman är den egna handen inte tillräcklig för att avgöra invit/pass eller utgång utan partnerns dolda hand. Undantag: 10+ hp efter 2♦ garanterar 25 hp mot 1NT-minimum och ger 3NT.',means,'Stayman',true);
     }
     if(M&&L[M]>=4&&opener&&fit>=8){
-      return NC('Minst 8-korts fit efter Stayman är känd, men Nordisk standard anger inte en särskild numerisk acceptgräns för att välja 4M framför invit eller pass i denna Staymanfortsättning. Den separata 26-poängsgränsen från andra högfärgssekvenser överförs inte hit; lämnas ej täckt.',means,'Stayman',true);
+      return NC('Minst 8-korts fit efter Stayman är känd, men Nordisk standard anger inte en särskild numerisk acceptgräns för att välja 4M framför invit eller pass i denna Staymanfortsättning. Den separata 26-poängsgränsen för högfärgsutgång från andra sekvenser överförs inte hit; lämnas ej täckt.',means,'Stayman',true);
     }else{
       var five=L.H>=5?'H':L.S>=5?'S':null;
       if(reply==='2D'&&five&&!h.bal)
@@ -301,7 +301,7 @@ var Rattning = (function(){
       if(jointHcp>=25){
         exp='3N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: utgång 3NT.';
       }else{
-        return NC('Ingen utgångsstyrka enligt 26 hp-gränsen. 2NT är beskrivet som invit, men dess numeriska gräns är inte angiven i Nordisk standard; pass kontra invit lämnas ej täckt.',means,'Stayman',true);
+        return NC('Ingen utgångsstyrka enligt 25 hp-gränsen. 2NT är beskrivet som invit, men dess numeriska gräns är inte angiven i Nordisk standard; pass kontra invit lämnas ej täckt.',means,'Stayman',true);
       }
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
