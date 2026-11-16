@@ -142,4 +142,4 @@ Källgranskningen är dokumenterad i `GRANSKNING_1NT_NORDISK_STANDARD.md`. En f�
 - Fortsättningen efter svar på fyr-essfrågan lämnas ej täckt eftersom PDF:en inte anger den.
 - Analysmatcharen filtrerar inte längre bort den giltiga fyr-essfrågetabellen på grund av en textmatchning.
 
-Nya regressionstester finns i `tests/nt-four-ace-source.test.js`. Övriga P0/P1-punkter – särskilt Stayman 2♥–2NT/3NT och fullständig överföringslogik – återstår. Konkurrensbudgivning och `main` är orörda.
+Nya regressionstester finns i `tests/nt-four-ace-source.test.js`. Öppnarens särskilda Staymanfortsättningar efter 2♥–2NT/3NT är nu verifierade och regressionstestade. Återstår: fullständig svarshandslogik efter Stayman, hela överföringstabellen, lågfärgsreläets prioritet och live-/efterhandsseparationen för samtliga 1NT-funktioner. Konkurrensbudgivning och `main` är orörda.
