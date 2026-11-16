@@ -829,6 +829,10 @@ var Rattning = (function(){
       return null;
     };
 
+    // Sangbud med håll i motståndarnas öppningsfärg.
+    if(!exp&&h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last)){
+      exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
+    }
     // Stöd visas först: 6-9 hp med 3/4/5-korts stöd ger enkel/dubbel/trippel höjning.
     if(L[s]>=3&&hp>=6&&hp<=9){
       var steps=L[s]>=5?3:L[s]>=4?2:1;
@@ -845,10 +849,6 @@ var Rattning = (function(){
       if(ok(cue,last)){exp=cue;why='10+ hp och '+L[s]+'-korts stöd: överbud i motståndarnas färg.';}
     }
 
-    // Sangbud med håll i motståndarnas öppningsfärg.
-    if(!exp&&h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last)){
-      exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
-    }
     if(!exp&&h.bal&&hp>=11&&hp<=13&&h.stop(os)&&ok('2N',last)){
       exp='2N';why='11-13 hp, balanserad hand med bra håll: 2NT.';
     }
