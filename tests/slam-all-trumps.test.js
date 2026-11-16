@@ -101,7 +101,7 @@ for(const viaStayman of [false,true]){
   }
 }
 
-// 2NT–4NT is quantitative, not an ace ask; 1m–2NT is not Stenberg.
+// A direct 4NT by opener immediately after 1m–2NT bypasses the required descriptive Stenberg rebid and is not RKC.
 {
   const north=makeHand({aces:['C']});
   const bids=[{s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},
