@@ -213,6 +213,31 @@ assert.match(
   'A one-level overcall followed by the overcaller partner response blocks slam'
 );
 
+
+const allCards = ['S','H','D','C'].flatMap(suit =>
+  Array.from({length:13}, (_,i) => suit + (i + 2))
+);
+const arbitraryHands = {
+  N: allCards.slice(0,13), E: allCards.slice(13,26),
+  S: allCards.slice(26,39), W: allCards.slice(39,52)
+};
+const blockedTwoLevel = Rattning.nodeFor({
+  hands: arbitraryHands, dealer: 'N',
+  bids: [{s:'N',c:'1D'},{s:'E',c:'2H'},{s:'S',c:'6D'}]
+}, 2);
+assert.equal(blockedTwoLevel.slamBlocked, true);
+assert.match(blockedTwoLevel.why, /tvåtricksnivån/i);
+
+const blockedOneLevelResponse = Rattning.nodeFor({
+  hands: arbitraryHands, dealer: 'N',
+  bids: [
+    {s:'N',c:'1D'},{s:'E',c:'1H'},{s:'S',c:'1S'},
+    {s:'W',c:'1S'},{s:'N',c:'6D'}
+  ]
+}, 4);
+assert.equal(blockedOneLevelResponse.slamBlocked, true);
+assert.match(blockedOneLevelResponse.why, /partner har svarat/i);
+
 const report = {
   engineVersion: Rattning.version,
   cases: [
