@@ -24,7 +24,7 @@
     var hp=h.hp,L=h.L,b=2+k,Hs=maj,exp,why,alt=[],soft=false,ruleStatus=null;
     var opener=openerCards?H(openerCards):null;
     var jointHp=hp+(opener?opener.hp:0);
-    var gl=k?5:10;
+    var lo=8,gl=k?5:10;
     var c2=(b)+'C',d2=(b)+'D',h2=(b)+'H',s2=(b)+'S',n2=(b)+'N';
     var means=function(c){
       if(c==='P')return 'Pass: dåliga kort utan färg att visa.';
