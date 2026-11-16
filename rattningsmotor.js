@@ -349,8 +349,10 @@ var Rattning = (function(){
     }
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
-      var meansNoMajor=function(c){if(c==='P')return 'Avslår invit.';if(c==='3N')return 'Accepterar invit till 3NT.';return null};
-      return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Numerisk acceptgräns är inte bekräftad; varken 25 eller 26 gemensamma hp används.',meansNoMajor,'Stayman',true);
+      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 25 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret når 25 gemensamma honnörspoäng.';return null};
+      if(!partner)return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Livebeslutet får inte använda partnerns dolda hand; efter given är 25 gemensamma hp den bekräftade 3NT-gränsen.',meansNoMajor,'Stayman',true);
+      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
       // Nordisk standard s. 4: 2NT visar fyra spader hos svarshanden.
