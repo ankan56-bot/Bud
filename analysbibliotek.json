@@ -859,8 +859,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "The numeric HCP threshold for choosing 3NT is not stated in Nordisk standard and was not explicitly confirmed by the user. The earlier 26-HCP figure came from assistant output, not a user-approved rule. Keep provisional."
+      "sourceStatus": "user_confirmed",
+      "sourceStatusNote": "3NT använder användarens senare korrigerade gräns 26 gemensamma honnörspoäng; i sang räknas endast HP."
     },
     {
       "id": "T10_1H_ENKEL_HOJNING",
@@ -1341,8 +1341,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "The numeric HCP threshold for choosing 3NT is not stated in Nordisk standard and was not explicitly confirmed by the user. The earlier 26-HCP figure came from assistant output, not a user-approved rule. Keep provisional."
+      "sourceStatus": "user_confirmed",
+      "sourceStatusNote": "3NT använder användarens senare korrigerade gräns 26 gemensamma honnörspoäng; i sang räknas endast HP."
     },
     {
       "id": "T19",
