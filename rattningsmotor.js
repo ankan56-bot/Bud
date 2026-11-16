@@ -284,7 +284,13 @@ var Rattning = (function(){
     }
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
-    if(!opener)return NC('Efter Stayman är den egna handen inte tillräcklig för att bedöma invit/pass eller utgång med gemensamma poäng. Endast uttryckliga 2NT-/nya-färg-betydelser kan rättas live.',means,'Stayman',true);
+    if(!opener){
+      // After 2♦ opener has denied a four-card major. With 11+ own HCP,
+      // partner's 15-HCP 1NT minimum guarantees the confirmed 26-HCP 3NT threshold.
+      if(reply==='2D'&&hp>=11&&h.bal)
+        return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp och ingen högfärgsfit. 3NT.',means:means,conv:'Stayman'};
+      return NC('Efter Stayman är den egna handen inte tillräcklig för att avgöra invit/pass eller utgång utan partnerns dolda hand. Undantag: 11+ hp efter 2♦ garanterar 26 hp mot 1NT-minimum och ger 3NT.',means,'Stayman',true);
+    }
     if(M&&L[M]>=4&&opener&&fit>=8){
       return NC('Minst 8-korts fit efter Stayman är känd, men Nordisk standard anger inte en särskild numerisk acceptgräns för att välja 4M framför invit eller pass i denna Staymanfortsättning. Den separata 26-poängsgränsen från andra högfärgssekvenser överförs inte hit; lämnas ej täckt.',means,'Stayman',true);
     }else{
