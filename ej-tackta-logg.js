@@ -13,7 +13,8 @@
     {id:'slam-control-bids',topic:'Kontrollbud och slamsekvenser',sequence:null,question:'Vilka kontrollbudssekvenser före och efter 4NT/RKC ingår i Nordisk standard, och hur ska de kopplas till fastställd trumf, essfråga och slamval?'},
     {id:'slam-quantitative-2nt-4nt',topic:'Kvantitativ invit 2NT–4NT',sequence:'2NT–4NT',question:'Vilken exakt styrkegräns ska öppnaren använda för att acceptera den kvantitativa inviten till 6NT efter 2NT-öppning (20–21 hp)?'},
     {id:'slam-transfer-superaccept-4nt',topic:'4NT efter överförings-superaccept',sequence:null,question:'Är 4NT efter en överförings-superaccept också RKC med överföringsfärgen som trumf, eller krävs en annan fortsättning? Underlaget behöver bekräftas.'},
-    {id:'slam-nt-six-threshold',topic:'Honnörspoäng för 6NT',sequence:null,question:'Bekräfta den exakta honnörspoängsgränsen för 6NT i Nordisk standard. Nuvarande implementation använder 33+ gemensamma hp (utan fördelningspoäng), i linje med projektets generella slamkontroll.'}
+    {id:'slam-nt-six-threshold',topic:'Honnörspoäng för 6NT',sequence:null,question:'Bekräfta den exakta honnörspoängsgränsen för 6NT i Nordisk standard. Nuvarande implementation använder 33+ gemensamma hp (utan fördelningspoäng), i linje med projektets generella slamkontroll.'},
+    {id:'stenberg-continuation-after-opener-rebid',topic:'Stenberg 2NT – svarshandens fortsättning',sequence:null,question:'Vilka exakta fortsättningar ska svarshanden använda efter öppningshandens 3-färgsåterbud eller 3NT efter Stenberg 2NT? Nordisk standard 2012-08-22 s. 2–3 anger öppningshandens första återbud men inte hela svarshandens fortsättning. Bekräfta även prioritet mellan flera singeltoner och fortsättning med renons.'}
   ];
   function read(){
     try{var v=root.localStorage&&root.localStorage.getItem(KEY);return v?JSON.parse(v):[];}
