@@ -1,29 +1,50 @@
 # Stenberg 2NT – implementation status
 
-Source: **Nordisk standard, 2012-08-22**, pages 2–3 (user-provided PDF in the Library).
-No external web sources are used.
+Källa: **Nordisk standard, 2012-08-22**, s. 2–3 (PDF i användarens bibliotek).
+Ingen extern webbsökning används.
 
-## Scope
-- 1♥/1♠ – 2NT: at least 13 htp and at least four-card support; game forcing.
-- 1♣/1♦ – 2NT: same requirement, with the source's priority rule: show a four-card major before supporting a minor.
-- Opener's first rebid after Stenberg:
-  - 3 in the opened suit: 15+ htp, no singleton.
-  - 3 in a side suit: singleton in the bid suit, with the exact suit mapping from the PDF.
-  - 3NT: 12–14 hp, balanced.
-- The source's general definitions of htp and balanced hands are reused from the scoring module.
+## Svarshandens 2NT
 
-## Endpoints
-- 4♥/4♠: major-game endpoint.
-- 5♣/5♦: minor-game endpoint.
-- 4NT: handed to the existing slam/RKC module only when the public auction establishes a trump suit and the RKC recognizer confirms the sequence.
+- 1♥–2NT och 1♠–2NT: minst 13 htp och minst fyra korts stöd. Stenberg och utgångskrav.
+- 1♣–2NT och 1♦–2NT: samma krav.
+- Efter lågfärgsöppning ska svarshanden visa 4-korts högfärg före lågfärgsstödet. Därför ska 2NT i lågfärg inte användas om svarshanden har en 4-korts högfärg.
 
-The endpoint contract checks use the project's established game thresholds: 26 partnership playing points in a major and 28 in a minor, with at least eight-card fit.
+## Öppningshandens första återbud efter Stenberg
 
-## Explicit source gaps
-The PDF does not specify the responder's full continuation after opener's Stenberg rebid, nor the choice between multiple singletons or a void. These cases return exp:null, carry sourceGap:true, and are recorded in the uncovered-sequence log. No conventional meanings are invented.
+| Öppning | Återbud | Betydelse |
+|---|---|---|
+| 1♥ | 3♥ | 15+ htp, ingen singleton |
+| 1♥ | 3♣ / 3♦ | Singleton i bjuden lågfärg |
+| 1♥ | 3♠ | Singleton i andra högfärgen |
+| 1♠ | 3♠ | 15+ htp, ingen singleton |
+| 1♠ | 3♣ / 3♦ | Singleton i bjuden lågfärg |
+| 1♠ | 3♥ | Singleton i andra högfärgen |
+| 1♣ | 3♣ | 15+ htp, ingen singleton |
+| 1♣ | 3♦ | Singleton i andra lågfärgen |
+| 1♣ | 3♥ / 3♠ | Singleton i bjuden högfärg |
+| 1♦ | 3♦ | 15+ htp, ingen singleton |
+| 1♦ | 3♣ | Singleton i andra lågfärgen |
+| 1♦ | 3♥ / 3♠ | Singleton i bjuden högfärg |
+| Alla | 3NT | 12–14 hp, balanserad hand |
 
-## Analysis library
-The module has a dedicated minor-suit analysis tree, T35_STENBERG_2NT_LAGFARG, alongside the existing major-suit Stenberg tree T34_STENBERG_2NT.
+## Slutpunkter
 
-## Validation
-tests/stenberg-2nt.test.js covers major/minor response eligibility, major-priority after minor opening, singleton mapping, balanced 12–14, 15+ without singleton, and explicit uncovered cases.
+- 4♥/4♠: högfärgsutgång.
+- 5♣/5♦: lågfärgsutgång.
+- 4NT: överlämnas till befintlig RKC-/slammodul när trumfen är fastställd.
+
+Utgångskontrollen kräver minst 8-korts fit och projektets spelpoängsgräns: 26 i högfärg och 28 i lågfärg. 4NT efter Stenberg i lågfärg fastställer öppningsfärgen som trumf och routas till RKC.
+
+## Källuckor – expertloggen
+
+PDF:en beskriver inte svarshandens fullständiga fortsättning efter öppnarens 3-färgsåterbud/3NT. Den anger inte heller prioritet mellan flera singletoner eller fortsättning med renons. Dessa positioner markeras EJ TÄCKTA och sparas i expertloggen. Kända regelbrott, exempelvis för få htp eller stöd, markeras däremot inte som källuckor.
+
+## Analysbibliotek
+
+- T34_STENBERG_2NT: högfärgsvarianten.
+- T35_STENBERG_2NT_LAGFARG: klöver- och rutervarianten.
+- T45_RKC_NORDISK_KLOVER och T46_RKC_NORDISK_RUTER: RKC-grenar efter Stenberg 2NT i lågfärg.
+
+## Tester
+
+tests/stenberg-2nt.test.js täcker hög- och lågfärg, 13 htp-gränsen, 4+ stöd, sök-högfärg-regeln, singletonvisningar, 3NT, 15+ htp utan singleton, live-läge, 100 deterministiska Stenberghänder, lågfärgsutgång och RKC-handoff.
