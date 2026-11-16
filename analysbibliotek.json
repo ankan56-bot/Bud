@@ -1,12 +1,12 @@
 {
-  "version": "0.6.14",
+  "version": "0.6.15",
   "description": "Analysbibliotek med 46 budträd. Överföringsbudens kvalitativa betydelser är källgranskade; numeriska styrkegränser som saknas i originalet används inte.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
     "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
-    "oneNTGameThreshold": "The user confirmed 25 HCP for no-trump game (3NT). Only HCP count in no-trump; no distribution points. This is separate from 26 OTP for major-suit game and 28 OTP for minor-suit game.",
+    "oneNTGameThreshold": "The user later confirmed 26 combined HCP for no-trump game (3NT). 25 combined HCP is invitation level, not game. Only HCP count in no-trump; no distribution points. This is separate from 26 OTP for major-suit game and 28 OTP for minor-suit game.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
     "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
@@ -536,7 +536,7 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "25+ gemensamma honnörspoäng – direkt utgång"
+              "label": "26+ gemensamma honnörspoäng – direkt utgång"
             },
             {
               "call": "4NT",
@@ -560,7 +560,7 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 25 gemensamma honnörspoäng; annars pass.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars pass.",
           "analysis": "Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
           "branches": [
             {
@@ -1297,11 +1297,11 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 25 gemensamma honnörspoäng; annars passar öppnaren.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars passar öppnaren.",
           "analysis": "Öppnaren har 16–17 hp och jämn fördelning. Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och också jämn fördelning. Ingen högfärg eller trumffit har hittats, så sang är rätt kontraktstyp. Med maximum och välplacerade honnörer räcker den sammanlagda styrkan för utgång. Öppnaren accepterar därför inviten med 3NT.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, balanserad; accepterar endast när paret når minst 25 gemensamma honnörspoäng.",
+            "opener": "15–17 hp, balanserad; accepterar endast när paret når minst 26 gemensamma honnörspoäng.",
             "responder": "Balanserad invit efter 1NT, normalt invitstyrka; numerisk gräns anges inte i källan; 2NT används även med 10+ om paret ännu inte når 26."
           }
         }
@@ -2502,7 +2502,7 @@
             "2♦",
             "Pass"
           ],
-          "meaning": "Svarshanden väljer nivå efter styrka och handtyp: 2NT med balanserad invitstyrka och invitstyrka; numeriskt intervall anges inte i källan, 3NT med minst 25 gemensamma honnörspoäng eller 4NT som uttryckligen avtalad fyr-essfråga utan trumf.",
+          "meaning": "Svarshanden väljer nivå efter styrka och handtyp: 2NT med balanserad invitstyrka och invitstyrka; numeriskt intervall anges inte i källan, 3NT med minst 26 gemensamma honnörspoäng eller 4NT som uttryckligen avtalad fyr-essfråga utan trumf.",
           "analysis": "Med cirka invitstyrka; numerisk gräns anges inte i källan inviterar svarshanden med 2NT. Med utgångsstyrka bjuder svarshanden 3NT direkt.",
           "branches": [
             {
@@ -2563,7 +2563,7 @@
             "2NT",
             "Pass"
           ],
-          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 25 gemensamma honnörspoäng; annars pass.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars pass.",
           "analysis": "Öppnaren avslår med pass på minimum eller accepterar med 3NT på maximum eller med bra honnörskvalitet. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
           "branches": [
             {
@@ -2595,7 +2595,7 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "2NT blir slutbud när paret inte når 25 gemensamma honnörspoäng.",
+          "meaning": "2NT blir slutbud när paret inte når 26 gemensamma honnörspoäng.",
           "analysis": "Öppnaren har minimum eller olämpliga honnörsvärden för utgång. Ingen högfärgsfit har hittats och paret stannar i 2NT.",
           "branches": [],
           "handProfile": {
@@ -2619,7 +2619,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan fyrkortshögfärg; minst 25 gemensamma honnörspoäng för direkt 3NT."
+            "responder": "Balanserad hand utan fyrkortshögfärg; minst 26 gemensamma honnörspoäng för direkt 3NT."
           }
         },
         {
@@ -2639,7 +2639,7 @@
           "analysis": "Öppnaren har maximum eller goda honnörsvärden. Stayman har inte hittat någon högfärgsfit, så 3NT är rätt kontraktstyp.",
           "branches": [],
           "handProfile": {
-            "opener": "Öppnarhanden bidrar så att paret når minst 25 gemensamma honnörspoäng.",
+            "opener": "Öppnarhanden bidrar så att paret når minst 26 gemensamma honnörspoäng.",
             "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         }
