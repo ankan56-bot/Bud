@@ -850,7 +850,7 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud först när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Vid 22–25 och balanserad svarshand används 2NT som invit.",
+          "meaning": "3NT är direkt slutbud när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Detta träd omfattar endast det verifierade 3NT-budet; det anger inte någon numerisk gräns för 2NT-inviten.",
           "analysis": "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
@@ -1330,7 +1330,7 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud först när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Vid 22–25 och balanserad svarshand används 2NT som invit.",
+          "meaning": "3NT är direkt slutbud när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Detta träd omfattar endast det verifierade 3NT-budet; det anger inte någon numerisk gräns för 2NT-inviten.",
           "analysis": "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
