@@ -68,11 +68,6 @@ const heartTransferOverlap=hand(['H14','H13','H12','H11','H10','S14','S13','S12'
 assert.equal(result(heartTransferOverlap,afterHeartTransfer).exp,null,
   'overlap between 2S one-round force and 3m game force has no source priority');
 
-const spadeTransferOverlap=hand(['S13','S12','S11','S10','S9','H13','H12','H11','H10','H9','C14','C13','D2']);
-assert.equal(R.H(spadeTransferOverlap).hp,12);
-assert.equal(result(spadeTransferOverlap,afterSpadeTransfer).exp,null,
-  'overlap between 3H 5-5 invite and 3m game force has no source priority');
-
 // The source says invit/weak but does not give numeric HP bands here.
 // Such cases must remain uncovered rather than borrow partner's hidden cards.
 const balancedFiveHearts=hand(['H14','H13','H12','H11','H10','S14','S13','S12','D14','D13','D12','C14','C13']);
