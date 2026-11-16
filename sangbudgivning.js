@@ -69,8 +69,8 @@
     var responder=responderCards?H(responderCards):null,jointHp=hp+(responder?responder.hp:0);
     var means=function(c){
       if(r===c2){if(c===b+'D')return 'Ingen 4+ högfärg.';if(c===b+'H')return '4-5 korts ♥ (kan ha 4-4 i högfärg).';if(c===b+'S')return '4-5 korts ♠.'}
-      if(r===d2){if(c===h2)return 'Fullföljer överföringen (visar 2+ ♥).';if(c===(b+1)+'H')return 'Max och 4+ ♥: kan bjuda 3♥ i stället för 2♥.'}
-      if(r===h2){if(c===s2)return 'Fullföljer överföringen.';if(c===(b+1)+'S')return 'Max och 4+ ♠: kan bjuda 3♠ i stället.'}
+      if(r===d2){if(c===h2)return 'Fullföljer överföringen (visar 2+ ♥).';if(c===(b+1)+'H')return 'Max och 4+ ♥: kan bjuda '+(b+1)+'♥ i stället för '+b+'♥.'}
+      if(r===h2){if(c===s2)return 'Fullföljer överföringen.';if(c===(b+1)+'S')return 'Max och 4+ ♠: kan bjuda '+(b+1)+'♠ i stället för '+b+'♠.'}
       if(!k&&r==='2S'){if(c==='2N')return 'Längre ♦ än ♣ eller lika längd i lågfärg.';if(c==='3C')return 'Längre ♣ än ♦.'}
       if(r===b+'N'){if(c==='P')return 'Avslår 2NT-inviten; numerisk acceptgräns anges inte i Nordisk standard.';if(c==='3N')return 'Accepterar 2NT-inviten; numerisk acceptgräns anges inte i Nordisk standard.'}
       if(c==='P')return 'Pass (slutbud).';
@@ -89,7 +89,8 @@
       why=L.H>=4?'4+ ♥ (även 4-4 i högfärg): 2♥.':L.S>=4?'4+ ♠ utan ♥: 2♠.':'Ingen 4-korts högfärg: 2♦.';
       if(L.H>=4&&L.S>=5)alt=[s2]}
     else if(r===d2||r===h2){conv='överföring';var M=r===d2?'H':'S';
-      if(hp>=17&&L[M]>=4&&!k){exp=(b+1)+M;alt=[b+M];why='Max (17 hp) och 4+ '+SYM[M]+': får bjuda 3 i färgen, men 2 i färgen är det vanliga.'}
+      var maxHp=k?21:17;
+      if(hp>=maxHp&&L[M]>=4){exp=(b+1)+M;alt=[b+M];why='Max ('+maxHp+' hp) och 4+ '+SYM[M]+': superaccepterar en nivå högre; normal fullföljning är '+b+M+'.'}
       else{exp=b+M;why='Fullföljer överföringen.'}}
     else if(!k&&r==='2S'){conv='1NT-svar';exp=L.C>L.D?'3C':'2N';why=L.C>L.D?'Längre ♣ än ♦: 3♣.':'Längre ♦ än ♣ eller lika: 2NT.'}
     else if(!k&&(r==='3C'||r==='3D')){
