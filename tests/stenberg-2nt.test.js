@@ -55,7 +55,7 @@ const openerNode=R.nodeFor({hands:openerHands,dealer:'N',bids:[
 assert.equal(openerNode.exp,'3C');
 const southHand=require('../poangberakning.js').H(openerHands.S);
 const northHand=require('../poangberakning.js').H(openerHands.N);
-assert.equal(St.responderContinuation(southHand,'1H','4H',northHand,
+assert.equal(St.responderContinuation(southHand,'1H','P',northHand,
  [{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},{s:'N',c:'3C'},{s:'E',c:'P'}],
  null,0).exp,'4H');
 // Minor Stenberg must establish the minor trump for the existing RKC module.
