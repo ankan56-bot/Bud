@@ -44,7 +44,7 @@ const fiveHeartFourClub=hand(['H14','H13','H12','H11','H10','C14','C13','C12','C
 assert.equal(result(fiveHeartFourClub,afterHeartTransfer).exp,'3C',
   '5+ hearts and 4+ clubs: game-forcing 3C');
 
-const fiveHeartBothMinors=hand(['H14','H13','H12','H11','H10','C14','C13','C12','D14','D13','D12','S14','S13']);
+const fiveHeartBothMinors=hand(['H14','H13','H12','H11','H10','C14','C13','C12','C11','D14','D13','D12','D11']);
 assert.equal(result(fiveHeartBothMinors,afterHeartTransfer).exp,null,
   'no invented priority when both minor suits meet the 4-card condition');
 
@@ -54,7 +54,7 @@ assert.equal(result(fiveFiveMajors,afterSpadeTransfer).exp,'3H',
 
 // The source says invit/weak but does not give numeric HP bands here.
 // Such cases must remain uncovered rather than borrow partner's hidden cards.
-const balancedFiveHearts=hand(['H14','H13','H12','H11','H10','S14','S13','D14','D13','C14','C13','C12','C11']);
+const balancedFiveHearts=hand(['H14','H13','H12','H11','H10','S14','S13','S12','D14','D13','D12','C14','C13']);
 assert.equal(result(balancedFiveHearts,afterHeartTransfer).exp,null,
   'balanced exact-five transfer hand has no invented 2NT/3NT threshold');
 
