@@ -1,6 +1,6 @@
 {
-  "version": "0.6.9",
-  "description": "Analysbibliotek med 46 budträd. Överföringstabellen i 1NT-familjen är källverifierad; inviter utan numerisk styrkegräns och svagt lågfärgsrelä hålls preliminära.",
+  "version": "0.6.10",
+  "description": "Analysbibliotek med 46 budträd. 1NT-familjen är källgranskad; överlappande kvalitativa styrkebeskrivningar och ej specificerade fortsättningar hålls uttryckligen ej täckta.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
