@@ -322,23 +322,20 @@ var Rattning = (function(){
     if(L[M]<5)
       return NC('Överföringssekvensen visar minst fem kort i '+SYM[M]+', men den egna handen uppfyller inte längdkravet.',means,'överföring');
 
-    // De särskilda färgkraven i tabellen är oberoende av de vanliga
-    // svag/invit/utgångsgrenarna och måste prövas först.
-    if(M==='H'&&L.S>=4){
-      return {exp:'2S',alt:[],why:'Minst 5♥ och 4+♠: 2♠ är rondkrav enligt Nordisk standard s. 5.',means:means,conv:'överföring'};
-    }
+    // Special branches can overlap. The source lists their meanings but
+    // does not give a priority when one hand satisfies more than one branch.
+    var special=[];
+    if(M==='H'&&L.S>=4)special.push({bid:'2S',why:'Minst 5♥ och 4+♠: 2♠ är rondkrav enligt Nordisk standard s. 5.'});
     var qualifyingMinors=minors.filter(function(suit){return L[suit]>=4;});
-    if(qualifyingMinors.length===1){
-      exp='3'+qualifyingMinors[0];
-      return {exp:exp,alt:[],why:'Minst 5'+SYM[M]+' och 4+ '+SYM[qualifyingMinors[0]]+': 3 i lågfärgen är utgångskrav enligt Nordisk standard s. 5.',means:means,conv:'överföring'};
-    }
-    if(qualifyingMinors.length>1)
-      return NC('Minst 5 kort i överföringsfärgen och 4+ i båda lågfärgerna. Nordisk standard anger ingen prioritet mellan 3♣ och 3♦.',means,'överföring');
-
-    // Efter spaderöverföring finns en särskild 5-5-invit i högfärgerna.
-    if(M==='S'&&L.H>=5&&hp>=8&&hp<=9){
-      return {exp:'3H',alt:[],why:'8–9 hp och minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.',means:means,conv:'överföring'};
-    }
+    qualifyingMinors.forEach(function(suit){
+      special.push({bid:'3'+suit,why:'Minst 5'+SYM[M]+' och 4+ '+SYM[suit]+': 3 i lågfärgen är utgångskrav enligt Nordisk standard s. 5.'});
+    });
+    if(M==='S'&&L.H>=5&&hp>=8&&hp<=9)
+      special.push({bid:'3H',why:'8–9 hp och minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
+    if(special.length>1)
+      return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar.',means,'överföring');
+    if(special.length===1)
+      return {exp:special[0].bid,alt:[],why:special[0].why,means:means,conv:'överföring'};
 
     if(hp<=7){
       return {exp:'P',alt:[],why:hp+' hp och minst fem kort i '+SYM[M]+': pass enligt svaggrenen 0–7 hp.',means:means,conv:'överföring'};
