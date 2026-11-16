@@ -118,6 +118,20 @@ Prioriterad ordning:
 6. Direkt 4NT, Stayman-4NT och överförings-RKC.
 7. Terminaler, ej täckta fortsättningar och dubbletter i analysbiblioteket.
 
-## 8. Ändringsstatus
+## 8. Källgranskning mot Nordisk standard
+
+Den fullständiga PDF:en `nordisk_standard.pdf` (2012-08-22) har nu kontrollerats, inte bara en sammanfattning. Se `GRANSKNING_1NT_NORDISK_STANDARD.md` för sida-för-sida-korsreferens och prioriterad avvikelselista.
+
+Viktiga bekräftade källregler:
+- 1NT: 15–17 hp, 4333/4432/5332, även femkorts högfärg (s. 2, 4).
+- Stayman 2♣ frågar efter fyrkorts högfärg; öppnarens 2♦/2♥/2♠-svar har uttryckliga betydelser (s. 4).
+- Efter 1NT–2♣–2♥ är 2NT och 3NT-fortsättningarna med fyrkorts spader särskilt beskrivna (s. 4).
+- Hela hjärter- och spaderöverföringstabellen är specificerad på s. 5.
+- Svagt lågfärgsrelä efter 2♠ är specificerat på s. 4–5.
+- 4NT har två olika essfrågetabeller beroende på om trumf är fastställd; fyr-esssvaret 5♣ betyder 0 eller 4, inte bara 0 (s. 7).
+
+Källgranskningen hittade verkliga kod-/dokumentavvikelser. Dessa ska åtgärdas i ordningen P0, P1, P2 i granskningsrapporten. Ingen ny HP-gräns får införas enbart för att koden redan använder den.
+
+## 9. Ändringsstatus
 
 Ingen budregel eller produktionskod ändras genom denna kartläggning. Dokumentet skiljer observerat runtime-beteende från verifierade systemregler. Nästa steg är att kontrollera varje rad mot Nordisk Standard-källan och därefter skapa tester innan någon regeländring.
