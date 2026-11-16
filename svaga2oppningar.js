@@ -22,6 +22,29 @@
   var T=api.T;
   var ok=api.ok;
   var NC=api.NC;
+  function opening(h,pick,m){
+    var hp=h.hp;
+    if(!(hp>=6&&hp<=10&&m>=6))return null;
+    var exp,alt=[],why;
+    if(m===6&&pick!=='C'&&h.goodForWeakTwo(pick)){
+      exp='2'+pick;
+      why='6-10 hp och exakt 6-korts '+SYM[pick]+' med bra kvalitet: svag tvåa.';
+    }else if(m===6){
+      exp='P';
+      why=pick==='C'?'Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass.':'6-10 hp och 6-korts '+SYM[pick]+' men för dålig färgkvalitet för svag tvåa: pass.';
+    }else if(m===7){
+      exp='3'+pick;alt=['4'+pick];why='7-korts färg med 6-10 hp: spärrbud 3 i färg.';
+    }else{
+      exp='4'+pick;alt=['3'+pick];why='8-korts färg med 6-10 hp: spärrbud 4 i färg.';
+    }
+    return {exp:exp,alt:alt,why:why,conv:'svag tvåa',means:function(b){
+      if(b==='P')return 'Pass när färgkvaliteten inte räcker för svag tvåöppning.';
+      if(/^2[DH S]$/.test(b))return '6-10 hp, exakt sexkortsfärg med bra kvalitet.';
+      if(/^3[CDHS]$/.test(b))return 'Spärröppning med sjukortsfärg.';
+      if(/^4[CDHS]$/.test(b))return 'Spärröppning med åttakortsfärg.';
+      return null;
+    }};
+  }
   function resp2w(h,oc,openerCards){
     var o=st_(oc),L=h.L,hp=h.hp,exp,why,alt=[];
     var opener=openerCards?H(openerCards):null;
