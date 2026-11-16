@@ -69,6 +69,20 @@ assert.equal(result(fiveFiveMajors,afterSpadeTransfer).exp,null,
 const heartTransferOverlap=hand(['H14','H13','H12','H11','H10','S14','S13','S12','S11','C14','C13','C12','C11']);
 assert.equal(result(heartTransferOverlap,afterHeartTransfer).exp,null,
   'overlap between 2S one-round force and 3m game force has no source priority');
+// The same source table also gives meanings for 4m control bids,
+// 4M signoff and 4NT RKC. These are exposed as candidate meanings even
+// where the source does not give enough strength/priority to recommend one.
+const bothMinorControlHand=hand(['H14','H13','H12','H11','H10','C14','C13','C12','C11','D14','D13','D12','D11']);
+const bothMinorControl=result(bothMinorControlHand,afterHeartTransfer);
+assert.equal(bothMinorControl.exp,null);
+assert.match(bothMinorControl.means('4C'),/Kontrollbud och slamintresse/i);
+assert.match(bothMinorControl.means('4D'),/Kontrollbud och slamintresse/i);
+
+const balancedFiveHeartSignoff=hand(['H14','H13','H12','H11','H10','S14','S13','S2','D14','D13','D2','C2','C3']);
+const heartTransferCandidates=result(balancedFiveHeartSignoff,afterHeartTransfer);
+assert.equal(heartTransferCandidates.exp,null);
+assert.match(heartTransferCandidates.means('4H'),/Slutbud/i);
+assert.match(heartTransferCandidates.means('4N'),/RKC/i);
 
 // The PDF gives qualitative meanings but no numerical HP bands for
 // weak / invitation / game-choice after transfer. The engine must not
