@@ -194,7 +194,7 @@ var Rattning = (function(){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs; situationen lämnas ej täckt.',means,conv,true);
     }
     else if(hp>=gl){
-      return NC('Svarshanden har utgångsnära styrka, men numeriskt HCP-krav för 3NT efter 1NT är inte bekräftat. Varken 25 eller 26 gemensamma hp antas; situationen lämnas ej täckt.',means,conv,true);
+      return NC('Svarshanden har utgångsnära styrka, men numeriskt HCP-krav för 3NT efter 1NT är inte bekräftat. Varken 25 eller 25 gemensamma hp antas; situationen lämnas ej täckt.',means,conv,true);
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
@@ -1374,7 +1374,7 @@ var Rattning = (function(){
 
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
       if(k===1&&!opener&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
-        return NC('Efter 2NT–3♣–3♠ kräver valet mellan 3NT och 4♠ en verifierad numerisk sanggräns eller en separat verifierad trumfacceptregel. Ingen 25/26-hp-gräns eller automatisk 26-OTP-accept antas; situationen lämnas ej täckt.',null,'2NT-Stayman',true);
+        return NC('Efter 2NT–3♣–3♠ kräver valet mellan 3NT och 4♠ en verifierad numerisk sanggräns eller en separat verifierad trumfacceptregel. Ingen 25/25-hp-gräns eller automatisk 26-OTP-accept antas; situationen lämnas ej täckt.',null,'2NT-Stayman',true);
       }
       if(c1==='1N'&&!opener&&d===2){
         var opening=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&/^1[CDHS]$/.test(x.c)})[0];
@@ -1769,7 +1769,7 @@ var Rattning = (function(){
 
     var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
     var total=trump==='N'?totalHcp:partnershipPoints(a,p,trump);
-    var threshold=trump==='N'?26:(maj(trump)?26:28);
+    var threshold=trump==='N'?25:(maj(trump)?26:28);
     var gameLevel=trump==='N'?3:(maj(trump)?4:5);
     var currentSuit=st_(currentContract),currentLevel=lv(currentContract);
     var gameReached=(currentSuit==='N'&&currentLevel>=3)||
