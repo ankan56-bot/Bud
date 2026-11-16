@@ -36,8 +36,8 @@ const afterCompletedHeartTransfer=[
  {s:'N',c:'2H'},{s:'E',c:'P'}
 ];
 const inviteFiveHearts=fill(['H13','H12','H11','H10','H9','S13','S2','S3','D2','D3','D4','C2','C3']);
-assert.equal(live('S',afterCompletedHeartTransfer,inviteFiveHearts).exp,'2N',
- '8–9 hp, balanced exact five-card transfer suit: invite 2NT');
+assert.equal(live('S',afterCompletedHeartTransfer,inviteFiveHearts).exp,null,
+ 'balanced exact five-card transfer suit: invite is described but no numeric strength threshold is specified');
 
 const staymanAfter2H=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
