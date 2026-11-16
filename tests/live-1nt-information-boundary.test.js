@@ -88,10 +88,10 @@ function judgeStayman2NT(responderHand){
  const bids=auction.concat([{s:'N',c:'P'}]);
  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
 }
-assert.equal(judgeStayman2NT(responderEight).exp,'P',
- '16+8=24 HCP after Stayman 2D: opener declines below game');
-assert.equal(judgeStayman2NT(responderNine).exp,'P',
- '16+9=25 HCP after Stayman 2D: below the 26-HCP game threshold');
+assert.equal(judgeStayman2NT(responderEight).exp,null,
+ 'no numeric accept threshold is confirmed after Stayman 2D–2NT');
+assert.equal(judgeStayman2NT(responderNine).exp,null,
+ '25 combined HCP does not establish a pass/accept boundary');
 
 const staymanResponderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(staymanResponderTen).hp,10);
