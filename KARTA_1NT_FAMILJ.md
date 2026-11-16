@@ -213,4 +213,4 @@ PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var 
 
 ### Direkt 3NT och sanggräns
 
-Den senare bekräftade spelregeln är 26 gemensamma honnörspoäng för sangutgång. I 3NT räknas endast hp, inga fördelningspoäng. Detta är skilt från 26 OTP för högfärgsutgång och 28 OTP för lågfärgsutgång. Vid partnerns 1NT (15–17 hp) kan svarshanden därför bjuda 3NT live med minst 11 egna hp, om ingen högfärg ska undersökas med Stayman eller överföring. Vid 10 hp kan paret ligga under eller på 26 beroende på öppnarens hand; den naturliga 2NT-inviten saknar numeriskt svarshandsintervall i Nordisk standard och lämnas därför ej täckt.
+Användaren har fastställt att endast honnörspoäng ska räknas i sang (3NT, 6NT och 7NT), men har inte uttryckligen bekräftat någon numerisk HP-gräns för 3NT. Den tidigare 25-/26-hp-gränsen kom från assistentförslag och behandlas inte som fastställd systemregel. Därför rekommenderar motorn inte direkt 3NT enbart utifrån en sådan gräns; sekvensen lämnas ej täckt tills styrkegränsen bekräftats. Detta är skilt från 26 OTP för högfärgsutgång och 28 OTP för lågfärgsutgång.
