@@ -66,8 +66,12 @@ assert.equal(live('S',firstResponse,balancedEight).exp,null,
 
 const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2','S3','S4']);
 assert.equal(R.H(balancedTen).hp,10);
-assert.equal(live('S',firstResponse,balancedTen).exp,null,
- '10 hp cannot guarantee 26 combined hp against partner range 15–17');
+assert.equal(live('S',firstResponse,balancedTen).exp,'3N',
+ '10 own HCP guarantees the confirmed 25-HCP 3NT threshold against partner 15–17');
+const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3','S4']);
+assert.equal(R.H(balancedNine).hp,9);
+assert.equal(live('S',firstResponse,balancedNine).exp,null,
+ '9 own HCP cannot guarantee 25 HCP against partner 15–17 and the source gives no invite band');
 const balancedEleven=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3']);
 assert.equal(R.H(balancedEleven).hp,11);
 assert.equal(live('S',firstResponse,balancedEleven).exp,'3N',
@@ -144,8 +148,8 @@ assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,'3N',
  '11 own HCP guarantees the 26-HCP 3NT game after Stayman 2D');
 const staymanTenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C2','C3']);
 assert.equal(R.H(staymanTenBalanced).hp,10);
-assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,null,
- '10 own HCP cannot guarantee 26 and no unverified invitation band is assumed');
+assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,'3N',
+ '10 own HCP guarantees the 25-HCP no-trump game threshold after Stayman 2D');
 
 // 4M after a completed transfer is explicitly a signoff; opener passes.
 const afterHeartTransferSignoff=[
