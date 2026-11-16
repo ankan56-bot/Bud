@@ -167,6 +167,9 @@
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman',ruleStatus:exp==='3N'?'user_confirmed':undefined};
   }
+  // Modulgräns: 1NT-familjen får rekommendera 4NT som nästa bud,
+  // men tolkar aldrig svaren på 4NT. Essfråga/RKC och fortsättning
+  // efter 4NT ägs av den separata, återanvändbara slamlogik.js-modulen.
   function transfer2(h,M){
     var L=h.L,exp,why,alt=[];
     var minors=['C','D'];
