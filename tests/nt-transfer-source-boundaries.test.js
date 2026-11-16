@@ -146,6 +146,21 @@ for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG']){
 }
 const weakRelayTree=lib.trees.find(t=>t.id==='T42_1NT_SVAG_LAGFARGSRELA');
 assert.ok(weakRelayTree);
+const relayAfter2NT=weakRelayTree.nodes.find(n=>n.id==='t42_n2');
+assert.match(relayAfter2NT.meaning,/ingen prioritet/i);
+assert.match(relayAfter2NT.analysis,/vid lika längd.*EJ TÄCKT/i);
+assert.doesNotMatch(JSON.stringify(weakRelayTree),/vid lika längd väljs klöver/i);
+for(const [treeId,bid,label] of [
+  ['T03_OVERFORING_PASS','4♥','minst fem hjärter'],
+  ['T07_OVERFORING_HJARTER','4♥','minst fem hjärter'],
+  ['T08_OVERFORING_SPADER','4♠','minst fem spader']
+]){
+  const tree=lib.trees.find(t=>t.id===treeId);
+  const node=tree.nodes.find(n=>n.sequence.length===5);
+  const branch=node.branches.find(b=>b.call===bid);
+  assert.ok(branch);
+  assert.match(branch.label,new RegExp(label));
+}
 assert.equal(weakRelayTree.sourceStatus,'source_qualitative');
 assert.equal(A.treeCompatible(weakRelayTree),true,
   'weak relay meaning remains source-aligned qualitatively; numeric hand selection stays uncovered');
