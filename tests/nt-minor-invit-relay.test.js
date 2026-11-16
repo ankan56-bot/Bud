@@ -72,7 +72,7 @@ for (const c of cases) {
 const relayHands = [
   {name:'longer diamonds', north:['S14','S12','S11','S2','H13','H12','H4','D14','D11','D7','D4','C8','C3'], expected:'2N'},
   {name:'equal minors', north:['S14','S12','S2','S3','H13','H12','H4','D14','D7','D4','C12','C8','C3'], expected:'2N'},
-  {name:'longer clubs', north:['S14','S12','S2','S3','H13','H12','H4','D14','D7','D4','C12','C8','C7'], expected:'3C'}
+  {name:'longer clubs', north:['S14','S12','S2','S3','H13','H12','H4','D14','D7','C12','C8','C7','C3'], expected:'3C'}
 ];
 for (const c of relayHands) {
   const auction = [
