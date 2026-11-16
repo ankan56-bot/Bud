@@ -748,7 +748,7 @@ function facitHtml(st){
   }catch(e){
     return '<div class="card"><p class="status">Budfacit</p><p>Facitmotorn kunde inte köras: '+esc(e.message)+'</p></div>';
   }
-  var h='<div class="card"><p class="status">Budfacit · rekommenderad huvudlinje</p>';
+  var h='<div class="card"><p class="status">Budfacit efter given · rekommenderad huvudlinje</p>';
   if(result.status==='complete'){
     h+='<p><b>Fullständig budgivning</b></p>';
     h+='<p>'+(result.contract?'Slutkontrakt: '+esc(result.contract.bidText)+' ('+esc(NAME[result.contract.declarer])+').':'Budgivningen slutar i pass.')+'</p>';
@@ -779,7 +779,7 @@ function facitHtml(st){
     h+='</article>';
   });
   h+='</div>';
-  h+='<p class="mu">Facit använder endast den aktuella spelarens hand och offentlig budhistorik vid varje beslut. Motståndarnas pass är en förutsättning för temat ostörd budgivning. En ofullständig gren markeras uttryckligen; ingen fortsättning fylls i automatiskt.</p></div>';
+  h+='<p class="mu">Detta är en efterhandsanalys av hela given och får använda alla fyra händer för att ta fram facit. Livebudgivningens råd använder däremot endast spelarens egen hand och offentlig budhistorik. Motståndarnas pass är en förutsättning för temat ostörd budgivning. En ofullständig gren markeras uttryckligen; ingen fortsättning fylls i automatiskt.</p></div>';
   return h;
 }
 
