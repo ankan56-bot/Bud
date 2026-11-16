@@ -81,6 +81,25 @@ assert.ok(guidanceStep);
 assert.equal(guidanceStep.systemStatus,'strategic_guidance');
 assert.equal(guidanceStep.ruleStatus,'Vägledande bedömning');
 
+// User-confirmed project rules are labelled separately from both source rules and guidance.
+const realNodeForProjectRule=R.nodeFor;
+let projectRuleCalls=0;
+R.nodeFor=function(state,index){
+  projectRuleCalls++;
+  if(projectRuleCalls===1)return {
+    exp:'3N',alt:[],why:'25 gemensamma honnörspoäng.',conv:'sang',
+    means:function(call){return call==='3N'?'Sangutgång vid 25 hp.':null},
+    ruleStatus:'user_confirmed'
+  };
+  return {exp:'P',alt:[],why:'Pass.',means:function(){return 'Pass.'}};
+};
+const projectRuleFacit=F.generateUndisturbedFacit({hands,dealer:'N',trainingSide:'NS'});
+R.nodeFor=realNodeForProjectRule;
+const projectRuleStep=projectRuleFacit.steps.find(step=>step.seat==='N'&&step.call==='3N');
+assert.ok(projectRuleStep);
+assert.equal(projectRuleStep.systemStatus,'user_confirmed');
+assert.equal(projectRuleStep.ruleStatus,'Överenskommen projektregel');
+
 // The completed-deal facit uses all four hands after the auction is over;
 // live advice is separately tested to use only the acting hand and public auction.
 const noContractHands=deal(
