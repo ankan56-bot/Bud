@@ -17,7 +17,7 @@
  function responder(hand,opening){
    if(!accepts(opening))return NC('Stenbergmodulen kräver en öppning på 1-tricksnivån i färg.');
    var suit=st_(opening),fit=hand.L[suit],htp=handHps(hand,suit);
-   if(fit<4)return NC('Stenberg 2NT kräver minst fyra korts stöd i öppningsfärgen.',null,'Stenberg 2NT',true);
+   if(fit<4)return NC('Stenberg 2NT kräver minst fyra korts stöd i öppningsfärgen.',null,'Stenberg 2NT',false);
    if(!maj(suit)&&(hand.L.H>=4||hand.L.S>=4))
      return NC('Med 4+ kort i högfärg och stöd i öppnad lågfärg ska högfärgen visas först (sök högfärg). 2NT är därför inte Stenberg här.',null,'Stenberg 2NT',true);
    if(htp<13)return NC('Stenberg 2NT kräver minst 13 htp inklusive stöd-/trumfpoäng; handen har '+htp+'.',null,'Stenberg 2NT',true);
@@ -37,7 +37,7 @@
    if(!accepts(opening))return NC('Stenbergmodulen kräver en öppning på 1-tricksnivån i färg.');
    var openingSuit=st_(opening);
    if(partnerHand&&partnerHand.L[openingSuit]<4)
-     return NC('Den tidigare 2NT-bjudningen saknar verifierat 4-kortsstöd i öppningsfärgen.',null,'Stenberg 2NT',true);
+     return NC('Den tidigare 2NT-bjudningen saknar verifierat 4-kortsstöd i öppningsfärgen.',null,'Stenberg 2NT',false);
    var singletons=SU.filter(function(s){return hand.L[s]===1;});
    var voids=SU.filter(function(s){return hand.L[s]===0;});
    if(voids.length)
@@ -70,7 +70,7 @@
    var isMajor=maj(suit),expected=isMajor?'4'+suit:'5'+suit;
    if(call!==expected)return NC('Efter öppningshandens Stenbergåterbud är nästa fortsättning inte uttryckligen specificerad i Nordisk standard. Budsekvensen sparas för expertgranskning.',null,'Stenberg 2NT',true);
    if(!partnerHand)return NC('Slutbudet efter Stenberg kräver gemensam handanalys; den andra handen är inte tillgänglig i live-läget.',null,'Stenberg 2NT',true);
-   if(fit<8)return NC('Slutbudet kräver minst åtta korts gemensam trumf; aktuell fit är '+fit+'.',null,'Stenberg 2NT',true);
+   if(fit<8)return NC('Slutbudet kräver minst åtta korts gemensam trumf; aktuell fit är '+fit+'.',null,'Stenberg 2NT',false);
    var points=partnershipPoints(hand,partnerHand,suit),minimum=isMajor?26:28;
    if(points<minimum)return NC('Slutbudet kräver minst '+minimum+' gemensamma spelpoäng enligt projektets utgångsgräns; aktuell beräkning är '+points+'. Fortsättningen lämnas EJ TÄCKT.',null,'Stenberg 2NT',true);
    return result(expected,fit+'-korts fit och '+points+' gemensamma spelpoäng: slutpunkt i '+(isMajor?'högfärgsutgång':'lågfärgsutgång')+'.','Stenberg – slutbud',
