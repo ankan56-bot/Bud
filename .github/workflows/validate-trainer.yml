@@ -73,7 +73,7 @@ jobs:
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
-          grep -q "if(st.mode==='ostord'&&" Budtraning.html
+          grep -q "if(st.mode==='ostord')" Budtraning.html
           grep -q 'dds-integration.js' Budtraning.html
           grep -q 'analysmotor.js' Budtraning.html
           grep -q 'rattningsmotor.js' Budtraning.html
