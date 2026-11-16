@@ -117,9 +117,9 @@
     };
 
     if (T_) {
-        // Fem nyckelkort saknar ett uttryckligt svar i projektets RKC 1430-tabell.
+        // Fem nyckelkort saknar ett uttryckligt svar i projektets RKC enligt Nordisk standard-tabell.
         if (kc === 5) {
-          return NC('Alla fem nyckelkort finns. RKC 1430-tabellen anger inget särskilt svar för fem av fem; läget lämnas ej täckt.',means,'RKC 1430',true);
+          return NC('Alla fem nyckelkort finns. RKC enligt Nordisk standard-tabellen anger inget särskilt svar för fem av fem; läget lämnas ej täckt.',means,'RKC enligt Nordisk standard',true);
         }
         // Nordisk standard s. 7: 3 nyckelkort + renons visas med 5NT.
         if (kc === 3 && voids.length > 0) {
@@ -130,7 +130,7 @@
           var voidSuit=voids[0];
           exp=SU.indexOf(voidSuit)>SU.indexOf(T_) ? '6'+T_ : '6'+voidSuit;
         } else if (kc === 2 && voids.length > 1) {
-          return NC('Två nyckelkort och flera renonser. Nordisk standard s. 7 anger 6 i färg för renons men väljer inte vilken av flera renonser som ska visas; läget lämnas ej täckt.',means,'RKC 1430',true);
+          return NC('Två nyckelkort och flera renonser. Nordisk standard s. 7 anger 6 i färg för renons men väljer inte vilken av flera renonser som ska visas; läget lämnas ej täckt.',means,'RKC enligt Nordisk standard',true);
         } else if (kc === 0 || kc === 3) {
           exp = '5C';
         } else if (kc === 1 || kc === 4) {
@@ -138,7 +138,7 @@
         } else if (kc === 2) {
           exp = q ? '5S' : '5H';
         } else {
-          return NC('Nyckelkortsantalet saknar ett uttryckligt svar i RKC 1430-tabellen.',means,'RKC 1430',true);
+          return NC('Nyckelkortsantalet saknar ett uttryckligt svar i RKC enligt Nordisk standard-tabellen.',means,'RKC enligt Nordisk standard',true);
         }
     } else {
         // Fyr-essfråga utan trumf: Nordisk standard s. 7.
@@ -149,9 +149,9 @@
     }
 
     why = T_
-      ? (kc + ' nyckelkort inklusive trumfkungen' + (voids.length ? ' och ' + voids.length + ' renons(er)' : '') + '. Svar enligt RKC 1430 och renonsreglerna i Nordisk standard s. 7.')
+      ? (kc + ' nyckelkort inklusive trumfkungen' + (voids.length ? ' och ' + voids.length + ' renons(er)' : '') + '. Svar enligt RKC enligt Nordisk standard och renonsreglerna i Nordisk standard s. 7.')
       : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
-    return {exp:exp,alt:[],why:why,means:means,conv:T_?'RKC 1430':'Fyr-essfråga utan trumf'};
+    return {exp:exp,alt:[],why:why,means:means,conv:T_?'RKC enligt Nordisk standard':'Fyr-essfråga utan trumf'};
   }
   function highestContract(auction){
     var highest=null;
