@@ -420,7 +420,7 @@ var Rattning = (function(){
       var means2=function(c){return c==='P'?'Passar på utgångsbudet.':null};
       return {exp:'P', alt:[], why:'Slutbud: pass.', means:means2, conv:'Stayman'};
     }
-    return NC('Fortsättningen beskrivs inte i dokumentet.');
+    return NC('Fortsättningen beskrivs inte i dokumentet; lämnas ej täckt.',null,'1NT-system',true);
   }
   function ntOpener3NTChoice(h,M){
     var L=h.L;
