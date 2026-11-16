@@ -8231,7 +8231,8 @@
         "4NT frågar efter fem nyckelkort: fyra ess och trumfkungen.",
         "Svar enligt Nordisk standard s. 7: 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
         "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7.",
-        "Trumfdamfrågan efter 5-lågsvar är bara automatiskt modellerad där ett lagligt 5-bud kan fråga och 5 i trumf fortfarande kan förneka. Övriga fortsättningar lämnas ej täckta."
+        "Trumfdamfrågan efter 5-lågsvar är bara automatiskt modellerad där ett lagligt 5-bud kan fråga och 5 i trumf fortfarande kan förneka. Övriga fortsättningar lämnas ej täckta.",
+        "Stenberg 1♣–2NT med minst fyra klöver etablerar också klöver som trumf för RKC 4NT."
       ],
       "root": "t45rkc_n0",
       "nodes": [
@@ -8389,6 +8390,56 @@
             "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
             "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC enligt Nordisk standard för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
           }
+        },
+        {
+          "id": "t45rkc_stenberg_n0",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2NT",
+            "Pass",
+            "…",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "Stenberg 2NT efter 1♣ etablerar klöver som trumf. 4NT är RKC enligt Nordisk standard.",
+          "analysis": "1♣–2NT visar 13+ htp och minst fyra klöver. Öppnarens återbud på 3-nivån kan visa 15+ htp utan singleton, en singleton eller 12–14 hp balanserad hand; klöver är ändå fastställd trumf. 4NT överlämnas till RKC-tabellen enligt Nordisk standard s. 7.",
+          "branches": [
+            {
+              "call": "5♣",
+              "next": "t45rkc_5c",
+              "label": "0 eller 3 nyckelkort"
+            },
+            {
+              "call": "5♦",
+              "next": "t45rkc_5d",
+              "label": "1 eller 4 nyckelkort"
+            },
+            {
+              "call": "5♥",
+              "next": "t45rkc_5h",
+              "label": "2 nyckelkort utan trumfdam"
+            },
+            {
+              "call": "5♠",
+              "next": "t45rkc_5s",
+              "label": "2 nyckelkort med trumfdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t45rkc_5nt",
+              "label": "3 nyckelkort och någon renons"
+            },
+            {
+              "call": "6♣",
+              "next": "t45rkc_6c",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            }
+          ],
+          "handProfile": {
+            "opener": "1♣-öppnare; klöver är fastställd trumf efter Stenberg 2NT oavsett öppnarens 3-nivååterbud.",
+            "responder": "13+ htp, minst fyra klöver; Stenberg 2NT är utgångskrav."
+          }
         }
       ]
     },
@@ -8406,7 +8457,8 @@
         "4NT frågar efter fem nyckelkort: fyra ess och trumfkungen.",
         "Svar enligt Nordisk standard s. 7: 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
         "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7.",
-        "Trumfdamfrågan efter 5-lågsvar är bara automatiskt modellerad där ett lagligt 5-bud kan fråga och 5 i trumf fortfarande kan förneka. Övriga fortsättningar lämnas ej täckta."
+        "Trumfdamfrågan efter 5-lågsvar är bara automatiskt modellerad där ett lagligt 5-bud kan fråga och 5 i trumf fortfarande kan förneka. Övriga fortsättningar lämnas ej täckta.",
+        "Stenberg 1♦–2NT med minst fyra ruter etablerar också ruter som trumf för RKC 4NT."
       ],
       "root": "t46rkc_n0",
       "nodes": [
@@ -8586,6 +8638,61 @@
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
             "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC enligt Nordisk standard för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
+        },
+        {
+          "id": "t46rkc_stenberg_n0",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "…",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "Stenberg 2NT efter 1♦ etablerar ruter som trumf. 4NT är RKC enligt Nordisk standard.",
+          "analysis": "1♦–2NT visar 13+ htp och minst fyra ruter. Öppnarens återbud på 3-nivån kan visa 15+ htp utan singleton, en singleton eller 12–14 hp balanserad hand; ruter är ändå fastställd trumf. 4NT överlämnas till RKC-tabellen enligt Nordisk standard s. 7.",
+          "branches": [
+            {
+              "call": "5♣",
+              "next": "t46rkc_5c",
+              "label": "0 eller 3 nyckelkort"
+            },
+            {
+              "call": "5♦",
+              "next": "t46rkc_5d",
+              "label": "1 eller 4 nyckelkort"
+            },
+            {
+              "call": "5♥",
+              "next": "t46rkc_5h",
+              "label": "2 nyckelkort utan trumfdam"
+            },
+            {
+              "call": "5♠",
+              "next": "t46rkc_5s",
+              "label": "2 nyckelkort med trumfdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t46rkc_5nt",
+              "label": "3 nyckelkort och någon renons"
+            },
+            {
+              "call": "6♣",
+              "next": "t46rkc_6c",
+              "label": "2 nyckelkort och renons"
+            },
+            {
+              "call": "6♦",
+              "next": "t46rkc_6d",
+              "label": "2 nyckelkort och renons"
+            }
+          ],
+          "handProfile": {
+            "opener": "1♦-öppnare; ruter är fastställd trumf efter Stenberg 2NT oavsett öppnarens 3-nivååterbud.",
+            "responder": "13+ htp, minst fyra ruter; Stenberg 2NT är utgångskrav."
           }
         }
       ]
