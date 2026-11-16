@@ -185,6 +185,7 @@ button:disabled{opacity:.3;cursor:default}
 <script src="budbeslut.js"></script>
   <script src="rattningsrapport.js"></script>
   <script src="rattningsmotor.js"></script>
+<script src="ej-tackta-logg.js"></script>
 <script src="facitmotor.js"></script>
 <script src="dds-integration.js"></script>
 <script src="analysmotor.js"></script>
@@ -747,6 +748,10 @@ function reviewPrompt(st){
   return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Mänskliga platser: "+(st.humanSeats||['N','S']).map(function(s){return NAME[s]}).join(', ')+". Robotplatser: "+SEATS.filter(function(s){return isBot(s,st)}).map(function(s){return NAME[s]}).join(', ')+". Robotbud ska inte bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. Bedöm endast bud som lagts av mänskliga spelare. För varje sådant bud: förklara vad det visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
 }
 
+function ejTacktaExportHtml(){
+  var count=window.EjTacktaLogg?window.EjTacktaLogg.count():0;
+  return '<div style="margin:12px 0"><button type="button" class="secondary" onclick="window.EjTacktaLogg&&window.EjTacktaLogg.exportJson()">Ladda ned ej täckta sekvenser ('+count+')</button><p class="mu">Ej täckta bud sparas automatiskt på denna enhet. Ladda ned JSON-filen och skicka den till experten.</p></div>';
+}
 function facitHtml(st){
   if(st.mode!=='ostord'||!window.BudFacit)return '';
   var humans=Array.isArray(st.humanSeats)&&st.humanSeats.length?st.humanSeats:['N','S'];
@@ -762,7 +767,7 @@ function facitHtml(st){
   }catch(e){
     return '<div class="card"><p class="status">Budfacit</p><p>Facitmotorn kunde inte köras: '+esc(e.message)+'</p></div>';
   }
-  var h='<div class="card"><p class="status">Budfacit efter given · rekommenderad huvudlinje</p>';
+  var h='<div class="card"><p class="status">Budfacit efter given · rekommenderad huvudlinje</p>'+ejTacktaExportHtml();
   if(result.status==='complete'){
     h+='<p><b>Fullständig budgivning</b></p>';
     h+='<p>'+(result.contract?'Slutkontrakt: '+esc(result.contract.bidText)+' ('+esc(NAME[result.contract.declarer])+').':'Budgivningen slutar i pass.')+'</p>';
@@ -800,7 +805,7 @@ function facitHtml(st){
 function reviewHtml(st){
   var result;
   try{result=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]})}catch(e){result={items:[],summary:'Rättningsmotorn kunde inte köras: '+e.message,auction:{errors:[]}}}
-  var h='<div class="card"><p class="status">Automatisk rättning</p>';
+  var h='<div class="card"><p class="status">Automatisk rättning</p>'+ejTacktaExportHtml();
   h+='<p><b>'+esc(result.summary||'')+'</b></p>';
   if(result.auction&&result.auction.errors&&result.auction.errors.length){h+='<div class="review-item fel"><b>Budgivningskontroll</b><ul>'+result.auction.errors.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}
   h+='<div class="review-list">';
