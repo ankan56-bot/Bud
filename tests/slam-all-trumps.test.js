@@ -119,4 +119,29 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   assert.ok(tree.nodes.some(n=>n.sequence.includes('5NT')),'tree '+id+' must explain 5NT void response');
   assert.ok(tree.nodes.some(n=>n.sequence.some(c=>/^6[♣♦♥♠]$/.test(c))),'tree '+id+' must explain 6-level void response');
 }
+// Unsupported RKC continuations must be retained in the separate review log.
+{
+  const store=new Map();
+  global.window={localStorage:{
+    getItem:key=>store.has(key)?store.get(key):null,
+    setItem:(key,value)=>store.set(key,value),
+    removeItem:key=>store.delete(key)
+  }};
+  require('../ej-tackta-logg.js');
+  const log=global.window.EjTacktaLogg;
+  const hands=dealWithNorth(makeHand({trump:'H',aces:['C']}));
+  const bids=[
+    {s:'N',c:'1H'},{s:'E',c:'P'},
+    {s:'S',c:'2H'},{s:'W',c:'P'},
+    {s:'N',c:'4N'},{s:'E',c:'P'},
+    {s:'S',c:'5C'},{s:'W',c:'P'},
+    {s:'N',c:'5D'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},8);
+  assert.equal(result.exp,null,'the incomplete queen-ask continuation must not be guessed');
+  assert.equal(result.sourceGap,true,'the source gap must be explicitly identified');
+  assert.equal(log.count(),1,'the uncovered RKC continuation must be saved');
+  assert.equal(log.read()[0].context,'after_deal');
+  assert.equal(log.read()[0].attemptedCall,'5D');
+}
 console.log('All-trumps RKC and no-trump four-ace tests: passed.');
