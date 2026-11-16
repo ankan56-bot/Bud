@@ -63,8 +63,10 @@ assert.equal(result(fiveHeartBothMinors,afterHeartTransfer).exp,null,
   'no invented priority when both minor suits meet the 4-card condition');
 
 const fiveFiveMajors=hand(['S13','S2','S3','S4','S5','H13','H12','H11','H4','H5','D2','D3','C2']);
-assert.equal(result(fiveFiveMajors,afterSpadeTransfer).exp,null,
+const fiveFiveMajorsResult=result(fiveFiveMajors,afterSpadeTransfer);
+assert.equal(fiveFiveMajorsResult.exp,null,
   '5-5 majors identifies the invit profile, but strength is unquantified');
+assert.match(fiveFiveMajorsResult.means('3H'),/Invit med minst 5-5/i);
 
 const heartTransferOverlap=hand(['H14','H13','H12','H11','H10','S14','S13','S12','S11','C14','C13','C12','C11']);
 assert.equal(result(heartTransferOverlap,afterHeartTransfer).exp,null,
