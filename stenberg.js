@@ -57,7 +57,7 @@
    if(htp>=15)
      return result('3'+openingSuit,'15+ htp och ingen singelton: extra styrka visas genom höjning av öppningsfärgen till 3-nivån.','Stenberg 2NT',
        function(c){return c==='3'+openingSuit?'15+ htp, ingen singelton.':null;});
-   return NC('Handen motsvarar inte någon uttryckligen beskriven återbudstyp efter Stenberg: varken 15+ htp utan singelton, 12–14 hp balanserad eller en singelton som kan visas.',null,'Stenberg 2NT',true);
+   return NC('Handen motsvarar inte någon av de angivna återbudsprofilerna efter Stenberg: varken 15+ htp utan singelton, 12–14 hp balanserad eller en singelton som kan visas. Läget lämnas ej täckt.',null,'Stenberg 2NT',true);
  }
  function responderContinuation(hand,opening,call,partnerHand,prior,rkcTrumpFromAuction,side,askSeat){
    var suit=st_(opening),fit=partnerHand?hand.L[suit]+partnerHand.L[suit]:0;
@@ -68,7 +68,7 @@
      return NC('4NT efter Stenberg kan inte verifieras som RKC med den offentliga budsekvensen. Överlämnas inte automatiskt till essfrågan.',null,'Stenberg 2NT',true);
    }
    var isMajor=maj(suit),expected=isMajor?'4'+suit:'5'+suit;
-   if(call!==expected)return NC('Efter öppningshandens Stenbergåterbud är nästa fortsättning inte uttryckligen specificerad i Nordisk standard. Budsekvensen sparas för expertgranskning.',null,'Stenberg 2NT',true);
+   if(call!==expected)return NC('Efter öppningshandens Stenbergåterbud är nästa fortsättning inte uttryckligen specificerad i Nordisk standard; läget lämnas ej täckt och sparas för expertgranskning.',null,'Stenberg 2NT',true);
    if(!partnerHand)return NC('Slutbudet efter Stenberg kräver gemensam handanalys; den andra handen är inte tillgänglig i live-läget.',null,'Stenberg 2NT',true);
    if(fit<8)return NC('Slutbudet kräver minst åtta korts gemensam trumf; aktuell fit är '+fit+'.',null,'Stenberg 2NT',false);
    var points=partnershipPoints(hand,partnerHand,suit),minimum=isMajor?26:28;
