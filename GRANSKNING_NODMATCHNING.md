@@ -125,3 +125,8 @@ Den praktiska nästa grinden är en maskinell validerare för nodbiblioteket och
 - terminal eller odefinierad fortsättning.
 
 Det ger oss en kontrollerbar karta innan någon större omstrukturering av budträdet görs.
+
+
+## Ny korsreferensrapport och maskinell validering
+
+`KORSREFERENS_RUNTIME_NODER.md` listar systemfamiljer, relevanta runtime-funktioner och samtliga 26 grupper med identiska sekvensnycklar. Den bekräftar att bibliotek och runtime ännu inte är en gemensam nodmotor. `scripts/validate-analysis-library.js` kontrollerar strukturella fel; `tests/analysis-library-audit.test.js` låser den nuvarande baslinjen. De kända luckorna (T40-root, 8 handprofiler, 106 grenposter utan mål) är avsiktliga varningar och har inte tyst rättats.
