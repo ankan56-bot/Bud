@@ -96,8 +96,13 @@ var Rattning = (function(){
     if(strongOpening)return strongOpening;
     if(h.bal&&hp>=20&&hp<=21){exp='2N';why='Balanserad 20-21 hp öppnas 2NT.'}
     else if(h.bal&&hp>=15&&hp<=17){exp='1N';why='Balanserad (fördelning '+h.shape+') med 15-17 hp öppnas 1NT.'}
-    else if(hp>=12){exp=one;why=hp+' hp med längsta färgen '+SYM[pick]+' ('+L[pick]+' kort): 1 i färg (12-19 hp).'}
-    else{
+    else if(hp>=11){
+      var oneOpening=maj(pick)?majorBidding.open(h,pick,fourthHandAfterThreePasses):minorBidding.open(h,pick,fourthHandAfterThreePasses);
+      if(oneOpening)return oneOpening;
+      var weakOpening=weakTwo.opening(h,pick,m);
+      if(weakOpening)return weakOpening;
+      exp='P';why=hp+' hp räcker inte för öppning enligt 11-poängsregeln och ingen spärrhand.';
+    }else{
       var weakOpening=weakTwo.opening(h,pick,m);
       if(weakOpening)return weakOpening;
       exp='P';why=hp+' hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand.';
