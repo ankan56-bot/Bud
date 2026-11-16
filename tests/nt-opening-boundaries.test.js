@@ -28,12 +28,12 @@ const cases = [
     expected: '1N'
   },
   {
-    name: 'balanced 14 HCP is below 1NT range',
+    name: 'balanced 14 HCP opens one suit, not 1NT',
     hand: ['S14','S13','S7','S2','H14','H8','H3','D12','D8','D3','C11','C8','C3'],
-    expected: 'P'
+    expected: '1S'
   },
   {
-    name: 'balanced 18 HCP is above 1NT range',
+    name: 'balanced 18 HCP opens one suit, not 1NT',
     hand: ['S14','S13','S12','S7','H14','H8','H3','D13','D8','D3','C12','C8','C3'],
     expected: 'P'
   }
