@@ -43,7 +43,7 @@ Nuvarande kod:
 | 2♦ | Överföring med minst 5 hjärter. | Överföring vid 5+ hjärter. | Stämmer i grundvillkoret. |
 | 2♥ | Överföring med minst 5 spader. | Överföring vid 5+ spader. | Stämmer i grundvillkoret. |
 | 2♠ | Dåliga kort med minst 6-korts lågfärg eller 5-5 i lågfärgerna; vill hellre spela 3 lågfärg än 1NT. | Reläväg finns, men kodens ordning kan få 8–9 hp obalanserade händer att returnera ej täckt innan lågfärgsreläet prövas. | Prioritet/handvillkor behöver rättas och testas mot både 6+ och 5-5. |
-| 2NT | Naturlig invit med balanserad hand utan 4-korts högfärg. | Balanserad invit, men kodens intervall är 8–9 hp. | Balansvillkoret stämmer; den numeriska gränsen är inte angiven i PDF:en. |
+| 2NT | Naturlig invit med balanserad hand utan 4-korts högfärg. | Balanserad invit; den tidigare kodade 8–9 hp-gränsen är borttagen eftersom PDF:en inte anger den. | Balansvillkoret stämmer; den numeriska gränsen är inte angiven i PDF:en. |
 | 3♣/3♦ | Invit med bra 6+ lågfärg. Öppnaren passar med xx eller xxx i stöd och söker topphonnör. | Kandidatbud/alternativ förekommer, men svarsmotorn väljer inte konsekvent 3-lågfärg som den dokumenterade inviten. Öppnaren kontrollerar A/K/D i färgen. | Behöver ren sekvensmodell. Definitionen av ”bra” är inte numeriskt preciserad i denna punkt. |
 | 3NT | Slutbud. | Koden kan rekommendera 3NT med hjälp av gemensamma hp från partnerns faktiska hand. | Slutbudets betydelse stämmer; beslutet får inte bygga på dold partnerhand. |
 
@@ -345,3 +345,6 @@ Efter 1NT–2♣–2♦/2♥/2♠ är svarshandens nya färg naturlig och utgån
 ### Viktig korrigering av överföringstabellen – original-PDF sida 5
 
 En ny läsning av själva PDF-sidan visar att tidigare text i denna granskningsfil som påstod att 0–7, 8–9 och 10–15 hp stod i tabellen var felaktig. Dessa intervall finns inte på sidan. Alla sådana numeriska regler är borttagna ur `transfer2`, och T03/T07/T08 har markerats `provisional_source_gap` eftersom de innehåller källbelagda budbetydelser men inte kan klassificera styrkan mellan svag/invit/utgång. De särskilda formvillkoren för 2♠, 3 lågfärg och 3♥ efter spaderöverföring är fortsatt implementerade när de är entydiga. Överlapp utan angiven prioritet lämnas ej täckt.
+
+
+**Aktuell tolkning:** Överföringstabellens styrkebeskrivningar är kvalitativa. Äldre avsnitt i denna rapport som återger 8–9 hp eller andra numeriska gränser beskriver den tidigare implementationen och är inte godkända systemregler. Den styrkeklassificeringen är nu markerad ej täckt i motorn och i analysbiblioteket.
