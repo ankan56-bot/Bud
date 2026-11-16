@@ -107,13 +107,13 @@ for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFOR
   assert.equal(tree.sourceStatus,'provisional_source_gap',id+' remains provisional because opener acceptance is not specified');
   assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
 }
-// The source describes 3NT as a final contract but gives no numeric
-// The source does not confirm a numeric HCP threshold for 3NT after 1NT.
+// The 25-HCP 3NT threshold is user-confirmed (2026-11-14), even
+// though Nordisk standard itself only labels 3NT as the final contract.
 for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree);
-  assert.equal(tree.sourceStatus,'provisional_source_gap');
-  assert.equal(A.treeCompatible(tree),false,id+' must not assert an unconfirmed 3NT HCP threshold');
+  assert.equal(tree.sourceStatus,'user_confirmed');
+  assert.equal(A.treeCompatible(tree),true,id+' must expose the user-confirmed 25-HCP 3NT threshold');
 }
 for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG']){
   const tree=lib.trees.find(t=>t.id===id);
