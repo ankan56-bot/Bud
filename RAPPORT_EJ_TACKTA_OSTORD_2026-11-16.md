@@ -41,10 +41,10 @@ Notation: A=ess, K=kung, Q=dam, J=knekt, T=tio. Händerna visas i ordningen ♠,
 - **W** (9 hp, 1-4-6-2): J | 8 6 5 3 | A K J 9 8 6 | T 7
 
 ### 3. one-major-042 / ostord-200-072 — seed 202615834
-**Kategori:** 1-over-1 – svar efter öppnarens splintertolkning
+**Kategori:** 1-över-1 – tidigare splintertolkning borttagen
 **Auktion:** `N:1S E:P S:2D W:P N:3H E:P S:P`
 **Motorns besked:** Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas.
-**Analys:** Öppnarens 4-4-4-1-hand får 3♥ av nuvarande reb1()-kod som splinter (hjärterkorthet, ruterstöd). T40/responderSecondBid saknar en svarshandsgren. Splintervillkoret är inte verifierat mot auktoritativ systemtext; sekvensen ska stå ej täckt.
+**Historisk notering:** Den tidigare motorn föreslog 3♥ som splinter (hjärterkorthet, ruterstöd). Splinter är nu borttaget ur systemet. Givaren måste räknas om: öppnaren har fyrkortsstöd i ruter efter 2♦, så den naturliga stödvägen ska prövas; 3♥ får inte längre motiveras som splinter.
 - **N** (13 hp, 4-1-4-4): A K Q 8 | 3 | K T 8 5 | J T 7 4
 - **E** (7 hp, 3-6-3-1): 7 5 4 | K T 8 6 4 2 | 9 6 3 | A
 - **S** (11 hp, 3-4-4-2): T 3 2 | A J 7 5 | A Q 7 2 | 8 3
@@ -141,8 +141,8 @@ Notation: A=ess, K=kung, Q=dam, J=knekt, T=tio. Händerna visas i ordningen ♠,
 - Öppnarens tredje bud efter 1♣–1♦–2♣–2NT saknar verifierad fortsättningsregel.
 - Svarshandens senare fortsättning efter att öppnaren visat ytterligare färg (t.ex. 3♥) ligger utanför den nuvarande T40-modellen.
 
-### Splinter
-- Motorn tolkar 1♠–2♦–3♥ som splinter i seed 202615834, men styrkekravet är inte verifierat och T40 saknar svarshandsgren. Denna position får inte automatiskt lösas genom att anta en 3M/4M-uppföljning.
+### Avancerade konventioner
+- Splinter är borttaget ur den aktuella budgivningen. Äldre resultat som byggde på splintertolkning ska räknas om utan konventionen.
 
 ### Spärr och stark 2♣
 - Svar efter 4♣-spärr är inte täckt.
