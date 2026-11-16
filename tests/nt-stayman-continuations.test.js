@@ -132,6 +132,13 @@ assert.equal(overlappingFourSpadesAndFourClubs.exp,null,
   'the 4-spade Stayman route and a 4-card minor game-force both apply; no priority is invented');
 assert.match(overlappingFourSpadesAndFourClubs.why,/ingen prioritet/i);
 assert.match(overlappingFourSpadesAndFourClubs.means('3C'),/utgångskrav/i);
+const overlappingFourSpadesAndHeartInvite=responderAfterStayman(
+  ['S14','S13','S12','S11','H14','H13','H12','H11','H10','D14','D13','D12','D11'],'2H');
+assert.equal(overlappingFourSpadesAndHeartInvite.exp,null,
+  'exactly four spades and five hearts meet both the 2NT/3NT route and 3H invite; no priority is invented');
+assert.match(overlappingFourSpadesAndHeartInvite.why,/3H-invit/i);
+assert.match(overlappingFourSpadesAndHeartInvite.means('3H'),/Invit i öppnarens visade hjärter/i);
+assert.match(overlappingFourSpadesAndHeartInvite.means('3D'),/utgångskrav/i);
 // The source also names 3M in opener's shown major as an invit.
 // The bidding meaning is recognized, but the numeric choice/acceptance
 // threshold remains uncovered rather than borrowing a generic point band.
