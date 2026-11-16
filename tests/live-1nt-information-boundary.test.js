@@ -91,7 +91,8 @@ const relayResponderClubs=fill(['C13','C12','C11','C10','C2','D13','D2','D3','H2
 assert.equal(live('S',relay2NTAuction,relayResponderClubs).exp,'3C',
  'after 2NT responder selects the longer clubs as signoff');
 const relayOpenerAuction=relay2NTAuction.concat([{s:'S',c:'3C'},{s:'W',c:'P'}]);
-assert.equal(live('N',relayOpenerAuction,openerClubsLonger).exp,'P',
+const relayOpenerClubsLonger=fill(['C13','C12','C11','C10','C2','D13','D2','D3','H14','H2','H3','S13','S3']);
+assert.equal(live('N',relayOpenerAuction,relayOpenerClubsLonger).exp,'P',
  'opener passes after responder signs off in 3C');
 
 const naturalInvite=[
