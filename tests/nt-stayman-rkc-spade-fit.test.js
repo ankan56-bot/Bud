@@ -30,4 +30,14 @@ const threeNTReply=replyAfter(afterStayman3NT);
 assert.equal(threeNTReply.exp,'5C',
   'after Stayman 2H-3NT-4S, 4NT is RKC with spades; K♠ is one keycard');
 
+const lib=require('../analysbibliotek.json');
+const t43=lib.trees.find(t=>t.id==='T43_1NT_4NT_ENDPOINTS');
+assert.ok(t43);
+for(const id of ['t43_n10','t43_n11','t43_n12']){
+  const node=t43.nodes.find(n=>n.id===id);
+  assert.ok(node,'analysis tree documents '+id);
+  assert.equal(node.sequence[node.sequence.length-1],'4NT');
+  assert.match(node.meaning,/RKC med spader/i);
+}
+
 console.log('Stayman four-spade fit RKC tests: passed.');
