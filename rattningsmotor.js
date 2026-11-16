@@ -1155,7 +1155,12 @@ var Rattning = (function(){
       var stayman3NTSpadeChoice=b.c==='P'&&lastCall.c==='3N'&&ours.length===4&&
         ours[0].c==='1N'&&ours[1].c==='2C'&&ours[2].c==='2H'&&ours[3].c==='3N'&&
         h.L.H===4&&h.L.S===4;
-      var partnerHasGame=((ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5))&&!stayman3NTSpadeChoice;
+      var transfer3NTGameChoice=b.c==='P'&&lastCall.c==='3N'&&ours.length===4&&
+        ours[0].c==='1N'&&
+        ((ours[1].c==='2D'&&ours[2].c==='2H')||(ours[1].c==='2H'&&ours[2].c==='2S'))&&
+        ours[3].c==='3N';
+      var partnerHasGame=((ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5))&&
+        !stayman3NTSpadeChoice&&!transfer3NTGameChoice;
       // Undantag: efter Stayman 2♥–3NT kan 4-4-öppnaren välja 4♠ (Nordisk standard s. 4).
       // 4NT med fastställd trumf är RKC-fråga, inte slutbud.
       var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
