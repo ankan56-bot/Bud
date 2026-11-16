@@ -839,7 +839,7 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
-        "Svarshanden har minst 25 gemensamma honnörspoäng tillsammans med öppnaren; i sang räknas endast hp."
+        "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnaren; i sang räknas endast hp."
       ],
       "root": "t09_n0",
       "nodes": [
@@ -850,17 +850,17 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast honnörspoäng.",
-          "analysis": "Svarshanden når minst 25 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
+          "meaning": "3NT är slutbud när paret har minst 26 gemensamma honnörspoäng. I sang räknas endast honnörspoäng.",
+          "analysis": "Svarshanden når minst 26 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
+            "responder": "Svarshanden når minst 26 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "The 3NT sequence is source-described as a final contract, but the numeric HCP threshold in this tree was proposed by an earlier assistant and was not explicitly user-confirmed or stated in Nordisk standard. Keep as provisional; do not match as an authoritative threshold rule."
+      "sourceStatus": "user_confirmed",
+      "sourceStatusNote": "Svarshandens 3NT-val använder användarens senare bekräftade gräns 26 gemensamma honnörspoäng; i sang räknas endast HP."
     },
     {
       "id": "T10_1H_ENKEL_HOJNING",
@@ -1321,7 +1321,7 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
-        "Svarshanden har minst 25 gemensamma honnörspoäng tillsammans med öppnaren; i sang räknas endast hp."
+        "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnaren; i sang räknas endast hp."
       ],
       "root": "t18_n0",
       "nodes": [
@@ -1332,17 +1332,17 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast honnörspoäng.",
-          "analysis": "Svarshanden når minst 25 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
+          "meaning": "3NT är slutbud när paret har minst 26 gemensamma honnörspoäng. I sang räknas endast honnörspoäng.",
+          "analysis": "Svarshanden når minst 26 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
+            "responder": "Svarshanden når minst 26 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "The 3NT sequence is source-described as a final contract, but the numeric HCP threshold in this tree was proposed by an earlier assistant and was not explicitly user-confirmed or stated in Nordisk standard. Keep as provisional; do not match as an authoritative threshold rule."
+      "sourceStatus": "user_confirmed",
+      "sourceStatusNote": "Svarshandens 3NT-val använder användarens senare bekräftade gräns 26 gemensamma honnörspoäng; i sang räknas endast HP."
     },
     {
       "id": "T19",
