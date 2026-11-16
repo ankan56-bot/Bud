@@ -1,6 +1,6 @@
 {
-  "version": "0.6.8",
-  "description": "Analysbibliotek med 46 budträd. Ostörd 1♥/1♠-budgivning utvecklas vidare; 1NT-överföringarnas styrkegränser följer Nordisk standard s. 5.",
+  "version": "0.6.9",
+  "description": "Analysbibliotek med 46 budträd. Överföringstabellen i 1NT-familjen är källverifierad; inviter utan numerisk styrkegräns och svagt lågfärgsrelä hålls preliminära.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
