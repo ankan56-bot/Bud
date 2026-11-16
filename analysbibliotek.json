@@ -1,5 +1,5 @@
 {
-  "version": "0.6.33",
+  "version": "0.6.34",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
