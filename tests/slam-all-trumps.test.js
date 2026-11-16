@@ -169,7 +169,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   const queenShown=R.nodeFor({hands:handsAfterFiveDiamond,dealer:'N',bids:auctionAfterFiveDiamond.concat([
     {s:'S',c:'5S'},{s:'W',c:'P'},{s:'N',c:'5N'}
   ])},12);
-  assert.equal(queenShown.exp,'P','the asker accepts the source-defined 5NT queen-showing reply and closes with pass');
+  assert.equal(queenShown.exp,'6H','three own aces plus the 1-keycard reply permit the 6-level contract after queen-showing 5NT');
 
   // With 4 aces opposite the single trump king, the queen shown completes
   // all five keycards and permits the 7-level suit contract.
