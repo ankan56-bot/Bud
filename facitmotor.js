@@ -55,7 +55,8 @@
           steps.push({
             seat,kind:'uncovered',call:null,callText:'',
             explanation:result&&result.why?result.why:'Budmotorn har inte lämnat något verifierat bud.',
-            systemStatus:'not_covered',
+            systemStatus:result&&result.sourceGap?'source_gap':'not_covered',
+            sourceGap:!!(result&&result.sourceGap),
             context:'live'
           });
           return {
