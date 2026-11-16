@@ -179,3 +179,5 @@ Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat 
 - Korsreferens mellan runtime och nodbibliotek dokumenterad i `KORSREFERENS_RUNTIME_NODER.md`.
 - Exakt inventering av dolda handberoenden i `GRANSKNING_LIVE_OCH_EFTERHAND.md` utökad.
 - Ingen produktionsbudlogik har ändrats. Main är fortsatt orörd.
+
+- CI-kontrollen fångade ett fel i den nya validerarens träd-ID-regex (konkurrensträden exkluderades inte). Regexen är korrigerad i commit `ae576b8`; nästa workflow-körning ska verifiera att ostörd baslinje blir 40 träd/241 noder.
