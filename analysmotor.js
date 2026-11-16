@@ -25,6 +25,9 @@ function treeCompatible(tree){
  // 5♦=1 in the four-ace (no-trump-established) table, while RKC 1430 has
  // a different five-keycard mapping. The auction context distinguishes them.
  if(/Jacoby/i.test(text))return false;
+ // Transfer trees with unverified numeric strength bands are retained for
+ // documentation, but must not be surfaced as authoritative analysis nodes.
+ if(tree&&tree.sourceStatus==="provisional_source_gap")return false;
  return true;
 }
 function findMatches(lib,bids){
