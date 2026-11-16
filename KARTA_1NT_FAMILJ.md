@@ -195,3 +195,8 @@ I den separata 100-givarskontrollen ligger täckningen kvar över 98 %. Kvarvara
 - öppnarens accept/pass efter invit när källan inte definierar kriterierna.
 
 Alla dessa lägen lämnas ej täckta hellre än att motorn konstruerar ett systembud. Inga undantag, ogiltiga auktioner eller runtimefel får förekomma i simuleringarna.
+
+
+### 2NT–4NT kvantitativ invit
+
+2NT–4NT klassificeras som kvantitativ invit till 6NT, separat från 1NT:s fyr-essfrågor och från RKC. Öppnarens accept/pass lämnas ej täckt tills den exakta styrkegränsen för accept har verifierats.
