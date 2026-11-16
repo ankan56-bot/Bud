@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
 const scoring=require('../poangberakning.js');
-const api={SU:['C','D','H','S'],maj:s=>s==='H'||s==='S',st_:c=>c[1],handHps:scoring.handHps,
+const api={SU:['C','D','H','S'],maj:s=>s==='H'||s==='S',st_:c=>c[1],side:s=>s==='N'||s==='S'?0:1,handHps:scoring.handHps,
  partnershipPoints:scoring.partnershipPoints,
  NC:(why,means,conv,sourceGap)=>({exp:null,alt:[],why,means:means||(()=>null),conv:conv||'test',sourceGap:!!sourceGap})};
 const St=require('../stenberg.js')(api);
