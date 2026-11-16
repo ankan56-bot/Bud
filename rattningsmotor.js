@@ -253,6 +253,7 @@ var Rattning = (function(){
   function stay2(h,reply,openerCards){
     var hp=h.hp,L=h.L,M=reply==='2H'?'H':reply==='2S'?'S':null,exp,why,alt=[];
     var opener=openerCards?H(openerCards):null;
+    var jointHcp=hp+(opener?opener.hp:0);
     var fit=opener&&M?L[M]+opener.L[M]:0;
 
     var means=function(c){
@@ -289,7 +290,7 @@ var Rattning = (function(){
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
     if(!opener){
-      if(reply==='2D'&&hp>=10&&h.bal)return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT.',means:means,conv:'Stayman'};
+      if(reply==='2D'&&hp>=10&&h.bal)return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT.',means:means,conv:'Stayman',ruleStatus:'user_confirmed'};
       return NC('Efter Stayman saknas partnerns exakta hand live. 25 gemensamma hp krävs för 3NT; 10+ egna hp efter 2♦ garanterar detta mot 1NT-minimum. Övriga fall lämnas ej täckta.',means,'Stayman',true);
     }
     if(M&&L[M]>=4&&opener&&fit>=8){
@@ -301,7 +302,7 @@ var Rattning = (function(){
       if(reply==='2D'&&h.bal&&jointHcp>=25){exp='3N';why='Ingen högfärgsfit och '+jointHcp+' gemensamma honnörspoäng: 25+ ger 3NT.';}
       else return NC('Ingen högfärgsfit är fastställd och paret når inte 26 gemensamma honnörspoäng för 3NT. Naturlig invitstyrka har ingen numerisk gräns i källan; pass/invit lämnas ej täckt.',means,'Stayman',true);
     }
-    return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
+    return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman',ruleStatus:exp==='3N'?'user_confirmed':undefined};
   }
   function transfer2(h,M){
     var L=h.L,exp,why,alt=[];
