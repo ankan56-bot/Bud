@@ -332,3 +332,8 @@ När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarsha
 ### Öppnarens eventuella korrigering efter svarshandens 3NT efter överföring
 
 Nordisk standard s. 5 säger att svarshanden väljer utgång med 3NT vid jämn hand och exakt fem kort i överföringsfärgen. Tabellen anger inte uttryckligen om öppnaren ska korrigera till 4M när öppnaren har tre eller fler kort i överföringsfärgen. Den tidigare implementationen gjorde automatiskt en sådan korrigering; detta är nu borttaget. Öppnaren passar när stödet är färre än tre kort, men lämnar läget ej täckt vid 3+ stöd tills en källa eller användarbekräftelse anger fortsättningen.
+
+
+### Öppnarens svar efter svarshandens naturliga utgångskravsbud efter Stayman
+
+Efter 1NT–2♣–2♦/2♥/2♠ är svarshandens nya färg naturlig och utgångskrav (5+ högfärg eller 4+ lågfärg, s. 4). Den generella regeln på sida 4 säger att partnern försöker visa extra längder eller bjuda sang, men ger inte en komplett prioriterad svarstabell för alla handtyper. Motorn känner igen svarshandens kravbud, men lämnar öppnarens nästa bud ej täckt när det kräver att den prioriterar mellan sang, stöd och sidofärgsvisning. 100-givarsimuleringen har identifierat sådana sekvenser i ostord-100-001, 031, 040, 048 och 052. Detta är avsiktliga luckor, inte runtimefel.
