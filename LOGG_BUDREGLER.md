@@ -806,3 +806,11 @@ Detta är en separat strategisk slamspärr; vanliga utgångsbud kan fortfarande 
 - Fem riktade regressioner har lagts till i den befintliga manuella testfilen. De omfattar 6 HP + håll i 1NT, 4-korts lågfärg, 4-korts högfärg som otillräcklig ny högfärg samt båda negativa dubblingsfallen.
 
 **Inte infört ännu:** slamspärren. Motorn anger för närvarande 12–17 HP för enkelt inkliv på 2-nivån, medan slamresonemanget utgår från 13 HP. Den skillnaden ska lösas utan att ändra inklivets styrkeintervall av misstag. Slamspärren ska vara separat från handvärderingen och får inte använda motståndarnas dolda kort i livebeslut.
+### Slamspärr – implementation efter budhistorik (2026-11-16)
+
+- Slam spärras nu för vår sida efter motståndarnas 2-nivåskliv efter vår öppning.
+- Slam spärras också efter motståndarnas 1-nivåskliv när inklivarens partner därefter har lämnat ett icke-passbud.
+- Kontrollen använder endast offentlig budhistorik. Den läser inte motståndarnas faktiska HP eller dolda kort.
+- Ett faktiskt 6- eller 7-nivåbud i dessa lägen markeras fel. Om råmotorn annars skulle rekommendera slam returneras inte ett påhittat alternativ; positionen markeras ej täckt.
+- Upplysningsdubbling är ännu inte kopplad till slamspärren. Användarens 13 HP-exempel behöver jämkas med att nuvarande motortext anger 12+ HP för upplysningsdubbling. Exakt dolda HP får inte användas i livebeslut.
+- Rättningsmotorn är nu version 7.8. Sex handbaserade källregeltester och tre auktionstester för slamspärren är tillagda i tests/ostord-manual-rules.test.js.
