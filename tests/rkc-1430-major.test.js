@@ -28,10 +28,10 @@ function cases(trump) {
   const cards={
     one:['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],
     four:['S14','H14','D14','C14','H2','H3','H4','H5','H6','H7','S2','S3','S4'],
-    zero:['H2','H3','H4','H5','H6','H7','H8','H9','S2','S3','S4','D2','D3'],
-    three:['S14','H14','D14','H2','H3','H4','H5','H6','H7','S2','S3','S4','D2'],
-    twoNoQueen:['S14','D14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2'],
-    twoWithQueen:['S14','D14',queen,'H2','H3','H4','H5','H6','H7','S2','S3','S4','D2']
+    zero:['H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3','C2'],
+    three:['S14','H14','D14','H2','H3','H4','H5','H6','S2','S3','S4','D2','C2'],
+    twoNoQueen:['S14','D14','H2','H3','H4','H5','H6','H7','S2','S3','S4','D2','C2'],
+    twoWithQueen:['S14','D14',queen,'H2','H3','H4','H5','H6','S2','S3','S4','D2','C2']
   };
   assert.equal(answer(cards.one,trump).exp,'5C','1 keycard must be 5♣ in 1430');
   assert.equal(answer(cards.four,trump).exp,'5C','4 keycards must be 5♣ in 1430');
