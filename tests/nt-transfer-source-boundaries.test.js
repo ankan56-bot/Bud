@@ -222,7 +222,7 @@ const responderDiamondsLonger=hand(['D13','D12','D11','D10','D2','C13','C2','C3'
 assert.equal(nodeAt('S',afterRelay2NT,responderDiamondsLonger).exp,'3D',
  'after 2NT responder signs off in diamonds when diamonds are longer');
 
-const responderMinorsEqual=hand(['D13','D12','D11','D2','D3','C13','C12','C11','C2','H2','H3','S2','S3']);
+const responderMinorsEqual=hand(['D2','D3','D4','D5','D6','C2','C3','C4','C5','C6','H2','H3','S2']);
 const equalAfter2NT=nodeAt('S',afterRelay2NT,responderMinorsEqual);
 assert.equal(equalAfter2NT.exp,null,
  'after 2NT equal minor lengths have no source-defined signoff priority');
