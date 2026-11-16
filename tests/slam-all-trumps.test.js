@@ -152,6 +152,47 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   const auctionQ=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'P'}]);
   const show=R.nodeFor({hands:handsQ,dealer:'N',bids:auctionQ},12);
   assert.equal(show.exp,'5N','a hand with the trump queen shows it with 5NT');
+
+  // With 4 aces opposite the single trump king, the queen shown completes
+  // all five keycards and permits the 7-level suit contract.
+  const kingQueenResponder=makeHand({trump:'S',trumpKing:true,trumpQueen:true});
+  const fourAceAsker=makeHand({aces:SU,exclude:kingQueenResponder});
+  const handsSeven=deal(kingQueenResponder,fourAceAsker);
+  const sevenAuction=[
+    {s:'N',c:'1S'},{s:'E',c:'P'},{s:'S',c:'2S'},{s:'W',c:'P'},
+    {s:'N',c:'3S'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'5D'},{s:'E',c:'P'},{s:'S',c:'5H'},{s:'W',c:'P'},
+    {s:'N',c:'5N'},{s:'E',c:'P'},{s:'S',c:'P'}
+  ];
+  const seven=R.nodeFor({hands:handsSeven,dealer:'N',bids:sevenAuction},14);
+  assert.equal(seven.exp,'7S','all four aces plus the trump king permit 7 in the suit');
+
+  // Two keycards opposite two own aces guarantee at least three aces,
+  // so 6 in the agreed suit is permitted even if the fourth ace is missing.
+  const twoKeyResponder=makeHand({trump:'H',aces:['C'],trumpKing:true});
+  const twoAceAsker=makeHand({aces:['S','D'],exclude:twoKeyResponder});
+  const handsSix=deal(twoKeyResponder,twoAceAsker);
+  const sixAuction=[
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2H'},{s:'W',c:'P'},
+    {s:'N',c:'3H'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'5H'},{s:'E',c:'P'},{s:'S',c:'P'}
+  ];
+  const small=R.nodeFor({hands:handsSix,dealer:'N',bids:sixAuction},10);
+  assert.equal(small.exp,'6H','at least three partnership aces permit a 6-level suit contract');
+}
+
+// A no-trump four-ace ask reaches 7NT only when all four aces are certain.
+{
+  const responder=makeHand({});
+  const asker=makeHand({aces:SU,exclude:responder});
+  const rest=deck.filter(c=>!responder.includes(c)&&!asker.includes(c));
+  const hands={N:responder,E:rest.slice(0,13),S:asker,W:rest.slice(13,26)};
+  const bids=[
+    {s:'N',c:'1N'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'5C'},{s:'E',c:'P'},{s:'S',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},6);
+  assert.equal(result.exp,'7N','7NT requires all four aces');
 }
 
 // When no legal 5-level queen ask leaves 5 in trump available as a denial,
