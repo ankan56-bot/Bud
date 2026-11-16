@@ -194,3 +194,17 @@ Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat 
 - Den kända dolda-hand-läckan har nu två CI-karaktäriseringar från Buddie Öst: 1♥–3♥ ger Pass/4♥ beroende på Västs dolda hand, och svar efter Västs 1NT ger 2NT/3NT beroende på om Västs dolda HP är 15 eller 16. Båda exemplen håller Östs hand och den offentliga auktionen konstanta.
 - `analysmotor.js` är version 1.2.0 efter att `findMatches()` tillkommit. `findMatch()` är fortfarande bakåtkompatibel och väljer första träffen.
 - Senaste fulla CI-körning före versionstaggningen (run 203) passerade samtliga befintliga tester inklusive båda läckagekaraktäriseringarna och det breda 400-givars ostörda regressionstestet.
+## Genomfört: live-API v1 – öppningsbeslut
+
+- [x] Introducerat `decideLive({ ownHand, seat, dealer, auction })` med egen hand som enda kortinnehåll.
+- [x] Begränsat aktiveringen till öppningsbeslut efter pass; svar och fortsättningar lämnas ej täckta tills respektive familj har migrerats.
+- [x] Validerat 13 kort, kortformat, dubbletter, givare, plats, turordning och avslutad auktion.
+- [x] Lagt till CI-krav på live-API-exporten och regressionstester.
+
+## Nästa steg
+
+1. Migrera 1NT-svarsfamiljen som första fullständiga budfamilj. Utgå från egen hand + offentlig auktion och explicita intervall som 1NT visar (15–17), aldrig partnerns faktiska hp eller kort.
+2. Bygg ett separat offentligt auktions-/visningsobjekt för att representera kända intervall, fördelningskrav, håll och fitinferenser. Okända fakta ska inte behandlas som noll eller som faktisk hand.
+3. Lägg invariansprov där partnerns och motståndarnas dolda kort permuteras medan egen hand och auktion hålls identiska.
+4. Flytta efterhandskontroller som `missedGameOrSlam` till en uttryckligen märkt efterhandsväg; låt dem aldrig påverka `decideLive`.
+5. Migrera därefter 1M-svar, Stenberg, Stayman och överföringar en familj i taget.
