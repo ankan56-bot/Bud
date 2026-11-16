@@ -5,10 +5,10 @@
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
-    "oneNTNoTrumpAceAsk": "1NT–4NT och 1NT–2♣–2♦–4NT är uttryckligen avtalade fyr-essfrågor utan fastställd trumf: 5♣=0 ess, 5♦=1, 5♥=2, 5♠=3, 5NT=4. Svaren efter 4NT ligger utanför aktuell omfattning.",
-    "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ tolkas 4NT som RKC 1430 med överföringsfärgen som trumf. Svaren efter 4NT ligger utanför aktuell omfattning.",
+    "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
     "oneNTGameThreshold": "Efter 1NT är 3NT direkt endast när paret har minst 26 gemensamma honnörspoäng. 2NT används som invit när handen är balanserad och utgångsgränsen ännu inte nås.",
-    "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton."
+    "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
+    "oneNTTransfer4NT": "A completed transfer alone does not establish trump for RKC under Nordisk standard 2012-08-22. RKC requires trump to be bid and raised or indirectly established after a 2-major response to Stayman; a transfer followed by an actual raise may establish trump."
   },
   "trees": [
     {
@@ -6600,7 +6600,7 @@
     },
     {
       "id": "T43_1NT_4NT_ENDPOINTS",
-      "title": "1NT – 4NT: fyr-essfråga utan trumf och RKC efter överföring/fit",
+      "title": "1NT – 4NT: fyr-essfråga utan trumf och RKC efter Stayman/etablerad fit",
       "tags": [
         "1NT",
         "4NT",
@@ -6611,9 +6611,10 @@
       ],
       "conditions": [
         "Öppningen 1NT visar 15–17 hp och balanserad hand.",
-        "Trädet dokumenterar bara vägen fram till 4NT; svaren efter 4NT ingår inte i denna etapp.",
-        "Direkt 1NT–4NT och 1NT–2♣–2♦–4NT är fyr-essfråga utan trumf.",
-        "Efter överföring till högfärg är 4NT RKC 1430 med överföringsfärgen som trumf."
+        "Direkt 1NT–4NT och 1NT–2♣–2♦–4NT är fyr-essfråga utan fastställd trumf.",
+        "Efter Stayman-svaret 2♥ eller 2♠ är högfärgen indirekt fastställd enligt Nordisk standard s. 7; 4NT är RKC med den visade högfärgen som trumf.",
+        "Efter en vanlig överföring är trumf inte fastställd förrän färgen faktiskt bjudits och höjts; 4NT efter enbart fullföljd överföring ingår inte som verifierad RKC-väg.",
+        "Trädet dokumenterar vägar fram till 4NT; svaren och frågeställarens fortsättning efter 4NT ska endast finnas där källan uttryckligen definierar dem."
       ],
       "root": "t43_n0",
       "nodes": [
@@ -6624,8 +6625,8 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är uttryckligen avtalad fyr-essfråga utan fastställd trumf – inte kvantitativ invit.",
-          "analysis": "Sekvensen 1NT–4NT är en av de särskilt avtalade sangsekvenserna för fyr-essfråga. 5♣ visar 0 ess, 5♦ 1, 5♥ 2, 5♠ 3 och 5NT 4. Svaren och fortsättningen efter 4NT byggs i nästa etapp.",
+          "meaning": "4NT är fyr-essfråga utan fastställd trumf.",
+          "analysis": "Nordisk standard s. 7: 5♣ visar 0 eller 4 ess, 5♦ visar 1, 5♥ visar 2 och 5♠ visar 3. 5NT är inte ett svar i denna tabell.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand.",
             "responder": "Slamintresserad hand som använder den uttryckligen avtalade fyr-essfrågan utan trumf; exakt poängintervall är inte specificerat här."
@@ -6643,49 +6644,11 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är uttryckligen avtalad fyr-essfråga utan fastställd trumf efter Stayman 2♦.",
-          "analysis": "Öppnaren har förnekat fyrkortshögfärg. I denna särskilt avtalade sekvens frågar 4NT efter de fyra essen: 5♣=0, 5♦=1, 5♥=2, 5♠=3, 5NT=4. Svaren efter 4NT byggs i nästa etapp.",
+          "meaning": "4NT är fyr-essfråga utan fastställd trumf efter Stayman 2♦.",
+          "analysis": "Öppnaren har förnekat 4-korts högfärg. Nordisk standard s. 7 anger fyr-esssvaren: 5♣=0 eller 4, 5♦=1, 5♥=2, 5♠=3. Fortsättningen efter svaret är inte definierad i källtexten.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, ingen fyrkortshögfärg.",
             "responder": "Slamintresserad hand; exakt poängintervall och fördelning är inte specificerade i denna nod."
-          },
-          "branches": []
-        },
-        {
-          "id": "t43_n2",
-          "sequence": [
-            "1NT",
-            "Pass",
-            "2♦",
-            "Pass",
-            "2♥",
-            "Pass",
-            "4NT"
-          ],
-          "meaning": "4NT är RKC 1430 med hjärter som trumf efter fullföljd hjärteröverföring.",
-          "analysis": "Öppnaren har accepterat 2♦-överföringen med 2♥. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två hjärter i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i hjärter. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
-          "handProfile": {
-            "opener": "15–17 hp, balanserad hand; har fullföljt hjärteröverföringen.",
-            "responder": "Minst fem hjärter och slamintresse; 4NT används som RKC om den vägen väljs."
-          },
-          "branches": []
-        },
-        {
-          "id": "t43_n3",
-          "sequence": [
-            "1NT",
-            "Pass",
-            "2♥",
-            "Pass",
-            "2♠",
-            "Pass",
-            "4NT"
-          ],
-          "meaning": "4NT är RKC 1430 med spader som trumf efter fullföljd spaderöverföring.",
-          "analysis": "Öppnaren har accepterat 2♥-överföringen med 2♠. Om svarshanden väljer 4NT är det RKC 1430 enligt motorns tolkning, inte kvantitativ invit. Valet mellan 4NT och kontrollbuden 4♣/4♦ vid stark slamhand är ännu inte automatiserat. Svaren efter 4NT byggs i nästa etapp. Fitten efter överföring är minst sju kort (öppnaren har minst två spader i en balanserad 1NT-hand och svarshanden minst fem), men inte nödvändigtvis åtta. Motorn tolkar ändå 4NT som RKC i spader. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
-          "handProfile": {
-            "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen.",
-            "responder": "Minst fem spader och slamintresse; 4NT används som RKC om den vägen väljs."
           },
           "branches": []
         },
@@ -6774,6 +6737,44 @@
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra spader.",
             "responder": "Minst fyra spader; minst åtta spader tillsammans och utgångsstyrka."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n8",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC med hjärter som trumf efter Stayman-svaret 2♥; trumfen är indirekt fastställd enligt Nordisk standard s. 7.",
+          "analysis": "Öppnaren har svarat 2♥ på Stayman. Nordisk standard anger att trumf kan vara indirekt fastställd efter 2 i högfärg som svar på 2♣. Därför används fem nyckelkort: fyra ess och hjärterkung. Svaren följer RKC-tabellen i systemet.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, 4–5 hjärter efter Stayman.",
+            "responder": "Har ställt Stayman och frågar efter fem nyckelkort; hjärter är indirekt fastställd trumf."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n9",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC med spader som trumf efter Stayman-svaret 2♠; trumfen är indirekt fastställd enligt Nordisk standard s. 7.",
+          "analysis": "Öppnaren har svarat 2♠ på Stayman. Nordisk standard anger att trumf kan vara indirekt fastställd efter 2 i högfärg som svar på 2♣. Därför används fem nyckelkort: fyra ess och spaderkung. Svaren följer RKC-tabellen i systemet.",
+          "handProfile": {
+            "opener": "15–17 hp, balanserad hand, 4–5 spader utan 4+ hjärter.",
+            "responder": "Har ställt Stayman och frågar efter fem nyckelkort; spader är indirekt fastställd trumf."
           },
           "branches": []
         }
