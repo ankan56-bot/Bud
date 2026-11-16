@@ -19,8 +19,8 @@
    var suit=st_(opening),fit=hand.L[suit],htp=handHps(hand,suit);
    if(fit<4)return NC('Stenberg 2NT kräver minst fyra korts stöd i öppningsfärgen.',null,'Stenberg 2NT',false);
    if(!maj(suit)&&(hand.L.H>=4||hand.L.S>=4))
-     return NC('Med 4+ kort i högfärg och stöd i öppnad lågfärg ska högfärgen visas först (sök högfärg). 2NT är därför inte Stenberg här.',null,'Stenberg 2NT',true);
-   if(htp<13)return NC('Stenberg 2NT kräver minst 13 htp inklusive stöd-/trumfpoäng; handen har '+htp+'.',null,'Stenberg 2NT',true);
+     return NC('Med 4+ kort i högfärg och stöd i öppnad lågfärg ska högfärgen visas först (sök högfärg). 2NT är därför inte Stenberg här.',null,'Stenberg 2NT',false);
+   if(htp<13)return NC('Stenberg 2NT kräver minst 13 htp inklusive stöd-/trumfpoäng; handen har '+htp+'.',null,'Stenberg 2NT',false);
    return result('2N','Stenberg 2NT: minst 13 htp och minst fyra korts stöd i öppningsfärgen. Utgångskrav.','Stenberg 2NT',
      function(c){return c==='2N'?'13+ htp, 4+ stöd; Stenberg och utgångskrav.':null;});
  }
