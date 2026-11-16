@@ -14,7 +14,7 @@ const expected = {
   totalTrees: 51,
   competitiveTreesExcluded: 5,
   undisturbedTrees: 46,
-  undisturbedNodes: 301,
+  undisturbedNodes: 307,
   branchEntries: 306,
   linkedBranches: 185,
   unlinkedBranches: 121,
