@@ -837,6 +837,9 @@ var Rattning = (function(){
       return NC('Både 1NT med håll och ny femkortshögfärg är möjliga; BridgePlus s. 90 anger ingen prioritet mellan dem.');
     if(sourcePageRules&&unbidFiveMajor&&L[s]>=3&&hp>=6&&hp<=9)
       return NC('Både höjning med stöd och ny femkortshögfärg är möjliga; källan anger ingen prioritet.');
+    var unbidFourMinor=((s!=='C'&&os!=='C'&&L.C>=4)||(s!=='D'&&os!=='D'&&L.D>=4));
+    if(sourcePageRules&&unbidFourMinor&&L[s]>=3&&!canShow1NT)
+      return NC('Både stöd i partnerns öppningsfärg och en fyrkortslågfärg är möjliga; källan anger ingen prioritet.');
     if(sourcePageRules&&!exp&&!unbidFiveMajor&&canShow1NT){
       exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
     }
@@ -1395,7 +1398,7 @@ var Rattning = (function(){
     for(var j=0;j<prior.length;j++){
       var call=prior[j];
       if(!call||side(call.s)===ourSide)continue;
-      var earlierOurBid=prior.slice(0,j).some(function(x){return x&&side(x.s)===ourSide&&/^1[CDHS]$/.test(x.c);});
+      var earlierOurBid=prior.slice(0,j).some(function(x){return x&&side(x.s)===ourSide&&/^1[CDHSN]$/.test(x.c);});
       if(!earlierOurBid)continue;
       if(/^2[CDHS]$/.test(call.c)){
         return 'Motståndarna har klivit in på tvåtricksnivån; enligt den uttryckliga slamspärren får vår sida inte rekommendera slam.';
