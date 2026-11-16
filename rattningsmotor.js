@@ -196,7 +196,7 @@ var Rattning = (function(){
     else if(hp>=gl){
       if(!k&&!opener){
         // In live bidding partner's 1NT opening shows a range, not an exact
-        // hand. Recommend 3NT only when even 15+ own points guarantee 26;
+        // hand. Recommend 3NT only when even 15+ own points guarantee 25;
         // otherwise leave the invit decision uncovered because no numeric
         // 2NT-invite band is stated in the source.
         var jointMin=hp+15;
@@ -224,7 +224,7 @@ var Rattning = (function(){
 
     if (r === b+'N') {
         if(!responder)return NC('2NT är en invit. Öppnarens accept/pass kan inte avgöras live med partnerns dolda honnörspoäng; den exakta styrkan måste bedömas efter given eller enligt en separat verifierad intervallregel.',means,'1NT-system');
-        if (jointHp < 26) return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+        if (jointHp < 25) return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-poängsgränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
         return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:means,conv:'1NT-system',soft:false};
     }
 
@@ -298,7 +298,7 @@ var Rattning = (function(){
       if(reply==='2D'&&five&&!h.bal)
         return NC('Obalanserad svarshand med 5-korts högfärg efter Stayman 2♦ kan fortsätta med 3 i högfärgen vid utgångsstyrka, men den numeriska styrkegränsen är inte angiven.',means,'Stayman',true);
       var jointHcp=hp+(opener?opener.hp:0);
-      if(jointHcp>=26){
+      if(jointHcp>=25){
         exp='3N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: utgång 3NT.';
       }else{
         return NC('Ingen utgångsstyrka enligt 26 hp-gränsen. 2NT är beskrivet som invit, men dess numeriska gräns är inte angiven i Nordisk standard; pass kontra invit lämnas ej täckt.',means,'Stayman',true);
@@ -372,7 +372,7 @@ var Rattning = (function(){
     if(k1==='2C'&&M==='D'&&k3==='2N'){
       if(!partner)return NC('Efter Stayman 2♦–2NT är öppnarens accept/pass beroende av gemensam styrka; partnerns dolda hand används inte i livebeslut.',null,'Stayman');
       var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.';return null};
-      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
@@ -1762,12 +1762,8 @@ var Rattning = (function(){
     var priorNS=bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===0;});
     if(priorNS.length<2)return null;
     var pt=partner(b.s),a=H(st.hands[b.s]),p=H(st.hands[pt]);
-    // Efter en fullföljd överföring är pass med 0-8 hp uttryckligen tillåtet.
-    var firstContract=priorNS.length?priorNS[0].c:null;
-    var lastPrior=priorNS[priorNS.length-1],beforeLast=null;
-    for(var ti=priorNS.length-2;ti>=0;ti--){beforeLast=priorNS[ti];break;}
-    if(firstContract==='1N'&&beforeLast&&lastPrior&&
-       ((beforeLast.c==='2D'&&lastPrior.c==='2H')||(beforeLast.c==='2H'&&lastPrior.c==='2S'))&&a.hp<=8)return null;
+    // Weakness after a completed transfer is qualitative in the source;
+    // do not infer a numeric pass exception from responder HCP.
     var totalHcp=a.hp+p.hp;
 
     // Räkna bara en färgfit som är visad naturligt i auktionen.
