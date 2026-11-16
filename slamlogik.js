@@ -98,7 +98,7 @@
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
-    var voids=SU.filter(function(s){return h.L[s]===0;});
+    var voids=SU.filter(function(s){return s!==T_&&h.L[s]===0;});
     var exp,why;
     var means=function(c){
       if(!T_){
@@ -108,8 +108,8 @@
         if(c==='5S')return '3 ess av 4.';
         return null;
       }
-      if(c==='5C')return '1 eller 4 nyckelkort (av 5).';
-      if(c==='5D')return '0 eller 3 nyckelkort (av 5).';
+      if(c==='5C')return '0 eller 3 nyckelkort (av 5).';
+      if(c==='5D')return '1 eller 4 nyckelkort (av 5).';
       if(c==='5H')return '2 nyckelkort utan trumfdam.';
       if(c==='5S')return '2 nyckelkort med trumfdam.';
       if(c==='5N')return '3 nyckelkort och någon renons.';
@@ -210,6 +210,12 @@
         return {exp:six,alt:[],why:'Efter ett dubbeltydigt 5-lågsvar och förnekad trumfdam bjuder frågeställaren 6 i trumf med 3 eller 4 egna ess enligt Nordisk standard s. 7. Detta uppfyller också projektregeln om högst ett saknat ess för lillslam i färg.',means:function(c){return c===six?'Lillslam: frågeställaren har 3 eller 4 ess efter förnekad trumfdam.':null},conv:'RKC – lillslam'};
       }
       return NC('Efter dubbeltydigt 5-lågsvar och förnekad trumfdam anger Nordisk standard 6 i trumf när frågeställaren har 3 eller 4 ess. Den egna handen har inte 3 eller 4 ess; ingen annan fortsättning är fastställd.',null,'RKC – lillslam',true);
+    }
+    if(response==='5C'||response==='5D'){
+      if(queenReply!=='5'+T_&&queenReply!=='5N'&&!/^6[CDHS]$/.test(queenReply))
+        return NC('Fortsättningen efter RKC:s dubbeltydiga lågsvar saknar ett verifierat trumfdamsvar. Läget lämnas ej täckt.',null,'RKC – slamfortsättning',true);
+      if(queenReply&&/^6[CDHS]$/.test(queenReply)&&queenReply[1]===T_)
+        return NC('6 i trumf kan inte användas som visning av kung i ny färg efter trumfdamfrågan. Läget lämnas ej täckt.',null,'RKC – trumfdamfråga',true);
     }
     var counts=keycardPossibilities(response),ownAces=h.aces,ownTrumpKing=h.has(T_,13),poss=[];
     counts.forEach(function(kc){
