@@ -465,6 +465,8 @@
       if(!opener&&d===1){
         var stenbergResponse=stenberg.responder(h,c1);
         if(stenbergResponse&&stenbergResponse.exp)return stenbergResponse;
+        var ordinaryResponse=maj(st_(c1))?majorBidding.respond(h,c1):minorBidding.respond(h,c1);
+        if(b.c==='2N'&&ordinaryResponse&&ordinaryResponse.exp&&ordinaryResponse.exp!=='2N')return ordinaryResponse;
         if(b.c==='2N')return stenbergResponse;
       }
       if(opener&&d===2&&ours[1].c==='2N')
