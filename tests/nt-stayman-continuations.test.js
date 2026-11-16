@@ -19,9 +19,9 @@ const min44=['S14','S13','S2','S3','H14','H11','H2','H3','D13','D2','D3','C2','C
 const max44=['S14','S13','S12','S2','H14','H11','H2','H3','D13','D2','D3','C2','C3']; // 17 hp, 4-4-3-2
 
 function judge(north, sequence){
-  const hands=deal(north,south);
-  const bids=sequence.concat([{s:'N',c:'P'}]);
-  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+  // Construct a disjoint, deterministic responder hand for each opener fixture.
+  // These opener continuations depend on the opener's own hand and public auction.
+  return judgeWithFreshHands(north,sequence);
 }
 function judgeWithFreshHands(north,sequence){
   const rest=deck.filter(card=>!north.includes(card));
