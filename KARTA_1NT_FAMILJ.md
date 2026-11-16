@@ -137,6 +137,16 @@ Viktiga bekräftade källregler:
 
 Källgranskningen hittade verkliga kod-/dokumentavvikelser. Dessa ska åtgärdas i ordningen P0, P1, P2 i granskningsrapporten. Ingen ny HP-gräns får införas enbart för att koden redan använder den.
 
+
+## 10. Separat analysnod: 2NT–3♣–3♠
+
+Analysbiblioteket har utökats med **T46_STAYMAN_2NT_3S_DECISION**. Den gör den befintliga runtime-grenen efter 2NT–3♣–3♠ synlig och pedagogiskt separat:
+- 3NT vid balanserad svarshand, minst 25 gemensamma hp och ingen 8-korts spaderfit. Detta är den överenskomna projektregeln för sang.
+- 4♠ vid minst 8-korts spaderfit och minst 26 gemensamma spelpoäng.
+- Om ingen av profilerna är uppfylld ska motorn lämna fortsättningen ej täckt; den här noden inför ingen ny invitgräns.
+
+Trädet är avsiktligt avgränsat till 3♠-svaret efter Stayman på 2NT. Det ersätter inte det bredare T23-trädet och innebär inte att andra fortsättningar efter 2NT-Stayman är verifierade. Regressionstestet kontrollerar sekvensen, grenordningen och att 25 hp för sang hålls åtskilt från 26 spelpoäng för högfärgsutgång.
+
 ## 9. Ändringsstatus
 
 Källgranskningen är dokumenterad i `GRANSKNING_1NT_NORDISK_STANDARD.md`. En första P0-korrigering har nu gjorts i rättningsmotorn och analysbiblioteket:
