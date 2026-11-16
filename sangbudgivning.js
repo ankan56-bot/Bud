@@ -215,8 +215,11 @@
     minors.filter(function(suit){return L[suit]>=4;}).forEach(function(suit){
       special.push({bid:'3'+suit,why:'Minst 5'+SYM[M]+' och 4+ '+SYM[suit]+': 3 i lågfärgen är utgångskrav enligt Nordisk standard s. 5.'});
     });
+    // After a spade transfer, 5+ hearts is the special 3♥ invit route.
+    // Treat it as a competing route alongside any 3m game-forcing shape:
+    // the source gives no priority when both descriptions apply.
     if(M==='S'&&L.H>=5)
-      return NC('Minst 5-5 i högfärgerna efter spaderöverföring. Nordisk standard s. 5 anger 3♥ som invit, men styrkegränsen för att välja invitvägen anges inte; handen lämnas ej täckt.',means,'överföring',true);
+      special.push({bid:'3H',why:'Minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
     if(special.length>1)
       return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar; situationen lämnas ej täckt.',means,'överföring',true);
     if(special.length===1){
