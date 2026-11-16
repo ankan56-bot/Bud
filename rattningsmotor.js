@@ -195,14 +195,14 @@ var Rattning = (function(){
     }
     else if(hp>=gl){
       if(!k&&!opener){
-        // 1NT shows 15–17 HCP. With 10+ own HCP, 26 combined HCP
-        // are guaranteed; no hidden partner hand is needed for this game bid.
+        // 1NT shows 15–17 HCP. With 10+ own HCP, the user-confirmed
+        // 25-HCP no-trump game threshold is guaranteed without hidden cards.
         var jointMin=hp+15;
-        if(jointMin>=26){
+        if(jointMin>=25){
           exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
         }else return NC('Partnerns 1NT visar 15–17 hp. 25 gemensamma hp nås inte säkert och källan anger ingen numerisk gräns för invit/pass; situationen lämnas ej täckt.',means,conv,true);
-      }else if(!k&&jointHp<26){
+      }else if(!k&&jointHp<25){
         return NC('Paret når inte 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; pass kontra invit lämnas ej täckt.',means,conv,true);
       }else{
         exp=k?n2:'3N';
