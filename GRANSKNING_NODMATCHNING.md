@@ -130,3 +130,9 @@ Det ger oss en kontrollerbar karta innan någon större omstrukturering av budtr
 ## Ny korsreferensrapport och maskinell validering
 
 `KORSREFERENS_RUNTIME_NODER.md` listar systemfamiljer, relevanta runtime-funktioner och samtliga 26 grupper med identiska sekvensnycklar. Den bekräftar att bibliotek och runtime ännu inte är en gemensam nodmotor. `scripts/validate-analysis-library.js` kontrollerar strukturella fel; `tests/analysis-library-audit.test.js` låser den nuvarande baslinjen. De kända luckorna (T40-root, 8 handprofiler, 106 grenposter utan mål) är avsiktliga varningar och har inte tyst rättats.
+
+## Uppdatering: diagnostisk matchare i analysmotor 1.2.0
+
+`findMatches()` returnerar nu alla sekvensprefixträffar i stället för att dölja överlapp bakom en enda nod. `findMatch()` behåller kompatibelt första-träff-beteende. Kollisionstesterna bekräftar två exakta träffar för 1NT–Pass–2♦ (T03/T07) och tre för 1♥–Pass–2♥ (T05/T10/T21).
+
+Detta är endast ett diagnostiskt steg. Ingen handprofil eller roll valideras ännu av `findMatches()`, och den får därför inte användas som ensam beslutsmotor.
