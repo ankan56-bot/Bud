@@ -355,8 +355,8 @@ function assessReverse(shape, honors) {
   assert.equal(item.htp, 10);
 }
 
-// 13+ HTP with 4-card major support uses Stenberg 2NT even with a singleton;
-// it must take precedence over a splinter.
+// 13+ HTP with 4-card major support uses Stenberg 2NT even with a singleton.
+// Splinter is deliberately excluded from the current bidding system.
 {
   const item = assessMajorRaise(
     { C: 1, D: 4, H: 4, S: 4 },
