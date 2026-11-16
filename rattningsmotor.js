@@ -195,16 +195,16 @@ var Rattning = (function(){
     }
     else if(hp>=gl){
       if(!k){
-        // The later correction confirmed 26 HCP for no-trump game.
-        // 1NT shows 15–17 HCP, so 11+ own HCP guarantees 26 with opener's minimum.
+        // User-confirmed 25 HCP threshold for no-trump game.
+        // 1NT shows 15–17 HCP, so 10+ own HCP guarantees 25 with opener's minimum.
         var jointMin=hp+15;
-        if(!opener&&jointMin>=26){
+        if(!opener&&jointMin>=25){
           exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';
-        }else if(opener&&jointHp>=26){
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
+        }else if(opener&&jointHp>=25){
           exp='3N';
-          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 26-hp-gränsen för 3NT.';
-        }else return NC('Paret når inte säkert 26 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
+          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';
+        }else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
       }else return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
       soft=false;
     }
@@ -1083,7 +1083,7 @@ var Rattning = (function(){
         if(total>=26)return {exp:'4'+major,alt:[],why:'Högfärgsfit ('+(L[major]+oh.L[major])+' kort) och '+total+' gemensamma spelpoäng: utgång.',means:means,conv:'svar efter öppnarens återbud'};
         if(total>=22)return {exp:'3'+major,alt:[],why:'Högfärgsfit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=26)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp >=25)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:totalHcp+' gemensamma honnörspoäng: invit i sang.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:totalHcp+' gemensamma honnörspoäng: under invitnivån efter balanserat återbud.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1097,7 +1097,7 @@ var Rattning = (function(){
         if(total>=threshold-4)return {exp:'3'+first,alt:[],why:fit+'-korts fit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
         return {exp:'P',alt:[],why:fit+'-korts fit men '+total+' gemensamma spelpoäng: pass.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: invit 2NT.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:'Ingen tillräcklig fit och under invitstyrka: pass.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1748,7 +1748,7 @@ var Rattning = (function(){
   // Övergripande kontroll av missad utgång och slam vid pass på egen sida.
   // Trösklarna är vägledande: välj först högfärgsfit, därefter sang eller lågfärg.
   // Missad utgång/slam: 26 poäng i högfärg, 28 i lågfärg,
-  // 26 hp i sang utan fit. Fördelningspoäng räknas bara med fastställd trumf.
+  // 25 hp i sang utan fit. Fördelningspoäng räknas bara med fastställd trumf.
   function missedGameOrSlam(st,bids,i,currentContract,currentSide){
     var b=bids[i];
     if(!b||b.c!=='P'||side(b.s)!==0||currentSide!==0||!currentContract)return null;
@@ -1806,7 +1806,7 @@ var Rattning = (function(){
         target=choices.filter(function(x){return rk(x)>rk(currentContract);})[0]||null;
       }
       if(!target)return null;
-      var thresholdText=trump==='N'?'26+ honnörspoäng i sang':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
+      var thresholdText=trump==='N'?'25+ honnörspoäng i sang':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
       return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
     }
     return null;
