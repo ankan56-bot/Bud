@@ -171,12 +171,12 @@ const relayAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2S'},{s:'W',c:'P'}
 ];
-const openerClubsLonger=hand(['C13','C12','C11','C10','C2','D13','D2','D3','H14','H2','H3','S2','S3']);
+const openerClubsLonger=hand(['C13','C12','C11','C10','C2','D13','D2','D3','H14','H2','H3','S13','S3']);
 assert.ok(R.H(openerClubsLonger).hp>=15&&R.H(openerClubsLonger).hp<=17);
 assert.equal(nodeAt('N',relayAuction,openerClubsLonger).exp,'3C',
  'opener shows longer clubs with 3C');
 
-const openerDiamondsLonger=hand(['D13','D12','D11','D10','D2','C13','C2','C3','H14','H2','H3','S2','S3']);
+const openerDiamondsLonger=hand(['D13','D12','D11','D10','D2','C13','C2','C3','H14','H2','H3','S14','S3']);
 assert.ok(R.H(openerDiamondsLonger).hp>=15&&R.H(openerDiamondsLonger).hp<=17);
 assert.equal(nodeAt('N',relayAuction,openerDiamondsLonger).exp,'2N',
  'opener shows longer diamonds with 2NT');
