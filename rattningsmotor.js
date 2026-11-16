@@ -747,6 +747,12 @@ var Rattning = (function(){
     return seq==='1N,4N' ||
            seq==='1N,2C,2D,4N';
   }
+  // The user-confirmed 2NT–4NT sequence is quantitative: an invitation to
+  // 6NT, not an ace ask. The opener's acceptance threshold is kept separate.
+  function agreedQuantitativeNoTrumpInvite(bids,sideWanted){
+    var ours=bids.filter(function(x){return side(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX'}).map(function(x){return x.c});
+    return ours.join(',')==='2N,4N';
+  }
   function rkcReply(h,T_){
     var kc=h.aces+(T_&&h.has(T_,13)?1:0);
     var q=!!(T_&&h.has(T_,12));
@@ -1230,6 +1236,9 @@ var Rattning = (function(){
       if(agreedNoTrumpAceAsk(prior.concat([{s:me,c:'4N'}]),side(me))){
         return {exp:'4N',alt:[],why:'Avtalad fyr-essfråga utan fastställd trumf. 5♣–5NT visar 0–4 ess.',means:function(c){return c==='4N'?'Fyr-essfråga i sang enligt överenskommen sekvens.':null},conv:'Fyr-essfråga utan trumf'};
       }
+      if(agreedQuantitativeNoTrumpInvite(prior.concat([{s:me,c:'4N'}]),side(me))){
+        return {exp:'4N',alt:[],why:'Kvantitativ invit till 6NT efter 2NT-öppning. Detta är inte en essfråga.',means:function(c){return c==='4N'?'Kvantitativ invit till 6NT; inte essfråga.':null},conv:'Kvantitativ sanginvit'};
+      }
       return NC('4NT utan fastställd trumf är inte automatiskt essfråga. I andra sangsekvenser behandlas 4NT som kvantitativt eller enligt parets särskilda överenskommelse.');
     }
 
@@ -1242,6 +1251,8 @@ var Rattning = (function(){
         var partnerAskFour=agreedNoTrumpAceAsk(prior,side(me));
         if(partnerAskTrump||partnerAskFour)
           return rkcReply(h,partnerAskTrump);
+        if(agreedQuantitativeNoTrumpInvite(prior,side(me)))
+          return NC('Partnerns 4NT är en kvantitativ invit till 6NT efter 2NT-öppning, inte en essfråga. Öppnarens accept/pass-gräns är inte fastställd här; använd inte ess-/nyckelkortssvar.',null,'Kvantitativ sanginvit',true);
         return NC('Partnerns 4NT har ingen fastställd trumf och sekvensen är inte en uttryckligen avtalad fyr-essfråga enligt Nordisk standard. Svaret lämnas ej täckt.');
       }
       // Svarshanden har redan svarat; efter frågeställarens sangslutbud ska den passa.
