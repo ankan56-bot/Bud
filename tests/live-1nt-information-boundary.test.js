@@ -76,7 +76,7 @@ const afterTransfer3NTChoice=[
 const openerWithThreeHearts=fill(['H14','H13','H12','S14','S2','S3','D13','D2','D3','C2','C3','C4','C5']);
 assert.equal(live('N',afterTransfer3NTChoice,openerWithThreeHearts).exp,'4H',
  'opener chooses 4H over 3NT when 3+ hearts support the game-choice bid');
-const openerWithoutThreeHearts=fill(['S14','S13','S12','D14','D13','D2','D3','D4','C2','C3','C4','C5','H2']);
+const openerWithoutThreeHearts=fill(['S14','S13','S12','D14','D13','D2','D3','C2','C3','C4','C5','H2','H3']);
 assert.equal(live('N',afterTransfer3NTChoice,openerWithoutThreeHearts).exp,'P',
  'opener passes 3NT game-choice bid without 3+ hearts');
 
