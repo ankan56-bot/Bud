@@ -194,7 +194,21 @@ var Rattning = (function(){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs; situationen lämnas ej täckt.',means,conv,true);
     }
     else if(hp>=gl){
-      return NC('3NT är ett slutbud enligt Nordisk standard, men varken PDF:en eller en användarbekräftad regel anger en numerisk HP-gräns för när svarshanden ska välja 3NT framför invit/pass. Endast HP ska räknas i sang; ingen 25-/26-hp-gräns antas. Handen lämnas ej täckt.',means,conv,true);
+      if(!k&&!opener){
+        // 1NT shows 15–17 HCP. With 10+ own HCP, 25 combined HCP
+        // are guaranteed; no hidden partner hand is needed for this game bid.
+        var jointMin=hp+15;
+        if(jointMin>=25){
+          exp='3N';
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
+        }else return NC('Partnerns 1NT visar 15–17 hp. 25 gemensamma hp nås inte säkert och källan anger ingen numerisk gräns för invit/pass; situationen lämnas ej täckt.',means,conv,true);
+      }else if(!k&&jointHp<25){
+        return NC('Paret når inte 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; pass kontra invit lämnas ej täckt.',means,conv,true);
+      }else{
+        exp=k?n2:'3N';
+        why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma hp')+': 3NT.';
+      }
+      soft=false;
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
@@ -1070,7 +1084,7 @@ var Rattning = (function(){
         if(total>=26)return {exp:'4'+major,alt:[],why:'Högfärgsfit ('+(L[major]+oh.L[major])+' kort) och '+total+' gemensamma spelpoäng: utgång.',means:means,conv:'svar efter öppnarens återbud'};
         if(total>=22)return {exp:'3'+major,alt:[],why:'Högfärgsfit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=26)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp>=25)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:totalHcp+' gemensamma honnörspoäng: invit i sang.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:totalHcp+' gemensamma honnörspoäng: under invitnivån efter balanserat återbud.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1084,7 +1098,7 @@ var Rattning = (function(){
         if(total>=threshold-4)return {exp:'3'+first,alt:[],why:fit+'-korts fit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
         return {exp:'P',alt:[],why:fit+'-korts fit men '+total+' gemensamma spelpoäng: pass.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp>=25)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: invit 2NT.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:'Ingen tillräcklig fit och under invitstyrka: pass.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1375,7 +1389,7 @@ var Rattning = (function(){
         var staymanTotal=h.hp+staymanOpener.hp;
         var spadeFit=h.L.S+staymanOpener.L.S;
         if(h.bal&&staymanTotal>=25&&spadeFit<8){
-          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand, 26+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
+          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; välj 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand, 25+ gemensamma honnörspoäng och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman'};
         }
         if(h.bal&&staymanTotal>=25&&spadeFit>=8){
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+staymanTotal+' gemensamma honnörspoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
