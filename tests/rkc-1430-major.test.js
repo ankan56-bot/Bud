@@ -1,6 +1,6 @@
 'use strict';
 
-// RKC 1430 regression tests after 1♥/1♠ and Stenberg 2NT.
+// Nordisk standard RKC regression tests after 1♥/1♠ and Stenberg 2NT.
 const assert = require('node:assert/strict');
 const Rattning = require('../rattningsmotor.js');
 
@@ -33,10 +33,10 @@ function cases(trump) {
     twoNoQueen:['S14','D14','H2','H3','H4','H5','H6','H7','S2','S3','S4','D2','C2'],
     twoWithQueen:['S14','D14',queen,'H2','H3','H4','H5','H6','S2','S3','S4','D2','C2']
   };
-  assert.equal(answer(cards.one,trump).exp,'5C','1 keycard must be 5♣ in 1430');
-  assert.equal(answer(cards.four,trump).exp,'5C','4 keycards must be 5♣ in 1430');
-  assert.equal(answer(cards.zero,trump).exp,'5D','0 keycards must be 5♦ in 1430');
-  assert.equal(answer(cards.three,trump).exp,'5D','3 keycards must be 5♦ in 1430');
+  assert.equal(answer(cards.one,trump).exp,'5D','1 keycard must be 5♦ (Nordisk standard)');
+  assert.equal(answer(cards.four,trump).exp,'5D','4 keycards must be 5♦ (Nordisk standard)');
+  assert.equal(answer(cards.zero,trump).exp,'5C','0 keycards must be 5♣ (Nordisk standard)');
+  assert.equal(answer(cards.three,trump).exp,'5C','3 keycards must be 5♣ (Nordisk standard)');
   assert.equal(answer(cards.twoNoQueen,trump).exp,'5H','2 without trump queen must be 5♥');
   assert.equal(answer(cards.twoWithQueen,trump).exp,'5S','2 with trump queen must be 5♠');
   const allFive=['S14','H14','D14','C14',trump+'13','H2','H3','H4','H5','S2','S3','D2','D3'];
@@ -60,7 +60,7 @@ function answerAfterSimpleFit(north,trump){
 assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'H').exp,'5C');
 assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'S').exp,'5C');
 
-// The asker must not be auto-promoted to 6M after an ambiguous 1430 reply.
+// The asker must not be auto-promoted to 6M after an ambiguous low-suit RKC reply.
 {
   const north=['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'];
   const hands=deal(north);
@@ -76,4 +76,4 @@ assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2'
   assert.equal(node.exp,null,'RKC follow-up is uncovered until the 1/4 ambiguity and slam continuations are defined');
 }
 
-console.log('RKC 1430 major-suit responses: 16/16 passed; all-five-keycard and asker continuations remain explicitly uncovered.');
+console.log('Nordisk standard major-suit RKC responses passed; five-keycard and unresolved continuations remain explicitly uncovered.');
