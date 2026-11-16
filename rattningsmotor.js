@@ -194,8 +194,9 @@ var Rattning = (function(){
       if(!k&&!opener){
         // In live bidding partner's 1NT opening shows a range, not an exact
         // hand. Recommend 3NT only when even 15+ own points guarantee 26;
-        // recommend an invite only when even 17+ stays below 26.
-        var jointMin=hp+15,jointMax=hp+17;
+        // otherwise leave the invit decision uncovered because no numeric
+        // 2NT-invite band is stated in the source.
+        var jointMin=hp+15;
         if(jointMin>=26){exp='3N';why=hp+' hp plus at least 15 hp from partner: minst 26 gemensamma hp, 3NT.';}
         else return NC('Partnerns 1NT visar 15–17 hp. Även om 26 hp inte nås säkert anger Nordisk standard inte ett numeriskt intervall för den naturliga 2NT-inviten; ingen gräns antas live.',means,conv);
       }else if(!k&&jointHp<26){
