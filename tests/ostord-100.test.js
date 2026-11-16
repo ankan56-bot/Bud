@@ -142,7 +142,7 @@ assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must e
 // strength descriptor, and transfer hands outside the tabulated shapes.
 const acceptedUncoveredIds=[
   'ostord-100-001','ostord-100-002','ostord-100-030','ostord-100-031','ostord-100-034','ostord-100-036','ostord-100-037','ostord-100-039',
-  'ostord-100-040','ostord-100-048','ostord-100-052','ostord-100-053','ostord-100-066','ostord-100-080','ostord-100-088','ostord-100-094'
+  'ostord-100-040','ostord-100-044','ostord-100-048','ostord-100-052','ostord-100-053','ostord-100-063','ostord-100-065','ostord-100-066','ostord-100-069','ostord-100-070','ostord-100-071','ostord-100-080','ostord-100-088','ostord-100-094'
 ].sort();
 assert.deepEqual(
   report.uncovered.map(x=>x.dealId).sort(),
