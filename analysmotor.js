@@ -27,7 +27,7 @@ function treeCompatible(tree){
  if(text.includes("5♦=1")||text.includes("5♦ = 1")||text.includes("5♦ visar 1"))return false;
  return true;
 }
-function findMatch(lib,bids){
+function findMatches(lib,bids){
  const q=normalizeSequence((bids||[]).map(b=>callText(b.c))),hits=[];
  for(const tree of lib.trees||[]){
   if(!treeCompatible(tree))continue;
@@ -37,7 +37,10 @@ function findMatch(lib,bids){
   }
  }
  hits.sort((a,b)=>b.length-a.length);
- return hits[0]||null;
+ return hits;
+}
+function findMatch(lib,bids){
+ return findMatches(lib,bids)[0]||null;
 }
 function lengths(hand){
  const L={S:0,H:0,D:0,C:0};(hand||[]).forEach(c=>{if(L[c[0]]!==undefined)L[c[0]]++});return L;
@@ -187,7 +190,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.1.0",loadLibrary,loadSupplementary,findSupplementary,analyzeSupplementary,handStats,handMatches,findMatch,treeCompatible,buildReport,analyze,
+ version:"1.1.0",loadLibrary,loadSupplementary,findSupplementary,analyzeSupplementary,handStats,handMatches,findMatch,findMatches,treeCompatible,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
