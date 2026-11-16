@@ -204,7 +204,7 @@ var Rattning = (function(){
         var twoNTMin=hp+20;
         if(!opener&&twoNTMin>=26){exp='3N';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';}
         else if(opener&&jointHp>=26){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 26-hp-gränsen för 3NT.';}
-        else return NC('Paret når inte säkert 25 gemensamma hp för 3NT efter 2NT-öppning; situationen lämnas ej täckt.',means,conv,true);
+        else return NC('Paret når inte säkert 26 gemensamma hp för 3NT efter 2NT-öppning; situationen lämnas ej täckt.',means,conv,true);
       }
       soft=false;
     }
@@ -369,7 +369,7 @@ var Rattning = (function(){
     if(k1==='2C'&&M==='D'&&k3==='2N'){
       var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret når 26 gemensamma honnörspoäng.';return null};
       if(!partner)return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Livebeslutet får inte använda partnerns dolda hand; efter given är 26 gemensamma hp den senare användarbekräftade 3NT-gränsen.',meansNoMajor,'Stayman',true);
-      if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
@@ -1087,7 +1087,7 @@ var Rattning = (function(){
         if(total>=26)return {exp:'4'+major,alt:[],why:'Högfärgsfit ('+(L[major]+oh.L[major])+' kort) och '+total+' gemensamma spelpoäng: utgång.',means:means,conv:'svar efter öppnarens återbud'};
         if(total>=22)return {exp:'3'+major,alt:[],why:'Högfärgsfit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp >=25)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp >=26)return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: utgång i sang enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:totalHcp+' gemensamma honnörspoäng: invit i sang.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:totalHcp+' gemensamma honnörspoäng: under invitnivån efter balanserat återbud.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1101,7 +1101,7 @@ var Rattning = (function(){
         if(total>=threshold-4)return {exp:'3'+first,alt:[],why:fit+'-korts fit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
         return {exp:'P',alt:[],why:fit+'-korts fit men '+total+' gemensamma spelpoäng: pass.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 26-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: invit 2NT.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:'Ingen tillräcklig fit och under invitstyrka: pass.',means:means,conv:'svar efter öppnarens återbud'};
     }
@@ -1803,7 +1803,7 @@ var Rattning = (function(){
 
     var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
     var total=trump==='N'?totalHcp:partnershipPoints(a,p,trump);
-    var threshold=trump==='N'?25:(maj(trump)?26:28);
+    var threshold=trump==='N'?26:(maj(trump)?26:28);
     var gameLevel=trump==='N'?3:(maj(trump)?4:5);
     var currentSuit=st_(currentContract),currentLevel=lv(currentContract);
     var gameReached=(currentSuit==='N'&&currentLevel>=3)||
