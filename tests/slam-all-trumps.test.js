@@ -162,13 +162,13 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   const auctionAfterFiveDiamond=[
     {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2H'},{s:'W',c:'P'},
     {s:'N',c:'3H'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},
-    {s:'N',c:'5D'},{s:'E',c:'P'},{s:'S',c:'P'}
+    {s:'N',c:'5D'},{s:'E',c:'P'}
   ];
-  const nextQueenAsk=R.nodeFor({hands:handsAfterFiveDiamond,dealer:'N',bids:auctionAfterFiveDiamond},10);
+  const nextQueenAsk=R.nodeFor({hands:handsAfterFiveDiamond,dealer:'N',bids:auctionAfterFiveDiamond},9);
   assert.equal(nextQueenAsk.exp,'5S','the next legal non-trump bid after 5♦ is 5♠');
   const queenShown=R.nodeFor({hands:handsAfterFiveDiamond,dealer:'N',bids:auctionAfterFiveDiamond.concat([
-    {s:'S',c:'5S'},{s:'W',c:'P'},{s:'N',c:'5N'}
-  ])},12);
+    {s:'S',c:'5S'},{s:'W',c:'P'},{s:'N',c:'5N'},{s:'E',c:'P'}
+  ])},13);
   assert.equal(queenShown.exp,'6H','three own aces plus the 1-keycard reply permit the 6-level contract after queen-showing 5NT');
 
   // With 4 aces opposite the single trump king, the queen shown completes
