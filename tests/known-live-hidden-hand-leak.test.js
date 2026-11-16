@@ -81,8 +81,9 @@ assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
 assert.equal(R.H(eastResponder).hp, 10);
 assert.equal(R.H(west15).hp, 15);
 assert.equal(R.H(west16).hp, 16);
-// The user-approved 25-HCP no-trump threshold is met even with opener's 15-HCP minimum.
-assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "3N");
+// Later user correction: 3NT requires 26 combined HCP (25 is invit level).
+// The two retrospective deals differ by one HCP; live advice cannot see which.
+assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, null);
 assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
