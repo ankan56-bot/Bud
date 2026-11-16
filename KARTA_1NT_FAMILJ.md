@@ -66,11 +66,11 @@ Källverifierade budbetydelser enligt Nordisk standard s. 5:
 - 3M: invit med minst sex kort i överföringsfärgen.
 - 3NT: välj utgång med jämn hand och exakt fem kort.
 - 4M: slutbud.
-- Efter spaderöverföring: 3♥ invit med minst 5-5 i båda högfärgerna.
+- Efter spaderöverföring: 3♥ är invit med minst 5-5 i båda högfärgerna; eftersom styrkegränsen saknas klassificerar motorn inte automatiskt valet av denna invit.
 - Efter hjärteröverföring: 2♠ rondkrav med 5+♥ och 4+♠.
 - Efter båda överföringarna: 3 lå är utgångskrav med 5+ överföringsfärg och 4+ i bjuden lågfärg; 4 lå är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf.
 
-**Viktig korrigering:** PDF sida 5 anger inga numeriska HP-intervall för svag/invit/utgång. Tidigare intervall 0–7, 8–9 och 10–15 hp har tagits bort ur motorn. Den väljer inte mellan pass, invit och slutbud utan en verifierad styrkegräns. Entydiga specialbud (2♠, 3 lå och 3♥ efter spaderöverföring) kan fortfarande väljas på sina uttryckliga formvillkor. Om flera specialvillkor överlappar lämnas prioriteten ej täckt.
+**Viktig korrigering:** PDF sida 5 anger inga numeriska HP-intervall för svag/invit/utgång. Tidigare intervall 0–7, 8–9 och 10–15 hp har tagits bort ur motorn. Den väljer inte mellan pass, invit och slutbud utan en verifierad styrkegräns. Entydiga kravbud (2♠ efter hjärteröverföring och 3 lå efter båda överföringarna) kan fortfarande väljas på sina uttryckliga formvillkor. 3♥ efter spaderöverföring är en invit och lämnas ej täckt utan styrkegräns. Om flera specialvillkor överlappar lämnas prioriteten ej täckt.
 
 **Öppna luckor/risker:**
 - Obalanserad femkortshand efter överföring saknar fastställd fortsättning i vissa styrkelägen.
