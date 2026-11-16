@@ -107,7 +107,7 @@ assert.equal(responderAfterStayman(
   ['C14','C13','C12','C11','S2','S3','S4','H2','H3','H4','D2','D3','D4'],'2H').exp,'3C',
   '4+ clubs after Stayman 2H is a natural game-forcing new suit');
 const unbalancedFiveHeartsAfter2D=responderAfterStayman(
-  ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2D');
+  ['H14','H13','H12','H11','H10','S2','S3','S4','S5','D2','D3','C2','C3'],'2D');
 assert.equal(unbalancedFiveHeartsAfter2D.exp,null,
   'unbalanced 5-card major after Stayman 2D uses the 3M game-force route, but game strength is not numerically defined');
 assert.match(unbalancedFiveHeartsAfter2D.why,/3H.*utgångsstyrka/i);
