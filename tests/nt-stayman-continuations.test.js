@@ -124,6 +124,12 @@ assert.equal(exactlyFourSpadesAfter2H.exp,null,
   'exactly four spades is known, but invite versus game needs a strength boundary');
 assert.match(exactlyFourSpadesAfter2H.means('2N'),/exakt fyra spader/i);
 assert.match(exactlyFourSpadesAfter2H.means('3N'),/också exakt fyra spader/i);
+const overlappingFourSpadesAndFourClubs=responderAfterStayman(
+  ['S14','S13','S12','S11','C14','C13','C12','C11','H2','H3','H4','D2','D3'],'2H');
+assert.equal(overlappingFourSpadesAndFourClubs.exp,null,
+  'the 4-spade Stayman route and a 4-card minor game-force both apply; no priority is invented');
+assert.match(overlappingFourSpadesAndFourClubs.why,/ingen prioritet/i);
+assert.match(overlappingFourSpadesAndFourClubs.means('3C'),/utgångskrav/i);
 // The source also names 3M in opener's shown major as an invit.
 // The bidding meaning is recognized, but the numeric choice/acceptance
 // threshold remains uncovered rather than borrowing a generic point band.
