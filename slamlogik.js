@@ -83,14 +83,15 @@
   function agreedNoTrumpAceAsk(bids,sideWanted){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX'}).map(function(x){return x.c});
     var seq=ours.join(',');
-    return seq==='1N,4N' ||
-           seq==='1N,2C,2D,4N';
+    return seq==='1N,4N' || seq.indexOf('1N,4N,')===0 ||
+           seq==='1N,2C,2D,4N' || seq.indexOf('1N,2C,2D,4N,')===0;
   }
   // The user-confirmed 2NT–4NT sequence is quantitative: an invitation to
   // 6NT, not an ace ask. The opener's acceptance threshold is kept separate.
   function agreedQuantitativeNoTrumpInvite(bids,sideWanted){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX'}).map(function(x){return x.c});
-    return ours.join(',')==='2N,4N';
+    var seq=ours.join(',');
+    return seq==='2N,4N'||seq.indexOf('2N,4N,')===0;
   }
   // Ägarskap för 4NT-modulen: alla svar på essfrågor/RKC och fortsättningar
   // efter 4NT hanteras här, oberoende av vilken öppningsfamilj som ledde dit.
