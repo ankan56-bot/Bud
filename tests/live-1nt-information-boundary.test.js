@@ -194,7 +194,7 @@ assert.equal(live('N',afterMinorInvite,openerWithFourSmallClubs).exp,null,
  'four small cards are not covered by the stated xx/xxx or top-honor cases');
 
 // After Stayman 2♦ opener denies a four-card major. Eleven own HCP
-// guarantee 26 combined HCP against the 15-HCP minimum; ten do not.
+// guarantee 25 combined HCP against the 15-HCP minimum; nine do not.
 const staymanNoMajorAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2C'},{s:'W',c:'P'},
