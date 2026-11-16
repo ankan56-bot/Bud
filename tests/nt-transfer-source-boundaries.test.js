@@ -1,8 +1,8 @@
 'use strict';
 
 // Conservative source-aligned checks for 1NT transfer continuations.
-// Nordisk standard 2012-08-22, page 5: transfer strength bands are explicit;
-// the separate weak 2♠ minor relay remains qualitative and has no HP cutoff.
+// Nordisk standard 2012-08-22, page 5: transfer strength descriptions are
+// qualitative; the separate weak 2♠ minor relay is also qualitative.
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
 const A=require('../analysmotor.js');
@@ -93,8 +93,8 @@ const fiveFiveSpade=hand(['S13','S12','S11','S10','S9','H13','H12','H11','H10','
 assert.equal(result(fiveFiveSpade,afterSpadeTransfer).exp,null,
   '5-5 majors still lacks the numeric strength threshold for invit 3H');
 
-// Trees with unverified numerical strength bands remain documented but
-// must not be selected as authoritative correction/analysis nodes.
+// Transfer trees retain the source meanings, but are not authoritative for
+// strength classification because the source gives no numerical boundaries.
 for(const id of ['T03_OVERFORING_PASS','T07_OVERFORING_HJARTER','T08_OVERFORING_SPADER']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree, 'expected source-aligned transfer tree '+id);
@@ -107,9 +107,8 @@ for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFOR
   assert.equal(tree.sourceStatus,'provisional_source_gap',id+' remains provisional because opener acceptance is not specified');
   assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
 }
-// Direct 3NT at the user-confirmed 26 combined-HCP threshold remains
-// authoritative; unverified 2NT-invite bands and the weak-relay numeric
-// band stay provisional until their exact thresholds are confirmed.
+// Direct 3NT at the confirmed 26 combined-HCP threshold remains
+// authoritative; unquantified invitation trees stay provisional.
 for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree);
