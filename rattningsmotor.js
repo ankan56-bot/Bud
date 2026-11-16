@@ -1137,7 +1137,12 @@ var Rattning = (function(){
     for(var pai=prior.length-1;pai>=0;pai--)if(prior[pai].s===pt&&prior[pai].c==='4N'){partnerAskIndex=pai;break;}
     if(partnerAskIndex>=0){
       var afterPartnerAsk=prior.slice(partnerAskIndex+1).filter(function(x){return x.s===me&&isBid(x.c)});
-      if(!afterPartnerAsk.length)return rkcReply(h,rkcTrumpFromAuction(prior,side(me)));
+      if(!afterPartnerAsk.length){
+        var partnerAskTrump=rkcTrumpFromAuction(prior,side(me));
+        if(partnerAskTrump||agreedNoTrumpAceAsk(prior,side(me)))
+          return rkcReply(h,partnerAskTrump);
+        return NC('Partnerns 4NT har ingen fastställd trumf och sekvensen är inte en uttryckligen avtalad fyr-essfråga enligt Nordisk standard. Svaret lämnas ej täckt.');
+      }
       // Svarshanden har redan svarat; efter frågeställarens sangslutbud ska den passa.
       if(b.c==='P')return {exp:'P',alt:[],why:'Pass efter att frågeställaren har fastställt sangslutbudet.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
     }
@@ -1147,8 +1152,11 @@ var Rattning = (function(){
       var afterMyAsk=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c)});
       if(afterMyAsk.length){
         var response=afterMyAsk[0].c;
-        if(isBid(b.c) && /^([56][CDHSN])$/.test(b.c))return rkcNextStep(h,rkcTrumpFromAuction(prior,side(me)),response);
-        if(b.c==='P' && (last==='6N'||last==='7N'||last==='5N'))return {exp:'P',alt:[],why:'Pass efter fastställt sangslutbud.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
+        var myAskTrump=rkcTrumpFromAuction(prior,side(me));
+        var myAskIsAgreed=myAskTrump||agreedNoTrumpAceAsk(prior,side(me));
+        if(!myAskIsAgreed)return NC('4NT-sekvensen är inte en verifierad essfråga enligt Nordisk standard; fortsättningen lämnas ej täckt.');
+        if(isBid(b.c) && /^([56][CDHSN])$/.test(b.c))return rkcNextStep(h,myAskTrump,response);
+        if(b.c==='P' && (last==='6N'||last==='7N'))return {exp:'P',alt:[],why:'Pass efter fastställt slutbud.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
       }
     }
 
