@@ -9,7 +9,8 @@
     "oneNTGameThreshold": "3NT after 1NT requires at least 26 combined HCP. Nordisk standard s. 4 describes 2NT as a natural balanced invitation without a four-card major, but does not state a numeric HCP band; do not encode an assumed threshold.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
-    "oneNTTransferStrengthBands": "Efter fullföljd 1NT-överföring (Nordisk standard 2012-08-22, s. 5): 0–7 hp pass; 8–9 hp invit (2NT med jämn hand och exakt fem kort, 3M med 6+); 10–15 hp (3NT med jämn hand och exakt fem kort, 4M med 6+). Efter spaderöverföring 3♥ är invit med minst 5-5 i högfärgerna. Särskilda grenar: hjärteröverföring 2♠ rondkrav med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC."
+    "oneNTTransferStrengthBands": "Efter fullföljd 1NT-överföring (Nordisk standard 2012-08-22, s. 5): 0–7 hp pass; 8–9 hp invit (2NT med jämn hand och exakt fem kort, 3M med 6+); 10–15 hp (3NT med jämn hand och exakt fem kort, 4M med 6+). Efter spaderöverföring 3♥ är invit med minst 5-5 i högfärgerna. Särskilda grenar: hjärteröverföring 2♠ rondkrav med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC.",
+    "twoNTQuantitativeInvite": "2NT–4NT är en kvantitativ invit till 6NT, inte en essfråga. Öppnarens accept/pass är inte numeriskt specificerat i tillgänglig systemtext och lämnas därför ej täckt."
   },
   "trees": [
     {
