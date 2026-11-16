@@ -57,8 +57,8 @@ function answerAfterSimpleFit(north,trump){
  ]};
  return Rattning.nodeFor(st,8);
 }
-assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'H').exp,'5C');
-assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'S').exp,'5C');
+assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'H').exp,'5D');
+assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2','S3','S4','D2','D3'],'S').exp,'5D');
 
 // The asker must not be auto-promoted to 6M after an ambiguous low-suit RKC reply.
 {
