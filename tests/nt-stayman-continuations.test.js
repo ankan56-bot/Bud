@@ -24,6 +24,26 @@ function judge(north, sequence){
   return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
 }
 
+// Opener's first Stayman reply: 2♦ denies a four-card major;
+// 2♥ shows four or five hearts (and takes priority with 4-4);
+// 2♠ shows four or five spades when hearts are not shown.
+const afterStaymanQuestion=[
+  {s:'N',c:'1N'},{s:'E',c:'P'},
+  {s:'S',c:'2C'},{s:'W',c:'P'}
+];
+const noFourCardMajor=['D14','D13','D7','D2','H14','H8','H3','S13','S8','S3','C11','C8','C3'];
+const fourHeartsOnly=['H14','H13','H7','H2','S14','S8','S3','D13','D8','D3','C11','C8','C3'];
+const fourSpadesOnly=['S14','S13','S7','S2','H14','H8','H3','D13','D8','D3','C11','C8','C3'];
+for (const [hand,expected,label] of [
+  [noFourCardMajor,'2D','no four-card major'],
+  [fourHeartsOnly,'2H','four hearts, no four spades'],
+  [fourSpadesOnly,'2S','four spades, no four hearts']
+]) {
+  assert.equal(R.H(hand).hp,15,label+': fixture must be 15 HCP');
+  assert.equal(judge(hand,afterStaymanQuestion).exp,expected,
+    'Stayman opener reply for '+label);
+}
+
 const afterStayman2NT=[
   {s:'N',c:'1N'},{s:'E',c:'P'},
   {s:'S',c:'2C'},{s:'W',c:'P'},
