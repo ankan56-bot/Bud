@@ -162,7 +162,7 @@
   function rkcNextStep(h,T_,response,auction){
     if(!T_)return fourAceSlamNextStep(h,response);
     if(response!=='5C'&&response!=='5D')
-      return rkcSlamNextStep(h,T_,response,null);
+      return rkcSlamNextStep(h,T_,response,null,auction);
     var highest=highestContract(auction), trumpCall='5'+T_;
     // The source says the ask is the next bid that is not trump. We only
     // generate it where 5 in trump remains a legal denial after the ask.
@@ -199,11 +199,13 @@
     if(/^6[CDHS]$/.test(response))return [2];
     return [];
   }
-  function rkcSlamNextStep(h,T_,response,queenReply){
+  function rkcSlamNextStep(h,T_,response,queenReply,auction){
     if(!T_)return fourAceSlamNextStep(h,response);
     if((response==='5C'||response==='5D')&&queenReply==='5'+T_){
       if(h.aces===3||h.aces===4){
         var six='6'+T_;
+        var high=highestContract(auction);
+        if(high&&rk(six)<=rk(high))return NC('6 i trumf är inte längre ett lagligt bud efter förnekelsen i 5 i trumf. Ingen alternativ fortsättning är uttryckligen angiven.',null,'RKC – lillslam',true);
         return {exp:six,alt:[],why:'Efter ett dubbeltydigt 5-lågsvar och förnekad trumfdam bjuder frågeställaren 6 i trumf med 3 eller 4 egna ess enligt Nordisk standard s. 7. Detta uppfyller också projektregeln om högst ett saknat ess för lillslam i färg.',means:function(c){return c===six?'Lillslam: frågeställaren har 3 eller 4 ess efter förnekad trumfdam.':null},conv:'RKC – lillslam'};
       }
       return NC('Efter dubbeltydigt 5-lågsvar och förnekad trumfdam anger Nordisk standard 6 i trumf när frågeställaren har 3 eller 4 ess. Den egna handen har inte 3 eller 4 ess; ingen annan fortsättning är fastställd.',null,'RKC – lillslam',true);
@@ -222,11 +224,16 @@
     var allSeven=poss.every(function(p){return p.totalAces===4&&p.totalKeycards===5;});
     if(allSeven){
       var seven='7'+T_;
+      var highSeven=highestContract(auction);
+      if(highSeven&&rk(seven)<=rk(highSeven))return NC('Storslamsbudet i trumf är inte längre lagligt efter partnerns kontroll-/renonsvisning. Läget lämnas ej täckt.',null,'RKC – storslam',true);
       return {exp:seven,alt:[],why:'Alla fyra essen och trumfkungen är säkrade av frågeställarens hand och RKC-svaret. Projektets storslamregel för färgkontrakt är uppfylld.',means:function(c){return c===seven?'Storslam: alla fyra ess och trumfkungen.':null},conv:'RKC – storslam'};
     }
     var allSmall=poss.every(function(p){return p.totalAces>=3;});
     if(allSmall){
       var six='6'+T_;
+      var highSmall=highestContract(auction);
+      if(highSmall&&rk(six)<rk(highSmall))return NC('Partnerskapet har tillräckligt med ess för lillslam, men 6 i trumf är lägre än partnerns redan gjorda 6-bud. Källan anger ingen alternativ slutbudsväg i detta läge.',null,'RKC – lillslam',true);
+      if(highSmall&&rk(six)===rk(highSmall))return {exp:'P',alt:[],why:'Partnerns renons-/nyckelkortssvar har redan placerat kontraktet i 6 i trumf. Minst 3 av 4 ess är säkrade; pass behåller det tillåtna lillslammet.',means:function(c){return c==='P'?'Pass i det redan nådda lillslammet.':null},conv:'RKC – lillslam'};
       return {exp:six,alt:[],why:'Alla möjliga kortfördelningar enligt RKC-svaret visar minst 3 av de 4 essen. Högst ett ess saknas; lillslam i färg är tillåten enligt projektregeln.',means:function(c){return c===six?'Lillslam: minst 3 av 4 ess.':null},conv:'RKC – lillslam'};
     }
     return NC('RKC-svaret är fortfarande förenligt med både färre än 3 och minst 3 ess i partnerskapet. Eftersom lillslam i färg kräver minst 3 av 4 ess kan motorn inte välja 6- eller 7-läget säkert.',null,'RKC – slamfortsättning',true);
