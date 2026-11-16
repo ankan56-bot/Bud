@@ -192,11 +192,18 @@ var Rattning = (function(){
       else return NC('8–9 hp utan 4-korts högfärg men obalanserad hand: fortsatt bud efter 1NT är inte definierat för denna handtyp.',means,conv);
     }
     else if(hp>=gl){
-      if(!k&&jointHp<26){
+      if(!k&&!opener){
+        // In live bidding partner's 1NT opening shows a range, not an exact
+        // hand. Recommend 3NT only when even 15+ own points guarantee 26;
+        // recommend an invite only when even 17+ stays below 26.
+        var jointMin=hp+15,jointMax=hp+17;
+        if(jointMin>=26){exp='3N';why=hp+' hp plus at least 15 hp from partner: minst 26 gemensamma hp, 3NT.';}
+        else if(jointMax<26&&h.bal){exp='2N';why=hp+' hp plus at most 17 hp from partner: below 26 combined hp; balanced invit 2NT.';}
+        else return NC('Partnerns 1NT visar 15–17 hp. Med denna hand kan den gemensamma styrkan ligga på båda sidor om 26 hp; livebeslutet lämnas ej täckt i stället för att läsa partnerns dolda kort.',means,conv);
+      }else if(!k&&jointHp<26){
         if(h.bal){exp='2N';why=hp+' hp och '+jointHp+' gemensamma honnörspoäng: balanserad invit 2NT eftersom 26 hp för sangutgång inte nås.';}
         else return NC('10+ hp och under 26 gemensamma honnörspoäng utan 4-korts högfärg: fortsatt bud med obalanserad hand är inte definierat.',means,conv);
-      }
-      else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
+      }else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
     else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){exp='2S';why='Dåliga kort med lång lågfärg: 2♠ (relä till 3 i lågfärg).'}
