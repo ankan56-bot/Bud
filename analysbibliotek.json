@@ -1,12 +1,12 @@
 {
-  "version": "0.6.12",
+  "version": "0.6.13",
   "description": "Analysbibliotek med 46 budträd. Överföringsbudens kvalitativa betydelser är källgranskade; numeriska styrkegränser som saknas i originalet används inte.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
     "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
-    "oneNTGameThreshold": "3NT in no-trump requires at least 25 combined HCP; only HCP count (no distribution/trump points). Natural 2NT invitations after 1NT are described in Nordisk standard s. 4, but the source gives no numeric responder HCP band. Do not invent one.",
+    "oneNTGameThreshold": "Nordisk standard s. 4 describes 3NT as a final contract but does not state a numeric HCP threshold. The user specified that only HCP count in no-trump, but no numeric 3NT threshold has been explicitly confirmed. Do not assume 25 or 26 HCP.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
     "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
@@ -839,7 +839,7 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
-        "Svarshanden har minst 25 gemensamma honnörspoäng tillsammans med öppnaren."
+        "3NT är ett slutbud i sang, men Nordisk standard s. 4 anger ingen numerisk HP-gräns för när svarshanden ska välja det."
       ],
       "root": "t09_n0",
       "nodes": [
@@ -850,15 +850,17 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Detta träd omfattar endast det verifierade 3NT-budet; det anger inte någon numerisk gräns för 2NT-inviten.",
-          "analysis": "Svarshanden har minst 25 gemensamma honnörspoäng tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
+          "meaning": "3NT är ett slutbud i sang enligt Nordisk standard. Trädet fastställer inte en numerisk styrkegräns för när budet ska väljas.",
+          "analysis": "Nordisk standard beskriver 3NT som slutbud i sang, men anger inte ett numeriskt HP-intervall för svarshandens val. Endast honnörspoäng räknas i sang; den numeriska tröskeln lämnas ej täckt.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; någon separat egen HP-gräns anges inte."
+            "responder": "Numerisk styrkegräns för 3NT är inte angiven."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "The 3NT sequence is source-described as a final contract, but the numeric HCP threshold in this tree was proposed by an earlier assistant and was not explicitly user-confirmed or stated in Nordisk standard. Keep as provisional; do not match as an authoritative threshold rule."
     },
     {
       "id": "T10_1H_ENKEL_HOJNING",
@@ -1319,7 +1321,7 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
-        "Svarshanden har minst 25 gemensamma honnörspoäng tillsammans med öppnaren."
+        "3NT är ett slutbud i sang, men Nordisk standard s. 4 anger ingen numerisk HP-gräns för när svarshanden ska välja det."
       ],
       "root": "t18_n0",
       "nodes": [
@@ -1330,15 +1332,17 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Detta träd omfattar endast det verifierade 3NT-budet; det anger inte någon numerisk gräns för 2NT-inviten.",
-          "analysis": "Svarshanden har minst 25 gemensamma honnörspoäng tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
+          "meaning": "3NT är ett slutbud i sang enligt Nordisk standard. Trädet fastställer inte en numerisk styrkegräns för när budet ska väljas.",
+          "analysis": "Nordisk standard beskriver 3NT som slutbud i sang, men anger inte ett numeriskt HP-intervall för svarshandens val. Endast honnörspoäng räknas i sang; den numeriska tröskeln lämnas ej täckt.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; någon separat egen HP-gräns anges inte."
+            "responder": "Numerisk styrkegräns för 3NT är inte angiven."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "The 3NT sequence is source-described as a final contract, but the numeric HCP threshold in this tree was proposed by an earlier assistant and was not explicitly user-confirmed or stated in Nordisk standard. Keep as provisional; do not match as an authoritative threshold rule."
     },
     {
       "id": "T19",
