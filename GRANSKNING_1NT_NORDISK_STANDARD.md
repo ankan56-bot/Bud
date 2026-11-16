@@ -302,3 +302,8 @@ Testerna kontrollerar både överlappet och att ingen prioritet hittas på.
 ### Svagt lågfärgsrelä efter 1NT – kvalitativ styrka
 
 Nordisk standard s. 4 beskriver 2♠ som ett relä för "dåliga kort" med 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Källan anger inte ett numeriskt HP-intervall för "dåliga kort". Rättningsmotorn lämnar därför valet av 2♠ ej täckt när handen endast kan klassificeras med en antagen numerisk gräns. T42 finns kvar som preliminärt analysmaterial och får inte matchas som auktoritativt systemträd förrän styrkegränsen har bekräftats.
+
+
+### Förtydligande: 2NT efter Stayman 2♥ är en särskild invitväg
+
+2NT efter 1NT–2♣–2♥ visar exakt fyra spader. Öppnaren med 4-4 i högfärgerna svarar 3♠ med 15–16 hp och 4♠ med 17 hp (s. 4). Denna sekvens får inte behandlas som en vanlig 26-hp-sangutgång: 2NT är uttryckligen en invit som samtidigt söker den andra högfärgsfitten. Källan anger inte numeriskt när svarshanden ska välja pass respektive 2NT. Den tidigare genvägen som rekommenderade 3NT enbart för att svarshanden hade minst 11 hp har tagits bort. Även starka händer lämnas ej klassificerade för just valet pass/2NT tills gränsen är belagd.
