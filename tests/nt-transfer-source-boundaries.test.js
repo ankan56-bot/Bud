@@ -116,6 +116,13 @@ for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   assert.equal(tree.sourceStatus,'provisional_source_gap');
   assert.equal(A.treeCompatible(tree),false,id+' must not assert an unconfirmed 3NT HCP threshold');
 }
+for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
+  const tree=lib.trees.find(t=>t.id===id);
+  assert.ok(tree);
+  assert.equal(tree.sourceStatus,'user_confirmed');
+  assert.match(JSON.stringify(tree),/26 gemensamma honnörspoäng/);
+  assert.doesNotMatch(JSON.stringify(tree),/25 gemensamma honnörspoäng/);
+}
 for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree);
