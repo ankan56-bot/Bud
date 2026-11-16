@@ -188,7 +188,7 @@ var Rattning = (function(){
     else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring.';conv='överföring'}
     else if((k?hp>=lo:true)&&(L.H===4||L.S===4)){exp=c2;why=(L.H===4||L.S===4?'Egen fyrkortshögfärg: Stayman enligt Nordisk standard.':'')+(k?' ('+hp+' hp efter 2NT).':'');conv='Stayman';soft=false}
     else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){
-      return NC('Handen har 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Nordisk standard skiljer mellan 2♠-relä med dåliga kort och 3 lå-invit med bra 6+ lå, men definierar inte numeriskt vad som är dåliga respektive bra kort/färg. Motorn väljer därför inte mellan 2♠ och 3 lå med en påhittad gräns.',means,conv,true);
+      return NC('Handen har 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Nordisk standard skiljer mellan 2♠-relä med dåliga kort och 3 lå-invit med bra 6+ lå, men definierar inte numeriskt vad som är dåliga respektive bra kort/färg. Numerisk styrke-/kvalitetsgräns saknas; situationen lämnas ej täckt i stället för att välja med en påhittad gräns.',means,conv,true);
     }
     else if(hp>=lo&&hp<gl&&!k){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs.',means,conv,true);
