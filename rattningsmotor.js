@@ -830,12 +830,18 @@ var Rattning = (function(){
     };
 
     // BridgePlus s. 90 applies when our side opened and opponents interfered.
-    // In that context, 1NT (6-10 HP + stopper) takes priority over a simple raise.
-    if(sourcePageRules&&!exp&&h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last)){
+    // Where both a five-card new major and 1NT are plausible, the source gives no priority.
+    var unbidFiveMajor=((s!=='S'&&os!=='S'&&L.S>=5)||(s!=='H'&&os!=='H'&&L.H>=5));
+    var canShow1NT=h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last);
+    if(sourcePageRules&&unbidFiveMajor&&canShow1NT)
+      return NC('Både 1NT med håll och ny femkortshögfärg är möjliga; BridgePlus s. 90 anger ingen prioritet mellan dem.');
+    if(sourcePageRules&&unbidFiveMajor&&L[s]>=3&&hp>=6&&hp<=9)
+      return NC('Både höjning med stöd och ny femkortshögfärg är möjliga; källan anger ingen prioritet.');
+    if(sourcePageRules&&!exp&&!unbidFiveMajor&&canShow1NT){
       exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
     }
     // Stöd visas först i övriga konkurrenslägen; 6-9 hp med 3/4/5-korts stöd.
-    if((!sourcePageRules||!exp)&&!exp&&L[s]>=3&&hp>=6&&hp<=9){
+    if(!exp&&L[s]>=3&&hp>=6&&hp<=9){
       var steps=L[s]>=5?3:L[s]>=4?2:1;
       var raise=(lv(oc)+steps)+s;
       if(ok(raise,last)){
