@@ -121,10 +121,10 @@ function completeDealWithSouth(south) {
 // A four-card major is not enough for a new major-suit response.
 {
   const hands = completeDealWithSouth([
-    'S14','S11','S8','S6',
-    'H8','H5',
-    'D13','D9','D6','D3',
-    'C7','C4','C2'
+    'S14','S13','S11','S8',
+    'H8','H5','H3','H2',
+    'D12','D9',
+    'C11','C7','C4'
   ]);
   const st = state(hands, 'N', [
     {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
