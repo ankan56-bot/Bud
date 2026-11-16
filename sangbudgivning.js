@@ -110,9 +110,16 @@
     var fit=opener&&M?L[M]+opener.L[M]:0;
 
     var means=function(c){
-      if(/^3[HS]$/.test(c))return 'Invit i öppnarens visade högfärg; exakt numerisk styrkegräns anges inte i Nordisk standard.';
+      if(/^3[HS]$/.test(c)){
+        if(reply==='2D'&&!h.bal&&L[st_(c)]>=5)
+          return 'Naturlig högfärg efter Stayman 2♦: obalanserad hand med 5+ kort och utgångsstyrka; utgångskrav enligt Nordisk standard s. 4. Numerisk styrkegräns anges inte.';
+        return 'Invit i öppnarens visade högfärg; exakt numerisk styrkegräns anges inte i Nordisk standard.';
+      }
       if(c==='2N')return 'Balanserad invit; efter Stayman 2♥ visar 2NT exakt fyra spader. Numerisk invitgräns anges inte i Nordisk standard.';
-      if(c==='3N')return 'Utgång i sang utan fastställd högfärgsfit; numerisk HP-gräns anges inte i Nordisk standard.';
+      if(c==='3N'){
+        if(reply==='2H'&&L.S===4)return 'Visar också exakt fyra spader efter Stayman 2♥; numerisk styrkegräns för valet anges inte.';
+        return 'Utgång i sang utan fastställd högfärgsfit; numerisk HP-gräns anges inte i Nordisk standard.';
+      }
       if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit; exakt acceptgräns efter Stayman anges inte här.';
       return null};
     // Nordisk standard s. 4: after a 2♥ Stayman answer, responder's
@@ -122,7 +129,7 @@
       // The 2NT route shows four spades and is described as an invitation.
       // The PDF gives opener's 4-4 response (3S minimum / 4S maximum), but
       // does not state responder's numeric threshold for choosing it.
-      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen numerisk HP-gräns eller egen HP-regel överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
+      return NC('Exakt fyra spader efter Stayman 2♥ är visat. Både 2NT (invit) och 3NT visar fyra spader enligt Nordisk standard s. 4. Källan anger inte svarshandens numeriska styrkegräns för valet mellan dessa fortsättningar. Ingen numerisk HP-gräns eller egen HP-regel överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';if(c==='3N')return 'Visar också exakt fyra spader efter Stayman 2♥.';return null},'Stayman',true);
     }
     var naturalNew=[];
     if(reply==='2D'){
