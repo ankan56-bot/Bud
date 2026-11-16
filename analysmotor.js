@@ -190,7 +190,7 @@ async function analyze(st,ruleResult,ddsResult){
  return {report,html:render(report)};
 }
 global.BudAnalys={
- version:"1.1.0",loadLibrary,loadSupplementary,findSupplementary,analyzeSupplementary,handStats,handMatches,findMatch,findMatches,treeCompatible,buildReport,analyze,
+ version:"1.2.0",loadLibrary,loadSupplementary,findSupplementary,analyzeSupplementary,handStats,handMatches,findMatch,findMatches,treeCompatible,buildReport,analyze,
  normalizeSequence
 };
 if(typeof module!=="undefined"&&module.exports)module.exports=global.BudAnalys;
