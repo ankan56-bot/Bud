@@ -45,7 +45,7 @@ for (const sequence of [
 
 // Stayman 2♥/2♠ is the explicitly described indirect trump agreement.
 // A single ace with no trump king is one keycard -> 5♣ in RKC 1430.
-const oneAceNoMajorKing=['DA','S2','S3','S4','S5','H2','H3','H4','D2','D3','D4','C2','C3'];
+const oneAceNoMajorKing=['D14','S2','S3','S4','S5','H2','H3','H4','D2','D3','D4','C2','C3'];
 for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   const sequence=[
     {s:'N',c:'1N'},{s:'E',c:'P'},
@@ -61,7 +61,7 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
 // Nordisk standard s. 5 explicitly makes 4NT RKC after a completed transfer,
 // even though the partnership may not have an eight-card fit.
 {
-  const opener=['SA','HA','DA','CA','S2','S3','S4','H2','H3','D2','D3','C2','C3'];
+  const opener=['S14','H14','D14','C14','S2','S3','S4','H2','H3','D2','D3','C2','C3'];
   const weak=['S5','S6','S7','H4','H5','H6','H7','H8','D4','D5','D6','C5','C6'];
   const hands=dealWithNorth(opener);
   const rest=deck.filter(card=>!hands.N.includes(card));
@@ -82,7 +82,7 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
 
 // Once the transfer suit has actually been raised, RKC is available.
 {
-  const north=['SA','SK','S2','S3','HA','HK','H2','H3','DQ','D2','C2','C3','C4'];
+  const north=['S14','S13','S2','S3','H14','H13','H2','H3','D12','D2','C2','C3','C4'];
   const sequence=[
     {s:'N',c:'1N'},{s:'E',c:'P'},
     {s:'S',c:'2D'},{s:'W',c:'P'},
