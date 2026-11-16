@@ -22,5 +22,8 @@ The endpoint contract checks use the project's established game thresholds: 26 p
 ## Explicit source gaps
 The PDF does not specify the responder's full continuation after opener's Stenberg rebid, nor the choice between multiple singletons or a void. These cases return exp:null, carry sourceGap:true, and are recorded in the uncovered-sequence log. No conventional meanings are invented.
 
+## Analysis library
+The module has a dedicated minor-suit analysis tree, T35_STENBERG_2NT_LAGFARG, alongside the existing major-suit Stenberg tree T34_STENBERG_2NT.
+
 ## Validation
 tests/stenberg-2nt.test.js covers major/minor response eligibility, major-priority after minor opening, singleton mapping, balanced 12–14, 15+ without singleton, and explicit uncovered cases.
