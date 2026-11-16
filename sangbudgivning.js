@@ -24,7 +24,7 @@
     var hp=h.hp,L=h.L,b=2+k,Hs=maj,exp,why,alt=[],soft=false,ruleStatus=null;
     var opener=openerCards?H(openerCards):null;
     var jointHp=hp+(opener?opener.hp:0);
-    var lo=k?5:8,gl=k?5:10;
+    var gl=k?5:10;
     var c2=(b)+'C',d2=(b)+'D',h2=(b)+'H',s2=(b)+'S',n2=(b)+'N';
     var means=function(c){
       if(c==='P')return 'Pass: dåliga kort utan färg att visa.';
@@ -39,7 +39,7 @@
     var conv='1NT-svar';
     if(L.H>=5&&L.S>=5){exp=h2;alt=[d2];why='5-5 i högfärgerna: överföring till ♠ (och sedan 3♥ som invit).';conv='överföring'}
     else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring.';conv='överföring'}
-    else if((k?hp>=lo:true)&&(L.H===4||L.S===4)){exp=c2;why=(L.H===4||L.S===4?'Egen fyrkortshögfärg: Stayman enligt Nordisk standard.':'')+(k?' ('+hp+' hp efter 2NT).':'');conv='Stayman';soft=false}
+    else if(L.H===4||L.S===4){exp=c2;why='Egen fyrkortshögfärg: Stayman enligt Nordisk standard.';conv='Stayman';soft=false}
     else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){
       return NC('Handen har 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Nordisk standard skiljer mellan 2♠-relä med dåliga kort och 3 lå-invit med bra 6+ lå, men definierar inte numeriskt vad som är dåliga respektive bra kort/färg. Numerisk styrke-/kvalitetsgräns saknas; situationen lämnas ej täckt i stället för att välja med en påhittad gräns.',means,conv,true);
     }
