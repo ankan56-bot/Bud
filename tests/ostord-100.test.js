@@ -126,14 +126,14 @@ fs.writeFileSync('testdata/ostord_100_validation_latest.json', JSON.stringify(re
 console.log(JSON.stringify({
   deals: report.deals, turns: report.turns, covered: report.covered,
   uncovered: report.uncovered.length, coveragePercent: report.coveragePercent,
-  exceptions: report.exceptions.length, illegalRecommendations: report.illegalRecommendations.length,
+  exceptions: report.exceptions.length, exceptionDetails: report.exceptions, illegalRecommendations: report.illegalRecommendations.length,
   invalidAuctions: report.invalidAuctions.length, unfinishedAuctions: report.unfinishedAuctions.length,
   cardIntegrityErrors: report.cardIntegrityErrors.length,
   uncoveredDetails: report.uncovered
 }, null, 2));
 
 assert.equal(report.cardIntegrityErrors.length, 0, 'All generated deals must contain 52 unique cards and four 13-card hands.');
-assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
+assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed: ' + JSON.stringify(report.exceptions));
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
