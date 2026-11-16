@@ -133,8 +133,22 @@ var Rattning = (function(){
     var node;
     try{node=nodeForRaw(st,bids.length-1);}
     catch(e){return NC('Livebeslut stoppades säkert: '+e.message,'','live');}
-    if(!node||!node.exp)
+    if(!node||!node.exp){
+      if(typeof window!=='undefined'&&window.EjTacktaLogg){
+        var ownHands={};ownHands[seat]=ownHand.slice();
+        window.EjTacktaLogg.record({
+          context:'live',
+          dealer:dealer,
+          seat:seat,
+          auction:auction,
+          attemptedCall:null,
+          reason:node&&node.why||'Öppnings-/1NT-läget är inte täckt utan partnerns dolda hand.',
+          sourceGap:!!(node&&node.sourceGap),
+          hands:ownHands
+        });
+      }
       return NC(node&&node.why||'Öppnings-/1NT-läget är inte täckt utan partnerns dolda hand.','', 'live');
+    }
     return {
       exp:node.exp,
       alt:(node.alt||[]).slice(),
