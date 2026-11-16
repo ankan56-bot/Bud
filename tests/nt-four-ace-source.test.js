@@ -130,4 +130,23 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♦|Pass|2♥|Pass|4NT'));
 }
 
+// The separately agreed 2NT–4NT sequence is quantitative, not an
+// ace ask. The invitation is identified, but opener acceptance remains
+// uncovered until a numeric maximum/minimum rule is source-confirmed.
+{
+  const hands=dealWithNorth(handWithAces(2));
+  const auction=[
+    {s:'N',c:'2N'},{s:'E',c:'P'},
+    {s:'S',c:'4N'}
+  ];
+  const bidResult=R.nodeFor({hands,dealer:'N',bids:auction},2);
+  assert.equal(bidResult.exp,'4N');
+  assert.equal(bidResult.conv,'Kvantitativ sanginvit');
+  assert.match(bidResult.why,/Kvantitativ invit till 6NT/);
+  const responseAuction=auction.concat([{s:'W',c:'P'},{s:'N',c:'P'}]);
+  const openerResult=R.nodeFor({hands,dealer:'N',bids:responseAuction},4);
+  assert.equal(openerResult.exp,null,'opener acceptance is not inferred from an unverified point band');
+  assert.equal(openerResult.conv,'Kvantitativ sanginvit');
+  assert.match(openerResult.why,/inte en essfråga/);
+}
 console.log('1NT four-ace/RKC source tests: passed.');
