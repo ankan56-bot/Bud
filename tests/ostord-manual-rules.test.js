@@ -175,7 +175,12 @@ const report = {
   cases: [
     { deal: 'ostord-400-023', expected: '5D', fit: 10, jointPlayingPoints: 31 },
     { deal: 'ostord-400-055', expected: '6D', fit: 12, jointPlayingPoints: 34 },
-    { deal: 'ostord-400-068', expected: '3H', forcing: 'game' }
+    { deal: 'ostord-400-068', expected: '3H', forcing: 'game' },
+    { deal: 'source-90-1nt', expected: '1N', hp: 6, stopper: 'H' },
+    { deal: 'source-90-four-card-minor', expected: '2C', clubLength: 4 },
+    { deal: 'source-90-four-card-major', expected: 'P', spadeLength: 4 },
+    { deal: 'source-91-negative-double-hearts', expected: 'X', spadeLength: 4 },
+    { deal: 'source-91-negative-double-spades', expected: 'X', heartLength: 4 }
   ],
   detailedNodeAnalysis: true,
   result: 'passed'
@@ -183,4 +188,4 @@ const report = {
 fs.mkdirSync('testdata', { recursive: true });
 fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\n');
 assert.equal(JSON.parse(fs.readFileSync('testdata/ostord_manual_rules_latest.json', 'utf8')).result, 'passed');
-console.log('Manual undisturbed hand rules and detailed node analysis passed (3 deals).');
+console.log('Manual bidding rule checks passed (3 undisturbed deals + 5 source-rule regressions).');
