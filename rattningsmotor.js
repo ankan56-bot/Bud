@@ -241,7 +241,7 @@ var Rattning = (function(){
     var means=function(c){
       if(/^3[HS]$/.test(c))return 'Invit i öppnarens visade högfärg; exakt numerisk styrkegräns anges inte i Nordisk standard.';
       if(c==='2N')return 'Balanserad invit; efter Stayman 2♥ visar 2NT exakt fyra spader. Numerisk invitgräns anges inte i Nordisk standard.';
-      if(c==='3N')return 'Utgång i sang med minst 25 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
+      if(c==='3N')return 'Utgång i sang utan fastställd högfärgsfit; numerisk HP-gräns anges inte i Nordisk standard.';
       if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit; exakt acceptgräns efter Stayman anges inte här.';
       return null};
     // Nordisk standard s. 4: after a 2♥ Stayman answer, responder's
@@ -251,7 +251,7 @@ var Rattning = (function(){
       // The 2NT route shows four spades and is described as an invitation.
       // The PDF gives opener's 4-4 response (3S minimum / 4S maximum), but
       // does not state responder's numeric threshold for choosing it.
-      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen 25-hp-regel eller egen HP-gräns överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
+      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen numerisk HP-gräns eller egen HP-regel överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
     }
     var naturalNew=[];
     if(reply==='2D'){
