@@ -397,7 +397,7 @@
       ],
       "conditions": [
         "Norr öppnar 1NT = 15–17 hp, balanserad hand.",
-        "Svarshanden har balanserad hand utan fyrkortshögfärg; normalt 8–9 hp, eller 10+ när parets sammanlagda honnörspoäng fortfarande är under 26.",
+        "Svarshanden har balanserad hand utan fyrkortshögfärg; normalt invitstyrka; numerisk gräns anges inte i källan, eller 10+ när parets sammanlagda honnörspoäng fortfarande är under 26.",
         "2NT är invit till 3NT."
       ],
       "root": "t04_n0",
@@ -409,8 +409,8 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "2NT är en invit till 3NT. Normalt visar det 8–9 hp; även en balanserad hand med 10+ hp använder 2NT om paret ännu inte når 26 gemensamma honnörspoäng.",
-          "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har cirka 8–9 hp och också jämn fördelning. Ingen femkortshögfärg eller trumffit finns, så högfärg väljs bort och 2NT blir en invit till 3NT. Öppnaren passar med minimum och accepterar med maximum och lämpliga honnörer.",
+          "meaning": "2NT är en invit till 3NT. Normalt visar det invitstyrka; numerisk gräns anges inte i källan; även en balanserad hand med 10+ hp använder 2NT om paret ännu inte når 25 gemensamma honnörspoäng.",
+          "analysis": "Öppnaren har 15–17 hp och jämn fördelning. Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och också jämn fördelning. Ingen femkortshögfärg eller trumffit finns, så högfärg väljs bort och 2NT blir en invit till 3NT. Öppnaren passar med minimum och accepterar med maximum och lämpliga honnörer.",
           "branches": [
             {
               "call": "Pass",
@@ -425,7 +425,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan fyrkortshögfärg; normalt 8–9 hp, eller 10+ hp när gemensamma honnörspoäng är under 26."
+            "responder": "Balanserad hand utan fyrkortshögfärg; normalt invitstyrka; numerisk gräns anges inte i källan, eller 10+ hp när gemensamma honnörspoäng är under 26."
           }
         }
       ],
@@ -526,7 +526,7 @@
             "2♦"
           ],
           "meaning": "2♦ visar att öppnaren saknar fyrkortshögfärg.",
-          "analysis": "2♦ visar att öppnaren saknar fyrkortshögfärg. Med balanserad svarshand och 22–25 gemensamma honnörspoäng väljs 2NT som invit; med minst 26 väljs 3NT. Den uttryckligen avtalade fyr-essfrågan 4NT är också tillgänglig i denna sekvens.",
+          "analysis": "2♦ visar att öppnaren saknar fyrkortshögfärg. Med balanserad svarshand och invitstyrka; numeriskt intervall anges inte i källan väljs 2NT som invit; med minst 26 väljs 3NT. Den uttryckligen avtalade fyr-essfrågan 4NT är också tillgänglig i denna sekvens.",
           "branches": [
             {
               "call": "2NT",
@@ -546,7 +546,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, ingen fyrkortshögfärg",
-            "responder": "Balanserad hand; 22–25 gemensamma honnörspoäng för 2NT-invit eller minst 26 för 3NT."
+            "responder": "Balanserad hand; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit eller minst 26 för 3NT."
           }
         },
         {
@@ -561,7 +561,7 @@
             "2NT"
           ],
           "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 25 gemensamma honnörspoäng; annars pass.",
-          "analysis": "Svarshanden har cirka 8–9 hp och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
+          "analysis": "Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
           "branches": [
             {
               "call": "Pass",
@@ -576,7 +576,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "8–9 hp, jämn fördelning"
+            "responder": "invitstyrka; numerisk gräns anges inte i källan, jämn fördelning"
           }
         }
       ],
@@ -1296,11 +1296,11 @@
             "3NT"
           ],
           "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 25 gemensamma honnörspoäng; annars passar öppnaren.",
-          "analysis": "Öppnaren har 16–17 hp och jämn fördelning. Svarshanden har cirka 8–9 hp och också jämn fördelning. Ingen högfärg eller trumffit har hittats, så sang är rätt kontraktstyp. Med maximum och välplacerade honnörer räcker den sammanlagda styrkan för utgång. Öppnaren accepterar därför inviten med 3NT.",
+          "analysis": "Öppnaren har 16–17 hp och jämn fördelning. Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och också jämn fördelning. Ingen högfärg eller trumffit har hittats, så sang är rätt kontraktstyp. Med maximum och välplacerade honnörer räcker den sammanlagda styrkan för utgång. Öppnaren accepterar därför inviten med 3NT.",
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, balanserad; accepterar endast när paret når minst 25 gemensamma honnörspoäng.",
-            "responder": "Balanserad invit efter 1NT, normalt 8–9 hp; 2NT används även med 10+ om paret ännu inte når 26."
+            "responder": "Balanserad invit efter 1NT, normalt invitstyrka; numerisk gräns anges inte i källan; 2NT används även med 10+ om paret ännu inte når 26."
           }
         }
       ],
@@ -2460,7 +2460,7 @@
       "conditions": [
         "1NT = 15–17 hp, jämn fördelning.",
         "2♣ är Stayman; 2♦ förnekar fyrkortshögfärg.",
-        "Balanserad svarshand: 2NT invit vid 22–25 gemensamma honnörspoäng; 3NT vid minst 26.",
+        "Balanserad svarshand: 2NT invit vid invitstyrka; numeriskt intervall anges inte i källan; 3NT vid minst 26.",
         "4NT i sekvensen 1NT–2♣–2♦ är avtalad fyr-essfråga utan trumf."
       ],
       "root": "t26_n0",
@@ -2498,13 +2498,13 @@
             "2♦",
             "Pass"
           ],
-          "meaning": "Svarshanden väljer nivå efter styrka och handtyp: 2NT med balanserad invitstyrka och 22–25 gemensamma honnörspoäng, 3NT med minst 25 gemensamma honnörspoäng eller 4NT som uttryckligen avtalad fyr-essfråga utan trumf.",
-          "analysis": "Med cirka 8–9 hp inviterar svarshanden med 2NT. Med utgångsstyrka bjuder svarshanden 3NT direkt.",
+          "meaning": "Svarshanden väljer nivå efter styrka och handtyp: 2NT med balanserad invitstyrka och invitstyrka; numeriskt intervall anges inte i källan, 3NT med minst 25 gemensamma honnörspoäng eller 4NT som uttryckligen avtalad fyr-essfråga utan trumf.",
+          "analysis": "Med cirka invitstyrka; numerisk gräns anges inte i källan inviterar svarshanden med 2NT. Med utgångsstyrka bjuder svarshanden 3NT direkt.",
           "branches": [
             {
               "call": "2NT",
               "next": "t26_n2",
-              "label": "Invit med cirka 8–9 hp"
+              "label": "Invit med cirka invitstyrka; numerisk gräns anges inte i källan"
             },
             {
               "call": "3NT",
@@ -2519,7 +2519,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
+            "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         },
         {
@@ -2534,7 +2534,7 @@
             "2NT"
           ],
           "meaning": "Svarshanden inviterar till 3NT.",
-          "analysis": "2NT visar cirka 8–9 hp. Motståndarna passar normalt innan öppnaren avgör om handen har maximum eller goda honnörsvärden.",
+          "analysis": "2NT visar cirka invitstyrka; numerisk gräns anges inte i källan. Motståndarna passar normalt innan öppnaren avgör om handen har maximum eller goda honnörsvärden.",
           "branches": [
             {
               "call": "Pass",
@@ -2544,7 +2544,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
+            "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         },
         {
@@ -2575,7 +2575,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
+            "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         },
         {
@@ -2596,7 +2596,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15 hp eller svaga spelvärden",
-            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
+            "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         },
         {
@@ -2636,7 +2636,7 @@
           "branches": [],
           "handProfile": {
             "opener": "Öppnarhanden bidrar så att paret når minst 25 gemensamma honnörspoäng.",
-            "responder": "Balanserad hand utan fyrkortshögfärg; 22–25 gemensamma honnörspoäng för 2NT-invit."
+            "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         }
       ],
