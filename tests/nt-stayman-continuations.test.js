@@ -44,4 +44,17 @@ const afterStayman3NT=[
 assert.equal(judge(min44,afterStayman3NT).exp,'4S',
   '4-4 major opener may choose 4S after Stayman 3NT');
 
+// Nordisk standard s. 4 says responder normally has its own four-card
+// major (or slam interest); it does not state an 8 hp minimum for that route.
+{
+  const south=['H2','H3','H4','H5','S2','S3','S4','D2','D3','D4','C2','C3','C4'];
+  const north=deck.filter(card=>!south.includes(card)).slice(0,13);
+  const used=new Set([...north,...south]);
+  const rest=deck.filter(card=>!used.has(card));
+  const hands={N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
+  const bids=[{s:'N',c:'1N'},{s:'E',c:'P'},{s:'S',c:'P'}];
+  assert.equal(R.nodeFor({hands,dealer:'N',bids},2).exp,'2C',
+    'a four-card major is sufficient for Stayman; do not invent an 8 hp floor');
+}
+
 console.log('1NT Stayman continuation tests: passed.');
