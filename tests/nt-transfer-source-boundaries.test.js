@@ -107,7 +107,7 @@ for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFOR
   assert.equal(tree.sourceStatus,'provisional_source_gap',id+' remains provisional because opener acceptance is not specified');
   assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
 }
-// Direct 3NT at the confirmed 26 combined-HCP threshold remains
+// Direct 3NT at the confirmed 25 combined-HCP threshold remains
 // authoritative; unquantified invitation trees stay provisional.
 for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   const tree=lib.trees.find(t=>t.id===id);
