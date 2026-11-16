@@ -1,20 +1,25 @@
 # Rapport: ej täckta ostörda budpositioner – 2026-11-16
 
-**Gren:** `work/undisturbed-architecture`  
+**Verifierad gren:** `work/undisturbed-architecture-verified`  
 **Motor:** rattningsmotor.js v7.6  
 **Syfte:** samla de exakta givarna och auktionerna där den nuvarande motorn avstår från att rekommendera ett bud. Inga luckor har fyllts med gissningar.
 
-## 1. Testresultat
+## 1. Senaste verifiering – GitHub Actions 2026-11-16
+
+**Körning:** `43906900895`  
+**Commit:** `6362aa8a5aa44e71c3d2d968d39e686c03d4f587`  
+**Resultat:** <badge>SUCCESS</badge> Alla 24 valideringssteg passerade.
 
 | Test | Givar | Beslut | Täckta | Ej täckta | Täckning | Tekniska/laglighetsfel |
 |---|---:|---:|---:|---:|---:|---:|
-| Ostörd 100, första stickprovet | 100 | 533 | 532 | 1 | 99,8 % | 0 |
-| Ostörd 100, andra stickprovet | 100 | 524 | 520 | 4 | 99,2 % | 0 |
-| Ostörd 200, tredje stickprovet | 200 | 1041 | 1034 | 7 | 99,3 % | 0 |
-| 1♥/1♠, riktat 100-givarsprov | 100 | 527 | 526 | 1 | 99,8 % | 0 |
-| Fast ostörd korpus | 36 | 167 | 166 | 1 | 99,4 % | 0 |
+| 1♥/1♠, riktat 100-givarsprov | 100 | 525 | 509 | 16 | 97,0 % | 0 |
+| Ostörd, andra 100-givarsprov | 100 | 517 | 504 | 13 | 97,5 % | 0 |
+| Ostörd, tredje 200-givarsprov | 200 | 1025 | 992 | 33 | 96,8 % | 0 |
+| Fast 1NT-korpus | 36 | 163 | 154 | 9 | 94,5 % | 0 |
 
-Alla körningar passerade kortintegritet, tekniska undantag, olagliga rekommendationer, ogiltiga auktioner och ofärdiga auktioner. Stickproven innehåller ett överlappande seed (202614226) mellan två 100-givarsgeneratorer; de ska därför inte summeras som helt unika givar.
+Samtliga fyra körningar hade 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga auktioner och 0 kortintegritetsfel. De ej täckta positionerna är uttryckliga regel-/fortsättningsluckor; de har inte fyllts med gissningar. Täckningsprocenten mäter beslut som motorn faktiskt kan bedöma, inte hur många positioner som kan få ett påhittat bud.
+
+Den tidigare seed-för-seed-listan nedan är en manuell granskningsbilaga med konkreta exempel. Den ska inte läsas som en fullständig uppräkning av samtliga ej täckta beslut i de senaste CI-stickproven.
 
 ## 2. Unika ej täckta givare och fullständiga händer
 
