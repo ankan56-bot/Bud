@@ -15,7 +15,8 @@ jobs:
         run: |
           node --check rattningsmotor.js
           node --check dds-integration.js
-          node --check analysmotor.js\n          node --check facitmotor.js
+          node --check analysmotor.js
+          node --check facitmotor.js
       - name: Validate analysis library JSON
         run: |
           node - <<'NODE'
