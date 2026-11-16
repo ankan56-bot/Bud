@@ -4754,7 +4754,6 @@
         "5-4",
         "reverse",
         "stöd",
-        "splinter",
         "4-4-4-1"
       ],
       "conditions": [
@@ -5380,23 +5379,6 @@
           "handProfile": {
             "opener": "18+ HPS och minst 5-4 i öppningsfärgen och den andra färgen; hopp i andra färgen när budet inte är reverse.",
             "responder": "Svarshanden har visat en 4+ färg och 6+ hp; öppnarens hopp visar stark tvåfärgshand."
-          }
-        },
-        {
-          "id": "t39_splinter",
-          "sequence": [
-            "1♥",
-            "Pass",
-            "1♠",
-            "Pass",
-            "3♦"
-          ],
-          "meaning": "3♦ efter 1♥–1♠ – splinter med spaderstöd",
-          "analysis": "Splinter visar singel eller renons i den bjudna sidofärgen, minst fyra korts stöd i svarsfärgen och 13+ STP. Det är en starkt fit-orienterad beskrivning, inte ett naturligt ruterbud. Motorns val av splinterfärg beror på singel-/renonsfördelningen; om flera sidofärger är korta ska prioriteringen granskas separat och inte beskrivas som entydig utan stöd.",
-          "branches": [],
-          "handProfile": {
-            "opener": "Minst 13 STP, 4+ spaderstöd och singel/renons i ruter (i detta exempel).",
-            "responder": "Svarshanden har visat minst fyra spader; öppnarens splinter fastställer spaderfit och visar korthet i ruter."
           }
         },
         {
