@@ -335,7 +335,7 @@ var Rattning = (function(){
       special.push({bid:'3'+suit,why:'Minst 5'+SYM[M]+' och 4+ '+SYM[suit]+': 3 i lågfärgen är utgångskrav enligt Nordisk standard s. 5.'});
     });
     if(M==='S'&&L.H>=5)
-      special.push({bid:'3H',why:'Minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
+      return NC('Minst 5-5 i högfärgerna efter spaderöverföring. Nordisk standard s. 5 anger 3♥ som invit, men styrkegränsen för att välja invitvägen anges inte; handen lämnas ej täckt.',means,'överföring',true);
     if(special.length>1)
       return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar; situationen lämnas ej täckt.',means,'överföring',true);
     if(special.length===1)
