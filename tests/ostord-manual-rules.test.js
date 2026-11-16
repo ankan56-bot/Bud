@@ -252,7 +252,9 @@ const report = {
     { deal: 'source-91-negative-double-spades', expected: 'X', heartLength: 4 },
     { deal: 'slam-block-two-level', expected: 'blocked' },
     { deal: 'slam-block-one-level-with-response', expected: 'blocked' },
-    { deal: 'slam-block-one-level-alone', expected: 'not-blocked' }
+    { deal: 'slam-block-one-level-alone', expected: 'not-blocked' },
+    { deal: 'slam-block-two-level-integration', expected: 'blocked' },
+    { deal: 'slam-block-one-level-response-integration', expected: 'blocked' }
   ],
   detailedNodeAnalysis: true,
   result: 'passed'
@@ -260,4 +262,4 @@ const report = {
 fs.mkdirSync('testdata', { recursive: true });
 fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\n');
 assert.equal(JSON.parse(fs.readFileSync('testdata/ostord_manual_rules_latest.json', 'utf8')).result, 'passed');
-console.log('Manual bidding rule checks passed (3 undisturbed deals + 6 source-rule regressions + 3 auction-only slam guard checks).');
+console.log('Manual bidding rule checks passed (3 undisturbed deals + 6 source-rule regressions + 3 auction-only slam guard checks + 2 live decision integration checks).');
