@@ -131,7 +131,18 @@ var Rattning = (function(){
         if(side(x.s)!==side(seat))return x.c==='P';
         return x.c==='P'||ntFamilyCalls.indexOf(x.c)>=0;
       })&&nonPass.every(function(x){return x.c!=='X'&&x.c!=='XX';});
-    if(!isOpeningDecision&&!isOneNTFamily){
+    // Stenberg 2NT is information-safe: its response and opener's rebid
+    // depend on the acting hand plus the public auction, not the hidden hand.
+    var stenbergOwnCalls=auction.filter(function(x){return side(x.s)===side(seat)&&isBid(x.c);});
+    var isStenbergFamily=!!openingCall&&/^1[CDHS]$/.test(openingCall.c)&&
+      side(openingCall.s)===side(seat)&&
+      auction.every(function(x){return side(x.s)===side(seat)||x.c==='P';})&&
+      stenbergOwnCalls.length>=1&&
+      stenbergOwnCalls.every(function(x,i){
+        if(i===0)return /^1[CDHS]$/.test(x.c);
+        return /^(?:2N|3[CDHSN]|4[HSN]|5[CD])$/.test(x.c);
+      });
+    if(!isOpeningDecision&&!isOneNTFamily&&!isStenbergFamily){
       var unsupportedReason='Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass samt ostörd 1NT-/2NT-familjens verifierade grenar är aktiverade; andra sekvenser lämnas ej täckta.';
       if(typeof window!=='undefined'&&window.EjTacktaLogg){
         var liveOwnHands={};liveOwnHands[seat]=ownHand.slice();
