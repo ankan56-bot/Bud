@@ -246,16 +246,29 @@ En ny kontroll mot Nordisk standard s. 5 har gjorts för svarshandens fortsättn
 - Efter spaderöverföring: 3♥ som invit med minst 5-5 i högfärgerna.
 - RKC 4NT efter fullföljd överföring hanteras separat enligt källans uttryckliga regel.
 
-**Medvetet ej täckt:**
-- Pass med svag hand, 2NT-invit med exakt femkortsfärg, 3M-invit med sexkortsfärg, 3NT som val av sangutgång, kontrollbud och signoff. Källan beskriver dessa kvalitativt men ger inte de numeriska HP-/HTP-gränser som behövs för automatisk handklassificering.
-- Motorn använder därför inte längre partnerns faktiska dolda hand eller gemensamma poäng för att gissa svarshandens bud efter överföring.
-- Sju befintliga analysbiblioteksträd med sådana ej verifierade numeriska gränser har märkts `provisional_source_gap` och filtreras bort från auktoritativ nodmatchning. De finns kvar som granskningsmaterial, inte som fastställda systemregler.
+**Korrigering efter ny sidkontroll:** De numeriska styrkegränserna finns faktiskt uttryckligen på sida 5 och är nu återinförda i rättningsmotorn:
+- 0–7 hp: pass.
+- 8–9 hp: invit; 2NT med jämn hand och exakt fem kort, eller 3M med minst sex kort.
+- 10–15 hp: 3NT med jämn hand och exakt fem kort, eller 4M med minst sex kort.
+- Efter spaderöverföring: 3♥ invit med minst 5-5 i högfärgerna.
+- Särskilda färggrenar: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC.
 
-Nya regressionstester täcker de uttryckliga färgbeskrivningarna, odefinierad prioritet mellan två möjliga lågfärger och att ej verifierade styrkegränser inte används. CI-workflowen har utökats med `tests/nt-transfer-source-boundaries.test.js`.
+Fyra äldre analysbiblioteksträd för svarshandens invit efter 2NT/3M har fortfarande status `provisional_source_gap`, eftersom öppnarens accept/pass efter inviten inte specificeras i överföringstabellen på sida 5. De används inte som auktoritativa noder. Grundträden T03, T07 och T08 är nu källverifierade.
 
-**Nästa steg:** verifiera om ytterligare systemunderlag eller användarbekräftade styrkegränser finns för de kvalitativa invit-/svaghetsbeskrivningarna innan de automatiseras. Därefter fortsätter arbetet med Stayman-svarshandens egna fortsättningar och live/efterhandssepareringen.
+Motorn använder svarshandens egen hand för att välja fortsättningsbud efter fullföljd överföring. Öppnarens efterhandsbeslut efter en invit är en separat fråga och ska inte exponeras som livebeslut med dold partnerhand.
+
+Regressionstester täcker nu 0–7, 8–9 och 10–15 hp, fem- respektive sexkortsfärg, balanserad hand, 5-5 högfärg efter spaderöverföring samt specialgrenarna. CI-workflowen kör `tests/nt-transfer-source-boundaries.test.js`.
+
+**Nästa steg:** fortsätta med Stayman-svarshandens naturliga utgångskravsbud och därefter separera live- och efterhandslogiken.
 
 
 ### Stayman – korrigerad styrkegräns
 
 Även Stayman 2♣ har korrigerats på svarshandens första bud: en egen fyrkortshögfärg räcker för att välja Stayman enligt Nordisk standard s. 4. Den tidigare automatiska gränsen på 8 hp saknar stöd i den citerade källan och är borttagen för 1NT-svar. Möjligheten att använda Stayman med slamintresse utan egen fyrkortshögfärg kräver separat modellering; någon ny HP-gräns har inte införts. Regressionstestet innehåller nu en fyrkortshögfärgshand under den tidigare gränsen.
+
+
+### Uppdatering: Stayman – naturliga utgångskrav (s. 4)
+
+Efter svar på 1NT–2♣ har svarshandens nya färg nu implementerats som naturlig och utgångskrav enligt sida 4: 5+ kort i ny högfärg eller 4+ kort i ny lågfärg. Efter öppnarens 2♥ visar svarshandens 2NT exakt fyra spader; den grenen hanteras före de naturliga färgbuden. Om flera nya färger samtidigt uppfyller längdkraven lämnas prioriteten ej täckt i stället för att motorn väljer godtyckligt.
+
+Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exakt fyra spader efter 2♥.
