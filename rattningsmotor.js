@@ -280,19 +280,21 @@ var Rattning = (function(){
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman');
     if(!opener)return NC('Efter Stayman är den egna handen inte tillräcklig för att bedöma invit/pass eller utgång med gemensamma poäng. Endast uttryckliga 2NT-/nya-färg-betydelser kan rättas live.',means,'Stayman');
     if(M&&L[M]>=4&&opener&&L[M]+opener.L[M]>=8){
-      if(fitPoints>=26){exp='4'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';}
-      else if(fitPoints>=22){exp='3'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: invit med 3'+SYM[M]+'.';}
-      else{exp='P';why='Minst 8-korts fit i '+SYM[M]+' men endast '+fitPoints+' gemensamma spelpoäng: under 22-poängsgränsen. Pass.';}
-    }
-    else{
+      if(fitPoints>=26){
+        exp='4'+M;
+        why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';
+      }else{
+        return NC('Minst 8-korts fit efter Stayman är känd, men den numeriska gränsen för när svarshanden ska bjuda invit (3M) i stället för pass anges inte i Nordisk standard. 26+ spelpoäng räcker för utgång; under det lämnas valet ej täckt.',means,'Stayman');
+      }
+    }else{
       var five=L.H>=5?'H':L.S>=5?'S':null;
-      if(reply==='2D'&&five&&!h.bal&&hp>=10){exp='3'+five;why='Utgångsstyrka och obalanserad hand med 5-högfärg: 2♣ och sedan 3 i högfärgen.'}
-      else{
-        var jointHcp=hp+(opener?opener.hp:0);
-        if(jointHcp>=26){exp='3N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: utgång 3NT.';}
-        else if(jointHcp>=22&&h.bal){exp='2N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: balanserad invit 2NT.';}
-        else if(jointHcp>=22){return NC('Ingen fit, obalanserad svarshand och invitstyrka efter Stayman: fortsatt bud är inte definierat.',means,'Stayman');}
-        else{exp='P';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: under invitnivån, pass.';}
+      if(reply==='2D'&&five&&!h.bal)
+        return NC('Obalanserad svarshand med 5-korts högfärg efter Stayman 2♦ kan fortsätta med 3 i högfärgen vid utgångsstyrka, men den numeriska styrkegränsen är inte angiven.',means,'Stayman');
+      var jointHcp=hp+(opener?opener.hp:0);
+      if(jointHcp>=26){
+        exp='3N';why='Ingen fit och '+jointHcp+' gemensamma honnörspoäng: utgång 3NT.';
+      }else{
+        return NC('Ingen utgångsstyrka enligt 26 hp-gränsen. 2NT är beskrivet som invit, men dess numeriska gräns är inte angiven i Nordisk standard; pass kontra invit lämnas ej täckt.',means,'Stayman');
       }
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
