@@ -116,5 +116,5 @@
 
   /* ––––– DISPATCH ––––– */
 
-  return {overcall,respOvercall,respDouble,respAfter1NT,responderSecondBid};
+  return {respAfter1NT,responderSecondBid};
 });
