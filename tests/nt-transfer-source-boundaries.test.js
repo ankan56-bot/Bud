@@ -24,7 +24,7 @@ function result(south,sequence){
   const rest=deck.filter(c=>!used.has(c));
   const hands={N:north,S:south,E:rest.slice(0,13),W:rest.slice(13,26)};
   const bids=sequence.concat([{s:'S',c:'P'}]);
-  return R.nodeForRaw({hands,dealer:'N',bids},bids.length-1);
+  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
 }
 const afterHeartTransfer=[
   {s:'N',c:'1N'},{s:'E',c:'P'},
