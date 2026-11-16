@@ -195,9 +195,18 @@ var Rattning = (function(){
     }
     else if(hp>=gl){
       if(!k){
-        return NC('3NT är slutbud i sang, men varken Nordisk standard eller en uttrycklig användarregel anger en numerisk HP-gräns för när svarshanden ska välja det efter 1NT. Endast honnörspoäng räknas i sang; 25/26 hp antas inte. Handen lämnas ej täckt.',means,conv,true);
-      }
-      return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
+        // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
+        // 1NT shows 15–17 HCP, so 10+ own HCP guarantees 25 with opener's minimum.
+        var jointMin=hp+15;
+        if(!opener&&jointMin>=25){
+          exp='3N';
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
+        }else if(opener&&jointHp>=25){
+          exp='3N';
+          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';
+        }else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
+      }else return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
+      soft=false;
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
