@@ -207,14 +207,12 @@ var Rattning = (function(){
       if(r===d2){if(c===h2)return 'Fullföljer överföringen (visar 2+ ♥).';if(c===(b+1)+'H')return 'Max och 4+ ♥: kan bjuda 3♥ i stället för 2♥.'}
       if(r===h2){if(c===s2)return 'Fullföljer överföringen.';if(c===(b+1)+'S')return 'Max och 4+ ♠: kan bjuda 3♠ i stället.'}
       if(!k&&r==='2S'){if(c==='2N')return 'Längre ♦ än ♣ eller lika längd i lågfärg.';if(c==='3C')return 'Längre ♣ än ♦.'}
-      if(r===b+'N'){if(c==='P')return 'Passar när paret inte når 25 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.'}
+      if(r===b+'N'){if(c==='P')return 'Avslår 2NT-inviten; numerisk acceptgräns anges inte i Nordisk standard.';if(c==='3N')return 'Accepterar 2NT-inviten; numerisk acceptgräns anges inte i Nordisk standard.'}
       if(c==='P')return 'Pass (slutbud).';
       return null};
 
     if (r === b+'N') {
-        if(!responder)return NC('2NT är en invit. Öppnarens accept/pass kan inte avgöras live med partnerns dolda honnörspoäng; den exakta styrkan måste bedömas efter given eller enligt en separat verifierad intervallregel.',means,'1NT-system');
-        if (jointHp < 25) return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-poängsgränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-        return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:means,conv:'1NT-system',soft:false};
+        return NC('2NT är en naturlig invit. Nordisk standard anger inte öppnarens numeriska accept-/passgräns; varken 25 eller 26 gemensamma hp antas. Beslutet lämnas ej täckt.',means,'1NT-system',true);
     }
 
     if(r===c2){conv='Stayman';exp=L.H>=4?h2:L.S>=4?s2:d2;
@@ -350,10 +348,8 @@ var Rattning = (function(){
     }
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
-      if(!partner)return NC('Efter Stayman 2♦–2NT är öppnarens accept/pass beroende av gemensam styrka; partnerns dolda hand används inte i livebeslut.',null,'Stayman');
-      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 25 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.';return null};
-      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
-      return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
+      var meansNoMajor=function(c){if(c==='P')return 'Passar på 2NT-inviten; numerisk acceptgräns anges inte i Nordisk standard.';if(c==='3N')return 'Accepterar 2NT-inviten; numerisk acceptgräns anges inte i Nordisk standard.';return null};
+      return NC('Efter Stayman 2♦–2NT är öppnarens accept/pass en invitbedömning. Nordisk standard anger ingen numerisk acceptgräns; varken 25 eller 26 gemensamma hp antas.',meansNoMajor,'Stayman',true);
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
       // Nordisk standard s. 4: 2NT visar fyra spader hos svarshanden.
