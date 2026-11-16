@@ -81,9 +81,8 @@ assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
 assert.equal(R.H(eastResponder).hp, 10);
 assert.equal(R.H(west15).hp, 15);
 assert.equal(R.H(west16).hp, 16);
-// The earlier 25-HCP no-trump threshold was assistant-proposed, not
-// explicitly user-confirmed or stated in Nordisk standard. Keep both
-// retrospective positions uncovered until the numeric rule is confirmed.
+// The user confirmed 25 combined HCP for 3NT; only HCP count in no-trump.
+ // 10 own HCP plus the 15-HCP minimum of partner's 1NT guarantees the game.
 assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "3N");
 assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
