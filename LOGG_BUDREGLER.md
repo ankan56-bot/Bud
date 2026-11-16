@@ -781,3 +781,7 @@ Seed `202615834` har återskapats från `tests/one-major-100.test.js`. Sekvensen
 **Viktig reservation:** Motorns splintertolkning är inte därmed en bekräftad systemregel. Tidigare assistentförslag om 13+ STP, 19–21 STP och fortsättning 3M/4M har inte uttryckligen bekräftats av användaren. 13+ HTP och minst fyra korts stöd är bekräftat för Stenberg 2NT, inte för splinter. Dessutom kontrollerar `reb1()` `hp>=13`, medan nodtexten anger 13+ STP. Detta är en dokumenterad regel-/kodkonflikt som ska lösas mot auktoritativ systemtext innan splinterlogik ändras.
 
 Till dess ska sekvensen stå kvar som **ej täckt** efter öppnarens återbud; ingen svarshandsregel ska läggas till på antagande.
+
+## Systembeslut 2026-11-16 – splinter pausas helt
+
+Användarens uttryckliga beslut: **Splinter ska tas bort ur den nuvarande budgivningen.** Konventionen är avancerad och ska inte ingå innan grundmotorn fungerar stabilt. Alla splintergrenar, splinterförklaringar och särskilda svar efter splinter är därför avstängda/borttagna i den aktiva motorn och analysbiblioteket. Historiska anteckningar ovan beskriver tidigare implementation och gäller inte längre som aktiva systemregler. Stenberg 2NT påverkas inte: 13+ HTP och minst fyra korts stöd efter 1M är fortsatt giltigt.
