@@ -9,7 +9,7 @@ const SU=['C','D','H','S'];
 const deck=[];
 for(const suit of SU)for(let rank=2;rank<=14;rank++)deck.push(suit+rank);
 
-function makeHand({trump=null,aces=[],trumpKing=false,trumpQueen=false,voids=[]}){
+function makeHand({trump=null,aces=[],trumpKing=false,trumpQueen=false,voids=[],exclude=[]}){
   const cards=[];
   for(const suit of aces)cards.push(suit+'14');
   if(trump&&trumpKing)cards.push(trump+'13');
@@ -19,7 +19,7 @@ function makeHand({trump=null,aces=[],trumpKing=false,trumpQueen=false,voids=[]}
       if(cards.length>=13)break;
       if(voids.includes(suit))continue;
       const card=suit+rank;
-      if(!cards.includes(card))cards.push(card);
+      if(!cards.includes(card)&&!exclude.includes(card))cards.push(card);
     }
   }
   assert.equal(cards.length,13,'fixture must contain 13 cards');
@@ -128,7 +128,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
     return {N:north.slice(),E:rest.slice(0,13),S:south.slice(),W:rest.slice(13,26)};
   }
   const responderNoQueen=makeHand({trump:'H',aces:['C']});
-  const askerThreeAces=makeHand({aces:['S','D','C']});
+  const askerThreeAces=makeHand({aces:['S','D','C'],exclude:responderNoQueen});
   const hands=deal(responderNoQueen,askerThreeAces);
   const auction=[
     {s:'N',c:'1H'},{s:'E',c:'P'},
@@ -142,12 +142,13 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   const afterAsk=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'P'}]);
   const deny=R.nodeFor({hands,dealer:'N',bids:afterAsk},12);
   assert.equal(deny.exp,'5H','a hand without the trump queen denies with 5 in trump');
-  const afterDeny=afterAsk.concat([{s:'E',c:'P'} ,{s:'S',c:'P'}]);
+  const afterDeny=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'5H'},{s:'E',c:'P'},{s:'S',c:'P'}]);
   const six=R.nodeFor({hands,dealer:'N',bids:afterDeny},14);
   assert.equal(six.exp,'6H','with 3 own aces, asker bids 6 in trump after the queen is denied');
 
   const responderWithQueen=makeHand({trump:'H',aces:['C'],trumpQueen:true});
-  const handsQ=deal(responderWithQueen,askerThreeAces);
+  const askerThreeAcesQ=makeHand({aces:['S','D','C'],exclude:responderWithQueen});
+  const handsQ=deal(responderWithQueen,askerThreeAcesQ);
   const auctionQ=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'P'}]);
   const show=R.nodeFor({hands:handsQ,dealer:'N',bids:auctionQ},12);
   assert.equal(show.exp,'5N','a hand with the trump queen shows it with 5NT');
@@ -165,7 +166,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   require('../ej-tackta-logg.js');
   const log=global.window.EjTacktaLogg;
   const north=makeHand({trump:'H',aces:['C']});
-  const south=makeHand({aces:['S','D','C']});
+  const south=makeHand({aces:['S','D','C'],exclude:north});
   const rest=deck.filter(c=>!north.includes(c)&&!south.includes(c));
   const hands={N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
   const bids=[
