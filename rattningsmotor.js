@@ -371,7 +371,7 @@ var Rattning = (function(){
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
       if(!partner)return NC('Efter Stayman 2♦–2NT är öppnarens accept/pass beroende av gemensam styrka; partnerns dolda hand används inte i livebeslut.',null,'Stayman');
-      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.';return null};
+      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 25 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.';return null};
       if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
