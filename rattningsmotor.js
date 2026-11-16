@@ -200,7 +200,7 @@ var Rattning = (function(){
         var jointMin=hp+15;
         if(jointMin>=26){
           exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
         }else return NC('Partnerns 1NT visar 15–17 hp. 26 gemensamma hp nås inte säkert och källan anger ingen numerisk gräns för invit/pass; situationen lämnas ej täckt.',means,conv,true);
       }else if(!k&&jointHp<26){
         return NC('Paret når inte 26 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; pass kontra invit lämnas ej täckt.',means,conv,true);
@@ -231,7 +231,7 @@ var Rattning = (function(){
           // This is distinct from the 26 OTP threshold for major-suit games.
           if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte läsa partnerns dolda hp; efter given accepteras med 3NT vid minst 25 gemensamma hp.',means,'1NT-system',true);
           if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 26-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
         }
         return {exp:'P',alt:[],why:'3NT är slutbud efter 2NT-öppning enligt Nordisk standard.',means:means,conv:'2NT-system'};
     }
