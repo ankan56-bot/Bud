@@ -1,60 +1,89 @@
 "use strict";
 
-// Characterization test for a known defect: live correction currently reads
-// partner's hidden cards when accepting a 3M invitation.
-// TODO: replace this with an invariance test against decideLive() once the
+// Characterization tests for known defects: live correction currently reads
+// partner's hidden cards both after a 3M invitation and after a 1NT opening.
+// TODO: replace these with invariance tests against decideLive() once the
 // live/post-deal API separation is implemented.
 const assert = require("node:assert/strict");
 const R = require("../rattningsmotor.js");
 
-const east = [
+const eastOpener = [
   "H14","H13","H12","H11","H2",
   "S13","S7","S6","D8","D6","D4","C9","C5"
 ];
-const responderA = [
+const westInviteA = [
   "H10","H9","H8","H7","S14","S12","S2",
   "D14","D2","D3","C4","C2","C3"
 ];
-const responderB = [
+const westInviteB = [
   "H10","H9","H8","H7","S14","S12","S2","S3",
   "D14","D2","D3","C2","C3"
 ];
 
-function fullDeal(south) {
+function fullDealWithEast(east, west) {
   const deck = [];
   for (const suit of ["S","H","D","C"]) {
     for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
   }
-  const used = new Set([...east, ...south]);
+  const used = new Set([...east, ...west]);
   assert.equal(used.size, 26, "East and West hands must be disjoint");
   const rest = deck.filter(card => !used.has(card));
   assert.equal(rest.length, 26);
-  return { E: east, S: rest.slice(0,13), W: south, N: rest.slice(13,26) };
+  return { E: east, S: rest.slice(0,13), W: west, N: rest.slice(13,26) };
 }
 
-const auction = [
+// Case 1: East opens 1H; West's 3H invit shows 10–12 HTP and 4+ hearts.
+// Both possible West hands satisfy that public description.
+const majorAuction = [
   {s:"E",c:"1H"},
   {s:"S",c:"P"},
   {s:"W",c:"3H"},
   {s:"N",c:"P"},
   {s:"E",c:"P"}
 ];
-const dealA = fullDeal(responderA);
-const dealB = fullDeal(responderB);
-assert.deepStrictEqual(dealA.E, dealB.E, "The acting player's hand must be identical");
+const majorDealA = fullDealWithEast(eastOpener, westInviteA);
+const majorDealB = fullDealWithEast(eastOpener, westInviteB);
+assert.deepStrictEqual(majorDealA.E, majorDealB.E);
+assert.equal(R.partnershipPoints(R.H(eastOpener), R.H(westInviteA), "H"), 25);
+assert.equal(R.partnershipPoints(R.H(eastOpener), R.H(westInviteB), "H"), 26);
+assert.equal(R.H(westInviteA).htp("H"), 10);
+assert.equal(R.H(westInviteB).htp("H"), 11);
+assert.equal(R.nodeFor({hands:majorDealA,dealer:"E",bids:majorAuction},4).exp, "P");
+assert.equal(R.nodeFor({hands:majorDealB,dealer:"E",bids:majorAuction},4).exp, "4H");
 
-const pointsA = R.partnershipPoints(R.H(east), R.H(responderA), "H");
-const pointsB = R.partnershipPoints(R.H(east), R.H(responderB), "H");
-assert.equal(pointsA, 25);
-assert.equal(pointsB, 26);
-assert.equal(R.H(responderA).htp("H"), 10);
-assert.equal(R.H(responderB).htp("H"), 11);
+// Case 2: East responds to West's 1NT. East's 10-HCP hand and auction stay
+// fixed; West's actual 15 versus 16 HCP changes the recommendation 2NT/3NT.
+const eastResponder = [
+  "D14","D13","D12","D5","D4","S11","S7","S6","H8","H6","H3","C9","C2"
+];
+const west15 = [
+  "S14","S13","S8","S5","H14","H11","H4","D13","D7","D6","C9","C7","C4"
+];
+const west16 = [
+  "S14","S13","S8","S5","H14","H12","H4","D13","D7","D6","C9","C7","C4"
+];
+function fullDealWithWest(west) {
+  const deck = [];
+  for (const suit of ["S","H","D","C"]) {
+    for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
+  }
+  const used = new Set([...eastResponder, ...west]);
+  assert.equal(used.size, 26, "East and West hands must be disjoint");
+  const rest = deck.filter(card => !used.has(card));
+  return { W: west, N: rest.slice(0,13), E: eastResponder, S: rest.slice(13,26) };
+}
+const ntAuction = [
+  {s:"W",c:"1N"},
+  {s:"N",c:"P"},
+  {s:"E",c:"P"}
+];
+const ntDeal15 = fullDealWithWest(west15);
+const ntDeal16 = fullDealWithWest(west16);
+assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
+assert.equal(R.H(eastResponder).hp, 10);
+assert.equal(R.H(west15).hp, 15);
+assert.equal(R.H(west16).hp, 16);
+assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "2N");
+assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 
-const decisionA = R.nodeFor({hands:dealA,dealer:"E",bids:auction},4);
-const decisionB = R.nodeFor({hands:dealB,dealer:"N",bids:auction},4);
-assert.equal(decisionA.exp, "P");
-assert.equal(decisionB.exp, "4H");
-assert.notEqual(decisionA.exp, decisionB.exp,
-  "Known defect should remain visible until live decisions stop reading partner's hidden cards");
-
-console.log("KNOWN DEFECT reproduced for Buddie's East seat: identical own hand + auction produced Pass vs 4H from West's hidden cards.");
+console.log("KNOWN DEFECTS reproduced: same East hand + public auction produced Pass/4H and 2NT/3NT from West's hidden cards.");
