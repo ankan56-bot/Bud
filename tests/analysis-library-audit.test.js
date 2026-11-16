@@ -35,5 +35,5 @@ assert.deepStrictEqual(rootWarnings.map(item => item.tree), [
   "T40_SVARSHANDENS_ANDRA_BUD_EFTER_OPPNARENS_ATERBUD"
 ]);
 const missingProfiles = result.warnings.filter(item => item.type === "missing-hand-profile");
-assert.strictEqual(missingProfiles.length, 3);
+assert.strictEqual(missingProfiles.length, 27);
 console.log("Analysis library audit tests passed.");
