@@ -2,6 +2,8 @@
 
 const assert = require('node:assert/strict');
 const R = require('../rattningsmotor.js');
+const A = require('../analysmotor.js');
+const lib = require('../analysbibliotek.json');
 const deck = ['S','H','D','C'].flatMap(s => Array.from({length:13},(_,i)=>s+(i+2)));
 
 function makeDeal(north) {
@@ -105,5 +107,13 @@ for (const [rebid,signoff] of [['2N','3D'],['3C','3D'],['2N','3C']]) {
   const result = recommend(relayHands[0].north, auction);
   assert.equal(result.exp,'P','opener must pass after relay signoff '+rebid+'–'+signoff);
 }
+
+const minorInvitTree=lib.trees.find(t=>t.id==='T47_1NT_MINOR_INVIT');
+assert.ok(minorInvitTree);
+assert.equal(A.treeCompatible(minorInvitTree),true);
+assert.equal(minorInvitTree.sourceStatus,'source_qualitative');
+assert.equal(minorInvitTree.nodes.length,6);
+assert.ok(minorInvitTree.nodes.every(n=>n.handProfile));
+assert.ok(minorInvitTree.sourceStatusNote.includes('Numerisk styrkegräns'));
 
 console.log('1NT minor invitation and weak-minor relay tests: passed.');
