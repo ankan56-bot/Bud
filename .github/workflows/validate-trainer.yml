@@ -132,7 +132,9 @@ jobs:
           const heartRkc = lib.trees.find(t => t.id === 'T01_RKC_HJARTER');
           const spadeRkc = lib.trees.find(t => t.id === 'T44_RKC_NORDISK_SPADER_STENBERG');
           const minorStenberg = lib.trees.find(t => t.id === 'T35_STENBERG_2NT_LAGFARG');
-          if (!A.treeCompatible(heartRkc) || !A.treeCompatible(spadeRkc) || !A.treeCompatible(minorStenberg)) throw new Error('Stenberg trees must be compatible with the authoritative system');
+          const minorClubRkc = lib.trees.find(t => t.id === 'T45_RKC_NORDISK_KLOVER');
+          const minorDiamondRkc = lib.trees.find(t => t.id === 'T46_RKC_NORDISK_RUTER');
+          if (!A.treeCompatible(heartRkc) || !A.treeCompatible(spadeRkc) || !A.treeCompatible(minorStenberg) || !A.treeCompatible(minorClubRkc) || !A.treeCompatible(minorDiamondRkc)) throw new Error('Stenberg and RKC trees must be compatible with the authoritative system');
           const hit = A.findMatch(lib, [{c:'1N'},{c:'P'},{c:'2D'},{c:'P'},{c:'2H'},{c:'P'}]);
           if (!hit) throw new Error('Analysis library sequence matching failed');
           console.log('Offline analysis engine OK; matched ' + hit.tree.id);
