@@ -87,6 +87,9 @@ assert.equal(responderAfterStayman(
   ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2S').exp,'3H',
   '5+ hearts after Stayman 2S is a natural game-forcing new suit');
 assert.equal(responderAfterStayman(
-  ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H').exp,'2N',
-  'exactly four spades after Stayman 2H is shown by 2NT');
+  ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H').exp,null,
+  'exactly four spades is known, but invite versus game needs a strength boundary');
+assert.equal(responderAfterStayman(
+  ['S14','S13','S12','S11','H11','H2','H3','D2','D3','D4','C2','C3','C4'],'2H').exp,'3N',
+  '11 hp plus the 15 hp minimum of partner guarantees 26 combined hp for 3NT');
 console.log('1NT Stayman continuation tests: passed.');
