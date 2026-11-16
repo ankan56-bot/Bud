@@ -8,7 +8,12 @@ function makeDeal(north) {
   assert.equal(north.length,13);
   assert.equal(new Set(north).size,13,'North hand must not contain duplicates');
   const rest = deck.filter(c => !north.includes(c));
-  return {N:north, E:rest.slice(0,13), S:rest.slice(13,26), W:rest.slice(26,39)};
+  // Give responder a low-card hand so the generic 28-point minor-game
+  // override cannot mask the specific 1NT–3m invit response being tested.
+  const south = rest.slice().sort((a,b) => Number(a.slice(1))-Number(b.slice(1))).slice(0,13);
+  const used = new Set([...north,...south]);
+  const ew = deck.filter(c => !used.has(c));
+  return {N:north, E:ew.slice(0,13), S:south, W:ew.slice(13,26)};
 }
 
 function recommend(north, auction) {
