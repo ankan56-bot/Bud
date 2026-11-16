@@ -165,7 +165,7 @@ function nodeAt(seat,auction,ownHand){
   const hands={};hands[seat]=ownHand.slice();
   const opponents=['N','E','S','W'].filter(x=>x!==seat);
   for(let i=0;i<opponents.length;i++)hands[opponents[i]]=other.slice(i*13,(i+1)*13);
-  return R.nodeForRaw({hands,dealer:'N',bids:auction},auction.length);
+  return R.nodeForRaw({hands,dealer:'N',bids:auction},auction.length-1);
 }
 const relayAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
