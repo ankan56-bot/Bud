@@ -60,3 +60,20 @@ Därför ska dessa positioner tills vidare markeras **ej täckta** om de inte re
 5. Låt odefinierade fortsättningar vara ej täckta.
 
 Ingen produktionsregel ska ändras enbart utifrån en otydlig formulering i fotografiet.
+## 6. Kodgranskning och första implementationen
+
+Granskningen av rattningsmotor.js visade tre konkreta avvikelser i svaret efter partnerns öppning och motståndarens inkliv:
+- 1NT-svaret krävde tidigare 8–10 HP; bokens sida 90 anger 6–10 HP. Motorn är nu ändrad till 6–10 HP, fortfarande med krav på håll i inklivsfärgen.
+- Nya färgbud krävde tidigare minst fem kort oavsett färg. Motorn tillåter nu fyra kort i lågfärg och kräver fortsatt fem kort i högfärg.
+- Svar efter öppning 1♣/1♦ och ett motståndarkliv hanterades tidigare som ej täckta generellt. Den vägen anropar nu svarsmotorn för inkliv och har separat stöd för de två negativa dubblingsvisningarna.
+
+Negativ dubbling har lagts in för de entydiga fyrkortslägena med minst 6 HP och utan 3+ stöd i partnerns öppningsfärg:
+- Efter 1♦–1♥ visar dubbling exakt fyra spader.
+- Efter 1♣–1♠ visar dubbling fyra hjärter.
+Fem eller fler hjärter efter 1♠-inkliv lämnas inte som automatisk negativ dubbling eftersom källan inte anger prioriteten mot ett naturligt 2♥-bud. Överlapp med stöd lämnas också ej täckt.
+
+Riktade regressioner har lagts till i tests/ostord-manual-rules.test.js för 6 HP + håll i 1NT, fyrkortslågfärg, avvisning av fyrkortshögfärg samt de två negativa dubblingarna.
+
+### Fortfarande ej implementerat
+
+Slamspärren är dokumenterad men ännu inte införd. Skälet är att nuvarande inklivsfunktion anger 12–17 HP på tvåtricksnivån, medan användarens slamresonemang anger att minst 13 HP har visats. Den spärren ska byggas som separat budhistorikskontroll när den gränsen är entydigt modellerad; den får inte läsa motståndarnas dolda kort i livebudgivning.
