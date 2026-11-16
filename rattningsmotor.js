@@ -644,11 +644,28 @@ var Rattning = (function(){
     if(fits.length===1)return fits[0];
     // Nordisk standard s. 5: efter fullföljd överföring är 4NT uttryckligen RKC
     // med överföringsfärgen som trumf. S. 7 anger också indirekt trumf efter
-    // 2♥/2♠ som svar på Stayman 2♣.
-    if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2D'&&ours[2].c==='2H')return 'H';
-    if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2H'&&ours[2].c==='2S')return 'S';
-    if(ours.length>=3&&ours[0].c==='1N'&&ours[1].c==='2C'&&
-       (ours[2].c==='2H'||ours[2].c==='2S'))return ours[2].c[1];
+    // 2♥/2♠ som svar på Stayman 2♣. Kontrollera även budgivarnas roller.
+    var ntOpeningIndex=ours.findIndex(function(x){return x.c==='1N';});
+    if(ntOpeningIndex>=0){
+      var ntOpenerSeat=ours[ntOpeningIndex].s;
+      for(var oi=ntOpeningIndex+1;oi<ours.length;oi++){
+        var call=ours[oi];
+        if(call.s===ntOpenerSeat)continue;
+        if(call.c==='2D'){
+          for(var hj=oi+1;hj<ours.length;hj++)
+            if(ours[hj].s===ntOpenerSeat&&ours[hj].c==='2H')return 'H';
+        }
+        if(call.c==='2H'){
+          for(var sj=oi+1;sj<ours.length;sj++)
+            if(ours[sj].s===ntOpenerSeat&&ours[sj].c==='2S')return 'S';
+        }
+        if(call.c==='2C'){
+          for(var mj=oi+1;mj<ours.length;mj++)
+            if(ours[mj].s===ntOpenerSeat&&(ours[mj].c==='2H'||ours[mj].c==='2S'))
+              return ours[mj].c[1];
+        }
+      }
+    }
     return null;
   }
   // Fyr-essfråga utan trumf är bara avtalad i dessa uttryckliga sangsekvenser.
