@@ -462,7 +462,11 @@
     }
     if(/^1[CDHS]$/.test(c1)){
       // Stenberg 2NT: särskild respons och öppnarens första återbud.
-      if(!opener&&d===1&&b.c==='2N')return stenberg.responder(h,c1);
+      if(!opener&&d===1){
+        var stenbergResponse=stenberg.responder(h,c1);
+        if(stenbergResponse&&stenbergResponse.exp)return stenbergResponse;
+        if(b.c==='2N')return stenbergResponse;
+      }
       if(opener&&d===2&&ours[1].c==='2N')
         return stenberg.openerRebid(h,c1,st.hands[pt]?H(st.hands[pt]):null);
       if(!opener&&d===3&&ours[1].c==='2N')
