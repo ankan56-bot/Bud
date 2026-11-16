@@ -253,13 +253,13 @@ En ny kontroll mot Nordisk standard s. 5 har gjorts för svarshandens fortsättn
 - Efter spaderöverföring: 3♥ invit med minst 5-5 i högfärgerna.
 - Särskilda färggrenar: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC.
 
-Fyra äldre analysbiblioteksträd för svarshandens invit efter 2NT/3M har fortfarande status `provisional_source_gap`, eftersom öppnarens accept/pass efter inviten inte specificeras i överföringstabellen på sida 5. De används inte som auktoritativa noder. Grundträden T03, T07 och T08 är nu källverifierade.
+Fyra äldre överförings-invitträd (T19/T20/T27/T28) har status `provisional_source_gap`, eftersom de innehåller öppnarens accept/pass efter inviten, vilket inte specificeras i överföringstabellen på sida 5. Därutöver är inviterna efter 1NT/Stayman (T04/T06/T11/T12/T13/T17/T24/T25/T26) och svagt lågfärgsrelä med numerisk HP-gräns (T42) preliminära. De används inte som auktoritativa noder. Direkt 3NT med verifierad 26 hp-gräns och grundträden T03/T07/T08 är fortsatt tillgängliga.
 
 Motorn använder svarshandens egen hand för att välja fortsättningsbud efter fullföljd överföring. Öppnarens efterhandsbeslut efter en invit är en separat fråga och ska inte exponeras som livebeslut med dold partnerhand.
 
 Regressionstester täcker nu 0–7, 8–9 och 10–15 hp, fem- respektive sexkortsfärg, balanserad hand, 5-5 högfärg efter spaderöverföring samt specialgrenarna. CI-workflowen kör `tests/nt-transfer-source-boundaries.test.js`.
 
-**Nästa steg:** fortsätta med Stayman-svarshandens naturliga utgångskravsbud och därefter separera live- och efterhandslogiken.
+**Nästa steg:** fortsätta med Stayman-svarshandens inviter och lågfärgsreläets kvalitativa styrkebeskrivning, utan att automatisera numeriska gränser som saknas i källan.
 
 
 ### Stayman – korrigerad styrkegräns
@@ -297,3 +297,8 @@ PDF:en anger inte ett numeriskt HP-intervall för "dåliga kort". Rättningsmoto
 Efter hjärteröverföring kan samma hand uppfylla både 2♠-villkoret (5+♥/4+♠, rondkrav) och 3♣/3♦-villkoret (5+♥/4+ lågfärg, utgångskrav). Källtabellen anger betydelserna men inte vilken som har prioritet när båda är uppfyllda. Rättningsmotorn lämnar därför dessa överlappande händer ej täckta. Om båda lågfärgerna uppfyller 4+-villkoret lämnas också prioriteten ej täckt.
 
 Testerna kontrollerar både överlappet och att ingen prioritet hittas på.
+
+
+### Svagt lågfärgsrelä efter 1NT – kvalitativ styrka
+
+Nordisk standard s. 4 beskriver 2♠ som ett relä för "dåliga kort" med 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Källan anger inte ett numeriskt HP-intervall för "dåliga kort". Rättningsmotorn lämnar därför valet av 2♠ ej täckt när handen endast kan klassificeras med en antagen numerisk gräns. T42 finns kvar som preliminärt analysmaterial och får inte matchas som auktoritativt systemträd förrän styrkegränsen har bekräftats.
