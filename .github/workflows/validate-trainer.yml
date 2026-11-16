@@ -56,6 +56,8 @@ jobs:
           node tests/analysis-library-audit.test.js
       - name: Characterize known live hidden-hand dependency
         run: node tests/known-live-hidden-hand-leak.test.js
+      - name: Test analysis-node collision diagnostics
+        run: node tests/analysis-matcher-collisions.test.js
       - name: Validate supplementary bidding logic
         run: |
           node - <<'NODE'
