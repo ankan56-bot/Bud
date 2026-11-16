@@ -333,8 +333,30 @@ var Rattning = (function(){
       if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
-    if(k1==='2C'&&(M==='H'||M==='S')&&k3==='2N'){
-      return NC('Efter Stayman 1NT–2♣–2'+M+'–2NT måste öppnaren väga 3NT mot eventuell fit i den andra högfärgen. Exakt fortsättning är inte fastställd; öppnarens egen 4-kortsfärg räcker inte för att rekommendera 4'+M+'.',null,'Stayman');
+    if(k1==='2C'&&M==='H'&&k3==='2N'){
+      // Nordisk standard s. 4: 2NT visar fyra spader hos svarshanden.
+      // Med 4-4 i högfärgerna väljer öppnaren 3♠ med minimum och 4♠ med maximum.
+      var meansHeartStaymanInvite=function(c){
+        if(c==='3S')return '4-4 i högfärgerna och minimum (15–16 hp): visar spaderfit på invitnivå.';
+        if(c==='4S')return '4-4 i högfärgerna och maximum (17 hp): accepterar inviten i spader.';
+        return null;
+      };
+      if(L.H===4&&L.S===4){
+        if(hp===17)return {exp:'4S',alt:[],why:'4-4 i högfärgerna och 17 hp (maximum): accepterar 2NT-inviten med 4♠.',means:meansHeartStaymanInvite,conv:'Stayman'};
+        if(hp>=15&&hp<=16)return {exp:'3S',alt:[],why:'4-4 i högfärgerna och '+hp+' hp (minimum): visar spaderfit med 3♠.',means:meansHeartStaymanInvite,conv:'Stayman'};
+      }
+      return NC('Nordisk standard s. 4 anger öppnarens 3♠/4♠-val efter 2NT när öppnaren har 4-4 i högfärgerna. Övriga handtyper i denna fortsättning är inte tillräckligt specificerade.',meansHeartStaymanInvite,'Stayman');
+    }
+    if(k1==='2C'&&M==='H'&&k3==='3N'){
+      // Nordisk standard s. 4: 3NT visar också fyra spader hos svarshanden.
+      // Öppnaren kan välja 4♠ när den egna handen är 4-4 i högfärgerna.
+      var meansHeartStaymanGame=function(c){
+        if(c==='4S')return '4-4 i högfärgerna: väljer 4♠ efter svarshandens 3NT.';
+        if(c==='P')return 'Ingen 4-4 i högfärgerna: passar på 3NT.';
+        return null;
+      };
+      if(L.H===4&&L.S===4)return {exp:'4S',alt:[],why:'4-4 i högfärgerna: väljer 4♠ efter svarshandens 3NT enligt Nordisk standard s. 4.',means:meansHeartStaymanGame,conv:'Stayman'};
+      return {exp:'P',alt:[],why:'Öppnaren har inte 4-4 i högfärgerna; passar på 3NT.',means:meansHeartStaymanGame,conv:'Stayman'};
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3'+M){
       var gameSuit='4'+M;
