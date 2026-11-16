@@ -231,11 +231,11 @@
               if(prior[qi].s===me&&isBid(prior[qi].c)){askIndex=qi;break;}
             var expectedAsk=askIndex>=0?rkcNextStep(h,myAskTrump,response,prior.slice(0,responseIndex+1)):null;
             if(expectedAsk&&expectedAsk.exp===prior[askIndex].c)
-              return rkcSlamNextStep(h,myAskTrump,response,queenReply);
+              return rkcSlamNextStep(h,myAskTrump,response,queenReply,prior);
             return NC('Trumfdamfrågans sekvens kan inte verifieras mot Nordisk standard s. 7. Läget lämnas ej täckt.',null,'RKC – slamfortsättning',true);
           }
         }else{
-          return rkcSlamNextStep(h,myAskTrump,response,null);
+          return rkcSlamNextStep(h,myAskTrump,response,null,prior);
         }
         if(b.c==='P'&&last&&/^[67][CDHSN]$/.test(last))
           return {exp:'P',alt:[],why:'Pass efter fastställt slamkontrakt.',means:function(c){return c==='P'?'Pass efter slutbud.':null},conv:'slam – slutbud'};
