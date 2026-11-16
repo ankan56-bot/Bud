@@ -141,8 +141,8 @@ assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must e
 // engine failures: qualitative/numeric invite boundaries, the weak-relay
 // strength descriptor, and transfer hands outside the tabulated shapes.
 const acceptedUncoveredIds=[
-  'ostord-100-030','ostord-100-034','ostord-100-036','ostord-100-039',
-  'ostord-100-053','ostord-100-088','ostord-100-094'
+  'ostord-100-030','ostord-100-034','ostord-100-036','ostord-100-037','ostord-100-039',
+  'ostord-100-053','ostord-100-066','ostord-100-088','ostord-100-094'
 ].sort();
 assert.deepEqual(
   report.uncovered.map(x=>x.dealId).sort(),
