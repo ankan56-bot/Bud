@@ -126,7 +126,7 @@ fs.writeFileSync('testdata/ostord_200_validation_latest.json', JSON.stringify(re
 console.log(JSON.stringify({
   deals: report.deals, turns: report.turns, covered: report.covered,
   uncovered: report.uncovered.length, coveragePercent: report.coveragePercent,
-  exceptions: report.exceptions.length, illegalRecommendations: report.illegalRecommendations.length,
+  exceptions: report.exceptions.length, exceptionDetails: report.exceptions, illegalRecommendations: report.illegalRecommendations.length,
   invalidAuctions: report.invalidAuctions.length, unfinishedAuctions: report.unfinishedAuctions.length,
   cardIntegrityErrors: report.cardIntegrityErrors.length,
   uncoveredDetails: report.uncovered
