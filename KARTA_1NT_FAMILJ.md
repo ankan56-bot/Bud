@@ -237,3 +237,18 @@ Nya/uppdaterade regressioner omfattar:
 - tests/nt-stayman-continuations.test.js: 4+ ruter efter 2♦ samt 25-hp-beslut efter Stayman.
 - tests/live-1nt-information-boundary.test.js: 25-hp-gränsen, liveinformationsgräns och dolda händer.
 - tests/known-live-hidden-hand-leak.test.js: livebeslut ska vara oförändrat när öppnarens dolda kort byts, där offentlig miniminivå räcker för beslutet.
+
+
+## 15. Samordning mellan runtime och analysbibliotek – 2026-11-16
+
+Analysbiblioteket är uppdaterat till version 0.6.30 (46 träd). En genomgång av samtliga sanggrenar visade att flera äldre beskrivningar fortfarande använde 26 hp för 3NT trots den överenskomna 25-hp-regeln. Dessa är nu samordnade med runtime: T06, T17, T19, T20, T26, T27, T28 och T40.
+
+Principen är nu konsekvent:
+- 3NT: minst 25 gemensamma honnörspoäng enligt överenskommen projektregel; endast HP räknas i sang.
+- Högfärgsutgång: 26 gemensamma spelpoäng när relevant fit är etablerad.
+- Lågfärgsutgång: 28 gemensamma spelpoäng enligt den separata färgregeln.
+- Numeriska intervall för att välja vissa inviter är fortfarande ej fastställda när källan inte anger dem. De får inte fyllas i för att öka täckningen.
+
+Även 2NT–3♣–3♠ efter 2NT-öppning använder nu 25 hp för 3NT utan 8-korts spaderfit; 4♠ behåller sin separata 26-poängsgräns vid fit. Detta har en egen regression.
+
+Verifiering: GitHub Actions körning 43916709551 på commit b25fa00b är **grön**. Samtliga steg passerade, inklusive JavaScript-syntax, facitgenerator, liveinformationsgräns, Stayman/överföring, 100-givarskontroller, 400-givarskorpen, manuell regelkontroll, analysbibliotek och applikationskoppling.
