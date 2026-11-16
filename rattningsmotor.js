@@ -1160,8 +1160,9 @@ var Rattning = (function(){
       // 4NT med fastställd trumf är RKC-fråga, inte slutbud.
       var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
       var partnerHasFourAceAsk=lastCall.c==='4N'&&agreedNoTrumpAceAsk(prior,side(me));
+      var partnerHasQuantitativeInvite=lastCall.c==='4N'&&agreedQuantitativeNoTrumpInvite(prior,side(me));
       var partnerRkcReply=/^5[CDHS]$/.test(lastCall.c)&&prior.some(function(x){return x.s===me&&x.c==='4N'})&&!!rkcTrumpFromAuction(prior,side(me));
-      if(partnerHasGame&&!partnerHasRkcAsk&&!partnerHasFourAceAsk&&!partnerRkcReply)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+      if(partnerHasGame&&!partnerHasRkcAsk&&!partnerHasFourAceAsk&&!partnerHasQuantitativeInvite&&!partnerRkcReply)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
     // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
