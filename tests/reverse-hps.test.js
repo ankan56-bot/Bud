@@ -1217,10 +1217,10 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, '3N');
 }
 
-// After 2NT-3C-3S, a balanced responder with 25+ combined HCP and no
+// After 2NT-3C-3S, a balanced responder with 26+ combined HCP and no
 // eight-card spade fit chooses 3NT.
 {
-  const responder = ['S13', 'S11', 'S2', 'H3', 'H11', 'H2', 'H5', 'D4', 'D10', 'C10', 'C8', 'C4', 'C3'];
+  const responder = ['S13', 'S11', 'S2', 'H3', 'H11', 'H2', 'H5', 'D4', 'D10', 'C10', 'C11', 'C4', 'C3'];
   const opener = ['S10', 'S12', 'S14', 'S4', 'H13', 'H7', 'H14', 'D8', 'D6', 'C5', 'C6', 'C14', 'C13'];
   const hands = makeDealFromPair('S', responder, opener);
   const bids = [
