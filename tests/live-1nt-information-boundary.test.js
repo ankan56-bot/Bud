@@ -103,6 +103,12 @@ assert.equal(live('N',relayOpenerAuction,relayOpenerClubsLonger).exp,'P',
 
 // 1NT–3m is invitational with a good 6+ minor. The source only
 // defines opener's response with xx/xxx (pass) or a top honour (3NT).
+const weakNoMajorBalanced=fill(['C13','C12','C11','C2','H2','H3','H4','D2','D3','D4','S2','S3','S4']);
+assert.equal(R.H(weakNoMajorBalanced).hp,6);
+assert.equal(R.H(weakNoMajorBalanced).bal,true);
+assert.equal(live('S',firstResponse,weakNoMajorBalanced).exp,null,
+ 'a weak balanced hand without a major has no numeric pass boundary in the source');
+
 const afterMinorInvite=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'3C'},{s:'W',c:'P'}
