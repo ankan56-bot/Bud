@@ -1204,7 +1204,6 @@ var Rattning = (function(){
          (oppAfter[0].c==='1H'||oppAfter[0].c==='1S')){
         var negativeOvercall=oppAfter[0].c;
         var partnerOpeningSuit=f[1];
-        var negativeDoubleSuit=negativeOvercall==='1H'?'S':'H';
         // The photographed rule gives exact four spades over 1H and at least
         // four hearts over 1S. A five-card heart suit over 1S overlaps with
         // a natural two-level response, so that case remains uncovered.
@@ -1222,8 +1221,6 @@ var Rattning = (function(){
            ((negativeOvercall==='1H'&&h.L.S===4)||(negativeOvercall==='1S'&&h.L.H===4))){
           return {exp:'X',alt:[],why:negativeOvercall==='1H'?'Negativ dubbling: exakt fyra spader efter 1♥-inkliv.':'Negativ dubbling: fyra hjärter efter 1♠-inkliv.',means:function(c){return c==='X'?(negativeOvercall==='1H'?'Exakt fyra spader.':'Minst fyra hjärter.'):null},conv:'negativ dubbling'};
         }
-        if(negativeOvercall==='1S'&&h.L.H>=5)
-          return NC('Fem eller fler hjärter efter 1♠-inkliv överlappar negativ dubbling med naturligt 2♥; prioriteten är inte angiven i källan.');
         return respOvercall(h,f,last,negativeOvercall);
       }
       if(d===1&&oppAfter.length===1&&!opener&&b.c==='X'){
