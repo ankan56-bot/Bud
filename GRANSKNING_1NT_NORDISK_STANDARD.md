@@ -234,3 +234,23 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 **Kodavvikelser identifierade:** obelagda styrkegränser, ofullständiga Stayman-svarshandsfortsättningar, ofullständiga överföringsgrenar, dold-hand-beroenden och felaktig fyr-essmetadata. De särskilda öppnarfortsättningarna efter 2♥–2NT/3NT är implementerade och testade. Överförings-RKC är däremot uttryckligen källbelagd och ska vara kvar.
 
 **Uppdatering 2026-11-16:** P0-arbetet har nu kompletterats med Staymanfortsättningarna efter 1NT–2♣–2♥–2NT och 1NT–2♣–2♥–3NT. 2NT-grenen följer den uttryckliga 4-4-regeln: 3♠ med 15–16 hp och 4♠ med 17 hp. 3NT-grenen väljer 4♠ vid 4-4 i högfärgerna, annars pass. Övriga 2NT-handtyper lämnas ej täckta i stället för att få en påhittad fortsättning. Regressionstester finns i `tests/nt-stayman-continuations.test.js`. Analysbibliotek 0.6.6 innehåller dessutom `T45_STAYMAN_2H_CONTINUATIONS` med sex explicita noder för dessa sekvenser; detta valideras i `tests/nt-stayman-analysis-tree.test.js`. Även T43-trädets villkor har rättats så att det skiljer fyr-essfråga från RKC efter fullföljd överföring på s. 5. Ändringarna ligger endast på `work/undisturbed-architecture`; `main` och konkurrensbudgivningen är orörda.
+
+
+## Uppdatering: överföringsfortsättningar (2026-11-16)
+
+En ny kontroll mot Nordisk standard s. 5 har gjorts för svarshandens fortsättningar efter fullföljd överföring.
+
+**Nu täckt direkt av källans kvalitativa beskrivningar i rättningsmotorn:**
+- Efter hjärteröverföring: 2♠ som enrondskrav med minst 5♥ och 4+♠.
+- Efter hjärteröverföring: 3♣/3♦ som utgångskrav med minst 5♥ och 4+ i den bjudna lågfärgen. Om båda lågfärgerna har fyra kort lämnas prioriteten ej täckt.
+- Efter spaderöverföring: 3♥ som invit med minst 5-5 i högfärgerna.
+- RKC 4NT efter fullföljd överföring hanteras separat enligt källans uttryckliga regel.
+
+**Medvetet ej täckt:**
+- Pass med svag hand, 2NT-invit med exakt femkortsfärg, 3M-invit med sexkortsfärg, 3NT som val av sangutgång, kontrollbud och signoff. Källan beskriver dessa kvalitativt men ger inte de numeriska HP-/HTP-gränser som behövs för automatisk handklassificering.
+- Motorn använder därför inte längre partnerns faktiska dolda hand eller gemensamma poäng för att gissa svarshandens bud efter överföring.
+- Sju befintliga analysbiblioteksträd med sådana ej verifierade numeriska gränser har märkts `provisional_source_gap` och filtreras bort från auktoritativ nodmatchning. De finns kvar som granskningsmaterial, inte som fastställda systemregler.
+
+Nya regressionstester täcker de uttryckliga färgbeskrivningarna, odefinierad prioritet mellan två möjliga lågfärger och att ej verifierade styrkegränser inte används. CI-workflowen har utökats med `tests/nt-transfer-source-boundaries.test.js`.
+
+**Nästa steg:** verifiera om ytterligare systemunderlag eller användarbekräftade styrkegränser finns för de kvalitativa invit-/svaghetsbeskrivningarna innan de automatiseras. Därefter fortsätter arbetet med Stayman-svarshandens egna fortsättningar och live/efterhandssepareringen.
