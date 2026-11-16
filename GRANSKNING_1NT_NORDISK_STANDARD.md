@@ -272,3 +272,10 @@ Regressionstester täcker nu 0–7, 8–9 och 10–15 hp, fem- respektive sexkor
 Efter svar på 1NT–2♣ har svarshandens nya färg nu implementerats som naturlig och utgångskrav enligt sida 4: 5+ kort i ny högfärg eller 4+ kort i ny lågfärg. Efter öppnarens 2♥ visar svarshandens 2NT exakt fyra spader; den grenen hanteras före de naturliga färgbuden. Om flera nya färger samtidigt uppfyller längdkraven lämnas prioriteten ej täckt i stället för att motorn väljer godtyckligt.
 
 Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exakt fyra spader efter 2♥.
+
+
+### Naturlig 2NT-invit efter 1NT – numerisk gräns saknas
+
+Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 26 gemensamma hp är separerad från livebeslutet.
+
+Direkt 3NT med minst 26 gemensamma honnörspoäng är fortsatt en separat verifierad gräns. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
