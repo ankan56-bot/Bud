@@ -4,7 +4,7 @@
 **Arbetsgren:** `work/undisturbed-architecture`  
 **Auktoritativ källa:** användarens `nordisk_standard.pdf`, s. 1–8. För 1NT är s. 4–5 och slamreglerna på s. 7 avgörande.  
 **Kodgranskning:** `rattningsmotor.js`, `analysbibliotek.json`, befintliga testfiler.  
-**Status:** Källjämförelse och avvikelselista. Ingen budregel eller produktionskod ändrad.
+**Status:** Källgranskning och aktiv implementation. Rättningsmotorn, analysbiblioteket och regressionstesterna har uppdaterats på arbetsgrenen; `main` är orörd.
 
 ## Sammanfattning
 
@@ -105,7 +105,7 @@ Efter 1NT–2♦:
   - 4NT: essfråga med hjärter som trumf (RKC).
 
 Nuvarande kod:
-- Har 0–8 hp som pass, 9 hp som invit och 10–15 hp som fortsättningsintervall. Dessa numeriska gränser är inte angivna i PDF:en.
+- Har tidigare använt numeriska intervall för pass/invit/utgång. De är inte angivna i PDF:en och har nu tagits bort från automatisk fortsättningsklassificering.
 - 3♥/2NT-inviter och 3NT-välj-utgång blandas med gemensamma poänggränser och partnerns faktiska hand.
 - 2♠ och 3 lågfärg finns i vissa fall endast som `alt`, inte som en fullständig gren som väljs när handvillkoren stämmer.
 - 4 lå, 4♥ och 4NT finns i betydelsetexten, men inte som komplett, källstyrd beslutstabell för svarshanden.
@@ -246,18 +246,21 @@ En ny kontroll mot Nordisk standard s. 5 har gjorts för svarshandens fortsättn
 - Efter spaderöverföring: 3♥ som invit med minst 5-5 i högfärgerna.
 - RKC 4NT efter fullföljd överföring hanteras separat enligt källans uttryckliga regel.
 
-**Korrigering efter ny sidkontroll:** De numeriska styrkegränserna finns faktiskt uttryckligen på sida 5 och är nu återinförda i rättningsmotorn:
-- 0–7 hp: pass.
-- 8–9 hp: invit; 2NT med jämn hand och exakt fem kort, eller 3M med minst sex kort.
-- 10–15 hp: 3NT med jämn hand och exakt fem kort, eller 4M med minst sex kort.
+**Korrigering efter kontroll av original-PDF sida 5:** Tabellen anger INTE numeriska HP-intervall. Den anger endast kvalitativa styrkebeskrivningar:
+- Pass: dåliga kort men minst fem kort i överföringsfärgen.
+- 2NT: invit med jämn hand och exakt fem kort.
+- 3M: invit med minst sex kort.
+- 3NT: välj utgång med jämn hand och exakt fem kort.
+- 4M: slutbud.
+Motorn ska därför inte välja mellan dessa kategorier utifrån påhittade HP-intervall.
 - Efter spaderöverföring: 3♥ invit med minst 5-5 i högfärgerna.
 - Särskilda färggrenar: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC.
 
-Fyra äldre överförings-invitträd (T19/T20/T27/T28) har status `provisional_source_gap`, eftersom de innehåller öppnarens accept/pass efter inviten, vilket inte specificeras i överföringstabellen på sida 5. Därutöver är inviterna efter 1NT/Stayman (T04/T06/T11/T12/T13/T17/T24/T25/T26) preliminära eftersom deras numeriska styrke-/acceptgränser inte är belagda. T42 är däremot kvar som källbaserat kvalitativt träd: det beskriver 'dåliga kort' och lågfärgsreläets fortsättningar, men motorn rekommenderar inte 2♠ automatiskt med en påhittad HP-gräns. Grundträden T03/T07/T08 är källverifierade.
+Fyra äldre överförings-invitträd (T19/T20/T27/T28) har status `provisional_source_gap`, eftersom de innehåller öppnarens accept/pass efter inviten, vilket inte specificeras i överföringstabellen på sida 5. Därutöver är inviterna efter 1NT/Stayman (T04/T06/T11/T12/T13/T17/T24/T25/T26) preliminära eftersom deras numeriska styrke-/acceptgränser inte är belagda. T42 är däremot kvar som källbaserat kvalitativt träd: det beskriver 'dåliga kort' och lågfärgsreläets fortsättningar, men motorn rekommenderar inte 2♠ automatiskt med en påhittad HP-gräns. Grundträden T03/T07/T08 har nu status `provisional_source_gap` för att deras budbetydelser är källbelagda men numerisk styrkeklassificering saknas.
 
 Motorn använder svarshandens egen hand för att välja fortsättningsbud efter fullföljd överföring. Öppnarens efterhandsbeslut efter en invit är en separat fråga och ska inte exponeras som livebeslut med dold partnerhand.
 
-Regressionstester täcker nu 0–7, 8–9 och 10–15 hp, fem- respektive sexkortsfärg, balanserad hand, 5-5 högfärg efter spaderöverföring samt specialgrenarna. CI-workflowen kör `tests/nt-transfer-source-boundaries.test.js`.
+Regressionstester kontrollerar att olika HP-tal inte skapar påhittade intervall, samtidigt som specialgrenarna 2♠, 3 lågfärg och 3♥ efter spaderöverföring testas. CI-workflowen kör `tests/nt-transfer-source-boundaries.test.js`.
 
 **Nästa steg:** fortsätta med Stayman-svarshandens inviter och lågfärgsreläets kvalitativa styrkebeskrivning, utan att automatisera numeriska gränser som saknas i källan.
 
@@ -337,3 +340,8 @@ Nordisk standard s. 5 säger att svarshanden väljer utgång med 3NT vid jämn h
 ### Öppnarens svar efter svarshandens naturliga utgångskravsbud efter Stayman
 
 Efter 1NT–2♣–2♦/2♥/2♠ är svarshandens nya färg naturlig och utgångskrav (5+ högfärg eller 4+ lågfärg, s. 4). Den generella regeln på sida 4 säger att partnern försöker visa extra längder eller bjuda sang, men ger inte en komplett prioriterad svarstabell för alla handtyper. Motorn känner igen svarshandens kravbud, men lämnar öppnarens nästa bud ej täckt när det kräver att den prioriterar mellan sang, stöd och sidofärgsvisning. 100-givarsimuleringen har identifierat sådana sekvenser i ostord-100-001, 031, 040, 048 och 052. Detta är avsiktliga luckor, inte runtimefel.
+
+
+### Viktig korrigering av överföringstabellen – original-PDF sida 5
+
+En ny läsning av själva PDF-sidan visar att tidigare text i denna granskningsfil som påstod att 0–7, 8–9 och 10–15 hp stod i tabellen var felaktig. Dessa intervall finns inte på sidan. Alla sådana numeriska regler är borttagna ur `transfer2`, och T03/T07/T08 har markerats `provisional_source_gap` eftersom de innehåller källbelagda budbetydelser men inte kan klassificera styrkan mellan svag/invit/utgång. De särskilda formvillkoren för 2♠, 3 lågfärg och 3♥ efter spaderöverföring är fortsatt implementerade när de är entydiga. Överlapp utan angiven prioritet lämnas ej täckt.
