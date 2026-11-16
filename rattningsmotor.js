@@ -1416,6 +1416,54 @@ var Rattning = (function(){
     return null;
   }
 
+  // Public live API. Deliberately accepts one hand only; there is no
+  // parameter through which partner/opponent cards can enter the decision.
+  function decideLive(input){
+    input=input||{};
+    var seat=input.seat,dealer=input.dealer,auction=input.auction||[],ownHand=input.ownHand;
+    if(!validSeat(seat)||!validSeat(dealer))
+      return NC('Livebeslut kräver giltig plats och givare.','', 'live');
+    if(!Array.isArray(ownHand)||ownHand.length!==13)
+      return NC('Livebeslut kräver exakt 13 egna kort.','', 'live');
+    var cardSet={};
+    for(var ci=0;ci<ownHand.length;ci++){
+      var card=ownHand[ci];
+      if(typeof card!=='string'||! /^[CDHS](?:[2-9]|1[0-4])$/.test(card)||cardSet[card])
+        return NC('Den egna handen innehåller ogiltiga eller dubblerade kort.','', 'live');
+      cardSet[card]=true;
+    }
+    if(!Array.isArray(auction))
+      return NC('Budhistoriken måste vara en lista.','', 'live');
+    var expected=dealer;
+    for(var ai=0;ai<auction.length;ai++){
+      var call=auction[ai];
+      if(!call||call.s!==expected||!validSeat(call.s)||
+         !(call.c==='P'||call.c==='X'||call.c==='XX'||isBid(call.c)))
+        return NC('Budhistoriken är ogiltig eller turordningen stämmer inte.','', 'live');
+      expected=nextSeat(expected);
+    }
+    if(expected!==seat)
+      return NC('Det är inte den angivna spelarens tur enligt den offentliga budhistoriken.','', 'live');
+    if(auction.some(function(x){return isBid(x.c)||x.c==='X'||x.c==='XX';}))
+      return NC('Den här budfamiljen har ännu inte migrerats till informationssäker livebedömning. Endast öppningsbeslut efter pass är för närvarande aktiverade.','', 'live');
+    var bids=auction.concat([{s:seat,c:'P'}]);
+    var st={hands:{}};st.hands[seat]=ownHand.slice();st.dealer=dealer;st.bids=bids;
+    var node;
+    try{node=nodeFor(st,bids.length-1);}
+    catch(e){return NC('Livebeslut stoppades säkert: '+e.message,'','live');}
+    if(!node||!node.exp)
+      return NC(node&&node.why||'Öppningsläget är inte täckt.','', 'live');
+    return {
+      exp:node.exp,
+      alt:(node.alt||[]).slice(),
+      why:node.why||'',
+      conv:node.conv||'öppning',
+      means:node.means,
+      context:'live',
+      informationBoundary:'own_hand_and_public_auction_only'
+    };
+  }
+
   function nodeFor(st,i){
     var node=nodeForRaw(st,i);
 
@@ -1791,7 +1839,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,slamProhibitionFromAuction:slamProhibitionFromAuction,txt:txt,validateAuction:validateAuction,version:'7.9'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,decideLive:decideLive,slamProhibitionFromAuction:slamProhibitionFromAuction,txt:txt,validateAuction:validateAuction,version:'8.0'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
