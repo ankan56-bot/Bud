@@ -147,3 +147,13 @@ Dubbla sekvenser är inte automatiskt fel; vissa kan vara parallella beskrivning
 9. Först därefter normalisera noder och ta bort verkliga dubbleringar.
 
 Varje område ska få en lista över täckta sekvenser, villkorsgränser, testfall, ej täckta lägen och öppna systemfrågor. Ingen regelkod ändras enbart för att göra kartan komplett.
+
+## 8. Prioriterad arkitekturgranskning: informationsläckage
+
+Källkodsinventeringen visar att vissa nuvarande rättningsvägar läser partnerns faktiska hand:
+- `responderSecondBid()` tar emot `openerHand` och beräknar gemensamma poäng.
+- `nodeForRaw()` läser partnerns hand i vissa invit-/acceptansbeslut.
+- `missedGameOrSlam()` analyserar båda händerna i paret.
+
+Detta kan vara korrekt i efterhandsrättning men är inte tillåtet i ett livebeslut för en spelande bot. Nästa kodinventering ska klassificera varje användning som **live**, **efterhandsanalys** eller **testhjälp**. Ingen ändring görs innan samtliga anrop är kartlagda. Den publicerade tvåspelarbudgivningen från PR #12 ska bevaras; detta är en framtida informationsgräns för botens beslut, inte ett skäl att ändra session-/UI-koden nu.
+
