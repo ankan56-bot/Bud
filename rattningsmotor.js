@@ -834,7 +834,7 @@ var Rattning = (function(){
       exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
     }
     // Stöd visas först: 6-9 hp med 3/4/5-korts stöd ger enkel/dubbel/trippel höjning.
-    if(L[s]>=3&&hp>=6&&hp<=9){
+    if(!exp&&L[s]>=3&&hp>=6&&hp<=9){
       var steps=L[s]>=5?3:L[s]>=4?2:1;
       var raise=(lv(oc)+steps)+s;
       if(ok(raise,last)){
