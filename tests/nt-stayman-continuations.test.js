@@ -98,4 +98,26 @@ const gameFourSpadesAuction=[
 ];
 assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,ownHand:gameFourSpades}).exp,null,
   'the numeric threshold for the special four-spade Stayman invitation is not stated, even with 11 hp');
+// Do not apply the separate 26-point major-game threshold to Stayman
+// unless Nordisk standard defines the accept boundary for this sequence.
+{
+  const north=['H2','H3','H4','S14','S13','S12','D14','D13','D2','C11','C2','C3','C4'];
+  const south=['H13','H12','H11','H5','H6','S2','S3','S4','D5','D6','D7','C13','C6'];
+  assert.equal(R.H(north).hp,17);
+  assert.equal(R.H(south).hp,9);
+  const used=new Set([...north,...south]);
+  assert.equal(used.size,26);
+  const rest=deck.filter(c=>!used.has(c));
+  const hands={N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
+  const bids=[
+    {s:'N',c:'1N'},{s:'E',c:'P'},
+    {s:'S',c:'2C'},{s:'W',c:'P'},
+    {s:'N',c:'2H'},{s:'E',c:'P'},
+    {s:'S',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+  assert.equal(result.exp,null,
+    '8-card heart fit and 26 combined HCP do not import the separate major-game threshold into Stayman');
+  assert.match(result.why,/acceptgräns|lämnas ej täckt/i);
+}
 console.log('1NT Stayman continuation tests: passed.');
