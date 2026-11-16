@@ -39,6 +39,35 @@ const inviteFiveHearts=fill(['H13','H12','H11','H10','H9','S13','S2','S3','D2','
 assert.equal(live('S',afterCompletedHeartTransfer,inviteFiveHearts).exp,null,
  'balanced exact five-card transfer suit: invite is described but no numeric strength threshold is specified');
 
+// Opener's acceptance after a natural 2NT invitation uses the
+// user-confirmed 25-HCP no-trump game threshold, but live play cannot see
+// responder's hidden cards.
+const natural2NTAuction=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2N'},{s:'W',c:'P'}
+];
+const opener16ForInvite=fill(['S14','S13','S2','S3','H14','H2','H3','D14','D2','D3','C11','C2','C3']);
+assert.equal(R.H(opener16ForInvite).hp,16);
+assert.equal(live('N',natural2NTAuction,opener16ForInvite).exp,null,
+ 'live opener cannot accept/pass a 2NT invite from hidden responder HCP');
+function judgeNatural2NT(responderHand){
+ const opener=['S14','S13','S2','S3','H14','H2','H3','D14','D2','D3','C11','C2','C3'];
+ const used=new Set([...opener,...responderHand]);
+ assert.equal(used.size,26);
+ const rest=deck.filter(c=>!used.has(c));
+ const hands={N:opener,E:rest.slice(0,13),S:responderHand,W:rest.slice(13,26)};
+ const bids=natural2NTAuction.concat([{s:'N',c:'P'}]);
+ return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+}
+const responderEight=['C14','C4','C5','C6','D13','D4','D5','H4','H5','H6','S11','S4','S5'];
+const responderNine=['C14','C4','C5','C6','D13','D4','D5','H11','H4','H5','S11','S4','S5'];
+assert.equal(R.H(responderEight).hp,8);
+assert.equal(R.H(responderNine).hp,9);
+assert.equal(judgeNatural2NT(responderEight).exp,'P',
+ '16+8=24 HCP: opener declines the natural 2NT invitation');
+assert.equal(judgeNatural2NT(responderNine).exp,'3N',
+ '16+9=25 HCP: opener accepts at the confirmed no-trump game threshold');
+
 const staymanAfter2H=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2C'},{s:'W',c:'P'},
