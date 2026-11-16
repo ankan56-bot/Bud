@@ -338,8 +338,11 @@ var Rattning = (function(){
       return NC('Minst 5-5 i högfärgerna efter spaderöverföring. Nordisk standard s. 5 anger 3♥ som invit, men styrkegränsen för att välja invitvägen anges inte; handen lämnas ej täckt.',means,'överföring',true);
     if(special.length>1)
       return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar; situationen lämnas ej täckt.',means,'överföring',true);
-    if(special.length===1)
+    if(special.length===1){
+      if(special[0].bid==='3H'&&M==='S')
+        return NC('Minst 5-5 i högfärgerna identifierar 3♥ som invit efter spaderöverföring, men källan anger ingen numerisk styrkegräns för när inviten ska väljas framför pass eller utgång. Situationen lämnas ej täckt.',means,'överföring',true);
       return {exp:special[0].bid,alt:[],why:special[0].why,means:means,conv:'överföring'};
+    }
 
     // The source gives the meanings of pass, invitation and game-choice
     // continuations, but does not quantify "weak", "invite" or game strength.
