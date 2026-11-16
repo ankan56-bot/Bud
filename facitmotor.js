@@ -82,8 +82,8 @@
           alternativeNote:alternatives.length
             ?'Alternativen redovisas som möjliga bud. Denna facitlinje väljer huvudrekommendationen; alternativen är inte därmed förklarade som fel.'
             :'',
-          systemStatus:result.soft?'strategic_guidance':'system_rule_engine',
-          ruleStatus:result.soft?'Vägledande bedömning':'Systemregel',
+          systemStatus:result.ruleStatus==='user_confirmed'?'user_confirmed':(result.soft?'strategic_guidance':'system_rule_engine'),
+          ruleStatus:result.ruleStatus==='user_confirmed'?'Överenskommen projektregel':(result.soft?'Vägledande bedömning':'Systemregel'),
           convention:result.conv||'',
           informationBoundary:result.informationBoundary||'own_hand_and_public_auction_only'
         };
