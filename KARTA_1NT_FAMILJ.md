@@ -140,12 +140,12 @@ Källgranskningen hittade verkliga kod-/dokumentavvikelser. Dessa ska åtgärdas
 
 ## 10. Separat analysnod: 2NT–3♣–3♠
 
-Analysbiblioteket har utökats med **T46_STAYMAN_2NT_3S_DECISION**. Den gör den befintliga runtime-grenen efter 2NT–3♣–3♠ synlig och pedagogiskt separat:
+Det befintliga trädet **T23 – Stayman efter 2NT** har kompletterats i noden `t23_3`, efter sekvensen 2NT–3♣–3♠. Vi lade inte till ett separat dubblett-träd, eftersom analysmatcharen annars riskerade att visa den äldre identiska sekvensen först. T23 gör nu runtime-grenen tydlig och pedagogisk:
 - 3NT vid balanserad svarshand, minst 25 gemensamma hp och ingen 8-korts spaderfit. Detta är den överenskomna projektregeln för sang.
 - 4♠ vid minst 8-korts spaderfit och minst 26 gemensamma spelpoäng.
 - Om ingen av profilerna är uppfylld ska motorn lämna fortsättningen ej täckt; den här noden inför ingen ny invitgräns.
 
-Trädet är avsiktligt avgränsat till 3♠-svaret efter Stayman på 2NT. Det ersätter inte det bredare T23-trädet och innebär inte att andra fortsättningar efter 2NT-Stayman är verifierade. Regressionstestet kontrollerar sekvensen, grenordningen och att 25 hp för sang hålls åtskilt från 26 spelpoäng för högfärgsutgång.
+Trädet är avsiktligt avgränsat till 3♠-svaret efter Stayman på 2NT. Det ersätter inte det bredare T23-trädet och innebär inte att andra fortsättningar efter 2NT-Stayman är verifierade. Regressionstestet kontrollerar sekvensen, grenordningen och att 25 hp för sang hålls åtskilt från 26 spelpoäng för högfärgsutgång. Biblioteket ligger kvar på 46 träd; bara den befintliga nodens villkor och förklaringar har förtydligats.
 
 ## 9. Ändringsstatus
 
