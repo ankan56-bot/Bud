@@ -10,7 +10,7 @@
   var rk=api.rk, txt=api.txt, maj=api.maj, lowest=api.lowest, jump=api.jump;
   var H=api.H, handHps=api.handHps, partnershipPoints=api.partnershipPoints;
   var T=api.T, ok=api.ok, NC=api.NC;
-  var twoClub=deps.twoClub, weakTwo=deps.weakTwo;
+  var twoClub=deps.twoClub, weakTwo=deps.weakTwo, stenberg=deps.stenberg;
   var majorBidding=deps.majorBidding, minorBidding=deps.minorBidding;
   var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2;
   var resp2w=weakTwo.resp2w, open2w=weakTwo.open2w;
@@ -461,6 +461,13 @@
       return nc('Fortsättningen efter spärrbud beskrivs inte i dokumentet.');
     }
     if(/^1[CDHS]$/.test(c1)){
+      // Stenberg 2NT: särskild respons och öppnarens första återbud.
+      if(!opener&&d===1&&b.c==='2N')return stenberg.responder(h,c1);
+      if(opener&&d===2&&ours[1].c==='2N')
+        return stenberg.openerRebid(h,c1,st.hands[pt]?H(st.hands[pt]):null);
+      if(!opener&&d===3&&ours[1].c==='2N')
+        return stenberg.responderContinuation(h,c1,b.c,st.hands[pt]?H(st.hands[pt]):null,
+          prior,rkcTrumpFromAuction,side(me));
       // Efter 1♦–1♥–2♠ är 2♠ öppnarens reverse och SH ska
       // höja till 4♠ med minst 8-korts fit och 26+ gemensamma spelpoäng.
       if(!opener&&d===2&&c1==='1H'&&b.c==='4S'){
