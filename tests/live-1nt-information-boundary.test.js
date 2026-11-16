@@ -58,6 +58,15 @@ const afterStayman2NT=[
 assert.equal(live('N',afterStayman2NT,fourFourOpener).exp,'3S',
  'explicit Stayman 4-4 continuation can be decided from opener hand alone');
 
+const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2','S3','S4']);
+assert.equal(R.H(balancedTen).hp,10);
+assert.equal(live('S',firstResponse,balancedTen).exp,null,
+ '10 hp cannot guarantee 26 combined hp against partner range 15–17');
+const balancedEleven=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3']);
+assert.equal(R.H(balancedEleven).hp,11);
+assert.equal(live('S',firstResponse,balancedEleven).exp,'3N',
+ '11 hp guarantees 26 combined hp even opposite a 15 hp 1NT opening');
+
 const naturalInvite=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2N'},{s:'W',c:'P'}
