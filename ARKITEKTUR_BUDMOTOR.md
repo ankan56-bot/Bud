@@ -117,3 +117,12 @@ Därför ska systemet uttryckligen skilja mellan två exekveringskontexter:
 - **Efterhandsanalys:** får använda hela given för att diagnostisera missad utgång/slam eller jämföra kontrakt, men resultatet ska märkas som efterhandsanalys och får inte presenteras som ett bud som spelaren kunde veta var rätt vid beslutstillfället.
 
 Samma regeldefinition kan återanvändas, men funktionens indata och resultat måste bära tydlig kontext. Inför inte detta som en snabb flagga utan att först kartlägga alla anrop och tester. Det är en prioriterad arkitekturgrind innan budmotorn används som självständig motståndare.
+
+
+## Informationsgräns: livebud kontra efterhandsrättning (2026-11-16)
+
+En separat kodgranskning har bekräftat att Öst–Väst-robotens nuvarande `botCall()` skickar hela given till `Rattning.nodeFor()`. Rättningsmotorn använder på flera ställen partnerns faktiska hand för att välja bud. Det innebär att robotens livebeslut kan påverkas av dold information. `nodeFor()` kan dessutom anropa `missedGameOrSlam()`, som uttryckligen räknar med båda faktiska händerna.
+
+Detta måste separeras innan Buddie kan betraktas som en informationsmässigt korrekt bridgepartner. Se den detaljerade inventeringen, klassificeringen och migrationsplanen i [GRANSKNING_LIVE_OCH_EFTERHAND.md](GRANSKNING_LIVE_OCH_EFTERHAND.md).
+
+**Bindande regel:** Livebeslut får endast använda egen hand och offentlig auktion. Efterhandsrättning får använda hela given, men dess slutsatser får aldrig återföras som om spelaren kunde ha känt till dem under budgivningen. Ingen ny budregel införs genom denna arkitekturgranskning.
