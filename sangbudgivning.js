@@ -146,6 +146,12 @@
     }
     if(naturalNew.length===1){
       var ns=naturalNew[0],newBid=lowest(ns,reply);
+      // Special route in Nordisk standard s. 4: after Stayman 2♦,
+      // an unbalanced responder with a five-card major uses 3M at
+      // game strength. The source does not quantify that strength.
+      // Do not incorrectly recommend the ordinary 2M new-suit route.
+      if(reply==='2D'&&!h.bal&&maj(ns))
+        return NC('Obalanserad hand med 5+ '+SYM[ns]+' efter Stayman 2♦: Nordisk standard s. 4 anger 3'+ns+' vid utgångsstyrka. Den numeriska styrkegränsen anges inte; lämnas EJ TÄCKT.',function(c){return c==='3'+ns?'Naturlig högfärg med 5+ kort efter Stayman 2♦; obalanserad hand och utgångsstyrka. Utgångskrav enligt Nordisk standard s. 4. Numerisk styrkegräns saknas.':null},'Stayman',true);
       return {exp:newBid,alt:[],why:'Ny färg efter Stayman: '+(maj(ns)?'minst fem kort i högfärgen':'minst fyra kort i lågfärgen')+' och utgångskrav enligt Nordisk standard s. 4.',means:function(c){return c===newBid?'Naturlig ny färg, utgångskrav.':null},conv:'Stayman'};
     }
     if(naturalNew.length>1)
