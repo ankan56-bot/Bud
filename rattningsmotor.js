@@ -191,7 +191,7 @@ var Rattning = (function(){
       return NC('Handen har 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Nordisk standard skiljer mellan 2♠-relä med dåliga kort och 3 lå-invit med bra 6+ lå, men definierar inte numeriskt vad som är dåliga respektive bra kort/färg. Numerisk styrke-/kvalitetsgräns saknas; situationen lämnas ej täckt i stället för att välja med en påhittad gräns.',means,conv,true);
     }
     else if(hp>=lo&&hp<gl&&!k){
-      return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs.',means,conv,true);
+      return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs; situationen lämnas ej täckt.',means,conv,true);
     }
     else if(hp>=gl){
       if(!k&&!opener){
