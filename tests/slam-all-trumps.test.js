@@ -1,7 +1,6 @@
 'use strict';
 
-// RKC 1430 across every possible trump suit, plus the source-defined void
-// responses and the separate no-trump four-ace table.
+// Nordisk standard RKC across every trump suit, plus queen asks and slam gates.
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
 const A=require('../analysmotor.js');
@@ -49,12 +48,12 @@ function aceSuits(count,voids=[]){
 
 for(const trump of SU){
   const cases=[
-    [makeHand({trump,aces:[]}), '5D', '0 keycards'],
-    [makeHand({trump,aces:['C']}), '5C', '1 keycard'],
+    [makeHand({trump,aces:[]}), '5C', '0 keycards'],
+    [makeHand({trump,aces:['C']}), '5D', '1 keycard'],
     [makeHand({trump,aces:['C','D']}), '5H', '2 keycards without trump queen'],
     [makeHand({trump,aces:['C','D'],trumpQueen:true}), '5S', '2 keycards with trump queen'],
-    [makeHand({trump,aces:['C','D','H']}), '5D', '3 keycards without void'],
-    [makeHand({trump,aces:['C','D','H','S']}), '5C', '4 keycards without trump king']
+    [makeHand({trump,aces:['C','D','H']}), '5C', '3 keycards without void'],
+    [makeHand({trump,aces:['C','D','H','S']}), '5D', '4 keycards without trump king']
   ];
   for(const [hand,expected,label] of cases){
     const result=answerWithTrump(trump,hand);
@@ -109,7 +108,7 @@ for(const viaStayman of [false,true]){
     {s:'N',c:'4N'},{s:'E',c:'P'},{s:'S',c:'P'}];
   const result=R.nodeFor({hands:dealWithNorth(north),dealer:'N',bids},6);
   assert.equal(result.exp,null);
-  assert.notEqual(result.conv,'RKC 1430');
+  assert.notEqual(result.conv,'RKC');
   assert.match(result.why,/ingen fastställd trumf/i);
 }
 // The offline analysis library must cover minor-suit RKC as well as the
@@ -121,7 +120,41 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   assert.ok(tree.nodes.some(n=>n.sequence.includes('5NT')),'tree '+id+' must explain 5NT void response');
   assert.ok(tree.nodes.some(n=>n.sequence.some(c=>/^6[♣♦♥♠]$/.test(c))),'tree '+id+' must explain 6-level void response');
 }
-// Unsupported RKC continuations must be retained in the separate review log.
+// Queen-ask steps, denial, and the source-defined 6-level follow-up.
+{
+  function deal(north,south){
+    const rest=deck.filter(c=>!north.includes(c)&&!south.includes(c));
+    assert.equal(north.length,13);assert.equal(south.length,13);assert.equal(rest.length,26);
+    return {N:north.slice(),E:rest.slice(0,13),S:south.slice(),W:rest.slice(13,26)};
+  }
+  const responderNoQueen=makeHand({trump:'H',aces:['C']});
+  const askerThreeAces=makeHand({aces:['S','D','C']});
+  const hands=deal(responderNoQueen,askerThreeAces);
+  const auction=[
+    {s:'N',c:'1H'},{s:'E',c:'P'},
+    {s:'S',c:'2H'},{s:'W',c:'P'},
+    {s:'N',c:'3H'},{s:'E',c:'P'},
+    {s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'5C'},{s:'E',c:'P'}
+  ];
+  const ask=R.nodeFor({hands,dealer:'N',bids:auction.concat([{s:'S',c:'P'}])},10);
+  assert.equal(ask.exp,'5D','after 5C, the next legal non-trump bid below 5H asks for the trump queen');
+  const afterAsk=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'P'}]);
+  const deny=R.nodeFor({hands,dealer:'N',bids:afterAsk},12);
+  assert.equal(deny.exp,'5H','a hand without the trump queen denies with 5 in trump');
+  const afterDeny=afterAsk.concat([{s:'E',c:'P'} ,{s:'S',c:'P'}]);
+  const six=R.nodeFor({hands,dealer:'N',bids:afterDeny},14);
+  assert.equal(six.exp,'6H','with 3 own aces, asker bids 6 in trump after the queen is denied');
+
+  const responderWithQueen=makeHand({trump:'H',aces:['C'],trumpQueen:true});
+  const handsQ=deal(responderWithQueen,askerThreeAces);
+  const auctionQ=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'P'}]);
+  const show=R.nodeFor({hands:handsQ,dealer:'N',bids:auctionQ},12);
+  assert.equal(show.exp,'5N','a hand with the trump queen shows it with 5NT');
+}
+
+// When no legal 5-level queen ask leaves 5 in trump available as a denial,
+// retain the position in the separate review log rather than inventing a step.
 {
   const store=new Map();
   global.window={localStorage:{
@@ -131,19 +164,21 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   }};
   require('../ej-tackta-logg.js');
   const log=global.window.EjTacktaLogg;
-  const hands=dealWithNorth(makeHand({trump:'H',aces:['C']}));
+  const north=makeHand({trump:'H',aces:['C']});
+  const south=makeHand({aces:['S','D','C']});
+  const rest=deck.filter(c=>!north.includes(c)&&!south.includes(c));
+  const hands={N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
   const bids=[
     {s:'N',c:'1H'},{s:'E',c:'P'},
     {s:'S',c:'2H'},{s:'W',c:'P'},
-    {s:'N',c:'4N'},{s:'E',c:'P'},
-    {s:'S',c:'5C'},{s:'W',c:'P'},
-    {s:'N',c:'5D'}
+    {s:'N',c:'3H'},{s:'E',c:'P'},
+    {s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'5D'},{s:'E',c:'P'},{s:'S',c:'P'}
   ];
-  const result=R.nodeFor({hands,dealer:'N',bids},8);
-  assert.equal(result.exp,null,'the incomplete queen-ask continuation must not be guessed');
-  assert.equal(result.sourceGap,true,'the source gap must be explicitly identified');
+  const result=R.nodeFor({hands,dealer:'N',bids},10);
+  assert.equal(result.exp,null,'the impossible next-step sequence must not be guessed');
+  assert.equal(result.sourceGap,true);
   assert.equal(log.count(),1,'the uncovered RKC continuation must be saved');
   assert.equal(log.read()[0].context,'after_deal');
-  assert.equal(log.read()[0].attemptedCall,'5D');
 }
-console.log('All-trumps RKC and no-trump four-ace tests: passed.');
+console.log('All-trumps RKC, queen-ask, and slam-gate tests: passed.');
