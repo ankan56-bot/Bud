@@ -166,3 +166,4 @@ Detta kan vara korrekt i efterhandsrättning men är inte tillåtet i ett livebe
 - Rättningsmotorn och analysbiblioteket är ännu parallella strukturer. Se `KORSREFERENS_RUNTIME_NODER.md` för funktionell koppling och alla sekvenskollisioner.
 - `findMatches()` finns nu som diagnostiskt API och visar samtliga sekvensprefixträffar. Befintlig `findMatch()` behåller första-träff-beteendet tills handprofil- och rollmatchning är implementerad.
 - En CI-karaktärisering reproducerar att Buddie Öst kan välja Pass eller 4♥ med samma egen hand och samma auktion, beroende på Västs dolda kort. Live-/efterhandsseparation är blockerande före test av roboten som rättvis bridgepartner.
+- Fullständigt underlag för samtliga 11 unika ej täckta givare i de senaste stickproven finns i `RAPPORT_EJ_TACKTA_OSTORD_2026-11-16.md`, inklusive alla fyra händer, HP/fördelning, auktion och klassificering.
