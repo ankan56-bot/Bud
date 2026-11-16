@@ -343,7 +343,7 @@
             {
               "call": "4♥",
               "next": null,
-              "label": "Slutbud med 6+ hjärter"
+              "label": "Slutbud i hjärter efter överföring (minst fem hjärter)."
             },
             {
               "call": "2♠",
@@ -663,7 +663,7 @@
             {
               "call": "4♥",
               "next": null,
-              "label": "Slutbud med 6+ hjärter"
+              "label": "Slutbud i hjärter efter överföring (minst fem hjärter)."
             },
             {
               "call": "2♠",
@@ -785,7 +785,7 @@
             {
               "call": "4♠",
               "next": null,
-              "label": "Slutbud med 6+ spader"
+              "label": "Slutbud i spader efter överföring (minst fem spader)."
             },
             {
               "call": "3♥",
@@ -6511,8 +6511,8 @@
             "2NT",
             "Pass"
           ],
-          "meaning": "2NT visar längre ruter eller lika längd i lågfärgerna. Svarshanden väljer sin längsta lågfärg; vid lika längd väljs klöver enligt nuvarande motor.",
-          "analysis": "Om klöver är minst lika lång som ruter bjuder svarshanden 3♣; om ruter är längre bjuder svarshanden 3♦. Budet är slutbud i den valda lågfärgen.",
+          "meaning": "Efter 2NT väljer svarshanden sin längre lågfärg som slutbud. Om ♣ och ♦ är lika långa anger källan ingen prioritet; positionen lämnas ej täckt.",
+          "analysis": "Om svarshanden har längre ♣ bjuds 3♣; om ruter är längre bjuds 3♦. Vid lika längd finns ingen källbelagd prioritet mellan slutbuden och motorn ska lämna positionen EJ TÄCKT.",
           "handProfile": {
             "opener": "15–17 hp, 1NT-hand; ruter minst lika lång som klöver.",
             "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
@@ -6541,7 +6541,7 @@
             "Pass"
           ],
           "meaning": "3♣ visar att öppnarens klöver är längre än ruter. Svarshanden passar om egna klöver är minst lika långa som ruter; annars korrigerar svarshanden till 3♦.",
-          "analysis": "Reläsvar 3♣ är inte ett krav på klöverstöd. Svarshanden väljer slutkontrakt efter sin egen lågfärgslängd.",
+          "analysis": "Efter öppnarens 3♣ (längre klöver) passar svarshanden om den egna klövern är längre än rutern; om rutern är längre korrigerar svarshanden till 3♦. Vid lika längd anger källan ingen prioritet och positionen lämnas EJ TÄCKT.",
           "handProfile": {
             "opener": "15–17 hp, 1NT-hand; klöver längre än ruter.",
             "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
@@ -6570,11 +6570,11 @@
             "Pass",
             "3♣"
           ],
-          "meaning": "Svarshanden väljer 3♣ som slutbud efter 2NT-reläsvar.",
-          "analysis": "Klöver är minst lika lång som ruter i svarshanden. 3♣ blir slutkontrakt.",
+          "meaning": "Svarshanden väljer 3♣ som slutbud efter 2NT-reläsvar när klöver är längre än ruter.",
+          "analysis": "Klöver är längre än ruter i svarshanden. 3♣ blir slutkontrakt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; ruter minst lika lång som klöver.",
-            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst sex klöver eller 5-5 i lågfärgerna, med klöver minst lika lång som ruter."
+            "responder": "Längre klöver än ruter efter öppnarens 2NT-reläsvar."
           },
           "branches": []
         },
@@ -6589,11 +6589,11 @@
             "Pass",
             "3♦"
           ],
-          "meaning": "Svarshanden väljer 3♦ som slutbud efter 2NT-reläsvar.",
+          "meaning": "Svarshanden väljer 3♦ som slutbud efter 2NT-reläsvar när ruter är längre än klöver.",
           "analysis": "Ruter är längre än klöver i svarshanden. 3♦ blir slutkontrakt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; ruter minst lika lång som klöver.",
-            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst sex ruter eller 5-5 i lågfärgerna, med ruter längre än klöver."
+            "responder": "Längre ruter än klöver efter öppnarens 2NT-reläsvar."
           },
           "branches": []
         },
@@ -6608,11 +6608,11 @@
             "Pass",
             "Pass"
           ],
-          "meaning": "Svarshanden passar på 3♣ och avslutar budgivningen.",
-          "analysis": "Svarshanden har minst lika många klöver som ruter; öppnarens 3♣ blir slutkontrakt.",
+          "meaning": "Svarshanden passar på 3♣ när den egna klövern är längre än rutern.",
+          "analysis": "Svarshanden har längre klöver än ruter; öppnarens 3♣ blir slutkontrakt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; klöver längre än ruter.",
-            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); klöver minst lika lång som ruter."
+            "responder": "Längre klöver än ruter."
           },
           "branches": []
         },
@@ -6627,11 +6627,11 @@
             "Pass",
             "3♦"
           ],
-          "meaning": "Svarshanden korrigerar till 3♦ som slutbud.",
-          "analysis": "Svarshanden har längre ruter än klöver trots att öppnaren visade längre klöver. 3♦ blir slutkontrakt enligt nuvarande motor.",
+          "meaning": "Svarshanden korrigerar till 3♦ när den egna rutern är längre än klövern.",
+          "analysis": "Svarshanden har längre ruter än klöver trots att öppnaren visade längre klöver. 3♦ blir slutbud.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; klöver längre än ruter.",
-            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); ruter längre än klöver."
+            "responder": "Längre ruter än klöver."
           },
           "branches": []
         }
