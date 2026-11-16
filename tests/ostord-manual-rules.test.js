@@ -185,6 +185,34 @@ function negativeDoubleDeal(south) {
   assert.match(node.why, /fyra hjärter/i);
 }
 
+
+const twoLevelOvercall = [
+  {s:'N',c:'1D'}, {s:'E',c:'2H'}
+];
+assert.match(
+  Rattning.slamProhibitionFromAuction(twoLevelOvercall, 2, 0),
+  /tvåtricksnivån/i,
+  'A two-level opponent overcall blocks slam for our side'
+);
+
+const oneLevelNoResponse = [
+  {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'1S'}
+];
+assert.equal(
+  Rattning.slamProhibitionFromAuction(oneLevelNoResponse, 3, 0),
+  null,
+  'A one-level overcall alone does not activate the slam block'
+);
+
+const oneLevelWithResponse = [
+  {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'1S'}, {s:'W',c:'1S'}
+];
+assert.match(
+  Rattning.slamProhibitionFromAuction(oneLevelWithResponse, 4, 0),
+  /entricksnivån.*partner har svarat/i,
+  'A one-level overcall followed by the overcaller partner response blocks slam'
+);
+
 const report = {
   engineVersion: Rattning.version,
   cases: [
@@ -196,7 +224,10 @@ const report = {
     { deal: 'source-90-four-card-minor', expected: '2C', clubLength: 4 },
     { deal: 'source-90-four-card-major', expected: 'P', spadeLength: 4 },
     { deal: 'source-91-negative-double-hearts', expected: 'X', spadeLength: 4 },
-    { deal: 'source-91-negative-double-spades', expected: 'X', heartLength: 4 }
+    { deal: 'source-91-negative-double-spades', expected: 'X', heartLength: 4 },
+    { deal: 'slam-block-two-level', expected: 'blocked' },
+    { deal: 'slam-block-one-level-with-response', expected: 'blocked' },
+    { deal: 'slam-block-one-level-alone', expected: 'not-blocked' }
   ],
   detailedNodeAnalysis: true,
   result: 'passed'
@@ -204,4 +235,4 @@ const report = {
 fs.mkdirSync('testdata', { recursive: true });
 fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\n');
 assert.equal(JSON.parse(fs.readFileSync('testdata/ostord_manual_rules_latest.json', 'utf8')).result, 'passed');
-console.log('Manual bidding rule checks passed (3 undisturbed deals + 6 source-rule regressions).');
+console.log('Manual bidding rule checks passed (3 undisturbed deals + 6 source-rule regressions + 3 auction-only slam guard checks).');
