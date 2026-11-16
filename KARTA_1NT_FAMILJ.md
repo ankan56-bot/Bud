@@ -262,3 +262,49 @@ Principen är nu konsekvent:
 Även 2NT–3♣–3♠ efter 2NT-öppning använder nu 25 hp för 3NT utan 8-korts spaderfit; 4♠ behåller sin separata 26-poängsgräns vid fit. Detta har en egen regression.
 
 Verifiering: GitHub Actions körning 43916709551 på commit b25fa00b är **grön**. Samtliga steg passerade, inklusive JavaScript-syntax, facitgenerator, liveinformationsgräns, Stayman/överföring, 100-givarskontroller, 400-givarskorpen, manuell regelkontroll, analysbibliotek och applikationskoppling.
+
+## 16. Slutlig komplettering av sangfamiljen – 2026-11-16
+
+Den källstyrda implementationen av 1NT-familjen är nu genomförd fram till 4NT-gränsen. Den omfattar:
+- 1NT-öppning 15–17 hp och balanserad hand.
+- Svarshandens Stayman, överföringar, svagt lågfärgsrelä, naturlig sanginvit, lågfärgsinvit och direkt 3NT.
+- Öppnarens svar på Stayman, normal överföringsfullföljning och superaccept.
+- Staymanfortsättningar, naturliga utgångskrav, källstyrda inviter och de uttryckligen angivna 4-4-högfärgsfortsättningarna.
+- Alla källangivna betydelser efter fullföljd överföring, utan påhittade HP-band.
+- Skilda 4NT-tolkningar: fyr-essfråga utan trumf, RKC efter överföring och RKC efter Stayman. Svaren och fortsatt slam ligger kvar i den separata slammodulen.
+
+### Relaterad 2NT-öppning
+
+Nordisk standard s. 5 säger att budgivningen efter 2NT (20–21 hp balanserad) sker som efter 1NT men en nivå högre. Den delen är nu också implementerad där regeln är uttrycklig:
+- 3♣ Stayman med egen fyrkortshögfärg; ingen egen 5-hp-minimigräns har lagts till.
+- 3♦ överföring till hjärter och 3♥ överföring till spader.
+- Öppnarens 3♦/3♥/3♠-svar på Stayman och normal överföringsfullföljning på treläget.
+- 21 hp och 4+ stöd ger superaccept en nivå högre (4♥/4♠), enligt principen att fortsättningen är en nivå högre.
+- 3NT är slutbud; med minst 5 egna hp kan svarshanden garantera 25 gemensamma hp mot 2NT-minimum.
+- 2NT–4NT är kvantitativ invit till 6NT, inte essfråga.
+
+Senare skiftade fortsättningar efter 2NT-Stayman/överföring där dokumentet inte ger en tillräckligt tydlig fortsättning lämnas EJ TÄCKT. 3♠ som eventuellt svagt lågfärgsrelä efter 2NT har inte lagts till eftersom det inte står uttryckligen i listan på s. 5.
+
+### Korrigeringar av prioritet och trumf
+
+- Efter 1NT–2♠–2NT väljer svarshanden den längre lågfärgen. Om egna klöver och ruter är lika långa saknas källbelagd prioritet; motorn lämnar EJ TÄCKT. Samma gäller efter 1NT–2♠–3♣ när svarshandens lågfärger är lika långa. Ingen automatisk klöverprioritet finns längre.
+- Efter Stayman 1NT–2♣–2♥ visar svarshandens 2NT eller 3NT fyra spader. Om öppnaren därefter visar 3♠/4♠ med 4-4 i högfärgerna är spader trumf inför en senare 4NT RKC-fråga. slamlogik.js känner nu igen detta.
+- 4NT efter överföringens superaccept 3♥/3♠ lämnas EJ TÄCKT tills den exakta fortsättningen är bekräftad mot systemkällan. Det är inte säkert att automatiskt utvidga den uttryckliga RKC-regeln efter normal fullföljning 2♥/2♠.
+
+### Livegräns och loggning
+
+decideLive omfattar nu både ostörd 1NT- och 2NT-öppningsfamilj där en verifierad rekommendation kan ges. Livebeslut bygger fortfarande endast på egen hand och offentlig budhistorik. Alla EJ TÄCKT-beslut i live och efterhandsrättning sparas i den separata lokala loggen och kan exporteras via knappen i rättningsvyn.
+
+### Regressioner som ingår
+
+- tests/nt-opening-boundaries.test.js
+- tests/nt-two-level-opening.test.js
+- tests/nt-stayman-continuations.test.js
+- tests/nt-transfer-source-boundaries.test.js
+- tests/nt-minor-invit-relay.test.js
+- tests/nt-four-ace-source.test.js
+- tests/nt-stayman-rkc-spade-fit.test.js
+- tests/live-1nt-information-boundary.test.js
+- tests/ej-tackta-logg.test.js
+
+**Slutstatus:** Källbelagda grenar är implementerade och testade. De få kvarvarande EJ TÄCKT-positionerna är avsiktliga källuckor, inte oimplementerade gissningar; de ska samlas i exportfilen för expertgranskning.
