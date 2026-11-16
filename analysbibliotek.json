@@ -1,5 +1,5 @@
 {
-  "version": "0.6.29",
+  "version": "0.6.30",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang är markerad som överenskommen projektregel.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -526,7 +526,7 @@
             "2♦"
           ],
           "meaning": "2♦ visar att öppnaren saknar fyrkortshögfärg.",
-          "analysis": "2♦ visar att öppnaren saknar fyrkortshögfärg. Med balanserad svarshand och invitstyrka; numeriskt intervall anges inte i källan väljs 2NT som invit; med minst 26 väljs 3NT. Den uttryckligen avtalade fyr-essfrågan 4NT är också tillgänglig i denna sekvens.",
+          "analysis": "2♦ visar att öppnaren saknar fyrkortshögfärg. Med balanserad svarshand och invitstyrka; numeriskt intervall anges inte i källan väljs 2NT som invit; med minst 25 gemensamma hp väljs 3NT enligt överenskommen projektregel. Den uttryckligen avtalade fyr-essfrågan 4NT är också tillgänglig i denna sekvens.",
           "branches": [
             {
               "call": "2NT",
@@ -560,7 +560,7 @@
             "Pass",
             "2NT"
           ],
-          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT endast om paret har minst 26 gemensamma honnörspoäng; annars pass.",
+          "meaning": "Öppnaren accepterar 2NT-inviten med 3NT vid minst 25 gemensamma honnörspoäng enligt överenskommen projektregel; annars pass.",
           "analysis": "Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och jämn fördelning. Stayman har prövat högfärgerna men ingen passande fyrkortshögfärg hittades. Därför väljs sang framför hjärter eller spader. Öppnaren passar med minimum och bjuder 3NT med maximum och lämpliga honnörer. Beslutet grundas på parets faktiska gemensamma honnörspoäng, inte enbart öppnarens 16–17 hp.",
           "branches": [
             {
@@ -2756,7 +2756,7 @@
             "3♥",
             "Pass"
           ],
-          "meaning": "Öppnaren väljer 4H vid 8+ trumfkort och 26 spelpoäng; 3NT vid 25 gemensamma hp utan 8-kortsfit; annars pass: 4H vid 8+ trumfkort och 26 spelpoäng; 3NT vid 25 honnörspoäng utan 8-kortsfit enligt överenskommen projektregel; annars pass.",
+          "meaning": "Öppnaren väljer 4H vid minst åtta trumfkort och 26 gemensamma spelpoäng; 3NT vid 25 gemensamma honnörspoäng utan 8-kortsfit enligt överenskommen projektregel; annars pass.",
           "analysis": "Med minimum avslår öppnaren med pass. Med tillräckliga värden men utan trumfstöd kan öppnaren välja 3NT. Med tillräckliga värden och minst trekortsstöd väljs högfärgsutgång.",
           "branches": [
             {
@@ -2992,7 +2992,7 @@
             "3♠",
             "Pass"
           ],
-          "meaning": "Öppnaren väljer 4S vid 8+ trumfkort och 26 spelpoäng; 3NT vid 25 gemensamma hp utan 8-kortsfit; annars pass: 4S vid 8+ trumfkort och 26 spelpoäng; 3NT vid 25 honnörspoäng utan 8-kortsfit enligt överenskommen projektregel; annars pass.",
+          "meaning": "Öppnaren väljer 4S vid minst åtta trumfkort och 26 gemensamma spelpoäng; 3NT vid 25 gemensamma honnörspoäng utan 8-kortsfit enligt överenskommen projektregel; annars pass.",
           "analysis": "Med minimum avslår öppnaren med pass. Med tillräckliga värden men utan trumfstöd kan öppnaren välja 3NT. Med tillräckliga värden och minst trekortsstöd väljs högfärgsutgång.",
           "branches": [
             {
