@@ -88,9 +88,11 @@ Regressionstester täcker:
 
 ## 5. Kvar att fastställa
 
-1. Trumfdamfrågans lagliga budvägar i de trumffärger/5-svar där 5 i trumf inte kan användas som förnekelse efter frågebudet.
-2. Exakt val mellan flera möjliga 6-bud i ny färg om 5NT inte längre är lagligt och handen har flera sidokungar.
-3. Fortsättning efter fyr-essfråga när 7NT-kravet inte är uppfyllt; 6NT-acceptgränsen efter kvantitativ invit är inte specificerad.
-4. Kontrollbudssekvenserna på 4-nivån ska behandlas som ett separat delområde efter slamkomplexet.
+1. Svar på samtliga fem nyckelkort saknas i Nordisk standards svarstabell; detta lämnas ej täckt.
+2. Två nyckelkort tillsammans med flera renonser saknar en angiven prioritering av vilken renons som ska visas; detta lämnas ej täckt.
+3. Trumfdamfrågans lagliga budvägar i de trumffärger/5-svar där 5 i trumf inte kan användas som förnekelse efter frågebudet.
+4. Exakt val mellan flera möjliga 6-bud i ny färg om 5NT inte längre är lagligt och handen har flera sidokungar.
+5. Fortsättning efter fyr-essfråga när 7NT-kravet inte är uppfyllt; 6NT-acceptgränsen efter kvantitativ invit är inte specificerad.
+6. Kontrollbudssekvenserna på 4-nivån ska behandlas som ett separat delområde efter slamkomplexet.
 
 Alla dessa luckor ska fortsätta sparas för expertgranskning i stället för att fyllas med allmän bridgepraxis.
