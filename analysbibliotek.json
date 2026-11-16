@@ -1,17 +1,19 @@
 {
-  "version": "0.6.36",
+  "version": "0.6.37",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
-    "rkc": "RKC 1430 med fem nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam; 5NT=3 nyckelkort och renons; 6 i färg=2 nyckelkort och renons (6 i trumf om renonsfärgen är högre än trumf).",
+    "rkc": "RKC enligt Nordisk standard 2012-08-22, s. 7: fem nyckelkort = fyra ess och trumfkungen. 5♣=0 eller 3, 5♦=1 eller 4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam; 5NT=3 och någon renons; 6 i färg=2 och renons (6 i trumf om renonsfärgen är högre än trumf).",
     "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
     "oneNTGameThreshold": "25 combined HCP for no-trump game (3NT), explicitly accepted by the user on 2026-11-14. Only HCP count in no-trump; no distribution points. Separate from 26 OTP for major-suit game and 28 OTP for minor-suit game.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
     "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
     "twoNTQuantitativeInvite": "2NT–4NT är en kvantitativ invit till 6NT, inte en essfråga. Öppnarens accept/pass är inte numeriskt specificerat i tillgänglig systemtext och lämnas därför ej täckt.",
-    "rkcVoidResponses": "Nordisk standard 2012-08-22, s. 7: 5NT visar 3 ess/nyckelkort och någon renons; 6 i färg visar 2 ess/nyckelkort och renons i bjuden färg, med 6 i trumf om renonsfärgen är högre än trumf."
+    "rkcVoidResponses": "Nordisk standard 2012-08-22, s. 7: 5NT visar 3 ess/nyckelkort och någon renons; 6 i färg visar 2 ess/nyckelkort och renons i bjuden färg, med 6 i trumf om renonsfärgen är högre än trumf.",
+    "rkcQueenAsk": "Efter 5♣/5♦-svaret frågar nästa lagliga bud som inte är trumf efter trumfdamen. Den förnekas med 5 i trumf och visas med 5NT eller 6 i ny färg (som också visar kung i den färgen). Endast sekvenser där 5 i trumf fortfarande är ett lagligt förnekande byggs ut; övriga markeras ej täckta.",
+    "slamThresholds": "Projektets uttryckliga slamgränser: 6 i färg tillåts när partnerskapet har minst 3 av 4 ess; 7NT kräver alla 4 ess; 7 i färg kräver alla 4 ess och trumfkungen."
   },
   "trees": [
     {
@@ -26,7 +28,7 @@
       "conditions": [
         "Hjärter är överenskommen trumf efter Stenberg 2NT",
         "2NT efter 1♥ visar 13+ HTP och minst fyra hjärter",
-        "Paret spelar RKC 1430 med fem nyckelkort"
+        "Paret följer RKC-tabellen i Nordisk standard s. 7."
       ],
       "root": "t01_n0",
       "nodes": [
@@ -65,18 +67,18 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är RKC 1430 eftersom hjärter är överenskommen trumf efter Stenberg 2NT.",
+          "meaning": "4NT är RKC enligt Nordisk standard s. 7: 5♣=0/3, 5♦=1/4, 5♥=2 utan hjärterdam, 5♠=2 med hjärterdam. Renonsvar enligt tabellen.",
           "analysis": "Frågan gäller de fem nyckelkorten: fyra ess och hjärterkung. Svaren följer 1430: 5♣ visar 1/4, 5♦ visar 0/3, 5♥ visar 2 utan hjärterdam och 5♠ visar 2 med hjärterdam.",
           "branches": [
             {
               "call": "5♣",
               "next": "t01_n2",
-              "label": "1 eller 4 nyckelkort"
+              "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♦",
               "next": "t01_n3",
-              "label": "0 eller 3 nyckelkort"
+              "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♥",
@@ -127,18 +129,13 @@
             "Pass",
             "5♣"
           ],
-          "meaning": "Svar 5♣ visar 1 eller 4 nyckelkort enligt RKC 1430.",
+          "meaning": "Svar 5♣ visar 0 eller 3 nyckelkort enligt Nordisk standard s. 7. Eftersom hjärter är trumf är 5♦ nästa lagliga icke-trumfbud som fortfarande lämnar 5♥ lagligt som förnekande av trumfdamen.",
           "analysis": "Svarshanden visar 1 eller 4 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt utifrån egna nyckelkort. Om ett nyckelkort saknas bör paret normalt stanna i 5♥; om alla finns kan 6♥ vara aktuellt.",
           "branches": [
             {
-              "call": "5♥",
-              "next": null,
-              "label": "Stanna i utgång"
-            },
-            {
-              "call": "6♥",
-              "next": null,
-              "label": "Lilla slammet – kräver tillräckliga nyckelkort och kontroll"
+              "call": "5♦",
+              "next": "t01_n_qask",
+              "label": "Frågar efter hjärterdam"
             }
           ],
           "handProfile": {
@@ -159,20 +156,9 @@
             "Pass",
             "5♦"
           ],
-          "meaning": "Svar 5♦ visar 0 eller 3 nyckelkort enligt RKC 1430.",
+          "meaning": "Svar 5♦ visar 1 eller 4 nyckelkort enligt Nordisk standard s. 7. I denna hjärtersekvens finns inget lagligt 5-bud som både frågar efter hjärterdam och lämnar 5♥ lagligt som förnekande; fortsättningen lämnas ej täckt.",
           "analysis": "Svarshanden visar 0 eller 3 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt. Om svaret innebär noll nyckelkort finns normalt inget slam; med tre kan slam vara möjligt beroende på egna nyckelkort.",
-          "branches": [
-            {
-              "call": "5♥",
-              "next": null,
-              "label": "Signoff"
-            },
-            {
-              "call": "6♥",
-              "next": null,
-              "label": "Lilla slammet om nyckelkorten räcker"
-            }
-          ],
+          "branches": [],
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
             "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
@@ -321,6 +307,142 @@
             "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
             "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
           }
+        },
+        {
+          "id": "t01_n_qask",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦"
+          ],
+          "meaning": "5♦ är trumfdamfråga efter 5♣-svaret. 5♥ förnekar hjärterdam; 5NT visar hjärterdam; 6 i ny färg visar hjärterdam och kung i den färgen.",
+          "branches": [
+            {
+              "call": "5♥",
+              "next": "t01_n_qdeny",
+              "label": "Förnekar hjärterdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t01_n_qshow",
+              "label": "Visar hjärterdam"
+            },
+            {
+              "call": "6♣",
+              "next": "t01_n_qshow_c",
+              "label": "Visar hjärterdam och klöverkung"
+            },
+            {
+              "call": "6♠",
+              "next": "t01_n_qshow_s",
+              "label": "Visar hjärterdam och spaderkung"
+            }
+          ]
+        },
+        {
+          "id": "t01_n_qdeny",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥"
+          ],
+          "meaning": "Trumfdamen förnekas. Om frågeställaren har 3 eller 4 egna ess bjuder frågeställaren 6♥ enligt Nordisk standard s. 7.",
+          "branches": [
+            {
+              "call": "6♥",
+              "next": null,
+              "label": "Lillslam med 3 eller 4 egna ess"
+            }
+          ]
+        },
+        {
+          "id": "t01_n_qshow",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "Hjärterdam visas med 5NT. Därefter: 6♥ om alla möjliga RKC-fördelningar visar minst 3 ess; 7♥ endast om alla fyra ess och hjärterkung är säkrade.",
+          "branches": [
+            {
+              "call": "6♥",
+              "next": null,
+              "label": "Minst 3 av 4 ess"
+            },
+            {
+              "call": "7♥",
+              "next": null,
+              "label": "Alla 4 ess och hjärterkung"
+            }
+          ]
+        },
+        {
+          "id": "t01_n_qshow_c",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "6♣"
+          ],
+          "meaning": "Hjärterdam visas och klöverkung visas genom 6♣. Slamnivån avgörs av säkert antal ess och trumfkungen.",
+          "branches": []
+        },
+        {
+          "id": "t01_n_qshow_s",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "6♠"
+          ],
+          "meaning": "Hjärterdam visas och spaderkung visas genom 6♠. Slamnivån avgörs av säkert antal ess och trumfkungen.",
+          "branches": []
         }
       ]
     },
@@ -6818,7 +6940,7 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är RKC 1430 efter att Stayman hittat hjärterfit och paret gått till 4♥.",
+          "meaning": "4NT är RKC enligt Nordisk standard efter att Stayman hittat hjärterfit och paret gått till 4♥.",
           "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat hjärterstöd med 3♥. Efter öppnarens 4♥ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra hjärter.",
@@ -6841,7 +6963,7 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är RKC 1430 efter att Stayman hittat spaderfit och paret gått till 4♠.",
+          "meaning": "4NT är RKC enligt Nordisk standard efter att Stayman hittat spaderfit och paret gått till 4♠.",
           "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat spaderstöd med 3♠. Efter öppnarens 4♠ är trumffärgen överenskommen; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra spader.",
@@ -6862,7 +6984,7 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är RKC 1430 efter Stayman och direkt utgång i hjärter.",
+          "meaning": "4NT är RKC enligt Nordisk standard efter Stayman och direkt utgång i hjärter.",
           "analysis": "Öppnaren har visat minst fyra hjärter med 2♥ och svarshanden har visat minst fyra hjärter genom att bjuda 4♥. Hjärterfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra hjärter.",
@@ -6883,7 +7005,7 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är RKC 1430 efter Stayman och direkt utgång i spader.",
+          "meaning": "4NT är RKC enligt Nordisk standard efter Stayman och direkt utgång i spader.",
           "analysis": "Öppnaren har visat minst fyra spader med 2♠ och svarshanden har visat minst fyra spader genom att bjuda 4♠. Spaderfit är etablerad; 4NT är RKC 1430. Svaren efter 4NT byggs i nästa etapp. RKC-mappningen är nu synkroniserad mellan analysbibliotek och rättningsmotor enligt 1430. Svaren på 4NT hanteras; frågeställarens fortsättning efter svaren är separat och delvis ej täckt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand, minst fyra spader.",
@@ -7046,7 +7168,7 @@
     },
     {
       "id": "T44_RKC_1430_SPADER_STENBERG",
-      "title": "RKC 1430 efter 1♠ och Stenberg 2NT",
+      "title": "RKC enligt Nordisk standard efter 1♠ och Stenberg 2NT",
       "tags": [
         "1♥",
         "1♠",
@@ -7059,7 +7181,7 @@
         "Ostörd budgivning.",
         "2NT efter 1♠ är Stenberg: 13+ HTP och minst fyra korts stöd.",
         "Öppnarens 3♥ visar exakt en singleton i hjärter.",
-        "4NT frågar efter fem nyckelkort; svaren följer RKC 1430.",
+        "4NT frågar efter fem nyckelkort; svaren följer RKC enligt Nordisk standard.",
         "Void behandlas inte som singleton. Andra Stenbergåterbud och kontrollbudssekvenser dokumenteras separat."
       ],
       "root": "t44_s0",
@@ -7075,18 +7197,18 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är RKC 1430 med spader som överenskommen trumf efter Stenberg 2NT.",
+          "meaning": "4NT är RKC enligt Nordisk standard s. 7: 5♣=0/3, 5♦=1/4, 5♥=2 utan spaderdam, 5♠=2 med spaderdam.",
           "analysis": "Svarshanden har visat 13+ HTP och minst fyra spader. Öppnaren har visat exakt en singleton i hjärter. 4NT frågar efter de fem nyckelkorten enligt 1430.",
           "branches": [
             {
               "call": "5♣",
               "next": "t44_s1",
-              "label": "1 eller 4 nyckelkort"
+              "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♦",
               "next": "t44_s2",
-              "label": "0 eller 3 nyckelkort"
+              "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♥",
@@ -7137,9 +7259,15 @@
             "Pass",
             "5♣"
           ],
-          "meaning": "5♣ visar 1 eller 4 nyckelkort enligt RKC 1430.",
+          "meaning": "5♣ visar 0 eller 3 nyckelkort. 5♦ är nästa lagliga icke-trumfbud och frågar efter spaderdam; 5♠ förnekar, 5NT visar.",
           "analysis": "Frågeställaren skiljer mellan 1 och 4 med sina egna nyckelkort. Nästa bud måste ta hänsyn till om ett nyckelkort saknas.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "5♦",
+              "next": "t44_s_qask_c",
+              "label": "Frågar efter spaderdam"
+            }
+          ],
           "handProfile": {
             "opener": "1 eller 4 av de fem nyckelkorten.",
             "responder": "Stenberghand med minst fyra spader."
@@ -7158,9 +7286,15 @@
             "Pass",
             "5♦"
           ],
-          "meaning": "5♦ visar 0 eller 3 nyckelkort enligt RKC 1430.",
+          "meaning": "5♦ visar 1 eller 4 nyckelkort. 5♥ är nästa lagliga icke-trumfbud och frågar efter spaderdam; 5♠ förnekar, 5NT visar.",
           "analysis": "Frågeställaren skiljer mellan 0 och 3 med sina egna nyckelkort.",
-          "branches": [],
+          "branches": [
+            {
+              "call": "5♥",
+              "next": "t44_s_qask_d",
+              "label": "Frågar efter spaderdam"
+            }
+          ],
           "handProfile": {
             "opener": "0 eller 3 av de fem nyckelkorten.",
             "responder": "Stenberghand med minst fyra spader."
@@ -7287,6 +7421,208 @@
             "opener": "Öppningshanden har visat och etablerat spader som trumf; budgivningen är ostörd.",
             "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
           }
+        },
+        {
+          "id": "t44_s_qask_c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦"
+          ],
+          "meaning": "5♦ frågar efter spaderdam. 5♠ förnekar; 5NT eller 6 i ny färg visar damen (och kung i den nya färgen).",
+          "branches": [
+            {
+              "call": "5♠",
+              "next": "t44_s_qdeny_c",
+              "label": "Förnekar spaderdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t44_s_qshow_c",
+              "label": "Visar spaderdam"
+            },
+            {
+              "call": "6♣",
+              "next": "t44_s_qshow_c_club",
+              "label": "Visar spaderdam och klöverkung"
+            },
+            {
+              "call": "6♦",
+              "next": "t44_s_qshow_c_diamond",
+              "label": "Visar spaderdam och ruterkung"
+            },
+            {
+              "call": "6♥",
+              "next": "t44_s_qshow_c_heart",
+              "label": "Visar spaderdam och hjärterkung"
+            }
+          ]
+        },
+        {
+          "id": "t44_s_qask_d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥"
+          ],
+          "meaning": "5♥ frågar efter spaderdam. 5♠ förnekar; 5NT eller 6 i ny färg visar damen (och kung i den nya färgen).",
+          "branches": [
+            {
+              "call": "5♠",
+              "next": "t44_s_qdeny_d",
+              "label": "Förnekar spaderdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t44_s_qshow_d",
+              "label": "Visar spaderdam"
+            },
+            {
+              "call": "6♣",
+              "next": "t44_s_qshow_d_club",
+              "label": "Visar spaderdam och klöverkung"
+            },
+            {
+              "call": "6♦",
+              "next": "t44_s_qshow_d_diamond",
+              "label": "Visar spaderdam och ruterkung"
+            },
+            {
+              "call": "6♥",
+              "next": "t44_s_qshow_d_heart",
+              "label": "Visar spaderdam och hjärterkung"
+            }
+          ]
+        },
+        {
+          "id": "t44_s_qdeny_c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♠"
+          ],
+          "meaning": "Spaderdam förnekas. Med 3 eller 4 egna ess bjuder frågeställaren 6♠.",
+          "branches": [
+            {
+              "call": "6♠",
+              "next": null,
+              "label": "Lillslam med 3 eller 4 egna ess"
+            }
+          ]
+        },
+        {
+          "id": "t44_s_qdeny_d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "5♠"
+          ],
+          "meaning": "Spaderdam förnekas. Med 3 eller 4 egna ess bjuder frågeställaren 6♠.",
+          "branches": [
+            {
+              "call": "6♠",
+              "next": null,
+              "label": "Lillslam med 3 eller 4 egna ess"
+            }
+          ]
+        },
+        {
+          "id": "t44_s_qshow_c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "Spaderdam visas. 6♠ kräver minst 3 av 4 ess; 7♠ kräver alla fyra ess och spaderkung.",
+          "branches": [
+            {
+              "call": "6♠",
+              "next": null,
+              "label": "Minst 3 av 4 ess"
+            },
+            {
+              "call": "7♠",
+              "next": null,
+              "label": "Alla 4 ess och spaderkung"
+            }
+          ]
+        },
+        {
+          "id": "t44_s_qshow_d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "Spaderdam visas. 6♠ kräver minst 3 av 4 ess; 7♠ kräver alla fyra ess och spaderkung.",
+          "branches": [
+            {
+              "call": "6♠",
+              "next": null,
+              "label": "Minst 3 av 4 ess"
+            },
+            {
+              "call": "7♠",
+              "next": null,
+              "label": "Alla 4 ess och spaderkung"
+            }
+          ]
         }
       ]
     },
@@ -7742,7 +8078,7 @@
     },
     {
       "id": "T45_RKC_1430_KLOVER",
-      "title": "RKC 1430 med klöver som trumf",
+      "title": "RKC enligt Nordisk standard med klöver som trumf",
       "tags": [
         "4NT",
         "RKC",
@@ -7753,8 +8089,9 @@
       "conditions": [
         "♣ är fastställd trumf genom bjuden och höjd färg.",
         "4NT frågar efter fem nyckelkort: fyra ess och trumfkungen.",
-        "Svar enligt projektets RKC 1430: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
-        "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7."
+        "Svar enligt projektets RKC enligt Nordisk standard: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
+        "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7.",
+        "Trumfdamfrågan efter 5-lågsvar är bara automatiskt modellerad där ett lagligt 5-bud kan fråga och 5 i trumf fortfarande kan förneka. Övriga fortsättningar lämnas ej täckta."
       ],
       "root": "t45rkc_n0",
       "nodes": [
@@ -7767,17 +8104,17 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "♣ är fastställd trumf efter naturlig höjning. 4NT frågar efter nyckelkort enligt RKC 1430.",
+          "meaning": "♣ är fastställd trumf efter naturlig höjning. 4NT frågar efter nyckelkort enligt RKC enligt Nordisk standard.",
           "branches": [
             {
               "call": "5♣",
               "next": "t45rkc_5c",
-              "label": "1 eller 4 nyckelkort"
+              "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♦",
               "next": "t45rkc_5d",
-              "label": "0 eller 3 nyckelkort"
+              "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♥",
@@ -7816,7 +8153,7 @@
             "Pass",
             "5♣"
           ],
-          "meaning": "5♣ visar 1 eller 4 nyckelkort enligt projektets RKC 1430.",
+          "meaning": "5♣ visar 0 eller 3 nyckelkort enligt projektets RKC enligt Nordisk standard.",
           "branches": [],
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
@@ -7834,7 +8171,7 @@
             "Pass",
             "5♦"
           ],
-          "meaning": "5♦ visar 0 eller 3 nyckelkort enligt projektets RKC 1430.",
+          "meaning": "5♦ visar 1 eller 4 nyckelkort enligt projektets RKC enligt Nordisk standard.",
           "branches": [],
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
@@ -7917,7 +8254,7 @@
     },
     {
       "id": "T46_RKC_1430_RUTER",
-      "title": "RKC 1430 med ruter som trumf",
+      "title": "RKC enligt Nordisk standard med ruter som trumf",
       "tags": [
         "4NT",
         "RKC",
@@ -7928,8 +8265,9 @@
       "conditions": [
         "♦ är fastställd trumf genom bjuden och höjd färg.",
         "4NT frågar efter fem nyckelkort: fyra ess och trumfkungen.",
-        "Svar enligt projektets RKC 1430: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
-        "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7."
+        "Svar enligt projektets RKC enligt Nordisk standard: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
+        "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7.",
+        "Trumfdamfrågan efter 5-lågsvar är bara automatiskt modellerad där ett lagligt 5-bud kan fråga och 5 i trumf fortfarande kan förneka. Övriga fortsättningar lämnas ej täckta."
       ],
       "root": "t46rkc_n0",
       "nodes": [
@@ -7942,17 +8280,17 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "♦ är fastställd trumf efter naturlig höjning. 4NT frågar efter nyckelkort enligt RKC 1430.",
+          "meaning": "♦ är fastställd trumf efter naturlig höjning. 4NT frågar efter nyckelkort enligt RKC enligt Nordisk standard.",
           "branches": [
             {
               "call": "5♣",
               "next": "t46rkc_5c",
-              "label": "1 eller 4 nyckelkort"
+              "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♦",
               "next": "t46rkc_5d",
-              "label": "0 eller 3 nyckelkort"
+              "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♥",
@@ -7996,7 +8334,7 @@
             "Pass",
             "5♣"
           ],
-          "meaning": "5♣ visar 1 eller 4 nyckelkort enligt projektets RKC 1430.",
+          "meaning": "5♣ visar 0 eller 3 nyckelkort enligt projektets RKC enligt Nordisk standard.",
           "branches": [],
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
@@ -8014,7 +8352,7 @@
             "Pass",
             "5♦"
           ],
-          "meaning": "5♦ visar 0 eller 3 nyckelkort enligt projektets RKC 1430.",
+          "meaning": "5♦ visar 1 eller 4 nyckelkort enligt projektets RKC enligt Nordisk standard.",
           "branches": [],
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
@@ -8110,6 +8448,210 @@
             "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
             "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
           }
+        }
+      ]
+    },
+    {
+      "id": "T47_RKC_TRUMFDAM_SLAM",
+      "title": "RKC – trumfdamfråga och slamgränser",
+      "tags": [
+        "RKC",
+        "trumfdam",
+        "slam",
+        "Nordisk standard",
+        "6-nivå",
+        "7-nivå"
+      ],
+      "conditions": [
+        "Nordisk standard 2012-08-22, s. 7: efter 5♣/5♦-svar frågar nästa lagliga bud som inte är trumf efter trumfdamen.",
+        "Trumfdamen förnekas med 5 i trumf och visas med 5NT eller 6 i ny färg; 6 i ny färg visar även kung i den färgen.",
+        "Om 5 i trumf inte längre är ett lagligt förnekande lämnas positionen ej täckt.",
+        "Projektregel: 6 i färg tillåts när minst 3 av 4 ess finns; 7NT kräver alla 4 ess; 7 i färg kräver alla 4 ess och trumfkungen."
+      ],
+      "root": "t47_n0",
+      "nodes": [
+        {
+          "id": "t47_n0",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦"
+          ],
+          "meaning": "5♦ visar 1 eller 4 nyckelkort enligt Nordisk standard. 5♥ är nästa lagliga icke-trumfbud och frågar efter spaderdam.",
+          "branches": [
+            {
+              "call": "5♥",
+              "next": "t47_n1",
+              "label": "Trumfdamfråga"
+            }
+          ]
+        },
+        {
+          "id": "t47_n1",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥"
+          ],
+          "meaning": "Efter trumfdamfrågan: 5♠ förnekar spaderdam; 5NT visar spaderdam; 6 i ny färg visar spaderdam och kung i den färgen.",
+          "branches": [
+            {
+              "call": "5♠",
+              "next": "t47_n2",
+              "label": "Förnekar spaderdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t47_n3",
+              "label": "Visar spaderdam"
+            },
+            {
+              "call": "6♣",
+              "next": "t47_n4",
+              "label": "Visar spaderdam och klöverkung"
+            },
+            {
+              "call": "6♦",
+              "next": "t47_n5",
+              "label": "Visar spaderdam och ruterkung"
+            },
+            {
+              "call": "6♥",
+              "next": "t47_n6",
+              "label": "Visar spaderdam och hjärterkung"
+            }
+          ]
+        },
+        {
+          "id": "t47_n2",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "5♠"
+          ],
+          "meaning": "Trumfdamen förnekas. Om frågeställaren har 3 eller 4 egna ess bjuder frågeställaren 6♠ enligt Nordisk standard s. 7.",
+          "branches": [
+            {
+              "call": "6♠",
+              "next": null,
+              "label": "Lillslam vid 3 eller 4 egna ess"
+            }
+          ]
+        },
+        {
+          "id": "t47_n3",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "Spaderdam visas. 6♠ kräver minst 3 av 4 ess; 7♠ kräver alla fyra ess och spaderkung.",
+          "branches": [
+            {
+              "call": "6♠",
+              "next": null,
+              "label": "Minst 3 av 4 ess"
+            },
+            {
+              "call": "7♠",
+              "next": null,
+              "label": "Alla 4 ess och spaderkung"
+            }
+          ]
+        },
+        {
+          "id": "t47_n4",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "6♣"
+          ],
+          "meaning": "Spaderdam visas och klöverkung visas genom 6♣. Fortsätt till 6♠/7♠ endast om ess- och trumfkungskraven är säkrade.",
+          "branches": []
+        },
+        {
+          "id": "t47_n5",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "6♦"
+          ],
+          "meaning": "Spaderdam visas och ruterkung visas genom 6♦. Fortsätt till 6♠/7♠ endast om ess- och trumfkungskraven är säkrade.",
+          "branches": []
+        },
+        {
+          "id": "t47_n6",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "6♥"
+          ],
+          "meaning": "Spaderdam visas och hjärterkung visas genom 6♥. Fortsätt till 6♠/7♠ endast om ess- och trumfkungskraven är säkrade.",
+          "branches": []
         }
       ]
     }
