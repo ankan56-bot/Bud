@@ -15,9 +15,10 @@ function makeHand({trump=null,aces=[],trumpKing=false,trumpQueen=false,voids=[]}
   for(const suit of aces)cards.push(suit+'14');
   if(trump&&trumpKing)cards.push(trump+'13');
   if(trump&&trumpQueen)cards.push(trump+'12');
-  for(const suit of SU){
-    if(voids.includes(suit))continue;
-    for(let rank=11;rank>=2&&cards.length<13;rank--){
+  for(let rank=11;rank>=2&&cards.length<13;rank--){
+    for(const suit of SU){
+      if(cards.length>=13)break;
+      if(voids.includes(suit))continue;
       const card=suit+rank;
       if(!cards.includes(card))cards.push(card);
     }
