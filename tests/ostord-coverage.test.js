@@ -95,8 +95,8 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
-assert.equal(report.turns, 167, 'The fixed corpus should contain 167 undisturbed N/S positions.');
-assert.equal(report.covered, 166, 'The currently defined rules cover 166 of 167 undisturbed N/S positions.');
+assert.equal(report.turns, 168, 'The fixed corpus should contain 168 undisturbed N/S positions after natural raises replace splinter jumps.');
+assert.equal(report.covered, 167, 'The currently defined rules cover 167 of 168 undisturbed N/S positions.');
 assert.equal(report.uncovered.length, 1, 'Only the explicitly documented unbalanced Stayman continuation may remain uncovered.');
 assert.equal(report.uncovered[0].dealId, 'nt-09');
 assert.equal(report.uncovered[0].seat, 'S');
