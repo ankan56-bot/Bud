@@ -1377,6 +1377,30 @@ var Rattning = (function(){
   // det högsta kontraktsbud som redan har lagts i auktionen.
   // Om partnern redan har nått den föreslagna nivån ska svaret vara pass,
   // inte ett olagligt återbud eller ett upprepat kontraktsbud.
+  // Auction-only guard: no hidden hand information is used here.
+  function slamProhibitionFromAuction(bids,index,ourSide){
+    var prior=(bids||[]).slice(0,index);
+    for(var j=0;j<prior.length;j++){
+      var call=prior[j];
+      if(!call||side(call.s)===ourSide)continue;
+      var earlierOurBid=prior.slice(0,j).some(function(x){return x&&side(x.s)===ourSide&&isBid(x.c);});
+      if(!earlierOurBid)continue;
+      if(/^2[CDHS]$/.test(call.c)){
+        return 'Motståndarna har klivit in på tvåtricksnivån; enligt den uttryckliga slamspärren får vår sida inte rekommendera slam.';
+      }
+      if(/^1[CDHS]$/.test(call.c)){
+        var opponentPartner=partner(call.s);
+        var partnerResponded=prior.slice(j+1).some(function(x){
+          return x&&x.s===opponentPartner&&x.c!=='P';
+        });
+        if(partnerResponded){
+          return 'Motståndarna har gjort ett inkliv på entricksnivån och inklivarens partner har svarat; enligt den uttryckliga slamspärren får vår sida inte rekommendera slam.';
+        }
+      }
+    }
+    return null;
+  }
+
   function nodeFor(st,i){
     var node=nodeForRaw(st,i);
 
@@ -1411,6 +1435,17 @@ var Rattning = (function(){
           conv:'missad utgång/slam',
           soft:false
         };
+      }
+    }
+    var slamBlockReason=st&&st.bids&&st.bids[i]
+      ?slamProhibitionFromAuction(st.bids,i,side(st.bids[i].s)):null;
+    if(slamBlockReason){
+      var actualCall=st.bids[i].c;
+      if(isBid(actualCall)&&lv(actualCall)>=6){
+        return {exp:null,slamBlocked:true,why:slamBlockReason};
+      }
+      if(node&&node.exp&&isBid(node.exp)&&lv(node.exp)>=6){
+        return {exp:null,slamBlocked:true,why:slamBlockReason};
       }
     }
     if(!node||!node.exp||!isBid(node.exp))return node;
@@ -1472,6 +1507,15 @@ var Rattning = (function(){
   function verdictOf(node,act){
     var short=(typeof node.means==='function'?node.means(act):null)||'Budet ingår inte i dokumentets system i den här situationen.';
     var o={bedomning:'ej_täckt',motivering:node.why||'',forklaring:expandedMeaning(short,node.conv||'övrigt',act),konvention:node.conv||'övrigt',battre:''};
+    if(node.slamBlocked){
+      if(isBid(act)&&lv(act)>=6){
+        o.bedomning='fel';
+        o.motivering=node.why;
+        o.forklaring='Slam är spärrat efter motståndarnas visade styrka/fortsättning i den här auktionen.';
+        return o;
+      }
+      o.bedomning='ej_täckt';o.motivering=node.why;return o;
+    }
     if(!node.exp){o.bedomning='ej_täckt';o.motivering=node.why;return o}
     if(act===node.exp){o.bedomning='rätt';return o}
     if(node.alt&&node.alt.indexOf(act)>=0){o.bedomning='valfritt';o.battre=txt(node.exp);return o}
@@ -1732,7 +1776,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,txt:txt,validateAuction:validateAuction,version:'7.7'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,nodeForRaw:nodeForRaw,slamProhibitionFromAuction:slamProhibitionFromAuction,txt:txt,validateAuction:validateAuction,version:'7.8'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
