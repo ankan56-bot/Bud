@@ -187,6 +187,9 @@ var Rattning = (function(){
     if(L.H>=5&&L.S>=5){exp=h2;alt=[d2];why='5-5 i högfärgerna: överföring till ♠ (och sedan 3♥ som invit).';conv='överföring'}
     else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring.';conv='överföring'}
     else if((k?hp>=lo:true)&&(L.H===4||L.S===4)){exp=c2;why=(L.H===4||L.S===4?'Egen fyrkortshögfärg: Stayman enligt Nordisk standard.':'')+(k?' ('+hp+' hp efter 2NT).':'');conv='Stayman';soft=false}
+    else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){
+      return NC('Handen har 6+ kort i en lågfärg eller 5-5 i lågfärgerna och passar därför längdmässigt för 2♠-reläet. Nordisk standard beskriver handen som svag/dålig men anger ingen numerisk HP-gräns; därför klassificeras styrkan inte med en påhittad gräns.',means,conv);
+    }
     else if(hp>=lo&&hp<gl&&!k){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs.',means,conv);
     }
@@ -204,7 +207,6 @@ var Rattning = (function(){
       }else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
-    else if(!k&&(L.C>=6||L.D>=6||(L.C>=5&&L.D>=5))){exp='2S';why='Dåliga kort med lång lågfärg: 2♠ (relä till 3 i lågfärg).'}
     else{exp='P';why=hp+' hp utan färg att visa: pass.'}
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
   }
