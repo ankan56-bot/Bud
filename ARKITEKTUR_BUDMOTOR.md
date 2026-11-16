@@ -106,3 +106,14 @@ Analysbiblioteket på basgrenen innehåller 45 träd och 271 noder. Av träden �
 - 176 noder saknar utgående grenar; många kan vara avsiktliga slutnoder men behöver klassificeras.
 
 Detta är inventeringsresultat, inte ändringar i befintliga regler. Se `KARTA_OSTORD_BUDGIVNING.md` för täckningskartan och prioriterade granskningspunkter.
+
+## 10. Särskild informationsgräns: livebud kontra efterhandsrättning
+
+En genomgång av nuvarande `rattningsmotor.js` visar att vissa beslutsvägar använder partnerns faktiska hand, bland annat i `responderSecondBid()`, vissa invitkontroller i `nodeForRaw()` och den separata `missedGameOrSlam()`-kontrollen. Det kan vara avsiktligt för efterhandsrättning av en färdig giv, men får inte läcka in i en bot som agerar under pågående budgivning.
+
+Därför ska systemet uttryckligen skilja mellan två exekveringskontexter:
+
+- **Livebeslut:** den agerande spelarens egen hand + budhistorik + offentliga auktionsfakta + systemregler. Partnerns och motståndarnas faktiska kort är förbjudna som beslutsunderlag.
+- **Efterhandsanalys:** får använda hela given för att diagnostisera missad utgång/slam eller jämföra kontrakt, men resultatet ska märkas som efterhandsanalys och får inte presenteras som ett bud som spelaren kunde veta var rätt vid beslutstillfället.
+
+Samma regeldefinition kan återanvändas, men funktionens indata och resultat måste bära tydlig kontext. Inför inte detta som en snabb flagga utan att först kartlägga alla anrop och tester. Det är en prioriterad arkitekturgrind innan budmotorn används som självständig motståndare.
