@@ -356,21 +356,14 @@ var Rattning = (function(){
     return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering; situationen lämnas ej täckt.',means,'överföring',true);
   }
   function ntOpenerInvit(h,M,inv,responderCards){
-    var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,exp,alt=[],why;
-    var fit=partner?L[M]+partner.L[M]:0;
-    var fitPoints=partner&&fit>=8?partnershipPoints(h,partner,M):0;
-    var jointHp=hp+(partner?partner.hp:0);
     var means=function(c){
-      if(c==='P')return 'Avslår inviten: paret når inte relevant utgångsgräns.';
-      if(c==='3N')return 'Accepterar med 3NT när paret har minst 26 gemensamma honnörspoäng utan etablerad 8-kortsfit.';
-      if(c==='4'+M)return 'Accepterar med '+txt('4'+M)+' när paret har minst 8-kortsfit och 26 gemensamma spelpoäng.';
+      if(c==='P')return 'Öppnarens accept/pass efter invit; exakta acceptkriterier anges inte i Nordisk standard s. 5.';
+      if(c==='3N')return 'Utgång i sang efter invit utan etablerad högfärgsfit.';
+      if(c==='4'+M)return 'Utgång i överföringsfärgen efter invit.';
       return null};
-    if(inv!=='2N'&&inv!=='3'+M)return NC('Öppnarens svar på detta bud beskrivs inte i dokumentet.',means,'överföring');
-    if(!partner)return NC('Kan inte verifiera inviten utan svarshandens handprofil.',means,'överföring');
-    if(fit>=8&&fitPoints>=26){exp='4'+M;why=fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: accepterar inviten med '+txt(exp)+'.';}
-    else if(jointHp>=26){exp='3N';why=jointHp+' gemensamma honnörspoäng utan tillräckliga spelpoäng i högfärgsfit: accepterar med 3NT.';}
-    else{exp='P';why=jointHp+' gemensamma honnörspoäng och '+fit+'-korts fit: når inte 26-poängsgränsen, avslår inviten.';}
-    return {exp:exp,alt:alt,why:why,means:means,conv:'överföring',soft:false};
+    if(inv!=='2N'&&inv!=='3'+M)
+      return NC('Öppnarens svar på detta bud beskrivs inte i dokumentet.',means,'överföring',true);
+    return NC('Nordisk standard s. 5 beskriver 2NT/3M som inviter efter överföring men anger inte öppnarens numeriska accept-/passgräns. Den separata 26-poängsgränsen för andra högfärgssekvenser överförs inte hit; fortsättningen lämnas ej täckt.',means,'överföring',true);
   }
   function ntOpener3(h,k1,k2,k3,responderCards){
     var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,jointHp=hp+(partner?partner.hp:0);
