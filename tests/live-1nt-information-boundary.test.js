@@ -62,14 +62,14 @@ const responderEight=['C14','C4','C5','C6','D13','D4','D5','H4','H5','H6','S11',
 const responderNine=['C14','C4','C5','C6','D13','D4','D5','H11','H4','H5','S11','S4','S5'];
 assert.equal(R.H(responderEight).hp,8);
 assert.equal(R.H(responderNine).hp,9);
-assert.equal(judgeNatural2NT(responderEight).exp,null,
- 'the natural 2NT invite accept threshold is not numerically specified');
-assert.equal(judgeNatural2NT(responderNine).exp,null,
- '25 combined HCP does not establish pass or accept without a confirmed threshold');
+assert.equal(judgeNatural2NT(responderEight).exp,'P',
+ '24 combined HCP stays below the confirmed 25-HCP 3NT threshold');
+assert.equal(judgeNatural2NT(responderNine).exp,'3N',
+ '25 combined HCP accepts the natural 2NT invitation');
 const responderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(responderTen).hp,10);
-assert.equal(judgeNatural2NT(responderTen).exp,null,
- '26 combined HCP does not establish acceptance without a confirmed threshold');
+assert.equal(judgeNatural2NT(responderTen).exp,'3N',
+ '26 combined HCP accepts the natural 2NT invitation');
 
 // The user-confirmed 25-HCP no-trump game threshold applies after Stayman 2D–2NT:
 // 24 combined HCP stays below game; 25+ reaches 3NT in after-the-fact correction.
@@ -126,16 +126,18 @@ assert.equal(live('S',firstResponse,balancedEight).exp,null,
 
 const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2','S3','S4']);
 assert.equal(R.H(balancedTen).hp,10);
-assert.equal(live('S',firstResponse,balancedTen).exp,null,
- '10 own HCP plus partner minimum does not establish a confirmed 3NT threshold');
+const directTenResult=live('S',firstResponse,balancedTen);
+assert.equal(directTenResult.exp,'3N',
+ '10 own HCP plus partner minimum guarantees the confirmed 25-HCP 3NT threshold');
+assert.equal(directTenResult.ruleStatus,'user_confirmed');
 const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3','S4']);
 assert.equal(R.H(balancedNine).hp,9);
 assert.equal(live('S',firstResponse,balancedNine).exp,null,
  '9 own HCP plus partner minimum reaches only 24 HCP; no numeric invit band is stated');
 const balancedEleven=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3']);
 assert.equal(R.H(balancedEleven).hp,11);
-assert.equal(live('S',firstResponse,balancedEleven).exp,null,
- '11 own HCP still cannot use an unconfirmed 25/26-HCP threshold');
+assert.equal(live('S',firstResponse,balancedEleven).exp,'3N',
+ '11 own HCP plus partner minimum guarantees the confirmed 25-HCP 3NT threshold');
 
 const afterTransfer3NTChoice=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
@@ -207,12 +209,12 @@ const staymanNoMajorAuction=[
 const staymanElevenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C11','C2']);
 assert.equal(R.H(staymanElevenBalanced).hp,11);
 assert.equal(R.H(staymanElevenBalanced).bal,true);
-assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,null,
- '11 own HCP after Stayman 2D cannot trigger 3NT without a confirmed threshold');
+assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,'3N',
+ '11 own HCP after Stayman 2D guarantees the confirmed 25-HCP 3NT threshold');
 const staymanTenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C2','C3']);
 assert.equal(R.H(staymanTenBalanced).hp,10);
-assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,null,
- '10 own HCP does not justify 3NT without a confirmed threshold');
+assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,'3N',
+ '10 own HCP after Stayman 2D guarantees the confirmed 25-HCP 3NT threshold');
 
 // 4M after a completed transfer is explicitly a signoff; opener passes.
 const afterHeartTransferSignoff=[
