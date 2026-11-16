@@ -1,6 +1,6 @@
 {
-  "version": "0.6.25",
-  "description": "Analysbibliotek med 46 budträd. Överföringsbudens kvalitativa betydelser är källgranskade; numeriska styrkegränser som saknas i originalet används inte.",
+  "version": "0.6.26",
+  "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang är markerad som överenskommen projektregel.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -536,7 +536,7 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "26+ gemensamma honnörspoäng – direkt utgång"
+              "label": "25+ gemensamma honnörspoäng – direkt utgång (överenskommen projektregel)"
             },
             {
               "call": "4NT",
@@ -546,7 +546,7 @@
           ],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning, ingen fyrkortshögfärg",
-            "responder": "Balanserad hand; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit eller minst 26 för 3NT."
+            "responder": "Balanserad hand; invitstyrka efter 2NT saknar numeriskt intervall i källan; 25+ gemensamma hp för 3NT enligt överenskommen projektregel."
           }
         },
         {
@@ -571,11 +571,11 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "Maximum – inviten accepteras"
+              "label": "25+ gemensamma honnörspoäng – accepterar inviten"
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning",
+            "opener": "15–17 hp, jämn fördelning; accepterar med 25+ gemensamma hp enligt överenskommen projektregel.",
             "responder": "invitstyrka; numerisk gräns anges inte i källan, jämn fördelning"
           }
         }
@@ -1301,8 +1301,8 @@
           "analysis": "Öppnaren har 16–17 hp och jämn fördelning. Svarshanden har cirka invitstyrka; numerisk gräns anges inte i källan och också jämn fördelning. Ingen högfärg eller trumffit har hittats, så sang är rätt kontraktstyp. Med maximum och välplacerade honnörer räcker den sammanlagda styrkan för utgång. Öppnaren accepterar därför inviten med 3NT.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, balanserad; accepterar endast när paret når minst 26 gemensamma honnörspoäng.",
-            "responder": "Balanserad invit efter 1NT, normalt invitstyrka; numerisk gräns anges inte i källan; 2NT används även med 10+ om paret ännu inte når 26."
+            "opener": "15–17 hp, balanserad; accepterar med minst 25 gemensamma honnörspoäng enligt överenskommen projektregel.",
+            "responder": "Balanserad invit efter 1NT; den numeriska gränsen för att välja inviten anges inte i källan. 3NT accepteras vid 25+ gemensamma hp enligt överenskommen projektregel."
           }
         }
       ],
@@ -1378,7 +1378,7 @@
             {
               "call": "3NT",
               "next": "t19_2",
-              "label": "3NT – 26+ gemensamma hp, utan 8-kortsfit"
+              "label": "3NT – 25+ gemensamma hp enligt projektregeln, utan 8-kortsfit"
             },
             {
               "call": "4H",
@@ -1419,7 +1419,7 @@
             }
           ],
           "handProfile": {
-            "opener": "Tillräckliga honnörspoäng för att paret tillsammans ska nå 26; färre än tre kort i trumffärgen.",
+            "opener": "25+ gemensamma honnörspoäng för 3NT; färre än tre kort i trumffärgen.",
             "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
@@ -1467,7 +1467,7 @@
           "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem hjärter; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
           "branches": [],
           "handProfile": {
-            "opener": "Handen når inte 26 gemensamma honnörspoäng eller 26 gemensamma spelpoäng i fitten.",
+            "opener": "Under 25 gemensamma honnörspoäng för 3NT och under 26 gemensamma spelpoäng i eventuell trumffit.",
             "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         }
@@ -1509,7 +1509,7 @@
             {
               "call": "3NT",
               "next": "t20_2",
-              "label": "3NT – 26+ gemensamma hp, utan 8-kortsfit"
+              "label": "3NT – 25+ gemensamma hp enligt projektregeln, utan 8-kortsfit"
             },
             {
               "call": "4S",
@@ -1550,7 +1550,7 @@
             }
           ],
           "handProfile": {
-            "opener": "Tillräckliga honnörspoäng för att paret tillsammans ska nå 26; färre än tre kort i trumffärgen.",
+            "opener": "25+ gemensamma honnörspoäng för 3NT; färre än tre kort i trumffärgen.",
             "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         },
@@ -1598,7 +1598,7 @@
           "analysis": "Öppnaren har minimum inom 1NT-intervallet och väljer att inte acceptera inviten. Svarshanden har cirka 8–9 hp och minst fem spader; den samlade styrkan räcker inte för utgång. Pass blir slutbudet.",
           "branches": [],
           "handProfile": {
-            "opener": "Handen når inte 26 gemensamma honnörspoäng eller 26 gemensamma spelpoäng i fitten.",
+            "opener": "Under 25 gemensamma honnörspoäng för 3NT och under 26 gemensamma spelpoäng i eventuell trumffit.",
             "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         }
@@ -2513,7 +2513,7 @@
             {
               "call": "3NT",
               "next": "t26_n5",
-              "label": "Direkt utgång"
+              "label": "25+ gemensamma honnörspoäng – direkt utgång (överenskommen projektregel)"
             },
             {
               "call": "4NT",
@@ -2574,7 +2574,7 @@
             {
               "call": "3NT",
               "next": "t26_n6",
-              "label": "Accepterar inviten"
+              "label": "25+ gemensamma honnörspoäng – accepterar inviten"
             }
           ],
           "handProfile": {
@@ -2619,7 +2619,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan fyrkortshögfärg; minst 26 gemensamma honnörspoäng för direkt 3NT."
+            "responder": "Balanserad hand utan fyrkortshögfärg; minst 25 gemensamma honnörspoäng för direkt 3NT enligt överenskommen projektregel."
           }
         },
         {
@@ -2639,7 +2639,7 @@
           "analysis": "Öppnaren har maximum eller goda honnörsvärden. Stayman har inte hittat någon högfärgsfit, så 3NT är rätt kontraktstyp.",
           "branches": [],
           "handProfile": {
-            "opener": "Öppnarhanden bidrar så att paret når minst 26 gemensamma honnörspoäng.",
+            "opener": "Öppnarhanden bidrar så att paret når minst 25 gemensamma honnörspoäng enligt överenskommen projektregel.",
             "responder": "Balanserad hand utan fyrkortshögfärg; invitstyrka; numeriskt intervall anges inte i källan för 2NT-invit."
           }
         }
@@ -2767,7 +2767,7 @@
             {
               "call": "3NT",
               "next": "t27_overforing_hjarter_sexkort_invit_n5",
-              "label": "Accepterar utan trumfstöd"
+              "label": "Accepterar med 25+ gemensamma hp enligt projektregeln utan trumfstöd"
             },
             {
               "call": "4♥",
@@ -2797,7 +2797,7 @@
           "analysis": "Öppnaren har minimum eller olämpliga värden för utgång. Den långa trumffärgen är etablerad, men styrkan räcker inte för utgång.",
           "branches": [],
           "handProfile": {
-            "opener": "Paret når inte 26 gemensamma poäng.",
+            "opener": "Paret når inte 25 gemensamma hp för 3NT eller 26 gemensamma spelpoäng i hjärter-fit.",
             "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
@@ -2818,7 +2818,7 @@
           "analysis": "Öppnaren har tillräckliga värden för utgång men saknar minst trekortsstöd i högfärgen. Med jämn hand blir 3NT alternativet.",
           "branches": [],
           "handProfile": {
-            "opener": "Färre än tre kort i hjärter; paret når minst 26 gemensamma honnörspoäng.",
+            "opener": "Färre än tre kort i hjärter; paret når minst 25 gemensamma honnörspoäng enligt projektregeln.",
             "responder": "Minst sex kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
@@ -3003,7 +3003,7 @@
             {
               "call": "3NT",
               "next": "t28_overforing_spader_sexkort_invit_n5",
-              "label": "Accepterar utan trumfstöd"
+              "label": "Accepterar med 25+ gemensamma hp enligt projektregeln utan trumfstöd"
             },
             {
               "call": "4♠",
@@ -3033,7 +3033,7 @@
           "analysis": "Öppnaren har minimum eller olämpliga värden för utgång. Den långa trumffärgen är etablerad, men styrkan räcker inte för utgång.",
           "branches": [],
           "handProfile": {
-            "opener": "Paret når inte 26 gemensamma poäng.",
+            "opener": "Paret når inte 25 gemensamma hp för 3NT eller 26 gemensamma spelpoäng i spader-fit.",
             "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
@@ -3054,7 +3054,7 @@
           "analysis": "Öppnaren har tillräckliga värden för utgång men saknar minst trekortsstöd i högfärgen. Med jämn hand blir 3NT alternativet.",
           "branches": [],
           "handProfile": {
-            "opener": "Färre än tre kort i spader; paret når minst 26 gemensamma honnörspoäng.",
+            "opener": "Färre än tre kort i spader; paret når minst 25 gemensamma honnörspoäng enligt projektregeln.",
             "responder": "Minst sex kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma spelpoäng för invit."
           }
         },
