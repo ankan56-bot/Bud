@@ -19,7 +19,7 @@ const expected = {
   linkedBranches: 162,
   unlinkedBranches: 115,
   nodesWithoutOutgoing: 187,
-  nodesWithoutHandProfile: 8,
+  nodesWithoutHandProfile: 3,
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
   crossTreeLinks: 7,
@@ -35,5 +35,5 @@ assert.deepStrictEqual(rootWarnings.map(item => item.tree), [
   "T40_SVARSHANDENS_ANDRA_BUD_EFTER_OPPNARENS_ATERBUD"
 ]);
 const missingProfiles = result.warnings.filter(item => item.type === "missing-hand-profile");
-assert.strictEqual(missingProfiles.length, 8);
+assert.strictEqual(missingProfiles.length, 3);
 console.log("Analysis library audit tests passed.");
