@@ -859,8 +859,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Betydelsen av 3NT som slutbud är känd, men numerisk HCP-gräns för att välja budet är inte bekräftad. Behåll som förklarande material, inte som numerisk automatisk regel."
+      "sourceStatus": "user_confirmed",
+      "sourceStatusNote": "25 gemensamma HCP för 3NT är uttryckligen bekräftat av användaren 2026-11-14; endast hp räknas i sang."
     },
     {
       "id": "T10_1H_ENKEL_HOJNING",
@@ -1341,8 +1341,8 @@
           }
         }
       ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Betydelsen av 3NT som slutbud är känd, men numerisk HCP-gräns för att välja budet är inte bekräftad. Behåll som förklarande material, inte som numerisk automatisk regel."
+      "sourceStatus": "user_confirmed",
+      "sourceStatusNote": "25 gemensamma HCP för 3NT är uttryckligen bekräftat av användaren 2026-11-14; endast hp räknas i sang."
     },
     {
       "id": "T19",
