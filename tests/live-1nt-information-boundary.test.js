@@ -124,6 +124,23 @@ assert.equal(R.H(openerWithFourSmallClubs).hp,16);
 assert.equal(live('N',afterMinorInvite,openerWithFourSmallClubs).exp,null,
  'four small cards are not covered by the stated xx/xxx or top-honor cases');
 
+// After Stayman 2♦ opener denies a four-card major. Eleven own HCP
+// guarantee 26 combined HCP against the 15-HCP minimum; ten do not.
+const staymanNoMajorAuction=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2C'},{s:'W',c:'P'},
+ {s:'N',c:'2D'},{s:'E',c:'P'}
+];
+const staymanElevenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C11','C2']);
+assert.equal(R.H(staymanElevenBalanced).hp,11);
+assert.equal(R.H(staymanElevenBalanced).bal,true);
+assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,'3N',
+ '11 own HCP guarantees the 26-HCP 3NT game after Stayman 2D');
+const staymanTenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C2','C3']);
+assert.equal(R.H(staymanTenBalanced).hp,10);
+assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,null,
+ '10 own HCP cannot guarantee 26 and no unverified invitation band is assumed');
+
 const naturalInvite=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2N'},{s:'W',c:'P'}
