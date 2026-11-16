@@ -133,7 +133,7 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.equal(report.cardIntegrityErrors.length, 0, 'All generated deals must contain 52 unique cards and four 13-card hands.');
-assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
+assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed: ' + JSON.stringify(report.exceptions));
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
