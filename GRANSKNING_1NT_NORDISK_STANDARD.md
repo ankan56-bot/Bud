@@ -360,3 +360,21 @@ Sida 4 beskriver svaga/dåliga kort kvalitativt i samband med 1NT-svaren, men an
 Användaren har accepterat 25 sammanlagda honnörspoäng för 3NT. I sang räknas endast HP, inte fördelnings-/trumfpoäng. Detta är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Efter partnerns 1NT (15–17 HP) kan 10 egna HP garantera 3NT live; 9 egna HP kan inte garantera 25.
 
 Användaren har bekräftat 25 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 10 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 9 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
+
+
+### Fortsatt arbete: Stayman-inviter och lågfärgsinvit (2026-11-16)
+
+Fortsatt implementation på arbetsgrenen:
+
+- Efter Stayman 2♥ känns 3♥ igen som invit i öppnarens visade hjärter.
+- Efter Stayman 2♠ känns 3♠ igen som invit i öppnarens visade spader.
+- 2NT efter Stayman 2♠ känns igen som en invit.
+- De här inviterna lämnas fortfarande ej täckta som automatiska styrkebeslut eftersom Nordisk standard s. 4 inte anger numeriska gränser för svarshandens val eller öppnarens accept.
+- Analysbiblioteket har fått T46 `STAYMAN_INVIT_MEANINGS`, ett kvalitativt träd med de tre uttryckliga invitbetydelserna. Det innehåller inga påhittade acceptgrenar.
+- Efter 1NT–3♣/3♦ har analysbiblioteket fått T47 `1NT_MINOR_INVIT`. Det dokumenterar att 3m är invit med bra 6+ lågfärg, att öppnaren passar med xx/xxx utan topphonnör och söker 3NT med A/K/D i 2–3-kortsstöd. Definitionen av "bra" och eventuell numerisk styrkegräns lämnas öppen.
+- Regressionstesterna för öppnarens stöd efter 3♣/3♦ har utökats med fler 2- och 3-kortsstöd, både med och utan topphonnör.
+- Överföringstesterna har utökats med superacceptgränsen: 17 hp och 4+ kort i överföringsfärgen ger 3M; 16 hp med samma färglängd fullföljer normalt med 2M.
+
+**Verifiering:** CI på arbetsgrenen passerar med samtliga 1NT-tester, analysbibliotekets strukturtest, Stayman-analystestet, 1♥/1♠-regressionen och den breda ostörda givarkorpusen. Senaste godkända körning: `43935968651`.
+
+Ingen ändring har gjorts på `main`.
