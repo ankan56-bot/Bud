@@ -32,52 +32,57 @@ const cleanSouth=['S12','S11','S10','S9','S8','H11','H10','H9','H8','D4','D5','C
 const hands=deal(north,cleanSouth);
 assert.equal(R.H(north).hp,16);
 assert.equal(R.H(north).bal,true);
+const originalNodeFor=R.nodeFor;
 const originalDecideLive=R.decideLive;
-let liveCalls=0;
-R.decideLive=function(input){
-  liveCalls++;
-  assert.deepEqual(Object.keys(input).sort(),['auction','dealer','ownHand','seat']);
-  return originalDecideLive(input);
+let afterDealCalls=0,liveCalls=0;
+R.nodeFor=function(state,index){
+  afterDealCalls++;
+  assert.deepEqual(Object.keys(state.hands).sort(),['E','N','S','W'],
+    'the completed-deal facit must receive all four hands');
+  assert.equal(index,state.bids.length-1);
+  return originalNodeFor(state,index);
 };
+R.decideLive=function(){liveCalls++;throw new Error('Facit must not use live-only advice');};
 const result=F.generateUndisturbedFacit({hands,dealer:'N',trainingSide:'NS'});
+R.nodeFor=originalNodeFor;
 R.decideLive=originalDecideLive;
-assert.ok(liveCalls>=3);
+assert.ok(afterDealCalls>=3);
+assert.equal(liveCalls,0);
 assert.equal(result.status,'incomplete');
 assert.deepEqual(result.auction.map(x=>x.c),['1N','P','2H','P','2S','P']);
 assert.equal(result.steps[0].meaning,'15-17 hp, balanserad (även 5-korts högfärg).');
 assert.ok(result.uncovered);
 assert.equal(result.uncovered.seat,'S');
-assert.equal(result.steps[result.steps.length-1].systemStatus,'not_covered');
-assert.equal(result.steps[result.steps.length-1].sourceGap,false);
+assert.equal(result.steps[result.steps.length-1].systemStatus,'source_gap');
+assert.equal(result.steps[result.steps.length-1].sourceGap,true);
 assert.match(result.message,/ofullständig/);
 
 // Guidance-only recommendations must remain distinguishable in the generated facit.
-const realDecideForGuidance=R.decideLive;
+const realNodeForGuidance=R.nodeFor;
 let guidanceCall=0;
-R.decideLive=function(input){
+R.nodeFor=function(state,index){
   guidanceCall++;
   if(guidanceCall===1)return {
     exp:'1N',alt:[],why:'Exempel på vägledande beslut.',conv:'1NT',
     means:function(call){return call==='1N'?'Öppning 1NT.':null},
-    soft:true,informationBoundary:'own_hand_and_public_auction_only'
+    soft:true
   };
   return {
     exp:'P',alt:[],why:'Pass.',conv:'slutbud',
-    means:function(call){return call==='P'?'Pass.':null},
-    informationBoundary:'own_hand_and_public_auction_only'
+    means:function(call){return call==='P'?'Pass.':null}
   };
 };
 const guidanceFacit=F.generateUndisturbedFacit({
   hands,dealer:'N',trainingSide:'NS'
 });
-R.decideLive=realDecideForGuidance;
+R.nodeFor=realNodeForGuidance;
 const guidanceStep=guidanceFacit.steps.find(step=>step.seat==='N'&&step.call==='1N');
 assert.ok(guidanceStep);
 assert.equal(guidanceStep.systemStatus,'strategic_guidance');
 assert.equal(guidanceStep.ruleStatus,'Vägledande bedömning');
 
-// Hidden hands are never passed to decideLive: only the acting player's hand
-// and the public auction are included by the facit orchestrator.
+// The completed-deal facit uses all four hands after the auction is over;
+// live advice is separately tested to use only the acting hand and public auction.
 const noContractHands=deal(
   ['S2','S3','S4','S5','H2','H3','H4','D2','D3','C2','C3','C4','C5'],
   ['S6','S7','S8','S9','H5','H6','H7','D4','D5','C6','C7','C8','C9']
