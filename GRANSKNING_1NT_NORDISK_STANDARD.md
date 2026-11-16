@@ -279,9 +279,9 @@ Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exa
 
 ### Naturlig 2NT-invit efter 1NT – numerisk gräns saknas
 
-Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 26 gemensamma hp är separerad från livebeslutet.
+Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 25 gemensamma hp för 3NT är separerad från livebeslutet.
 
-Direkt 3NT med minst 26 gemensamma honnörspoäng är fortsatt en separat verifierad gräns. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
+Direkt 3NT med minst 25 gemensamma honnörspoäng är fortsatt en separat verifierad gräns. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
 
 
 ### Stayman-inviter – endast utgångsgränsen är numeriskt fastställd
