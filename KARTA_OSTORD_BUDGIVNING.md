@@ -157,3 +157,12 @@ Källkodsinventeringen visar att vissa nuvarande rättningsvägar läser partner
 
 Detta kan vara korrekt i efterhandsrättning men är inte tillåtet i ett livebeslut för en spelande bot. Nästa kodinventering ska klassificera varje användning som **live**, **efterhandsanalys** eller **testhjälp**. Ingen ändring görs innan samtliga anrop är kartlagda. Den publicerade tvåspelarbudgivningen från PR #12 ska bevaras; detta är en framtida informationsgräns för botens beslut, inte ett skäl att ändra session-/UI-koden nu.
 
+
+
+## Uppdaterad granskningsstatus 2026-11-16
+
+- Den enda ej täckta positionen i 100-givarsprovet för 1♥/1♠ har rekonstruerats som svar efter en sekvens som motorn tolkar som splinter: `1♠–2♦–3♥`. T40 saknar motsvarande svarshandsgren.
+- Splintertolkningen och dess styrkekrav är inte användarbekräftade systemregler. 13+ HTP och minst fyra korts stöd är bekräftat för Stenberg 2NT, inte för splinter. `reb1()` kontrollerar `hp>=13`, medan T39:s text säger 13+ STP. Detta är en dokumenterad kod-/regelkonflikt.
+- Rättningsmotorn och analysbiblioteket är ännu parallella strukturer. Se `KORSREFERENS_RUNTIME_NODER.md` för funktionell koppling och alla sekvenskollisioner.
+- `findMatches()` finns nu som diagnostiskt API och visar samtliga sekvensprefixträffar. Befintlig `findMatch()` behåller första-träff-beteendet tills handprofil- och rollmatchning är implementerad.
+- En CI-karaktärisering reproducerar att Buddie Öst kan välja Pass eller 4♥ med samma egen hand och samma auktion, beroende på Västs dolda kort. Live-/efterhandsseparation är blockerande före test av roboten som rättvis bridgepartner.
