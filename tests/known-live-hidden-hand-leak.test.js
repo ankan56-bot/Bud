@@ -7,7 +7,7 @@
 const assert = require("node:assert/strict");
 const R = require("../rattningsmotor.js");
 
-const opener = [
+const east = [
   "H14","H13","H12","H11","H2",
   "S13","S7","S6","D8","D6","D4","C9","C5"
 ];
@@ -25,25 +25,25 @@ function fullDeal(south) {
   for (const suit of ["S","H","D","C"]) {
     for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
   }
-  const used = new Set([...opener, ...south]);
+  const used = new Set([...east, ...south]);
   assert.equal(used.size, 26, "North and South hands must be disjoint");
   const rest = deck.filter(card => !used.has(card));
   assert.equal(rest.length, 26);
-  return { N: opener, E: rest.slice(0,13), S: south, W: rest.slice(13,26) };
+  return { E: east, S: rest.slice(0,13), W: south, N: rest.slice(13,26) };
 }
 
 const auction = [
-  {s:"N",c:"1H"},
-  {s:"E",c:"P"},
-  {s:"S",c:"3H"},
-  {s:"W",c:"P"},
-  {s:"N",c:"P"}
+  {s:"E",c:"1H"},
+  {s:"S",c:"P"},
+  {s:"W",c:"3H"},
+  {s:"N",c:"P"},
+  {s:"E",c:"P"}
 ];
 const dealA = fullDeal(responderA);
 const dealB = fullDeal(responderB);
-assert.deepStrictEqual(dealA.N, dealB.N, "The acting player's hand must be identical");
+assert.deepStrictEqual(dealA.E, dealB.E, "The acting player's hand must be identical");
 
-const pointsA = R.partnershipPoints(R.H(opener), R.H(responderA), "H");
+const pointsA = R.partnershipPoints(R.H(east), R.H(responderA), "H");
 const pointsB = R.partnershipPoints(R.H(opener), R.H(responderB), "H");
 assert.equal(pointsA, 25);
 assert.equal(pointsB, 26);
@@ -57,4 +57,4 @@ assert.equal(decisionB.exp, "4H");
 assert.notEqual(decisionA.exp, decisionB.exp,
   "Known defect should remain visible until live decisions stop reading partner's hidden cards");
 
-console.log("KNOWN DEFECT reproduced: identical own hand + auction produced Pass vs 4H from hidden partner cards.");
+console.log("KNOWN DEFECT reproduced for Buddie's East seat: identical own hand + auction produced Pass vs 4H from West's hidden cards.");
