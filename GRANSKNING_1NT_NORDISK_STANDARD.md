@@ -15,7 +15,7 @@ Viktigast:
 2. Stayman/överföringsstarten är i huvudsak igenkänd, men koden lägger till styrkegränser som PDF:en inte anger.
 3. Fortsättningen efter Stayman 1NT–2♣–2♥–2NT/3NT är uttryckligen beskriven på s. 4 men delvis saknad eller felaktig i koden.
 4. Överföringstabellerna på s. 5 är mycket mer detaljerade än den nuvarande funktionen `transfer2`; flera budalternativ är bara alternativa förklaringar i koden, inte fungerande beslut.
-5. Analysbibliotekets 4NT-metadata motsäger PDF:ens essfrågetabell på s. 7. Den måste korrigeras innan 4NT-trädet kan betraktas som verifierat.
+5. Analysbibliotekets fyr-essmetadata motsäger PDF:ens essfrågetabell på s. 7. Den måste korrigeras. Samtidigt bekräftar s. 5 uttryckligen RKC efter fullföljd överföring.
 6. Livebeslut får inte använda partnerns verkliga hp, fördelning eller fit. Flera av de granskade funktionerna gör just detta.
 
 ## 1. Öppningen 1NT
@@ -174,7 +174,9 @@ Då räknas endast fyra ess:
 - 5♣ ska visa 0 eller 4, inte bara 0.
 - PDF:en anger inte 5NT som svar för fyra ess i detta läge; 5♠ visar 3 ess.
 
-Bibliotekets `oneNTTransferRkc` anger dessutom att 4NT efter fullföljd överföring alltid är RKC. PDF:en säger att femkorts trumf inte automatiskt är fastställd; den anger fastställd trumf genom bjuden och höjd färg eller indirekt efter Staymans 2♥/2♠-svar. RKC efter enbart överföringssekvensen är därför inte styrkt av den här texten och ska inte behandlas som verifierad regel.
+Till skillnad från en allmän slutsats om trumffit anger PDF:ens överföringstabell på s. 5 uttryckligen att 4NT efter 1NT–2♦–2♥ är RKC med hjärter som trumf och att 4NT efter 1NT–2♥–2♠ är RKC med spader som trumf. Den regeln ska därför behållas. Den är en särskild uttrycklig överenskommelse i systemet, även om en full åttakortsfit inte alltid är känd.
+ 
+S. 7 ger dessutom en separat regel om indirekt fastställd trumf efter 2♥/2♠ som svar på Stayman 2♣. Därför ska 4NT efter 1NT–2♣–2♥ eller 1NT–2♣–2♠ också klassificeras som fem-ess-RKC. Efter 2♦ (ingen högfärg) är ingen trumf fastställd; 4NT är då fyr-essfråga.
 
 ### Stayman och fastställd trumf
 Efter Stayman-svar 2♥/2♠ anger PDF:en att trumf kan vara indirekt fastställd. Därför ska 4NT i dessa auktioner prövas som fem-ess-RKC enligt s. 7. Efter 2♦ (ingen högfärg) är ingen trumf fastställd; 4NT är då fyr-essfråga.
@@ -192,7 +194,7 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 ### P0 – källkonflikter som måste rättas före vidare 1NT-utbyggnad
 1. Rätta fyr-esssvaren i `oneNTNoTrumpAceAsk` enligt s. 7.
 2. Separera 4NT efter Stayman 2♥/2♠ (fem nyckelkort) från 4NT efter 2♦ eller direkt 1NT (fyra ess).
-3. Ta bort eller markera som obekräftad generell RKC efter fullföljd överföring, tills det finns separat auktoritativt stöd.
+3. Behåll den uttryckliga RKC-regeln efter fullföljd överföring (s. 5), och säkerställ att den klassificeras skilt från fyr-essfrågan utan trumf.
 4. Implementera de uttryckliga Staymanfortsättningarna efter 2♥–2NT och 2♥–3NT.
 
 ### P1 – beslutsträd som saknar korrekt källstyrd modell
@@ -225,8 +227,8 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 
 ## 12. Slutlig status
 
-**Verifierat mot PDF:** 1NT-öppningens styrka/balans, grundbetydelserna för Stayman och överföringsbuden, öppnarens Staymansvar, de särskilda 2♥-Staymanfortsättningarna, lågfärgsreläets grundstruktur samt skillnaden mellan fyra och fem ess.
+**Verifierat mot PDF:** 1NT-öppningens styrka/balans, grundbetydelserna för Stayman och överföringsbuden, öppnarens Staymansvar, de särskilda 2♥-Staymanfortsättningarna, lågfärgsreläets grundstruktur, uttrycklig RKC efter fullföljd överföring samt skillnaden mellan fyra och fem ess.
 
-**Kodavvikelser identifierade:** obelagda styrkegränser, saknade Staymanfortsättningar, ofullständiga överföringsgrenar, dold-hand-beroenden och felaktig fyr-essmetadata.
+**Kodavvikelser identifierade:** obelagda styrkegränser, saknade Staymanfortsättningar, ofullständiga överföringsgrenar, dold-hand-beroenden och felaktig fyr-essmetadata. Överförings-RKC är däremot uttryckligen källbelagd och ska vara kvar.
 
 **Ingen produktionskod ändrad.** Nästa implementation ska börja med P0 och ha separata regressionstester. Efter P0 fortsätter P1 i samma ordning. Konkurrensbudgivningen och `main` lämnas orörda.
