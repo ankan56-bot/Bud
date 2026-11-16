@@ -63,8 +63,8 @@ assert.equal(result(fiveHeartBothMinors,afterHeartTransfer).exp,null,
   'no invented priority when both minor suits meet the 4-card condition');
 
 const fiveFiveMajors=hand(['S13','S2','S3','S4','S5','H13','H12','H11','H4','H5','D2','D3','C2']);
-assert.equal(result(fiveFiveMajors,afterSpadeTransfer).exp,'3H',
-  '5-5 majors after spade transfer: invitational 3H');
+assert.equal(result(fiveFiveMajors,afterSpadeTransfer).exp,null,
+  '5-5 majors identifies the invit profile, but strength is unquantified');
 
 const heartTransferOverlap=hand(['H14','H13','H12','H11','H10','S14','S13','S12','S11','C14','C13','C12','C11']);
 assert.equal(result(heartTransferOverlap,afterHeartTransfer).exp,null,
@@ -90,8 +90,8 @@ assert.equal(result(invitSixHearts,afterHeartTransfer).exp,null,
 assert.equal(result(gameSixHearts,afterHeartTransfer).exp,null,
   'same 6+ shape with more HCP remains unclassified without a source boundary');
 const fiveFiveSpade=hand(['S13','S12','S11','S10','S9','H13','H12','H11','H10','H9','D2','D3','C2']);
-assert.equal(result(fiveFiveSpade,afterSpadeTransfer).exp,'3H',
-  '5-5 majors after spade transfer: source explicitly describes invit 3H');
+assert.equal(result(fiveFiveSpade,afterSpadeTransfer).exp,null,
+  '5-5 majors still lacks the numeric strength threshold for invit 3H');
 
 // Trees with unverified numerical strength bands remain documented but
 // must not be selected as authoritative correction/analysis nodes.
