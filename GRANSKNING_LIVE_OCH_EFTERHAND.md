@@ -201,3 +201,13 @@ En separat genomgång av tidigare projektdiskussioner visar att följande inte h
 Det som är uttryckligen bekräftat i tidigare diskussion är **Stenberg 2NT efter 1M med 13+ HTP och minst fyra korts stöd**. Detta är en annan konvention och får inte användas som automatiskt styrkekrav för splinter.
 
 Nuvarande `reb1()` använder `hp>=13` i splintervillkoret, medan nodtexten beskriver 13+ STP. Det är dessutom en intern kod-/dokumentationskonflikt: funktionen kontrollerar HP, inte STP. Inga ändringar ska göras innan rätt splintervillkor och efterföljande budväg har verifierats mot den auktoritativa systemkällan.
+### 10.1 Ytterligare reproducerbart exempel i 1NT-svar – Buddie Öst
+
+Jag har även låst ett andra exempel i `tests/known-live-hidden-hand-leak.test.js` där Öst är svarshand till Västs 1NT:
+
+- Östs hand är identisk: 10 hp, balanserad 5-3-3-2, fem ruter och inga fyrkortshögfärger.
+- Offentlig auktion är identisk: Väst 1NT – Nord Pass – Öst (beslut).
+- Västs faktiska hand har i giv A 15 hp, i giv B 16 hp. Båda är balanserade 1NT-öppningar inom 15–17 hp.
+- Nuvarande motor väljer 2NT i giv A (25 faktiska gemensamma hp) och 3NT i giv B (26 faktiska gemensamma hp).
+
+Öst känner endast till att partnern har 15–17 hp. Motorn använder ändå partnerns exakta dolda hp för att välja mellan invit och utgång. Det här visar att informationsläckan även påverkar den centrala 1NT-budgivningen och inte bara accept av högfärgsinvit.
