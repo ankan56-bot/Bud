@@ -272,11 +272,13 @@
         "delkontrakt"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning.",
-        "2♦ är överföring och visar minst fem hjärter; öppnaren fullföljer med 2♥ eller superaccepterar med 3♥ vid 17 hp och 4+ hjärter.",
-        "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med 6+ hjärter som invit.",
-        "10–15 hp: med exakt fem hjärter och jämn hand väljs 3NT vid 26+ gemensamma hp, annars 2NT-invit vid 22–25; med 6+ hjärter väljs 4♥ vid 26+ gemensamma spelpoäng, annars 3♥-invit vid 22–25.",
-        "16+ hp: slamintresse; valet mellan kontrollbud och 4NT RKC är inte automatiserat."
+        "1NT = 15–17 hp och balanserad hand.",
+        "2♦ är överföring och visar minst fem kort i hjärter; öppnaren fullföljer normalt med 2♥.",
+        "0–7 hp: pass med minst fem kort i överföringsfärgen.",
+        "8–9 hp: 2NT-invit med jämn hand och exakt fem kort; 3♥-invit med minst sex kort.",
+        "10–15 hp: 3NT med jämn hand och exakt fem kort; 4♥ med minst sex kort.",
+        "2♠ är rondkrav med 5+♥ och 4+♠. 3♣/3♦ är utgångskrav med 5+♥ och 4+ i bjuden lågfärg.",
+        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf."
       ],
       "root": "t03_n0",
       "nodes": [
@@ -315,73 +317,71 @@
             "Pass",
             "2♥"
           ],
-          "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. RKC 1430 är synkroniserat i analysbibliotek och rättningsmotor. Fortsättningen efter nyckelkortssvaren hanteras separat och lämnas ej täckt där systemregler saknas.",
+          "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer fortsättning enligt styrka och färglängd i tabellen på Nordisk standard s. 5.",
+          "analysis": "0–7 hp: pass. 8–9 hp: 2NT med jämn hand och exakt fem hjärter, eller 3♥ med 6+ hjärter. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med 6+ hjärter. Dessutom: 2♠ rondkrav med 5+♥/4+♠; 3♣/3♦ utgångskrav med 5+♥/4+ i bjuden lågfärg; 4♣/4♦ kontrollbud och slamintresse; 4NT RKC.",
           "branches": [
             {
               "call": "Pass",
               "next": null,
-              "label": "0–8 hp – svagt slutbud"
+              "label": "0–7 hp; minst fem hjärter"
             },
             {
               "call": "2NT",
-              "next": "t19_0",
-              "label": "9 hp exakt fem hjärter eller 10+ hp med 22–25 gemensamma hp – invit"
+              "next": null,
+              "label": "8–9 hp, jämn hand, exakt fem hjärter – invit"
             },
             {
               "call": "3♥",
-              "next": "t27_overforing_hjarter_sexkort_invit_n2",
-              "label": "9 hp med 6+ hjärter eller 10+ hp med 22–25 gemensamma spelpoäng – invit"
+              "next": null,
+              "label": "8–9 hp och 6+ hjärter – invit"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "Exakt fem hjärter, jämn hand och 26+ gemensamma honnörspoäng"
+              "label": "10–15 hp, jämn hand, exakt fem hjärter – välj sangutgång"
             },
             {
               "call": "4♥",
               "next": null,
-              "label": "6+ hjärter, minst 8-kortsfit och 26+ gemensamma spelpoäng"
+              "label": "10–15 hp och 6+ hjärter – utgång"
             },
             {
               "call": "2♠",
               "next": null,
-              "label": "6–9 hp, 5+ hjärter och 4+ spader – rondkrav; fortsättningen är inte färdig"
+              "label": "5+ hjärter och 4+ spader – rondkrav"
             },
             {
               "call": "3♣",
               "next": null,
-              "label": "10+ hp, 5+ hjärter och 4+ klöver – utgångskrav; fortsättningen inte färdig"
+              "label": "5+ hjärter och 4+ klöver – utgångskrav"
             },
             {
               "call": "3♦",
               "next": null,
-              "label": "10+ hp, 5+ hjärter och 4+ ruter – utgångskrav; fortsättningen inte färdig"
+              "label": "5+ hjärter och 4+ ruter – utgångskrav"
             },
             {
               "call": "4♣",
               "next": null,
-              "label": "Kontrollbud; val och fortsättning inte färdig"
+              "label": "Kontrollbud och slamintresse i hjärter"
             },
             {
               "call": "4♦",
               "next": null,
-              "label": "Kontrollbud; val och fortsättning inte färdig"
+              "label": "Kontrollbud och slamintresse i hjärter"
             },
             {
               "call": "4NT",
-              "next": "t43_n2",
-              "label": "RKC 1430 med hjärter som trumf; svaren efter 4NT byggs senare"
+              "next": null,
+              "label": "RKC med hjärter som trumf"
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen och visar minst två hjärter enligt motorns betydelse. Tillsammans med svarshandens 5+ hjärter blir fitten minst sju kort, men inte nödvändigtvis åtta.",
-            "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
+            "opener": "15–17 hp, balanserad 1NT-hand; öppnaren har fullföljt överföringen.",
+            "responder": "Minst fem hjärter. Se separata styrke- och längdvillkor för varje gren."
           }
         }
-      ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      ]
     },
     {
       "id": "T04_INVIT_2NT_PASS",
@@ -588,11 +588,13 @@
         "delkontrakt"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning.",
-        "2♦ är överföring och visar minst fem hjärter; öppnaren fullföljer med 2♥ eller superaccepterar med 3♥ vid 17 hp och 4+ hjärter.",
-        "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med 6+ hjärter som invit.",
-        "10–15 hp: med exakt fem hjärter och jämn hand väljs 3NT vid 26+ gemensamma hp, annars 2NT-invit vid 22–25; med 6+ hjärter väljs 4♥ vid 26+ gemensamma spelpoäng, annars 3♥-invit vid 22–25.",
-        "16+ hp: slamintresse; valet mellan kontrollbud och 4NT RKC är inte automatiserat."
+        "1NT = 15–17 hp och balanserad hand.",
+        "2♦ är överföring och visar minst fem kort i hjärter; öppnaren fullföljer normalt med 2♥.",
+        "0–7 hp: pass med minst fem kort i överföringsfärgen.",
+        "8–9 hp: 2NT-invit med jämn hand och exakt fem kort; 3♥-invit med minst sex kort.",
+        "10–15 hp: 3NT med jämn hand och exakt fem kort; 4♥ med minst sex kort.",
+        "2♠ är rondkrav med 5+♥ och 4+♠. 3♣/3♦ är utgångskrav med 5+♥ och 4+ i bjuden lågfärg.",
+        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf."
       ],
       "root": "t07_n0",
       "nodes": [
@@ -631,73 +633,71 @@
             "Pass",
             "2♥"
           ],
-          "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem hjärter eller 3♥ med minst sex. 10–15 hp: exakt fem hjärter och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex hjärter – 4♥ vid minst 26 gemensamma spelpoäng, annars 3♥-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 2♠ kan visa 5+ hjärter och 4+ spader. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. RKC 1430 är synkroniserat i analysbibliotek och rättningsmotor. Fortsättningen efter nyckelkortssvaren hanteras separat och lämnas ej täckt där systemregler saknas.",
+          "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer fortsättning enligt styrka och färglängd i tabellen på Nordisk standard s. 5.",
+          "analysis": "0–7 hp: pass. 8–9 hp: 2NT med jämn hand och exakt fem hjärter, eller 3♥ med 6+ hjärter. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med 6+ hjärter. Dessutom: 2♠ rondkrav med 5+♥/4+♠; 3♣/3♦ utgångskrav med 5+♥/4+ i bjuden lågfärg; 4♣/4♦ kontrollbud och slamintresse; 4NT RKC.",
           "branches": [
             {
               "call": "Pass",
               "next": null,
-              "label": "0–8 hp – svagt slutbud"
+              "label": "0–7 hp; minst fem hjärter"
             },
             {
               "call": "2NT",
-              "next": "t19_0",
-              "label": "9 hp exakt fem hjärter eller 10+ hp med 22–25 gemensamma hp – invit"
+              "next": null,
+              "label": "8–9 hp, jämn hand, exakt fem hjärter – invit"
             },
             {
               "call": "3♥",
-              "next": "t27_overforing_hjarter_sexkort_invit_n2",
-              "label": "9 hp med 6+ hjärter eller 10+ hp med 22–25 gemensamma spelpoäng – invit"
+              "next": null,
+              "label": "8–9 hp och 6+ hjärter – invit"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "Exakt fem hjärter, jämn hand och 26+ gemensamma honnörspoäng"
+              "label": "10–15 hp, jämn hand, exakt fem hjärter – välj sangutgång"
             },
             {
               "call": "4♥",
               "next": null,
-              "label": "6+ hjärter, minst 8-kortsfit och 26+ gemensamma spelpoäng"
+              "label": "10–15 hp och 6+ hjärter – utgång"
             },
             {
               "call": "2♠",
               "next": null,
-              "label": "6–9 hp, 5+ hjärter och 4+ spader – rondkrav; fortsättningen är inte färdig"
+              "label": "5+ hjärter och 4+ spader – rondkrav"
             },
             {
               "call": "3♣",
               "next": null,
-              "label": "10+ hp, 5+ hjärter och 4+ klöver – utgångskrav; fortsättningen inte färdig"
+              "label": "5+ hjärter och 4+ klöver – utgångskrav"
             },
             {
               "call": "3♦",
               "next": null,
-              "label": "10+ hp, 5+ hjärter och 4+ ruter – utgångskrav; fortsättningen inte färdig"
+              "label": "5+ hjärter och 4+ ruter – utgångskrav"
             },
             {
               "call": "4♣",
               "next": null,
-              "label": "Kontrollbud; val och fortsättning inte färdig"
+              "label": "Kontrollbud och slamintresse i hjärter"
             },
             {
               "call": "4♦",
               "next": null,
-              "label": "Kontrollbud; val och fortsättning inte färdig"
+              "label": "Kontrollbud och slamintresse i hjärter"
             },
             {
               "call": "4NT",
-              "next": "t43_n2",
-              "label": "RKC 1430 med hjärter som trumf; svaren efter 4NT byggs senare"
+              "next": null,
+              "label": "RKC med hjärter som trumf"
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, balanserad 1NT-hand; 2♥ fullföljer den artificiella överföringen och visar minst två hjärter enligt motorns betydelse. Tillsammans med svarshandens 5+ hjärter blir fitten minst sju kort, men inte nödvändigtvis åtta.",
-            "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
+            "opener": "15–17 hp, balanserad 1NT-hand; öppnaren har fullföljt överföringen.",
+            "responder": "Minst fem hjärter. Se separata styrke- och längdvillkor för varje gren."
           }
         }
-      ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      ]
     },
     {
       "id": "T08_OVERFORING_SPADER",
@@ -710,11 +710,13 @@
         "delkontrakt"
       ],
       "conditions": [
-        "1NT = 15–17 hp och jämn fördelning.",
-        "2♥ är överföring och visar minst fem spader; öppnaren fullföljer med 2♠ eller superaccepterar med 3♠ vid 17 hp och 4+ spader.",
-        "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med 6+ spader som invit.",
-        "10–15 hp: med exakt fem spader och jämn hand väljs 3NT vid 26+ gemensamma hp, annars 2NT-invit vid 22–25; med 6+ spader väljs 4♠ vid 26+ gemensamma spelpoäng, annars 3♠-invit vid 22–25.",
-        "16+ hp: slamintresse; valet mellan kontrollbud och 4NT RKC är inte automatiserat."
+        "1NT = 15–17 hp och balanserad hand.",
+        "2♥ är överföring och visar minst fem kort i spader; öppnaren fullföljer normalt med 2♠.",
+        "0–7 hp: pass med minst fem kort i överföringsfärgen.",
+        "8–9 hp: 2NT-invit med jämn hand och exakt fem kort; 3♠-invit med minst sex kort.",
+        "10–15 hp: 3NT med jämn hand och exakt fem kort; 4♠ med minst sex kort.",
+        "3♥ är invit med minst 5-5 i båda högfärgerna; 3♣/3♦ är utgångskrav med 5+♠ och 4+ i bjuden lågfärg.",
+        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf."
       ],
       "root": "t08_n0",
       "nodes": [
@@ -753,73 +755,71 @@
             "Pass",
             "2♠"
           ],
-          "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer därefter pass, invit, utgång eller slamväg efter styrka och längd.",
-          "analysis": "0–8 hp: pass. 9 hp: 2NT med exakt fem spader eller 3♠ med minst sex. 10–15 hp: exakt fem spader och jämn hand – 3NT vid minst 26 gemensamma honnörspoäng, 2NT-invit vid 22–25; minst sex spader – 4♠ vid minst 26 gemensamma spelpoäng, annars 3♠-invit vid 22–25. Med 10+ hp och sidofärg kan 3♣/3♦ vara utgångskrav; 3♥ kan visa 5-5 i högfärgerna som invit. Vid 16+ hp är valet mellan kontrollbud och 4NT RKC ännu inte automatiserat. RKC 1430 är synkroniserat i analysbibliotek och rättningsmotor. Fortsättningen efter nyckelkortssvaren hanteras separat och lämnas ej täckt där systemregler saknas.",
+          "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer fortsättning enligt styrka och färglängd i tabellen på Nordisk standard s. 5.",
+          "analysis": "0–7 hp: pass. 8–9 hp: 2NT med jämn hand och exakt fem spader, eller 3♠ med 6+ spader. 10–15 hp: 3NT med jämn hand och exakt fem spader, eller 4♠ med 6+ spader. Dessutom: 3♥ invit med 5-5 i högfärgerna; 3♣/3♦ utgångskrav med 5+♠/4+ i bjuden lågfärg; 4♣/4♦ kontrollbud och slamintresse; 4NT RKC.",
           "branches": [
             {
               "call": "Pass",
               "next": null,
-              "label": "0–8 hp – svagt slutbud"
+              "label": "0–7 hp; minst fem spader"
             },
             {
               "call": "2NT",
-              "next": "t20_0",
-              "label": "9 hp exakt fem spader eller 10+ hp med 22–25 gemensamma hp – invit"
+              "next": null,
+              "label": "8–9 hp, jämn hand, exakt fem spader – invit"
             },
             {
               "call": "3♠",
-              "next": "t28_overforing_spader_sexkort_invit_n2",
-              "label": "9 hp med 6+ spader eller 10+ hp med 22–25 gemensamma spelpoäng – invit"
+              "next": null,
+              "label": "8–9 hp och 6+ spader – invit"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "Exakt fem spader, jämn hand och 26+ gemensamma honnörspoäng"
+              "label": "10–15 hp, jämn hand, exakt fem spader – välj sangutgång"
             },
             {
               "call": "4♠",
               "next": null,
-              "label": "6+ spader, minst 8-kortsfit och 26+ gemensamma spelpoäng"
+              "label": "10–15 hp och 6+ spader – utgång"
             },
             {
               "call": "3♥",
               "next": null,
-              "label": "6–9 hp, 5-5 i högfärgerna – invit; fortsättningen inte färdig"
+              "label": "8–9 hp och 5-5 i högfärgerna – invit"
             },
             {
               "call": "3♣",
               "next": null,
-              "label": "10+ hp, 5+ spader och 4+ klöver – utgångskrav; fortsättningen inte färdig"
+              "label": "5+ spader och 4+ klöver – utgångskrav"
             },
             {
               "call": "3♦",
               "next": null,
-              "label": "10+ hp, 5+ spader och 4+ ruter – utgångskrav; fortsättningen inte färdig"
+              "label": "5+ spader och 4+ ruter – utgångskrav"
             },
             {
               "call": "4♣",
               "next": null,
-              "label": "Kontrollbud; val och fortsättning inte färdig"
+              "label": "Kontrollbud och slamintresse i spader"
             },
             {
               "call": "4♦",
               "next": null,
-              "label": "Kontrollbud; val och fortsättning inte färdig"
+              "label": "Kontrollbud och slamintresse i spader"
             },
             {
               "call": "4NT",
-              "next": "t43_n3",
-              "label": "RKC 1430 med spader som trumf; svaren efter 4NT byggs senare"
+              "next": null,
+              "label": "RKC med spader som trumf"
             }
           ],
           "handProfile": {
-            "opener": "15–17 hp, balanserad 1NT-hand; 2♠ fullföljer den artificiella överföringen och visar minst två spader enligt motorns betydelse. Tillsammans med svarshandens 5+ spader blir fitten minst sju kort, men inte nödvändigtvis åtta.",
-            "responder": "Minst fem spader; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
+            "opener": "15–17 hp, balanserad 1NT-hand; öppnaren har fullföljt överföringen.",
+            "responder": "Minst fem spader. Se separata styrke- och längdvillkor för varje gren."
           }
         }
-      ],
-      "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      ]
     },
     {
       "id": "T09_1NT_DIREKT_3NT",
@@ -1455,7 +1455,7 @@
         }
       ],
       "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      "sourceStatusNote": "Responderns invit är källbelagd, men öppnarens accept/pass efter inviten är inte definierad i Nordisk standard s. 5. Trädet behålls som granskningsmaterial och får inte matchas auktoritativt."
     },
     {
       "id": "T20",
@@ -1586,7 +1586,7 @@
         }
       ],
       "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      "sourceStatusNote": "Responderns invit är källbelagd, men öppnarens accept/pass efter inviten är inte definierad i Nordisk standard s. 5. Trädet behålls som granskningsmaterial och får inte matchas auktoritativt."
     },
     {
       "id": "T21",
@@ -2857,7 +2857,7 @@
         }
       ],
       "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      "sourceStatusNote": "Responderns invit är källbelagd, men öppnarens accept/pass efter inviten är inte definierad i Nordisk standard s. 5. Trädet behålls som granskningsmaterial och får inte matchas auktoritativt."
     },
     {
       "id": "T28_OVERFORING_SPADER_SEXKORT_INVIT",
@@ -3093,7 +3093,7 @@
         }
       ],
       "sourceStatus": "provisional_source_gap",
-      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
+      "sourceStatusNote": "Responderns invit är källbelagd, men öppnarens accept/pass efter inviten är inte definierad i Nordisk standard s. 5. Trädet behålls som granskningsmaterial och får inte matchas auktoritativt."
     },
     {
       "id": "T29_1H_1S_KONKURRENS",
