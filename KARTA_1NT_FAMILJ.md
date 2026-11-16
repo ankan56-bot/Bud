@@ -12,17 +12,17 @@ Rättningsmotorns befintliga kod är nulägesbeskrivning – inte automatiskt be
 
 ## 1. Öppning och svarshandens första bud
 
-Runtime-funktion: `ntResp(h,k,openerCards)`.
+Runtime-funktion: `ntResp(h,k,openerCards)`. I livevarianten används 1NT-öppningens offentliga 15–17-intervall; partnerns exakta kort används inte.
 
 | Sekvens/situation | Nuvarande kodbeteende | Granskningsstatus |
 |---|---|---|
-| 1NT–2♣ | Stayman när svarshanden har minst fyra kort i en högfärg och uppfyller kodens styrkegräns | Kontrollera exakt styrkeintervall och eventuella undantag mot Nordisk Standard-texten |
+| 1NT–2♣ | Stayman med egen 4-korts högfärg eller slamintresse | Egen fyrkortshögfärg är källbelagd; slamintresse utan egen 4-högfärg behöver separat modellering |
 | 1NT–2♦ | Överföring till hjärter vid minst fem hjärter | Sekvens identifierad; fortsättningsregler granskas separat |
 | 1NT–2♥ | Överföring till spader vid minst fem spader | Sekvens identifierad; fortsättningsregler granskas separat |
-| 1NT–2♠ | Relä till 3 lågfärg med lång lågfärg i svag hand | Systemkälla/alla handvillkor behöver verifieras |
-| 1NT–2NT | Balanserad invit utan fyrkorts högfärg | Poänggräns och balansvillkor behöver verifieras |
-| 1NT–3♣/3♦ | Invit med bra sexkortslågfärg | Definitionen av ”bra” och exakta villkor behöver verifieras |
-| 1NT–3NT | Direkt sangutgång | Kontrollera att beslutet baseras på korrekt gemensam styrka i livebudgivning |
+| 1NT–2♠ | Svagt lågfärgsrelä med 6+ lågfärg eller 5-5 lågfärger | Källbelagt s. 4–5; styrkebeskrivningen är kvalitativ och prioritet mot andra svar ska testas |
+| 1NT–2NT | Naturlig invit med balanserad hand utan 4-korts högfärg | Betydelsen källbelagd s. 4; exakt numeriskt HP-intervall anges inte |
+| 1NT–3♣/3♦ | Invit med bra 6+ lågfärg | Källbelagt s. 4; kvaliteten på ”bra” behöver preciseras |
+| 1NT–3NT | Slutbud i sang | Källbelagd betydelse s. 4; livevalet måste respektera partnerns 15–17-intervall |
 
 **Teknisk risk:** Funktionen tar emot `openerCards` och räknar gemensamma hp. Detta är efterhandsinformation och får inte styra svarshandens livebud. Livevarianten ska enbart använda svarshandens egen hand och den offentliga betydelsen av 1NT.
 
@@ -41,12 +41,13 @@ Kodens val av 2♥ framför 2♠ när öppnaren har båda fyrkorts högfärgerna
 
 ## 3. Svarshandens fortsättning efter Stayman
 
-Runtime-funktion: `stay2(h,reply,openerCards)`.
+Runtime-funktion: `stay2(h,reply,openerCards)`; de källstyrda 2NT-/nya-färggrenarna returnerar innan någon dold partnerhand behövs.
 
-Identifierade vägar:
-- Efter 2♦ hanteras bland annat balanserad invit/utgång och en obalanserad femkortshögfärg.
-- Efter visad högfärg hanteras fit, invit och utgång.
-- Kodens gränser använder gemensamma hp eller gemensamma spelpoäng beroende på om det finns högfärgsfit.
+Källverifierade vägar enligt sida 4:
+- Efter 2♥ visar svarshandens 2NT exakt fyra spader.
+- Efter 2♦, 2♥ eller 2♠ är en ny färg naturlig och utgångskrav: 5+ kort i ny högfärg eller 4+ kort i ny lågfärg.
+- Om flera nya färger samtidigt uppfyller längdkraven lämnas prioriteten ej täckt.
+- Inviter med 2NT eller 3 i öppnarens visade högfärg är definierade som inviter, men öppnarens exakta accept/pass fortsättning kräver egen kontroll mot dokumentets fortsättningsregler.
 
 **Öppna luckor som redan dokumenterats i givarrapporten:**
 - Obalanserad invitstyrka efter 1NT–2♣–2♥ utan användbar fit.
@@ -155,3 +156,22 @@ Stayman sida 4 har också implementerats tydligare: efter 2♦, 2♥ eller 2♠ 
 Nya regressionstester:
 - `tests/nt-transfer-source-boundaries.test.js`: exakta styrkeintervall, fem-/sexkortsfärg och 5-5 högfärg.
 - `tests/nt-stayman-continuations.test.js`: naturliga utgångskravsbud efter samtliga Stayman-svar samt 2NT med exakt fyra spader efter 2♥.
+
+
+## 11. Live 1NT – första säkra implementation
+
+`decideLive` accepterar nu ostörda auktioner i 1NT-familjen och använder `nodeForRaw` i stället för den efterhandsbaserade `nodeFor`. Det förhindrar att den generella kontrollen av missad utgång/slam läser partnerns dolda hand i ett livebeslut.
+
+Källstyrda och handbaserade grenar som nu kan avgöras med enbart egen hand och offentlig auktion:
+- Eget svar på partnerns 1NT: Stayman med egen 4-korts högfärg, överföring med 5+ högfärg, samt överföringsfortsättningarna med styrkeintervallen på sida 5.
+- Öppnarens Staymansvar och fullföljning/superaccept av överföring.
+- Stayman 2NT efter 2♥ med exakt fyra spader; öppnarens 3♠/4♠-val med egen 4-4 och 15–16/17 hp.
+- Naturlig ny färg efter Stayman som utgångskrav.
+- Överföringsfortsättning med egen hand.
+
+Gränser som uttryckligen lämnas ej täckta live:
+- Öppnarens accept/pass efter 2NT- eller 3M-invit när det skulle kräva partnerns exakta honnörspoäng.
+- Stayman-invit/utgång där den exakta gemensamma styrkan eller fitten inte kan avgöras från offentliga bud.
+- Alla sekvenser med motståndaringripande och andra budfamiljer.
+
+Nytt test: `tests/live-1nt-information-boundary.test.js` kontrollerar att dolda händer inte påverkar livebeslut och att inviter som kräver dold information lämnas ej täckta.
