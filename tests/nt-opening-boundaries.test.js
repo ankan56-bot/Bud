@@ -35,7 +35,7 @@ const cases = [
   {
     name: 'balanced 18 HCP opens one suit, not 1NT',
     hand: ['S14','S13','S12','S7','H14','H8','H3','D13','D8','D3','C12','C8','C3'],
-    expected: 'P'
+    expected: '1S'
   }
 ];
 
