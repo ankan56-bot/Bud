@@ -329,7 +329,7 @@ Den separata överenskommelsen för 2NT–4NT har nu kodats uttryckligen som kva
 
 ### Live 3NT efter Stayman 2♦
 
-När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 11 egna hp garanteras minst 26 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 10 hp eller mindre går det inte att garantera 26; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
+När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 10 egna hp garanteras minst 25 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 9 hp går det inte att garantera 25; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
 
 
 ### Öppnarens eventuella korrigering efter svarshandens 3NT efter överföring
@@ -353,3 +353,8 @@ En ny läsning av själva PDF-sidan visar att tidigare text i denna granskningsf
 ### Pass efter 1NT – ingen automatisk HP-gräns
 
 Sida 4 beskriver svaga/dåliga kort kvalitativt i samband med 1NT-svaren, men anger inte en numerisk gräns för när en hand utan 4-korts högfärg eller längre färg ska passa. Den tidigare automatiska passgränsen under 8 hp har därför tagits bort. När handen inte uppfyller en uttrycklig Stayman-, överförings- eller reläprofil lämnas beslutet ej täckt i stället för att motorn antar en HP-gräns.
+
+
+### Bekräftad sangutgångsgräns
+
+Användaren har bekräftat 25 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 10 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 9 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
