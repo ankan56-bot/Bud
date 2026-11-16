@@ -1,5 +1,5 @@
 {
-  "version": "0.6.37",
+  "version": "0.6.38",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7623,6 +7623,126 @@
               "label": "Alla 4 ess och spaderkung"
             }
           ]
+        },
+        {
+          "id": "t44_s_qshow_c_club",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "6♣"
+          ],
+          "meaning": "Spaderdam visas och klöverkung visas genom 6♣.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_qshow_c_diamond",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "6♦"
+          ],
+          "meaning": "Spaderdam visas och ruterkung visas genom 6♦.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_qshow_c_heart",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣",
+            "Pass",
+            "5♦",
+            "Pass",
+            "6♥"
+          ],
+          "meaning": "Spaderdam visas och hjärterkung visas genom 6♥.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_qshow_d_club",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "6♣"
+          ],
+          "meaning": "Spaderdam visas och klöverkung visas genom 6♣.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_qshow_d_diamond",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "6♦"
+          ],
+          "meaning": "Spaderdam visas och ruterkung visas genom 6♦.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_qshow_d_heart",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦",
+            "Pass",
+            "5♥",
+            "Pass",
+            "6♥"
+          ],
+          "meaning": "Spaderdam visas och hjärterkung visas genom 6♥.",
+          "branches": []
         }
       ]
     },
