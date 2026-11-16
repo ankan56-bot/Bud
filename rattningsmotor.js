@@ -39,7 +39,7 @@ var Rattning = (function(){
   function NC(why,means,conv,sourceGap){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt',sourceGap:!!sourceGap}}
 
   // Regelområdena laddas som separata moduler och får explicita beroenden.
-  var sharedApi={side:side,partner:partner,isBid:isBid,lv:lv,st_:st_,rk:rk,txt:txt,maj:maj,lowest:lowest,jump:jump,H:H,handHps:handHps,partnershipPoints:partnershipPoints,T:T,ok:ok,NC:NC};
+  var sharedApi={SU:SU,SYM:SYM,NAME:NAME,side:side,partner:partner,isBid:isBid,lv:lv,st_:st_,rk:rk,txt:txt,maj:maj,lowest:lowest,jump:jump,H:H,handHps:handHps,partnershipPoints:partnershipPoints,T:T,ok:ok,NC:NC};
   var sangFactory=(typeof module!=='undefined'&&module.exports)?require('./sangbudgivning.js'):window.RattningSangFactory;
   var stordFactory=(typeof module!=='undefined'&&module.exports)?require('./stordbudgivning.js'):window.RattningStordFactory;
   var sang=sangFactory(sharedApi), stord=stordFactory(sharedApi);
