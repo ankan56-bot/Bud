@@ -1,0 +1,123 @@
+# Kartläggning: 1NT-familjen – ostörd budgivning
+
+**Datum:** 2026-11-16  
+**Gren:** `work/undisturbed-architecture`  
+**Status:** Kod- och sekvensinventering. Detta dokument godkänner inte nya systemregler.
+
+## Avgränsning och princip
+
+Omfattar öppning 1NT (15–17 hp, balanserad), svarshandens första bud, Stayman, överföringar, svarshandens fortsättning, öppnarens beslut, inviter, utgång och 4NT. Konkurrensbudgivning är exkluderad.
+
+Rättningsmotorns befintliga kod är nulägesbeskrivning – inte automatiskt bevis på att varje detalj följer Nordisk Standard. Där systemunderlaget inte verifierar en fortsättning ska den lämnas som öppen fråga/ej täckt. Partnerns faktiska hand får inte användas i livebeslut.
+
+## 1. Öppning och svarshandens första bud
+
+Runtime-funktion: `ntResp(h,k,openerCards)`.
+
+| Sekvens/situation | Nuvarande kodbeteende | Granskningsstatus |
+|---|---|---|
+| 1NT–2♣ | Stayman när svarshanden har minst fyra kort i en högfärg och uppfyller kodens styrkegräns | Kontrollera exakt styrkeintervall och eventuella undantag mot Nordisk Standard-texten |
+| 1NT–2♦ | Överföring till hjärter vid minst fem hjärter | Sekvens identifierad; fortsättningsregler granskas separat |
+| 1NT–2♥ | Överföring till spader vid minst fem spader | Sekvens identifierad; fortsättningsregler granskas separat |
+| 1NT–2♠ | Relä till 3 lågfärg med lång lågfärg i svag hand | Systemkälla/alla handvillkor behöver verifieras |
+| 1NT–2NT | Balanserad invit utan fyrkorts högfärg | Poänggräns och balansvillkor behöver verifieras |
+| 1NT–3♣/3♦ | Invit med bra sexkortslågfärg | Definitionen av ”bra” och exakta villkor behöver verifieras |
+| 1NT–3NT | Direkt sangutgång | Kontrollera att beslutet baseras på korrekt gemensam styrka i livebudgivning |
+
+**Teknisk risk:** Funktionen tar emot `openerCards` och räknar gemensamma hp. Detta är efterhandsinformation och får inte styra svarshandens livebud. Livevarianten ska enbart använda svarshandens egen hand och den offentliga betydelsen av 1NT.
+
+## 2. Öppnarens svar efter Stayman
+
+Runtime-funktion: `ntOpener(h,k,r,responderCards)`.
+
+| Auktion | Nuvarande kodbeteende | Granskningsstatus |
+|---|---|---|
+| 1NT–2♣–2♦ | Visar ingen fyrkorts högfärg | Sekvens finns |
+| 1NT–2♣–2♥ | Visar 4+ hjärter; kan även ha fyra spader | Sekvens finns |
+| 1NT–2♣–2♠ | Visar 4+ spader utan hjärter | Sekvens finns |
+| Efter 2♣–2♦/2♥/2♠ | Flera fortsättningar hanteras av separata funktioner | Måste kartläggas sekvens för sekvens |
+
+Kodens val av 2♥ framför 2♠ när öppnaren har båda fyrkorts högfärgerna är en explicit prioritering i implementationen. Den ska verifieras mot systemkällan, inte tas för given.
+
+## 3. Svarshandens fortsättning efter Stayman
+
+Runtime-funktion: `stay2(h,reply,openerCards)`.
+
+Identifierade vägar:
+- Efter 2♦ hanteras bland annat balanserad invit/utgång och en obalanserad femkortshögfärg.
+- Efter visad högfärg hanteras fit, invit och utgång.
+- Kodens gränser använder gemensamma hp eller gemensamma spelpoäng beroende på om det finns högfärgsfit.
+
+**Öppna luckor som redan dokumenterats i givarrapporten:**
+- Obalanserad invitstyrka efter 1NT–2♣–2♥ utan användbar fit.
+- Öppnarens beslut efter 1NT–2♣–2♥/2♠–2NT: 3NT kontra eventuell fit i den andra högfärgen. Nuvarande kod returnerar uttryckligen ej täckt.
+- Samma fortsättningsfråga förekommer i flera provgivare och ska inte lösas genom att anta att öppnarens egen fyrkortsfärg automatiskt ska återbjudas.
+
+**Teknisk risk:** `stay2` läser öppnarens faktiska hand för att räkna fit och gemensamma spelpoäng. Det får endast användas i efterhandsrättning/test, inte i svarshandens livebeslut.
+
+## 4. Överföringar
+
+Runtime-funktioner: `transfer2(h,M,openerCards)`, `ntOpenerInvit` och `ntOpener3NTChoice`.
+
+Identifierade svarsvägar i `transfer2`:
+- 0–8 hp: pass efter fullföljd överföring.
+- 9 hp: 3 i högfärgen med minst sex kort, annars 2NT med exakt fem kort.
+- 10–15 hp: kodens fortsättning skiljer mellan sexkortsfärg/fit och balanserad femkortsfärg.
+- 16+ hp: kodkommentaren anger slamintresse via kontrollbud eller 4NT, men valet är uttryckligen inte definierat.
+- Särskilda alternativa bud finns för vissa kombinationer av båda högfärgerna och lågfärgsstöd.
+
+Dessa intervall och spelpoängsgränser är en beskrivning av nuvarande implementation och ska jämföras med den auktoritativa systemtexten innan de godkänns som regler.
+
+**Öppna luckor/risker:**
+- Obalanserad femkortshand efter överföring saknar fastställd fortsättning i vissa styrkelägen.
+- Kodens val mellan kontrollbud och 4NT vid slamintresse är inte definierat.
+- `transfer2` använder öppnarens faktiska kort för fit och gemensamma poäng; livebeslut får inte göra det.
+- Öppnarens superaccept med 3 i överföringsfärgen förekommer i koden vid maxstyrka och minst fyra kort i färgen. Denna avvikelse från vanlig fullföljd överföring måste kontrolleras mot systemunderlaget.
+- Efter svarshandens invit ska öppnarens beslut baseras på den information som inviten visar, inte partnerns faktiska kort.
+
+## 5. 4NT och slamgränsen
+
+Analysbibliotekets konventionsmetadata anger tre skilda betydelser:
+1. 1NT–4NT: fyr-essfråga utan fastställd trumf.
+2. 1NT–2♣–2♦–4NT: samma uttryckligen avtalade fyr-essfråga utan fastställd trumf.
+3. Efter fullföljd överföring: 4NT är RKC 1430 med överföringsfärgen som trumf.
+
+Detta är tre olika auktionstillstånd. De får inte slås ihop till en generell 4NT-regel. Svaren efter 4NT ligger utanför nuvarande omfattning enligt bibliotekets metadata.
+
+**Kontrollpunkt:** Verifiera att dispatchern alltid kan avgöra om trumf är överenskommen innan 4NT klassificeras. Enbart budnivån 4NT räcker inte för att bestämma betydelsen.
+
+## 6. Nödvändig arkitekturdelning
+
+Funktionerna ovan blandar i dag livebeslut och efterhandsrättning genom parametrar som `openerCards` och `responderCards`.
+
+Mål:
+- `decideLive({ ownHand, seat, dealer, auction })`: ingen fullständig `hands`-array, ingen partnerhand, inget DDS-resultat.
+- `judgeDeal({ hands, dealer, auction, ddsResult })`: får använda alla händer efter avslutad giv.
+- Om systemets offentliga budinformation inte räcker för ett säkert livebeslut ska resultatet vara ej täckt – inte ett beslut baserat på dold hand.
+
+Första testet ska hålla egen hand och offentlig auktion konstanta och byta de tre dolda händerna. Livebeslut och motivering måste då vara identiska.
+
+## 7. Föreslagen verifieringsmatris
+
+Varje rad ska få:
+- exakt sekvens inklusive pass från övriga spelare;
+- roll och vem som ska bjuda;
+- egen handprofil och styrkeintervall;
+- vad partnerns bud faktiskt visar (intervall, inte exakt dold hand);
+- förväntat bud eller uttryckligt ej täckt;
+- källa/sidnummer i Nordisk Standard;
+- isolerat regressionstest;
+- motsvarande analysnod-ID eller markering att nod saknas.
+
+Prioriterad ordning:
+1. 1NT–2♣ och öppnarens 2♦/2♥/2♠.
+2. Svarshandens fortsättning efter vart och ett av dessa svar.
+3. Överföring och öppnarens fullföljning/superaccept.
+4. Svarshandens fortsättning efter fullföljd överföring.
+5. Inviter och öppnarens accept/pass.
+6. Direkt 4NT, Stayman-4NT och överförings-RKC.
+7. Terminaler, ej täckta fortsättningar och dubbletter i analysbiblioteket.
+
+## 8. Ändringsstatus
+
+Ingen budregel eller produktionskod ändras genom denna kartläggning. Dokumentet skiljer observerat runtime-beteende från verifierade systemregler. Nästa steg är att kontrollera varje rad mot Nordisk Standard-källan och därefter skapa tester innan någon regeländring.
