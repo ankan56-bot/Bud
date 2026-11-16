@@ -79,7 +79,9 @@ jobs:
       - name: Run major-suit RKC 1430 tests
         run: node tests/rkc-1430-major.test.js
       - name: Run 1NT four-ace and RKC source tests
-        run: node tests/nt-four-ace-source.test.js
+        run: |
+          node tests/nt-four-ace-source.test.js
+          node tests/nt-stayman-rkc-spade-fit.test.js
       - name: Test 1NT and 4NT module boundary
         run: node tests/nt-4nt-module-boundary.test.js
       - name: Run 1NT opening boundary tests
