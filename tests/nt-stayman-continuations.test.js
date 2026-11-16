@@ -23,6 +23,12 @@ function judge(north, sequence){
   const bids=sequence.concat([{s:'N',c:'P'}]);
   return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
 }
+function judgeWithFreshHands(north,sequence){
+  const rest=deck.filter(card=>!north.includes(card));
+  const hands={N:north.slice(),E:rest.slice(0,13),S:rest.slice(13,26),W:rest.slice(26,39)};
+  const bids=sequence.concat([{s:'N',c:'P'}]);
+  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+}
 
 // Opener's first Stayman reply: 2♦ denies a four-card major;
 // 2♥ shows four or five hearts (and takes priority with 4-4);
@@ -40,7 +46,7 @@ for (const [hand,expected,label] of [
   [fourSpadesOnly,'2S','four spades, no four hearts']
 ]) {
   assert.equal(R.H(hand).hp,15,label+': fixture must be 15 HCP');
-  assert.equal(judge(hand,afterStaymanQuestion).exp,expected,
+  assert.equal(judgeWithFreshHands(hand,afterStaymanQuestion).exp,expected,
     'Stayman opener reply for '+label);
 }
 
