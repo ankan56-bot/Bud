@@ -245,17 +245,13 @@
     }
     return NC('RKC-svaret är fortfarande förenligt med både färre än 3 och minst 3 ess i partnerskapet. Eftersom lillslam i färg kräver minst 3 av 4 ess kan motorn inte välja 6- eller 7-läget säkert.',null,'RKC – slamfortsättning',true);
   }
-  function fourAceSlamNextStep(h,response,partnershipHcp){
+  function fourAceSlamNextStep(h,response){
     var counts=response==='5C'?[0,4]:response==='5D'?[1]:response==='5H'?[2]:response==='5S'?[3]:[];
     var possible=[];
     counts.forEach(function(n){if(n<=4-h.aces)possible.push(h.aces+n);});
     if(possible.length&&possible.every(function(n){return n===4;}))
       return {exp:'7N',alt:[],why:'Alla fyra essen är säkrade. Projektregeln tillåter 7NT när samtliga fyra ess finns.',means:function(c){return c==='7N'?'Storslam i sang: alla fyra ess.':null},conv:'Fyr-essfråga – storslam'};
-    // 6NT is assessed on partnership HCP only; distribution points are excluded.
-    // The 33-HCP slam threshold is shared with the general slam check.
-    if(typeof partnershipHcp==='number'&&partnershipHcp>=33)
-      return {exp:'6N',alt:[],why:partnershipHcp+' gemensamma honnörspoäng. 6NT bedöms enbart på honnörspoäng; fördelningspoäng räknas inte i sang. 7NT är inte tillåtet eftersom alla fyra ess inte är säkrade.',means:function(c){return c==='6N'?'Lillslam i sang: 33+ gemensamma honnörspoäng; endast hp räknas.':null},conv:'Fyr-essfråga – lillslam'};
-    return NC('Fyr-essvaret visar inte entydigt att partnerskapet har alla fyra ess. 7NT är därför inte tillåtet. 6NT kräver minst 33 gemensamma honnörspoäng utan fördelningspoäng; den gränsen nås inte eller kan inte verifieras.',null,'Fyr-essfråga – slamfortsättning',true);
+    return NC('Fyr-essvaret visar inte entydigt att partnerskapet har alla fyra ess. 7NT är därför inte tillåtet. 6NT ska bedömas enbart på gemensamma honnörspoäng (inga fördelningspoäng), men den exakta HP-gränsen är ännu inte fastställd; läget lämnas ej täckt.',null,'Fyr-essfråga – slamfortsättning',true);
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
