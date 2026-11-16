@@ -200,10 +200,10 @@ var Rattning = (function(){
         // otherwise leave the invit decision uncovered because no numeric
         // 2NT-invite band is stated in the source.
         var jointMin=hp+15;
-        if(jointMin>=26){exp='3N';why=hp+' hp plus at least 15 hp from partner: minst 26 gemensamma hp, 3NT.';}
-        else return NC('Partnerns 1NT visar 15–17 hp. Även om 26 hp inte nås säkert anger Nordisk standard inte ett numeriskt intervall för den naturliga 2NT-inviten; ingen gräns antas live.',means,conv,true);
-      }else if(!k&&jointHp<26){
-        return NC('Paret når inte den verifierade 26 hp-gränsen för 3NT. 2NT är beskrivet som invit men dess numeriska handgräns är inte angiven i Nordisk standard; ingen egen gräns antas.',means,conv,true);
+        if(jointMin>=25){exp='3N';why=hp+' hp plus at least 15 hp from partner: minst 25 gemensamma hp, 3NT.';}
+        else return NC('Partnerns 1NT visar 15–17 hp. Även om 25 hp inte nås säkert anger Nordisk standard inte ett numeriskt intervall för den naturliga 2NT-inviten; ingen gräns antas live.',means,conv,true);
+      }else if(!k&&jointHp<25){
+        return NC('Paret når inte den verifierade 25 hp-gränsen för 3NT. 2NT är beskrivet som invit men dess numeriska handgräns är inte angiven i Nordisk standard; ingen egen gräns antas.',means,conv,true);
       }else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
@@ -218,7 +218,7 @@ var Rattning = (function(){
       if(r===d2){if(c===h2)return 'Fullföljer överföringen (visar 2+ ♥).';if(c===(b+1)+'H')return 'Max och 4+ ♥: kan bjuda 3♥ i stället för 2♥.'}
       if(r===h2){if(c===s2)return 'Fullföljer överföringen.';if(c===(b+1)+'S')return 'Max och 4+ ♠: kan bjuda 3♠ i stället.'}
       if(!k&&r==='2S'){if(c==='2N')return 'Längre ♦ än ♣ eller lika längd i lågfärg.';if(c==='3C')return 'Längre ♣ än ♦.'}
-      if(r===b+'N'){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 26 gemensamma honnörspoäng.'}
+      if(r===b+'N'){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.'}
       if(c==='P')return 'Pass (slutbud).';
       return null};
 
@@ -254,7 +254,7 @@ var Rattning = (function(){
     var means=function(c){
       if(/^3[HS]$/.test(c))return 'Invit i öppnarens visade högfärg; exakt numerisk styrkegräns anges inte i Nordisk standard.';
       if(c==='2N')return 'Balanserad invit; efter Stayman 2♥ visar 2NT exakt fyra spader. Numerisk invitgräns anges inte i Nordisk standard.';
-      if(c==='3N')return 'Utgång i sang med minst 26 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
+      if(c==='3N')return 'Utgång i sang med minst 25 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
       if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit; exakt acceptgräns efter Stayman anges inte här.';
       return null};
     // Nordisk standard s. 4: after a 2♥ Stayman answer, responder's
@@ -371,8 +371,8 @@ var Rattning = (function(){
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
       if(!partner)return NC('Efter Stayman 2♦–2NT är öppnarens accept/pass beroende av gemensam styrka; partnerns dolda hand används inte i livebeslut.',null,'Stayman');
-      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 26 gemensamma honnörspoäng.';return null};
-      if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 25 gemensamma honnörspoäng.';return null};
+      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
@@ -1798,7 +1798,7 @@ var Rattning = (function(){
 
     var trump=majors.length?majors[0]:(minors.length?minors[0]:'N');
     var total=trump==='N'?totalHcp:partnershipPoints(a,p,trump);
-    var threshold=trump==='N'?26:(maj(trump)?26:28);
+    var threshold=trump==='N'?25:(maj(trump)?26:28);
     var gameLevel=trump==='N'?3:(maj(trump)?4:5);
     var currentSuit=st_(currentContract),currentLevel=lv(currentContract);
     var gameReached=(currentSuit==='N'&&currentLevel>=3)||
@@ -1817,7 +1817,7 @@ var Rattning = (function(){
         target=choices.filter(function(x){return rk(x)>rk(currentContract);})[0]||null;
       }
       if(!target)return null;
-      var thresholdText=trump==='N'?'26+ honnörspoäng i sang':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
+      var thresholdText=trump==='N'?'25+ honnörspoäng i sang':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
       return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
     }
     return null;
