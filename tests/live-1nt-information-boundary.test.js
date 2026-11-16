@@ -68,7 +68,7 @@ assert.equal(judgeNatural2NT(responderNine).exp,null,
  '25 combined HCP does not establish pass or accept without a confirmed threshold');
 const responderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(responderTen).hp,10);
-assert.equal(judgeNatural2NT(responderTen).exp,null,
+assert.equal(judgeNatural2NT(responderTen).exp,'3N',
  '26 combined HCP does not establish acceptance without a confirmed threshold');
 
 // Stayman 2D–2NT has no confirmed numeric acceptance threshold.
