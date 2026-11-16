@@ -89,7 +89,13 @@ assert.equal(responderAfterStayman(
 assert.equal(responderAfterStayman(
   ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H').exp,null,
   'exactly four spades is known, but invite versus game needs a strength boundary');
-assert.equal(responderAfterStayman(
-  ['S14','S13','S12','S11','H11','D14','D2','D3','D4','C2','C3','C4','C5'],'2H').exp,'3N',
-  '11 hp plus the 15 hp minimum of partner guarantees 26 combined hp for 3NT');
+const gameFourSpades=['S14','S13','S12','S11','H11','H2','H3','D2','D3','D4','C2','C3','C4'];
+assert.equal(R.H(gameFourSpades).hp,11);
+const gameFourSpadesAuction=[
+  {s:'N',c:'1N'},{s:'E',c:'P'},
+  {s:'S',c:'2C'},{s:'W',c:'P'},
+  {s:'N',c:'2H'},{s:'E',c:'P'}
+];
+assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,ownHand:gameFourSpades}).exp,'3N',
+  '11 hp plus the 15 hp minimum of partner guarantees 26 combined hp for 3NT in live play');
 console.log('1NT Stayman continuation tests: passed.');
