@@ -131,3 +131,10 @@ Detta måste separeras innan Buddie kan betraktas som en informationsmässigt ko
 ## Nodmatchning och kanonisk nodmodell (2026-11-16)
 
 Den aktuella analysmotorn matchar i huvudsak sekvensprefix och väljer den längsta träffen. Den kontrollerar inte nodens handprofil eller roll. Biblioteket och rättningsmotorn är två parallella strukturer utan fullständig verifierad nodkoppling. Inventeringen visar 40 ostörda träd, 241 noder och flera oklassificerade grenar. Se [GRANSKNING_NODMATCHNING.md](GRANSKNING_NODMATCHNING.md) för exakta mått, T40-root-felet, handprofilsluckor och föreslagen valideringsordning.
+
+
+## Runtime-korsreferens och strukturell kvalitetsgrind (2026-11-16)
+
+Korsreferensrapporten [KORSREFERENS_RUNTIME_NODER.md](KORSREFERENS_RUNTIME_NODER.md) kopplar systemfamiljerna i analysbiblioteket till nuvarande runtime-funktioner och listar alla 26 sekvenskollisionsgrupper. En maskinell granskare och baslinjetest finns i `scripts/validate-analysis-library.js` och `tests/analysis-library-audit.test.js`. Granskaren skiljer verkliga strukturella fel från kända varningar och skriver inte om några budregler.
+
+Den detaljerade livegranskningen har dessutom identifierat de hjälpfunktioner som tar emot partnerns faktiska kort. Ingen liveväg får använda dem i nuvarande form. Se [GRANSKNING_LIVE_OCH_EFTERHAND.md](GRANSKNING_LIVE_OCH_EFTERHAND.md).
