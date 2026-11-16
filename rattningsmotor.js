@@ -367,7 +367,7 @@ var Rattning = (function(){
       if(c==='4'+M)return 'Utgång i överföringsfärgen efter invit.';
       return null};
     if(inv!=='2N'&&inv!=='3'+M)
-      return NC('Öppnarens svar på detta bud beskrivs inte i dokumentet.',means,'överföring',true);
+      return NC('Öppnarens svar på detta bud beskrivs inte i dokumentet; fortsättningen lämnas ej täckt.',means,'överföring',true);
     return NC('Nordisk standard s. 5 beskriver 2NT/3M som inviter efter överföring men anger inte öppnarens numeriska accept-/passgräns. Den separata 26-poängsgränsen för andra högfärgssekvenser överförs inte hit; fortsättningen lämnas ej täckt.',means,'överföring',true);
   }
   function ntOpener3(h,k1,k2,k3,responderCards){
