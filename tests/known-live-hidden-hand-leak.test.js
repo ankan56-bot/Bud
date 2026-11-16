@@ -89,6 +89,6 @@ const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastR
 const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 assert.equal(liveNt15.exp,liveNt16.exp);
 assert.equal(liveNt15.why,liveNt16.why);
-assert.equal(liveNt15.exp,"3N","10 own HCP guarantees the user-confirmed 25-HCP no-trump game threshold against 1NT minimum");
+assert.equal(liveNt15.exp,null,"no numeric 3NT threshold is confirmed for live advice");
 
 console.log("Legacy 1M hidden-hand leak characterized; 1NT live path is invariant and conservative.");
