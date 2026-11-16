@@ -1,9 +1,9 @@
 'use strict';
 
-// Generates one principal, source-conservative bidding line for an undisturbed
-// deal. Each decision is delegated to decideLive with only the acting hand
-// and public auction. Opponents pass because this API is explicitly for the
-// undisturbed training theme; unsupported positions stop the facit visibly.
+// Generates one principal, source-conservative bidding line for a completed
+// undisturbed deal. This is an after-deal facit and may inspect all four hands;
+// live advice remains isolated in decideLive. Opponents pass because this API
+// is explicitly for the undisturbed training theme.
 (function(root){
   function isSeat(s){return ['N','E','S','W'].includes(s);}
   function sideOf(s){return s==='N'||s==='S'?'NS':'EW';}
@@ -47,9 +47,12 @@
         });
         passes++;
       }else{
-        const result=root.Rattning.decideLive({
-          ownHand:hands[seat].slice(),seat,dealer,auction:auction.map(x=>({s:x.s,c:x.c}))
-        });
+        const candidateIndex=auction.length;
+        const candidateAuction=auction.concat([{s:seat,c:'P'}]);
+        const result=root.Rattning.nodeFor({
+          hands:{N:hands.N.slice(),E:hands.E.slice(),S:hands.S.slice(),W:hands.W.slice()},
+          dealer,bids:candidateAuction.map(x=>({s:x.s,c:x.c}))
+        },candidateIndex);
         decisions++;
         if(!result||!result.exp){
           steps.push({
@@ -57,7 +60,7 @@
             explanation:result&&result.why?result.why:'Budmotorn har inte lämnat något verifierat bud.',
             systemStatus:result&&result.sourceGap?'source_gap':'not_covered',
             sourceGap:!!(result&&result.sourceGap),
-            context:'live'
+            context:'after_deal'
           });
           return {
             status:'incomplete',complete:false,trainingSide,dealer,
@@ -85,7 +88,7 @@
           systemStatus:result.ruleStatus==='user_confirmed'?'user_confirmed':(result.soft?'strategic_guidance':'system_rule_engine'),
           ruleStatus:result.ruleStatus==='user_confirmed'?'Överenskommen projektregel':(result.soft?'Vägledande bedömning':'Systemregel'),
           convention:result.conv||'',
-          informationBoundary:result.informationBoundary||'own_hand_and_public_auction_only'
+          informationBoundary:'after_deal_full_deal_available'
         };
         steps.push(step);
         auction.push({s:seat,c:call});
