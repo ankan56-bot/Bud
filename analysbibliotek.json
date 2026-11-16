@@ -323,27 +323,27 @@
             {
               "call": "Pass",
               "next": null,
-              "label": "Dåliga kort; minst fem i överföringsfärgen"
+              "label": "Dåliga kort; minst fem hjärter"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "Invit; jämn hand och exakt femkortsfärg"
+              "label": "Invit; jämn hand och exakt fem hjärter"
             },
             {
               "call": "3♥",
               "next": null,
-              "label": "8–9 hp och 6+ hjärter – invit"
+              "label": "Invit med 6+ hjärter"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "Välj utgång; jämn hand och exakt femkortsfärg"
+              "label": "Välj utgång; jämn hand och exakt fem hjärter"
             },
             {
               "call": "4♥",
               "next": null,
-              "label": "10–15 hp och 6+ hjärter – utgång"
+              "label": "Slutbud med 6+ hjärter"
             },
             {
               "call": "2♠",
@@ -643,27 +643,27 @@
             {
               "call": "Pass",
               "next": null,
-              "label": "Dåliga kort; minst fem i överföringsfärgen"
+              "label": "Dåliga kort; minst fem hjärter"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "Invit; jämn hand och exakt femkortsfärg"
+              "label": "Invit; jämn hand och exakt fem hjärter"
             },
             {
               "call": "3♥",
               "next": null,
-              "label": "8–9 hp och 6+ hjärter – invit"
+              "label": "Invit med 6+ hjärter"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "Välj utgång; jämn hand och exakt femkortsfärg"
+              "label": "Välj utgång; jämn hand och exakt fem hjärter"
             },
             {
               "call": "4♥",
               "next": null,
-              "label": "10–15 hp och 6+ hjärter – utgång"
+              "label": "Slutbud med 6+ hjärter"
             },
             {
               "call": "2♠",
@@ -765,32 +765,32 @@
             {
               "call": "Pass",
               "next": null,
-              "label": "Dåliga kort; minst fem i överföringsfärgen"
+              "label": "Dåliga kort; minst fem spader"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "Invit; jämn hand och exakt femkortsfärg"
+              "label": "Invit; jämn hand och exakt fem spader"
             },
             {
               "call": "3♠",
               "next": null,
-              "label": "8–9 hp och 6+ spader – invit"
+              "label": "Invit med 6+ spader"
             },
             {
               "call": "3NT",
               "next": null,
-              "label": "Välj utgång; jämn hand och exakt femkortsfärg"
+              "label": "Välj utgång; jämn hand och exakt fem spader"
             },
             {
               "call": "4♠",
               "next": null,
-              "label": "10–15 hp och 6+ spader – utgång"
+              "label": "Slutbud med 6+ spader"
             },
             {
               "call": "3♥",
               "next": null,
-              "label": "8–9 hp och 5-5 i högfärgerna – invit"
+              "label": "Invit med minst 5-5 i båda högfärgerna"
             },
             {
               "call": "3♣",
