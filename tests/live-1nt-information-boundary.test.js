@@ -1,0 +1,69 @@
+'use strict';
+
+// Live 1NT decisions must use only the acting player's 13 cards and public
+// auction. Hidden hands supplied as an extra payload must have no influence.
+const assert=require('node:assert/strict');
+const R=require('../rattningsmotor.js');
+const deck=[];
+for(const suit of ['S','H','D','C'])for(let rank=2;rank<=14;rank++)deck.push(suit+rank);
+
+function fill(cards){
+ const out=cards.slice();
+ for(const c of deck){if(out.length===13)break;if(!out.includes(c))out.push(c);}
+ assert.equal(out.length,13);assert.equal(new Set(out).size,13);return out;
+}
+function live(seat,auction,ownHand,extra){
+ return R.decideLive(Object.assign({seat,dealer:'N',auction,ownHand},extra||{}));
+}
+const firstResponse=[{s:'N',c:'1N'},{s:'E',c:'P'}];
+const fiveHearts=fill(['H2','H3','H4','H5','H6','S2','S3','S4','D2','D3','D4','C2','C3']);
+const hiddenA=fill(deck.filter(c=>!fiveHearts.includes(c)).slice(0,13));
+const hiddenB=fill(deck.filter(c=>!fiveHearts.includes(c)).slice(13,26));
+const liveA=live('S',firstResponse,fiveHearts,{hands:{N:hiddenA}});
+const liveB=live('S',firstResponse,fiveHearts,{hands:{N:hiddenB}});
+assert.equal(liveA.exp,'2D','five hearts: transfer to hearts');
+assert.deepStrictEqual(liveA,liveB,'changing hidden hands must not change live decision');
+
+const opener17=fill(['H14','H13','H12','H11','S14','D13','C2','C3','C4','S2','S3','D2','D3']);
+assert.equal(R.H(opener17).hp,17);
+assert.equal(live('N',[...firstResponse,{s:'S',c:'2D'},{s:'W',c:'P'}],opener17).exp,'3H',
+ 'opener may superaccept with 17 hp and 4+ hearts');
+
+const afterCompletedHeartTransfer=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2D'},{s:'W',c:'P'},
+ {s:'N',c:'2H'},{s:'E',c:'P'}
+];
+const inviteFiveHearts=fill(['H13','H12','H11','H10','H9','S13','S2','S3','D2','D3','D4','C2','C3']);
+assert.equal(live('S',afterCompletedHeartTransfer,inviteFiveHearts).exp,'2N',
+ '8–9 hp, balanced exact five-card transfer suit: invite 2NT');
+
+const staymanAfter2H=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2C'},{s:'W',c:'P'},
+ {s:'N',c:'2H'},{s:'E',c:'P'}
+];
+const fiveSpades=fill(['S14','S13','S12','S11','S10','H2','H3','H4','D2','D3','D4','C2','C3']);
+assert.equal(live('S',staymanAfter2H,fiveSpades).exp,'2S',
+ 'natural game-forcing new suit after Stayman is live-safe');
+
+const fourFourOpener=fill(['S14','S13','S2','S3','H14','H11','H2','H3','D13','D12','D2','C2','C3']);
+const afterStayman2NT=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2C'},{s:'W',c:'P'},
+ {s:'N',c:'2H'},{s:'E',c:'P'},
+ {s:'S',c:'2N'},{s:'W',c:'P'}
+];
+assert.equal(live('N',afterStayman2NT,fourFourOpener).exp,'3S',
+ 'explicit Stayman 4-4 continuation can be decided from opener hand alone');
+
+const naturalInvite=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2N'},{s:'W',c:'P'}
+];
+const opener16=fill(['S14','S13','S12','H14','H13','D14','D13','C2','C3','C4','S2','H2','D2']);
+const inviteResult=live('N',naturalInvite,opener16);
+assert.equal(inviteResult.exp,null,
+ 'opener must not accept/reject 2NT invite using partner hidden HCP');
+
+console.log('Information-safe live 1NT tests: passed.');
