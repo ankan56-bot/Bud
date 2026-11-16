@@ -1200,8 +1200,34 @@ var Rattning = (function(){
         }
       }
 
+      if(d===1&&oppAfter.length===1&&!opener&&/^1[CD]$/.test(f)&&
+         (oppAfter[0].c==='1H'||oppAfter[0].c==='1S')){
+        var negativeOvercall=oppAfter[0].c;
+        var partnerOpeningSuit=f[1];
+        var negativeDoubleSuit=negativeOvercall==='1H'?'S':'H';
+        // The photographed rule gives exact four spades over 1H and at least
+        // four hearts over 1S. A five-card heart suit over 1S overlaps with
+        // a natural two-level response, so that case remains uncovered.
+        if(b.c==='X'){
+          if(h.hp<6)return {exp:'P',alt:[],why:'0–5 hp/stp: pass enligt grundregeln.',means:function(c){return c==='P'?'Pass med 0–5 hp/stp.':null},conv:'negativ dubbling'};
+          if(h.L[partnerOpeningSuit]>=3)
+            return NC('Stöd i partnerns öppningsfärg överlappar med den negativa dubblingen; prioriteten är inte angiven i källan.');
+          if(negativeOvercall==='1H'&&h.L.S===4)
+            return {exp:'X',alt:[],why:'Negativ dubbling av 1♥ visar exakt fyra spader enligt BridgePlus s. 91.',means:function(c){return c==='X'?'Exakt fyra spader.':null},conv:'negativ dubbling'};
+          if(negativeOvercall==='1S'&&h.L.H===4)
+            return {exp:'X',alt:[],why:'Negativ dubbling av 1♠ visar minst fyra hjärter enligt BridgePlus s. 91; här är handen fyrkorts.',means:function(c){return c==='X'?'Minst fyra hjärter.':null},conv:'negativ dubbling'};
+          return NC('Den negativa dubblingen uppfyller inte den uttryckliga färglängdsvisningen på BridgePlus s. 91.');
+        }
+        if(h.hp>=6&&h.L[partnerOpeningSuit]<3&&
+           ((negativeOvercall==='1H'&&h.L.S===4)||(negativeOvercall==='1S'&&h.L.H===4))){
+          return {exp:'X',alt:[],why:negativeOvercall==='1H'?'Negativ dubbling: exakt fyra spader efter 1♥-inkliv.':'Negativ dubbling: fyra hjärter efter 1♠-inkliv.',means:function(c){return c==='X'?(negativeOvercall==='1H'?'Exakt fyra spader.':'Minst fyra hjärter.'):null},conv:'negativ dubbling'};
+        }
+        if(negativeOvercall==='1S'&&h.L.H>=5)
+          return NC('Fem eller fler hjärter efter 1♠-inkliv överlappar negativ dubbling med naturligt 2♥; prioriteten är inte angiven i källan.');
+        return respOvercall(h,f,last,negativeOvercall);
+      }
       if(d===1&&oppAfter.length===1&&!opener&&b.c==='X'){
-        return NC('Negativ dubbling efter 1 i färg finns inte definierad i den fastställda REF-systemtexten. Den får därför inte räknas som ett automatiskt grundsystembud.');
+        return NC('Negativ dubbling efter denna öppning/inklivskombination saknar verifierad regel i källunderlaget.');
       }
       if(d===1&&oppAfter.length===1&&opener&&b.c==='X'){
         return NC('Öppnarens dubbling efter motståndarinkliv och partnerns pass (reopenings-/stöddubbling) är inte definierad i REF-systemtexten.');
