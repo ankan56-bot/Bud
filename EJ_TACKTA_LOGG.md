@@ -25,3 +25,12 @@ Ladda ned filen och skicka den till experten. Exporten innehåller både auktion
 - Att exportera rensar inte loggen.
 - Loggen är separat från rapporterna med redan kända ej täckta testgivare.
 - Loggen innebär inte att motorn börjar gissa: ej täckta bud förblir ej täckta tills en regel har verifierats.
+
+
+## Stenberg 2NT – 2026-11-16
+
+- Modulen täcker svarshandens 2NT efter 1♥/1♠ och 1♣/1♦, samt öppningshandens första återbud enligt Nordisk standard s. 2–3.
+- Kända källuckor loggas med full budsekvens: öppningshandens handtyp passar inte någon av de uttryckliga återbudstyperna (exempelvis renons eller flera singletoner), eller svarshandens fortsättning efter öppnarens 3-bud saknar en uttrycklig regel i källan.
+- Svarshandens utgångsval använder projektets befintliga gränser: 26 spelpoäng i högfärg och 28 i lågfärg, med minst 8-korts fit. 4NT routas till RKC först efter öppnarens beskrivande 3-nivååterbud.
+- Öppen expertfråga: vilka fortsättningar ska svarshanden använda när Stenberg är utgångskrav men handen inte når projektets ordinarie färggräns, samt vilken prioritet gäller mellan flera singletoner/renons?
+- Frågan finns även i den maskinläsbara expertloggen (id: stenberg-continuation-after-opener-rebid).
