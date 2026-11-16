@@ -53,6 +53,8 @@ jobs:
           if (!result || !result.exp) throw new Error('Opening decision-tree smoke test failed');
           console.log('Correction engine v' + R.version + ': opening recommendation ' + result.exp);
           NODE
+      - name: Run Stenberg 2NT regression tests
+        run: node tests/stenberg-2nt.test.js
       - name: Run correction-engine regression tests
         run: node tests/reverse-hps.test.js
       - name: Run undisturbed facit generator tests
