@@ -247,8 +247,8 @@ var Rattning = (function(){
     var fitPoints=opener&&M?partnershipPoints(h,opener,M):0;
 
     var means=function(c){
-      if(/^3[HS]$/.test(c))return 'Invit: 3 i öppnarens visade högfärg med minst 8-korts fit och 22–25 gemensamma spelpoäng.';
-      if(c==='2N')return 'Balanserad invit till 3NT vid 22–25 gemensamma honnörspoäng; efter Stayman kan 2NT även visa den andra fyrkortshögfärgen enligt den aktuella fortsättningen.';
+      if(/^3[HS]$/.test(c))return 'Invit i öppnarens visade högfärg; exakt numerisk styrkegräns anges inte i Nordisk standard.';
+      if(c==='2N')return 'Balanserad invit; efter Stayman 2♥ visar 2NT exakt fyra spader. Numerisk invitgräns anges inte i Nordisk standard.';
       if(c==='3N')return 'Utgång i sang med minst 26 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
       if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit och minst 26 gemensamma spelpoäng.';
       return null};
