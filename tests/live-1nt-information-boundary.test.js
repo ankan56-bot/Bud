@@ -127,7 +127,7 @@ const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2
 assert.equal(R.H(balancedTen).hp,10);
 assert.equal(live('S',firstResponse,balancedTen).exp,null,
  '10 own HCP plus partner minimum reaches 25, below the 26-HCP game threshold');
-const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H11','S11','S2','S3','S4']);
+const balancedNine=fill(['C14','C2','C3','D13','D2','D3','D4','H2','H3','H11','S11','S2','S3']);
 assert.equal(R.H(balancedNine).hp,9);
 assert.equal(live('S',firstResponse,balancedNine).exp,null,
  '9 own HCP plus partner minimum reaches only 24 HCP; no numeric invit band is stated');
