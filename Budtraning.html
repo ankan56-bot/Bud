@@ -765,8 +765,10 @@ function facitHtml(st){
     h+='<article class="review-item '+cls+'"><div class="top"><b>'+esc(heading)+'</b>';
     if(step.kind==='assumed_opponent_pass')h+='<span class="tag">Ostörd förutsättning</span>';
     else if(step.kind==='uncovered')h+='<span class="tag">EJ TÄCKT</span>';
-    else h+='<span class="tag">SYSTEMREKOMMENDATION</span>';
+    else if(step.systemStatus==='strategic_guidance')h+='<span class="tag">VÄGLEDANDE BEDÖMNING</span>';
+    else h+='<span class="tag">SYSTEMREGEL</span>';
     h+='</div>';
+    if(step.ruleStatus)h+='<p><b>Status:</b> '+esc(step.ruleStatus)+(step.convention?' · '+esc(step.convention):'')+'</p>';
     if(step.meaning)h+='<p><b>Budets betydelse:</b> '+esc(step.meaning)+'</p>';
     if(step.explanation)h+='<p>'+esc(step.explanation)+'</p>';
     if(step.alternatives&&step.alternatives.length){
