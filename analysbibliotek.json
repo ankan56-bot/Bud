@@ -4,13 +4,14 @@
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
-    "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
+    "rkc": "RKC 1430 med fem nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam; 5NT=3 nyckelkort och renons; 6 i färg=2 nyckelkort och renons (6 i trumf om renonsfärgen är högre än trumf).",
     "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
     "oneNTGameThreshold": "25 combined HCP for no-trump game (3NT), explicitly accepted by the user on 2026-11-14. Only HCP count in no-trump; no distribution points. Separate from 26 OTP for major-suit game and 28 OTP for minor-suit game.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
     "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
-    "twoNTQuantitativeInvite": "2NT–4NT är en kvantitativ invit till 6NT, inte en essfråga. Öppnarens accept/pass är inte numeriskt specificerat i tillgänglig systemtext och lämnas därför ej täckt."
+    "twoNTQuantitativeInvite": "2NT–4NT är en kvantitativ invit till 6NT, inte en essfråga. Öppnarens accept/pass är inte numeriskt specificerat i tillgänglig systemtext och lämnas därför ej täckt.",
+    "rkcVoidResponses": "Nordisk standard 2012-08-22, s. 7: 5NT visar 3 ess/nyckelkort och någon renons; 6 i färg visar 2 ess/nyckelkort och renons i bjuden färg, med 6 i trumf om renonsfärgen är högre än trumf."
   },
   "trees": [
     {
@@ -86,6 +87,26 @@
               "call": "5♠",
               "next": "t01_n5",
               "label": "2 med hjärterdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t01_n_5nt",
+              "label": "3 nyckelkort och någon renons"
+            },
+            {
+              "call": "6C",
+              "next": "t01_n_6c",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            },
+            {
+              "call": "6D",
+              "next": "t01_n_6d",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            },
+            {
+              "call": "6H",
+              "next": "t01_n_6h",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
           ]
         },
@@ -200,6 +221,70 @@
               "label": "Storslam – kräver mycket starkt underlag"
             }
           ]
+        },
+        {
+          "id": "t01_n_5nt",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "Svarar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t01_n_6c",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6C"
+          ],
+          "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t01_n_6d",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6D"
+          ],
+          "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t01_n_6h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6H"
+          ],
+          "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
+          "branches": []
         }
       ]
     },
@@ -6987,6 +7072,26 @@
               "call": "5♠",
               "next": "t44_s4",
               "label": "2 nyckelkort med spaderdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t44_s_5nt",
+              "label": "3 nyckelkort och någon renons"
+            },
+            {
+              "call": "6C",
+              "next": "t44_s_6c",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            },
+            {
+              "call": "6D",
+              "next": "t44_s_6d",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            },
+            {
+              "call": "6H",
+              "next": "t44_s_6h",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
           ],
           "handProfile": {
@@ -7077,6 +7182,70 @@
             "opener": "Två nyckelkort med spaderdam.",
             "responder": "Stenberghand med minst fyra spader."
           }
+        },
+        {
+          "id": "t44_s_5nt",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "Svarar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_6c",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6C"
+          ],
+          "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_6d",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6D"
+          ],
+          "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t44_s_6h",
+          "sequence": [
+            "1♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6H"
+          ],
+          "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
+          "branches": []
         }
       ]
     },
@@ -7529,6 +7698,319 @@
       ],
       "sourceStatus": "source_qualitative",
       "sourceStatusNote": "Budbetydelserna och öppnarens stöd-/honnörsvillkor är källbelagda på s. 4. Numerisk styrkegräns och exakt färgkvalitet för svarshandens invit saknas; trädet förklarar endast den kvalitativa systemregeln."
+    },
+    {
+      "id": "T45_RKC_1430_KLOVER",
+      "title": "RKC 1430 med klöver som trumf",
+      "tags": [
+        "4NT",
+        "RKC",
+        "1430",
+        "♣",
+        "slam"
+      ],
+      "conditions": [
+        "♣ är fastställd trumf genom bjuden och höjd färg.",
+        "4NT frågar efter fem nyckelkort: fyra ess och trumfkungen.",
+        "Svar enligt projektets RKC 1430: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
+        "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7."
+      ],
+      "root": "t45_n0",
+      "nodes": [
+        {
+          "id": "t45_n0",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "♣ är fastställd trumf efter naturlig höjning. 4NT frågar efter nyckelkort enligt RKC 1430.",
+          "branches": [
+            {
+              "call": "5♣",
+              "next": "t45_5c",
+              "label": "1 eller 4 nyckelkort"
+            },
+            {
+              "call": "5♦",
+              "next": "t45_5d",
+              "label": "0 eller 3 nyckelkort"
+            },
+            {
+              "call": "5♥",
+              "next": "t45_5h",
+              "label": "2 nyckelkort utan trumfdam"
+            },
+            {
+              "call": "5♠",
+              "next": "t45_5s",
+              "label": "2 nyckelkort med trumfdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t45_5nt",
+              "label": "3 nyckelkort och någon renons"
+            },
+            {
+              "call": "6♣",
+              "next": "t45_6c",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            }
+          ]
+        },
+        {
+          "id": "t45_5c",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣"
+          ],
+          "meaning": "5♣ visar 1 eller 4 nyckelkort enligt projektets RKC 1430.",
+          "branches": []
+        },
+        {
+          "id": "t45_5d",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦"
+          ],
+          "meaning": "5♦ visar 0 eller 3 nyckelkort enligt projektets RKC 1430.",
+          "branches": []
+        },
+        {
+          "id": "t45_5h",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♥"
+          ],
+          "meaning": "5♥ visar 2 nyckelkort utan trumfdam.",
+          "branches": []
+        },
+        {
+          "id": "t45_5s",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♠"
+          ],
+          "meaning": "5♠ visar 2 nyckelkort med trumfdam.",
+          "branches": []
+        },
+        {
+          "id": "t45_5nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "5NT visar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t45_6c",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6♣"
+          ],
+          "meaning": "6 i färg visar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf bjuds 6 i trumf.",
+          "branches": []
+        }
+      ]
+    },
+    {
+      "id": "T46_RKC_1430_RUTER",
+      "title": "RKC 1430 med ruter som trumf",
+      "tags": [
+        "4NT",
+        "RKC",
+        "1430",
+        "♦",
+        "slam"
+      ],
+      "conditions": [
+        "♦ är fastställd trumf genom bjuden och höjd färg.",
+        "4NT frågar efter fem nyckelkort: fyra ess och trumfkungen.",
+        "Svar enligt projektets RKC 1430: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
+        "5NT visar 3 nyckelkort och någon renons; 6 i färg visar 2 nyckelkort och renons enligt Nordisk standard s. 7."
+      ],
+      "root": "t46_n0",
+      "nodes": [
+        {
+          "id": "t46_n0",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "♦ är fastställd trumf efter naturlig höjning. 4NT frågar efter nyckelkort enligt RKC 1430.",
+          "branches": [
+            {
+              "call": "5♣",
+              "next": "t46_5c",
+              "label": "1 eller 4 nyckelkort"
+            },
+            {
+              "call": "5♦",
+              "next": "t46_5d",
+              "label": "0 eller 3 nyckelkort"
+            },
+            {
+              "call": "5♥",
+              "next": "t46_5h",
+              "label": "2 nyckelkort utan trumfdam"
+            },
+            {
+              "call": "5♠",
+              "next": "t46_5s",
+              "label": "2 nyckelkort med trumfdam"
+            },
+            {
+              "call": "5NT",
+              "next": "t46_5nt",
+              "label": "3 nyckelkort och någon renons"
+            },
+            {
+              "call": "6♣",
+              "next": "t46_6c",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            },
+            {
+              "call": "6♦",
+              "next": "t46_6d",
+              "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
+            }
+          ]
+        },
+        {
+          "id": "t46_5c",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♣"
+          ],
+          "meaning": "5♣ visar 1 eller 4 nyckelkort enligt projektets RKC 1430.",
+          "branches": []
+        },
+        {
+          "id": "t46_5d",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♦"
+          ],
+          "meaning": "5♦ visar 0 eller 3 nyckelkort enligt projektets RKC 1430.",
+          "branches": []
+        },
+        {
+          "id": "t46_5h",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♥"
+          ],
+          "meaning": "5♥ visar 2 nyckelkort utan trumfdam.",
+          "branches": []
+        },
+        {
+          "id": "t46_5s",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5♠"
+          ],
+          "meaning": "5♠ visar 2 nyckelkort med trumfdam.",
+          "branches": []
+        },
+        {
+          "id": "t46_5nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "5NT"
+          ],
+          "meaning": "5NT visar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
+          "branches": []
+        },
+        {
+          "id": "t46_6c",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6♣"
+          ],
+          "meaning": "6 i färg visar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf bjuds 6 i trumf.",
+          "branches": []
+        },
+        {
+          "id": "t46_6d",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "2♦",
+            "Pass",
+            "4NT",
+            "Pass",
+            "6♦"
+          ],
+          "meaning": "6 i färg visar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf bjuds 6 i trumf.",
+          "branches": []
+        }
+      ]
     }
   ],
   "valuationRules": {
