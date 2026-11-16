@@ -195,16 +195,16 @@ var Rattning = (function(){
     }
     else if(hp>=gl){
       if(!k){
-        // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
-        // 1NT shows 15–17 HCP, so 10+ own HCP guarantees 25 with opener's minimum.
+        // The later correction confirmed 26 HCP for no-trump game.
+        // 1NT shows 15–17 HCP, so 11+ own HCP guarantees 26 with opener's minimum.
         var jointMin=hp+15;
-        if(!opener&&jointMin>=25){
+        if(!opener&&jointMin>=26){
           exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
-        }else if(opener&&jointHp>=25){
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';
+        }else if(opener&&jointHp>=26){
           exp='3N';
-          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';
-        }else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
+          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 26-hp-gränsen för 3NT.';
+        }else return NC('Paret når inte säkert 26 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
       }else return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
       soft=false;
     }
