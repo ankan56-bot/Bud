@@ -72,6 +72,29 @@ assert.equal(R.H(responderTen).hp,10);
 assert.equal(judgeNatural2NT(responderTen).exp,'3N',
  '16+10=26 HCP: opener accepts at the confirmed no-trump game threshold');
 
+// The same 25-HCP no-trump threshold applies when Stayman finds no
+// major and responder's 2NT is a balanced invitation.
+function judgeStayman2NT(responderHand){
+ const opener=['C14','C13','C2','C3','D14','D13','D11','D2','S11','S2','S3','H2','H3'];
+ assert.equal(R.H(opener).hp,16);
+ assert.equal(R.H(opener).bal,true);
+ const used=new Set([...opener,...responderHand]);assert.equal(used.size,26);
+ const rest=deck.filter(c=>!used.has(c));
+ const hands={N:opener,E:rest.slice(0,13),S:responderHand,W:rest.slice(13,26)};
+ const auction=[
+  {s:'N',c:'1N'},{s:'E',c:'P'},
+  {s:'S',c:'2C'},{s:'W',c:'P'},
+  {s:'N',c:'2D'},{s:'E',c:'P'},
+  {s:'S',c:'2N'},{s:'W',c:'P'}
+ ];
+ const bids=auction.concat([{s:'N',c:'P'}]);
+ return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+}
+assert.equal(judgeStayman2NT(responderEight).exp,'P',
+ '16+8=24 HCP after Stayman 2D: opener declines the invitation');
+assert.equal(judgeStayman2NT(responderNine).exp,'3N',
+ '16+9=25 HCP after Stayman 2D: opener accepts at the confirmed threshold');
+
 const staymanAfter2H=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2C'},{s:'W',c:'P'},
