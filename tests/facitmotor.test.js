@@ -49,6 +49,22 @@ assert.ok(result.uncovered);
 assert.equal(result.uncovered.seat,'S');
 assert.match(result.message,/ofullständig/);
 
+// Guidance-only recommendations must remain distinguishable in the generated facit.
+const guidanceNorth=[
+  'S14','S13','S2','S3','H14','H12','H2','H3','D13','D2','D3','C2','C3'
+];
+const guidanceSouth=[
+  'C14','C13','C12','C11','C10','C9','S4','S5','H4','H5','D4','D5','D6'
+];
+const guidanceHands=deal(guidanceNorth,guidanceSouth);
+const guidanceFacit=F.generateUndisturbedFacit({
+  hands:guidanceHands,dealer:'N',trainingSide:'NS'
+});
+const guidanceStep=guidanceFacit.steps.find(step=>step.seat==='N'&&step.call==='P');
+assert.ok(guidanceStep);
+assert.equal(guidanceStep.systemStatus,'strategic_guidance');
+assert.equal(guidanceStep.ruleStatus,'Vägledande bedömning');
+
 // Hidden hands are never passed to decideLive: only the acting player's hand
 // and the public auction are included by the facit orchestrator.
 const noContractHands=deal(
