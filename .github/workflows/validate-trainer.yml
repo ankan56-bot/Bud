@@ -84,6 +84,8 @@ jobs:
         run: node tests/nt-4nt-module-boundary.test.js
       - name: Run 1NT opening boundary tests
         run: node tests/nt-opening-boundaries.test.js
+      - name: Run 2NT opening response-family tests
+        run: node tests/nt-two-level-opening.test.js
       - name: Run 1NT Stayman continuation tests
         run: node tests/nt-stayman-continuations.test.js
       - name: Run 1NT minor invitation and weak-minor relay tests
