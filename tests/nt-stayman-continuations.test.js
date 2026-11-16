@@ -126,8 +126,8 @@ assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,own
 // Stayman 2♦–2NT is a natural balanced invitation. The agreed 25-HCP
 // threshold decides acceptance after the full deal is known.
 {
-  const north=['C14','C13','C2','C3','S14','S2','S3','H13','H2','H3','D2','D3','D4'];
-  const south=['S13','S4','S5','H14','H4','H5','D12','D5','D6','C4','C5','C6','C7'];
+  const north=['C14','C13','C2','C3','S14','S2','S3','H13','H2','H3','D12','D2','D3'];
+  const south=['S13','S4','S5','H14','H4','H5','H6','D11','D5','D6','C11','C5','C6'];
   assert.equal(R.H(north).hp,16);
   assert.equal(R.H(south).hp,9);
   assert.equal(R.H(north).bal,true);
