@@ -120,6 +120,11 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_NORDISK_SPADER_STENBERG','T45_RKC_NO
   assert.ok(tree.nodes.some(n=>n.sequence.includes('5NT')),'tree '+id+' must explain 5NT void response');
   assert.ok(tree.nodes.some(n=>n.sequence.some(c=>/^6[♣♦♥♠]$/.test(c))),'tree '+id+' must explain 6-level void response');
 }
+
+const clubStenbergHit=A.findMatch(library,[{c:'1C'},{c:'P'},{c:'2N'},{c:'P'},{c:'3D'},{c:'P'},{c:'4N'}]);
+assert.equal(clubStenbergHit.tree.id,'T45_RKC_NORDISK_KLOVER','club Stenberg 4NT should enter the minor RKC tree');
+const diamondStenbergHit=A.findMatch(library,[{c:'1D'},{c:'P'},{c:'2N'},{c:'P'},{c:'3S'},{c:'P'},{c:'4N'}]);
+assert.equal(diamondStenbergHit.tree.id,'T46_RKC_NORDISK_RUTER','diamond Stenberg 4NT should enter the minor RKC tree');
 // Queen-ask steps, denial, and the source-defined 6-level follow-up.
 {
   function deal(north,south){
