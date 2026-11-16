@@ -13,6 +13,8 @@ const strongHeartSupport=hand(['H14','H13','H12','H11','S14','S13','S2','D14','D
 assert.equal(St.responder(strongHeartSupport,'1H').exp,'2N');
 const noFit=hand(['H14','H13','H12','S14','S13','S12','D14','D13','D12','C14','C13','C12','C11']);
 assert.equal(St.responder(noFit,'1H').exp,null);
+const weakSupport=hand(['H2','H3','H4','H5','S2','S3','S4','D2','D3','D4','C2','C3','C4']);
+assert.equal(St.responder(weakSupport,'1H').exp,null,'4-card support without 13 htp must not qualify');
 const minorWithMajor=hand(['C14','C13','C12','C11','H14','H13','H12','H11','S2','S3','D2','D3','D4']);
 assert.equal(St.responder(minorWithMajor,'1C').exp,null);
 const strongMinorSupport=hand(['C14','C13','C12','C11','S14','S13','S2','H2','H3','H4','D2','D3','D4']);
