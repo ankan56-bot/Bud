@@ -153,3 +153,20 @@ Informationsgränsen är inbyggd i API-kontraktet: funktionen tar en enda egen h
 **Avsiktlig begränsning:** alla auktioner som redan innehåller kontraktsbud, dubbling eller redubbling returnerar `ej täckt` med besked att budfamiljen ännu inte migrerats. Det betyder att 1NT-svar, 1M-svar, Stenberg, Stayman, överföringar, konkurrensbud och återbud ännu inte är liveaktiverade via detta API. De befintliga efterhands-/rättningsfunktionerna är kvar för bakåtkompatibilitet och ska inte användas som livebotens beslutsgränssnitt.
 
 CI-smoketestet kräver nu `decideLive`. Riktade tester kontrollerar öppningsbeslut, ogiltiga indata, turordning, avslutad auktion och att icke-migrerade svar inte får ett gissat bud.
+
+## 11. Produktkrav: komplett budfacit per giv (2026-11-16)
+
+Budträningens facit är en egen produktfunktion, inte bara en lista över rätt/fel i efterhandsrättningen. För varje giv ska systemet på sikt kunna visa en sammanhängande rekommenderad budlinje från första tur till slutbud, med:
+
+- varje spelares rekommenderade bud och budets systembetydelse;
+- handvillkoren och den offentliga budinformation som motiverar beslutet;
+- en begriplig motivering till varför huvudbudet väljs;
+- alternativa systemmässigt godtagbara bud, när sådana finns;
+- varför andra relevanta bud inte väljs, men endast när detta kan härledas ur verifierade regler;
+- regelkälla och status: fastställd systemregel, godkänt tillägg, strategisk analys eller ej täckt.
+
+Facit får inte skapa en falsk entydighet. Om flera bud är likvärdigt godtagbara ska alternativen visas som alternativ, inte felaktiga bud. Om motorn saknar en verifierad fortsättning ska facitlinjen stoppas och positionen markeras **EJ TÄCKT**. Ingen fortsättning får fyllas i med gissning.
+
+För ostörd budgivning får motståndarnas pass läggas in som en uttrycklig träningsförutsättning. Dessa pass ska inte presenteras som systembeslut.
+
+Den första implementationen i `facitmotor.js` genererar en huvudlinje via `decideLive`, visar motivering och betydelse för varje täckt beslut och stoppar vid första ej täckta position. Den är ett första vertikalt produktsteg, inte ännu full kravuppfyllelse: särskilt motivering av bortvalda bud, full grenning mellan alternativa linjer och källhänvisning per visat bud återstår.
