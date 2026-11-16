@@ -142,3 +142,14 @@ Den detaljerade livegranskningen har dessutom identifierat de hjälpfunktioner s
 ## Diagnostisk sekvensmatchning
 
 `findMatches()` i `analysmotor.js` returnerar alla sekvensmatchningar och gör överlapp synligt. `findMatch()` behåller tills vidare bakåtkompatibelt första-träff-beteende. Nästa steg är att lägga till roll och strukturerade handvillkor i en separat matchningsmodell; fri text i `handProfile` ska inte tolkas automatiskt.
+## Första säkra live-API:t (2026-11-16)
+
+`Rattning.decideLive({ ownHand, seat, dealer, auction })` är nu införd i version 8.0.
+
+Informationsgränsen är inbyggd i API-kontraktet: funktionen tar en enda egen hand och ingen `hands`-karta. Den validerar kortantal, kortformat, dubblerade kort, turordning och avslutad auktion.
+
+**Aktiverad omfattning:** öppningsbeslut när auktionen hittills bara innehåller pass. I detta läge skickas endast den egna handen till öppningslogiken.
+
+**Avsiktlig begränsning:** alla auktioner som redan innehåller kontraktsbud, dubbling eller redubbling returnerar `ej täckt` med besked att budfamiljen ännu inte migrerats. Det betyder att 1NT-svar, 1M-svar, Stenberg, Stayman, överföringar, konkurrensbud och återbud ännu inte är liveaktiverade via detta API. De befintliga efterhands-/rättningsfunktionerna är kvar för bakåtkompatibilitet och ska inte användas som livebotens beslutsgränssnitt.
+
+CI-smoketestet kräver nu `decideLive`. Riktade tester kontrollerar öppningsbeslut, ogiltiga indata, turordning, avslutad auktion och att icke-migrerade svar inte får ett gissat bud.
