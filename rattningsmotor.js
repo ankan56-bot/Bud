@@ -202,7 +202,16 @@ var Rattning = (function(){
         }else if(opener&&jointHp>=26){
           exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 26-hp-gränsen för 3NT.';
         }else return NC('Paret når inte säkert 26 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
-      }else return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
+      }else{
+        // 2NT opening shows 20–21 HCP; the same user-confirmed 25-HCP
+        // no-trump game threshold applies to a 3NT choice after Stayman.
+        var twoNTMin=hp+20;
+        if(!opener&&twoNTMin>=25){
+          exp='3N';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
+        }else if(opener&&jointHp>=25){
+          exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 25-hp-gränsen för 3NT.';
+        }else return NC('Paret når inte säkert 25 gemensamma hp för 3NT efter 2NT-öppning; situationen lämnas ej täckt.',means,conv,true);
+      }
       soft=false;
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
