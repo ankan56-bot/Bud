@@ -312,3 +312,8 @@ Nordisk standard s. 4 beskriver 2♠ som ett relä för "dåliga kort" med 6+ ko
 ### Öppnarens fortsättning efter 3 lågfärg som utgångskrav efter överföring
 
 Efter fullföljd överföring är 3♣/3♦ från svarshanden ett utgångskrav när svarshanden har minst fem kort i överföringsfärgen och minst fyra i den bjudna lågfärgen (s. 5). PDF:en anger budets kravbetydelse, men inte en komplett fortsättningsstruktur för öppnaren. I 100-givarsimuleringen identifierades två sådana lägen (ostord-100-037 och ostord-100-066) där öppnarens nästa bud inte kan fastställas från den dokumenterade tabellen. Dessa fortsättningar lämnas ej täckta; motorn ska inte hitta på ett kontrollbud, sangbud eller annan fortsättning.
+
+
+### Öppnarens fortsättning efter svarshandens 3 lågfärg (utgångskrav)
+
+Överföringstabellen anger att 3♣/3♦ efter fullföljd överföring är utgångskrav när svarshanden visar minst fem kort i överföringsfärgen och 4+ i den bjudna lågfärgen. Däremot specificerar den inte öppnarens exakta återbud efter detta utgångskrav. Rättningsmotorn markerar därför öppnarens fortsättning som ej täckt i stället för att välja 3NT, 4M eller kontrollbud utifrån dolda kort eller en egen prioritet. Detta är nu dokumenterat i 100-givarkorpusen som två explicita källgap (givar 037 och 066).
