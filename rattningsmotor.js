@@ -251,12 +251,17 @@ var Rattning = (function(){
       return {exp:'2N',alt:[],why:'Exakt fyra spader efter Stayman 2♥: 2NT visar den andra fyrkortshögfärgen enligt Nordisk standard s. 4.',means:function(c){return c==='2N'?'Exakt fyra spader efter Stayman 2♥.':null},conv:'Stayman'};
     }
     var naturalNew=[];
-    if(reply==='2H'){
+    if(reply==='2D'){
+      if(L.H>=5)naturalNew.push('H');
       if(L.S>=5)naturalNew.push('S');
+      if(L.C>=4)naturalNew.push('C');
+    }else if(reply==='2H'){
+      if(L.S>=5)naturalNew.push('S');
+      ['C','D'].forEach(function(suit){if(L[suit]>=4)naturalNew.push(suit);});
     }else if(reply==='2S'){
       if(L.H>=5)naturalNew.push('H');
+      ['C','D'].forEach(function(suit){if(L[suit]>=4)naturalNew.push(suit);});
     }
-    ['C','D'].forEach(function(suit){if(L[suit]>=4)naturalNew.push(suit);});
     if(naturalNew.length===1){
       var ns=naturalNew[0],newBid=lowest(ns,reply);
       return {exp:newBid,alt:[],why:'Ny färg efter Stayman: '+(maj(ns)?'minst fem kort i högfärgen':'minst fyra kort i lågfärgen')+' och utgångskrav enligt Nordisk standard s. 4.',means:function(c){return c===newBid?'Naturlig ny färg, utgångskrav.':null},conv:'Stayman'};
