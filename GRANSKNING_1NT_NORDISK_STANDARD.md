@@ -329,7 +329,7 @@ Den separata överenskommelsen för 2NT–4NT har nu kodats uttryckligen som kva
 
 ### Live 3NT efter Stayman 2♦
 
-När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 11 egna hp garanteras minst 26 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 10 hp går det inte att garantera 26; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
+När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 10 egna hp garanteras minst 25 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 10 hp går det inte att garantera 26; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
 
 
 ### Öppnarens eventuella korrigering efter svarshandens 3NT efter överföring
@@ -359,4 +359,4 @@ Sida 4 beskriver svaga/dåliga kort kvalitativt i samband med 1NT-svaren, men an
 
 Användaren har fastställt att endast honnörspoäng ska räknas i sang (3NT, 6NT och 7NT). Någon numerisk HP-gräns för 3NT har däremot inte uttryckligen bekräftats av användaren eller angetts i Nordisk standard. Den tidigare 25-hp-gränsen var ett tidigare assistentförslag och behandlas inte som en fastställd systemregel. Därför lämnar motorn valet av direkt 3NT ej täckt när det kräver en sådan gräns. Den separata 26-poängsgränsen för högfärgsutgång och 28 för lågfärgsutgång ska inte blandas ihop med sang.
 
-Användaren har bekräftat 26 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 11 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 10 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
+Användaren har bekräftat 25 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 10 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 10 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
