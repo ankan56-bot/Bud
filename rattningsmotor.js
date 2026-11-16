@@ -74,7 +74,7 @@ var Rattning = (function(){
 
   function T(m){return function(c){return m[c]||null}}
   function ok(c,last){return c==='P'||c==='X'||c==='XX'||(isBid(c)&&(!last||rk(c)>rk(last)))}
-  function NC(why,means,conv){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt'}}
+  function NC(why,means,conv,sourceGap){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt',sourceGap:!!sourceGap}}
 
   /* ––––– ÖPPNING ––––– */
   function openingNode(h, fourthHandAfterThreePasses){
@@ -259,7 +259,7 @@ var Rattning = (function(){
       // The 2NT route shows four spades and is described as an invitation.
       // The PDF gives opener's 4-4 response (3S minimum / 4S maximum), but
       // does not state responder's numeric threshold for choosing it.
-      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen 26-hp-regel eller egen HP-gräns överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman');
+      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen 26-hp-regel eller egen HP-gräns överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
     }
     var naturalNew=[];
     if(reply==='2D'){
@@ -278,8 +278,8 @@ var Rattning = (function(){
       return {exp:newBid,alt:[],why:'Ny färg efter Stayman: '+(maj(ns)?'minst fem kort i högfärgen':'minst fyra kort i lågfärgen')+' och utgångskrav enligt Nordisk standard s. 4.',means:function(c){return c===newBid?'Naturlig ny färg, utgångskrav.':null},conv:'Stayman'};
     }
     if(naturalNew.length>1)
-      return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman');
-    if(!opener)return NC('Efter Stayman är den egna handen inte tillräcklig för att bedöma invit/pass eller utgång med gemensamma poäng. Endast uttryckliga 2NT-/nya-färg-betydelser kan rättas live.',means,'Stayman');
+      return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
+    if(!opener)return NC('Efter Stayman är den egna handen inte tillräcklig för att bedöma invit/pass eller utgång med gemensamma poäng. Endast uttryckliga 2NT-/nya-färg-betydelser kan rättas live.',means,'Stayman',true);
     if(M&&L[M]>=4&&opener&&L[M]+opener.L[M]>=8){
       if(fitPoints>=26){
         exp='4'+M;
@@ -332,7 +332,7 @@ var Rattning = (function(){
     if(M==='S'&&L.H>=5&&hp>=8&&hp<=9)
       special.push({bid:'3H',why:'8–9 hp och minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
     if(special.length>1)
-      return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar.',means,'överföring');
+      return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar.',means,'överföring',true);
     if(special.length===1)
       return {exp:special[0].bid,alt:[],why:special[0].why,means:means,conv:'överföring'};
 
@@ -344,16 +344,16 @@ var Rattning = (function(){
         return {exp:'2N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': 2NT-invit.',means:means,conv:'överföring'};
       if(L[M]>=6)
         return {exp:'3'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': invit med 3'+SYM[M]+'.',means:means,conv:'överföring'};
-      return NC('8–9 hp efter överföring, men handen motsvarar inte någon av de angivna invitprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring');
+      return NC('8–9 hp efter överföring, men handen motsvarar inte någon av de angivna invitprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring',true);
     }
     if(hp>=10&&hp<=15){
       if(h.bal&&L[M]===5)
         return {exp:'3N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': välj sangutgång med 3NT.',means:means,conv:'överföring'};
       if(L[M]>=6)
         return {exp:'4'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': 4'+SYM[M]+' är utgång/signoff enligt tabellen.',means:means,conv:'överföring'};
-      return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring');
+      return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring',true);
     }
-    return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering.',means,'överföring');
+    return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering.',means,'överföring',true);
   }
   function ntOpenerInvit(h,M,inv,responderCards){
     var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,exp,alt=[],why;
@@ -1584,7 +1584,7 @@ var Rattning = (function(){
     if(st&&st.bids)st.bids.slice(0,i).forEach(function(x){if(x&&isBid(x.c)&&(!highestBefore||rk(x.c)>rk(highestBefore)))highestBefore=x.c;});
     var rawIllegal=!!(node&&node.exp&&isBid(node.exp)&&highestBefore&&rk(node.exp)<=rk(highestBefore));
     if(st&&st.bids&&st.bids[i]&&!hasRkcContext&&priorPartnershipCalls>=2&&
-       (!node||node.exp==='P'||rawIllegal)){
+       (!node||(!node.exp&&!node.sourceGap)||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
         if(st.bids[ci]&&isBid(st.bids[ci].c)){
