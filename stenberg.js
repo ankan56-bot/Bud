@@ -67,15 +67,20 @@
      if(trump)return result('4N','4NT efter fastställd trumf: överlämnas till den separata RKC-/slammodulen.','Stenberg → slammodul');
      return NC('4NT efter Stenberg kan inte verifieras som RKC med den offentliga budsekvensen. Överlämnas inte automatiskt till essfrågan.',null,'Stenberg 2NT',true);
    }
-   if(!partnerHand)return NC('Slutbudet efter Stenberg kräver gemensam handanalys; den andra handen är inte tillgänglig i live-läget.',null,'Stenberg 2NT',false);
+   var ownCalls=Array.isArray(prior)?prior.filter(function(x){return sideOf(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX';}):[];
+   var lastOwn=ownCalls.length?ownCalls[ownCalls.length-1]:null;
+   if(!partnerHand){
+     if(lastOwn&&lastOwn.c==='3N'&&call==='P')
+       return result('P','Öppnaren har redan nått 3NT, som är utgång. Pass är säkert utan att behöva se partnerns hand.','Stenberg – 3NT-utgång',
+         function(c){return c==='P'?'Passar 3NT som redan är utgång.':null;});
+     return NC('Slutbudet efter Stenberg kräver gemensam handanalys; den andra handen är inte tillgänglig i live-läget.',null,'Stenberg 2NT',false);
+   }
    if(fit<8)return NC('Slutbudet kräver minst åtta korts gemensam trumf; aktuell fit är '+fit+'.',null,'Stenberg 2NT',false);
    var points=partnershipPoints(hand,partnerHand,suit),isMajor=maj(suit),minimum=isMajor?26:28;
    var expected=isMajor?'4'+suit:'5'+suit;
    if(points>=minimum)
      return result(expected,fit+'-korts fit och '+points+' gemensamma spelpoäng: utgång i '+(isMajor?'högfärg':'lågfärg')+'. Stenberg är utgångskrav; pass under utgång godtas inte.','Stenberg – slutbud',
        function(c){return c===expected?'Slutbud; Stenbergmodulen avslutas här.':null;});
-   var ownCalls=Array.isArray(prior)?prior.filter(function(x){return sideOf(x.s)===sideWanted&&x.c!=='P'&&x.c!=='X'&&x.c!=='XX';}):[];
-   var lastOwn=ownCalls.length?ownCalls[ownCalls.length-1]:null;
    if(lastOwn&&lastOwn.c==='3N'&&call==='P')
      return result('P','Öppnaren har redan nått 3NT, som är utgång. Med färre än '+minimum+' gemensamma spelpoäng enligt projektets färggräns stannar paret i 3NT.','Stenberg – 3NT-utgång',
        function(c){return c==='P'?'Passar 3NT som redan är utgång.':null;});
