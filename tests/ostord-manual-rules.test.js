@@ -106,10 +106,10 @@ function completeDealWithSouth(south) {
 // The 11 HP hand clears the ordinary two-over-one strength threshold.
 {
   const hands = completeDealWithSouth([
-    'S14','S11','S8','S6',
-    'H8','H5','H2',
-    'D13','D9',
-    'C12','C11','C7','C2'
+    'S14','S11','S8',
+    'H8','H5','H3','H2',
+    'D9','D4',
+    'C14','C12','C7','C2'
   ]);
   const st = state(hands, 'N', [
     {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
