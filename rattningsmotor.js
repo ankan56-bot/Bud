@@ -263,44 +263,62 @@ var Rattning = (function(){
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
   }
   function transfer2(h,M){
-    var L=h.L,exp,why,alt=[];
+    var L=h.L,hp=h.hp,exp,why,alt=[];
+    var otherMajor=M==='H'?'S':'H';
+    var minors=['C','D'];
     var means=function(c){
-      if(c==='P')return 'Svag hand efter överföring; exakt styrkegräns är inte verifierad i Nordisk standard.';
-      if(c==='2N')return 'Invit, balanserad hand med exakt fem kort i överföringsfärgen.';
-      if(c==='3'+M)return 'Invit med minst sex kort i överföringsfärgen.';
-      if(c==='3N')return 'Väljer sangutgång med balanserad hand och exakt fem kort i överföringsfärgen.';
-      if(c==='4'+M)return 'Signoff i överföringsfärgen.';
+      if(c==='P')return '0–7 hp: svag hand med minst fem kort i överföringsfärgen.';
+      if(c==='2N')return '8–9 hp, jämn hand och exakt fem kort i överföringsfärgen: invit.';
+      if(c==='3'+M)return '8–9 hp och minst sex kort i överföringsfärgen: invit.';
+      if(c==='3N')return '10–15 hp, jämn hand och exakt fem kort i överföringsfärgen: välj sangutgång.';
+      if(c==='4'+M)return '10–15 hp och minst sex kort i överföringsfärgen: utgång/signoff.';
+      if(M==='H'&&c==='2S')return 'Rondkrav med minst 5♥ och 4+♠.';
+      if(c==='3C'||c==='3D')return 'Utgångskrav med minst fem kort i överföringsfärgen och 4+ i bjuden lågfärg.';
+      if(M==='S'&&c==='3H')return 'Invit med minst 5-5 i båda högfärgerna.';
       if(c==='4C'||c==='4D')return 'Kontrollbud och slamintresse i överföringsfärgen.';
       if(c==='4N')return 'RKC med överföringsfärgen som trumf.';
-      if(M==='H'&&c==='2S')return 'Enrondskrav: minst 5♥ och 4+♠.';
-      if(M==='H'&&(c==='3C'||c==='3D'))return 'Utgångskrav: minst 5♥ och 4+ i den bjudna lågfärgen.';
-      if(M==='S'&&c==='3H')return 'Invit med minst 5-5 i båda högfärgerna.';
       return null;
     };
 
-    // Källans kvalitativa handbeskrivningar ska inte omvandlas till påhittade
-    // HP-intervall eller beräknas med partnerns dolda kort i livebudgivningen.
-    if(M==='H'&&L.H>=5&&L.S>=4){
-      exp='2S';why='Minst 5♥ och 4+♠: 2♠ är enrondskrav enligt överföringstabellen.';
-      return {exp:exp,alt:[],why:why,means:means,conv:'överföring'};
+    if(L[M]<5)
+      return NC('Överföringssekvensen visar minst fem kort i '+SYM[M]+', men den egna handen uppfyller inte längdkravet.',means,'överföring');
+
+    // De särskilda färgkraven i tabellen är oberoende av de vanliga
+    // svag/invit/utgångsgrenarna och måste prövas först.
+    if(M==='H'&&L.S>=4){
+      return {exp:'2S',alt:[],why:'Minst 5♥ och 4+♠: 2♠ är rondkrav enligt Nordisk standard s. 5.',means:means,conv:'överföring'};
     }
-    if(M==='H'&&L.H>=5&&(L.C>=4||L.D>=4)){
-      if(L.C>=4&&L.D>=4)return NC('Minst 5♥ och både 4+♣ och 4+♦: källan anger utgångskrav med 3 i lågfärg men ingen prioritet mellan två möjliga lågfärger.',means,'överföring');
-      exp=L.C>=4?'3C':'3D';
-      why='Minst 5♥ och 4+ '+SYM[exp[1]]+': 3 i lågfärgen är utgångskrav enligt överföringstabellen.';
-      return {exp:exp,alt:[],why:why,means:means,conv:'överföring'};
+    var qualifyingMinors=minors.filter(function(suit){return L[suit]>=4;});
+    if(qualifyingMinors.length===1){
+      exp='3'+qualifyingMinors[0];
+      return {exp:exp,alt:[],why:'Minst 5'+SYM[M]+' och 4+ '+SYM[qualifyingMinors[0]]+': 3 i lågfärgen är utgångskrav enligt Nordisk standard s. 5.',means:means,conv:'överföring'};
     }
-    if(M==='S'&&L.S>=5&&L.H>=5){
-      exp='3H';why='Minst 5-5 i högfärgerna efter spaderöverföring: 3♥ är invit enligt tabellen.';
-      return {exp:exp,alt:[],why:why,means:means,conv:'överföring'};
+    if(qualifyingMinors.length>1)
+      return NC('Minst 5 kort i överföringsfärgen och 4+ i båda lågfärgerna. Nordisk standard anger ingen prioritet mellan 3♣ och 3♦.',means,'överföring');
+
+    // Efter spaderöverföring finns en särskild 5-5-invit i högfärgerna.
+    if(M==='S'&&L.H>=5&&hp>=8&&hp<=9){
+      return {exp:'3H',alt:[],why:'8–9 hp och minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.',means:means,conv:'överföring'};
     }
-    if(h.bal&&L[M]===5){
-      return NC('Balanserad hand med exakt fem kort i överföringsfärgen kan välja 2NT som invit eller 3NT som utgång. Nordisk standard anger inte numeriska HP-gränser här; motorn ska inte hitta på en gräns eller använda partnerns dolda hand.',means,'överföring');
+
+    if(hp<=7){
+      return {exp:'P',alt:[],why:hp+' hp och minst fem kort i '+SYM[M]+': pass enligt svaggrenen 0–7 hp.',means:means,conv:'överföring'};
     }
-    if(L[M]>=6){
-      return NC('Minst sex kort i överföringsfärgen: tabellen skiljer mellan invit med 3 i färgen och signoff/utgångsval, men den exakta styrkegränsen är inte numeriskt angiven. Lämnas ej täckt tills styrkekriteriet verifierats.',means,'överföring');
+    if(hp>=8&&hp<=9){
+      if(h.bal&&L[M]===5)
+        return {exp:'2N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': 2NT-invit.',means:means,conv:'överföring'};
+      if(L[M]>=6)
+        return {exp:'3'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': invit med 3'+SYM[M]+'.',means:means,conv:'överföring'};
+      return NC('8–9 hp efter överföring, men handen motsvarar inte någon av de angivna invitprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring');
     }
-    return NC('Övrig fortsättning efter fullföljd överföring saknar tillräckligt verifierat styrkekriterium. Inga partnerkort eller gemensamma poäng används för att gissa bud.',means,'överföring');
+    if(hp>=10&&hp<=15){
+      if(h.bal&&L[M]===5)
+        return {exp:'3N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': välj sangutgång med 3NT.',means:means,conv:'överföring'};
+      if(L[M]>=6)
+        return {exp:'4'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': 4'+SYM[M]+' är utgång/signoff enligt tabellen.',means:means,conv:'överföring'};
+      return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring');
+    }
+    return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering.',means,'överföring');
   }
   function ntOpenerInvit(h,M,inv,responderCards){
     var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,exp,alt=[],why;
