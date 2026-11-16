@@ -14,6 +14,8 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check rattningsmotor.js
+          node --check sangbudgivning.js
+          node --check slamlogik.js
           node --check dds-integration.js
           node --check analysmotor.js
           node --check facitmotor.js
@@ -75,6 +77,8 @@ jobs:
         run: node tests/rkc-1430-major.test.js
       - name: Run 1NT four-ace and RKC source tests
         run: node tests/nt-four-ace-source.test.js
+      - name: Test 1NT and 4NT module boundary
+        run: node tests/nt-4nt-module-boundary.test.js
       - name: Run 1NT opening boundary tests
         run: node tests/nt-opening-boundaries.test.js
       - name: Run 1NT Stayman continuation tests
