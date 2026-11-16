@@ -1,6 +1,6 @@
 {
-  "version": "0.6.30",
-  "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang är markerad som överenskommen projektregel.",
+  "version": "0.6.31",
+  "description": "Analysbibliotek med 47 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang är markerad som överenskommen projektregel.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -7228,6 +7228,87 @@
             "opener": "15–17 hp och inte 4-4 i högfärgerna.",
             "responder": "3NT visar fyra spader."
           }
+        }
+      ]
+    },
+    {
+      "id": "T46_STAYMAN_2NT_3S_DECISION",
+      "title": "Stayman efter 2NT – svar på 3♠",
+      "tags": [
+        "2NT",
+        "Stayman",
+        "3♣",
+        "3♠",
+        "3NT",
+        "4♠"
+      ],
+      "conditions": [
+        "Öppningen 2NT visar 20–21 hp och balanserad hand.",
+        "3♣ är Stayman och öppnarens 3♠ visar minst fyra spader.",
+        "Beslutet skiljer mellan sang utan 8-korts spaderfit och spaderutgång med fit.",
+        "25 gemensamma hp för 3NT är en överenskommen projektregel; 26 gemensamma spelpoäng med minst 8-korts högfärgsfit krävs för 4♠."
+      ],
+      "root": "t46_n0",
+      "nodes": [
+        {
+          "id": "t46_n0",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Öppnaren visar minst fyra spader efter Stayman. Svarshanden väljer mellan sang och spaderutgång utifrån egen hand, den visade 20–21-hp-öppningen och eventuell spaderfit.",
+          "analysis": "Med balanserad svarshand och minst 25 gemensamma honnörspoäng väljs 3NT om paret inte har en 8-korts spaderfit. Med minst 8 spader tillsammans och minst 26 gemensamma spelpoäng väljs 4♠. Om ingen av dessa verifierade profiler är uppfylld lämnas fortsättningen ej täckt; trädet hittar inte på en invit- eller poänggräns.",
+          "branches": [
+            {
+              "call": "3NT",
+              "next": "t46_n1",
+              "label": "Balanserad hand, 25+ gemensamma hp och ingen 8-korts spaderfit – överenskommen projektregel"
+            },
+            {
+              "call": "4♠",
+              "next": "t46_n2",
+              "label": "Minst 8-korts spaderfit och 26+ gemensamma spelpoäng – högfärgsutgång"
+            }
+          ],
+          "handProfile": {
+            "opener": "2NT = 20–21 hp, balanserad; efter 3♣ Stayman visar 3♠ minst fyra spader.",
+            "responder": "Balanserad hand för 3NT-beslutet eller minst fyrkortsstöd för 4♠; bedömningen kräver 25+ gemensamma hp respektive 8+ spader och 26+ gemensamma spelpoäng."
+          }
+        },
+        {
+          "id": "t46_n1",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♠",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Svarshanden väljer 3NT när handen är balanserad, paret når 25+ gemensamma honnörspoäng och ingen 8-korts spaderfit finns.",
+          "analysis": "25-hp-gränsen för sangutgång är en uttrycklig projektregel. Den ska inte blandas ihop med 26 gemensamma spelpoäng för högfärgsutgång.",
+          "branches": [],
+          "ruleStatus": "user_confirmed"
+        },
+        {
+          "id": "t46_n2",
+          "sequence": [
+            "2NT",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♠",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Svarshanden väljer 4♠ med minst åtta spader tillsammans och minst 26 gemensamma spelpoäng.",
+          "analysis": "Detta är högfärgsutgång med fit. Den separata 25-hp-regeln för sang styr inte beslutet när paret har en verifierad spaderfit.",
+          "branches": [],
+          "ruleStatus": "system_rule_engine"
         }
       ]
     }
