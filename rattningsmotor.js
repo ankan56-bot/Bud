@@ -253,6 +253,7 @@ var Rattning = (function(){
   function stay2(h,reply,openerCards){
     var hp=h.hp,L=h.L,M=reply==='2H'?'H':reply==='2S'?'S':null,exp,why,alt=[];
     var opener=openerCards?H(openerCards):null;
+    var jointHcp=hp+(opener?opener.hp:0);
     var fit=opener&&M?L[M]+opener.L[M]:0;
 
     var means=function(c){
