@@ -357,7 +357,7 @@ var Rattning = (function(){
         return {exp:'3N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': välj sangutgång med 3NT.',means:means,conv:'överföring'};
       if(L[M]>=6)
         return {exp:'4'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': 4'+SYM[M]+' är utgång/signoff enligt tabellen.',means:means,conv:'överföring'};
-      return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring',true);
+      return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg). Situationen lämnas ej täckt.',means,'överföring',true);
     }
     return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering; situationen lämnas ej täckt.',means,'överföring',true);
   }
