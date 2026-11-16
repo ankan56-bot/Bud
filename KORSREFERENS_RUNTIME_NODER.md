@@ -405,3 +405,4 @@ Att den nuvarande motorn väljer 3♥ som splinter i seed 202615834 beskriver **
 `analysmotor.js` exporterar nu även `findMatches()`. Den returnerar samtliga noder vars sekvens är prefixmatchning mot aktuell auktion, sorterade med längsta sekvens först. Befintliga `findMatch()` behåller sitt gamla beteende och returnerar första träffen, så befintlig UI-/rapportlogik ändras inte.
 
 Tester visar att `1NT–Pass–2♦` ger två exakta nodträffar (T03/T07), medan `1♥–Pass–2♥` ger tre exakta träffar (T05/T10/T21). Detta gör tvetydigheten synlig för framtida migrering. `findMatches()` kontrollerar ännu inte handprofiler eller roll; den är en diagnostisk mellanlösning, inte en komplett nodmotor.
+- Fullständigt underlag för samtliga 11 unika ej täckta givare i de senaste stickproven finns i `RAPPORT_EJ_TACKTA_OSTORD_2026-11-16.md`, inklusive alla fyra händer, HP/fördelning, auktion och klassificering.
