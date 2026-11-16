@@ -109,7 +109,8 @@ for(const viaStayman of [false,true]){
     {s:'N',c:'4N'},{s:'E',c:'P'},{s:'S',c:'P'}];
   const result=R.nodeFor({hands:dealWithNorth(north),dealer:'N',bids},6);
   assert.equal(result.exp,null);
-  assert.doesNotMatch(result.why,/RKC|essfråga/i);
+  assert.notEqual(result.conv,'RKC 1430');
+  assert.match(result.why,/ingen fastställd trumf/i);
 }
 // The offline analysis library must cover minor-suit RKC as well as the
 // existing major-suit trees, including the source-defined void responses.
