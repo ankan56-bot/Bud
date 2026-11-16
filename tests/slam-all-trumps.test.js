@@ -128,7 +128,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
     return {N:north.slice(),E:rest.slice(0,13),S:south.slice(),W:rest.slice(13,26)};
   }
   const responderNoQueen=makeHand({trump:'H',aces:['C']});
-  const askerThreeAces=makeHand({aces:['S','D','C'],exclude:responderNoQueen});
+  const askerThreeAces=makeHand({aces:['S','D','H'],exclude:responderNoQueen});
   const hands=deal(responderNoQueen,askerThreeAces);
   const auction=[
     {s:'N',c:'1H'},{s:'E',c:'P'},
@@ -147,7 +147,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   assert.equal(six.exp,'6H','with 3 own aces, asker bids 6 in trump after the queen is denied');
 
   const responderWithQueen=makeHand({trump:'H',aces:['C'],trumpQueen:true});
-  const askerThreeAcesQ=makeHand({aces:['S','D','C'],exclude:responderWithQueen});
+  const askerThreeAcesQ=makeHand({aces:['S','D','H'],exclude:responderWithQueen});
   const handsQ=deal(responderWithQueen,askerThreeAcesQ);
   const auctionQ=auction.concat([{s:'S',c:'5D'},{s:'W',c:'P'},{s:'N',c:'P'}]);
   const show=R.nodeFor({hands:handsQ,dealer:'N',bids:auctionQ},12);
@@ -207,7 +207,7 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   require('../ej-tackta-logg.js');
   const log=global.window.EjTacktaLogg;
   const north=makeHand({trump:'H',aces:['C']});
-  const south=makeHand({aces:['S','D','C'],exclude:north});
+  const south=makeHand({aces:['S','D','H'],exclude:north});
   const rest=deck.filter(c=>!north.includes(c)&&!south.includes(c));
   const hands={N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
   const bids=[
