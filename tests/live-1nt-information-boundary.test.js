@@ -58,6 +58,12 @@ const afterStayman2NT=[
 assert.equal(live('N',afterStayman2NT,fourFourOpener).exp,'3S',
  'explicit Stayman 4-4 continuation can be decided from opener hand alone');
 
+const balancedEight=fill(['C14','C13','C2','C3','D2','D3','D4','H11','H2','H3','S2','S3','S4']);
+assert.equal(R.H(balancedEight).hp,8);
+assert.equal(R.H(balancedEight).bal,true);
+assert.equal(live('S',firstResponse,balancedEight).exp,null,
+ 'the source describes a natural 2NT invitation but gives no numeric responder HCP band');
+
 const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2','S3','S4']);
 assert.equal(R.H(balancedTen).hp,10);
 assert.equal(live('S',firstResponse,balancedTen).exp,null,
