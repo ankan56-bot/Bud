@@ -282,6 +282,47 @@ const blockedOneLevelResponse = Rattning.nodeFor({
 assert.equal(blockedOneLevelResponse.slamBlocked, true);
 assert.match(blockedOneLevelResponse.why, /partner har svarat/i);
 
+
+const liveOpeningHand = [
+  'S14','S13','S8','S5','S2',
+  'H14','H12','H4',
+  'D11','D7','D6',
+  'C11','C7'
+];
+const liveAuction = [
+  {s:'N',c:'P'}, {s:'E',c:'P'}, {s:'S',c:'P'}
+];
+const liveA = Rattning.decideLive({
+  ownHand: liveOpeningHand, seat:'W', dealer:'N', auction:liveAuction
+});
+const liveB = Rattning.decideLive({
+  ownHand: liveOpeningHand.slice(), seat:'W', dealer:'N', auction:liveAuction
+});
+assert.equal(liveA.exp, '1N', '15-17 balanced own hand opens 1NT in live API');
+assert.equal(liveB.exp, liveA.exp, 'Repeated live call with same public information is invariant');
+assert.equal(liveA.context, 'live');
+assert.equal(liveA.informationBoundary, 'own_hand_and_public_auction_only');
+
+// The live API deliberately refuses all not-yet-migrated response sequences.
+const liveResponse = Rattning.decideLive({
+  ownHand: liveOpeningHand, seat:'E', dealer:'W',
+  auction:[{s:'W',c:'1N'},{s:'N',c:'P'}]
+});
+assert.equal(liveResponse.exp, null);
+assert.match(liveResponse.why, /inte migrerats/i);
+
+// It rejects wrong turn order and malformed own-hand input.
+const wrongTurn = Rattning.decideLive({
+  ownHand: liveOpeningHand, seat:'S', dealer:'N', auction:[{s:'N',c:'P'}]
+});
+assert.equal(wrongTurn.exp, null);
+assert.match(wrongTurn.why, /inte den angivna spelarens tur/i);
+const malformedHand = Rattning.decideLive({
+  ownHand: liveOpeningHand.slice(1), seat:'N', dealer:'N', auction:[]
+});
+assert.equal(malformedHand.exp, null);
+assert.match(malformedHand.why, /13 egna kort/i);
+
 const report = {
   engineVersion: Rattning.version,
   cases: [
