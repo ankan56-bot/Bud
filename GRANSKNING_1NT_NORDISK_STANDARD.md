@@ -284,3 +284,16 @@ Direkt 3NT med minst 26 gemensamma honnörspoäng är fortsatt en separat verifi
 ### Stayman-inviter – endast utgångsgränsen är numeriskt fastställd
 
 Efter 1NT–2♣ har nya färger nu de uttryckliga källreglerna (5+ högfärg/4+ lågfärg, utgångskrav) och 2NT efter 2♥ visar exakt fyra spader. Däremot är 2NT som naturlig invit och 3M som invit efter visad högfärg beskrivna som inviter utan numeriskt styrkeintervall i PDF:en. Därför används inte tidigare kodade 22–25- eller 8–9-gränser för att välja mellan pass och invit. Rättningsmotorn lämnar dessa fall ej täckta. Den separata, användarbekräftade 26-poängsgränsen för utgång används fortsatt när en 8-kortsfit eller sangstyrka är känd.
+
+
+### Svagt lågfärgsrelä 1NT–2♠ – styrkegräns lämnas öppen
+
+Nordisk standard s. 4 anger 2♠ som ett svagt/dåligt svar med minst sex kort i en lågfärg; reläet kan också användas med 5-5 i lågfärgerna. Öppnaren visar längre klöver med 3♣, annars 2NT (längre ruter eller lika längd). Efter 2NT bjuder svarshanden 3♣/3♦ som signoff; efter 3♣ passar svarshanden eller bjuder 3♦ som signoff.
+
+PDF:en anger inte ett numeriskt HP-intervall för "dåliga kort". Rättningsmotorn har därför slutat använda den tidigare implicit antagna gränsen 0–7 hp för att rekommendera 2♠. När handen har 6+ kort i en lågfärg eller 5-5 i lågfärgerna markeras reläet som en möjlig formmässig väg, men styrkan lämnas ej bedömd tills en källa eller användarbekräftelse anger gränsen. Öppnarens svar och svarshandens signoff efter 2♠ är separata, källstyrda auktionstillstånd.
+
+### Överlappande specialfortsättningar efter överföring
+
+Efter hjärteröverföring kan samma hand uppfylla både 2♠-villkoret (5+♥/4+♠, rondkrav) och 3♣/3♦-villkoret (5+♥/4+ lågfärg, utgångskrav). Källtabellen anger betydelserna men inte vilken som har prioritet när båda är uppfyllda. Rättningsmotorn lämnar därför dessa överlappande händer ej täckta. Om båda lågfärgerna uppfyller 4+-villkoret lämnas också prioriteten ej täckt.
+
+Testerna kontrollerar både överlappet och att ingen prioritet hittas på.
