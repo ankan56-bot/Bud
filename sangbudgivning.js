@@ -146,11 +146,11 @@
     // Explicit invit routes from Nordisk standard s. 4. The hand shape
     // can identify the shown major, but the source gives no numeric
     // strength boundary for choosing this invit.
-    if(M&&L[M]>=4){
-      return NC('3'+M+' är invit i öppnarens visade högfärg efter Stayman enligt Nordisk standard s. 4. Den numeriska styrkegränsen för att välja inviten anges inte; situationen lämnas ej täckt.',function(c){return c==='3'+M?'Invit i öppnarens visade högfärg.':null},'Stayman',true);
-    }
     if(reply==='2S'&&h.bal){
       return NC('2NT är naturlig invit efter Stayman 2♠ enligt Nordisk standard s. 4. Numerisk styrkegräns saknas; situationen lämnas ej täckt.',function(c){return c==='2N'?'Naturlig sanginvit efter Stayman 2♠.':null},'Stayman',true);
+    }
+    if(M&&L[M]>=4){
+      return NC('3'+M+' är invit i öppnarens visade högfärg efter Stayman enligt Nordisk standard s. 4. Den numeriska styrkegränsen för att välja inviten anges inte; situationen lämnas ej täckt.',function(c){return c==='3'+M?'Invit i öppnarens visade högfärg.':null},'Stayman',true);
     }
     if(!opener){
       if(reply==='2D'&&hp>=10&&h.bal)return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT.',means:means,conv:'Stayman',ruleStatus:'user_confirmed'};
