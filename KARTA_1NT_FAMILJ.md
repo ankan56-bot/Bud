@@ -182,3 +182,16 @@ Nytt test: `tests/live-1nt-information-boundary.test.js` kontrollerar att dolda 
 1NT–2♠ visar enligt Nordisk standard s. 4 en svag hand med minst sex kort i en lågfärg eller 5-5 i lågfärgerna. Öppnaren bjuder 3♣ med längre klöver, annars 2NT (längre ruter eller lika längd). Efter 2NT bjuder svarshanden 3♣ eller 3♦ som signoff; efter 3♣ passar svarshanden eller bjuder 3♦ som signoff.
 
 Källan anger inte ett exakt numeriskt HP-intervall för "svag/dåliga kort". Motorn rekommenderar därför inte automatiskt 2♠ utifrån en egen gräns. Den känner igen längdprofilen men lämnar styrkeklassificeringen ej täckt. Trädet T42 är markerat preliminärt och filtreras bort från auktoritativ matchning tills styrkebeskrivningen kan preciseras.
+
+
+### Täckningskontroll efter källkonservativ rättning
+
+Den fasta 36-givarskorpusen innehåller nu 169 N/S-beslut. Fem beslut lämnas ej täckta: ett efter Stayman 2♦ där öppnarens fortsättning saknas, samt fyra val av naturlig 2NT-invit där Nordisk standard inte anger ett numeriskt styrkeintervall. Täckningen är 164/169 (97,0 %). Det är en medveten minskning från den tidigare högre täckningen som delvis byggde på obelagda invitgränser.
+
+I den separata 100-givarskontrollen ligger täckningen kvar över 98 %. Kvarvarande luckor är dokumenterade och omfattar:
+- numeriska invitgränser som saknas i källan;
+- överföringshänder med 10–15 hp som varken är balanserad femkortshand eller har sexkortsfärg;
+- öppnarens fortsättning efter svarshandens utgångskravande 3♣/3♦ efter överföring;
+- öppnarens accept/pass efter invit när källan inte definierar kriterierna.
+
+Alla dessa lägen lämnas ej täckta hellre än att motorn konstruerar ett systembud. Inga undantag, ogiltiga auktioner eller runtimefel får förekomma i simuleringarna.
