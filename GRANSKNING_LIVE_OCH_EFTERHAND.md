@@ -122,3 +122,45 @@ Däremot är detta en separat strategisk reservpolicy, inte en verifierad del av
 ## 8. Verifieringskrav för informationsisolering
 
 Ett centralt regressionstest ska skapa flera kompletta givar med samma robot-hand, samma givare och exakt samma offentliga budsekvens men olika kort i de tre andra händerna. `decideLive()` ska returnera identiskt bud och motivering i samtliga fall. Testet ska även köras på varje stödd budposition efter att den nya livevägen införts.
+
+
+## 9. Exakt funktionsinventering av dolda handberoenden
+
+Följande hjälpfunktioner tar uttryckligen emot partnerns faktiska kort eller läser partnerns hand via dispatcher. De är inte säkra som generella livebeslutsfunktioner i nuvarande form:
+
+| Funktion | Dold indata | Beslut som påverkas | Konsekvens |
+|---|---|---|---|
+| `ntResp(h,k,openerCards)` | Öppnarens kort | Gemensamma hp efter 1NT/2NT; val av sangutgång/invit | Svarshanden kan välja bud utifrån öppnarens faktiska hp. |
+| `ntOpener(h,k,r,responderCards)` | Svarshandens kort | Accept/pass på 2NT-invit | Öppnaren kan acceptera invit utifrån svarshandens faktiska hp. |
+| `stay2(h,reply,openerCards)` | Öppnarens kort | Fit och gemensamma spelpoäng efter Stayman | Svarshanden kan välja 3M/4M/3NT/pass med vetskap om öppnarens hand. |
+| `transfer2(h,M,openerCards)` | Öppnarens kort | Gemensamma hp, fit och spelpoäng efter överföring | Svarshanden kan välja slutbud/invit med dold information. |
+| `ntOpenerInvit(h,M,inv,responderCards)` | Svarshandens kort | Accept av 2NT/3M-invit | Öppnaren ser den faktiska fitten och gemensamma styrkan. |
+| `ntOpener3(h,k1,k2,k3,responderCards)` | Svarshandens kort | Accept efter Stayman-invit och vissa sangfortsättningar | Öppnaren kan fatta beslut med partnerns dolda kort. |
+| `resp2w(h,oc,openerCards)` | Öppnarens kort | Fit, gemensamma spelpoäng, utgång/slam efter svag tvåa | Svarshanden kan veta den verkliga fitten. |
+| `reb1(h,oc,r,partnerCards)` | Svarshandens kort | Accept/pass efter 3M-invit | Öppnaren kan se faktisk fit och gemensamma spelpoäng. |
+| `responderSecondBid(h,opening,response,rebid,openerHand)` | Öppnarens kort | Fit, gemensam hp/HTP, preferens, invit och utgång | Svarshanden kan välja fortsättning utifrån öppnarens verkliga hand. |
+| `nodeForRaw()` | `st.hands[pt]` på flera grenar | 1NT-inviter, 1NT 4-4-4-1-väg, reverse/fit och fortsättningar | Dispatcher för in dold information direkt i beslutet. |
+| `nodeFor()` → `missedGameOrSlam()` | Båda sidans faktiska händer | Missad utgång/slam-rescue | Efterhandskontroll körs även i den funktion som används av livebotten. |
+
+### Direkta läsningar i dispatchern
+
+- Cirka rad 1120: läser partnerns hp efter 1NT-återbud. Den lokala variabeln `inviteTotal` verkar inte användas i den aktuella grenen, men läsningen visar att dispatchern har blandat in fullgivarstatus.
+- Cirka rad 1125–1129: läser partnerns hand för att acceptera/avslå 3♥/3♠-invit.
+- Cirka rad 1224–1227: kontrollerar partnerns exakta 4-4-4-1-fördelning och skickar den till svarshandens andra-bud-logik.
+- Cirka rad 1248–1253: läser partnerns hp för sanginvit efter 2NT.
+- Cirka rad 1271–1279: läser partnerns hp och spaderlängd efter 2NT–3♣–3♠.
+- Cirka rad 1286–1291: skickar partnerns faktiska hand till NT-svar, NT-öppnarens återbud, Stayman och överföringsfunktioner.
+- Cirka rad 1301–1302: skickar partnerns faktiska hand till öppnarens fortsättning efter invit/Stayman.
+- Cirka rad 1326: skickar öppnarens faktiska hand till svarshandens beslut efter svag tvåa.
+- Cirka rad 1344–1347: testar faktisk spaderfit och gemensamma spelpoäng i reverse-sekvens.
+- Cirka rad 1351–1355: skickar öppnarens hand till svarshandens andra bud och partnerns hand till öppnarens återbud.
+
+Radnumren är ungefärliga och ska verifieras mot aktuell fil vid kodändring.
+
+### Viktig distinktion
+
+Alla dessa funktioner är inte felaktiga för efterhandsrättning. Problemet är att de blandas med livebeslut. Målet är inte att kasta bort deras pedagogiska värde, utan att dela varje beslut i:
+- **Livevariant:** endast egen hand + offentlig budinformation; returnerar ej täckt om informationen inte räcker.
+- **Efterhandsvariant:** får använda båda händerna, men resultatet märks som efterhandsanalys och får inte påverka robotens livebud.
+
+Denna uppdelning måste omfatta även strategiska reservbeslut och utgångs-/slamkontrollen.
