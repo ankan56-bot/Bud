@@ -6441,10 +6441,10 @@
       ],
       "conditions": [
         "Norr öppnar 1NT = 15–17 hp och jämn hand.",
-        "Svarshanden har under 8 hp och minst sex kort i en lågfärg, eller 5-5 i lågfärgerna.",
+        "Svarshanden har dåliga/svaga kort och minst sex kort i en lågfärg, eller 5-5 i lågfärgerna.",
+        "Nordisk standard s. 4 anger ingen numerisk HP-gräns för 'dåliga kort'; trädet är därför preliminärt och får inte användas som auktoritativ rättningsregel.",
         "2♠ är artificiellt relä; det visar inte spader.",
-        "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre klöver; 2NT med längre ruter eller lika längd.",
-        "Efter reläsvar väljer svarshanden slutbud 3♣ eller 3♦ efter sin egen längd; vid lika längd efter 2NT väljs 3♣."
+        "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre ♣; 2NT med längre ♦ eller lika längd."
       ],
       "root": "t42_n0",
       "nodes": [
@@ -6456,7 +6456,7 @@
             "2♠"
           ],
           "meaning": "2♠ – artificiellt relä med svag lågfärgshand",
-          "analysis": "Svarshanden har en svag hand under 8 hp och lång lågfärg: minst sex klöver eller ruter, alternativt 5-5 i lågfärgerna. 2♠ är ett relä för att hitta rätt lågfärg och lovar inte spader.",
+          "analysis": "Svarshanden har dåliga/svaga kort och lång lågfärg: minst sex klöver eller ruter, alternativt 5-5 i lågfärgerna. Nordisk standard anger ingen numerisk HP-gräns för denna kvalitativa beskrivning. 2♠ är ett relä för att hitta rätt lågfärg och lovar inte spader.",
           "handProfile": {
             "opener": "1NT = 15–17 hp, balanserad hand.",
             "responder": "Under 8 hp; minst 6 klöver eller ruter, alternativt 5-5 i lågfärgerna."
