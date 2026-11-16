@@ -75,7 +75,7 @@ assert.equal(judgeNatural2NT(responderTen).exp,'3N',
 // The same 25-HCP no-trump threshold applies when Stayman finds no
 // major and responder's 2NT is a balanced invitation.
 function judgeStayman2NT(responderHand){
- const opener=['C14','C13','C2','C3','D14','D13','D11','D2','S11','S2','S3','H2','H3'];
+ const opener=['C13','C12','C2','C3','D14','D12','D11','D2','H14','H2','H3','S2','S3'];
  assert.equal(R.H(opener).hp,16);
  assert.equal(R.H(opener).bal,true);
  const used=new Set([...opener,...responderHand]);assert.equal(used.size,26);
