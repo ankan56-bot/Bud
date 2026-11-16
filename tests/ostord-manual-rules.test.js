@@ -133,6 +133,43 @@ function completeDealWithSouth(south) {
   assert.equal(node.exp, 'P', 'Four-card major must not be treated as a five-card new major');
 }
 
+
+function negativeDoubleDeal(south) {
+  return completeDealWithSouth(south);
+}
+
+// BridgePlus s. 91: after 1D–1H, a negative double shows exactly four spades.
+{
+  const hands = negativeDoubleDeal([
+    'S14','S13','S8','S6',
+    'H12','H9','H5','H2',
+    'D8','D4',
+    'C11','C7','C3'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.equal(node.exp, 'X');
+  assert.match(node.why, /exakt fyra spader/i);
+}
+
+// BridgePlus s. 91: after 1C–1S, a negative double shows at least four hearts.
+{
+  const hands = negativeDoubleDeal([
+    'S13','S8','S5',
+    'H14','H12','H9','H5',
+    'D8','D4',
+    'C11','C10','C3','C2'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1C'}, {s:'E',c:'1S'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.equal(node.exp, 'X');
+  assert.match(node.why, /fyra hjärter/i);
+}
+
 const report = {
   engineVersion: Rattning.version,
   cases: [
