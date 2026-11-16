@@ -378,3 +378,14 @@ Fortsatt implementation på arbetsgrenen:
 **Verifiering:** CI på arbetsgrenen passerar med samtliga 1NT-tester, analysbibliotekets strukturtest, Stayman-analystestet, 1♥/1♠-regressionen och den breda ostörda givarkorpusen. Senaste godkända körning: `43935968651`.
 
 Ingen ändring har gjorts på `main`.
+
+## 13. Modulgräns vid 4NT (2026-11-16)
+
+Den överenskomna avgränsningen är nu uttrycklig i både kod och analysbibliotek:
+
+- **1NT-familjen (`sangbudgivning.js`)** modellerar budgivningen fram till och med att någon i paret bjuder 4NT. 4NT kan finnas som terminalt val i en 1NT-sekvens, men 1NT-modulen tolkar inte svaren.
+- **4NT-/slammodulen (`slamlogik.js`)** äger tolkningen av 4NT: fyr-essfråga, RKC, kvantitativ 4NT, trumfbestämning från den offentliga budhistoriken och svaren på frågan. Fortsättningen efter svaret byggs där, inte i 1NT-modulen.
+- Analysbibliotekets `T43_1NT_4NT_ENDPOINTS` är ett rent överlämningsträd. Varje nod slutar exakt på 4NT och har inga grenar efter detta bud. Överföringsträden visar också 4NT som terminal gren.
+- En separat arkitekturtestfil kontrollerar modulägarskap, T43:s terminala noder och att 4NT-grenarna i överföringsträden inte fortsätter i 1NT-familjen.
+
+Detta innebär inte att 4NT-arbetet är färdigbyggt. Det betyder att dess logik ligger på rätt plats och kan byggas ut separat utan att 1NT-familjen växer förbi sin överenskomna slutpunkt.
