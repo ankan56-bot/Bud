@@ -129,9 +129,17 @@ Viktiga bekräftade källregler:
 - Hela hjärter- och spaderöverföringstabellen är specificerad på s. 5.
 - Svagt lågfärgsrelä efter 2♠ är specificerat på s. 4–5.
 - 4NT har två olika essfrågetabeller beroende på om trumf är fastställd; fyr-esssvaret 5♣ betyder 0 eller 4, inte bara 0 (s. 7).
+- Efter fullföljd överföring är 4NT uttryckligen RKC med överföringsfärgen som trumf (s. 5). Efter Stayman-svaret 2♥/2♠ är högfärgen indirekt fastställd (s. 7).
 
 Källgranskningen hittade verkliga kod-/dokumentavvikelser. Dessa ska åtgärdas i ordningen P0, P1, P2 i granskningsrapporten. Ingen ny HP-gräns får införas enbart för att koden redan använder den.
 
 ## 9. Ändringsstatus
 
-Ingen budregel eller produktionskod ändras genom denna kartläggning. Dokumentet skiljer observerat runtime-beteende från verifierade systemregler. Nästa steg är att kontrollera varje rad mot Nordisk Standard-källan och därefter skapa tester innan någon regeländring.
+Källgranskningen är dokumenterad i `GRANSKNING_1NT_NORDISK_STANDARD.md`. En första P0-korrigering har nu gjorts i rättningsmotorn och analysbiblioteket:
+- Fyr-essfrågan utan trumf använder 5♣=0/4, 5♦=1, 5♥=2, 5♠=3.
+- 4NT efter fullföljd överföring och efter Stayman 2♥/2♠ klassificeras som RKC.
+- Odefinierade 4NT-sekvenser efter 2NT och 2♣-öppning har tagits bort ur automatisk fyr-essfrågematchning.
+- Fortsättningen efter svar på fyr-essfrågan lämnas ej täckt eftersom PDF:en inte anger den.
+- Analysmatcharen filtrerar inte längre bort den giltiga fyr-essfrågetabellen på grund av en textmatchning.
+
+Nya regressionstester finns i `tests/nt-four-ace-source.test.js`. Övriga P0/P1-punkter – särskilt Stayman 2♥–2NT/3NT och fullständig överföringslogik – återstår. Konkurrensbudgivning och `main` är orörda.
