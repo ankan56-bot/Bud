@@ -178,8 +178,11 @@ const afterMinorInvite=[
 ];
 const openerWithTwoSmallClubs=fill(['S14','S13','S2','S3','H14','H12','H2','H3','D13','D2','D3','C2','C3']);
 assert.equal(R.H(openerWithTwoSmallClubs).hp,16);
-assert.equal(live('N',afterMinorInvite,openerWithTwoSmallClubs).exp,'P',
+const smallClubInviteResult=live('N',afterMinorInvite,openerWithTwoSmallClubs);
+assert.equal(smallClubInviteResult.exp,'P',
  'opener passes with xx in the invited minor');
+assert.equal(smallClubInviteResult.soft,true,
+ 'the xx/xxx or top-honour 3m response is explicitly marked as guidance, not a hard system rule');
 const openerWithThreeSmallClubs=fill(['S14','S13','S2','S3','H14','H12','H2','D13','D2','D3','C2','C3','C4']);
 assert.equal(R.H(openerWithThreeSmallClubs).hp,16);
 assert.equal(live('N',afterMinorInvite,openerWithThreeSmallClubs).exp,'P',
