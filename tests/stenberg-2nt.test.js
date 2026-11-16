@@ -67,4 +67,29 @@ assert.equal(ask.exp,'4N','4NT after 1♣–2NT–3♣ must hand off as RKC with
 const reply=R.nodeFor({hands:minorDeal,dealer:'N',bids:minorAuction.concat([{s:'W',c:'P'},{s:'N',c:'5D'}])},8);
 assert.equal(reply.exp,'5D','one keycard after minor Stenberg must use the existing RKC response table');
 
-console.log('Stenberg 2NT: source-bound response, opener rebids, live response and minor RKC handoff passed.');
+// 100 deterministic valid responder hands: 4+ heart support and 13+ htp.
+let seed=20261116;
+function random(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
+let checked=0,attempts=0;
+while(checked<100&&attempts<20000){
+ attempts++;
+ const deck=[];for(const s of ['S','H','D','C'])for(let n=2;n<=14;n++)deck.push(s+n);
+ for(let i=deck.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
+ const responderCards=deck.slice(0,13),responderHand=hand(responderCards);
+ if(responderHand.L.H<4||scoring.handHps(responderHand,'H')<13)continue;
+ const rest=deck.slice(13),deal={N:rest.slice(0,13),E:rest.slice(13,26),S:responderCards,W:rest.slice(26,39)};
+ const result=R.nodeFor({hands:deal,dealer:'N',bids:[{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2N'}]},2);
+ assert.equal(result.exp,'2N','all eligible 1♥–2NT hands should be accepted');
+ checked++;
+}
+assert.equal(checked,100,'the deterministic generator must produce 100 eligible Stenberg hands');
+
+// Minor-game endpoints are accepted only with 8+ fit and the project 28-point threshold.
+const clubOpener=hand(['C14','C13','C12','C11','C10','H14','H2','H3','D14','D2','D3','S2','S3']);
+const clubResponder=hand(['C2','C3','C4','C5','H13','H12','H11','D13','D12','D11','S14','S13','S12']);
+assert.equal(St.responderContinuation(clubResponder,'1C','5C',clubOpener,[],null,0,'S').exp,'5C');
+const diamondOpener=hand(['D14','D13','D12','D11','D10','H14','H2','H3','C14','C2','C3','S2','S3']);
+const diamondResponder=hand(['D2','D3','D4','D5','H13','H12','H11','C13','C12','C11','S14','S13','S12']);
+assert.equal(St.responderContinuation(diamondResponder,'1D','5D',diamondOpener,[],null,0,'S').exp,'5D');
+
+console.log('Stenberg 2NT: source-bound response, opener rebids, live response, 100-deal validation and minor RKC handoff passed.');
