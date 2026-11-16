@@ -185,4 +185,24 @@ assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,own
   assert.equal(result.ruleStatus,'user_confirmed');
 }
 
+
+// Same 2NT–3♣–3♠ auction, but with an eight-card spade fit and
+// 26 combined game points: choose 4♠ rather than applying the NT threshold.
+{
+  const north=['S14','S13','S12','S2','H14','H13','H2','D14','D2','D3','C2','C3','C4'];
+  const south=['S11','S10','S9','S8','H12','H4','H5','D13','D5','D6','C5','C6','C7'];
+  assert.equal(R.H(north).hp,20);
+  assert.equal(R.H(south).hp,6);
+  assert.equal(R.H(north).L.S+R.H(south).L.S,8);
+  const hands=deal(north,south);
+  const bids=[
+    {s:'N',c:'2N'},{s:'E',c:'P'},
+    {s:'S',c:'3C'},{s:'W',c:'P'},
+    {s:'N',c:'3S'},{s:'E',c:'P'},
+    {s:'S',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+  assert.equal(result.exp,'4S','8-card spade fit and 26 combined game points selects 4S');
+}
+
 console.log('1NT Stayman continuation tests: passed.');
