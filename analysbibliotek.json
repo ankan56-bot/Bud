@@ -379,7 +379,9 @@
             "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T04_INVIT_2NT_PASS",
@@ -693,7 +695,9 @@
             "responder": "Minst fem hjärter; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T08_OVERFORING_SPADER",
@@ -813,7 +817,9 @@
             "responder": "Minst fem spader; 0–8 hp pass, 9 hp invit efter längd, 10–15 hp utgångsväg, 16+ hp slamintresse."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T09_1NT_DIREKT_3NT",
@@ -1447,7 +1453,9 @@
             "responder": "Exakt fem kort i hjärter; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T20",
@@ -1576,7 +1584,9 @@
             "responder": "Exakt fem kort i spader; normalt 9 hp eller 10+ hp med 22–25 gemensamma honnörspoäng, vilket ger 2NT-invit."
           }
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T21",
@@ -2845,7 +2855,9 @@
           },
           "branches": []
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T28_OVERFORING_SPADER_SEXKORT_INVIT",
@@ -3079,7 +3091,9 @@
           },
           "branches": []
         }
-      ]
+      ],
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Innehåller numeriska HP-/gemensamma poänggränser för svag/invit/utgång efter överföring som inte är verifierade i Nordisk standard s. 5. Ska inte användas som auktoritativ rättningsnod innan gränserna bekräftats."
     },
     {
       "id": "T29_1H_1S_KONKURRENS",
