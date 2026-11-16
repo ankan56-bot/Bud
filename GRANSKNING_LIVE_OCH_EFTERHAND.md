@@ -164,3 +164,33 @@ Alla dessa funktioner är inte felaktiga för efterhandsrättning. Problemet är
 - **Efterhandsvariant:** får använda båda händerna, men resultatet märks som efterhandsanalys och får inte påverka robotens livebud.
 
 Denna uppdelning måste omfatta även strategiska reservbeslut och utgångs-/slamkontrollen.
+
+## 10. Reproducerbart exempel: samma egen hand och auktion ger olika livebeslut
+
+Jag har byggt två fullständiga, kortmässigt giltiga givar där öppnarens hand och den offentliga auktionen är identiska. Endast svarshandens dolda kort skiljer sig.
+
+**Öppnarens hand i båda fallen:** 13 hp, fem hjärter, fördelning 5-3-3-2.  
+**Offentlig auktion i båda fallen:** 1♥ – Pass – 3♥ – Pass – (öppnarens beslut).
+
+Svarshand A har 10 hp, 10 HTP och fyra hjärter (4-3-3-3). Svarshand B har 10 hp, 11 HTP och fyra hjärter (4-4-3-2). Båda ligger inom det dokumenterade intervallet för en 3♥-invit (10–12 HTP, minst fyra hjärter).
+
+Nuvarande rättningsmotor ger:
+
+| Dold svarshand | Gemensamma spelpoäng enligt motorn | Beslut |
+|---|---:|---|
+| A | 25 | Pass |
+| B | 26 | 4♥ |
+
+Det här är ett direkt reproducerbart bevis på att `Rattning.nodeFor()` använder partnerns faktiska kort för att välja öppnarens livebud. Under budgivningen vet öppnaren bara att partnern har inviterat med 10–12 HTP och minst fyra hjärter; öppnaren vet inte om partnern har exakt den ena eller andra fördelningen.
+
+**Korrekt hantering:** Den livevägen måste använda det intervall och den information som budet faktiskt visar. Om den dokumenterade systemtexten inte anger hur öppnaren ska fatta beslut när intervallet sträcker sig över utgångsgränsen ska livebeslutet markeras ej täckt/kräva kompletterande systembeslut – inte läsa partnerns kort.
+
+## 11. Ny lucka från 100-givarskörningen: svar efter splinter
+
+Jag har återskapat seed `202615834` från 100-givarsprovet och följt varje beslut i motorn. Sekvensen är:
+
+`1♠ – Pass – 2♦ – Pass – 3♥ – Pass – ?`
+
+I just denna giv har öppnaren 4-4-4-1 och 3♥ är enligt nuvarande `reb1()` ett splinterbud: singelton i hjärter och minst fyra korts stöd i svarshandens ruter. Svarshandens 2♦ har därmed fått en fitbeskrivning, men `responderSecondBid()` har ingen uttrycklig gren för splinter. Den försöker i stället behandla öppnarens återbud som en naturlig andra färg/tvåfärgshand och lämnar beslutet ej täckt.
+
+Det här är en mer precis klassificering än den äldre korta beskrivningen i loggen. **Vi ska inte hitta på svar efter splinter.** Först måste den auktoritativa systemöverenskommelsen för svarshandens styrkeintervall, kontrollvisning och signoff efter splinter verifieras. Därefter kan vi lägga till en nodfamilj och separata tester.
