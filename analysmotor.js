@@ -20,11 +20,11 @@ function loadLibrary(){
 }
 function treeCompatible(tree){
  const text=JSON.stringify(tree||{});
- // Explicitly reject prototype passages that contradict the authoritative
- // correction engine's Stenberg convention or the partnership's RKC 1430.
+ // Keep the legacy Jacoby prototype excluded. Do not filter on bare 5♣/5♦
+ // response text: Nordisk standard s. 7 legitimately uses 5♣=0/4 and
+ // 5♦=1 in the four-ace (no-trump-established) table, while RKC 1430 has
+ // a different five-keycard mapping. The auction context distinguishes them.
  if(/Jacoby/i.test(text))return false;
- if(text.includes("5♣=0")||text.includes("5♣ = 0")||text.includes("5♣ visar 0"))return false;
- if(text.includes("5♦=1")||text.includes("5♦ = 1")||text.includes("5♦ visar 1"))return false;
  return true;
 }
 function findMatches(lib,bids){
