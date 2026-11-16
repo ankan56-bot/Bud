@@ -4,6 +4,8 @@
 // responses and the separate no-trump four-ace table.
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
+const A=require('../analysmotor.js');
+const library=require('../analysbibliotek.json');
 const SU=['C','D','H','S'];
 const deck=[];
 for(const suit of SU)for(let rank=2;rank<=14;rank++)deck.push(suit+rank);
@@ -106,5 +108,14 @@ for(const viaStayman of [false,true]){
   const result=R.nodeFor({hands:dealWithNorth(north),dealer:'N',bids},6);
   assert.equal(result.exp,null);
   assert.doesNotMatch(result.why,/RKC|essfråga/i);
+}
+// The offline analysis library must cover minor-suit RKC as well as the
+// existing major-suit trees, including the source-defined void responses.
+for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_KLOVER','T46_RKC_1430_RUTER']){
+  const tree=library.trees.find(t=>t.id===id);
+  assert.ok(tree,'missing analysis tree '+id);
+  assert.equal(A.treeCompatible(tree),true,id+' must be compatible with the analysis matcher');
+  assert.ok(tree.nodes.some(n=>n.sequence.includes('5NT')),'tree '+id+' must explain 5NT void response');
+  assert.ok(tree.nodes.some(n=>n.sequence.some(c=>/^6[♣♦♥♠]$/.test(c))),'tree '+id+' must explain 6-level void response');
 }
 console.log('All-trumps RKC and no-trump four-ace tests: passed.');
