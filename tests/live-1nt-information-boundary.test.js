@@ -71,7 +71,8 @@ assert.equal(R.H(responderTen).hp,10);
 assert.equal(judgeNatural2NT(responderTen).exp,null,
  '26 combined HCP does not establish acceptance without a confirmed threshold');
 
-// Stayman 2D–2NT has no confirmed numeric acceptance threshold.
+// The user-confirmed 25-HCP no-trump game threshold applies after Stayman 2D–2NT:
+// 24 combined HCP stays below game; 25+ reaches 3NT in after-the-fact correction.
 function judgeStayman2NT(responderHand){
  const opener=['C13','C12','C2','C3','D14','D12','D11','D2','H14','H2','H3','S2','S3'];
  assert.equal(R.H(opener).hp,16);
@@ -88,15 +89,15 @@ function judgeStayman2NT(responderHand){
  const bids=auction.concat([{s:'N',c:'P'}]);
  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
 }
-assert.equal(judgeStayman2NT(responderEight).exp,null,
- 'no numeric accept threshold is confirmed after Stayman 2D–2NT');
-assert.equal(judgeStayman2NT(responderNine).exp,null,
- '25 combined HCP does not establish a pass/accept boundary');
+assert.equal(judgeStayman2NT(responderEight).exp,'P',
+ '24 combined HCP stays below the confirmed 25-HCP 3NT threshold');
+assert.equal(judgeStayman2NT(responderNine).exp,'3N',
+ '25 combined HCP reaches the confirmed 3NT threshold after Stayman 2D–2NT');
 
 const staymanResponderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(staymanResponderTen).hp,10);
-assert.equal(judgeStayman2NT(staymanResponderTen).exp,null,
- '16+10=26 HCP after Stayman 2D: opener accepts with 3NT');
+assert.equal(judgeStayman2NT(staymanResponderTen).exp,'3N',
+ '16+10=26 HCP after Stayman 2D reaches the confirmed 3NT threshold');
 
 const staymanAfter2H=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
