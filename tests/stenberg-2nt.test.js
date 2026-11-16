@@ -57,7 +57,7 @@ assert.equal(St.responderContinuation(southHand,'1H','4H',northHand,
 // Minor Stenberg must establish the minor trump for the existing RKC module.
 const minorDeal=fill(
  ['C2','C3','C4','C5','C6','S14','S13','S12','D13','D12','D11','H13','H12'],
- ['C7','C8','C9','C10','H14','H10','H9','S11','S10','S9','D14','D10','D9']);
+ ['C14','C13','C12','C10','H14','H10','H9','S11','S10','S9','D14','D10','D9']);
 const minorAuction=[
  {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},
  {s:'N',c:'3C'},{s:'E',c:'P'},{s:'S',c:'4N'}
