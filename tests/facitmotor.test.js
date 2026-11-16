@@ -27,7 +27,8 @@ const north=fill([
   'H14','H12','H2','H3',
   'D13','D2','C2','C3','C4'
 ]);
-// Explicit responder hand, disjoint from North.\nconst cleanSouth=['S12','S11','S10','S9','S8','H11','H10','H9','H8','D4','D5','C5','C6'];
+// Explicit responder hand, disjoint from North.
+const cleanSouth=['S12','S11','S10','S9','S8','H11','H10','H9','H8','D4','D5','C5','C6'];
 const hands=deal(north,cleanSouth);
 assert.equal(R.H(north).hp,16);
 assert.equal(R.H(north).bal,true);
@@ -41,7 +42,14 @@ assert.match(result.message,/ofullständig/);
 
 // Hidden hands are never passed to decideLive: only the acting player's hand
 // and the public auction are included by the facit orchestrator.
-const noContractHands=deal(\n  ['S2','S3','S4','S5','H2','H3','H4','D2','D3','C2','C3','C4','C5'],\n  ['S6','S7','S8','S9','H5','H6','H7','D4','D5','C6','C7','C8','C9']\n);\nconst noContract=F.generateUndisturbedFacit({hands:noContractHands,dealer:'E',trainingSide:'NS'});\nassert.equal(noContract.status,'complete');\nassert.equal(noContract.contract,null);\nassert.deepEqual(noContract.auction.map(x=>x.c),['P','P','P','P']);
+const noContractHands=deal(
+  ['S2','S3','S4','S5','H2','H3','H4','D2','D3','C2','C3','C4','C5'],
+  ['S6','S7','S8','S9','H5','H6','H7','D4','D5','C6','C7','C8','C9']
+);
+const noContract=F.generateUndisturbedFacit({hands:noContractHands,dealer:'E',trainingSide:'NS'});
+assert.equal(noContract.status,'complete');
+assert.equal(noContract.contract,null);
+assert.deepEqual(noContract.auction.map(x=>x.c),['P','P','P','P']);
 
 // Invalid deals fail closed.
 const invalid=F.generateUndisturbedFacit({hands:{N:north,E:north,S:cleanSouth,W:cleanSouth},dealer:'N'});
