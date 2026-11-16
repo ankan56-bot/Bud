@@ -249,13 +249,13 @@ var Rattning = (function(){
   function stay2(h,reply,openerCards){
     var hp=h.hp,L=h.L,M=reply==='2H'?'H':reply==='2S'?'S':null,exp,why,alt=[];
     var opener=openerCards?H(openerCards):null;
-    var fitPoints=opener&&M?partnershipPoints(h,opener,M):0;
+    var fit=opener&&M?L[M]+opener.L[M]:0;
 
     var means=function(c){
       if(/^3[HS]$/.test(c))return 'Invit i öppnarens visade högfärg; exakt numerisk styrkegräns anges inte i Nordisk standard.';
       if(c==='2N')return 'Balanserad invit; efter Stayman 2♥ visar 2NT exakt fyra spader. Numerisk invitgräns anges inte i Nordisk standard.';
       if(c==='3N')return 'Utgång i sang med minst 26 gemensamma honnörspoäng och utan fastställd högfärgsfit.';
-      if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit och minst 26 gemensamma spelpoäng.';
+      if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit; exakt acceptgräns efter Stayman anges inte här.';
       return null};
     // Nordisk standard s. 4: after a 2♥ Stayman answer, responder's
     // 2NT shows exactly four spades; a new suit is natural and game-forcing
@@ -285,13 +285,8 @@ var Rattning = (function(){
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
     if(!opener)return NC('Efter Stayman är den egna handen inte tillräcklig för att bedöma invit/pass eller utgång med gemensamma poäng. Endast uttryckliga 2NT-/nya-färg-betydelser kan rättas live.',means,'Stayman',true);
-    if(M&&L[M]>=4&&opener&&L[M]+opener.L[M]>=8){
-      if(fitPoints>=26){
-        exp='4'+M;
-        why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';
-      }else{
-        return NC('Minst 8-korts fit efter Stayman är känd, men den numeriska gränsen för när svarshanden ska bjuda invit (3M) i stället för pass anges inte i Nordisk standard. 26+ spelpoäng räcker för utgång; under det lämnas valet ej täckt.',means,'Stayman',true);
-      }
+    if(M&&L[M]>=4&&opener&&fit>=8){
+      return NC('Minst 8-korts fit efter Stayman är känd, men Nordisk standard anger inte en särskild numerisk acceptgräns för att välja 4M framför invit eller pass i denna Staymanfortsättning. Den separata 26-poängsgränsen från andra högfärgssekvenser överförs inte hit; lämnas ej täckt.',means,'Stayman',true);
     }else{
       var five=L.H>=5?'H':L.S>=5?'S':null;
       if(reply==='2D'&&five&&!h.bal)
