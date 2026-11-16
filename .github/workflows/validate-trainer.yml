@@ -74,6 +74,8 @@ jobs:
         run: node tests/nt-four-ace-source.test.js
       - name: Run 1NT Stayman continuation tests
         run: node tests/nt-stayman-continuations.test.js
+      - name: Run 1NT transfer source-boundary tests
+        run: node tests/nt-transfer-source-boundaries.test.js
       - name: Validate Stayman analysis tree
         run: node tests/nt-stayman-analysis-tree.test.js
       - name: Run 100-deal 1♥/1♠ validation
