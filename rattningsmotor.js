@@ -243,7 +243,7 @@ var Rattning = (function(){
       soft=true;
     }
     else if(r==='3N'||(!k&&r==='2N'&&false)){exp='P';why='Slutbud: pass.'}
-    else return {exp:null,alt:[],why:'Öppnarens svar på detta bud beskrivs inte i dokumentet.',means:means,conv:conv};
+    else return NC('Öppnarens svar på detta bud beskrivs inte i dokumentet; fortsättningen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
   }
   function stay2(h,reply,openerCards){
