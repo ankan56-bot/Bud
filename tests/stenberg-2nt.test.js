@@ -15,6 +15,8 @@ const noFit=hand(['H14','H13','H12','S14','S13','S12','D14','D13','D12','C14','C
 assert.equal(St.responder(noFit,'1H').exp,null);
 const minorWithMajor=hand(['C14','C13','C12','C11','H14','H13','H12','H11','S2','S3','D2','D3','D4']);
 assert.equal(St.responder(minorWithMajor,'1C').exp,null);
+const strongMinorSupport=hand(['C14','C13','C12','C11','S14','S13','S2','H2','H3','H4','D2','D3','D4']);
+assert.equal(St.responder(strongMinorSupport,'1C').exp,'2N');
 
 const oneClub=hand(['H14','H13','H12','H11','H10','S14','S13','S2','D14','D13','D12','D11','C2']);
 assert.equal(St.openerRebid(oneClub,'1H').exp,'3C');
@@ -44,4 +46,9 @@ const openerNode=R.nodeFor({hands:openerHands,dealer:'N',bids:[
  {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},{s:'N',c:'3C'}
 ]},4);
 assert.equal(openerNode.exp,'3C');
+const southHand=require('../poangberakning.js').H(openerHands.S);
+const northHand=require('../poangberakning.js').H(openerHands.N);
+assert.equal(St.responderContinuation(southHand,'1H','4H',northHand,
+ [{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},{s:'N',c:'3C'},{s:'E',c:'P'}],
+ null,0).exp,'4H');
 console.log('Stenberg 2NT: source-bound response and opener rebids passed.');
