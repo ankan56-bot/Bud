@@ -101,7 +101,7 @@
       var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
       var partnerHasFourAceAsk=lastCall.c==='4N'&&agreedNoTrumpAceAsk(prior,side(me));
       var partnerHasQuantitativeInvite=lastCall.c==='4N'&&agreedQuantitativeNoTrumpInvite(prior,side(me));
-      var partnerRkcReply=/^5[CDHS]$/.test(lastCall.c)&&prior.some(function(x){return x.s===me&&x.c==='4N'})&&!!rkcTrumpFromAuction(prior,side(me));
+      var partnerRkcReply=/^(?:5[CDHSN]|6[CDHS])$/.test(lastCall.c)&&prior.some(function(x){return x.s===me&&x.c==='4N'})&&!!rkcTrumpFromAuction(prior,side(me));
       var partnerRkcQueenAsk=lastCall.s===pt&&/^5[CDHS]$/.test(lastCall.c)&&
         prior.some(function(x){return x.s===pt&&x.c==='4N'})&&
         prior.some(function(x){return x.s===me&&/^5[CD]$/.test(x.c)})&&
