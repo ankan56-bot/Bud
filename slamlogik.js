@@ -26,7 +26,7 @@
   function rkcTrumpFromAuction(bids,sideWanted){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&isBid(x.c)});
     for(var i=0;i<ours.length;i++){
-      if(/^1[HS]$/.test(ours[i].c)){
+      if(/^1[CDHS]$/.test(ours[i].c)){
         var opener=ours[i].s, suit=ours[i].c[1];
         for(var j=i+1;j<ours.length;j++){
           if(ours[j].s!==opener&&ours[j].c==='2N')return suit;
