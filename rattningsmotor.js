@@ -223,6 +223,7 @@ var Rattning = (function(){
       return null};
 
     if (r === b+'N') {
+        if(!responder)return NC('2NT är en invit. Öppnarens accept/pass kan inte avgöras live med partnerns dolda honnörspoäng; den exakta styrkan måste bedömas efter given eller enligt en separat verifierad intervallregel.',means,'1NT-system');
         if (jointHp < 26) return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
         return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:means,conv:'1NT-system',soft:false};
     }
@@ -275,6 +276,7 @@ var Rattning = (function(){
     }
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman');
+    if(!opener)return NC('Efter Stayman är den egna handen inte tillräcklig för att bedöma invit/pass eller utgång med gemensamma poäng. Endast uttryckliga 2NT-/nya-färg-betydelser kan rättas live.',means,'Stayman');
     if(M&&L[M]>=4&&opener&&L[M]+opener.L[M]>=8){
       if(fitPoints>=26){exp='4'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: utgång '+txt(exp)+'.';}
       else if(fitPoints>=22){exp='3'+M;why='Minst 8-korts fit i '+SYM[M]+' och '+fitPoints+' gemensamma spelpoäng: invit med 3'+SYM[M]+'.';}
@@ -375,6 +377,7 @@ var Rattning = (function(){
     }
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
+      if(!partner)return NC('Efter Stayman 2♦–2NT är öppnarens accept/pass beroende av gemensam styrka; partnerns dolda hand används inte i livebeslut.',null,'Stayman');
       var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret har minst 26 gemensamma honnörspoäng.';return null};
       if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-poängsgränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
