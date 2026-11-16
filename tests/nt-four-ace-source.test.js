@@ -64,7 +64,7 @@ const staymanNoSpadeFit=['S14','S13','S11','H14','H2','H3','H4','D13','D2','D3',
 assert.equal(openerStaymanChoice(staymanNoSpadeFit,'3N').exp,'P','without 4-4, pass on 3NT');
 
 // Stayman 2♥/2♠ is the explicitly described indirect trump agreement.
-// A single ace with no trump king is one keycard -> 5♣ in RKC 1430.
+// A single ace with no trump king is one keycard -> 5♦ in Nordisk standard.
 const oneAceNoMajorKing=['D14','S2','S3','S4','S5','H2','H3','H4','D2','D3','D4','C2','C3'];
 for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   const sequence=[
@@ -74,8 +74,8 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
     {s:'S',c:'4N'},{s:'W',c:'P'}
   ];
   const result=answer(dealWithNorth(oneAceNoMajorKing),sequence);
-  assert.equal(result.exp,'5C',`Stayman ${reply} must establish ${trump} for RKC 1430`);
-  assert.equal(result.conv,'RKC 1430');
+  assert.equal(result.exp,'5D',`Stayman ${reply} must establish ${trump} for Nordisk standard RKC`);
+  assert.equal(result.conv,'RKC enligt Nordisk standard');
 }
 
 // Nordisk standard s. 5 explicitly makes 4NT RKC after a completed transfer,
@@ -96,8 +96,8 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
     {s:'S',c:'4N'},{s:'W',c:'P'}
   ];
   const result=answer(hands,sequence);
-  assert.equal(result.conv,'RKC 1430','completed transfer explicitly establishes RKC in the source');
-  assert.equal(result.exp,'5C','four keycards (four aces) are 1/4 in RKC 1430');
+  assert.equal(result.conv,'RKC enligt Nordisk standard','completed transfer explicitly establishes RKC in the source');
+  assert.equal(result.exp,'5D','four keycards (four aces) are 1/4 in Nordisk standard RKC');
 }
 
 // Once the transfer suit has actually been raised, RKC is available.
@@ -113,7 +113,7 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   ];
   const result=answer(dealWithNorth(north),sequence);
   assert.equal(result.conv,'RKC 1430');
-  assert.equal(result.exp,'5D','two aces plus the heart king are three keycards');
+  assert.equal(result.exp,'5C','two aces plus the heart king are three keycards');
 }
 
 // The analysis library must expose the source-correct T43 tree; the former
