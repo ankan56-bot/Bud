@@ -101,6 +101,28 @@ const relayOpenerClubsLonger=fill(['C13','C12','C11','C10','C2','D13','D2','D3',
 assert.equal(live('N',relayOpenerAuction,relayOpenerClubsLonger).exp,'P',
  'opener passes after responder signs off in 3C');
 
+// 1NT–3m is invitational with a good 6+ minor. The source only
+// defines opener's response with xx/xxx (pass) or a top honour (3NT).
+const afterMinorInvite=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'3C'},{s:'W',c:'P'}
+];
+const openerWithTwoSmallClubs=fill(['S14','S13','S2','S3','H14','H12','H2','H3','D13','D2','D3','C2','C3']);
+assert.equal(R.H(openerWithTwoSmallClubs).hp,16);
+assert.equal(live('N',afterMinorInvite,openerWithTwoSmallClubs).exp,'P',
+ 'opener passes with xx in the invited minor');
+const openerWithThreeSmallClubs=fill(['S14','S13','S2','S3','H14','H12','H2','D13','D2','D3','C2','C3','C4']);
+assert.equal(R.H(openerWithThreeSmallClubs).hp,16);
+assert.equal(live('N',afterMinorInvite,openerWithThreeSmallClubs).exp,'P',
+ 'opener passes with xxx in the invited minor');
+const openerWithClubTopHonor=fill(['S14','S13','S2','S3','H14','H2','H3','D13','D2','D3','C13','C2','C3']);
+assert.equal(R.H(openerWithClubTopHonor).hp,17);
+assert.equal(live('N',afterMinorInvite,openerWithClubTopHonor).exp,'3N',
+ 'opener searches for 3NT with a top honor in the invited minor');
+const openerWithFourSmallClubs=fill(['C2','C3','C4','C5','S14','S13','S12','S2','H14','H13','H2','D13','D12']);
+assert.equal(live('N',afterMinorInvite,openerWithFourSmallClubs).exp,null,
+ 'four small cards are not covered by the stated xx/xxx or top-honor cases');
+
 const naturalInvite=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2N'},{s:'W',c:'P'}
