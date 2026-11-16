@@ -126,7 +126,7 @@ const heartsInvite=responderAfterStayman(heartsInviteHand,'2H');
 assert.equal(heartsInvite.exp,null);
 assert.match(heartsInvite.why,/3H är invit i öppnarens visade högfärg/i);
 
-const spadesInviteHand=['S14','S13','S12','S11','S10','H2','H3','D2','D3','D4','C2','C3','C4'];
+const spadesInviteHand=['S14','S13','S12','S11','S10','H14','H13','H12','H11','D2','D3','C2','C3'];
 const spadesInvite=responderAfterStayman(spadesInviteHand,'2S');
 assert.equal(spadesInvite.exp,null);
 assert.match(spadesInvite.why,/3S är invit i öppnarens visade högfärg/i);
