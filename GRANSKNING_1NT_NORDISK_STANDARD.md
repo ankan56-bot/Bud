@@ -281,7 +281,7 @@ Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exa
 
 Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 25 gemensamma hp för 3NT är separerad från livebeslutet.
 
-Direkt 3NT med minst 25 gemensamma honnörspoäng är fortsatt en separat verifierad gräns. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
+Direkt 3NT med minst 26 gemensamma honnörspoäng är en separat användarbekräftad gräns; i sang räknas endast HP. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
 
 
 ### Stayman-inviter – endast utgångsgränsen är numeriskt fastställd
@@ -357,4 +357,4 @@ Sida 4 beskriver svaga/dåliga kort kvalitativt i samband med 1NT-svaren, men an
 
 ### Bekräftad sangutgångsgräns
 
-Användaren har bekräftat 25 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 10 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 9 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
+Användaren har bekräftat 26 sammanlagda honnörspoäng för 3NT; i sang räknas endast HP, inte fördelnings-/trumfpoäng. Det är separat från 26 gemensamma spelpoäng för högfärgsutgång och 28 för lågfärgsutgång. Därför kan 11 egna HP efter partnerns 1NT (15–17 HP) garantera 3NT, medan 10 egna HP inte gör det. Den naturliga 2NT-inviten har fortfarande ingen källbelagd numerisk styrkegräns och ska inte antas vara 8–9 HP.
