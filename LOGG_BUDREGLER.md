@@ -819,3 +819,7 @@ Detta är en separat strategisk slamspärr; vanliga utgångsbud kan fortfarande 
 BridgePlus-reglerna för svar när **vår sida har öppnat och motståndarna klivit in** har separerats från svar när **motståndarna öppnat och vår partner klivit in**. Den senare situationen behåller sina tidigare styrke- och färglängdsregler. Detta fångades av reverse-HPS-regressionen och är nu verifierat.
 
 Överlapp som källan inte prioriterar lämnas ej täckta: 1NT kontra ny femkortshögfärg, stöd kontra ny färg samt negativ dubbling kontra naturligt 2♥ efter 1♠-inkliv med fem eller fler hjärter. Testerna kontrollerar också att 1NT- och negativ-dubblingsbeslut inte ändras när partnerns och motståndarnas dolda händer byts.
+
+### Versionsättning efter källgranskning (2026-11-16)
+
+Rättningsmotorn är uppdaterad till **v7.9** efter att BridgePlus-reglerna avgränsats till rätt konkurrenssituation och överlapp utan dokumenterad prioritet gjorts ej täckta.
