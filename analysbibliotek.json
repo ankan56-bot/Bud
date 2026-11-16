@@ -6,7 +6,7 @@
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
     "rkc": "RKC 1430 med 5 nyckelkort: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam.",
     "oneNTNoTrumpAceAsk": "1NT–4NT and 1NT–2♣–2♦–4NT are four-ace asks without established trump: 5♣=0 or 4, 5♦=1, 5♥=2, 5♠=3. The source does not define the continuation after these replies.",
-    "oneNTGameThreshold": "Nordisk standard describes 3NT as a final contract but does not give a numeric HCP threshold. The user specified that only HCP count in no-trump, but no numeric 3NT threshold has been explicitly confirmed. The earlier 25-HCP figure was an assistant suggestion, not a user-confirmed rule. Do not assume 25 or 26 HCP.",
+    "oneNTGameThreshold": "25 combined HCP for no-trump game (3NT), user explicitly accepted 2026-11-14. Only HCP count in no-trump; no distribution points. This is separate from 26 OTP for major-suit game and 28 OTP for minor-suit game. A later assistant-authored 26-HCP statement was not a user-confirmed change and must not override the accepted 25-HCP rule.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
     "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
@@ -839,7 +839,7 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
-        "3NT är ett slutbud i sang, men källan anger ingen numerisk HP-gräns för när svarshanden ska välja det."
+        "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; i sang räknas endast hp."
       ],
       "root": "t09_n0",
       "nodes": [
@@ -850,12 +850,12 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är ett slutbud i sang enligt Nordisk standard. Trädet fastställer inte en numerisk styrkegräns för när budet ska väljas.",
-          "analysis": "Nordisk standard beskriver 3NT som slutbud i sang, men anger inte ett numeriskt HP-intervall för svarshandens val. Endast honnörspoäng räknas i sang; den numeriska tröskeln lämnas ej täckt.",
+          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast hp.",
+          "analysis": "Svarshanden når minst 25 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Numerisk styrkegräns för 3NT är inte angiven."
+            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
           }
         }
       ],
@@ -1321,7 +1321,7 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "Ingen fyrkortshögfärg som ska undersökas med Stayman och ingen femkortshögfärg som ska överföras.",
-        "3NT är ett slutbud i sang, men källan anger ingen numerisk HP-gräns för när svarshanden ska välja det."
+        "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; i sang räknas endast hp."
       ],
       "root": "t18_n0",
       "nodes": [
@@ -1332,12 +1332,12 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är ett slutbud i sang enligt Nordisk standard. Trädet fastställer inte en numerisk styrkegräns för när budet ska väljas.",
-          "analysis": "Nordisk standard beskriver 3NT som slutbud i sang, men anger inte ett numeriskt HP-intervall för svarshandens val. Endast honnörspoäng räknas i sang; den numeriska tröskeln lämnas ej täckt.",
+          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast hp.",
+          "analysis": "Svarshanden når minst 25 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Numerisk styrkegräns för 3NT är inte angiven."
+            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
           }
         }
       ],
