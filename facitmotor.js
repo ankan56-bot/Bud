@@ -91,8 +91,8 @@
       if(passes>=4){
         return {
           status:'complete',complete:true,trainingSide,dealer,auction,steps,
-          contract:null,
-          message:'Budgivningen är avslutad utan kontrakt.'
+          contract:(function(){const last=auction.slice().reverse().find(x=>x.c!=='P');return last?{bid:last.c,bidText:root.Rattning.txt(last.c),declarer:last.s}:null;})(),
+          message:auction.some(x=>x.c!=='P')?'Budgivningen är avslutad.':'Budgivningen är avslutad utan kontrakt.'
         };
       }
       if(auction.length>=4&&passes>=4)break;
