@@ -120,15 +120,19 @@
         if(reply==='2H'&&L.S===4)return 'Visar också exakt fyra spader efter Stayman 2♥; numerisk styrkegräns för valet anges inte.';
         return 'Utgång i sang utan fastställd högfärgsfit; numerisk HP-gräns anges inte i Nordisk standard.';
       }
+      if(reply==='2H'&&L.S===4&&(c==='3C'||c==='3D')&&L[st_(c)]>=4)
+        return 'Naturlig lågfärg med 4+ kort och utgångskrav efter Stayman enligt Nordisk standard s. 4.';
       if(c==='4H'||c==='4S')return 'Utgång i högfärgen med minst 8-korts fit; exakt acceptgräns efter Stayman anges inte här.';
       return null};
     // Nordisk standard s. 4: after a 2♥ Stayman answer, responder's
     // 2NT shows exactly four spades; a new suit is natural and game-forcing
     // (5+ major or 4+ minor). The same natural GF principle applies after 2♠.
     if(reply==='2H'&&L.S===4){
-      // The 2NT route shows four spades and is described as an invitation.
-      // The PDF gives opener's 4-4 response (3S minimum / 4S maximum), but
-      // does not state responder's numeric threshold for choosing it.
+      // The 2NT/3NT route shows four spades. If a 4+ minor is also
+      // available as a natural game-forcing new suit, the source gives
+      // no priority between these distinct continuations.
+      if(L.C>=4||L.D>=4)
+        return NC('Exakt fyra spader ger möjlighet till 2NT/3NT enligt Nordisk standard s. 4, men handen har också 4+ '+(L.C>=4?'♣':'♦')+' för en naturlig lågfärg med utgångskrav. Källan anger ingen prioritet mellan dessa fortsättningar; lämnas EJ TÄCKT.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';if(c==='3N')return 'Visar också exakt fyra spader efter Stayman 2♥.';if((c==='3C'&&L.C>=4)||(c==='3D'&&L.D>=4))return 'Naturlig lågfärg med 4+ kort och utgångskrav.';return null},'Stayman',true);
       return NC('Exakt fyra spader efter Stayman 2♥ är visat. Både 2NT (invit) och 3NT visar fyra spader enligt Nordisk standard s. 4. Källan anger inte svarshandens numeriska styrkegräns för valet mellan dessa fortsättningar. Ingen numerisk HP-gräns eller egen HP-regel överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';if(c==='3N')return 'Visar också exakt fyra spader efter Stayman 2♥.';return null},'Stayman',true);
     }
     var naturalNew=[];
