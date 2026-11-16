@@ -43,6 +43,26 @@ for (const sequence of [
   }
 }
 
+
+function openerStaymanChoice(north,secondResponderBid) {
+  const sequence=[
+    {s:'N',c:'1N'},{s:'E',c:'P'},
+    {s:'S',c:'2C'},{s:'W',c:'P'},
+    {s:'N',c:'2H'},{s:'E',c:'P'},
+    {s:'S',c:secondResponderBid},{s:'W',c:'P'}
+  ];
+  return answer(dealWithNorth(north),sequence);
+}
+const stayman44Minimum15=['S14','S13','S2','S3','H14','H11','H2','H3','D13','D2','D3','C2','C3'];
+const stayman44Minimum16=['S14','S12','S2','S3','H14','H11','H2','H3','D13','D12','D2','C2','C3'];
+const stayman44Maximum17=['S14','S13','S2','S3','H14','H11','H2','H3','D13','D12','D2','C2','C3'];
+assert.equal(openerStaymanChoice(stayman44Minimum15,'2N').exp,'3S','4-4 and 15 hp: 3S');
+assert.equal(openerStaymanChoice(stayman44Minimum16,'2N').exp,'3S','4-4 and 16 hp: 3S');
+assert.equal(openerStaymanChoice(stayman44Maximum17,'2N').exp,'4S','4-4 and 17 hp: 4S');
+assert.equal(openerStaymanChoice(stayman44Maximum17,'3N').exp,'4S','after 3NT, 4-4 allows 4S');
+const staymanNoSpadeFit=['S14','S13','S11','H14','H2','H3','H4','D13','D2','D3','C2','C3','C4'];
+assert.equal(openerStaymanChoice(staymanNoSpadeFit,'3N').exp,'P','without 4-4, pass on 3NT');
+
 // Stayman 2♥/2♠ is the explicitly described indirect trump agreement.
 // A single ace with no trump king is one keycard -> 5♣ in RKC 1430.
 const oneAceNoMajorKing=['D14','S2','S3','S4','S5','H2','H3','H4','D2','D3','D4','C2','C3'];
