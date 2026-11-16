@@ -77,11 +77,12 @@ PDF:en anger:
 
 Nuvarande kod:
 - `stay2()` använder generella 22/26-gemensamma-poänggränser för invit/utgång. Dessa gränser står inte i PDF:ens Stayman-avsnitt.
-- `ntOpener3()` lämnar 2NT efter visad högfärg som ej täckt, trots att den särskilda 2♥-sekvensen är uttryckligen beskriven.
-- `ntOpener3()` passar alltid efter SH:s 3NT i denna gren. Det missar möjligheten att bjuda 4♠ när 2♥ visats och ÖH har 4-4 i högfärgerna.
+- `ntOpener3()` har nu den källstyrda specialgrenen: efter 1NT–2♣–2♥–2NT bjuder öppnaren 3♠ med 15–16 hp och 4♠ med 17 hp när öppnaren har 4-4 i högfärgerna.
+- Efter 1NT–2♣–2♥–3NT bjuder öppnaren 4♠ med 4-4 i högfärgerna och passar annars.
+- Dessa grenar har regressionstester i `tests/nt-stayman-continuations.test.js` och körs i CI.
 - Kodens allmänna behandling av ny färg efter Stayman täcker inte tydligt hela det uttryckliga kravet: ny färg är naturlig och utgångskrav med 5+ högfärg eller 4+ lågfärg.
 
-**Konkret avvikelse:** 1NT–2♣–2♥–2NT och 1NT–2♣–2♥–3NT måste implementeras enligt den specifika texten ovan. Det får inte ersättas med en generell 22/26-poängsregel.
+**Konkret korrigering:** 1NT–2♣–2♥–2NT och 1NT–2♣–2♥–3NT är nu implementerade enligt den specifika texten ovan. Det får inte ersättas med en generell 22/26-poängsregel.
 
 **Öppen fråga:** PDF:en beskriver uttryckligen fortsättningen efter 2♥. Motsvarande fortsättning efter 2♠ ska inte spegelvändas automatiskt om inte annan systemtext styrker det.
 
@@ -195,7 +196,7 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 1. Rätta fyr-esssvaren i `oneNTNoTrumpAceAsk` enligt s. 7.
 2. Separera 4NT efter Stayman 2♥/2♠ (fem nyckelkort) från 4NT efter 2♦ eller direkt 1NT (fyra ess).
 3. Behåll den uttryckliga RKC-regeln efter fullföljd överföring (s. 5), och säkerställ att den klassificeras skilt från fyr-essfrågan utan trumf.
-4. Implementera de uttryckliga Staymanfortsättningarna efter 2♥–2NT och 2♥–3NT.
+4. Behåll och regressionstesta de uttryckliga Staymanfortsättningarna efter 2♥–2NT och 2♥–3NT; de är nu implementerade.
 
 ### P1 – beslutsträd som saknar korrekt källstyrd modell
 5. Lägg in hela hjärter- och spaderöverföringstabellen från s. 5 som explicita budgrenar.
@@ -229,6 +230,6 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 
 **Verifierat mot PDF:** 1NT-öppningens styrka/balans, grundbetydelserna för Stayman och överföringsbuden, öppnarens Staymansvar, de särskilda 2♥-Staymanfortsättningarna, lågfärgsreläets grundstruktur, uttrycklig RKC efter fullföljd överföring samt skillnaden mellan fyra och fem ess.
 
-**Kodavvikelser identifierade:** obelagda styrkegränser, saknade Staymanfortsättningar, ofullständiga överföringsgrenar, dold-hand-beroenden och felaktig fyr-essmetadata. Överförings-RKC är däremot uttryckligen källbelagd och ska vara kvar.
+**Kodavvikelser identifierade:** obelagda styrkegränser, ofullständiga Stayman-svarshandsfortsättningar, ofullständiga överföringsgrenar, dold-hand-beroenden och felaktig fyr-essmetadata. De särskilda öppnarfortsättningarna efter 2♥–2NT/3NT är implementerade och testade. Överförings-RKC är däremot uttryckligen källbelagd och ska vara kvar.
 
 **Uppdatering 2026-11-16:** P0-arbetet har nu kompletterats med Staymanfortsättningarna efter 1NT–2♣–2♥–2NT och 1NT–2♣–2♥–3NT. 2NT-grenen följer den uttryckliga 4-4-regeln: 3♠ med 15–16 hp och 4♠ med 17 hp. 3NT-grenen väljer 4♠ vid 4-4 i högfärgerna, annars pass. Övriga 2NT-handtyper lämnas ej täckta i stället för att få en påhittad fortsättning. Regressionstester har lagts till i `tests/nt-stayman-continuations.test.js`. Även T43-trädets villkor har rättats så att det inte motsäger den uttryckliga RKC-regeln efter fullföljd överföring på s. 5. Ändringarna ligger endast på `work/undisturbed-architecture`; `main` och konkurrensbudgivningen är orörda.
