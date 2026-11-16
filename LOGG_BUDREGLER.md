@@ -772,3 +772,12 @@ Detta är en del-leverans på arbetsgren; den är inte mergad till `main`. Ingen
 - 1♠–2♦–3♥ med 10–12 hp obalanserad svarshand utan preferens är den enda ej täckta situationen i 100-givarsprovet.
 - 4-4-4-1 efter 1M–1NT har fortfarande ett ej systembekräftat val av fjärde färg i vissa 13+ hp-lägen.
 - Efter 4NT är RKC-svaren 1430 implementerade för 0–4 nyckelkort. Alla fem nyckelkort och frågeställarens fortsättning efter svaren är uttryckligen ej täckta tills reglerna är fastställda.
+
+
+## Retrospektiv precisering – 100-givarslucka och splinter (2026-11-16)
+
+Seed `202615834` har återskapats från `tests/one-major-100.test.js`. Sekvensen `1♠–Pass–2♦–Pass–3♥–Pass–?` lämnas ej täckt i svarshandens fortsättning. Den tidigare beskrivningen av positionen som en obalanserad svarshand utan preferens är inte tillräckligt precis: den aktuella motorn har valt 3♥ genom sin splintergren i `reb1()`, och `responderSecondBid()` saknar en motsvarande splintergren.
+
+**Viktig reservation:** Motorns splintertolkning är inte därmed en bekräftad systemregel. Tidigare assistentförslag om 13+ STP, 19–21 STP och fortsättning 3M/4M har inte uttryckligen bekräftats av användaren. 13+ HTP och minst fyra korts stöd är bekräftat för Stenberg 2NT, inte för splinter. Dessutom kontrollerar `reb1()` `hp>=13`, medan nodtexten anger 13+ STP. Detta är en dokumenterad regel-/kodkonflikt som ska lösas mot auktoritativ systemtext innan splinterlogik ändras.
+
+Till dess ska sekvensen stå kvar som **ej täckt** efter öppnarens återbud; ingen svarshandsregel ska läggas till på antagande.
