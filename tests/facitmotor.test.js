@@ -52,17 +52,26 @@ assert.equal(result.steps[result.steps.length-1].sourceGap,true);
 assert.match(result.message,/ofullständig/);
 
 // Guidance-only recommendations must remain distinguishable in the generated facit.
-const guidanceNorth=[
-  'S14','S13','S2','S3','H14','H12','H2','H3','D13','D2','D3','C2','C3'
-];
-const guidanceSouth=[
-  'C14','C13','C12','C11','C10','C9','S4','S5','H4','H5','D4','D5','D6'
-];
-const guidanceHands=deal(guidanceNorth,guidanceSouth);
+const realDecideForGuidance=R.decideLive;
+let guidanceCall=0;
+R.decideLive=function(input){
+  guidanceCall++;
+  if(guidanceCall===1)return {
+    exp:'1N',alt:[],why:'Exempel på vägledande beslut.',conv:'1NT',
+    means:function(call){return call==='1N'?'Öppning 1NT.':null},
+    soft:true,informationBoundary:'own_hand_and_public_auction_only'
+  };
+  return {
+    exp:'P',alt:[],why:'Pass.',conv:'slutbud',
+    means:function(call){return call==='P'?'Pass.':null},
+    informationBoundary:'own_hand_and_public_auction_only'
+  };
+};
 const guidanceFacit=F.generateUndisturbedFacit({
-  hands:guidanceHands,dealer:'N',trainingSide:'NS'
+  hands,dealer:'N',trainingSide:'NS'
 });
-const guidanceStep=guidanceFacit.steps.find(step=>step.seat==='N'&&step.call==='P');
+R.decideLive=realDecideForGuidance;
+const guidanceStep=guidanceFacit.steps.find(step=>step.seat==='N'&&step.call==='1N');
 assert.ok(guidanceStep);
 assert.equal(guidanceStep.systemStatus,'strategic_guidance');
 assert.equal(guidanceStep.ruleStatus,'Vägledande bedömning');
