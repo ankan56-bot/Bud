@@ -93,8 +93,10 @@ function judgeStayman2NT(responderHand){
 }
 assert.equal(judgeStayman2NT(responderEight).exp,'P',
  '24 combined HCP stays below the confirmed 25-HCP 3NT threshold');
+assert.equal(judgeStayman2NT(responderEight).ruleStatus,'user_confirmed');
 assert.equal(judgeStayman2NT(responderNine).exp,'3N',
  '25 combined HCP reaches the confirmed 3NT threshold after Stayman 2D–2NT');
+assert.equal(judgeStayman2NT(responderNine).ruleStatus,'user_confirmed');
 
 const staymanResponderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(staymanResponderTen).hp,10);
