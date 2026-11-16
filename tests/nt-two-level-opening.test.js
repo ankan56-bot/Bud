@@ -32,13 +32,13 @@ assert.equal(node('S',after2NT,weakFourHearts,opener21).exp,'3C',
   '2NT opening: a four-card major is enough for Stayman; no invented 5 HCP floor');
 assert.equal(live('S',after2NT,weakFourHearts).exp,'3C');
 
-const fiveHearts=['H13','H12','H11','H10','H9','S2','S3','S4','D2','D3','D4','C2','C3'];
+const fiveHearts=['H13','H12','H10','H9','H8','S2','S3','S4','D2','D3','D4','C2','C3'];
 assert.equal(R.H(fiveHearts).hp,5);
 assert.equal(node('S',after2NT,fiveHearts,opener21).exp,'3D',
   '2NT opening: 5+ hearts transfers one level higher');
 assert.equal(live('S',after2NT,fiveHearts).exp,'3D');
 
-const fiveSpades=['S13','S12','S11','S10','S9','H2','H3','H4','D2','D3','D4','C2','C3'];
+const fiveSpades=['S13','S12','S10','S9','S8','H2','H3','H4','D2','D3','D4','C2','C3'];
 assert.equal(R.H(fiveSpades).hp,5);
 assert.equal(node('S',after2NT,fiveSpades,opener21).exp,'3H',
   '2NT opening: 5+ spades transfers one level higher');
