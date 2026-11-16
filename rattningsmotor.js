@@ -399,11 +399,8 @@ var Rattning = (function(){
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3'+M){
       var gameSuit='4'+M;
-      var meansInvite=function(c){if(c==='P')return 'Avslår inviten när paret inte når 26 gemensamma spelpoäng.';if(c===gameSuit)return 'Accepterar inviten när paret har minst 8-korts fit och 26 gemensamma spelpoäng.';return null};
-      if(!partner)return NC('Kan inte verifiera Stayman-inviten utan svarshandens handprofil.',meansInvite,'Stayman');
-      var fit=M?L[M]+partner.L[M]:0,fitPoints=fit>=8?partnershipPoints(h,partner,M):0;
-      if(fit>=8&&fitPoints>=26)return {exp:gameSuit,alt:[],why:fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: accepterar inviten med '+txt(gameSuit)+'.',means:meansInvite,conv:'Stayman'};
-      return {exp:'P',alt:[],why:fit+'-korts fit och '+fitPoints+' gemensamma spelpoäng: når inte 26-poängsgränsen, avslår inviten.',means:meansInvite,conv:'Stayman'};
+      var meansInvite=function(c){if(c==='P')return 'Öppnarens accept/pass efter Stayman-invit; numeriska acceptkriterier anges inte i Nordisk standard.';if(c===gameSuit)return 'Möjlig utgång efter Stayman-invit; acceptkriterierna är inte fastställda här.';return null};
+      return NC('Svarshanden har inviterat med 3'+M+' efter Stayman. Nordisk standard anger inte öppnarens numeriska accept-/passgräns för denna Staymanfortsättning. Den separata 26-poängsgränsen för andra högfärgssekvenser överförs inte hit.',meansInvite,'Stayman',true);
     }
     if(k1==='2C'&&(M==='H'||M==='S')&&k3==='3N'){
       var means2=function(c){return c==='P'?'Passar på utgångsbudet.':null};
