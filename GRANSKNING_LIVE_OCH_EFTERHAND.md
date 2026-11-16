@@ -16,7 +16,7 @@ Detta är inte bara en teoretisk arkitekturrisk: anropskedjan är direkt synlig 
 1. `botCall(st, botSeat)` bygger en provauktion med robotens tur.
 2. Funktionen anropar `Rattning.nodeFor({hands: st.hands, dealer: st.dealer, bids: trial}, ...)`.
 3. `nodeFor()` anropar `nodeForRaw()` och kan dessutom anropa `missedGameOrSlam()`.
-4. Båda vägarna kan läsa partnerns faktiska kort via `st.hands[pt]` eller båda händerna via `st.hands[b.s]` och `st.hands[pt]`.
+4. `nodeForRaw()` läser partnerns faktiska hand på flera livegrenar. `missedGameOrSlam()` använder båda händerna men är uttryckligen begränsad till Nord/Syd (side 0), så den är inte orsaken till Buddies nuvarande Öst/Väst-läckage. Den måste ändå hållas i efterhands-/rättningslagret innan roboten i framtiden får spela Nord/Syd.
 
 **Konsekvens:** Samma kodväg används både för robotens livebud och för efterhandsrättning. Det finns ingen typad eller tekniskt framtvingad gräns mellan dessa två användningsfall.
 
@@ -32,7 +32,7 @@ Detta är inte bara en teoretisk arkitekturrisk: anropskedjan är direkt synlig 
 | ca rad 1286–1302 | 1NT/2NT-svar, Stayman, överföring och öppnarens fortsättning | Partnerns faktiska kort i flera hjälpfunktioner | Kan påverka svar, accept, superaccept eller fortsättning |
 | ca rad 1326 | Svar efter svag tvåöppning | Partnerns faktiska hand skickas till `resp2w()` | Måste kontrolleras funktionsvis; risk för dold handberoende logik |
 | ca rad 1341–1355 | Reverse, svarshandens andra bud och öppnarens återbud | Partnerns faktiska spaderfit, spelpoäng och kort | Kan styra bud som kräver kunskap om den dolda handen |
-| ca rad 1537–1601 | `missedGameOrSlam()` | Båda sidans faktiska händer och gemensamma fit | Hindsight-funktion; får inte användas i livebeslut |
+| ca rad 1537–1601 | `missedGameOrSlam()` | Båda sidans faktiska händer och gemensamma fit | Efterhandsfunktion begränsad till Nord/Syd (side 0); påverkar inte dagens Öst/Väst-bot, men får inte användas när roboten senare spelar Nord/Syd |
 | ca rad 1655 ff. | `judgeComplete()` | Spelarens och partnerns faktiska händer | Efterhandsanalys; rimligt endast efter given och tydligt märkt |
 
 Radnumren är orienterande och kan ändras. Sök efter funktionsnamn och uttrycken `st.hands[pt]`, `partnerCards` och `openerHand` vid framtida ändringar.
