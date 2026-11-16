@@ -40,6 +40,17 @@ var Rattning = (function(){
 
   // Regelområdena laddas som separata moduler och får explicita beroenden.
   var sharedApi={SU:SU,SYM:SYM,NAME:NAME,side:side,partner:partner,isBid:isBid,lv:lv,st_:st_,rk:rk,txt:txt,maj:maj,lowest:lowest,jump:jump,H:H,handHps:handHps,partnershipPoints:partnershipPoints,T:T,ok:ok,NC:NC};
+  var twoClubFactory=(typeof module!=='undefined'&&module.exports)?require('./2kloversoppning.js'):window.Rattning2KloverFactory;
+  var weakTwoFactory=(typeof module!=='undefined'&&module.exports)?require('./svaga2oppningar.js'):window.RattningSvagaTvaFactory;
+  var overcallFactory=(typeof module!=='undefined'&&module.exports)?require('./inkliv.js'):window.RattningInklivFactory;
+  var doubleFactory=(typeof module!=='undefined'&&module.exports)?require('./dubbling.js'):window.RattningDubblingFactory;
+  var twoClub=twoClubFactory(sharedApi), weakTwo=weakTwoFactory(sharedApi),
+      overcalls=overcallFactory(sharedApi), doubles=doubleFactory(sharedApi);
+  var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2,
+      resp2w=weakTwo.resp2w, open2w=weakTwo.open2w,
+      overcall=overcalls.overcall, respOvercall=overcalls.respOvercall,
+      respDouble=doubles.respDouble;
+
   var sangFactory=(typeof module!=='undefined'&&module.exports)?require('./sangbudgivning.js'):window.RattningSangFactory;
   var stordFactory=(typeof module!=='undefined'&&module.exports)?require('./stordbudgivning.js'):window.RattningStordFactory;
   var sang=sangFactory(sharedApi), stord=stordFactory(sharedApi);
@@ -148,152 +159,6 @@ var Rattning = (function(){
   }
 
   /* ––––– 1NT / 2NT-STRUKTUR (Plus) ––––– */
-  function resp2c(h){
-    var means=function(c){return c==='2D'?'Väntebud (relä): säger ingenting om ruterfärgen.':'Endast 2♦ används som första svar i detta system.'};
-    return {exp:'2D',alt:[],why:'Svarshanden bjuder alltid 2♦ (väntebud) på 2♣, oavsett styrka och fördelning.',means:means,conv:'2♣-system'};
-  }
-  function reb2c(h,r){
-    var L=h.L,hp=h.hp,exp,why,alt=[];
-    var means=function(c){
-      if(r!=='2D')return null;
-      if(c==='2H'||c==='2S')return 'Utgångskrav, 5+ '+SYM[c[1]]+'.';
-      if(c==='2N')return '22-24 hp, jämn hand.';
-      if(c==='3C'||c==='3D')return 'Utgångskrav, 5+ '+SYM[c[1]]+'.';
-      if(c==='3N')return '25-27 hp, jämn hand.';
-      return null};
-    if(r!=='2D')return {exp:null,alt:[],why:'Endast 2♦-svar hanteras i detta system.',means:means,conv:'2♣-system'};
-    if(h.bal&&hp<=24){exp='2N';why=hp+' hp jämn: 2NT (22-24).'}
-    else if(h.bal){exp='3N';why=hp+' hp jämn: 3NT (25-27).'}
-    else{var mj=['H','S'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]||(b==='S'?1:-1)});
-      var mn=['C','D'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]});
-      if(mj.length){exp='2'+mj[0];why='5+ '+SYM[mj[0]]+': 2 i högfärgen (utgångskrav).'}
-      else if(mn.length){exp='3'+mn[0];why='5+ '+SYM[mn[0]]+': 3 i lågfärgen (utgångskrav).'}
-      else return {exp:null,alt:[],why:'Obalanserad hand utan 5-korts färg: dokumentet anger inte budet.',means:means,conv:'2♣-system'}}
-    return {exp:exp,alt:alt,why:why,means:means,conv:'2♣-system',soft:false};
-  }
-  function resp2c2(h,rb,mine){
-    var hp=h.hp,L=h.L,exp,why,alt=[];
-    var near={'2H':'2S','2S':'2N','3C':'3D','3D':'3H'}[rb];
-    var means=function(c){
-      if(c===near)return 'Herbertavslag: närmsta bud visar 0-5 hp och ej trumfstöd.';
-      if(c==='3'+rb[1]&&maj(rb[1])&&rb[0]==='2')return '6+ hp och 3+ stöd.';
-      if(c==='4'+rb[1]&&rb[0]==='2')return '0-5 hp med stöldvärde och 4+ stöd.';
-      if(c==='3N')return '6+ hp, jämn hand.';
-      if((c==='3H'||c==='3S')&&rb[0]==='3')return '6+ hp och 4+ färg.';
-      if(c==='4'+rb[1]&&rb[0]==='3')return '6+ hp, 3+ stöd och slamintresserad.';
-      if(c==='5'+rb[1]&&rb[0]==='3')return '0-5 hp med stöldvärde och bra trumfstöd.';
-      if(isBid(c)&&rb[0]==='2'&&st_(c)!==rb[1])return '6+ hp och 5+ färg.';
-      return null};
-    if(!near)return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'2♣-system'};
-    var T_=rb[1],single=h.singles().length>0;
-    if(rb[0]==='2'){
-      if(hp<=5){
-        if(L[T_]>=4&&single){exp='4'+T_;alt=[near];why='0-5 hp med 4+ stöd och stöldvärde: 4 i färgen.'}
-        else{exp=near;why='0-5 hp utan stödvärde: Herbertavslag.'}
-      }else if(L[T_]>=3){exp='3'+T_;why='6+ hp och 3+ stöd: 3 i färgen.'}
-      else{var ns=SU.filter(function(s){return s!==T_&&L[s]>=5}).sort(function(a,b){return L[b]-L[a]})[0];
-        if(ns){exp=lowest(ns,rb);why='6+ hp och 5+ '+SYM[ns]+': ny färg.'}
-        else if(h.bal){exp='3N';why='6+ hp och jämn hand: 3NT.'}
-        else return {exp:null,alt:[],why:'Dokumentet anger inte budet för denna hand.',means:means,conv:'2♣-system'}}
-    }else{
-      var m_=T_;
-      if(hp<=5){
-        if(L[m_]>=4&&single){exp='5'+m_;alt=[near];why='0-5 hp med stöldvärde och bra trumfstöd: 5 i färgen.'}
-        else{exp=near;why='0-5 hp: Herbertavslag.'}
-      }else if(L[m_]>=3){exp='4'+m_;why='6+ hp och 3+ stöd: 4 i färgen (slamintresse).'}
-      else{var mj=['H','S'].filter(function(s){return L[s]>=4}).sort(function(a,b){return L[b]-L[a]||(a==='H'?-1:1)})[0];
-        if(mj){exp='3'+mj;why='6+ hp och 4+ '+SYM[mj]+': 3 i färgen.'}
-        else if(h.bal){exp='3N';why='6+ hp och jämn hand: 3NT.'}
-        else return {exp:null,alt:[],why:'Dokumentet anger inte budet för denna hand.',means:means,conv:'2♣-system'}}
-    }
-    return {exp:exp,alt:alt,why:why,means:means,conv:'Herbert'};
-  }
-
-  /* ––––– SVAG TVÅA (Plus) ––––– */
-  function resp2w(h,oc,openerCards){
-    var o=st_(oc),L=h.L,hp=h.hp,exp,why,alt=[];
-    var opener=openerCards?H(openerCards):null;
-    var fit=opener?L[o]+opener.L[o]:0;
-    var jointPoints=opener&&fit>=8?partnershipPoints(h,opener,o):0;
-    var newSuits=SU.filter(function(s){return s!==o&&L[s]>=5;})
-      .sort(function(a,b){if(L[b]!==L[a])return L[b]-L[a];return SU.indexOf(b)-SU.indexOf(a);});
-    var preempt=hp<=8&&L[o]>=3;
-    var invite=hp>=9&&hp<=10&&L[o]>=2;
-    var means=function(c){
-      if(c==='3'+o)return 'Spärrande höjning: minst 3 korts stöd, ej invit.';
-      if(c==='2N')return 'Invit: 9-10 hp och minst 2 korts stöd.';
-      if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
-      if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
-      if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, krav till minst 3 i öppningsfärgen.';
-      return null;
-    };
-    // Med etablerad fit väger gemensam spelstyrka före svaga svarsalternativ.
-    // 33+ spelpoäng och minst 10 trumf motiverar lillslam; annars gäller
-    // 26+ i högfärg respektive 28+ i lågfärg för utgång.
-    if(opener && !newSuits.length && fit>=8){
-      if(fit>=10 && jointPoints>=33){
-        exp='6'+o;
-        why=fit+'-korts fit i '+SYM[o]+' och '+jointPoints+' gemensamma spelpoäng: lillslam ska undersökas.';
-        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa / slam',soft:false};
-      }
-      var gameThreshold=maj(o)?26:28;
-      if(jointPoints>=gameThreshold){
-        exp=maj(o)?'4'+o:'5'+o;
-        why=fit+'-korts fit i '+SYM[o]+' och '+jointPoints+' gemensamma spelpoäng: utgång enligt '+gameThreshold+'-poängsgränsen.';
-        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};
-      }
-    }
-    if(newSuits.length>1){
-      return NC('Handen har flera egna 5+ färger efter svag tvåa. REF anger ingen prioritet mellan färgerna; välj inte en färg enbart utifrån intern sorteringsordning.');
-    }
-    if(newSuits.length&&(preempt||invite)){
-      return NC('Handen uppfyller både villkoret för egen 5+ färg och ett stöd-bud efter svag tvåa. REF anger ingen prioritet mellan dessa alternativ.');
-    }
-    if(newSuits.length){
-      exp=lowest(newSuits[0],oc);
-      why='5+ kort i '+SYM[newSuits[0]]+': ny färg, krav till minst 3 i öppningsfärgen.';
-    }else if(preempt){
-      exp='3'+o;
-      why='Svag hand med 3+ stöd: spärrande höjning till 3 i öppningsfärgen, ej invit.';
-    }else if(invite){
-      exp='2N';
-      why=hp+' hp och 2+ stöd: invit 2NT.';
-    }else if(hp<=8){
-      exp='P';why=hp+' hp utan 3+ stöd eller egen 5+ färg: pass.';
-    }else{
-      return NC('Svar efter svag tvåa: handen passar inte de uttryckligen angivna villkoren för 5+ färg, spärrhöjning eller 2NT-invit.');
-    }
-    return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};
-  }
-  function open2w(h,oc,r){
-    var o=st_(oc),hp=h.hp,exp,why,alt=[];
-    var means=function(c){
-      if(r==='2N'){
-        if(c==='3'+o)return 'Öppnarens minimum: 6-8 hp, 3 i öppningsfärgen.';
-        if((maj(o)&&c==='4'+o)||(!maj(o)&&c==='3N'))return 'Öppnarens maximum: 9-10 hp, 4M eller 3NT efter lågfärg.';
-        if(c==='P')return 'Pass efter 2NT-invit när öppnarens hand inte passar minimum-/maximumåterbudet.';
-      }
-      return null};
-    if(r==='2N'){
-      if(hp>=6&&hp<=8){exp='3'+o;why=hp+' hp: minimum, 3 i öppningsfärgen.';return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};}
-      if(hp>=9&&hp<=10){
-        exp=maj(o)?'4'+o:'3N';
-        why=hp+' hp: maximum efter 2NT-invit; '+(maj(o)?'4 i högfärgen.':'3NT efter lågfärgsöppning.');
-        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};
-      }
-      return NC('Öppnarens styrka efter 2NT-invit ligger utanför de uttryckligen angivna 6-8/9-10 hp-intervallen.',means,'svag tvåa');
-    }
-    if(r==='3'+o){
-      return NC('Svarshandens 3-bud är spärrande och ej invit. Öppnarens fortsättning efter spärrhöjningen specificeras inte i REF.',means,'svag tvåa');
-    }
-    if(isBid(r)&&r[1]!==o&&r[1]!=='N'){
-      return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa'};
-    }
-    return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'svag tvåa'};
-  }
-
-  /* ––––– ÖPPNARENS ANDRA BUD (Plus) ––––– */
   function reb1(h,oc,r,partnerCards){
     var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false,reverseBid=null;
 
