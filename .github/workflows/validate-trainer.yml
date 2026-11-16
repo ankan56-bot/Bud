@@ -19,6 +19,7 @@ jobs:
           node --check dds-integration.js
           node --check analysmotor.js
           node --check facitmotor.js
+          node --check ej-tackta-logg.js
       - name: Validate analysis library JSON
         run: |
           node - <<'NODE'
@@ -55,6 +56,8 @@ jobs:
         run: node tests/reverse-hps.test.js
       - name: Run undisturbed facit generator tests
         run: node tests/facitmotor.test.js
+      - name: Test uncovered bidding log and deduplication
+        run: node tests/ej-tackta-logg.test.js
       - name: Audit undisturbed analysis-library structure
         run: |
           node scripts/validate-analysis-library.js
