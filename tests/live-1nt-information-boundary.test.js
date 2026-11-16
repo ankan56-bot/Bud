@@ -103,8 +103,8 @@ assert.equal(live('S',firstResponse,balancedNine).exp,null,
  '9 own HCP cannot guarantee 25 HCP against partner 15–17 and the source gives no invite band');
 const balancedEleven=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3']);
 assert.equal(R.H(balancedEleven).hp,11);
-assert.equal(live('S',firstResponse,balancedEleven).exp,'3N',
- '11 own HCP also guarantees 25 combined HCP for 3NT');
+assert.equal(live('S',firstResponse,balancedEleven).exp,null,
+ 'no numeric 3NT HCP threshold has been confirmed');
 
 const afterTransfer3NTChoice=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
