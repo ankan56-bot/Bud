@@ -54,17 +54,16 @@ for(const [treeId,rootId,acceptId] of [
 }
 
 
-// The 2NT–3♣–3♠ decision is a dedicated tree: the 25-HCP NT
-// project rule must remain separate from the 26-point suit-game threshold.
-const t46=findTree('T46_STAYMAN_2NT_3S_DECISION');
-assert.equal(t46.nodes.length,3);
-const t46Root=findNode('T46_STAYMAN_2NT_3S_DECISION','t46_n0');
-assert.deepEqual(t46Root.sequence,['2NT','Pass','3♣','Pass','3♠']);
-assert.deepEqual(t46Root.branches.map(b=>b.call),['3NT','4♠']);
-assert.match(t46Root.branches[0].label,/25\+ gemensamma hp/);
-assert.match(t46Root.branches[1].label,/26\+ gemensamma spelpoäng/);
-assert.equal(findNode('T46_STAYMAN_2NT_3S_DECISION','t46_n1').ruleStatus,'user_confirmed');
-assert.match(findNode('T46_STAYMAN_2NT_3S_DECISION','t46_n2').analysis,/26 gemensamma spelpoäng/);
-assert.equal(A.treeCompatible(t46),true);
+// The 2NT–3♣–3♠ decision is part of the existing T23 tree so the
+// more specific guidance is not hidden by an identical sequence match.
+const t23=findTree('T23');
+const t23Spades=findNode('T23','t23_3');
+assert.deepEqual(t23Spades.sequence,['2NT','Pass','3♣','Pass','3♠']);
+assert.deepEqual(t23Spades.branches.map(b=>b.call),['4♠','3NT']);
+assert.match(t23Spades.branches[0].label,/8-korts spaderfit.*26\+/);
+assert.match(t23Spades.branches[1].label,/25\+ gemensamma hp/);
+assert.match(t23Spades.analysis,/26 gemensamma spelpoäng/);
+assert.match(t23Spades.analysis,/25 gemensamma honnörspoäng/);
+assert.equal(t23Spades.ruleStatus,'user_confirmed');
 
 console.log('Stayman 2H analysis tree: passed.');
