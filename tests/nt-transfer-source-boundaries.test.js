@@ -234,4 +234,24 @@ const openerAfterSixHeartInvite=openerAfterTransfer(
 );
 assert.equal(openerAfterSixHeartInvite.exp,null,
   'opener acceptance after 3H transfer invite is not numerically defined by the source');
+// The source says responder's 3NT is the chosen game after a balanced
+// five-card transfer hand. It does not say whether opener should correct
+// to 4M with three-card support, so that case remains uncovered.
+const afterTransfer3NT=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2D'},{s:'W',c:'P'},
+ {s:'N',c:'2H'},{s:'E',c:'P'},
+ {s:'S',c:'3N'},{s:'W',c:'P'}
+];
+const openerThreeHearts=hand(['C14','C13','C12','C2','C3','D14','D2','D3','H14','H2','H3','S2','S3']);
+assert.equal(R.H(openerThreeHearts).hp,17);
+assert.equal(R.H(openerThreeHearts).L.H,3);
+assert.equal(nodeAt('N',afterTransfer3NT,openerThreeHearts).exp,null,
+  '3+ support after transfer 3NT has no source-defined correction');
+const openerTwoHearts=hand(['C14','C13','C12','C2','C3','D14','D2','D3','H2','H3','S14','S2','S3']);
+assert.equal(R.H(openerTwoHearts).hp,17);
+assert.equal(R.H(openerTwoHearts).L.H,2);
+assert.equal(nodeAt('N',afterTransfer3NT,openerTwoHearts).exp,'P',
+  'opener passes on responder-selected 3NT without three-card support');
+
 console.log('1NT transfer source-boundary tests: passed.');
