@@ -59,11 +59,11 @@
        function(c){return c==='3'+openingSuit?'15+ htp, ingen singelton.':null;});
    return NC('Handen motsvarar inte någon uttryckligen beskriven återbudstyp efter Stenberg: varken 15+ htp utan singelton, 12–14 hp balanserad eller en singelton som kan visas.',null,'Stenberg 2NT',true);
  }
- function responderContinuation(hand,opening,call,partnerHand,prior,rkcTrumpFromAuction,side){
+ function responderContinuation(hand,opening,call,partnerHand,prior,rkcTrumpFromAuction,side,askSeat){
    var suit=st_(opening),fit=partnerHand?hand.L[suit]+partnerHand.L[suit]:0;
    if(call==='4N'){
      var trump=typeof rkcTrumpFromAuction==='function'&&Array.isArray(prior)
-       ?rkcTrumpFromAuction(prior.concat([{s:side===0?'N':'E',c:'4N'}]),side):null;
+       ?rkcTrumpFromAuction(prior.concat([{s:askSeat,c:'4N'}]),side):null;
      if(trump)return result('4N','4NT efter fastställd trumf: överlämnas till den separata RKC-/slammodulen.','Stenberg → slammodul');
      return NC('4NT efter Stenberg kan inte verifieras som RKC med den offentliga budsekvensen. Överlämnas inte automatiskt till essfrågan.',null,'Stenberg 2NT',true);
    }
