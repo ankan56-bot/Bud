@@ -49,6 +49,13 @@ const weakFiveFiveMinors=hand(['C14','C13','C12','C11','C10','D14','D13','D12','
 assert.equal(result(weakFiveFiveMinors,afterOneNT).exp,null,
   '5-5 minors fits relay shape but numeric weak threshold is unspecified');
 
+const fiveFiveMajors=['S13','S2','S3','S4','S5','H13','H12','H11','H4','H5','D2','D3','C2'];
+const fiveFiveMajorResponse=result(fiveFiveMajors,afterOneNT);
+assert.equal(fiveFiveMajorResponse.exp,'2H',
+  '5-5 majors uses the spade transfer so the documented 3H invit route is available');
+assert.ok(fiveFiveMajorResponse.alt.includes('2D'),
+  'heart transfer remains an alternative when holding 5-5 majors');
+
 // Explicit natural meanings from the source table.
 const fiveHeartFourSpade=hand(['H14','H13','H12','H11','H10','S14','S13','S12','S11','D14','D13','C14','C13']);
 assert.equal(result(fiveHeartFourSpade,afterHeartTransfer).exp,'2S',
@@ -194,17 +201,27 @@ assert.equal(nodeAt('N',relayAuction,openerDiamondsLonger).exp,'2N',
 const afterRelay2NT=relayAuction.concat([{s:'N',c:'2N'},{s:'E',c:'P'}]);
 const responderClubsLonger=hand(['C13','C12','C11','C10','C2','D13','D2','D3','H2','H3','H4','S2','S3']);
 assert.equal(nodeAt('S',afterRelay2NT,responderClubsLonger).exp,'3C',
- 'after 2NT responder signs off in clubs when clubs are at least as long');
+ 'after 2NT responder signs off in clubs when clubs are longer');
 
 const responderDiamondsLonger=hand(['D13','D12','D11','D10','D2','C13','C2','C3','H2','H3','H4','S2','S3']);
 assert.equal(nodeAt('S',afterRelay2NT,responderDiamondsLonger).exp,'3D',
  'after 2NT responder signs off in diamonds when diamonds are longer');
 
+const responderMinorsEqual=hand(['D13','D12','D11','D2','D3','C13','C12','C11','C2','H2','H3','S2','S3']);
+const equalAfter2NT=nodeAt('S',afterRelay2NT,responderMinorsEqual);
+assert.equal(equalAfter2NT.exp,null,
+ 'after 2NT equal minor lengths have no source-defined signoff priority');
+assert.match(equalAfter2NT.why,/ingen prioritet vid lika längd/i);
+
 const afterRelay3C=relayAuction.concat([{s:'N',c:'3C'},{s:'E',c:'P'}]);
 assert.equal(nodeAt('S',afterRelay3C,responderClubsLonger).exp,'P',
- 'after opener 3C responder passes when clubs are at least as long');
+ 'after opener 3C responder passes when clubs are longer');
 assert.equal(nodeAt('S',afterRelay3C,responderDiamondsLonger).exp,'3D',
  'after opener 3C responder corrects to longer diamonds');
+const equalAfter3C=nodeAt('S',afterRelay3C,responderMinorsEqual);
+assert.equal(equalAfter3C.exp,null,
+ 'after opener 3C equal minor lengths have no source-defined signoff priority');
+assert.match(equalAfter3C.why,/ingen prioritet vid lika längd/i);
 
 const afterRelaySignoff=afterRelay2NT.concat([{s:'S',c:'3C'},{s:'W',c:'P'}]);
 assert.equal(nodeAt('N',afterRelaySignoff,openerClubsLonger).exp,'P',
