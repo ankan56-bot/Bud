@@ -213,4 +213,4 @@ PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var 
 
 ### Direkt 3NT och sanggräns
 
-Användaren har accepterat 25 gemensamma honnörspoäng som gräns för 3NT; i sang räknas endast HP, inte fördelningspoäng. Efter partnerns 1NT (15–17 hp) kan svarshanden därför bjuda 3NT live med minst 10 egna hp när ingen högfärg ska undersökas med Stayman eller överföring. Med 9 egna hp kan paret nå högst 26? Actually 9+17=26; the minimum 9+15=24, so 25 cannot be guaranteed live. Efter given bedöms det exakta gemensamma HP-talet. Detta är skilt från 26 OTP för högfärgsutgång och 28 OTP för lågfärgsutgång.
+Användaren har accepterat 25 gemensamma honnörspoäng som gräns för 3NT; i sang räknas endast HP, inte fördelningspoäng. Efter partnerns 1NT (15–17 hp) kan svarshanden därför bjuda 3NT live med minst 10 egna hp när ingen högfärg ska undersökas med Stayman eller överföring. Med 9 egna hp kan paret ligga mellan 24 och 26 hp beroende på öppnarens exakta styrka; 25 kan därför inte garanteras live. Efter given bedöms det exakta gemensamma HP-talet. Detta är skilt från 26 OTP för högfärgsutgång och 28 OTP för lågfärgsutgång.
