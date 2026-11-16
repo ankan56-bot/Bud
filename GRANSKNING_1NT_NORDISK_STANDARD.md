@@ -348,3 +348,8 @@ En ny läsning av själva PDF-sidan visar att tidigare text i denna granskningsf
 
 
 **Aktuell tolkning:** Överföringstabellens styrkebeskrivningar är kvalitativa. Äldre avsnitt i denna rapport som återger 8–9 hp eller andra numeriska gränser beskriver den tidigare implementationen och är inte godkända systemregler. Den styrkeklassificeringen är nu markerad ej täckt i motorn och i analysbiblioteket.
+
+
+### Pass efter 1NT – ingen automatisk HP-gräns
+
+Sida 4 beskriver svaga/dåliga kort kvalitativt i samband med 1NT-svaren, men anger inte en numerisk gräns för när en hand utan 4-korts högfärg eller längre färg ska passa. Den tidigare automatiska passgränsen under 8 hp har därför tagits bort. När handen inte uppfyller en uttrycklig Stayman-, överförings- eller reläprofil lämnas beslutet ej täckt i stället för att motorn antar en HP-gräns.
