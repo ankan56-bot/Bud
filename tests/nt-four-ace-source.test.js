@@ -57,11 +57,11 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   assert.equal(result.conv,'RKC 1430');
 }
 
-// A completed transfer without an actual raise does not establish trump in
-// this source. It must not be silently treated as an RKC or four-ace ask.
+// Nordisk standard s. 5 explicitly makes 4NT RKC after a completed transfer,
+// even though the partnership may not have an eight-card fit.
 {
   const opener=['SA','HA','DA','CA','S2','S3','S4','H2','H3','D2','D3','C2','C3'];
-  const weak=['S5','S6','S7','H4','H5','H6','D4','D5','D6','C5','C6','C7','C8'];
+  const weak=['S5','S6','S7','H4','H5','H6','H7','H8','D4','D5','D6','C5','C6'];
   const hands=dealWithNorth(opener);
   const rest=deck.filter(card=>!hands.N.includes(card));
   hands.S=weak;
@@ -75,8 +75,8 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
     {s:'S',c:'4N'},{s:'W',c:'P'}
   ];
   const result=answer(hands,sequence);
-  assert.equal(result.exp,null,'transfer completion alone must not establish RKC');
-  assert.match(result.why,/inte.*uttryckligen avtalad fyr-essfråga|inte en verifierad essfråga|ej täckt/i);
+  assert.equal(result.conv,'RKC 1430','completed transfer explicitly establishes RKC in the source');
+  assert.equal(result.exp,'5C','four keycards (four aces) are 1/4 in RKC 1430');
 }
 
 // Once the transfer suit has actually been raised, RKC is available.
@@ -103,10 +103,10 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
   assert.ok(t43);
   assert.equal(A.treeCompatible(t43),true);
   assert.match(lib.conventions.oneNTNoTrumpAceAsk,/5♣=0 or 4/);
-  assert.equal(lib.conventions.oneNTTransferRkc,undefined);
+  assert.match(lib.conventions.oneNTTransferRkc,/Nordisk standard.*s\. 5/);
   assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♣|Pass|2♥|Pass|4NT'));
   assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♣|Pass|2♠|Pass|4NT'));
-  assert.ok(!t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♦|Pass|2♥|Pass|4NT'));
+  assert.ok(t43.nodes.some(node=>node.sequence.join('|')==='1NT|Pass|2♦|Pass|2♥|Pass|4NT'));
 }
 
 console.log('1NT four-ace/RKC source tests: passed.');
