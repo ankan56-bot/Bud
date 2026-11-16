@@ -307,3 +307,8 @@ Nordisk standard s. 4 beskriver 2♠ som ett relä för "dåliga kort" med 6+ ko
 ### Förtydligande: 2NT efter Stayman 2♥ är en särskild invitväg
 
 2NT efter 1NT–2♣–2♥ visar exakt fyra spader. Öppnaren med 4-4 i högfärgerna svarar 3♠ med 15–16 hp och 4♠ med 17 hp (s. 4). Denna sekvens får inte behandlas som en vanlig 26-hp-sangutgång: 2NT är uttryckligen en invit som samtidigt söker den andra högfärgsfitten. Källan anger inte numeriskt när svarshanden ska välja pass respektive 2NT. Den tidigare genvägen som rekommenderade 3NT enbart för att svarshanden hade minst 11 hp har tagits bort. Även starka händer lämnas ej klassificerade för just valet pass/2NT tills gränsen är belagd.
+
+
+### Öppnarens fortsättning efter 3 lågfärg som utgångskrav efter överföring
+
+Efter fullföljd överföring är 3♣/3♦ från svarshanden ett utgångskrav när svarshanden har minst fem kort i överföringsfärgen och minst fyra i den bjudna lågfärgen (s. 5). PDF:en anger budets kravbetydelse, men inte en komplett fortsättningsstruktur för öppnaren. I 100-givarsimuleringen identifierades två sådana lägen (ostord-100-037 och ostord-100-066) där öppnarens nästa bud inte kan fastställas från den dokumenterade tabellen. Dessa fortsättningar lämnas ej täckta; motorn ska inte hitta på ett kontrollbud, sangbud eller annan fortsättning.
