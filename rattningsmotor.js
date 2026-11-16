@@ -285,9 +285,7 @@ var Rattning = (function(){
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
     if(!opener){
-      if(reply==='2D'&&hp>=11&&h.bal)
-        return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT.',means:means,conv:'Stayman'};
-      return NC('Efter Stayman är den egna handen inte tillräcklig för att avgöra invit/pass eller utgång utan partnerns dolda hand. 3NT kräver 26 gemensamma hp; 11+ egna hp efter 2♦ garanterar detta mot 1NT-minimum.',means,'Stayman',true);
+      return NC('Efter Stayman saknas partnerns exakta hand live. Nordisk standard beskriver invit och utgångsbud men anger inte numerisk HP-gräns för direkt 3NT; ingen 25/26-hp-regel antas. Situationen lämnas ej täckt.',means,'Stayman',true);
     }
     if(M&&L[M]>=4&&opener&&fit>=8){
       return NC('Minst 8-korts fit efter Stayman är känd, men Nordisk standard anger inte en särskild numerisk acceptgräns för att välja 4M framför invit eller pass i denna Staymanfortsättning. Den separata 26-poängsgränsen för högfärgsutgång från andra sekvenser överförs inte hit; lämnas ej täckt.',means,'Stayman',true);
@@ -295,12 +293,7 @@ var Rattning = (function(){
       var five=L.H>=5?'H':L.S>=5?'S':null;
       if(reply==='2D'&&five&&!h.bal)
         return NC('Obalanserad svarshand med 5-korts högfärg efter Stayman 2♦ kan fortsätta med 3 i högfärgen vid utgångsstyrka, men den numeriska styrkegränsen är inte angiven.',means,'Stayman',true);
-      var jointHcp=hp+(opener?opener.hp:0);
-      if(jointHcp>=26){
-        exp='3N';why='Ingen högfärgsfit och '+jointHcp+' gemensamma honnörspoäng: 3NT enligt 26-poängsgränsen.';
-      }else{
-        return NC('Ingen högfärgsfit är fastställd och paret når inte 26 gemensamma honnörspoäng för 3NT. Den naturliga invitgränsen är inte numeriskt angiven; pass/invit lämnas ej täckt.',means,'Stayman',true);
-      }
+      return NC('Ingen högfärgsfit är fastställd, men Nordisk standard anger ingen numerisk HP-gräns för när svarshanden ska välja 3NT efter Stayman. Den tidigare 25/26-hp-gränsen var inte användarbekräftad; situationen lämnas ej täckt.',means,'Stayman',true);
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
   }
