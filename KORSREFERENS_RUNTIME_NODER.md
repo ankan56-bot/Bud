@@ -400,3 +400,8 @@ Se reproducerbart exempel i `GRANSKNING_LIVE_OCH_EFTERHAND.md`: med samma öppna
 ### 6.1 Viktig reservation: splintertolkningen är inte auktoriserad
 
 Att den nuvarande motorn väljer 3♥ som splinter i seed 202615834 beskriver **motorns nuvarande tolkning**, inte en verifierad systemregel. Tidigare assistenttext om 13+ STP eller 19–21 STP och fortsättning med 3M/4M har inte uttryckligen bekräftats av användaren. Den uttryckligen bekräftade 13+ HTP-regeln gäller Stenberg 2NT med minst fyra korts stöd, inte splinter. `reb1()` kontrollerar dessutom `hp>=13` medan nodtexten säger 13+ STP. Detta måste lösas innan vi bygger en splintergren i T40.
+## 8. Diagnostisk matchare tillagd
+
+`analysmotor.js` exporterar nu även `findMatches()`. Den returnerar samtliga noder vars sekvens är prefixmatchning mot aktuell auktion, sorterade med längsta sekvens först. Befintliga `findMatch()` behåller sitt gamla beteende och returnerar första träffen, så befintlig UI-/rapportlogik ändras inte.
+
+Tester visar att `1NT–Pass–2♦` ger två exakta nodträffar (T03/T07), medan `1♥–Pass–2♥` ger tre exakta träffar (T05/T10/T21). Detta gör tvetydigheten synlig för framtida migrering. `findMatches()` kontrollerar ännu inte handprofiler eller roll; den är en diagnostisk mellanlösning, inte en komplett nodmotor.
