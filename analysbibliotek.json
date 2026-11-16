@@ -7306,9 +7306,9 @@
             "4♠"
           ],
           "meaning": "Svarshanden väljer 4♠ med minst åtta spader tillsammans och minst 26 gemensamma spelpoäng.",
-          "analysis": "Detta är högfärgsutgång med fit. Den separata 25-hp-regeln för sang styr inte beslutet när paret har en verifierad spaderfit.",
+          "analysis": "Med minst 8 spader tillsammans och minst 26 gemensamma spelpoäng väljs 4♠. Gränsen 26 gemensamma spelpoäng för högfärgsutgång med fit är en överenskommen projektregel. Den separata 25-hp-regeln för sang styr inte beslutet när paret har en verifierad spaderfit.",
           "branches": [],
-          "ruleStatus": "system_rule_engine"
+          "ruleStatus": "user_confirmed"
         }
       ]
     }
