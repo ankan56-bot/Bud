@@ -26,7 +26,7 @@ function fullDeal(south) {
     for (let rank = 2; rank <= 14; rank++) deck.push(suit + rank);
   }
   const used = new Set([...east, ...south]);
-  assert.equal(used.size, 26, "North and South hands must be disjoint");
+  assert.equal(used.size, 26, "East and West hands must be disjoint");
   const rest = deck.filter(card => !used.has(card));
   assert.equal(rest.length, 26);
   return { E: east, S: rest.slice(0,13), W: south, N: rest.slice(13,26) };
@@ -44,13 +44,13 @@ const dealB = fullDeal(responderB);
 assert.deepStrictEqual(dealA.E, dealB.E, "The acting player's hand must be identical");
 
 const pointsA = R.partnershipPoints(R.H(east), R.H(responderA), "H");
-const pointsB = R.partnershipPoints(R.H(opener), R.H(responderB), "H");
+const pointsB = R.partnershipPoints(R.H(east), R.H(responderB), "H");
 assert.equal(pointsA, 25);
 assert.equal(pointsB, 26);
 assert.equal(R.H(responderA).htp("H"), 10);
 assert.equal(R.H(responderB).htp("H"), 11);
 
-const decisionA = R.nodeFor({hands:dealA,dealer:"N",bids:auction},4);
+const decisionA = R.nodeFor({hands:dealA,dealer:"E",bids:auction},4);
 const decisionB = R.nodeFor({hands:dealB,dealer:"N",bids:auction},4);
 assert.equal(decisionA.exp, "P");
 assert.equal(decisionB.exp, "4H");
