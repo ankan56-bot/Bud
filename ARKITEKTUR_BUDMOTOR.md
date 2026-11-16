@@ -138,3 +138,7 @@ Den aktuella analysmotorn matchar i huvudsak sekvensprefix och väljer den läng
 Korsreferensrapporten [KORSREFERENS_RUNTIME_NODER.md](KORSREFERENS_RUNTIME_NODER.md) kopplar systemfamiljerna i analysbiblioteket till nuvarande runtime-funktioner och listar alla 26 sekvenskollisionsgrupper. En maskinell granskare och baslinjetest finns i `scripts/validate-analysis-library.js` och `tests/analysis-library-audit.test.js`. Granskaren skiljer verkliga strukturella fel från kända varningar och skriver inte om några budregler.
 
 Den detaljerade livegranskningen har dessutom identifierat de hjälpfunktioner som tar emot partnerns faktiska kort. Ingen liveväg får använda dem i nuvarande form. Se [GRANSKNING_LIVE_OCH_EFTERHAND.md](GRANSKNING_LIVE_OCH_EFTERHAND.md).
+
+## Diagnostisk sekvensmatchning
+
+`findMatches()` i `analysmotor.js` returnerar alla sekvensmatchningar och gör överlapp synligt. `findMatch()` behåller tills vidare bakåtkompatibelt första-träff-beteende. Nästa steg är att lägga till roll och strukturerade handvillkor i en separat matchningsmodell; fri text i `handProfile` ska inte tolkas automatiskt.
