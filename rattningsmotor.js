@@ -1230,7 +1230,7 @@ var Rattning = (function(){
         return respOvercall(h,f,last,negativeOvercall,true);
       }
       if(d===1&&oppAfter.length===1&&!opener&&b.c==='X'){
-        return NC('Negativ dubbling efter denna öppning/inklivskombination saknar verifierad regel i källunderlaget.');
+        return NC('Negativ dubbling efter 1 i färg finns inte definierad i den fastställda REF-systemtexten. Den får därför inte räknas som ett automatiskt grundsystembud.');
       }
       if(d===1&&oppAfter.length===1&&opener&&b.c==='X'){
         return NC('Öppnarens dubbling efter motståndarinkliv och partnerns pass (reopenings-/stöddubbling) är inte definierad i REF-systemtexten.');
