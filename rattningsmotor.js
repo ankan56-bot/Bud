@@ -188,8 +188,7 @@ var Rattning = (function(){
     else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring.';conv='överföring'}
     else if((k?hp>=lo:true)&&(L.H===4||L.S===4)){exp=c2;why=(L.H===4||L.S===4?'Egen fyrkortshögfärg: Stayman enligt Nordisk standard.':'')+(k?' ('+hp+' hp efter 2NT).':'');conv='Stayman';soft=false}
     else if(hp>=lo&&hp<gl&&!k){
-      if(h.bal){exp='2N';why=hp+' hp, balanserad utan 4-korts högfärg: invit 2NT.';}
-      else return NC('8–9 hp utan 4-korts högfärg men obalanserad hand: fortsatt bud efter 1NT är inte definierat för denna handtyp.',means,conv);
+      return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs.',means,conv);
     }
     else if(hp>=gl){
       if(!k&&!opener){
@@ -198,11 +197,9 @@ var Rattning = (function(){
         // recommend an invite only when even 17+ stays below 26.
         var jointMin=hp+15,jointMax=hp+17;
         if(jointMin>=26){exp='3N';why=hp+' hp plus at least 15 hp from partner: minst 26 gemensamma hp, 3NT.';}
-        else if(jointMax<26&&h.bal){exp='2N';why=hp+' hp plus at most 17 hp from partner: below 26 combined hp; balanced invit 2NT.';}
-        else return NC('Partnerns 1NT visar 15–17 hp. Med denna hand kan den gemensamma styrkan ligga på båda sidor om 26 hp; livebeslutet lämnas ej täckt i stället för att läsa partnerns dolda kort.',means,conv);
+        else return NC('Partnerns 1NT visar 15–17 hp. Även om 26 hp inte nås säkert anger Nordisk standard inte ett numeriskt intervall för den naturliga 2NT-inviten; ingen gräns antas live.',means,conv);
       }else if(!k&&jointHp<26){
-        if(h.bal){exp='2N';why=hp+' hp och '+jointHp+' gemensamma honnörspoäng: balanserad invit 2NT eftersom 26 hp för sangutgång inte nås.';}
-        else return NC('10+ hp och under 26 gemensamma honnörspoäng utan 4-korts högfärg: fortsatt bud med obalanserad hand är inte definierat.',means,conv);
+        return NC('Paret når inte den verifierade 26 hp-gränsen för 3NT. 2NT är beskrivet som invit men dess numeriska handgräns är inte angiven i Nordisk standard; ingen egen gräns antas.',means,conv);
       }else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
