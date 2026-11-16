@@ -355,6 +355,28 @@ function assessReverse(shape, honors) {
   assert.equal(item.htp, 10);
 }
 
+// Splinter is disabled: a short side suit does not create a jump in that suit.
+// With four-card spade support, the opener makes the ordinary natural raise.
+{
+  const hands = makeDealFor(
+    'N',
+    { C: 1, D: 4, H: 4, S: 4 },
+    { C: [11], D: [12], H: [14, 13], S: [14] },
+    'S'
+  );
+  const bids = [
+    { s: 'N', c: '1H' },
+    { s: 'E', c: 'P' },
+    { s: 'S', c: '1S' },
+    { s: 'W', c: 'P' },
+    { s: 'N', c: '2S' }
+  ];
+  const item = Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
+  assert.equal(item.bedomning, 'rätt');
+  assert.equal(item.battre, '');
+  assert.doesNotMatch(item.forklaring, /Splinter/i);
+}
+
 // 13+ HTP with 4-card major support uses Stenberg 2NT even with a singleton.
 // Splinter is deliberately excluded from the current bidding system.
 {
