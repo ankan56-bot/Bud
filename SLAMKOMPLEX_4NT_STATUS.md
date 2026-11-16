@@ -10,7 +10,7 @@ Arbetsgren: `work/undisturbed-architecture`. `main` är orörd.
 
 ### Fastställd trumf – RKC enligt Nordisk standard
 
-Trumf är fastställd när färgen är bjuden och höjd, eller indirekt efter 2♥/2♠ som svar på Stayman 2♣. Efter fullföljd överföring 1NT–2♦–2♥ respektive 1NT–2♥–2♠ är 4NT också uttryckligen RKC med överföringsfärgen som trumf (s. 5).
+Trumf är fastställd när färgen är bjuden och höjd, eller indirekt efter 2♥/2♠ som svar på Stayman 2♣. Stenberg 2NT efter 1♣/1♦ fastställer också öppningsfärgen som trumf eftersom svarshanden visar minst fyra korts stöd; 4NT efter Stenberg routas därför till RKC med klöver respektive ruter som trumf. Efter fullföljd överföring 1NT–2♦–2♥ respektive 1NT–2♥–2♠ är 4NT också uttryckligen RKC med överföringsfärgen som trumf (s. 5).
 
 Fem nyckelkort är de fyra essen och trumfkungen. **Nordisk standards faktiska svarstabell på sida 7 är:**
 
