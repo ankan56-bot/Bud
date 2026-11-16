@@ -132,7 +132,7 @@ const balancedTen=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S2
 assert.equal(R.H(balancedTen).hp,10);
 const directTenResult=live('S',firstResponse,balancedTen);
 assert.equal(directTenResult.exp,'3N',
- '10 own HCP plus partner minimum guarantees the confirmed 25-HCP 3NT threshold');
+ '10 own HCP plus partner minimum guarantees the confirmed 25-HCP 3NT threshold: '+JSON.stringify(directTenResult));
 assert.equal(directTenResult.ruleStatus,'user_confirmed');
 const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3','S4']);
 assert.equal(R.H(balancedNine).hp,9);
