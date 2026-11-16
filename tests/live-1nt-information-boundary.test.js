@@ -64,8 +64,10 @@ assert.equal(R.H(responderEight).hp,8);
 assert.equal(R.H(responderNine).hp,9);
 assert.equal(judgeNatural2NT(responderEight).exp,'P',
  '24 combined HCP stays below the confirmed 25-HCP 3NT threshold');
+assert.equal(judgeNatural2NT(responderEight).ruleStatus,'user_confirmed');
 assert.equal(judgeNatural2NT(responderNine).exp,'3N',
  '25 combined HCP accepts the natural 2NT invitation');
+assert.equal(judgeNatural2NT(responderNine).ruleStatus,'user_confirmed');
 const responderTen=['C14','C4','C5','C6','D13','D4','D5','H12','H4','H5','S11','S4','S5'];
 assert.equal(R.H(responderTen).hp,10);
 assert.equal(judgeNatural2NT(responderTen).exp,'3N',
