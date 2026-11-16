@@ -1574,8 +1574,8 @@ var Rattning = (function(){
     var node=nodeForRaw(st,i);
 
     // Samma poänggränser ska styra både rekommendationen och rättningen.
-    // Om rålogiken annars skulle passa (eller saknar täckning), kontrollera
-    // om partnerskapet har nått utgångs- eller slamnivå.
+    // Kontrollera missad utgång/slam när rålogiken saknar nod eller föreslår pass.
+    // En explicit exp:null betyder däremot att systemregeln inte är täckt och får inte skrivas över.
     var priorPartnershipCalls=st&&st.bids?st.bids.slice(0,i).filter(function(x){return x&&isBid(x.c)&&side(x.s)===side(st.bids[i].s)}).length:0;
     // Generic missed-game/ slam rescue must not override an explicit RKC
     // response or the deliberately uncovered continuation after that reply.
