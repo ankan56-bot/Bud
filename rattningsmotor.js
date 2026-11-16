@@ -1399,7 +1399,7 @@ var Rattning = (function(){
         if(spadeFit>=8&&spadePoints>=26){
           return {exp:'4S',alt:[],why:'8-korts spaderfit och '+spadePoints+' gemensamma spelpoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
         }
-        return NC('Efter 2NT–3♣–3♠ når paret inte en verifierad utgångsprofil för 3NT eller 4♠; fortsatt bud lämnas ej täckt.',null,'2NT-Stayman',true);
+        return {exp:'P',alt:[],why:'Efter 2NT–3♣–3♠ når paret varken 26 gemensamma honnörspoäng för 3NT eller 26 gemensamma spelpoäng med 8-korts spaderfit för 4♠. Pass.',means:function(c){return c==='P'?'Ingen sangutgång eller högfärgsutgång når sin verifierade poänggräns; pass.':null},conv:'2NT-Stayman'};
       }
       if(k===1&&opener&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
         var knownPartnerHand=H(st.hands[pt]);
