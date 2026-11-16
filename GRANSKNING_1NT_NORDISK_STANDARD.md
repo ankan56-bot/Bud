@@ -253,7 +253,7 @@ En ny kontroll mot Nordisk standard s. 5 har gjorts för svarshandens fortsättn
 - Efter spaderöverföring: 3♥ invit med minst 5-5 i högfärgerna.
 - Särskilda färggrenar: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC.
 
-Fyra äldre överförings-invitträd (T19/T20/T27/T28) har status `provisional_source_gap`, eftersom de innehåller öppnarens accept/pass efter inviten, vilket inte specificeras i överföringstabellen på sida 5. Därutöver är inviterna efter 1NT/Stayman (T04/T06/T11/T12/T13/T17/T24/T25/T26) och svagt lågfärgsrelä med numerisk HP-gräns (T42) preliminära. De används inte som auktoritativa noder. Direkt 3NT med verifierad 26 hp-gräns och grundträden T03/T07/T08 är fortsatt tillgängliga.
+Fyra äldre överförings-invitträd (T19/T20/T27/T28) har status `provisional_source_gap`, eftersom de innehåller öppnarens accept/pass efter inviten, vilket inte specificeras i överföringstabellen på sida 5. Därutöver är inviterna efter 1NT/Stayman (T04/T06/T11/T12/T13/T17/T24/T25/T26) preliminära eftersom deras numeriska styrke-/acceptgränser inte är belagda. T42 är däremot kvar som källbaserat kvalitativt träd: det beskriver 'dåliga kort' och lågfärgsreläets fortsättningar, men motorn rekommenderar inte 2♠ automatiskt med en påhittad HP-gräns. Grundträden T03/T07/T08 är källverifierade.
 
 Motorn använder svarshandens egen hand för att välja fortsättningsbud efter fullföljd överföring. Öppnarens efterhandsbeslut efter en invit är en separat fråga och ska inte exponeras som livebeslut med dold partnerhand.
 
@@ -301,7 +301,7 @@ Testerna kontrollerar både överlappet och att ingen prioritet hittas på.
 
 ### Svagt lågfärgsrelä efter 1NT – kvalitativ styrka
 
-Nordisk standard s. 4 beskriver 2♠ som ett relä för "dåliga kort" med 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Källan anger inte ett numeriskt HP-intervall för "dåliga kort". Rättningsmotorn lämnar därför valet av 2♠ ej täckt när handen endast kan klassificeras med en antagen numerisk gräns. T42 finns kvar som preliminärt analysmaterial och får inte matchas som auktoritativt systemträd förrän styrkegränsen har bekräftats.
+Nordisk standard s. 4 beskriver 2♠ som ett relä för "dåliga kort" med 6+ kort i en lågfärg eller 5-5 i lågfärgerna. Källan anger inte ett numeriskt HP-intervall för "dåliga kort". Rättningsmotorn lämnar därför valet av 2♠ ej täckt när handen endast kan klassificeras med en antagen numerisk gräns. T42 behålls som källbaserat kvalitativt analysmaterial för att förklara budet och fortsättningarna, men inte som grund för en automatisk numerisk styrkeklassificering.
 
 
 ### Förtydligande: 2NT efter Stayman 2♥ är en särskild invitväg
