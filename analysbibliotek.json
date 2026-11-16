@@ -1,5 +1,5 @@
 {
-  "version": "0.6.40",
+  "version": "0.6.41",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -130,7 +130,7 @@
             "5♣"
           ],
           "meaning": "Svar 5♣ visar 0 eller 3 nyckelkort enligt Nordisk standard s. 7. Eftersom hjärter är trumf är 5♦ nästa lagliga icke-trumfbud som fortfarande lämnar 5♥ lagligt som förnekande av trumfdamen.",
-          "analysis": "Svarshanden visar 1 eller 4 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt utifrån egna nyckelkort. Om ett nyckelkort saknas bör paret normalt stanna i 5♥; om alla finns kan 6♥ vara aktuellt.",
+          "analysis": "Svar 5♣ visar 0 eller 3 nyckelkort. Efter detta dubbeltydiga lågsvar frågar 5♦ efter hjärterdam; 5♥ förnekar och 5NT visar. Om hjärterdam förnekas bjuder frågeställaren 6♥ med 3 eller 4 egna ess.",
           "branches": [
             {
               "call": "5♦",
@@ -157,7 +157,7 @@
             "5♦"
           ],
           "meaning": "Svar 5♦ visar 1 eller 4 nyckelkort enligt Nordisk standard s. 7. I denna hjärtersekvens finns inget lagligt 5-bud som både frågar efter hjärterdam och lämnar 5♥ lagligt som förnekande; fortsättningen lämnas ej täckt.",
-          "analysis": "Svarshanden visar 0 eller 3 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt. Om svaret innebär noll nyckelkort finns normalt inget slam; med tre kan slam vara möjligt beroende på egna nyckelkort.",
+          "analysis": "Svar 5♦ visar 1 eller 4 nyckelkort. I denna hjärtersekvens finns inget lagligt 5-bud som både frågar efter hjärterdam och lämnar 5♥ lagligt som förnekande. Positionen lämnas ej täckt och loggas.",
           "branches": [],
           "handProfile": {
             "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
@@ -178,7 +178,7 @@
             "5♥"
           ],
           "meaning": "Svar 5♥ visar två nyckelkort utan hjärterdam.",
-          "analysis": "Två nyckelkort finns, men trumfdamen saknas. Paret bör normalt stanna i 5♥ om trumfdamen är nödvändig för slam.",
+          "analysis": "5♥ visar 2 nyckelkort utan hjärterdam. Projektets slamgräns gäller ändå: 6♥ kräver minst 3 av 4 ess; 7♥ kräver alla fyra ess och hjärterkung.",
           "branches": [
             {
               "call": "6♥",
@@ -210,7 +210,7 @@
             "5♠"
           ],
           "meaning": "Svar 5♠ visar två nyckelkort med hjärterdam.",
-          "analysis": "Alla nyckelkort kan finnas på plats. Paret kan undersöka sidokontroller eller gå vidare till 6♥ om inga två snabba förlorare finns i en sidofärg.",
+          "analysis": "5♠ visar 2 nyckelkort med hjärterdam. 6♥ kräver minst 3 av 4 ess; 7♥ kräver alla fyra ess och hjärterkung.",
           "branches": [
             {
               "call": "6♥",
@@ -7063,7 +7063,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC med hjärter som trumf efter fullföljd hjärteröverföring.",
-          "analysis": "Nordisk standard s. 5 anger uttryckligen 4NT som essfråga (RKC) med hjärter som trumf efter 1NT–2♦–2♥. Svaren följer fem-ess-tabellen på s. 7: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam. Fitten kan vara minst sju kort; källan anger ändå RKC efter denna överföringssekvens.",
+          "analysis": "Nordisk standard s. 5 anger uttryckligen 4NT som essfråga (RKC) med hjärter som trumf efter 1NT–2♦–2♥. Svaren följer fem-ess-tabellen på s. 7: 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam. Fitten kan vara minst sju kort; källan anger ändå RKC efter denna överföringssekvens.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt hjärteröverföringen med 2♥.",
             "responder": "Minst fem hjärter; 4NT är uttryckligen RKC med hjärter som trumf enligt s. 5."
@@ -7082,7 +7082,7 @@
             "4NT"
           ],
           "meaning": "4NT är RKC med spader som trumf efter fullföljd spaderöverföring.",
-          "analysis": "Nordisk standard s. 5 anger uttryckligen 4NT som essfråga (RKC) med spader som trumf efter 1NT–2♥–2♠. Svaren följer fem-ess-tabellen på s. 7: 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam. Fitten kan vara minst sju kort; källan anger ändå RKC efter denna överföringssekvens.",
+          "analysis": "Nordisk standard s. 5 anger uttryckligen 4NT som essfråga (RKC) med spader som trumf efter 1NT–2♥–2♠. Svaren följer fem-ess-tabellen på s. 7: 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam. Fitten kan vara minst sju kort; källan anger ändå RKC efter denna överföringssekvens.",
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen med 2♠.",
             "responder": "Minst fem spader; 4NT är uttryckligen RKC med spader som trumf enligt s. 5."
@@ -7259,7 +7259,7 @@
             "5♣"
           ],
           "meaning": "5♣ visar 0 eller 3 nyckelkort. 5♦ är nästa lagliga icke-trumfbud och frågar efter spaderdam; 5♠ förnekar, 5NT visar.",
-          "analysis": "Frågeställaren skiljer mellan 1 och 4 med sina egna nyckelkort. Nästa bud måste ta hänsyn till om ett nyckelkort saknas.",
+          "analysis": "5♣ visar 0 eller 3 nyckelkort. Frågeställaren måste skilja mellan dessa med egna nyckelkort; 5♦ frågar därefter efter spaderdam i denna sekvens.",
           "branches": [
             {
               "call": "5♦",
@@ -7268,7 +7268,7 @@
             }
           ],
           "handProfile": {
-            "opener": "1 eller 4 av de fem nyckelkorten.",
+            "opener": "0 eller 3 av de fem nyckelkorten.",
             "responder": "Stenberghand med minst fyra spader."
           }
         },
@@ -7286,7 +7286,7 @@
             "5♦"
           ],
           "meaning": "5♦ visar 1 eller 4 nyckelkort. 5♥ är nästa lagliga icke-trumfbud och frågar efter spaderdam; 5♠ förnekar, 5NT visar.",
-          "analysis": "Frågeställaren skiljer mellan 0 och 3 med sina egna nyckelkort.",
+          "analysis": "5♦ visar 1 eller 4 nyckelkort. Frågeställaren måste skilja mellan dessa med egna nyckelkort; 5♥ frågar därefter efter spaderdam i denna sekvens.",
           "branches": [
             {
               "call": "5♥",
@@ -7295,7 +7295,7 @@
             }
           ],
           "handProfile": {
-            "opener": "0 eller 3 av de fem nyckelkorten.",
+            "opener": "1 eller 4 av de fem nyckelkorten.",
             "responder": "Stenberghand med minst fyra spader."
           }
         },
@@ -7313,7 +7313,7 @@
             "5♥"
           ],
           "meaning": "5♥ visar två nyckelkort utan spaderdam.",
-          "analysis": "Två nyckelkort finns, men spaderdam saknas. Slam får inte väljas automatiskt utan kompletterande kontrollinformation.",
+          "analysis": "5♥ visar 2 nyckelkort utan spaderdam. 6♠ kräver minst 3 av 4 ess; 7♠ kräver alla fyra ess och spaderkung.",
           "branches": [
             {
               "call": "6♠",
@@ -7345,7 +7345,7 @@
             "5♠"
           ],
           "meaning": "5♠ visar två nyckelkort med spaderdam.",
-          "analysis": "Två nyckelkort och spaderdam visas. Frågeställaren avgör om slam är säkert utifrån egna nyckelkort och sidokontroller.",
+          "analysis": "5♠ visar 2 nyckelkort med spaderdam. 6♠ kräver minst 3 av 4 ess; 7♠ kräver alla fyra ess och spaderkung.",
           "branches": [
             {
               "call": "6♠",
