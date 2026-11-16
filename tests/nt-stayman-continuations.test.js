@@ -84,6 +84,9 @@ assert.equal(responderAfterStayman(
   ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2D').exp,'2H',
   '5+ hearts after Stayman 2D is a natural game-forcing new suit');
 assert.equal(responderAfterStayman(
+  ['D14','D13','D12','D11','S2','S3','S4','H2','H3','H4','C2','C3','C4'],'2D').exp,'3D',
+  '4+ diamonds after Stayman 2D is a natural game-forcing new suit');
+assert.equal(responderAfterStayman(
   ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2S').exp,'3H',
   '5+ hearts after Stayman 2S is a natural game-forcing new suit');
 assert.equal(responderAfterStayman(
@@ -146,7 +149,7 @@ assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,own
 // applies to the direct 3NT game choice after the 2♦ denial.
 {
   const north=['C14','C13','C2','C3','S14','S12','S2','H13','H2','H3','D2','D3','D4'];
-  const south=['S13','S3','S4','H14','H4','H5','D12','D5','D6','C4','C5','C6','C7'];
+  const south=['S13','S3','S4','H14','H4','H5','H6','D12','D5','D6','C4','C5','C6'];
   assert.equal(R.H(north).hp,16);
   assert.equal(R.H(south).hp,9);
   const hands=deal(north,south);
