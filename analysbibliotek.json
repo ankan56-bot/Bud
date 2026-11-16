@@ -108,7 +108,11 @@
               "next": "t01_n_6h",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n2",
@@ -136,7 +140,11 @@
               "next": null,
               "label": "Lilla slammet – kräver tillräckliga nyckelkort och kontroll"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n3",
@@ -164,7 +172,11 @@
               "next": null,
               "label": "Lilla slammet om nyckelkorten räcker"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n4",
@@ -192,7 +204,11 @@
               "next": null,
               "label": "Endast med tillräcklig kompletterande information"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n5",
@@ -220,7 +236,11 @@
               "next": null,
               "label": "Storslam – kräver mycket starkt underlag"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n_5nt",
@@ -236,7 +256,11 @@
             "5NT"
           ],
           "meaning": "Svarar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n_6c",
@@ -252,7 +276,11 @@
             "6C"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n_6d",
@@ -268,7 +296,11 @@
             "6D"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t01_n_6h",
@@ -284,7 +316,11 @@
             "6H"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat hjärter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         }
       ]
     },
@@ -7197,7 +7233,11 @@
             "5NT"
           ],
           "meaning": "Svarar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat spader som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t44_s_6c",
@@ -7213,7 +7253,11 @@
             "6C"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat spader som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t44_s_6d",
@@ -7229,7 +7273,11 @@
             "6D"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat spader som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t44_s_6h",
@@ -7245,7 +7293,11 @@
             "6H"
           ],
           "meaning": "Svarar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf visas renonsen genom 6 i trumf enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat spader som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         }
       ]
     },
@@ -7758,7 +7810,11 @@
               "next": "t45rkc_6c",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t45rkc_5c",
@@ -7772,7 +7828,11 @@
             "5♣"
           ],
           "meaning": "5♣ visar 1 eller 4 nyckelkort enligt projektets RKC 1430.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t45rkc_5d",
@@ -7786,7 +7846,11 @@
             "5♦"
           ],
           "meaning": "5♦ visar 0 eller 3 nyckelkort enligt projektets RKC 1430.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t45rkc_5h",
@@ -7800,7 +7864,11 @@
             "5♥"
           ],
           "meaning": "5♥ visar 2 nyckelkort utan trumfdam.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t45rkc_5s",
@@ -7814,7 +7882,11 @@
             "5♠"
           ],
           "meaning": "5♠ visar 2 nyckelkort med trumfdam.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t45rkc_5nt",
@@ -7828,7 +7900,11 @@
             "5NT"
           ],
           "meaning": "5NT visar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t45rkc_6c",
@@ -7842,7 +7918,11 @@
             "6♣"
           ],
           "meaning": "6 i färg visar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf bjuds 6 i trumf.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat klöver som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         }
       ]
     },
@@ -7910,7 +7990,11 @@
               "next": "t46rkc_6d",
               "label": "2 nyckelkort och renons; 6 i trumf om renonsfärgen är högre än trumf"
             }
-          ]
+          ],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_5c",
@@ -7924,7 +8008,11 @@
             "5♣"
           ],
           "meaning": "5♣ visar 1 eller 4 nyckelkort enligt projektets RKC 1430.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_5d",
@@ -7938,7 +8026,11 @@
             "5♦"
           ],
           "meaning": "5♦ visar 0 eller 3 nyckelkort enligt projektets RKC 1430.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_5h",
@@ -7952,7 +8044,11 @@
             "5♥"
           ],
           "meaning": "5♥ visar 2 nyckelkort utan trumfdam.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_5s",
@@ -7966,7 +8062,11 @@
             "5♠"
           ],
           "meaning": "5♠ visar 2 nyckelkort med trumfdam.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_5nt",
@@ -7980,7 +8080,11 @@
             "5NT"
           ],
           "meaning": "5NT visar 3 nyckelkort och någon renons enligt Nordisk standard s. 7.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_6c",
@@ -7994,7 +8098,11 @@
             "6♣"
           ],
           "meaning": "6 i färg visar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf bjuds 6 i trumf.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         },
         {
           "id": "t46rkc_6d",
@@ -8008,7 +8116,11 @@
             "6♦"
           ],
           "meaning": "6 i färg visar 2 nyckelkort och renons. Om renonsfärgen är högre än trumf bjuds 6 i trumf.",
-          "branches": []
+          "branches": [],
+          "handProfile": {
+            "opener": "Öppningshanden har visat och etablerat ruter som trumf; budgivningen är ostörd.",
+            "responder": "Svarshanden har stöd i den överenskomna trumfen och använder 4NT/RKC 1430 för att visa nyckelkort. Eventuell renons bedöms enligt Nordisk standard s. 7."
+          }
         }
       ]
     }
