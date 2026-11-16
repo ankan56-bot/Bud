@@ -112,3 +112,13 @@ Innan någon ändring av budregler görs ska vi:
 - först därefter göra små, separata implementationer.
 
 Ingen ändring i denna granskning ändrar själva budsystemet.
+
+## 7. Separat strategisk reservlogik
+
+`strategicBotFallback()` i `Budtraning.html` använder robotens egen hand och partnerns offentliga budhistorik. I den granskade funktionen hittades ingen direkt läsning av partnerns faktiska kort. Den är därför inte samma dolda-hand-läcka som `Rattning.nodeFor()`.
+
+Däremot är detta en separat strategisk reservpolicy, inte en verifierad del av Nordisk Standard-rättningsmotorn. Exempelvis härleder den möjliga fit-längder från partnerns tidigare färgbud och väljer preferens mellan två visade färger. Den måste därför ha separat status, motivering och tester. Den får inte presenteras som ett systembud bara för att den ger ett konkret bud när grundmotorn saknar täckning.
+
+## 8. Verifieringskrav för informationsisolering
+
+Ett centralt regressionstest ska skapa flera kompletta givar med samma robot-hand, samma givare och exakt samma offentliga budsekvens men olika kort i de tre andra händerna. `decideLive()` ska returnera identiskt bud och motivering i samtliga fall. Testet ska även köras på varje stödd budposition efter att den nya livevägen införts.
