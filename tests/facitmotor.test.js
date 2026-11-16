@@ -32,7 +32,16 @@ const cleanSouth=['S12','S11','S10','S9','S8','H11','H10','H9','H8','D4','D5','C
 const hands=deal(north,cleanSouth);
 assert.equal(R.H(north).hp,16);
 assert.equal(R.H(north).bal,true);
-const originalDecideLive=R.decideLive;\nlet liveCalls=0;\nR.decideLive=function(input){\n  liveCalls++;\n  assert.deepEqual(Object.keys(input).sort(),['auction','dealer','ownHand','seat']);\n  return originalDecideLive(input);\n};\nconst result=F.generateUndisturbedFacit({hands,dealer:'N',trainingSide:'NS'});\nR.decideLive=originalDecideLive;\nassert.ok(liveCalls>=3);
+const originalDecideLive=R.decideLive;
+let liveCalls=0;
+R.decideLive=function(input){
+  liveCalls++;
+  assert.deepEqual(Object.keys(input).sort(),['auction','dealer','ownHand','seat']);
+  return originalDecideLive(input);
+};
+const result=F.generateUndisturbedFacit({hands,dealer:'N',trainingSide:'NS'});
+R.decideLive=originalDecideLive;
+assert.ok(liveCalls>=3);
 assert.equal(result.status,'incomplete');
 assert.deepEqual(result.auction.map(x=>x.c),['1N','P','2H','P','2S','P']);
 assert.equal(result.steps[0].meaning,'15-17 hp, balanserad (även 5-korts högfärg).');
