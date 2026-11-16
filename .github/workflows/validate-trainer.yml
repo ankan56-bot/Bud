@@ -75,6 +75,8 @@ jobs:
         run: node tests/rkc-1430-major.test.js
       - name: Run 1NT four-ace and RKC source tests
         run: node tests/nt-four-ace-source.test.js
+      - name: Run 1NT opening boundary tests
+        run: node tests/nt-opening-boundaries.test.js
       - name: Run 1NT Stayman continuation tests
         run: node tests/nt-stayman-continuations.test.js
       - name: Run 1NT minor invitation and weak-minor relay tests
