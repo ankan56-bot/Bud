@@ -186,6 +186,23 @@ function negativeDoubleDeal(south) {
 }
 
 
+// Five hearts after 1S- overcall overlap negative double and natural 2H;
+// the source does not state which call has priority, so the position stays uncovered.
+{
+  const hands = completeDealWithSouth([
+    'S9','S6','S4',
+    'H14','H13','H8','H5','H2',
+    'D12','D11','D8',
+    'C7','C3'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1C'}, {s:'E',c:'1S'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /prioritet/i);
+}
+
 const twoLevelOvercall = [
   {s:'N',c:'1D'}, {s:'E',c:'2H'}
 ];
@@ -250,6 +267,7 @@ const report = {
     { deal: 'source-90-four-card-major', expected: 'P', spadeLength: 4 },
     { deal: 'source-91-negative-double-hearts', expected: 'X', spadeLength: 4 },
     { deal: 'source-91-negative-double-spades', expected: 'X', heartLength: 4 },
+    { deal: 'source-91-five-heart-overlap', expected: 'uncovered' },
     { deal: 'slam-block-two-level', expected: 'blocked' },
     { deal: 'slam-block-one-level-with-response', expected: 'blocked' },
     { deal: 'slam-block-one-level-alone', expected: 'not-blocked' },
@@ -262,4 +280,4 @@ const report = {
 fs.mkdirSync('testdata', { recursive: true });
 fs.writeFileSync('testdata/ostord_manual_rules_latest.json', JSON.stringify(report, null, 2) + '\n');
 assert.equal(JSON.parse(fs.readFileSync('testdata/ostord_manual_rules_latest.json', 'utf8')).result, 'passed');
-console.log('Manual bidding rule checks passed (3 undisturbed deals + 6 source-rule regressions + 3 auction-only slam guard checks + 2 live decision integration checks).');
+console.log('Manual bidding rule checks passed (3 undisturbed deals + 7 source-rule regressions + 3 auction-only slam guard checks + 2 live decision integration checks).');
