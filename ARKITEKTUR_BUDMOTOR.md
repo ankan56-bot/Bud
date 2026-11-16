@@ -126,3 +126,8 @@ En separat kodgranskning har bekräftat att Öst–Väst-robotens nuvarande `bot
 Detta måste separeras innan Buddie kan betraktas som en informationsmässigt korrekt bridgepartner. Se den detaljerade inventeringen, klassificeringen och migrationsplanen i [GRANSKNING_LIVE_OCH_EFTERHAND.md](GRANSKNING_LIVE_OCH_EFTERHAND.md).
 
 **Bindande regel:** Livebeslut får endast använda egen hand och offentlig auktion. Efterhandsrättning får använda hela given, men dess slutsatser får aldrig återföras som om spelaren kunde ha känt till dem under budgivningen. Ingen ny budregel införs genom denna arkitekturgranskning.
+
+
+## Nodmatchning och kanonisk nodmodell (2026-11-16)
+
+Den aktuella analysmotorn matchar i huvudsak sekvensprefix och väljer den längsta träffen. Den kontrollerar inte nodens handprofil eller roll. Biblioteket och rättningsmotorn är två parallella strukturer utan fullständig verifierad nodkoppling. Inventeringen visar 40 ostörda träd, 241 noder och flera oklassificerade grenar. Se [GRANSKNING_NODMATCHNING.md](GRANSKNING_NODMATCHNING.md) för exakta mått, T40-root-felet, handprofilsluckor och föreslagen valideringsordning.
