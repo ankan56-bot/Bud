@@ -11,14 +11,14 @@ assert.strictEqual(isCompetitiveTree({ id: "T28_OVERFORING" }), false);
 // Snapshot of the current baseline. Changing these numbers requires reviewing
 // the underlying data and updating this test deliberately; it is not a rule generator.
 const expected = {
-  totalTrees: 48,
+  totalTrees: 50,
   competitiveTreesExcluded: 5,
-  undisturbedTrees: 43,
-  undisturbedNodes: 260,
-  branchEntries: 256,
-  linkedBranches: 141,
+  undisturbedTrees: 45,
+  undisturbedNodes: 283,
+  branchEntries: 277,
+  linkedBranches: 162,
   unlinkedBranches: 115,
-  nodesWithoutOutgoing: 166,
+  nodesWithoutOutgoing: 187,
   nodesWithoutHandProfile: 8,
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
