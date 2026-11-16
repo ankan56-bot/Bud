@@ -1537,7 +1537,7 @@ var Rattning = (function(){
     var openingCall=nonPass[0]||null;
     var isOpeningDecision=nonPass.length===0;
     var isOneNTFamily=!!openingCall&&openingCall.c==='1N'&&
-      side(openingCall.s)===side(seat)&&openingCall.s!==seat&&
+      side(openingCall.s)===side(seat)&&
       auction.every(function(x){
         if(side(x.s)!==side(seat))return x.c==='P';
         return x.c==='P'||x.c==='1N'||
