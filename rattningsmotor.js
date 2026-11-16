@@ -149,7 +149,7 @@ var Rattning = (function(){
     };
   }
 
-  function nodeFor(st,i){
+  function nodeForInternal(st,i){
     var node=nodeForRaw(st,i);
 
     // Samma poänggränser ska styra både rekommendationen och rättningen.
@@ -226,7 +226,6 @@ var Rattning = (function(){
 
   // Central loggning: varje ej täckt efterhandsposition sparas en gång.
   // Loggen deduplicerar identiska auktioner/givare och kan exporteras som JSON.
-  var nodeForInternal=nodeFor;
   function nodeFor(st,i){
     var node=nodeForInternal(st,i);
     if(!node||!node.exp){
