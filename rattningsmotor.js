@@ -631,6 +631,7 @@ var Rattning = (function(){
   /* ––––– RKC / BLACKWOOD 5 ESS ––––– */
   function rkcTrumpFromAuction(bids,sideWanted){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&isBid(x.c)});
+    if(ours.some(function(x){return x.c==='4N'}))console.log('DBG_RKC_CONTEXT',sideWanted,ours.map(function(x){return x.s+':'+x.c}).join(' '));
     for(var i=0;i<ours.length;i++){
       if(/^1[CDHS]$/.test(ours[i].c)){
         var opener=ours[i].s, suit=ours[i].c[1];
