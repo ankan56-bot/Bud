@@ -397,3 +397,6 @@ Detta ska hållas isär från vanlig tvåfärgshand/reverse. Vi behöver verifie
 ## 7. Konkret bevis på dold-hand-läckage
 
 Se reproducerbart exempel i `GRANSKNING_LIVE_OCH_EFTERHAND.md`: med samma öppnarhand och samma offentliga 1♥–3♥-auktion ger nuvarande `nodeFor()` Pass när svarshandens dolda fördelning ger 25 spelpoäng och 4♥ när den ger 26. Båda svarshänderna uppfyller samma visade 3♥-invitvillkor. Det visar varför handvillkor i nodmatchning måste skilja offentlig budinferens från efterhandskort.
+### 6.1 Viktig reservation: splintertolkningen är inte auktoriserad
+
+Att den nuvarande motorn väljer 3♥ som splinter i seed 202615834 beskriver **motorns nuvarande tolkning**, inte en verifierad systemregel. Tidigare assistenttext om 13+ STP eller 19–21 STP och fortsättning med 3M/4M har inte uttryckligen bekräftats av användaren. Den uttryckligen bekräftade 13+ HTP-regeln gäller Stenberg 2NT med minst fyra korts stöd, inte splinter. `reb1()` kontrollerar dessutom `hp>=13` medan nodtexten säger 13+ STP. Detta måste lösas innan vi bygger en splintergren i T40.
