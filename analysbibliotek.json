@@ -6459,7 +6459,7 @@
           "analysis": "Svarshanden har dåliga/svaga kort och lång lågfärg: minst sex klöver eller ruter, alternativt 5-5 i lågfärgerna. Nordisk standard anger ingen numerisk HP-gräns för denna kvalitativa beskrivning. 2♠ är ett relä för att hitta rätt lågfärg och lovar inte spader.",
           "handProfile": {
             "opener": "1NT = 15–17 hp, balanserad hand.",
-            "responder": "Under 8 hp; minst 6 klöver eller ruter, alternativt 5-5 i lågfärgerna."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst 6 klöver eller ruter, alternativt 5-5 i lågfärgerna."
           },
           "branches": [
             {
@@ -6486,7 +6486,7 @@
           "analysis": "Öppnaren väljer mellan 2NT och 3♣ utifrån längden i lågfärgerna. 2NT visar längre ruter eller lika längd; 3♣ visar längre klöver.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand. Längre ruter eller lika långa lågfärger: 2NT; längre klöver: 3♣.",
-            "responder": "Under 8 hp, lång lågfärg eller 5-5 i lågfärgerna."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); , lång lågfärg eller 5-5 i lågfärgerna."
           },
           "branches": [
             {
@@ -6515,7 +6515,7 @@
           "analysis": "Om klöver är minst lika lång som ruter bjuder svarshanden 3♣; om ruter är längre bjuder svarshanden 3♦. Budet är slutbud i den valda lågfärgen.",
           "handProfile": {
             "opener": "15–17 hp, 1NT-hand; ruter minst lika lång som klöver.",
-            "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
           },
           "branches": [
             {
@@ -6544,7 +6544,7 @@
           "analysis": "Reläsvar 3♣ är inte ett krav på klöverstöd. Svarshanden väljer slutkontrakt efter sin egen lågfärgslängd.",
           "handProfile": {
             "opener": "15–17 hp, 1NT-hand; klöver längre än ruter.",
-            "responder": "Under 8 hp; minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst 6 kort i en lågfärg eller 5-5 i lågfärgerna."
           },
           "branches": [
             {
@@ -6574,7 +6574,7 @@
           "analysis": "Klöver är minst lika lång som ruter i svarshanden. 3♣ blir slutkontrakt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; ruter minst lika lång som klöver.",
-            "responder": "Under 8 hp; minst sex klöver eller 5-5 i lågfärgerna, med klöver minst lika lång som ruter."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst sex klöver eller 5-5 i lågfärgerna, med klöver minst lika lång som ruter."
           },
           "branches": []
         },
@@ -6593,7 +6593,7 @@
           "analysis": "Ruter är längre än klöver i svarshanden. 3♦ blir slutkontrakt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; ruter minst lika lång som klöver.",
-            "responder": "Under 8 hp; minst sex ruter eller 5-5 i lågfärgerna, med ruter längre än klöver."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); minst sex ruter eller 5-5 i lågfärgerna, med ruter längre än klöver."
           },
           "branches": []
         },
@@ -6612,7 +6612,7 @@
           "analysis": "Svarshanden har minst lika många klöver som ruter; öppnarens 3♣ blir slutkontrakt.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; klöver längre än ruter.",
-            "responder": "Under 8 hp; klöver minst lika lång som ruter."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); klöver minst lika lång som ruter."
           },
           "branches": []
         },
@@ -6631,7 +6631,7 @@
           "analysis": "Svarshanden har längre ruter än klöver trots att öppnaren visade längre klöver. 3♦ blir slutkontrakt enligt nuvarande motor.",
           "handProfile": {
             "opener": "15–17 hp, balanserad 1NT-hand; klöver längre än ruter.",
-            "responder": "Under 8 hp; ruter längre än klöver."
+            "responder": "Svag/dålig hand (numerisk HP-gräns ej angiven); ruter längre än klöver."
           },
           "branches": []
         }
