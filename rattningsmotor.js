@@ -194,19 +194,9 @@ var Rattning = (function(){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs; situationen lämnas ej täckt.',means,conv,true);
     }
     else if(hp>=gl){
-      if(!k){
-        // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
-        // 1NT shows 15–17 HCP, so 10+ own HCP guarantees 25 with opener's minimum.
-        var jointMin=hp+15;
-        if(!opener&&jointMin>=25){
-          exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
-        }else if(opener&&jointHp>=25){
-          exp='3N';
-          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';
-        }else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
-      }else return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
-      soft=false;
+      if(!k)
+        return NC('Svarshanden har utgångsnära styrka, men det numeriska HP-kravet för 3NT efter 1NT är inte uttryckligen fastställt. Partnerns 15–17-intervall räcker inte för att avgöra valet; ingen 25- eller 26-hp-gräns antas.',means,conv,true);
+      return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
@@ -224,12 +214,7 @@ var Rattning = (function(){
       return null};
 
     if (r === b+'N') {
-        if(!k){
-          // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
-          if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte läsa partnerns dolda hp; efter given accepteras med 3NT vid minst 25 gemensamma hp.',means,'1NT-system',true);
-          if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-        }
+        if(!k)return NC('2NT efter 1NT är en naturlig invit. Nordisk standard anger inte öppnarens numeriska acceptgräns; varken 25 eller 26 gemensamma hp används som automatisk regel.',means,'1NT-system',true);
         return {exp:'P',alt:[],why:'3NT är slutbud efter 2NT-öppning enligt Nordisk standard.',means:means,conv:'2NT-system'};
     }
 
@@ -1751,7 +1736,7 @@ var Rattning = (function(){
   // Övergripande kontroll av missad utgång och slam vid pass på egen sida.
   // Trösklarna är vägledande: välj först högfärgsfit, därefter sang eller lågfärg.
   // Missad utgång/slam: 26 poäng i högfärg, 28 i lågfärg,
-  // 25 hp i sang utan fit. Fördelningspoäng räknas bara med fastställd trumf.
+  // Numerisk HP-gräns för sangutgång är inte fastställd i denna källa. Fördelningspoäng räknas inte i sang.
   function missedGameOrSlam(st,bids,i,currentContract,currentSide){
     var b=bids[i];
     if(!b||b.c!=='P'||side(b.s)!==0||currentSide!==0||!currentContract)return null;
@@ -1809,7 +1794,7 @@ var Rattning = (function(){
         target=choices.filter(function(x){return rk(x)>rk(currentContract);})[0]||null;
       }
       if(!target)return null;
-      var thresholdText=trump==='N'?'25+ honnörspoäng i sang':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
+      var thresholdText=trump==='N'?'numerisk sanggräns ej verifierad':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
       return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
     }
     return null;
