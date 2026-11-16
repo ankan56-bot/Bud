@@ -39,7 +39,7 @@
     }
     return {exp:exp,alt:alt,why:why,conv:'svag tvåa',means:function(b){
       if(b==='P')return 'Pass när färgkvaliteten inte räcker för svag tvåöppning.';
-      if(/^2[DH S]$/.test(b))return '6-10 hp, exakt sexkortsfärg med bra kvalitet.';
+      if(/^2[DHS]$/.test(b))return '6-10 hp, exakt sexkortsfärg med bra kvalitet.';
       if(/^3[CDHS]$/.test(b))return 'Spärröppning med sjukortsfärg.';
       if(/^4[CDHS]$/.test(b))return 'Spärröppning med åttakortsfärg.';
       return null;
