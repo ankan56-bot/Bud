@@ -39,7 +39,7 @@ Nuvarande kod:
 
 | Bud | Nordisk standard | Nuvarande kod | Resultat |
 |---|---|---|---|
-| 2♣ | Frågar efter 4-korts högfärg. Bör själv ha någon 4-högfärg. | Stayman när handen har 4+ i högfärg och kodens HP-gräns uppnås. | Kodens extra styrkegräns är inte angiven i PDF:en. Slamintresse utan egen fyrkorts högfärg nämns inte i denna punkt, men förekommer som undantag i öppnarens beskrivning av frågan på s. 4. |
+| 2♣ | Frågar efter 4-korts högfärg; svarshanden lovar normalt egen 4-högfärg eller slamintresse. | Stayman när handen har 4+ i högfärg och kodens HP-gräns uppnås. | Kodens extra styrkegräns är inte angiven i PDF:en. En uttrycklig 2♣-väg för slamintresse utan egen fyrkorts högfärg saknas i nuvarande modell och behöver en separat källstyrd bedömning. |
 | 2♦ | Överföring med minst 5 hjärter. | Överföring vid 5+ hjärter. | Stämmer i grundvillkoret. |
 | 2♥ | Överföring med minst 5 spader. | Överföring vid 5+ spader. | Stämmer i grundvillkoret. |
 | 2♠ | Dåliga kort med minst 6-korts lågfärg eller 5-5 i lågfärgerna; vill hellre spela 3 lågfärg än 1NT. | Reläväg finns, men kodens ordning kan få 8–9 hp obalanserade händer att returnera ej täckt innan lågfärgsreläet prövas. | Prioritet/handvillkor behöver rättas och testas mot både 6+ och 5-5. |
@@ -203,6 +203,7 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 6. Gör 2♠-lågfärgsreläet komplett och kontrollera prioriteten mot svaga/invitstyrka.
 7. Gör 3-lågfärgsinvit efter 1NT explicit, inklusive öppnarens pass/3NT-beslut med xx/xxx kontra topphonnör.
 8. Modellera ny färg efter Stayman som naturligt utgångskrav enligt s. 4.
+9. Modellera Stayman 2♣ med slamintresse utan egen fyrkorts högfärg, men lämna styrketröskeln öppen tills den kan beläggas.
 9. Ta bort obelagda numeriska HP-/gemensamma-poängsgränser ur systemfacit. Behåll dem endast om de kan beläggas på annan sida i samma PDF.
 
 ### P2 – tester och nodkvalitet
