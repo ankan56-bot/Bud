@@ -785,3 +785,14 @@ Till dess ska sekvensen stå kvar som **ej täckt** efter öppnarens återbud; i
 ## Systembeslut 2026-11-16 – splinter pausas helt
 
 Användarens uttryckliga beslut: **Splinter ska tas bort ur den nuvarande budgivningen.** Konventionen är avancerad och ska inte ingå innan grundmotorn fungerar stabilt. Alla splintergrenar, splinterförklaringar och särskilda svar efter splinter är därför avstängda/borttagna i den aktiva motorn och analysbiblioteket. Historiska anteckningar ovan beskriver tidigare implementation och gäller inte längre som aktiva systemregler. Stenberg 2NT påverkas inte: 13+ HTP och minst fyra korts stöd efter 1M är fortsatt giltigt.
+
+## Nytt regelunderlag – störd budgivning (2026-11-16)
+
+Användarens fotografier från BridgePlus s. 90–91 har transkriberats i REGLER_STORD_BUDGIVNING_KALLOR.md. Där dokumenteras oförändrad styrka, 5-korts ny högfärg, 4-korts lågfärg, 1NT med håll i inklivsfärgen samt de två exakta negativa dubblingsvisningarna.
+
+Användaren har dessutom uttryckligen beslutat att slam inte ska rekommenderas för vår sida när:
+- motståndarnas dubblare har visat 13 HP,
+- motståndarna kliver in på 2-nivån,
+- motståndarna kliver in på 1-nivån och inklivarens partner därefter svarar.
+
+Detta är en separat strategisk slamspärr; vanliga utgångsbud kan fortfarande vara aktuella. En viktig konflikt att lösa före implementation är att nuvarande motor anger 12–17 HP för enkelt inkliv på 2-nivån, medan slamspärrens poängresonemang utgår från att minst 13 HP har visats. Ingen produktionslogik har ännu ändrats. Fortsättningar som inte uttryckligen stöds av källan ska lämnas ej täckta.
