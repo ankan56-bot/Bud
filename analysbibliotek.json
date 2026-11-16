@@ -856,11 +856,11 @@
             "3NT"
           ],
           "meaning": "3NT är direkt slutbud först när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Vid 22–25 och balanserad svarshand används 2NT som invit.",
-          "analysis": "Öppnaren har 15–17 hp och en jämn hand. Svarshanden har en jämn hand med cirka 10–15 hp, vilket normalt ger tillräcklig styrka för sangutgång. Högfärg väljs bort eftersom ingen femkortsfärg eller känd fit finns. En lång lågfärg behöver inte undersökas när handen passar för sang och styrkan räcker till utgång.",
+          "analysis": "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan 4-korts högfärg att undersöka; tillsammans med öppnaren minst 26 gemensamma honnörspoäng."
+            "opener": "1NT = 15–17 hp och balanserad hand.",
+            "responder": "Svarshanden når minst 26 gemensamma honnörspoäng tillsammans med öppnaren; någon separat egen HP-gräns anges inte."
           }
         }
       ]
@@ -1336,11 +1336,11 @@
             "3NT"
           ],
           "meaning": "3NT är direkt slutbud först när paret har minst 26 gemensamma honnörspoäng och ingen högfärgsfit ska undersökas. Vid 22–25 och balanserad svarshand används 2NT som invit.",
-          "analysis": "Svarshanden har cirka 10–15 hp och jämn fördelning. Tillsammans har paret normalt tillräcklig styrka för sangutgång. Högfärg väljs bort eftersom svarshanden saknar fyrkortshögfärg som behöver undersökas och ingen trumffit är känd. En direkt 3NT beskriver handen effektivt och lämnar inte motståndarna onödig information.",
+          "analysis": "Svarshanden har minst 26 gemensamma honnörspoäng tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, jämn fördelning",
-            "responder": "Balanserad hand utan 4-korts högfärg att undersöka; tillsammans med öppnaren minst 26 gemensamma honnörspoäng."
+            "opener": "1NT = 15–17 hp och balanserad hand.",
+            "responder": "Svarshanden når minst 26 gemensamma honnörspoäng tillsammans med öppnaren; någon separat egen HP-gräns anges inte."
           }
         }
       ]
