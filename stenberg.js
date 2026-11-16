@@ -63,7 +63,7 @@
    var suit=st_(opening),fit=partnerHand?hand.L[suit]+partnerHand.L[suit]:0;
    if(call==='4N'){
      var trump=typeof rkcTrumpFromAuction==='function'&&Array.isArray(prior)
-       ?rkcTrumpFromAuction(prior,side):null;
+       ?rkcTrumpFromAuction(prior.concat([{s:side===0?'N':'E',c:'4N'}]),side):null;
      if(trump)return result('4N','4NT efter fastställd trumf: överlämnas till den separata RKC-/slammodulen.','Stenberg → slammodul');
      return NC('4NT efter Stenberg kan inte verifieras som RKC med den offentliga budsekvensen. Överlämnas inte automatiskt till essfrågan.',null,'Stenberg 2NT',true);
    }
