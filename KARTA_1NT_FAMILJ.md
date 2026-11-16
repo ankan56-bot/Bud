@@ -214,3 +214,26 @@ PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var 
 ### Direkt 3NT och sanggräns
 
 Användaren har accepterat 25 gemensamma honnörspoäng som gräns för 3NT; i sang räknas endast HP, inte fördelningspoäng. Efter partnerns 1NT (15–17 hp) kan svarshanden därför bjuda 3NT live med minst 10 egna hp när ingen högfärg ska undersökas med Stayman eller överföring. Med 9 egna hp kan paret ligga mellan 24 och 26 hp beroende på öppnarens exakta styrka; 25 kan därför inte garanteras live. Efter given bedöms det exakta gemensamma HP-talet. Detta är skilt från 26 OTP för högfärgsutgång och 28 OTP för lågfärgsutgång.
+
+
+## 14. Facit och senaste käll-/regressionskontroll – 2026-11-16
+
+Facitgeneratorn är nu uttryckligen en **efterhandsfunktion**. Den anropar Rattning.nodeFor() med hela given för att kunna bedöma faktiska gemensamma honnörspoäng, trumffit och efterhandskontroller. Den får inte användas som livebeslutsmotor. decideLive() är fortsatt separat och får endast se spelarens egen hand och offentlig budhistorik. Testerna verifierar båda gränserna.
+
+Varje facitsteg skiljer nu mellan:
+- **Systemregel** – beslut som följer den fastställda systemlogiken.
+- **Överenskommen projektregel** – till exempel användarens 25 hp för 3NT.
+- **Vägledande bedömning** – en strategisk rekommendation som inte ska beskrivas som ett bindande systemkrav.
+- **EJ TÄCKT / källucka** – motorn saknar en verifierad fortsättning och stoppar linjen.
+
+UI visar dessa statusar separat. Motståndarnas pass är fortfarande en tydlig träningsförutsättning i ostörd budgivning, inte ett systembeslut.
+
+En ytterligare Staymanlucka hittades och rättades: efter 1NT–2♣–2♦ måste även en naturlig 3♦-fortsättning med 4+ ruter kännas igen som utgångskrav, parallellt med 3♣ med 4+ klöver. Överlapp med andra nya färger lämnas fortsatt ej täckt när källan inte anger prioritet.
+
+Den överenskomna 25-hp-gränsen för 3NT är nu särskilt märkt som projektregel i motorns resultat och i facit. Den används endast med verifierat gemensamt HP eller när svarshandens egna HP tillsammans med öppnarens minimiintervall garanterar 25. Sang räknas med honnörspoäng, inte fördelningspoäng.
+
+Nya/uppdaterade regressioner omfattar:
+- tests/facitmotor.test.js: efterhandsfacit med hela given, stopp vid källucka och separata statusar.
+- tests/nt-stayman-continuations.test.js: 4+ ruter efter 2♦ samt 25-hp-beslut efter Stayman.
+- tests/live-1nt-information-boundary.test.js: 25-hp-gränsen, liveinformationsgräns och dolda händer.
+- tests/known-live-hidden-hand-leak.test.js: livebeslut ska vara oförändrat när öppnarens dolda kort byts, där offentlig miniminivå räcker för beslutet.
