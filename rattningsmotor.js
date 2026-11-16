@@ -168,7 +168,7 @@ var Rattning = (function(){
 
   /* ––––– 1NT / 2NT-STRUKTUR (Plus) ––––– */
   function ntResp(h,k,openerCards){
-    var hp=h.hp,L=h.L,b=2+k,Hs=maj,exp,why,alt=[],soft=false;
+    var hp=h.hp,L=h.L,b=2+k,Hs=maj,exp,why,alt=[],soft=false,ruleStatus=null;
     var opener=openerCards?H(openerCards):null;
     var jointHp=hp+(opener?opener.hp:0);
     var lo=k?5:8,gl=k?5:10;
@@ -197,19 +197,19 @@ var Rattning = (function(){
       if(!k){
         // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
         var jointMin=hp+15;
-        if(!opener&&jointMin>=25){exp='3N';why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
-        else if(opener&&jointHp>=25){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';}
+        if(!opener&&jointMin>=25){exp='3N';ruleStatus='user_confirmed';why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
+        else if(opener&&jointHp>=25){exp='3N';ruleStatus='user_confirmed';why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';}
         else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
       }else{
         var twoNTMin=hp+20;
-        if(!opener&&twoNTMin>=25){exp='3N';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
-        else if(opener&&jointHp>=25){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 25-hp-gränsen för 3NT.';}
+        if(!opener&&twoNTMin>=25){exp='3N';ruleStatus='user_confirmed';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
+        else if(opener&&jointHp>=25){exp='3N';ruleStatus='user_confirmed';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 25-hp-gränsen för 3NT.';}
         else return NC('Paret når inte säkert 25 gemensamma hp för 3NT efter 2NT-öppning; situationen lämnas ej täckt.',means,conv,true);
       }
       soft=false;
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
-    return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
+    return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft,ruleStatus:ruleStatus};
   }
   function ntOpener(h,k,r,responderCards){
     var L=h.L,hp=h.hp,b=2+k,c2=b+'C',d2=b+'D',h2=b+'H',s2=b+'S',n2=b+'N',exp,why,alt=[],soft=false,conv='1NT-system';
@@ -1580,6 +1580,7 @@ var Rattning = (function(){
       means:node.means,
       soft:!!node.soft,
       sourceGap:!!node.sourceGap,
+      ruleStatus:node.ruleStatus||null,
       context:'live',
       informationBoundary:'own_hand_and_public_auction_only'
     };
