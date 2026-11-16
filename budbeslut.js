@@ -221,7 +221,7 @@
         var myAskIsAgreed=myAskTrump||agreedNoTrumpAceAsk(prior,side(me));
         if(!myAskIsAgreed)return NC('4NT-sekvensen är inte en verifierad essfråga enligt Nordisk standard; fortsättningen lämnas ej täckt.',null,'4NT',true);
         if(!myAskTrump){
-          if(afterMyAsk.length===1)return fourAceSlamNextStep(h,response);
+          if(afterMyAsk.length===1){var knownPartnerCards=st.hands[pt]||null;var knownPartnershipHcp=knownPartnerCards?h.hp+H(knownPartnerCards).hp:null;return fourAceSlamNextStep(h,response,knownPartnershipHcp);}
         }else if(response==='5C'||response==='5D'){
           if(afterMyAsk.length===1)return rkcNextStep(h,myAskTrump,response,prior);
           var responseIndex=prior.indexOf(afterMyAsk[0]),queenReply=afterMyAsk[1]&&afterMyAsk[1].c;
