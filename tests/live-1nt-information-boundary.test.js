@@ -75,7 +75,7 @@ assert.equal(live('S',firstResponse,balancedNine).exp,null,
 const balancedEleven=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3']);
 assert.equal(R.H(balancedEleven).hp,11);
 assert.equal(live('S',firstResponse,balancedEleven).exp,'3N',
- '11 hp guarantees 26 combined hp even opposite a 15 hp 1NT opening');
+ '11 hp also guarantees the 25-HCP 3NT threshold opposite a 15 hp 1NT opening');
 
 const afterTransfer3NTChoice=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
