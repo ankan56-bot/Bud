@@ -157,4 +157,46 @@ assert.equal(A.treeCompatible(weakRelayTree),true,
 assert.ok(weakRelayTree.conditions.some(x=>/dåliga kort/i.test(x)));
 assert.ok(!JSON.stringify(weakRelayTree).match(/under 8|0–7 hp|0-7 hp/i),
   'weak relay tree must not invent a numeric HP boundary');
+// Verify the weak 2♠ relay continuations independently of the
+// unquantified initial "weak/bad cards" selection condition.
+function nodeAt(seat,auction,ownHand){
+  const other=deck.filter(c=>!ownHand.includes(c));
+  const used=new Set(ownHand);
+  const hands={};hands[seat]=ownHand.slice();
+  const opponents=['N','E','S','W'].filter(x=>x!==seat);
+  for(let i=0;i<opponents.length;i++)hands[opponents[i]]=other.slice(i*13,(i+1)*13);
+  return R.nodeForRaw({hands,dealer:'N',bids:auction},auction.length);
+}
+const relayAuction=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2S'},{s:'W',c:'P'}
+];
+const openerClubsLonger=hand(['C13','C12','C11','C10','C2','D13','D2','D3','H14','H2','H3','S2','S3']);
+assert.ok(R.H(openerClubsLonger).hp>=15&&R.H(openerClubsLonger).hp<=17);
+assert.equal(nodeAt('N',relayAuction,openerClubsLonger).exp,'3C',
+ 'opener shows longer clubs with 3C');
+
+const openerDiamondsLonger=hand(['D13','D12','D11','D10','D2','C13','C2','C3','H14','H2','H3','S2','S3']);
+assert.ok(R.H(openerDiamondsLonger).hp>=15&&R.H(openerDiamondsLonger).hp<=17);
+assert.equal(nodeAt('N',relayAuction,openerDiamondsLonger).exp,'2N',
+ 'opener shows longer diamonds with 2NT');
+
+const afterRelay2NT=relayAuction.concat([{s:'N',c:'2N'},{s:'E',c:'P'}]);
+const responderClubsLonger=hand(['C13','C12','C11','C10','C2','D13','D2','D3','H2','H3','H4','S2','S3']);
+assert.equal(nodeAt('S',afterRelay2NT,responderClubsLonger).exp,'3C',
+ 'after 2NT responder signs off in clubs when clubs are at least as long');
+
+const responderDiamondsLonger=hand(['D13','D12','D11','D10','D2','C13','C2','C3','H2','H3','H4','S2','S3']);
+assert.equal(nodeAt('S',afterRelay2NT,responderDiamondsLonger).exp,'3D',
+ 'after 2NT responder signs off in diamonds when diamonds are longer');
+
+const afterRelay3C=relayAuction.concat([{s:'N',c:'3C'},{s:'E',c:'P'}]);
+assert.equal(nodeAt('S',afterRelay3C,responderClubsLonger).exp,'P',
+ 'after opener 3C responder passes when clubs are at least as long');
+assert.equal(nodeAt('S',afterRelay3C,responderDiamondsLonger).exp,'3D',
+ 'after opener 3C responder corrects to longer diamonds');
+
+const afterRelaySignoff=afterRelay2NT.concat([{s:'S',c:'3C'},{s:'W',c:'P'}]);
+assert.equal(nodeAt('N',afterRelaySignoff,openerClubsLonger).exp,'P',
+ 'opener passes after responder signs off in a minor');
 console.log('1NT transfer source-boundary tests: passed.');
