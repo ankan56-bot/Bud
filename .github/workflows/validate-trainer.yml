@@ -1,7 +1,7 @@
 name: Validate bridge trainer
 on:
   push:
-    branches: [feature/two-player-dds, work/hps-reverse-audit, feature/one-major-to-game-4nt]
+    branches: [feature/two-player-dds, work/hps-reverse-audit, feature/one-major-to-game-4nt, work/undisturbed-architecture]
   workflow_dispatch:
 jobs:
   validate:
@@ -50,6 +50,10 @@ jobs:
           NODE
       - name: Run correction-engine regression tests
         run: node tests/reverse-hps.test.js
+      - name: Audit undisturbed analysis-library structure
+        run: |
+          node scripts/validate-analysis-library.js
+          node tests/analysis-library-audit.test.js
       - name: Validate supplementary bidding logic
         run: |
           node - <<'NODE'
