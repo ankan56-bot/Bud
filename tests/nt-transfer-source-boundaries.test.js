@@ -154,6 +154,27 @@ function nodeAt(seat,auction,ownHand){
   const bids=auction.concat([{s:seat,c:'P'}]);
   return R.nodeForRaw({hands,dealer:'N',bids},bids.length-1);
 }
+// Opener's superaccept after transfer: maximum 17 HCP and 4+
+// cards in the transfer suit may raise directly to three of the major.
+const beforeHeartTransfer=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2D'},{s:'W',c:'P'}
+];
+const maxWithFourHearts=['H14','H13','H2','H3','S14','S12','S2','D13','D2','D3','C11','C2','C3'];
+assert.equal(R.H(maxWithFourHearts).hp,17);
+assert.equal(R.H(maxWithFourHearts).L.H,4);
+assert.equal(nodeAt('N',beforeHeartTransfer,maxWithFourHearts).exp,'3H',
+  '17 HCP and four hearts: heart superaccept');
+const maxWithFourSpades=['S14','S13','S2','S3','H14','H12','H2','D13','D2','D3','C11','C2','C3'];
+assert.equal(R.H(maxWithFourSpades).hp,17);
+assert.equal(R.H(maxWithFourSpades).L.S,4);
+const beforeSpadeTransfer=beforeHeartTransfer.map((b,i)=>i===2?{s:'S',c:'2H'}:b);
+assert.equal(nodeAt('N',beforeSpadeTransfer,maxWithFourSpades).exp,'3S',
+  '17 HCP and four spades: spade superaccept');
+const seventeenMinusOne=maxWithFourHearts.map(c=>c==='C11'?'C10':c);
+assert.equal(R.H(seventeenMinusOne).hp,16);
+assert.equal(nodeAt('N',beforeHeartTransfer,seventeenMinusOne).exp,'2H',
+  '16 HCP and four hearts: normal transfer completion, not superaccept');
 const relayAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2S'},{s:'W',c:'P'}
