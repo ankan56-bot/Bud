@@ -141,6 +141,26 @@ assert.equal(R.H(staymanTenBalanced).hp,10);
 assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,null,
  '10 own HCP cannot guarantee 26 and no unverified invitation band is assumed');
 
+// 4M after a completed transfer is explicitly a signoff; opener passes.
+const afterHeartTransferSignoff=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2D'},{s:'W',c:'P'},
+ {s:'N',c:'2H'},{s:'E',c:'P'},
+ {s:'S',c:'4H'},{s:'W',c:'P'}
+];
+assert.equal(live('N',afterHeartTransferSignoff,openerWithThreeHearts).exp,'P',
+ 'opener passes after heart-transfer 4H signoff');
+const afterSpadeTransferSignoff=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2H'},{s:'W',c:'P'},
+ {s:'N',c:'2S'},{s:'E',c:'P'},
+ {s:'S',c:'4S'},{s:'W',c:'P'}
+];
+const openerWithThreeSpades=fill(['S14','S13','S12','H14','H2','H3','D13','D2','D3','C2','C3','C4','C5']);
+assert.equal(R.H(openerWithThreeSpades).hp,16);
+assert.equal(live('N',afterSpadeTransferSignoff,openerWithThreeSpades).exp,'P',
+ 'opener passes after spade-transfer 4S signoff');
+
 const naturalInvite=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2N'},{s:'W',c:'P'}
