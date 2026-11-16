@@ -823,3 +823,13 @@ BridgePlus-reglerna för svar när **vår sida har öppnat och motståndarna kli
 ### Versionsättning efter källgranskning (2026-11-16)
 
 Rättningsmotorn är uppdaterad till **v7.9** efter att BridgePlus-reglerna avgränsats till rätt konkurrenssituation och överlapp utan dokumenterad prioritet gjorts ej täckta.
+
+### Live-API v1 – öppningsbeslut (2026-11-16)
+
+Rättningsmotorn är uppdaterad till version **8.0** med `decideLive({ ownHand, seat, dealer, auction })`. API:t accepterar endast en egen 13-kortshand och offentlig budhistorik; det finns ingen parameter för partnerns eller motståndarnas kort.
+
+Första aktiverade området är öppning efter pass (inklusive fjärde hand efter tre pass). API:t kontrollerar plats, givare, kortformat, kortdubbletter, turordning och om auktionen redan avslutats. Budhistorik som innehåller kontraktsbud, dubbling eller redubbling lämnas ej täckt tills respektive budfamilj har migrerats.
+
+CI-smoketestet kräver nu `decideLive`. Manuella tester och befintliga regressionssviter har körts mot version 8.0: öppnings-/live-API-test, bred ostörd testkorpus, reverse-HPS, RKC 1430, 1M-invit och karaktärisering av tidigare dold-handsläcka passerar. I den fasta 36-givarskorpusen täcks 167 av 168 beslut (99,4 %), med noll undantag, olagliga rekommendationer eller ogiltiga auktioner. Den enda ej täckta positionen är den redan dokumenterade Stayman-fortsättningen efter `1NT–2♣–2♦–2♥`.
+
+Detta är en avgränsad första etapp, inte en fullständig livebot. Nästa familj att migrera är 1NT-svar, med intervallbaserad kunskap om öppnarens 15–17 HP och utan att använda öppnarens faktiska kort.
