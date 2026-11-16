@@ -164,4 +164,25 @@ assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,own
   assert.equal(result.ruleStatus,'user_confirmed');
 }
 
+// 2NT–3♣–3♠: a balanced responder with 25 combined HCP and no
+// eight-card spade fit reaches 3NT under the same agreed 25-HCP rule.
+{
+  const north=['S14','S13','S12','S2','H14','H13','H2','D14','D2','D3','C2','C3','C4'];
+  const south=['H12','H4','H5','H6','S11','S5','S6','D11','D5','D6','C11','C5','C6'];
+  assert.equal(R.H(north).hp,20);
+  assert.equal(R.H(south).hp,5);
+  assert.equal(R.H(north).bal,true);
+  assert.equal(R.H(south).bal,true);
+  const hands=deal(north,south);
+  const bids=[
+    {s:'N',c:'2N'},{s:'E',c:'P'},
+    {s:'S',c:'3C'},{s:'W',c:'P'},
+    {s:'N',c:'3S'},{s:'E',c:'P'},
+    {s:'S',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+  assert.equal(result.exp,'3N','20+5=25 HCP with no 8-card spade fit reaches 3NT');
+  assert.equal(result.ruleStatus,'user_confirmed');
+}
+
 console.log('1NT Stayman continuation tests: passed.');
