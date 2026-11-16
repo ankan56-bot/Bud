@@ -39,7 +39,7 @@ Detta är en **strategisk spärr för slamförslag**, inte ett påstående om at
 
 ### Öppen teknisk kontrollpunkt
 
-Nuvarande rattningsmotor.js beskriver enkelt inkliv på tvåtricksnivån som 12–17 HP. Det är inte samma sak som en säker miniminivå på 13 HP. Innan slamspärren kopplas till den befintliga styrkeberäkningen måste denna skillnad hanteras uttryckligt. Den användarbeslutade slamspärren ska inte i tysthet användas för att ändra själva inklivets styrkeintervall.
+Nuvarande rattningsmotor.js beskriver enkelt inkliv på tvåtricksnivån som 12–17 HP. Slamspärren är därför implementerad som en separat, uttrycklig regel på själva budhistoriken – inte som en slutsats om att varje inklivare faktiskt har 13 HP. Inklivets styrkeintervall har inte ändrats.
 
 ## 4. Vad källan inte fastställer
 
