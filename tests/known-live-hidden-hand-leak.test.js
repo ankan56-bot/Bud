@@ -81,15 +81,14 @@ assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
 assert.equal(R.H(eastResponder).hp, 10);
 assert.equal(R.H(west15).hp, 15);
 assert.equal(R.H(west16).hp, 16);
-// The natural 2NT invitation's exact range is not specified. Retrospective
-// correction may still accept with 3NT when 26 combined HCP are actually known;
-// live advice must not infer that from the hidden opener hand.
-assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, null);
+// 10 own HCP plus the 15-HCP minimum of a 1NT opener guarantees
+// the confirmed 25-HCP no-trump game threshold, regardless of hidden hand.
+assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "3N");
 assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 assert.equal(liveNt15.exp,liveNt16.exp);
 assert.equal(liveNt15.why,liveNt16.why);
-assert.equal(liveNt15.exp,null,"unverified natural 2NT invite boundary must remain uncovered");
+assert.equal(liveNt15.exp,"3N","10 own HCP guarantees 25 combined HCP against 1NT minimum");
 
 console.log("Legacy 1M hidden-hand leak characterized; 1NT live path is invariant and conservative.");
