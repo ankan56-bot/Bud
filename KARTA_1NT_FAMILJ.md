@@ -209,3 +209,8 @@ Alla dessa lägen lämnas ej täckta hellre än att motorn konstruerar ett syste
 ## 13. Korrigering efter kontroll av original-PDF sida 5
 
 PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var felaktigt införda i tidigare implementation och dokumentation och är nu borttagna. `transfer2` lämnar pass/invit/slutbud ej täckt när valet kräver en numerisk styrkegräns som källan inte ger. Specialbud med uttryckliga formvillkor är fortsatt implementerade. T03/T07/T08 har markerats `source_qualitative`: de visas som källbaserade kvalitativa förklaringar men gör inte numerisk styrkeklassificering.
+
+
+### Direkt 3NT och sanggräns
+
+Den bekräftade spelregeln är 25 gemensamma honnörspoäng för sangutgång. I 3NT räknas endast hp, inga fördelningspoäng. Detta är skilt från 26 OTP för högfärgsutgång och 28 OTP för lågfärgsutgång. Vid partnerns 1NT (15–17 hp) kan svarshanden därför bjuda 3NT live med minst 10 egna hp, om ingen högfärg ska undersökas med Stayman eller överföring. Vid 9 hp kan paret ligga under eller på 25 beroende på öppnarens hand; den naturliga 2NT-inviten saknar numeriskt svarshandsintervall i Nordisk standard och lämnas därför ej täckt.
