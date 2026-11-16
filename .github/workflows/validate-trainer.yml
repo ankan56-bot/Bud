@@ -14,6 +14,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check rattningsmotor.js
+          node --check stenberg.js
           node --check sangbudgivning.js
           node --check slamlogik.js
           node --check dds-integration.js
@@ -78,6 +79,7 @@ jobs:
         run: node tests/supplementary-logic.test.js
       - name: Run major-suit RKC tests
         run: node tests/rkc-nordisk-standard-major.test.js
+          node tests/stenberg-2nt.test.js
       - name: Run all-trumps RKC and no-trump four-ace tests
         run: node tests/slam-all-trumps.test.js
       - name: Run 1NT four-ace and RKC source tests
