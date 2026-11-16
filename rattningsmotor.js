@@ -276,6 +276,7 @@ var Rattning = (function(){
       if(L.H>=5)naturalNew.push('H');
       if(L.S>=5)naturalNew.push('S');
       if(L.C>=4)naturalNew.push('C');
+      if(L.D>=4)naturalNew.push('D');
     }else if(reply==='2H'){
       if(L.S>=5)naturalNew.push('S');
       ['C','D'].forEach(function(suit){if(L[suit]>=4)naturalNew.push(suit);});
