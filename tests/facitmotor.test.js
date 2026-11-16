@@ -47,8 +47,8 @@ assert.deepEqual(result.auction.map(x=>x.c),['1N','P','2H','P','2S','P']);
 assert.equal(result.steps[0].meaning,'15-17 hp, balanserad (även 5-korts högfärg).');
 assert.ok(result.uncovered);
 assert.equal(result.uncovered.seat,'S');
-assert.equal(result.steps[result.steps.length-1].systemStatus,'source_gap');
-assert.equal(result.steps[result.steps.length-1].sourceGap,true);
+assert.equal(result.steps[result.steps.length-1].systemStatus,'not_covered');
+assert.equal(result.steps[result.steps.length-1].sourceGap,false);
 assert.match(result.message,/ofullständig/);
 
 // Guidance-only recommendations must remain distinguishable in the generated facit.
