@@ -57,4 +57,36 @@ assert.equal(judge(min44,afterStayman3NT).exp,'4S',
     'a four-card major is sufficient for Stayman; do not invent an 8 hp floor');
 }
 
+// Natural new suits after each Stayman answer are game-forcing:
+// 5+ major or 4+ minor. The recommendation must not depend on the
+// opener's hidden cards.
+function responderAfterStayman(south,openerReply){
+  const north=deck.filter(card=>!south.includes(card)).slice(0,13);
+  const used=new Set([...north,...south]);
+  assert.equal(used.size,26);
+  const rest=deck.filter(card=>!used.has(card));
+  const hands={N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
+  const bids=[
+    {s:'N',c:'1N'},{s:'E',c:'P'},
+    {s:'S',c:'2C'},{s:'W',c:'P'},
+    {s:'N',c:openerReply},{s:'E',c:'P'},
+    {s:'S',c:'P'}
+  ];
+  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+}
+assert.equal(responderAfterStayman(
+  ['S14','S13','S12','S11','S10','H2','H3','H4','D2','D3','D4','C2','C3'],'2H').exp,'2S',
+  '5+ spades after Stayman 2H is a natural game-forcing new suit');
+assert.equal(responderAfterStayman(
+  ['C14','C13','C12','C11','S2','S3','S4','H2','H3','H4','D2','D3','D4'],'2H').exp,'3C',
+  '4+ clubs after Stayman 2H is a natural game-forcing new suit');
+assert.equal(responderAfterStayman(
+  ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2D').exp,'2H',
+  '5+ hearts after Stayman 2D is a natural game-forcing new suit');
+assert.equal(responderAfterStayman(
+  ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2S').exp,'3H',
+  '5+ hearts after Stayman 2S is a natural game-forcing new suit');
+assert.equal(responderAfterStayman(
+  ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H').exp,'2N',
+  'exactly four spades after Stayman 2H is shown by 2NT');
 console.log('1NT Stayman continuation tests: passed.');
