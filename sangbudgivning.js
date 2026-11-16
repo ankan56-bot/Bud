@@ -3,6 +3,7 @@
   if(typeof module!=='undefined'&&module.exports) module.exports=factory;
   else root.RattningSangFactory=factory;
 })(typeof globalThis!=='undefined'?globalThis:this,function(api){
+  var SU=api.SU, SYM=api.SYM, NAME=api.NAME;
   var side=api.side;
   var partner=api.partner;
   var isBid=api.isBid;
