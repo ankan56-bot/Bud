@@ -846,8 +846,8 @@ var Rattning = (function(){
     }
 
     // Sangbud med håll i motståndarnas öppningsfärg.
-    if(!exp&&h.bal&&hp>=8&&hp<=10&&h.stop(os)&&ok('1N',last)){
-      exp='1N';why='8-10 hp, balanserad hand med håll: 1NT.';
+    if(!exp&&h.bal&&hp>=6&&hp<=10&&h.stop(os)&&ok('1N',last)){
+      exp='1N';why='6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg: 1NT.';
     }
     if(!exp&&h.bal&&hp>=11&&hp<=13&&h.stop(os)&&ok('2N',last)){
       exp='2N';why='11-13 hp, balanserad hand med bra håll: 2NT.';
@@ -859,7 +859,7 @@ var Rattning = (function(){
     // Ny färg: 8+ hp på 1-nivån, 10+ hp om svaret måste avges på 2-nivån.
     // Hopp i ny färg kräver 14+ hp och en bra 6+-färg.
     if(!exp){
-      var suits=['S','H','D','C'].filter(function(x){return x!==s&&x!==os&&L[x]>=5;});
+      var suits=['S','H','D','C'].filter(function(x){return x!==s&&x!==os&&L[x]>=(x==='S'||x==='H'?5:4);});
       suits.sort(function(a,b){
         if(L[b]!==L[a])return L[b]-L[a];
         return ['S','H','C','D'].indexOf(a)-['S','H','C','D'].indexOf(b);
