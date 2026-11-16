@@ -65,6 +65,24 @@ assert.equal(node('N',openerAfterStayman,openerWithFourHearts,weakFourHearts).ex
   '2NT opening: opener shows four hearts at the next level');
 assert.equal(live('N',openerAfterStayman,openerWithFourHearts).exp,'3H');
 
+const afterHeartTransfer2NT=[
+ {s:'N',c:'2N'},{s:'E',c:'P'},{s:'S',c:'3D'},{s:'W',c:'P'}
+];
+const openerWithFourHearts20=openerWithFourHearts.map(c=>c==='C12'?'C11':c);
+assert.equal(R.H(openerWithFourHearts20).hp,20);
+assert.equal(node('N',afterHeartTransfer2NT,openerWithFourHearts, fiveHearts).exp,'4H',
+  '2NT max 21 HCP and 4+ hearts superaccepts one level higher with 4H');
+assert.equal(node('N',afterHeartTransfer2NT,openerWithFourHearts20, fiveHearts).exp,'3H',
+  '2NT 20 HCP and 4+ hearts completes the transfer normally with 3H');
+assert.equal(live('N',afterHeartTransfer2NT,openerWithFourHearts).exp,'4H');
+
+const afterSpadeTransfer2NT=[
+ {s:'N',c:'2N'},{s:'E',c:'P'},{s:'S',c:'3H'},{s:'W',c:'P'}
+];
+assert.equal(node('N',afterSpadeTransfer2NT,opener21,fiveSpades).exp,'4S',
+  '2NT max 21 HCP and 4+ spades superaccepts one level higher with 4S');
+assert.equal(live('N',afterSpadeTransfer2NT,opener21).exp,'4S');
+
 const openerWithNoMajor=['S14','S13','S2','H14','H11','H2','D2','D3','D4','C14','C13','C12','C2'];
 assert.equal(node('N',openerAfterStayman,openerWithNoMajor,weakFourHearts).exp,'3D',
   '2NT opening: opener denies a four-card major at the next level');
