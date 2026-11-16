@@ -58,17 +58,19 @@ Källverifierade vägar enligt sida 4:
 
 ## 4. Överföringar
 
-Runtime-funktioner: `transfer2(h,M,openerCards)`, `ntOpenerInvit` och `ntOpener3NTChoice`.
+Runtime-funktioner: `transfer2(h,M)`, `ntOpenerInvit` och separata öppnargrenar i `ntOpener`/`ntOpener3`.
 
-Källverifierade svarsvägar enligt Nordisk standard s. 5 och nuvarande `transfer2`:
-- 0–7 hp: pass.
-- 8–9 hp: invit; 2NT med jämn hand och exakt fem kort i överföringsfärgen, eller 3M med minst sex kort.
-- 10–15 hp: 3NT med jämn hand och exakt fem kort, eller 4M med minst sex kort.
+Källverifierade budbetydelser enligt Nordisk standard s. 5:
+- Pass: dåliga kort men minst fem kort i överföringsfärgen.
+- 2NT: invit med jämn hand och exakt fem kort i överföringsfärgen.
+- 3M: invit med minst sex kort i överföringsfärgen.
+- 3NT: välj utgång med jämn hand och exakt fem kort.
+- 4M: slutbud.
 - Efter spaderöverföring: 3♥ invit med minst 5-5 i båda högfärgerna.
 - Efter hjärteröverföring: 2♠ rondkrav med 5+♥ och 4+♠.
 - Efter båda överföringarna: 3 lå är utgångskrav med 5+ överföringsfärg och 4+ i bjuden lågfärg; 4 lå är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf.
 
-Gränserna och budbetydelserna är verifierade mot original-PDF:ens sida 5. Om flera lågfärger samtidigt uppfyller 4+-villkoret saknar källan en prioritet; motorn lämnar därför den situationen ej täckt. Styrkor över 15 hp hanteras ännu inte som en automatiserad slamväg.
+**Viktig korrigering:** PDF sida 5 anger inga numeriska HP-intervall för svag/invit/utgång. Tidigare intervall 0–7, 8–9 och 10–15 hp har tagits bort ur motorn. Den väljer inte mellan pass, invit och slutbud utan en verifierad styrkegräns. Entydiga specialbud (2♠, 3 lå och 3♥ efter spaderöverföring) kan fortfarande väljas på sina uttryckliga formvillkor. Om flera specialvillkor överlappar lämnas prioriteten ej täckt.
 
 **Öppna luckor/risker:**
 - Obalanserad femkortshand efter överföring saknar fastställd fortsättning i vissa styrkelägen.
@@ -149,12 +151,12 @@ Nya regressionstester finns i `tests/nt-four-ace-source.test.js`. Öppnarens sä
 
 ## 10. Uppdatering efter förnyad sidkontroll – 2026-11-16
 
-Original-PDF sida 5 anger uttryckligen intervallen 0–7, 8–9 och 10–15 hp efter fullföljd överföring. De har nu återinförts i motorn och T03/T07/T08 har uppdaterats. Fyra separata invitträd (T19/T20/T27/T28) är fortfarande preliminära eftersom de beskriver öppnarens accept/pass efter inviten, vilket inte framgår av överföringstabellen på sida 5.
+Original-PDF sida 5 anger inga numeriska HP-intervall efter fullföljd överföring. De tidigare inlagda 0–7, 8–9 och 10–15 hp-gränserna har tagits bort. T03/T07/T08 och invit-/acceptträdena hålls preliminära för styrkevalet; kvalitativa budbetydelser och särskilda formvillkor behålls.
 
 Stayman sida 4 har också implementerats tydligare: efter 2♦, 2♥ eller 2♠ är en ny färg naturlig och utgångskrav med 5+ högfärg eller 4+ lågfärg. Efter 2♥ visar 2NT exakt fyra spader. Om flera nya färger samtidigt uppfyller längdkraven lämnas prioriteten ej täckt.
 
 Nya regressionstester:
-- `tests/nt-transfer-source-boundaries.test.js`: exakta styrkeintervall, fem-/sexkortsfärg och 5-5 högfärg.
+- `tests/nt-transfer-source-boundaries.test.js`: avsaknad av numeriska HP-gränser samt specialbudens formvillkor och överlapp.
 - `tests/nt-stayman-continuations.test.js`: naturliga utgångskravsbud efter samtliga Stayman-svar samt 2NT med exakt fyra spader efter 2♥.
 
 
@@ -163,7 +165,7 @@ Nya regressionstester:
 `decideLive` accepterar nu ostörda auktioner i 1NT-familjen och använder `nodeForRaw` i stället för den efterhandsbaserade `nodeFor`. Det förhindrar att den generella kontrollen av missad utgång/slam läser partnerns dolda hand i ett livebeslut.
 
 Källstyrda och handbaserade grenar som nu kan avgöras med enbart egen hand och offentlig auktion:
-- Eget svar på partnerns 1NT: Stayman med egen 4-korts högfärg, överföring med 5+ högfärg, samt överföringsfortsättningarna med styrkeintervallen på sida 5.
+- Eget svar på partnerns 1NT: Stayman med egen 4-korts högfärg, överföring med 5+ högfärg, samt entydiga specialfortsättningar efter överföring; svag/invit/utgång lämnas ej täckt när styrkegränsen saknas.
 - Öppnarens Staymansvar och fullföljning/superaccept av överföring.
 - Stayman 2NT efter 2♥ med exakt fyra spader; öppnarens 3♠/4♠-val med egen 4-4 och 15–16/17 hp.
 - Naturlig ny färg efter Stayman som utgångskrav.
@@ -181,7 +183,7 @@ Nytt test: `tests/live-1nt-information-boundary.test.js` kontrollerar att dolda 
 
 1NT–2♠ visar enligt Nordisk standard s. 4 en svag hand med minst sex kort i en lågfärg eller 5-5 i lågfärgerna. Öppnaren bjuder 3♣ med längre klöver, annars 2NT (längre ruter eller lika längd). Efter 2NT bjuder svarshanden 3♣ eller 3♦ som signoff; efter 3♣ passar svarshanden eller bjuder 3♦ som signoff.
 
-Källan anger inte ett exakt numeriskt HP-intervall för "svag/dåliga kort". Motorn rekommenderar därför inte automatiskt 2♠ utifrån en egen gräns. Den känner igen längdprofilen men lämnar styrkeklassificeringen ej täckt. Trädet T42 är markerat preliminärt och filtreras bort från auktoritativ matchning tills styrkebeskrivningen kan preciseras.
+Källan anger inte ett exakt numeriskt HP-intervall för "svag/dåliga kort". Motorn rekommenderar därför inte automatiskt 2♠ utifrån en egen gräns. Den känner igen längdprofilen men lämnar styrkeklassificeringen ej täckt. Trädet T42 är källbaserat kvalitativt och beskriver reläets betydelse/fortsättning; det används inte för numerisk styrkeklassificering.
 
 
 ### Täckningskontroll efter källkonservativ rättning
@@ -190,7 +192,7 @@ Den fasta 36-givarskorpusen innehåller nu 169 N/S-beslut. Fem beslut lämnas ej
 
 I den separata 100-givarskontrollen ligger täckningen kvar över 98 %. Kvarvarande luckor är dokumenterade och omfattar:
 - numeriska invitgränser som saknas i källan;
-- överföringshänder med 10–15 hp som varken är balanserad femkortshand eller har sexkortsfärg;
+- överföringshänder där den kvalitativa styrkekategorin svag/invit/utgång inte kan fastställas;
 - öppnarens fortsättning efter svarshandens utgångskravande 3♣/3♦ efter överföring;
 - öppnarens accept/pass efter invit när källan inte definierar kriterierna.
 
@@ -202,3 +204,8 @@ Alla dessa lägen lämnas ej täckta hellre än att motorn konstruerar ett syste
 2NT–4NT klassificeras som kvantitativ invit till 6NT, separat från 1NT:s fyr-essfrågor och från RKC. Öppnarens accept/pass lämnas ej täckt tills den exakta styrkegränsen för accept har verifierats.
 
 Öppnarens eventuella korrigering efter svarshandens 3NT är nu också en uttrycklig källucka: vid 3+ stöd i överföringsfärgen lämnas beslutet ej täckt, eftersom sida 5 inte anger om 4M ska väljas framför 3NT. Utan 3+ stöd passar öppnaren. Ett sådant läge finns i 100-givarskontrollen (ostord-100-080).
+
+
+## 13. Korrigering efter kontroll av original-PDF sida 5
+
+PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var felaktigt införda i tidigare implementation och dokumentation och är nu borttagna. `transfer2` lämnar pass/invit/slutbud ej täckt när valet kräver en numerisk styrkegräns som källan inte ger. Specialbud med uttryckliga formvillkor är fortsatt implementerade. T03/T07/T08 har markerats `provisional_source_gap` och filtreras bort från auktoritativ matchning som numeriska styrketräd.
