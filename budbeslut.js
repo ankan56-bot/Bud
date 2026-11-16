@@ -367,8 +367,16 @@
         if(m1==='2C')return stay2(h,rep,st.hands[pt]);
         if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
         if(m1==='2H'&&rep==='2S')return transfer2(h,'S');
-        if(m1==='2S'&&rep==='2N'){var mc=h.L.C>=h.L.D?'3C':'3D';return {exp:mc,alt:[],why:'Bjud din långa lågfärg på 3-nivå som slutbud.',means:T({'3C':'Slutbud i ♣.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
-        if(m1==='2S'&&rep==='3C'){var e=h.L.C>=h.L.D?'P':'3D';return {exp:e,alt:[],why:e==='P'?'Du har ♣ som lågfärg: pass.':'Du har ♦ som lågfärg: 3♦.',means:T({P:'Slutbud: pass.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'}}
+        if(m1==='2S'&&rep==='2N'){
+          if(h.L.C===h.L.D)return NC('Efter 1NT–2♠–2NT har svarshanden lika lång ♣ och ♦. Nordisk standard anger 3 lågfärg som slutbud men ingen prioritet vid lika längd; lämnas EJ TÄCKT.',T({'3C':'Möjligt slutbud i ♣; lika långa lågfärger saknar källbelagd prioritet.','3D':'Möjligt slutbud i ♦; lika långa lågfärger saknar källbelagd prioritet.'}),'1NT-svar',true);
+          var mc=h.L.C>h.L.D?'3C':'3D';
+          return {exp:mc,alt:[],why:'Bjud den längre lågfärgen som slutbud efter 2NT-reläsvar.',means:T({'3C':'Slutbud i ♣.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'};
+        }
+        if(m1==='2S'&&rep==='3C'){
+          if(h.L.C===h.L.D)return NC('Efter 1NT–2♠–3♣ har svarshanden lika lång ♣ och ♦. Källan anger pass eller 3♦ som slutbud men ingen prioritet vid lika längd; lämnas EJ TÄCKT.',T({P:'Möjligt slutbud i 3♣; lika långa lågfärger saknar källbelagd prioritet.','3D':'Möjligt slutbud i 3♦; lika långa lågfärger saknar källbelagd prioritet.'}),'1NT-svar',true);
+          var e=h.L.C>h.L.D?'P':'3D';
+          return {exp:e,alt:[],why:e==='P'?'Svarshandens klöver är längre: passar på 3♣.':'Svarshandens ruter är längre: korrigerar till 3♦.',means:T({P:'Slutbud: pass.','3D':'Slutbud i ♦.'}),conv:'1NT-svar'};
+        }
       }
       if(opener&&d===4&&!k){
         var t1=ours[1].c,t2=ours[2].c;
