@@ -112,7 +112,7 @@ for (const [reply,trump] of [['2H','H'],['2S','S']]) {
     {s:'S',c:'4N'},{s:'W',c:'P'}
   ];
   const result=answer(dealWithNorth(north),sequence);
-  assert.equal(result.conv,'RKC 1430');
+  assert.equal(result.conv,'RKC enligt Nordisk standard');
   assert.equal(result.exp,'5C','two aces plus the heart king are three keycards');
 }
 
