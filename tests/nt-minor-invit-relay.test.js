@@ -55,6 +55,16 @@ const cases = [
     name:'3D, three-card support without top honour',
     north:['S14','S13','S12','S2','H14','H11','H4','D11','D7','D4','C8','C7','C3'],
     call:'3D', expected:'P'
+  },
+  {
+    name:'3D, two-card support without top honour',
+    north:['S14','S12','S11','S2','H13','H11','H2','H3','D11','D10','C14','C11','C2'],
+    call:'3D', expected:'P'
+  },
+  {
+    name:'3D, three-card support with Q',
+    north:['S14','S12','S2','S3','H13','H11','H2','H3','D12','D11','D2','C14','C2'],
+    call:'3D', expected:'3N'
   }
 ];
 for (const c of cases) {
