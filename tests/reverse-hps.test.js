@@ -1172,7 +1172,7 @@ function assessReverse(shape, honors) {
   assert.match(node.why, /3\+ stöd.*inte dubblerarens fortsättning/i);
 }
 
-// After 1NT-2C-2S, an 8-card major fit below 26 playing points is passed.
+// After 1NT-2C-2S, the source does not specify the numeric invit boundary below game.
 {
   const north = ['S14', 'S13', 'S2', 'S3', 'H14', 'H2', 'H3', 'D13', 'D2', 'D3', 'C12', 'C2', 'C3'];
   const south = ['S12', 'S11', 'S4', 'S5', 'H4', 'H5', 'H6', 'D4', 'D5', 'D6', 'C4', 'C5', 'C6'];
@@ -1183,8 +1183,8 @@ function assessReverse(shape, honors) {
     { s: 'N', c: '2S' }, { s: 'E', c: 'P' }, { s: 'S', c: 'P' }
   ];
   const node = Rattning.nodeFor({ hands, dealer: 'N', bids }, 6);
-  assert.equal(node.exp, 'P');
-  assert.match(node.why, /under 22-poängsgränsen/i);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /numeriska gränsen.*inte anges/i);
 }
 
 // After 1C-2C, a balanced 18-HCP opener chooses 3NT before a minor game.
