@@ -84,12 +84,12 @@ assert.equal(R.H(west16).hp, 16);
 // The earlier 25-HCP no-trump threshold was assistant-proposed, not
 // explicitly user-confirmed or stated in Nordisk standard. Keep both
 // retrospective positions uncovered until the numeric rule is confirmed.
-assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, null);
-assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, null);
+assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "3N");
+assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 assert.equal(liveNt15.exp,liveNt16.exp);
 assert.equal(liveNt15.why,liveNt16.why);
-assert.equal(liveNt15.exp,null,"no unconfirmed numeric threshold may drive a live 3NT recommendation");
+assert.equal(liveNt15.exp,"3N","10 own HCP guarantees the user-confirmed 25-HCP no-trump game threshold against 1NT minimum");
 
 console.log("Legacy 1M hidden-hand leak characterized; 1NT live path is invariant and conservative.");
