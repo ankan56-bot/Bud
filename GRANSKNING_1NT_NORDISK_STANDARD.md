@@ -327,3 +327,8 @@ Den separata överenskommelsen för 2NT–4NT har nu kodats uttryckligen som kva
 ### Live 3NT efter Stayman 2♦
 
 När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 11 egna hp garanteras minst 26 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 10 hp eller mindre går det inte att garantera 26; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
+
+
+### Öppnarens eventuella korrigering efter svarshandens 3NT efter överföring
+
+Nordisk standard s. 5 säger att svarshanden väljer utgång med 3NT vid jämn hand och exakt fem kort i överföringsfärgen. Tabellen anger inte uttryckligen om öppnaren ska korrigera till 4M när öppnaren har tre eller fler kort i överföringsfärgen. Den tidigare implementationen gjorde automatiskt en sådan korrigering; detta är nu borttaget. Öppnaren passar när stödet är färre än tre kort, men lämnar läget ej täckt vid 3+ stöd tills en källa eller användarbekräftelse anger fortsättningen.
