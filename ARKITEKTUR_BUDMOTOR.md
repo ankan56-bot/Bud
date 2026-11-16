@@ -169,4 +169,19 @@ Facit får inte skapa en falsk entydighet. Om flera bud är likvärdigt godtagba
 
 För ostörd budgivning får motståndarnas pass läggas in som en uttrycklig träningsförutsättning. Dessa pass ska inte presenteras som systembeslut.
 
-Den första implementationen i `facitmotor.js` genererar en huvudlinje via `decideLive`, visar motivering och betydelse för varje täckt beslut och stoppar vid första ej täckta position. Den är ett första vertikalt produktsteg, inte ännu full kravuppfyllelse: särskilt motivering av bortvalda bud, full grenning mellan alternativa linjer och källhänvisning per visat bud återstår.
+Den aktuella implementationen i `facitmotor.js` genererar en huvudlinje via `nodeFor()` med hela given, eftersom facit är en efterhandsanalys. Den visar budets betydelse, motivering, eventuella alternativ och status för varje täckt beslut samt stoppar vid första ej täckta position. Livebeslut är separat och använder `decideLive()` med endast egen hand och offentlig auktion. Facit får aldrig användas som livebeslutsunderlag.
+
+
+## 12. Efterhandsfacit och regelstatus – 2026-11-16
+
+Facitgeneratorn använder nu hela given och anropar den efterhandsbaserade Rattning.nodeFor(). Det är avsiktligt: en komplett förklaring av en redan spelad giv kan behöva faktiska gemensamma poäng, fit och andra handvillkor. Detta får inte läcka till realtidsbudgivningen.
+
+Den separata Rattning.decideLive()-vägen fortsätter att acceptera enbart ownHand, seat, dealer och offentlig auction. Livebeslut ska vara invarianta när dolda händer byts, förutsatt att den offentliga informationen och spelarens egen hand är oförändrade.
+
+Facitstatus är nu explicit:
+- system_rule_engine / Systemregel
+- user_confirmed / Överenskommen projektregel
+- strategic_guidance / Vägledande bedömning
+- source_gap eller not_covered / EJ TÄCKT
+
+Motiveringar och alternativa bud visas utan att alternativa bud automatiskt klassas som fel. Källluckor stoppar huvudlinjen i stället för att fyllas med gissningar. Ostörd-lägets motståndarpassen är träningsantaganden och redovisas separat.
