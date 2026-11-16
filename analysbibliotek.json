@@ -7311,6 +7311,149 @@
       ],
       "sourceStatus": "source_qualitative",
       "sourceStatusNote": "Endast de kvalitativa invitbetydelserna är källbelagda. Inga numeriska svarsstyrkor eller acceptgränser är angivna; trädet får förklara budens betydelse men inte klassificera handstyrka."
+    },
+    {
+      "id": "T47_1NT_MINOR_INVIT",
+      "title": "1NT – invit med lång lågfärg",
+      "tags": [
+        "1NT",
+        "lågfärg",
+        "invit",
+        "3♣",
+        "3♦",
+        "3NT"
+      ],
+      "conditions": [
+        "Efter 1NT anger Nordisk standard s. 4 att 3♣/3♦ är invit med bra 6+ kort i den bjudna lågfärgen.",
+        "Öppnaren passar med xx/xxx i stödfärgen utan topphonnör.",
+        "Öppnaren söker 3NT med topphonnör (A, K eller D) i 2–3-kortsstödet.",
+        "Källan anger inte numerisk HP-gräns eller exakt definition av 'bra' färg; dessa delar klassificeras inte automatiskt."
+      ],
+      "root": "t47_C_root",
+      "nodes": [
+        {
+          "id": "t47_C_root",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3C"
+          ],
+          "meaning": "3C är en invit med bra 6+ klöver enligt Nordisk standard s. 4.",
+          "analysis": "Svarshanden visar en lång lågfärg och invitstyrka. Källan beskriver handen som \"bra\" men anger ingen numerisk HP-gräns eller exakt kvalitetsdefinition.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t47_C_pass",
+              "label": "Öppnaren har xx/xxx i stödfärgen utan topphonnör"
+            },
+            {
+              "call": "3NT",
+              "next": "t47_C_nt",
+              "label": "Öppnaren har 2–3 korts stöd med A, K eller D"
+            }
+          ],
+          "handProfile": {
+            "opener": "1NT-öppnare med 2–3 kort i den inviterade lågfärgen.",
+            "responder": "Invit med bra 6+ klöver; exakt styrke-/kvalitetsgräns anges inte i källan."
+          }
+        },
+        {
+          "id": "t47_C_pass",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3C",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Öppnaren passar på 3C med xx/xxx i stödfärgen utan topphonnör.",
+          "analysis": "Nordisk standard s. 4 anger pass med xx/xxx i stöd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "xx eller xxx i den inviterade lågfärgen utan A, K eller D.",
+            "responder": "Invit med bra 6+ klöver."
+          }
+        },
+        {
+          "id": "t47_C_nt",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3C",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren söker 3NT med A, K eller D i 2–3-kortsstödet i klöver.",
+          "analysis": "Nordisk standard s. 4 anger att öppnaren söker 3NT med topphonnör i två- eller trekortsstödet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "2–3 kort i klöver med A, K eller D.",
+            "responder": "Invit med bra 6+ klöver."
+          }
+        },
+        {
+          "id": "t47_D_root",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3D"
+          ],
+          "meaning": "3D är en invit med bra 6+ ruter enligt Nordisk standard s. 4.",
+          "analysis": "Svarshanden visar en lång lågfärg och invitstyrka. Källan beskriver handen som \"bra\" men anger ingen numerisk HP-gräns eller exakt kvalitetsdefinition.",
+          "branches": [
+            {
+              "call": "Pass",
+              "next": "t47_D_pass",
+              "label": "Öppnaren har xx/xxx i stödfärgen utan topphonnör"
+            },
+            {
+              "call": "3NT",
+              "next": "t47_D_nt",
+              "label": "Öppnaren har 2–3 korts stöd med A, K eller D"
+            }
+          ],
+          "handProfile": {
+            "opener": "1NT-öppnare med 2–3 kort i den inviterade lågfärgen.",
+            "responder": "Invit med bra 6+ ruter; exakt styrke-/kvalitetsgräns anges inte i källan."
+          }
+        },
+        {
+          "id": "t47_D_pass",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3D",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Öppnaren passar på 3D med xx/xxx i stödfärgen utan topphonnör.",
+          "analysis": "Nordisk standard s. 4 anger pass med xx/xxx i stöd.",
+          "branches": [],
+          "handProfile": {
+            "opener": "xx eller xxx i den inviterade lågfärgen utan A, K eller D.",
+            "responder": "Invit med bra 6+ ruter."
+          }
+        },
+        {
+          "id": "t47_D_nt",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "3D",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren söker 3NT med A, K eller D i 2–3-kortsstödet i ruter.",
+          "analysis": "Nordisk standard s. 4 anger att öppnaren söker 3NT med topphonnör i två- eller trekortsstödet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "2–3 kort i ruter med A, K eller D.",
+            "responder": "Invit med bra 6+ ruter."
+          }
+        }
+      ],
+      "sourceStatus": "source_qualitative",
+      "sourceStatusNote": "Budbetydelserna och öppnarens stöd-/honnörsvillkor är källbelagda på s. 4. Numerisk styrkegräns och exakt färgkvalitet för svarshandens invit saknas; trädet förklarar endast den kvalitativa systemregeln."
     }
   ],
   "valuationRules": {
