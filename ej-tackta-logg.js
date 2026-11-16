@@ -2,6 +2,16 @@
 (function(root){
   'use strict';
   var KEY='bud_ej_tackta_logg_v1';
+  // Frågor som redan identifierats under slamgenomgången och ska följa med
+  // när användaren exporterar loggen för expertgranskning. Okända budsekvenser
+  // anges uttryckligen som null i stället för att konstrueras.
+  var EXPERT_QUESTIONS=[
+    {id:'slam-rkc-all-five-keycards',topic:'RKC – alla fem nyckelkort',sequence:null,question:'Vilken fortsättning ska användas när paret har alla fem nyckelkort? Nordisk standard-tabellen i det tillgängliga underlaget anger inget särskilt svar för 5 av 5.'},
+    {id:'slam-rkc-multiple-voids',topic:'RKC – flera renonser',sequence:null,question:'Vilken renons ska visas när handen har två eller fler renonser och RKC-svaret ska visa 2 nyckelkort med renons? Underlaget väljer inte mellan renonserna.'},
+    {id:'slam-rkc-queen-ask-legality',topic:'RKC – trumfdamfråga och lagliga bud',sequence:null,question:'Vilka alternativa fortsättningar gäller när nästa bud som inte är trumf inte kan följas av ett lagligt 5-i-trumf-förnekande, eller när 5NT/6-i-ny-färg inte längre är lagligt?'},
+    {id:'slam-four-aces-no-seven',topic:'Fyr-essfråga – fortsättning när 7NT inte är tillåtet',sequence:null,question:'Vilken fortsättning ska användas efter fyr-essfråga när svaret inte visar alla fyra essen och 7NT därför inte är tillåtet? Finns en uttrycklig acceptregel för 6NT?'},
+    {id:'slam-control-bids',topic:'Kontrollbud och slamsekvenser',sequence:null,question:'Vilka kontrollbudssekvenser före och efter 4NT/RKC ingår i Nordisk standard, och hur ska de kopplas till fastställd trumf, essfråga och slamval?'}
+  ];
   function read(){
     try{var v=root.localStorage&&root.localStorage.getItem(KEY);return v?JSON.parse(v):[];}
     catch(e){return [];}
@@ -31,7 +41,7 @@
   }
   function exportJson(){
     var rows=read();
-    var payload={format:'bud-ej-tackta-v1',exportedAt:new Date().toISOString(),count:rows.length,entries:rows.map(function(x){var y=Object.assign({},x);delete y._key;return y;})};
+    var payload={format:'bud-ej-tackta-v1',exportedAt:new Date().toISOString(),count:rows.length,entries:rows.map(function(x){var y=Object.assign({},x);delete y._key;return y;}),expertQuestions:EXPERT_QUESTIONS};
     var blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json;charset=utf-8'});
     var url=URL.createObjectURL(blob),a=document.createElement('a');
     a.href=url;a.download='ej-tackta-budsekvenser.json';a.style.display='none';
