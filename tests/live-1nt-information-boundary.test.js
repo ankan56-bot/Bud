@@ -194,7 +194,7 @@ assert.equal(live('N',afterMinorInvite,openerWithFourSmallClubs).exp,null,
  'four small cards are not covered by the stated xx/xxx or top-honor cases');
 
 // After Stayman 2♦ opener denies a four-card major. Eleven own HCP
-// guarantee 25 combined HCP against the 15-HCP minimum; nine do not.
+// guarantee the 26-HCP game threshold against the 15-HCP minimum.
 const staymanNoMajorAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2C'},{s:'W',c:'P'},
@@ -203,12 +203,12 @@ const staymanNoMajorAuction=[
 const staymanElevenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C11','C2']);
 assert.equal(R.H(staymanElevenBalanced).hp,11);
 assert.equal(R.H(staymanElevenBalanced).bal,true);
-assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,null,
- '11 own HCP after Stayman 2D cannot trigger 3NT without a confirmed threshold');
+assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,'3N',
+ '11 own HCP after Stayman 2D guarantees 26 combined HCP against 1NT minimum');
 const staymanTenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C2','C3']);
 assert.equal(R.H(staymanTenBalanced).hp,10);
 assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,null,
- '10 own HCP does not justify 3NT without a confirmed threshold');
+ '10 own HCP plus partner minimum reaches only 25, below the 26-HCP game threshold');
 
 // 4M after a completed transfer is explicitly a signoff; opener passes.
 const afterHeartTransferSignoff=[
