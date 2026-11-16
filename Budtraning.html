@@ -171,6 +171,7 @@ button:disabled{opacity:.3;cursor:default}
 <body>
 <div id="app"><div class="card mu">Laddar …</div></div>
 <script src="rattningsmotor.js"></script>
+<script src="facitmotor.js"></script>
 <script src="dds-integration.js"></script>
 <script src="analysmotor.js"></script>
 <script>
@@ -731,6 +732,54 @@ function reviewPrompt(st){
   var auc=st.bids.map(function(b,i){return (i+1)+'. '+NAME[b.s]+': '+txt(b.c)+(b.e?' [robotens avsikt: '+b.e+']':'')}).join('\n');
   return "Du är bridgecoach. Bedöm budgivningen UTIFRÅN ENBART Nordisk standard (2012-08-22), alltså bifogad nordisk_standard.pdf om den finns, annars regelsammanfattningen längst ned. Uppfinn inga regler. Täcker reglerna inte ett bud, säg det i stället för att gissa. Mänskliga platser: "+(st.humanSeats||['N','S']).map(function(s){return NAME[s]}).join(', ')+". Robotplatser: "+SEATS.filter(function(s){return isBot(s,st)}).map(function(s){return NAME[s]}).join(', ')+". Robotbud ska inte bedömas.\n\nGIVET (given "+st.no+", given av "+NAME[st.dealer]+"):\nNorr: "+handText(st.hands.N)+"\nSyd: "+handText(st.hands.S)+"\nÖst: "+handText(st.hands.E)+"\nVäst: "+handText(st.hands.W)+"\n\nBUDGIVNING:\n"+auc+"\n\nUPPGIFT: Räkna hp och htp för Norr och Syd. Bedöm endast bud som lagts av mänskliga spelare. För varje sådant bud: förklara vad det visar enligt dokumentet, bedöm om det var rätt, fel eller valfritt, och om det var fel eller valfritt: ange vilket bud som borde bjudits och varför, med hp/htp/fördelning. Avsluta med en kort sammanfattning. Svara på svenska.\n\n"+REF;
 }
+
+function facitHtml(st){
+  if(st.mode!=='ostord'||!window.BudFacit)return '';
+  var humans=Array.isArray(st.humanSeats)&&st.humanSeats.length?st.humanSeats:['N','S'];
+  var sides=humans.map(function(x){return x==='N'||x==='S'?'NS':'EW'}).filter(function(x){return x==='NS'||x==='EW'});
+  if(!sides.length||sides.some(function(x){return x!==sides[0]})){
+    return '<div class="card"><p class="status">Budfacit</p><p>Facitlinje visas när träningsplatserna tillhör samma sida.</p></div>';
+  }
+  var result;
+  try{
+    result=window.BudFacit.generateUndisturbedFacit({
+      hands:st.hands,dealer:st.dealer,trainingSide:sides[0]
+    });
+  }catch(e){
+    return '<div class="card"><p class="status">Budfacit</p><p>Facitmotorn kunde inte köras: '+esc(e.message)+'</p></div>';
+  }
+  var h='<div class="card"><p class="status">Budfacit · rekommenderad huvudlinje</p>';
+  if(result.status==='complete'){
+    h+='<p><b>Fullständig budgivning</b></p>';
+    h+='<p>'+(result.contract?'Slutkontrakt: '+esc(result.contract.bidText)+' ('+esc(NAME[result.contract.declarer])+').':'Budgivningen slutar i pass.')+'</p>';
+  }else{
+    h+='<p><b>Facitlinjen är inte komplett</b></p><p>'+esc(result.message||'Motorn saknar en verifierad fortsättning.')+'</p>';
+  }
+  if(result.auction&&result.auction.length){
+    h+='<p><b>Hittills rekommenderad sekvens:</b> '+result.auction.map(function(x){return esc(NAME[x.s]+' '+Rattning.txt(x.c))}).join(' · ')+'</p>';
+  }
+  h+='<div class="review-list">';
+  (result.steps||[]).forEach(function(step){
+    var heading=NAME[step.seat]+' · '+(step.callText||'Ej täckt');
+    var cls=step.kind==='uncovered'?'mid':'';
+    h+='<article class="review-item '+cls+'"><div class="top"><b>'+esc(heading)+'</b>';
+    if(step.kind==='assumed_opponent_pass')h+='<span class="tag">Ostörd förutsättning</span>';
+    else if(step.kind==='uncovered')h+='<span class="tag">EJ TÄCKT</span>';
+    else h+='<span class="tag">SYSTEMREKOMMENDATION</span>';
+    h+='</div>';
+    if(step.meaning)h+='<p><b>Budets betydelse:</b> '+esc(step.meaning)+'</p>';
+    if(step.explanation)h+='<p>'+esc(step.explanation)+'</p>';
+    if(step.alternatives&&step.alternatives.length){
+      h+='<p><b>Alternativ som också identifierats:</b> '+step.alternatives.map(function(x){return esc(x.callText)+(x.meaning?' ('+esc(x.meaning)+')':'')}).join(' · ')+'</p>';
+      if(step.alternativeNote)h+='<p class="mu">'+esc(step.alternativeNote)+'</p>';
+    }
+    h+='</article>';
+  });
+  h+='</div>';
+  h+='<p class="mu">Facit använder endast den aktuella spelarens hand och offentlig budhistorik vid varje beslut. Motståndarnas pass är en förutsättning för temat ostörd budgivning. En ofullständig gren markeras uttryckligen; ingen fortsättning fylls i automatiskt.</p></div>';
+  return h;
+}
+
 function reviewHtml(st){
   var result;
   try{result=Rattning.judge({hands:st.hands,dealer:st.dealer,bids:st.bids||[]})}catch(e){result={items:[],summary:'Rättningsmotorn kunde inte köras: '+e.message,auction:{errors:[]}}}
@@ -985,7 +1034,7 @@ function render(){
   }
   h+='</div><aside class="side"><div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><p class="status" style="margin:0">Budgivning</p>'+(canUndo(st)?'<button id="undo" class="sm">Ångra mitt senaste bud</button>':'')+'</div><div class="ascroll">'+auctionHtml(st,end)+'</div></div>';
   if(end){
-    h+='<div class="card"><p class="status">'+contractText(st)+'</p>'+oppList(st)+'<div class="row" style="margin-top:12px"><button id="rp" '+(roomConfig.count&&!roomReady()?'disabled':'')+'>Spela om given</button><button id="nd" class="pri" '+(roomConfig.count&&!roomReady()?'disabled':'')+'>Ny giv</button></div>'+(roomConfig.count&&!roomReady()?'<p class="mu">Väntar på spelare innan nästa giv.</p>':'')+'</div>'+reviewHtml(st);
+    h+='<div class="card"><p class="status">'+contractText(st)+'</p>'+oppList(st)+'<div class="row" style="margin-top:12px"><button id="rp" '+(roomConfig.count&&!roomReady()?'disabled':'')+'>Spela om given</button><button id="nd" class="pri" '+(roomConfig.count&&!roomReady()?'disabled':'')+'>Ny giv</button></div>'+(roomConfig.count&&!roomReady()?'<p class="mu">Väntar på spelare innan nästa giv.</p>':'')+'</div>'+reviewHtml(st)+facitHtml(st);
   }else if(mine){
     h+='<div class="card"><p class="status">'+(seat==='X'?NAME[me]+' bjuder':'Din tur att bjuda')+'</p><div class="lv">';
     for(var l=1;l<=7;l++){var okL=SU.some(function(s){return legal(st,l+s,me)});h+='<button data-l="'+l+'" '+(okL?'':'disabled ')+(pickL===l?'class="on"':'')+'>'+l+'</button>'}
