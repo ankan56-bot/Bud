@@ -13,7 +13,6 @@
        means:function(b){return b==='1'+suit?'12-19 hp och minst 4 kort i färgen.':null}};
    }
    if(hp===11&&(fourthHandAfterThreePasses||hand.goodForEleven(suit))){
-     if(!fourthHandAfterThreePasses&&!(length===6&&hand.good(suit))&&!(length===7&&hand.good(suit)))return NC('11 hp kräver bra öppningsfärg enligt systemregeln.');
      alt=['P'];
      return {exp:'1'+suit,alt:alt,why:fourthHandAfterThreePasses?'Fjärde hand efter tre pass: 11 hp räcker för öppning.':'11 hp med bra färg: 1 i färg är tillåtet; pass är också möjligt.',conv:'öppning',
        means:function(b){return b==='1'+suit?'11 hp med bra färg eller fjärde hand efter tre pass.':b==='P'?'Alternativt pass med 11 hp.':null}};
