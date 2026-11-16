@@ -208,4 +208,4 @@ Alla dessa lägen lämnas ej täckta hellre än att motorn konstruerar ett syste
 
 ## 13. Korrigering efter kontroll av original-PDF sida 5
 
-PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var felaktigt införda i tidigare implementation och dokumentation och är nu borttagna. `transfer2` lämnar pass/invit/slutbud ej täckt när valet kräver en numerisk styrkegräns som källan inte ger. Specialbud med uttryckliga formvillkor är fortsatt implementerade. T03/T07/T08 har markerats `provisional_source_gap` och filtreras bort från auktoritativ matchning som numeriska styrketräd.
+PDF-tabellen innehåller inte 0–7, 8–9 eller 10–15 hp. De intervallen var felaktigt införda i tidigare implementation och dokumentation och är nu borttagna. `transfer2` lämnar pass/invit/slutbud ej täckt när valet kräver en numerisk styrkegräns som källan inte ger. Specialbud med uttryckliga formvillkor är fortsatt implementerade. T03/T07/T08 har markerats `source_qualitative`: de visas som källbaserade kvalitativa förklaringar men gör inte numerisk styrkeklassificering.
