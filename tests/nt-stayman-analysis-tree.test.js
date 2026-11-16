@@ -15,6 +15,16 @@ const threeNt=bySequence.get('1NT|Pass|2♣|Pass|2♥|Pass|3NT');
 assert.ok(threeNt);
 assert.deepEqual(threeNt.branches.map(b=>b.call),['4♠','Pass']);
 assert.ok(tree.conditions.some(c=>c.includes('15–16 hp')||c.includes('15–17 hp')));
+// The ordinary Stayman invit meanings are source-backed, but their
+// numerical selection/acceptance thresholds are not. Keep them qualitative.
+const invitTree=lib.trees.find(t=>t.id==='T46_STAYMAN_INVIT_MEANINGS');
+assert.ok(invitTree);
+assert.equal(A.treeCompatible(invitTree),true);
+assert.equal(invitTree.sourceStatus,'source_qualitative');
+assert.deepEqual(invitTree.nodes.map(n=>n.sequence.at(-1)),['3♥','3♠','2NT']);
+assert.ok(invitTree.sourceStatusNote.includes('Inga numeriska'));
+assert.ok(invitTree.nodes.every(n=>n.branches.length===0),
+  'no unsupported opener acceptance branches may be invented');
 // The analysis library must mirror the user-confirmed 25-HCP no-trump
 // game threshold, while keeping 26-point suit-game thresholds separate.
 assert.match(lib.conventions.oneNTGameThreshold,/25 combined HCP/);
