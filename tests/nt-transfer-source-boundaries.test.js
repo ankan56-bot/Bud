@@ -98,8 +98,8 @@ assert.equal(result(fiveFiveSpade,afterSpadeTransfer).exp,null,
 for(const id of ['T03_OVERFORING_PASS','T07_OVERFORING_HJARTER','T08_OVERFORING_SPADER']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree, 'expected source-aligned transfer tree '+id);
-  assert.equal(tree.sourceStatus,'provisional_source_gap',id+' contains qualitative strength bands without numeric thresholds');
-  assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative strength rules');
+  assert.equal(tree.sourceStatus,'source_qualitative',id+' retains source-backed meanings but no numeric strength bands');
+  assert.equal(A.treeCompatible(tree),true,id+' may be shown as qualitative analysis, not numeric classification');
 }
 for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFORING_SPADER_SEXKORT_INVIT']){
   const tree=lib.trees.find(t=>t.id===id);
