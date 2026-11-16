@@ -124,6 +124,15 @@
       // does not state responder's numeric threshold for choosing it.
       return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är den särskilda invitvägen, men Nordisk standard anger inte svarshandens numeriska styrkegräns för att välja mellan pass och denna invit. Ingen numerisk HP-gräns eller egen HP-regel överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';return null},'Stayman',true);
     }
+    // Nordisk standard s. 4: after the Stayman response, 2NT and
+    // three of opener's shown major are invitational. The PDF does not
+    // give numeric strength/acceptance limits for these ordinary routes.
+    if(reply==='2N'&&M==='S'){
+      return NC('Efter Stayman 2♠ är 2NT en invit, men Nordisk standard s. 4 anger ingen numerisk styrkegräns eller fullständig acceptregel. Situationen lämnas ej täckt.',function(c){return c==='2N'?'Naturlig invit efter Stayman 2♠.':null},'Stayman',true);
+    }
+    if((reply==='3H'&&M==='H')||(reply==='3S'&&M==='S')){
+      return NC('3'+M+' efter Stayman visar invit i öppnarens visade högfärg enligt Nordisk standard s. 4. Källan anger ingen numerisk styrkegräns eller acceptregel; situationen lämnas ej täckt.',function(c){return c==='3'+M?'Invit i öppnarens visade högfärg.':null},'Stayman',true);
+    }
     var naturalNew=[];
     if(reply==='2D'){
       if(L.H>=5)naturalNew.push('H');
