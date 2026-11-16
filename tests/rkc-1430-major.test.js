@@ -73,7 +73,7 @@ assert.equal(answerAfterSimpleFit(['C14','H2','H3','H4','H5','H6','H7','H8','S2'
     {s:'S',c:'P'}
   ]};
   const node=Rattning.nodeFor(st,10);
-  assert.equal(node.exp,null,'RKC follow-up is uncovered until the 1/4 ambiguity and slam continuations are defined');
+  assert.equal(node.exp,'5D','after a 5♣ answer with hearts trumps, 5♦ asks for the trump queen');
 }
 
 console.log('Nordisk standard major-suit RKC responses passed; five-keycard and unresolved continuations remain explicitly uncovered.');
