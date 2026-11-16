@@ -1,6 +1,6 @@
 {
-  "version": "0.6.5",
-  "description": "Analysbibliotek med 45 budträd. Ostörd 1♥/1♠-budgivning utvecklas vidare, inklusive Stenberg och RKC 1430.",
+  "version": "0.6.6",
+  "description": "Analysbibliotek med 46 budträd. Ostörd 1♥/1♠-budgivning utvecklas vidare, inklusive Stenberg och RKC 1430.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -7021,6 +7021,172 @@
           "handProfile": {
             "opener": "Öppningshand som tillsammans med svarshanden når 26+ gemensamma spelpoäng.",
             "responder": "Invitstyrka med minst fyrkortsstöd."
+          }
+        }
+      ]
+    },
+    {
+      "id": "T45_STAYMAN_2H_CONTINUATIONS",
+      "title": "Stayman 2♥ – fortsättning med 4-4 i högfärgerna",
+      "tags": [
+        "1NT",
+        "Stayman",
+        "2NT",
+        "3NT",
+        "spader",
+        "hjärter"
+      ],
+      "conditions": [
+        "Ostörd budgivning efter 1NT–2♣–2♥.",
+        "Nordisk standard s. 4: svarshandens 2NT visar fyra spader; om öppnaren har 4-4 i högfärgerna bjuder öppnaren 3♠ med minimum och 4♠ med maximum.",
+        "Öppningens intervall är 15–17 hp; i denna gren behandlas 15–16 hp som minimum och 17 hp som maximum.",
+        "Svarshandens 3NT visar också fyra spader; öppnaren kan bjuda 4♠ om öppnaren har 4-4 i högfärgerna.",
+        "Trädet anger endast de fortsättningar som uttryckligen stöds av Nordisk standard s. 4. Ingen spegelvänd regel efter öppnarens 2♠ har lagts till."
+      ],
+      "root": "t45_n0",
+      "nodes": [
+        {
+          "id": "t45_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "Svarshandens 2NT efter Stayman 2♥ visar fyra spader och inviterar.",
+          "analysis": "Öppnaren har visat minst fyra hjärter. Svarshandens 2NT visar fyra spader. Om öppnaren också har fyra spader (4-4 i högfärgerna) ska öppnaren välja 3♠ med minimum eller 4♠ med maximum. Andra öppnarhänder lämnas utanför denna källstyrda gren.",
+          "branches": [
+            {
+              "call": "3♠",
+              "next": "t45_n1",
+              "label": "4-4 i högfärgerna och minimum (15–16 hp)"
+            },
+            {
+              "call": "4♠",
+              "next": "t45_n2",
+              "label": "4-4 i högfärgerna och maximum (17 hp)"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, minst fyra hjärter; i denna fortsättning exakt fyra hjärter och fyra spader.",
+            "responder": "Har bjudit Stayman och därefter 2NT, vilket visar fyra spader."
+          }
+        },
+        {
+          "id": "t45_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Öppnaren visar spaderfit med 3♠ med minimum.",
+          "analysis": "Öppnaren har 4-4 i högfärgerna och 15–16 hp. 3♠ visar spaderfit på invitnivå enligt Nordisk standard s. 4.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–16 hp och 4-4 i högfärgerna.",
+            "responder": "2NT visar fyra spader."
+          }
+        },
+        {
+          "id": "t45_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Öppnaren accepterar inviten med 4♠ med maximum.",
+          "analysis": "Öppnaren har 4-4 i högfärgerna och 17 hp. 4♠ är maximumvalet enligt Nordisk standard s. 4.",
+          "branches": [],
+          "handProfile": {
+            "opener": "17 hp och 4-4 i högfärgerna.",
+            "responder": "2NT visar fyra spader."
+          }
+        },
+        {
+          "id": "t45_n3",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Svarshandens 3NT efter Stayman 2♥ visar också fyra spader.",
+          "analysis": "Nordisk standard s. 4 anger att svarshandens 3NT i denna sekvens också visar fyra spader. Öppnaren kan bjuda 4♠ om öppnaren har 4-4 i högfärgerna; annars passas 3NT.",
+          "branches": [
+            {
+              "call": "4♠",
+              "next": "t45_n4",
+              "label": "Öppnaren har 4-4 i högfärgerna"
+            },
+            {
+              "call": "Pass",
+              "next": "t45_n5",
+              "label": "Öppnaren har inte 4-4 i högfärgerna"
+            }
+          ],
+          "handProfile": {
+            "opener": "15–17 hp, minst fyra hjärter; 4-4 i högfärgerna ger möjlighet att välja 4♠.",
+            "responder": "Har bjudit Stayman och därefter 3NT, vilket visar fyra spader."
+          }
+        },
+        {
+          "id": "t45_n4",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3NT",
+            "Pass",
+            "4♠"
+          ],
+          "meaning": "Öppnaren väljer 4♠ efter svarshandens 3NT.",
+          "analysis": "Svarshandens 3NT visar fyra spader. Öppnaren har 4-4 i högfärgerna och väljer 4♠ enligt Nordisk standard s. 4.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp och 4-4 i högfärgerna.",
+            "responder": "3NT visar fyra spader."
+          }
+        },
+        {
+          "id": "t45_n5",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3NT",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Öppnaren passar på 3NT när öppnaren inte har 4-4 i högfärgerna.",
+          "analysis": "Öppnaren har inte 4-4 i högfärgerna och låter 3NT bli slutbud.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp och inte 4-4 i högfärgerna.",
+            "responder": "3NT visar fyra spader."
           }
         }
       ]
