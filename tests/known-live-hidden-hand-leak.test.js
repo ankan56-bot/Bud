@@ -49,8 +49,9 @@ assert.equal(R.H(westInviteB).htp("H"), 11);
 assert.equal(R.nodeFor({hands:majorDealA,dealer:"E",bids:majorAuction},4).exp, "P");
 assert.equal(R.nodeFor({hands:majorDealB,dealer:"E",bids:majorAuction},4).exp, "4H");
 
-// Case 2: East responds to West's 1NT. East's 10-HCP hand and auction stay
-// fixed; West's actual 15 versus 16 HCP changes the recommendation 2NT/3NT.
+// Case 2: East responds to West's 1NT. East has 10 HCP, and the opener
+// guarantees at least 15: the agreed 25-HCP 3NT threshold is therefore met
+// without inspecting the opener's hidden hand (15+10 or 16+10).
 const eastResponder = [
   "D14","D13","D12","D5","D4","S11","S7","S6","H8","H6","H3","C9","C2"
 ];
@@ -81,13 +82,14 @@ assert.deepStrictEqual(ntDeal15.E, ntDeal16.E);
 assert.equal(R.H(eastResponder).hp, 10);
 assert.equal(R.H(west15).hp, 15);
 assert.equal(R.H(west16).hp, 16);
-// No numeric combined-HCP threshold for 3NT has been confirmed.
-assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, null);
-assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, null);
+// The 25-HCP threshold is user-confirmed; both complete deals reach it.
+assert.equal(R.nodeFor({hands:ntDeal15,dealer:"W",bids:ntAuction},2).exp, "3N");
+assert.equal(R.nodeFor({hands:ntDeal16,dealer:"W",bids:ntAuction},2).exp, "3N");
 const liveNt15=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 const liveNt16=R.decideLive({seat:"E",dealer:"W",auction:ntAuction,ownHand:eastResponder});
 assert.equal(liveNt15.exp,liveNt16.exp);
+assert.equal(liveNt15.exp,"3N","10 HCP plus the 15-HCP 1NT minimum guarantees 25 HCP");
 assert.equal(liveNt15.why,liveNt16.why);
-assert.equal(liveNt15.exp,null,"no numeric 3NT threshold is confirmed for live advice");
+assert.equal(liveNt15.why,liveNt16.why,"changing the opener's hidden hand must not change the live explanation");
 
 console.log("Legacy 1M hidden-hand leak characterized; 1NT live path is invariant and conservative.");
