@@ -68,6 +68,71 @@ const auction068 = state(deal068, 'E', [
   assert.equal(item.nod.konvention, 'hållvisning');
 }
 
+
+function completeDealWithSouth(south) {
+  const deck = ['S','H','D','C'].flatMap(suit =>
+    Array.from({length:13}, (_,i) => suit + (i + 2))
+  );
+  assert.equal(south.length, 13);
+  const unique = new Set(south);
+  assert.equal(unique.size, 13, 'South hand must not contain duplicate cards');
+  const rest = deck.filter(card => !unique.has(card));
+  return {
+    N: rest.slice(0,13),
+    E: rest.slice(13,26),
+    S: south,
+    W: rest.slice(26,39)
+  };
+}
+
+// BridgePlus s. 90: 1NT response is 6–10 HP, but requires a stopper
+// in the opponents' overcall suit.
+{
+  const hands = completeDealWithSouth([
+    'S12','S8','S6','S4','S2',
+    'H13','H8','H5',
+    'D11','D7','D4',
+    'C9','C3'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.equal(node.exp, '1N', '6 HP with a heart stopper qualifies for 1NT');
+  assert.match(node.why, /6-10 hp.*håll/i);
+}
+
+// BridgePlus s. 90: a minor may be introduced with four cards.
+// The 11 HP hand clears the ordinary two-over-one strength threshold.
+{
+  const hands = completeDealWithSouth([
+    'S14','S11','S8',
+    'H8','H5',
+    'D13','D9','D6','D3',
+    'C12','C11','C7','C2'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.equal(node.exp, '2C', 'Four-card minor is permitted as a response to the overcall');
+}
+
+// A four-card major is not enough for a new major-suit response.
+{
+  const hands = completeDealWithSouth([
+    'S14','S11','S8','S6',
+    'H8','H5',
+    'D13','D9','D6','D3',
+    'C7','C4','C2'
+  ]);
+  const st = state(hands, 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  const node = Rattning.nodeFor(st, 2);
+  assert.equal(node.exp, 'P', 'Four-card major must not be treated as a five-card new major');
+}
+
 const report = {
   engineVersion: Rattning.version,
   cases: [
