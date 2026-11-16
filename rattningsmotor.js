@@ -307,15 +307,14 @@ var Rattning = (function(){
     return {exp:exp,alt:alt,why:why,means:means,conv:'Stayman'};
   }
   function transfer2(h,M){
-    var L=h.L,hp=h.hp,exp,why,alt=[];
-    var otherMajor=M==='H'?'S':'H';
+    var L=h.L,exp,why,alt=[];
     var minors=['C','D'];
     var means=function(c){
-      if(c==='P')return '0–7 hp: svag hand med minst fem kort i överföringsfärgen.';
-      if(c==='2N')return '8–9 hp, jämn hand och exakt fem kort i överföringsfärgen: invit.';
-      if(c==='3'+M)return '8–9 hp och minst sex kort i överföringsfärgen: invit.';
-      if(c==='3N')return '10–15 hp, jämn hand och exakt fem kort i överföringsfärgen: välj sangutgång.';
-      if(c==='4'+M)return '10–15 hp och minst sex kort i överföringsfärgen: utgång/signoff.';
+      if(c==='P')return 'Svag hand med minst fem kort i överföringsfärgen; exakt styrkegräns anges inte.';
+      if(c==='2N')return 'Invit med jämn hand och exakt fem kort i överföringsfärgen.';
+      if(c==='3'+M)return 'Invit med minst sex kort i överföringsfärgen.';
+      if(c==='3N')return 'Välj sangutgång med jämn hand och exakt fem kort i överföringsfärgen.';
+      if(c==='4'+M)return 'Slutbud i överföringsfärgen.';
       if(M==='H'&&c==='2S')return 'Rondkrav med minst 5♥ och 4+♠.';
       if(c==='3C'||c==='3D')return 'Utgångskrav med minst fem kort i överföringsfärgen och 4+ i bjuden lågfärg.';
       if(M==='S'&&c==='3H')return 'Invit med minst 5-5 i båda högfärgerna.';
@@ -325,41 +324,31 @@ var Rattning = (function(){
     };
 
     if(L[M]<5)
-      return NC('Överföringssekvensen visar minst fem kort i '+SYM[M]+', men den egna handen uppfyller inte längdkravet. Lämnas ej täckt.',means,'överföring',true);
+      return NC('Överföringssekvensen visar minst fem kort i '+SYM[M]+', men den egna handen uppfyller inte längdkravet. Situationen lämnas ej täckt.',means,'överföring',true);
 
-    // Special branches can overlap. The source lists their meanings but
-    // does not give a priority when one hand satisfies more than one branch.
+    // These special continuations are explicitly described by the source.
+    // If more than one shape condition applies, the PDF gives no priority.
     var special=[];
-    if(M==='H'&&L.S>=4)special.push({bid:'2S',why:'Minst 5♥ och 4+♠: 2♠ är rondkrav enligt Nordisk standard s. 5.'});
-    var qualifyingMinors=minors.filter(function(suit){return L[suit]>=4;});
-    qualifyingMinors.forEach(function(suit){
+    if(M==='H'&&L.S>=4)
+      special.push({bid:'2S',why:'Minst 5♥ och 4+♠: 2♠ är rondkrav enligt Nordisk standard s. 5.'});
+    minors.filter(function(suit){return L[suit]>=4;}).forEach(function(suit){
       special.push({bid:'3'+suit,why:'Minst 5'+SYM[M]+' och 4+ '+SYM[suit]+': 3 i lågfärgen är utgångskrav enligt Nordisk standard s. 5.'});
     });
-    if(M==='S'&&L.H>=5&&hp>=8&&hp<=9)
-      special.push({bid:'3H',why:'8–9 hp och minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
+    if(M==='S'&&L.H>=5)
+      special.push({bid:'3H',why:'Minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
     if(special.length>1)
       return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar; situationen lämnas ej täckt.',means,'överföring',true);
     if(special.length===1)
       return {exp:special[0].bid,alt:[],why:special[0].why,means:means,conv:'överföring'};
 
-    if(hp<=7){
-      return {exp:'P',alt:[],why:hp+' hp och minst fem kort i '+SYM[M]+': pass enligt svaggrenen 0–7 hp.',means:means,conv:'överföring'};
-    }
-    if(hp>=8&&hp<=9){
-      if(h.bal&&L[M]===5)
-        return {exp:'2N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': 2NT-invit.',means:means,conv:'överföring'};
-      if(L[M]>=6)
-        return {exp:'3'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': invit med 3'+SYM[M]+'.',means:means,conv:'överföring'};
-      return NC('8–9 hp efter överföring, men handen motsvarar inte någon av de angivna invitprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg). Situationen lämnas ej täckt.',means,'överföring',true);
-    }
-    if(hp>=10&&hp<=15){
-      if(h.bal&&L[M]===5)
-        return {exp:'3N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': välj sangutgång med 3NT.',means:means,conv:'överföring'};
-      if(L[M]>=6)
-        return {exp:'4'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': 4'+SYM[M]+' är utgång/signoff enligt tabellen.',means:means,conv:'överföring'};
-      return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg). Situationen lämnas ej täckt.',means,'överföring',true);
-    }
-    return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering; situationen lämnas ej täckt.',means,'överföring',true);
+    // The source gives the meanings of pass, invitation and game-choice
+    // continuations, but does not quantify "weak", "invite" or game strength.
+    // Do not turn these qualitative descriptions into invented HCP bands.
+    if(h.bal&&L[M]===5)
+      return NC('Jämn hand med exakt fem kort i överföringsfärgen: källan beskriver både 2NT-invit och 3NT som val av utgång, men anger ingen numerisk styrkegräns för valet. Situationen lämnas ej täckt.',means,'överföring',true);
+    if(L[M]>=6)
+      return NC('Minst sex kort i överföringsfärgen: källan beskriver 3M som invit och 4M som slutbud, men anger ingen numerisk styrkegräns för valet. Situationen lämnas ej täckt.',means,'överföring',true);
+    return NC('Överföringshanden uppfyller inte någon av de särskilt beskrivna fortsättningsprofilerna. Källan anger ingen fullständig fortsättningsregel för denna handtyp; situationen lämnas ej täckt.',means,'överföring',true);
   }
   function ntOpenerInvit(h,M,inv,responderCards){
     var means=function(c){
