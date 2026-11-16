@@ -96,6 +96,6 @@ const gameFourSpadesAuction=[
   {s:'S',c:'2C'},{s:'W',c:'P'},
   {s:'N',c:'2H'},{s:'E',c:'P'}
 ];
-assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,ownHand:gameFourSpades}).exp,'3N',
-  '11 hp plus the 15 hp minimum of partner guarantees 26 combined hp for 3NT in live play');
+assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,ownHand:gameFourSpades}).exp,null,
+  'the numeric threshold for the special four-spade Stayman invitation is not stated, even with 11 hp');
 console.log('1NT Stayman continuation tests: passed.');
