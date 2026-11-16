@@ -73,7 +73,8 @@ for(const trump of SU){
     const result=answerWithTrump(trump,hand);
     assert.equal(result.exp,expected, trump+' trumps / '+voidSuit+' void must show '+expected);
   }
-  const voidHand=makeHand({trump,aces:aceSuits(3),voids:[SU.find(s=>s!==trump)]});
+  const threeKeyVoid=SU.find(s=>s!==trump);
+  const voidHand=makeHand({trump,aces:aceSuits(3,[threeKeyVoid]),voids:[threeKeyVoid]});
   assert.equal(answerWithTrump(trump,voidHand).exp,'5N',
     trump+' trump: three keycards and a void must be shown by 5NT');
   const multipleVoids=SU.filter(s=>s!==trump).slice(0,2);
