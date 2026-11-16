@@ -77,7 +77,7 @@ jobs:
       - name: Run supplementary matcher tests
         run: node tests/supplementary-logic.test.js
       - name: Run major-suit RKC tests
-        run: node tests/rkc-1430-major.test.js
+        run: node tests/rkc-nordisk-standard-major.test.js
       - name: Run all-trumps RKC and no-trump four-ace tests
         run: node tests/slam-all-trumps.test.js
       - name: Run 1NT four-ace and RKC source tests
