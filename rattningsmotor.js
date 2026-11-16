@@ -224,6 +224,30 @@ var Rattning = (function(){
     return node;
   }
 
+  // Central loggning: varje ej täckt efterhandsposition sparas en gång.
+  // Loggen deduplicerar identiska auktioner/givare och kan exporteras som JSON.
+  var nodeForInternal=nodeFor;
+  function nodeFor(st,i){
+    var node=nodeForInternal(st,i);
+    if(!node||!node.exp){
+      var bids=st&&Array.isArray(st.bids)?st.bids:[];
+      var current=bids[i]||null;
+      if(typeof window!=='undefined'&&window.EjTacktaLogg){
+        window.EjTacktaLogg.record({
+          context:'after_deal',
+          dealer:st&&st.dealer,
+          seat:current&&current.s,
+          auction:bids.slice(0,i),
+          attemptedCall:current&&current.c,
+          reason:node&&node.why||'Ingen verifierad fortsättning.',
+          sourceGap:!!(node&&node.sourceGap),
+          hands:st&&st.hands||null
+        });
+      }
+    }
+    return node;
+  }
+
   // Rapportering och presentation av rättningsresultat ligger separat.
   var rapportFactory=(typeof module!=='undefined'&&module.exports)
     ? require('./rattningsrapport.js')
