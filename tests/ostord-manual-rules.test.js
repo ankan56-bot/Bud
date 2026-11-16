@@ -303,13 +303,15 @@ assert.equal(liveB.exp, liveA.exp, 'Repeated live call with same public informat
 assert.equal(liveA.context, 'live');
 assert.equal(liveA.informationBoundary, 'own_hand_and_public_auction_only');
 
-// The live API deliberately refuses all not-yet-migrated response sequences.
+// The live API now supports information-safe responses in the undisturbed 1NT family.
 const liveResponse = Rattning.decideLive({
   ownHand: liveOpeningHand, seat:'E', dealer:'W',
   auction:[{s:'W',c:'1N'},{s:'N',c:'P'}]
 });
-assert.equal(liveResponse.exp, null);
-assert.match(liveResponse.why, /inte migrerats/i);
+assert.equal(liveResponse.exp, '2H', '5+ spades after partner 1NT gives a spade transfer');
+assert.match(liveResponse.why, /spader|överföring/i);
+assert.equal(liveResponse.context, 'live');
+assert.equal(liveResponse.informationBoundary, 'own_hand_and_public_auction_only');
 
 // It rejects wrong turn order and malformed own-hand input.
 const wrongTurn = Rattning.decideLive({
