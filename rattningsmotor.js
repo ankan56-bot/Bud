@@ -319,7 +319,7 @@ var Rattning = (function(){
     };
 
     if(L[M]<5)
-      return NC('Överföringssekvensen visar minst fem kort i '+SYM[M]+', men den egna handen uppfyller inte längdkravet.',means,'överföring');
+      return NC('Överföringssekvensen visar minst fem kort i '+SYM[M]+', men den egna handen uppfyller inte längdkravet. Lämnas ej täckt.',means,'överföring',true);
 
     // Special branches can overlap. The source lists their meanings but
     // does not give a priority when one hand satisfies more than one branch.
@@ -332,7 +332,7 @@ var Rattning = (function(){
     if(M==='S'&&L.H>=5&&hp>=8&&hp<=9)
       special.push({bid:'3H',why:'8–9 hp och minst 5-5 i högfärgerna: 3♥ är invit enligt Nordisk standard s. 5.'});
     if(special.length>1)
-      return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar.',means,'överföring',true);
+      return NC('Handen uppfyller flera särskilda fortsättningsbeskrivningar efter överföring ('+special.map(function(x){return x.bid;}).join(', ')+'). Nordisk standard anger ingen prioritet mellan dessa överlappande grenar; situationen lämnas ej täckt.',means,'överföring',true);
     if(special.length===1)
       return {exp:special[0].bid,alt:[],why:special[0].why,means:means,conv:'överföring'};
 
@@ -344,7 +344,7 @@ var Rattning = (function(){
         return {exp:'2N',alt:[],why:hp+' hp, jämn hand och exakt fem kort i '+SYM[M]+': 2NT-invit.',means:means,conv:'överföring'};
       if(L[M]>=6)
         return {exp:'3'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': invit med 3'+SYM[M]+'.',means:means,conv:'överföring'};
-      return NC('8–9 hp efter överföring, men handen motsvarar inte någon av de angivna invitprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring',true);
+      return NC('8–9 hp efter överföring, men handen motsvarar inte någon av de angivna invitprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg). Situationen lämnas ej täckt.',means,'överföring',true);
     }
     if(hp>=10&&hp<=15){
       if(h.bal&&L[M]===5)
@@ -353,7 +353,7 @@ var Rattning = (function(){
         return {exp:'4'+M,alt:[],why:hp+' hp och minst sex kort i '+SYM[M]+': 4'+SYM[M]+' är utgång/signoff enligt tabellen.',means:means,conv:'överföring'};
       return NC('10–15 hp efter överföring, men handen motsvarar inte någon av de angivna utgångsprofilerna (jämn med exakt femkortsfärg eller minst sexkortsfärg).',means,'överföring',true);
     }
-    return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering.',means,'överföring',true);
+    return NC('Styrkan ligger utanför de uttryckliga svag-, invit- och utgångsintervallen efter överföring. Slam-/kontrollbudsvägen behöver separat verifiering; situationen lämnas ej täckt.',means,'överföring',true);
   }
   function ntOpenerInvit(h,M,inv,responderCards){
     var L=h.L,hp=h.hp,partner=responderCards?H(responderCards):null,exp,alt=[],why;
