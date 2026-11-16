@@ -1,5 +1,5 @@
 {
-  "version": "0.6.26",
+  "version": "0.6.27",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang är markerad som överenskommen projektregel.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -5520,7 +5520,7 @@
             "1NT"
           ],
           "meaning": "Öppnaren återbjuder 1NT – svarshandens andra bud",
-          "analysis": "Öppnaren visar en balanserad hand med 12–14 hp. Svarshanden söker först en gemensam högfärg med minst 8 kort. Finns sådan fit: 26+ gemensamma spelpoäng ger 4 i högfärgen; 22–25 ger 3 i högfärgen som invit. Om ingen sådan högfärgsfit når dessa nivåer bedöms sang med sammanlagda honnörspoäng: 26+ = 3NT, 22–25 = 2NT invit, under 22 = pass. Sang räknas med honnörspoäng, inte fördelningspoäng.",
+          "analysis": "Öppnaren visar en balanserad hand med 12–14 hp. Svarshanden söker först en gemensam högfärg med minst 8 kort. Finns sådan fit: 26+ gemensamma spelpoäng ger 4 i högfärgen; 22–25 ger 3 i högfärgen som invit. Om ingen sådan högfärgsfit når dessa nivåer bedöms sang med sammanlagda honnörspoäng: 25+ = 3NT, 22–24 = 2NT invit, under 22 = pass. Sang räknas med honnörspoäng, inte fördelningspoäng.",
           "branches": [
             {
               "call": "4♥/4♠",
@@ -5535,12 +5535,12 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "Ingen tillräcklig högfärgsfit och 26+ gemensamma hp"
+              "label": "Ingen tillräcklig högfärgsfit och 25+ gemensamma hp enligt projektregeln"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "Ingen tillräcklig högfärgsfit och 22–25 gemensamma hp – invit"
+              "label": "Ingen tillräcklig högfärgsfit och 22–24 gemensamma hp – invit"
             },
             {
               "call": "Pass",
@@ -5563,7 +5563,7 @@
             "2♥"
           ],
           "meaning": "Öppnaren återbjuder sin egen färg – svarshandens andra bud",
-          "analysis": "Öppnarens återbud i egen färg visar minst fem kort i öppningsfärgen i denna fortsättningsgren; normalt sex kort när ingen annan sidofärg med fyra kort finns. Svarshanden kontrollerar först om det finns minst 8 korts fit i öppningsfärgen. Med 26+ gemensamma spelpoäng i högfärg bjuds utgång; med 22–25 invit; under 22 pass. Om fit saknas används sammanlagda honnörspoäng: 26+ ger 3NT, 22–25 ger 2NT invit, annars pass. Motorns gren omfattar öppnare med minst fem kort.",
+          "analysis": "Öppnarens återbud i egen färg visar minst fem kort i öppningsfärgen i denna fortsättningsgren; normalt sex kort när ingen annan sidofärg med fyra kort finns. Svarshanden kontrollerar först om det finns minst 8 korts fit i öppningsfärgen. Med 26+ gemensamma spelpoäng i högfärg bjuds utgång; med 22–25 invit; under 22 pass. Om fit saknas används sammanlagda honnörspoäng: 25+ ger 3NT, 22–24 ger 2NT invit, annars pass. Motorns gren omfattar öppnare med minst fem kort.",
           "branches": [
             {
               "call": "4♥",
@@ -5578,12 +5578,12 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "Ingen fit och 26+ gemensamma hp"
+              "label": "Ingen fit och 25+ gemensamma hp enligt projektregeln"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "Ingen fit och 22–25 gemensamma hp – invit"
+              "label": "Ingen fit och 22–24 gemensamma hp – invit"
             },
             {
               "call": "Pass",
@@ -5593,7 +5593,7 @@
           ],
           "handProfile": {
             "opener": "Återbud i öppningsfärgen. Motorns respondergren kräver minst fem kort; normalt visar återbudet sex kort när ingen sidofärg med fyra kort finns.",
-            "responder": "Minst 8-korts fit: färgtrösklarna 26/22. Utan fit: 26/22 gemensamma hp för sang."
+            "responder": "Minst 8-korts fit: färgtrösklarna 26/22. Utan fit: 25/22 gemensamma hp för sang enligt överenskommen projektregel."
           }
         },
         {
