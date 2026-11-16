@@ -186,7 +186,7 @@ var Rattning = (function(){
     var conv='1NT-svar';
     if(L.H>=5&&L.S>=5){exp=h2;alt=[d2];why='5-5 i högfärgerna: överföring till ♠ (och sedan 3♥ som invit).';conv='överföring'}
     else if(L.H>=5||L.S>=5){var M=L.H>=5?'H':'S';exp=M==='H'?d2:h2;why='5+ '+SYM[M]+': överföring.';conv='överföring'}
-    else if(hp>=lo&&(L.H===4||L.S===4)){exp=c2;why='4-korts högfärg och '+hp+' hp: Stayman.';conv='Stayman';soft=false}
+    else if((k?hp>=lo:true)&&(L.H===4||L.S===4)){exp=c2;why=(L.H===4||L.S===4?'Egen fyrkortshögfärg: Stayman enligt Nordisk standard.':'')+(k?' ('+hp+' hp efter 2NT).':'');conv='Stayman';soft=false}
     else if(hp>=lo&&hp<gl&&!k){
       if(h.bal){exp='2N';why=hp+' hp, balanserad utan 4-korts högfärg: invit 2NT.';}
       else return NC('8–9 hp utan 4-korts högfärg men obalanserad hand: fortsatt bud efter 1NT är inte definierat för denna handtyp.',means,conv);
