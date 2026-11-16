@@ -27,9 +27,17 @@
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&isBid(x.c)});
     for(var i=0;i<ours.length;i++){
       if(/^1[CDHS]$/.test(ours[i].c)){
-        var opener=ours[i].s, suit=ours[i].c[1];
+        var opener=ours[i].s, suit=ours[i].c[1],stenbergIndex=-1;
         for(var j=i+1;j<ours.length;j++){
-          if(ours[j].s!==opener&&ours[j].c==='2N')return suit;
+          if(ours[j].s!==opener&&ours[j].c==='2N'){stenbergIndex=j;break;}
+        }
+        // Stenberg establishes the fit, but the opener must first make one
+        // of the source-defined 3-level descriptive rebids before 4NT is
+        // treated as the subsequent RKC ask.
+        if(stenbergIndex>=0){
+          for(var k=stenbergIndex+1;k<ours.length;k++){
+            if(ours[k].s===opener&&/^3[CDHSN]$/.test(ours[k].c))return suit;
+          }
         }
       }
     }
