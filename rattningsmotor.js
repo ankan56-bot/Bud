@@ -129,8 +129,17 @@ var Rattning = (function(){
         if(side(x.s)!==side(seat))return x.c==='P';
         return x.c==='P'||ntFamilyCalls.indexOf(x.c)>=0;
       })&&nonPass.every(function(x){return x.c!=='X'&&x.c!=='XX';});
-    if(!isOpeningDecision&&!isOneNTFamily)
-      return NC('Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass och ostörd 1NT-familj är aktiverade; andra sekvenser lämnas ej täckta.','', 'live');
+    if(!isOpeningDecision&&!isOneNTFamily){
+      var unsupportedReason='Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass samt ostörd 1NT-/2NT-familjens verifierade grenar är aktiverade; andra sekvenser lämnas ej täckta.';
+      if(typeof window!=='undefined'&&window.EjTacktaLogg){
+        var liveOwnHands={};liveOwnHands[seat]=ownHand.slice();
+        window.EjTacktaLogg.record({
+          context:'live',dealer:dealer,seat:seat,auction:auction,
+          attemptedCall:null,reason:unsupportedReason,sourceGap:true,hands:liveOwnHands
+        });
+      }
+      return NC(unsupportedReason,'', 'live');
+    }
     var bids=auction.concat([{s:seat,c:'P'}]);
     var st={hands:{}};st.hands[seat]=ownHand.slice();st.dealer=dealer;st.bids=bids;
     var node;
