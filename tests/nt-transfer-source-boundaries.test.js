@@ -70,66 +70,36 @@ const heartTransferOverlap=hand(['H14','H13','H12','H11','H10','S14','S13','S12'
 assert.equal(result(heartTransferOverlap,afterHeartTransfer).exp,null,
   'overlap between 2S one-round force and 3m game force has no source priority');
 
-// The source says invit/weak but does not give numeric HP bands here.
-// Such cases must remain uncovered rather than borrow partner's hidden cards.
+// The PDF gives qualitative meanings but no numerical HP bands for
+// weak / invitation / game-choice after transfer. The engine must not
+// infer 0–7, 8–9 or 10–15 from this source.
 const balancedFiveHearts=hand(['H14','H13','H12','H11','H10','S14','S13','S12','D14','D13','D12','C14','C13']);
 assert.equal(result(balancedFiveHearts,afterHeartTransfer).exp,null,
-  'hands outside the source-defined 0–15 hp bands remain uncovered');
-
-// Exact page-5 strength bands: 0–7 pass; 8–9 invite; 10–15 choose game.
+  'balanced exact five-card transfer suit: no invented invit/game HCP boundary');
 const weakFiveHearts=hand(['H9','H8','H7','H6','H5','S14','S2','S3','D13','D2','D3','C2','C3']);
-assert.equal(R.H(weakFiveHearts).hp,7);
-assert.equal(result(weakFiveHearts,afterHeartTransfer).exp,'P','0–7 hp passes');
-
 const invitFiveHearts=hand(['H13','H12','H11','H10','H9','S13','S2','S3','D2','D3','D4','C2','C3']);
-assert.equal(R.H(invitFiveHearts).hp,9);
-assert.equal(R.H(invitFiveHearts).bal,true);
-assert.equal(result(invitFiveHearts,afterHeartTransfer).exp,'2N','8–9 hp, balanced exact five hearts: 2NT invite');
-
-const invitEightHearts=hand(['H14','H13','H2','H3','H4','S11','S2','S3','D2','D3','D4','C2','C3']);
-assert.equal(R.H(invitEightHearts).hp,8);
-assert.equal(R.H(invitEightHearts).bal,true);
-assert.equal(result(invitEightHearts,afterHeartTransfer).exp,'2N','8 hp starts the invit band');
-
-const invitSixHearts=hand(['H13','H12','H11','H10','H9','H8','S13','S2','D2','D3','D4','C2','C3']);
-assert.equal(R.H(invitSixHearts).hp,9);
-assert.equal(R.H(invitSixHearts).bal,false);
-assert.equal(result(invitSixHearts,afterHeartTransfer).exp,'3H','8–9 hp and 6+ hearts: 3H invite');
-
 const gameFiveHearts=hand(['H14','H13','H12','H11','H9','S13','S2','S3','D2','D3','D4','C2','C3']);
-assert.equal(R.H(gameFiveHearts).hp,13);
-assert.equal(R.H(gameFiveHearts).bal,true);
-assert.equal(result(gameFiveHearts,afterHeartTransfer).exp,'3N','10–15 hp, balanced exact five hearts: 3NT');
-
-const gameTenHearts=hand(['H14','H13','H2','H3','H4','S12','S11','S2','D2','D3','D4','C2','C3']);
-assert.equal(R.H(gameTenHearts).hp,10);
-assert.equal(R.H(gameTenHearts).bal,true);
-assert.equal(result(gameTenHearts,afterHeartTransfer).exp,'3N','10 hp starts the game band');
-
-const gameFifteenSixHearts=hand(['H14','H13','H2','H3','H4','H5','S14','S13','D11','D2','D3','C2','C3']);
-assert.equal(R.H(gameFifteenSixHearts).hp,15);
-assert.equal(result(gameFifteenSixHearts,afterHeartTransfer).exp,'4H','15 hp remains in the 10–15 game band');
-
-const overFifteenSixHearts=hand(['H14','H13','H2','H3','H4','H5','S14','S13','D12','D2','D3','C2','C3']);
-assert.equal(R.H(overFifteenSixHearts).hp,16);
-assert.equal(result(overFifteenSixHearts,afterHeartTransfer).exp,null,'16+ hp has no defined continuation in this table');
-
+for(const h of [weakFiveHearts,invitFiveHearts,gameFiveHearts]){
+  assert.equal(result(h,afterHeartTransfer).exp,null,
+    'different HCP totals do not create an unsupported source band');
+}
+const invitSixHearts=hand(['H13','H12','H11','H10','H9','H8','S13','S2','D2','D3','D4','C2','C3']);
 const gameSixHearts=hand(['H13','H12','H11','H10','H9','H8','S14','S13','D2','D3','D4','C2','C3']);
-assert.equal(R.H(gameSixHearts).hp,13);
-assert.equal(R.H(gameSixHearts).bal,false);
-assert.equal(result(gameSixHearts,afterHeartTransfer).exp,'4H','10–15 hp and 6+ hearts: 4H');
-
-const invitFiveFive=hand(['H13','H12','H11','H10','H9','S13','S2','S3','S4','S5','D2','D3','C2']);
-assert.equal(R.H(invitFiveFive).hp,9);
-assert.equal(result(invitFiveFive,afterSpadeTransfer).exp,'3H','8–9 hp and 5-5 majors after spade transfer: 3H invite');
+assert.equal(result(invitSixHearts,afterHeartTransfer).exp,null,
+  '6+ hearts: no numerical invit/game choice boundary');
+assert.equal(result(gameSixHearts,afterHeartTransfer).exp,null,
+  'same 6+ shape with more HCP remains unclassified without a source boundary');
+const fiveFiveSpade=hand(['S13','S12','S11','S10','S9','H13','H12','H11','H10','H9','D2','D3','C2']);
+assert.equal(result(fiveFiveSpade,afterSpadeTransfer).exp,'3H',
+  '5-5 majors after spade transfer: source explicitly describes invit 3H');
 
 // Trees with unverified numerical strength bands remain documented but
 // must not be selected as authoritative correction/analysis nodes.
 for(const id of ['T03_OVERFORING_PASS','T07_OVERFORING_HJARTER','T08_OVERFORING_SPADER']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree, 'expected source-aligned transfer tree '+id);
-  assert.equal(tree.sourceStatus,'source_verified',id+' must be marked source verified');
-  assert.equal(A.treeCompatible(tree),true,id+' must be available for authoritative matching');
+  assert.equal(tree.sourceStatus,'provisional_source_gap',id+' contains qualitative strength bands without numeric thresholds');
+  assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative strength rules');
 }
 for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFORING_SPADER_SEXKORT_INVIT']){
   const tree=lib.trees.find(t=>t.id===id);
