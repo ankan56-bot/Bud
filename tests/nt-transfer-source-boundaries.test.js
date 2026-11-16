@@ -107,13 +107,13 @@ for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFOR
   assert.equal(tree.sourceStatus,'provisional_source_gap',id+' remains provisional because opener acceptance is not specified');
   assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
 }
-// The later user-confirmed 26-HCP no-trump game threshold is an explicit
+// The user-confirmed 25-HCP no-trump game threshold is an explicit
 // project rule, distinct from the source's qualitative 3NT description.
 for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree);
   assert.equal(tree.sourceStatus,'user_confirmed');
-  assert.equal(A.treeCompatible(tree),true,id+' must expose the user-confirmed 26-HCP 3NT threshold');
+  assert.equal(A.treeCompatible(tree),true,id+' must expose the user-confirmed 25-HCP 3NT threshold');
 }
 for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG']){
   const tree=lib.trees.find(t=>t.id===id);
