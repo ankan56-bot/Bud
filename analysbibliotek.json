@@ -6442,7 +6442,7 @@
       "conditions": [
         "Norr öppnar 1NT = 15–17 hp och jämn hand.",
         "Svarshanden har dåliga/svaga kort och minst sex kort i en lågfärg, eller 5-5 i lågfärgerna.",
-        "Nordisk standard s. 4 anger ingen numerisk HP-gräns för 'dåliga kort'; trädet är därför preliminärt och får inte användas som auktoritativ rättningsregel.",
+        "Nordisk standard s. 4 beskriver styrkan kvalitativt som 'dåliga kort'; ingen numerisk HP-gräns läggs till.",
         "2♠ är artificiellt relä; det visar inte spader.",
         "Öppnaren visar vilken lågfärg som är längre: 3♣ med längre ♣; 2NT med längre ♦ eller lika längd."
       ],
@@ -6635,7 +6635,9 @@
           },
           "branches": []
         }
-      ]
+      ],
+      "sourceStatus": "source_qualitative",
+      "sourceStatusNote": "Budbetydelsen och handformen är källbelagda; källan anger endast kvalitativt 'dåliga kort' utan numerisk HP-gräns. Motorn lämnar valet av 2♠ ej täckt när det kräver en numerisk styrkegräns, men fortsättningarna efter 2♠ är källbaserade."
     },
     {
       "id": "T43_1NT_4NT_ENDPOINTS",
