@@ -104,11 +104,11 @@ assert.equal(live('S',firstResponse,balancedTen).exp,null,
 const balancedNine=fill(['C14','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3','S4']);
 assert.equal(R.H(balancedNine).hp,9);
 assert.equal(live('S',firstResponse,balancedNine).exp,null,
- '9 own HCP cannot guarantee 25 HCP against partner 15–17 and the source gives no invite band');
+ '9 own HCP cannot guarantee 26 HCP against partner 15–17 and the source gives no invite band');
 const balancedEleven=fill(['C14','C13','C2','C3','D13','D2','D3','H2','H3','H4','S11','S2','S3']);
 assert.equal(R.H(balancedEleven).hp,11);
-assert.equal(live('S',firstResponse,balancedEleven).exp,null,
- 'no numeric 3NT HCP threshold has been confirmed');
+assert.equal(live('S',firstResponse,balancedEleven).exp,'3N',
+ '11 own HCP plus the 15-HCP minimum guarantees the confirmed 26-HCP 3NT threshold');
 
 const afterTransfer3NTChoice=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
@@ -168,7 +168,7 @@ assert.equal(live('N',afterMinorInvite,openerWithFourSmallClubs).exp,null,
  'four small cards are not covered by the stated xx/xxx or top-honor cases');
 
 // After Stayman 2♦ opener denies a four-card major. Eleven own HCP
-// guarantee 25 combined HCP against the 15-HCP minimum; nine do not.
+// guarantee 26 combined HCP against the 15-HCP minimum; ten do not.
 const staymanNoMajorAuction=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2C'},{s:'W',c:'P'},
@@ -177,12 +177,12 @@ const staymanNoMajorAuction=[
 const staymanElevenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C11','C2']);
 assert.equal(R.H(staymanElevenBalanced).hp,11);
 assert.equal(R.H(staymanElevenBalanced).bal,true);
-assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,null,
- 'the numeric threshold for choosing 3NT after Stayman 2D is not stated');
+assert.equal(live('S',staymanNoMajorAuction,staymanElevenBalanced).exp,'3N',
+ '11 own HCP after Stayman 2D guarantees 26 combined HCP against the 15-HCP minimum');
 const staymanTenBalanced=fill(['S14','S13','S2','S3','H12','H11','H2','H3','D2','D3','D4','C2','C3']);
 assert.equal(R.H(staymanTenBalanced).hp,10);
 assert.equal(live('S',staymanNoMajorAuction,staymanTenBalanced).exp,null,
- 'no numeric 3NT threshold is assumed after Stayman 2D');
+ '10 own HCP cannot guarantee the 26-HCP 3NT threshold after Stayman 2D');
 
 // 4M after a completed transfer is explicitly a signoff; opener passes.
 const afterHeartTransferSignoff=[
