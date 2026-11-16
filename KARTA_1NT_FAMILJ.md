@@ -200,3 +200,5 @@ Alla dessa lägen lämnas ej täckta hellre än att motorn konstruerar ett syste
 ### 2NT–4NT kvantitativ invit
 
 2NT–4NT klassificeras som kvantitativ invit till 6NT, separat från 1NT:s fyr-essfrågor och från RKC. Öppnarens accept/pass lämnas ej täckt tills den exakta styrkegränsen för accept har verifierats.
+
+Öppnarens eventuella korrigering efter svarshandens 3NT är nu också en uttrycklig källucka: vid 3+ stöd i överföringsfärgen lämnas beslutet ej täckt, eftersom sida 5 inte anger om 4M ska väljas framför 3NT. Utan 3+ stöd passar öppnaren. Ett sådant läge finns i 100-givarskontrollen (ostord-100-080).
