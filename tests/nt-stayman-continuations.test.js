@@ -106,18 +106,24 @@ assert.equal(responderAfterStayman(
 assert.equal(responderAfterStayman(
   ['C14','C13','C12','C11','S2','S3','S4','H2','H3','H4','D2','D3','D4'],'2H').exp,'3C',
   '4+ clubs after Stayman 2H is a natural game-forcing new suit');
-assert.equal(responderAfterStayman(
-  ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2D').exp,'2H',
-  '5+ hearts after Stayman 2D is a natural game-forcing new suit');
+const unbalancedFiveHeartsAfter2D=responderAfterStayman(
+  ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2D');
+assert.equal(unbalancedFiveHeartsAfter2D.exp,null,
+  'unbalanced 5-card major after Stayman 2D uses the 3M game-force route, but game strength is not numerically defined');
+assert.match(unbalancedFiveHeartsAfter2D.why,/3H.*utgångsstyrka/i);
+assert.match(unbalancedFiveHeartsAfter2D.means('3H'),/5\+ kort.*utgångskrav/i);
 assert.equal(responderAfterStayman(
   ['D14','D13','D12','D11','S2','S3','S4','H2','H3','H4','C2','C3','C4'],'2D').exp,'3D',
   '4+ diamonds after Stayman 2D is a natural game-forcing new suit');
 assert.equal(responderAfterStayman(
   ['H14','H13','H12','H11','H10','S2','S3','S4','D2','D3','D4','C2','C3'],'2S').exp,'3H',
   '5+ hearts after Stayman 2S is a natural game-forcing new suit');
-assert.equal(responderAfterStayman(
-  ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H').exp,null,
+const exactlyFourSpadesAfter2H=responderAfterStayman(
+  ['S14','S13','S12','S11','H2','H3','H4','D2','D3','D4','C2','C3','C4'],'2H');
+assert.equal(exactlyFourSpadesAfter2H.exp,null,
   'exactly four spades is known, but invite versus game needs a strength boundary');
+assert.match(exactlyFourSpadesAfter2H.means('2N'),/exakt fyra spader/i);
+assert.match(exactlyFourSpadesAfter2H.means('3N'),/också exakt fyra spader/i);
 // The source also names 3M in opener's shown major as an invit.
 // The bidding meaning is recognized, but the numeric choice/acceptance
 // threshold remains uncovered rather than borrowing a generic point band.
