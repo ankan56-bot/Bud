@@ -1,5 +1,5 @@
 {
-  "version": "0.6.34",
+  "version": "0.6.35",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -334,9 +334,9 @@
         "slam"
       ],
       "conditions": [
-        "Öppningsbudet 2NT visar 20–21 hp och balanserad hand",
-        "Svarshanden har balanserad hand och cirka 11–12 hp",
-        "Ingen trumffärg är överenskommen"
+        "Öppningsbudet 2NT visar 20–21 hp och balanserad hand.",
+        "Ingen trumffärg är överenskommen.",
+        "2NT–4NT är kvantitativ invit till 6NT; källan anger inte numerisk accept-/passgräns."
       ],
       "root": "t02_n0",
       "nodes": [
@@ -367,20 +367,9 @@
             "Pass",
             "4NT"
           ],
-          "meaning": "4NT är en invit till 6NT, inte essfråga. Svarshanden visar slamintresse med balanserad hand.",
-          "analysis": "Öppnaren väger sin hand inom intervallet 20–21 hp och bedömer kontroller, femkortsfärger och honnörernas placering. Med minimum passar öppnaren; med maximum och bra värden accepterar öppnaren.",
-          "branches": [
-            {
-              "call": "Pass",
-              "next": null,
-              "label": "Minimum – avslår inviten och stannar i 4NT"
-            },
-            {
-              "call": "6NT",
-              "next": null,
-              "label": "Maximum och lämpliga värden – accepterar"
-            }
-          ]
+          "meaning": "4NT är en kvantitativ invit till 6NT, inte essfråga. Nordisk standard anger inte en entydig numerisk gräns för öppnarens accept eller avslag.",
+          "analysis": "Öppnaren ska bedöma om handen räcker för 6NT, men systemtexten anger ingen verifierad max-/minimigräns eller annan exakt beslutsregel. Rättningsmotorn lämnar därför öppnarens fortsättning ej täckt.",
+          "branches": []
         }
       ]
     },
