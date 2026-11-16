@@ -107,12 +107,14 @@ for(const id of ['T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFOR
   assert.equal(tree.sourceStatus,'provisional_source_gap',id+' remains provisional because opener acceptance is not specified');
   assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
 }
-// Direct 3NT at the confirmed 25 combined-HCP threshold remains
-// authoritative; unquantified invitation trees stay provisional.
+// The source describes 3NT as a final contract but gives no numeric
+// HCP threshold. The previous 25-HCP value was an assistant suggestion,
+// not a user-confirmed system rule.
 for(const id of ['T09_1NT_DIREKT_3NT','T18_1NT_3NT_DIREKT']){
   const tree=lib.trees.find(t=>t.id===id);
   assert.ok(tree);
-  assert.equal(A.treeCompatible(tree),true,id+' has a verified direct 3NT threshold');
+  assert.equal(tree.sourceStatus,'provisional_source_gap');
+  assert.equal(A.treeCompatible(tree),false,id+' must not assert an unconfirmed 3NT HCP threshold');
 }
 for(const id of ['T04_INVIT_2NT_PASS','T06_STAYMAN_INGEN_HOGFARG']){
   const tree=lib.trees.find(t=>t.id===id);
