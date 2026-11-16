@@ -810,7 +810,7 @@ var Rattning = (function(){
   function respOvercall(h,oc,last,ob){
     var s=st_(oc),os=ob?ob[1]:null,L=h.L,hp=h.hp,exp,why,alt=[];
     var means=function(c){
-      if(c==='1N')return '8-10 hp, balanserad hand med håll i öppningsfärgen.';
+      if(c==='1N')return '6-10 hp, balanserad hand med håll i motståndarnas inklivsfärg.';
       if(c==='2N')return '11-13 hp, balanserad hand med bra håll.';
       if(c==='3N')return '14+ hp, balanserad hand med bra håll.';
       if(isBid(c)&&c[1]===s){
@@ -856,7 +856,7 @@ var Rattning = (function(){
       exp='3N';why='14+ hp, balanserad hand med bra håll: 3NT.';
     }
 
-    // Ny färg: 8+ hp på 1-nivån, 10+ hp om svaret måste avges på 2-nivån.
+    // Ny högfärg kräver minst 5 kort; lågfärg får bjudas med 4. Styrkekravet följer budnivån.
     // Hopp i ny färg kräver 14+ hp och en bra 6+-färg.
     if(!exp){
       var suits=['S','H','D','C'].filter(function(x){return x!==s&&x!==os&&L[x]>=(x==='S'||x==='H'?5:4);});
