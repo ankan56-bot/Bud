@@ -214,7 +214,8 @@
         var pk=kc-pa;
         if(pk!==0&&pk!==1)continue;
         if(pa+pk!==kc)continue;
-        poss.push({partnerAces:pa,partnerTrumpKing:pk,totalAces:ownAces+pa,totalKeycards:ownAces+pa+(ownTrumpKing?1:0)+pk});
+        var totalKeycards=ownAces+pa+(ownTrumpKing?1:0)+pk;
+        if(totalKeycards<=5)poss.push({partnerAces:pa,partnerTrumpKing:pk,totalAces:ownAces+pa,totalKeycards:totalKeycards});
       }
     });
     if(!poss.length)return NC('RKC-svaret kan inte kombineras med frågeställarens antal ess utan motsägelse. Positionen behöver granskas.',null,'RKC – slamfortsättning',true);
