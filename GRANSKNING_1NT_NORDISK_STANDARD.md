@@ -231,4 +231,4 @@ Det kan användas i efterhandsdiagnostik men inte för ett livebud. I livebudgiv
 
 **Kodavvikelser identifierade:** obelagda styrkegränser, saknade Staymanfortsättningar, ofullständiga överföringsgrenar, dold-hand-beroenden och felaktig fyr-essmetadata. Överförings-RKC är däremot uttryckligen källbelagd och ska vara kvar.
 
-**Ingen produktionskod ändrad.** Nästa implementation ska börja med P0 och ha separata regressionstester. Efter P0 fortsätter P1 i samma ordning. Konkurrensbudgivningen och `main` lämnas orörda.
+**Uppdatering 2026-11-16:** P0-arbetet har nu kompletterats med Staymanfortsättningarna efter 1NT–2♣–2♥–2NT och 1NT–2♣–2♥–3NT. 2NT-grenen följer den uttryckliga 4-4-regeln: 3♠ med 15–16 hp och 4♠ med 17 hp. 3NT-grenen väljer 4♠ vid 4-4 i högfärgerna, annars pass. Övriga 2NT-handtyper lämnas ej täckta i stället för att få en påhittad fortsättning. Regressionstester har lagts till i `tests/nt-stayman-continuations.test.js`. Även T43-trädets villkor har rättats så att det inte motsäger den uttryckliga RKC-regeln efter fullföljd överföring på s. 5. Ändringarna ligger endast på `work/undisturbed-architecture`; `main` och konkurrensbudgivningen är orörda.
