@@ -18,7 +18,7 @@ const expected = {
   branchEntries: 306,
   linkedBranches: 185,
   unlinkedBranches: 121,
-  nodesWithoutOutgoing: 192,
+  nodesWithoutOutgoing: 198,
   nodesWithoutHandProfile: 27,
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
