@@ -169,8 +169,8 @@ Denna uppdelning måste omfatta även strategiska reservbeslut och utgångs-/sla
 
 Jag har byggt två fullständiga, kortmässigt giltiga givar där öppnarens hand och den offentliga auktionen är identiska. Endast svarshandens dolda kort skiljer sig.
 
-**Öppnarens hand i båda fallen:** 13 hp, fem hjärter, fördelning 5-3-3-2.  
-**Offentlig auktion i båda fallen:** 1♥ – Pass – 3♥ – Pass – (öppnarens beslut).
+**Östs (Buddies) hand i båda fallen:** 13 hp, fem hjärter, fördelning 5-3-3-2.  
+**Offentlig auktion i båda fallen:** Öst 1♥ – Syd Pass – Väst 3♥ – Nord Pass – (Östs beslut).
 
 Svarshand A har 10 hp, 10 HTP och fyra hjärter (4-3-3-3). Svarshand B har 10 hp, 11 HTP och fyra hjärter (4-4-3-2). Båda ligger inom det dokumenterade intervallet för en 3♥-invit (10–12 HTP, minst fyra hjärter).
 
