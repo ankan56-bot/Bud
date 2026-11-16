@@ -6613,7 +6613,7 @@
         "Öppningen 1NT visar 15–17 hp och balanserad hand.",
         "Direkt 1NT–4NT och 1NT–2♣–2♦–4NT är fyr-essfråga utan fastställd trumf.",
         "Efter Stayman-svaret 2♥ eller 2♠ är högfärgen indirekt fastställd enligt Nordisk standard s. 7; 4NT är RKC med den visade högfärgen som trumf.",
-        "Efter en vanlig överföring är trumf inte fastställd förrän färgen faktiskt bjudits och höjts; 4NT efter enbart fullföljd överföring ingår inte som verifierad RKC-väg.",
+        "Nordisk standard s. 5 anger uttryckligen att 4NT efter fullföljd överföring (1NT–2♦–2♥ respektive 1NT–2♥–2♠) är RKC med överföringsfärgen som trumf, även om en åttakortsfit inte alltid är känd.",
         "Trädet dokumenterar vägar fram till 4NT; svaren och frågeställarens fortsättning efter 4NT ska endast finnas där källan uttryckligen definierar dem."
       ],
       "root": "t43_n0",
