@@ -11,7 +11,7 @@ const COMPETITIVE_TREE_IDS = new Set([
 ]);
 
 function treeNumber(id) {
-  const match = String(id || "").match(/^(T\\d+)(?:_|$)/);
+  const match = String(id || "").match(/^(T\d+)(?:_|$)/);
   return match ? match[1] : null;
 }
 
