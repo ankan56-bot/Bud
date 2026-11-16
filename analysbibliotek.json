@@ -1,6 +1,6 @@
 {
-  "version": "0.6.10",
-  "description": "Analysbibliotek med 46 budträd. 1NT-familjen är källgranskad; överlappande kvalitativa styrkebeskrivningar och ej specificerade fortsättningar hålls uttryckligen ej täckta.",
+  "version": "0.6.11",
+  "description": "Analysbibliotek med 46 budträd. Överföringsbudens kvalitativa betydelser är källgranskade; numeriska styrkegränser som saknas i originalet används inte.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
@@ -9,7 +9,7 @@
     "oneNTGameThreshold": "3NT after 1NT requires at least 26 combined HCP. Nordisk standard s. 4 describes 2NT as a natural balanced invitation without a four-card major, but does not state a numeric HCP band; do not encode an assumed threshold.",
     "stenberg": "2NT efter 1♥/1♠ är Stenberg: 13+ HTP och minst fyra korts stöd. Öppnarens återbud beskriver singleton, styrka och balans; void räknas inte som singleton.",
     "oneNTTransferRkc": "Efter fullföljd överföring 1NT–2♦–2♥ eller 1NT–2♥–2♠ är 4NT uttryckligen RKC med överföringsfärgen som trumf (Nordisk standard 2012-08-22, s. 5).",
-    "oneNTTransferStrengthBands": "Efter fullföljd 1NT-överföring (Nordisk standard 2012-08-22, s. 5): 0–7 hp pass; 8–9 hp invit (2NT med jämn hand och exakt fem kort, 3M med 6+); 10–15 hp (3NT med jämn hand och exakt fem kort, 4M med 6+). Efter spaderöverföring 3♥ är invit med minst 5-5 i högfärgerna. Särskilda grenar: hjärteröverföring 2♠ rondkrav med 5+♥/4+♠; 3 lå utgångskrav med 5+ överföringsfärg/4+ lå; 4 lå kontrollbud och slamintresse; 4NT RKC.",
+    "oneNTTransferStrengthBands": "Nordisk standard 2012-08-22, s. 5 anger kvalitativa fortsättningar efter fullföljd överföring: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud; specialbud 2♠ efter hjärteröverföring med 5+♥/4+♠ (rondkrav), 3m med 5+ överföringsfärg/4+ lå (utgångskrav), 3♥ efter spaderöverföring med minst 5-5 högfärger (invit), 4m kontrollbud/slamintresse, 4NT RKC. Källan anger INTE numeriska HP-intervall för svag/invit/utgång. Ingen 0–7/8–9/10–15-gräns får användas.",
     "twoNTQuantitativeInvite": "2NT–4NT är en kvantitativ invit till 6NT, inte en essfråga. Öppnarens accept/pass är inte numeriskt specificerat i tillgänglig systemtext och lämnas därför ej täckt."
   },
   "trees": [
@@ -276,11 +276,9 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "2♦ är överföring och visar minst fem kort i hjärter; öppnaren fullföljer normalt med 2♥.",
-        "0–7 hp: pass med minst fem kort i överföringsfärgen.",
-        "8–9 hp: 2NT-invit med jämn hand och exakt fem kort; 3♥-invit med minst sex kort.",
-        "10–15 hp: 3NT med jämn hand och exakt fem kort; 4♥ med minst sex kort.",
         "2♠ är rondkrav med 5+♥ och 4+♠. 3♣/3♦ är utgångskrav med 5+♥ och 4+ i bjuden lågfärg.",
-        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf."
+        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf.",
+        "Källan anger kvalitativa svag-/invit-/utgångsprofiler men inga numeriska HP-gränser för valet mellan dem."
       ],
       "root": "t03_n0",
       "nodes": [
@@ -320,17 +318,17 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer fortsättning enligt styrka och färglängd i tabellen på Nordisk standard s. 5.",
-          "analysis": "0–7 hp: pass. 8–9 hp: 2NT med jämn hand och exakt fem hjärter, eller 3♥ med 6+ hjärter. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med 6+ hjärter. Dessutom: 2♠ rondkrav med 5+♥/4+♠; 3♣/3♦ utgångskrav med 5+♥/4+ i bjuden lågfärg; 4♣/4♦ kontrollbud och slamintresse; 4NT RKC.",
+          "analysis": "Källan beskriver följande kvalitativa fortsättningar utan numeriska HP-gränser: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud. Särskilda bud: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3m utgångskrav med 5+ överföringsfärg/4+ lå; efter spaderöverföring 3♥ invit med minst 5-5 i högfärgerna; 4m kontrollbud/slamintresse; 4NT RKC. Rättningsmotorn väljer inte mellan de kvalitativa svag-/invit-/utgångskategorierna utan en verifierad styrkegräns.",
           "branches": [
             {
               "call": "Pass",
               "next": null,
-              "label": "0–7 hp; minst fem hjärter"
+              "label": "Dåliga kort; minst fem i överföringsfärgen"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "8–9 hp, jämn hand, exakt fem hjärter – invit"
+              "label": "Invit; jämn hand och exakt femkortsfärg"
             },
             {
               "call": "3♥",
@@ -340,7 +338,7 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "10–15 hp, jämn hand, exakt fem hjärter – välj sangutgång"
+              "label": "Välj utgång; jämn hand och exakt femkortsfärg"
             },
             {
               "call": "4♥",
@@ -384,8 +382,8 @@
           }
         }
       ],
-      "sourceStatus": "source_verified",
-      "sourceStatusNote": "Överföringstabellen och styrkegränserna är verifierade mot Nordisk standard 2012-08-22, s. 5."
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Budbetydelserna är källbelagda på s. 5, men numeriska styrkegränser för svag/invit/utgång saknas. Trädet får inte användas som numerisk styrkeklassificering."
     },
     {
       "id": "T04_INVIT_2NT_PASS",
@@ -598,11 +596,9 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "2♦ är överföring och visar minst fem kort i hjärter; öppnaren fullföljer normalt med 2♥.",
-        "0–7 hp: pass med minst fem kort i överföringsfärgen.",
-        "8–9 hp: 2NT-invit med jämn hand och exakt fem kort; 3♥-invit med minst sex kort.",
-        "10–15 hp: 3NT med jämn hand och exakt fem kort; 4♥ med minst sex kort.",
         "2♠ är rondkrav med 5+♥ och 4+♠. 3♣/3♦ är utgångskrav med 5+♥ och 4+ i bjuden lågfärg.",
-        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf."
+        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf.",
+        "Källan anger kvalitativa svag-/invit-/utgångsprofiler men inga numeriska HP-gränser för valet mellan dem."
       ],
       "root": "t07_n0",
       "nodes": [
@@ -642,17 +638,17 @@
             "2♥"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer fortsättning enligt styrka och färglängd i tabellen på Nordisk standard s. 5.",
-          "analysis": "0–7 hp: pass. 8–9 hp: 2NT med jämn hand och exakt fem hjärter, eller 3♥ med 6+ hjärter. 10–15 hp: 3NT med jämn hand och exakt fem hjärter, eller 4♥ med 6+ hjärter. Dessutom: 2♠ rondkrav med 5+♥/4+♠; 3♣/3♦ utgångskrav med 5+♥/4+ i bjuden lågfärg; 4♣/4♦ kontrollbud och slamintresse; 4NT RKC.",
+          "analysis": "Källan beskriver följande kvalitativa fortsättningar utan numeriska HP-gränser: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud. Särskilda bud: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3m utgångskrav med 5+ överföringsfärg/4+ lå; efter spaderöverföring 3♥ invit med minst 5-5 i högfärgerna; 4m kontrollbud/slamintresse; 4NT RKC. Rättningsmotorn väljer inte mellan de kvalitativa svag-/invit-/utgångskategorierna utan en verifierad styrkegräns.",
           "branches": [
             {
               "call": "Pass",
               "next": null,
-              "label": "0–7 hp; minst fem hjärter"
+              "label": "Dåliga kort; minst fem i överföringsfärgen"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "8–9 hp, jämn hand, exakt fem hjärter – invit"
+              "label": "Invit; jämn hand och exakt femkortsfärg"
             },
             {
               "call": "3♥",
@@ -662,7 +658,7 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "10–15 hp, jämn hand, exakt fem hjärter – välj sangutgång"
+              "label": "Välj utgång; jämn hand och exakt femkortsfärg"
             },
             {
               "call": "4♥",
@@ -706,8 +702,8 @@
           }
         }
       ],
-      "sourceStatus": "source_verified",
-      "sourceStatusNote": "Överföringstabellen och styrkegränserna är verifierade mot Nordisk standard 2012-08-22, s. 5."
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Budbetydelserna är källbelagda på s. 5, men numeriska styrkegränser för svag/invit/utgång saknas. Trädet får inte användas som numerisk styrkeklassificering."
     },
     {
       "id": "T08_OVERFORING_SPADER",
@@ -722,11 +718,9 @@
       "conditions": [
         "1NT = 15–17 hp och balanserad hand.",
         "2♥ är överföring och visar minst fem kort i spader; öppnaren fullföljer normalt med 2♠.",
-        "0–7 hp: pass med minst fem kort i överföringsfärgen.",
-        "8–9 hp: 2NT-invit med jämn hand och exakt fem kort; 3♠-invit med minst sex kort.",
-        "10–15 hp: 3NT med jämn hand och exakt fem kort; 4♠ med minst sex kort.",
         "3♥ är invit med minst 5-5 i båda högfärgerna; 3♣/3♦ är utgångskrav med 5+♠ och 4+ i bjuden lågfärg.",
-        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf."
+        "4 i lågfärg är kontrollbud och slamintresse; 4NT är RKC med överföringsfärgen som trumf.",
+        "Källan anger kvalitativa svag-/invit-/utgångsprofiler men inga numeriska HP-gränser för valet mellan dem."
       ],
       "root": "t08_n0",
       "nodes": [
@@ -766,17 +760,17 @@
             "2♠"
           ],
           "meaning": "Öppnaren har fullföljt överföringen. Svarshanden väljer fortsättning enligt styrka och färglängd i tabellen på Nordisk standard s. 5.",
-          "analysis": "0–7 hp: pass. 8–9 hp: 2NT med jämn hand och exakt fem spader, eller 3♠ med 6+ spader. 10–15 hp: 3NT med jämn hand och exakt fem spader, eller 4♠ med 6+ spader. Dessutom: 3♥ invit med 5-5 i högfärgerna; 3♣/3♦ utgångskrav med 5+♠/4+ i bjuden lågfärg; 4♣/4♦ kontrollbud och slamintresse; 4NT RKC.",
+          "analysis": "Källan beskriver följande kvalitativa fortsättningar utan numeriska HP-gränser: pass med dåliga kort; 2NT-invit med jämn hand och exakt femkortsfärg; 3M-invit med 6+; 3NT välj utgång med jämn hand och exakt femkortsfärg; 4M slutbud. Särskilda bud: 2♠ rondkrav efter hjärteröverföring med 5+♥/4+♠; 3m utgångskrav med 5+ överföringsfärg/4+ lå; efter spaderöverföring 3♥ invit med minst 5-5 i högfärgerna; 4m kontrollbud/slamintresse; 4NT RKC. Rättningsmotorn väljer inte mellan de kvalitativa svag-/invit-/utgångskategorierna utan en verifierad styrkegräns.",
           "branches": [
             {
               "call": "Pass",
               "next": null,
-              "label": "0–7 hp; minst fem spader"
+              "label": "Dåliga kort; minst fem i överföringsfärgen"
             },
             {
               "call": "2NT",
               "next": null,
-              "label": "8–9 hp, jämn hand, exakt fem spader – invit"
+              "label": "Invit; jämn hand och exakt femkortsfärg"
             },
             {
               "call": "3♠",
@@ -786,7 +780,7 @@
             {
               "call": "3NT",
               "next": null,
-              "label": "10–15 hp, jämn hand, exakt fem spader – välj sangutgång"
+              "label": "Välj utgång; jämn hand och exakt femkortsfärg"
             },
             {
               "call": "4♠",
@@ -830,8 +824,8 @@
           }
         }
       ],
-      "sourceStatus": "source_verified",
-      "sourceStatusNote": "Överföringstabellen och styrkegränserna är verifierade mot Nordisk standard 2012-08-22, s. 5."
+      "sourceStatus": "provisional_source_gap",
+      "sourceStatusNote": "Budbetydelserna är källbelagda på s. 5, men numeriska styrkegränser för svag/invit/utgång saknas. Trädet får inte användas som numerisk styrkeklassificering."
     },
     {
       "id": "T09_1NT_DIREKT_3NT",
