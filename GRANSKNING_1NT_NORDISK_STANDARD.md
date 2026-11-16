@@ -317,3 +317,8 @@ Efter fullföljd överföring är 3♣/3♦ från svarshanden ett utgångskrav n
 ### Öppnarens fortsättning efter svarshandens 3 lågfärg (utgångskrav)
 
 Överföringstabellen anger att 3♣/3♦ efter fullföljd överföring är utgångskrav när svarshanden visar minst fem kort i överföringsfärgen och 4+ i den bjudna lågfärgen. Däremot specificerar den inte öppnarens exakta återbud efter detta utgångskrav. Rättningsmotorn markerar därför öppnarens fortsättning som ej täckt i stället för att välja 3NT, 4M eller kontrollbud utifrån dolda kort eller en egen prioritet. Detta är nu dokumenterat i 100-givarkorpusen som två explicita källgap (givar 037 och 066).
+
+
+### Avgränsning: 2NT–4NT är kvantitativ invit, inte essfråga
+
+Den separata överenskommelsen för 2NT–4NT har nu kodats uttryckligen som kvantitativ invit till 6NT. Den får inte gå via fyr-essfrågan eller RKC. Öppnarens accept/pass är fortsatt ej täckt eftersom en numerisk gräns för minimum/maximum i den aktuella fortsättningen inte har verifierats här. Regressionstestet kontrollerar både att 4NT klassificeras som kvantitativ invit och att öppnarens svar inte blir ett påhittat ess-/nyckelkortssvar.
