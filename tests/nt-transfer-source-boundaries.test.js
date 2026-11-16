@@ -41,8 +41,10 @@ const afterSpadeTransfer=[
 // but no numerical HCP range. Do not invent one.
 const afterOneNT=[{s:'N',c:'1N'},{s:'E',c:'P'}];
 const weakSixClubs=hand(['C14','C13','C12','C11','C10','C9','S2','S3','H2','H3','D2','D3','D4']);
-assert.equal(result(weakSixClubs,afterOneNT).exp,null,
-  '6+ clubs fits relay shape but numeric weak threshold is unspecified');
+const weakSixClubsResult=result(weakSixClubs,afterOneNT);
+assert.equal(weakSixClubsResult.exp,null,
+  '6+ clubs fits both qualitative low-minor routes but their strength/quality distinction is unspecified');
+assert.match(weakSixClubsResult.why,/skiljer mellan 2♠-relä.*3 lå-invit/i);
 const weakFiveFiveMinors=hand(['C14','C13','C12','C11','C10','D14','D13','D12','D11','D10','S2','H2','H3']);
 assert.equal(result(weakFiveFiveMinors,afterOneNT).exp,null,
   '5-5 minors fits relay shape but numeric weak threshold is unspecified');
