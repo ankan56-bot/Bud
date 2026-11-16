@@ -70,9 +70,9 @@ Granskningen av rattningsmotor.js visade tre konkreta avvikelser i svaret efter 
 Negativ dubbling har lagts in för de entydiga fyrkortslägena med minst 6 HP och utan 3+ stöd i partnerns öppningsfärg:
 - Efter 1♦–1♥ visar dubbling exakt fyra spader.
 - Efter 1♣–1♠ visar dubbling fyra hjärter.
-Fem eller fler hjärter efter 1♠-inkliv lämnas **ej täckt** eftersom källan inte anger prioriteten mellan negativ dubbling och ett naturligt 2♥-bud. Överlapp med stöd lämnas också ej täckt.
+Fem eller fler hjärter efter 1♠-inkliv lämnas **ej täckt** eftersom källan inte anger prioriteten mellan negativ dubbling och ett naturligt 2♥-bud. Överlapp med stöd lämnas också ej täckt. Detsamma gäller överlapp mellan 1NT och en femkortshögfärg, eller mellan stöd och en ny färg, när källan inte anger prioritet.
 
-Riktade regressioner har lagts till i tests/ostord-manual-rules.test.js för 6 HP + håll i 1NT, fyrkortslågfärg, avvisning av fyrkortshögfärg samt de två negativa dubblingarna.
+Riktade regressioner har lagts till i tests/ostord-manual-rules.test.js för 6 HP + håll i 1NT, 1NT utan håll, fyrkortslågfärg, avvisning av fyrkortshögfärg samt de två negativa dubblingarna. Samma 1NT- och negativa-dubblingsbeslut testas också med andra kort i de tre dolda händerna, så livebeslutet ska vara oförändrat.
 
 ### Fortfarande ej implementerat
 
