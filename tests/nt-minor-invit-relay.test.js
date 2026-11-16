@@ -47,7 +47,7 @@ const cases = [
     call:'3C', expected:'P'
   },
   {
-    name:'3D, two-card support with K',
+    name:'3D, three-card support with K',
     north:['S14','S12','S11','S2','H13','H4','H3','D14','D13','D4','C8','C3','C2'],
     call:'3D', expected:'3N'
   },
