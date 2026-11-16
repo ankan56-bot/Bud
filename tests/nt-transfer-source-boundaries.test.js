@@ -16,7 +16,7 @@ function hand(shapeCards){
   return out;
 }
 function result(south,sequence){
-  const north=hand(['S14','S13','S12','H14','H13','D14','D13','C14','C13','C12','C11','D12','D11']);
+  const north=deck.filter(c=>!south.includes(c)).slice(0,13);
   const used=new Set([...north,...south]);
   assert.equal(used.size,26,'hands must not overlap');
   const rest=deck.filter(c=>!used.has(c));
