@@ -92,5 +92,5 @@
 
   /* ––––– SVAG TVÅA (Plus) ––––– */
 
-  return {resp2c,reb2c,resp2c2};
+  return {opening,resp2c,reb2c,resp2c2};
 });
