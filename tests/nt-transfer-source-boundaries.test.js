@@ -200,4 +200,36 @@ assert.equal(nodeAt('S',afterRelay3C,responderDiamondsLonger).exp,'3D',
 const afterRelaySignoff=afterRelay2NT.concat([{s:'S',c:'3C'},{s:'W',c:'P'}]);
 assert.equal(nodeAt('N',afterRelaySignoff,openerClubsLonger).exp,'P',
  'opener passes after responder signs off in a minor');
+// The transfer table defines the responder's invite but not opener's
+// acceptance criteria. Even when the hidden hands happen to total 26, the
+// engine must not import an unrelated 26-point major-game rule.
+function openerAfterTransfer(north,south,sequence){
+  const used=new Set([...north,...south]);
+  assert.equal(used.size,26,'opener and responder hands must not overlap');
+  const rest=deck.filter(c=>!used.has(c));
+  const hands={N:north.slice(),S:south.slice(),E:rest.slice(0,13),W:rest.slice(13,26)};
+  const bids=sequence.concat([{s:'N',c:'P'}]);
+  return R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+}
+const inviteOpener17=['H2','H3','H4','S14','S13','S12','D14','D13','D2','C11','C2','C3','C4'];
+assert.equal(R.H(inviteOpener17).hp,17);
+const responderFiveHeartInvite=['H13','H12','H11','H5','H6','S2','S3','S4','D5','D6','D7','C13','C6'];
+assert.equal(R.H(responderFiveHeartInvite).hp,9);
+const openerAfterFiveHeartInvite=openerAfterTransfer(
+  inviteOpener17,responderFiveHeartInvite,
+  [{s:'N',c:'1N'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+   {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'}]
+);
+assert.equal(openerAfterFiveHeartInvite.exp,null,
+  'opener acceptance after 2NT transfer invite is not numerically defined by the source');
+
+const responderSixHeartInvite=['H13','H12','H11','H5','H6','H7','S2','S3','D5','D6','D7','C13','C6'];
+assert.equal(R.H(responderSixHeartInvite).hp,9);
+const openerAfterSixHeartInvite=openerAfterTransfer(
+  inviteOpener17,responderSixHeartInvite,
+  [{s:'N',c:'1N'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+   {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'3H'},{s:'W',c:'P'}]
+);
+assert.equal(openerAfterSixHeartInvite.exp,null,
+  'opener acceptance after 3H transfer invite is not numerically defined by the source');
 console.log('1NT transfer source-boundary tests: passed.');
