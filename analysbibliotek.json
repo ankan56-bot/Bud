@@ -7231,6 +7231,86 @@
           }
         }
       ]
+    },
+    {
+      "id": "T46_STAYMAN_INVIT_MEANINGS",
+      "title": "Stayman – inviter efter öppnarens högfärgssvar",
+      "tags": [
+        "1NT",
+        "Stayman",
+        "invit",
+        "2NT",
+        "3♥",
+        "3♠"
+      ],
+      "conditions": [
+        "Ostörd budgivning efter 1NT–2♣ och öppnarens svar 2♥ eller 2♠.",
+        "Nordisk standard s. 4 anger 2NT och höjning till 3 i öppnarens visade högfärg som invitbud.",
+        "Den numeriska styrkegränsen för svarshandens val och öppnarens accept/pass anges inte i källan.",
+        "Trädet dokumenterar endast budens kvalitativa betydelse; det fastställer inte handintervall eller acceptregler."
+      ],
+      "root": "t46_n0",
+      "nodes": [
+        {
+          "id": "t46_n0",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ är invit i öppnarens visade hjärter enligt Nordisk standard s. 4.",
+          "analysis": "Svarshanden inviterar i öppnarens visade högfärg. Källan anger inte ett numeriskt HP-/HTP-intervall eller öppnarens exakta acceptgräns. Rättningsmotorn känner igen betydelsen men lämnar valet och acceptbeslutet ej täckt.",
+          "branches": [],
+          "handProfile": {
+            "opener": "1NT-öppnare som visat minst fyra hjärter med 2♥.",
+            "responder": "Invitstyrka i hjärter; numerisk styrkegräns anges inte i källan."
+          }
+        },
+        {
+          "id": "t46_n1",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ är invit i öppnarens visade spader enligt Nordisk standard s. 4.",
+          "analysis": "Svarshanden inviterar i öppnarens visade högfärg. Källan anger inte ett numeriskt HP-/HTP-intervall eller öppnarens exakta acceptgräns. Rättningsmotorn känner igen betydelsen men lämnar valet och acceptbeslutet ej täckt.",
+          "branches": [],
+          "handProfile": {
+            "opener": "1NT-öppnare som visat minst fyra spader med 2♠.",
+            "responder": "Invitstyrka i spader; numerisk styrkegräns anges inte i källan."
+          }
+        },
+        {
+          "id": "t46_n2",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT är invit efter Stayman-svaret 2♠ enligt Nordisk standard s. 4.",
+          "analysis": "Svarshanden väljer en sanginvit efter att öppnaren visat spader. Källan anger inte ett numeriskt HP-/HTP-intervall eller en fullständig acceptregel. Ingen styrkegräns har lagts till.",
+          "branches": [],
+          "handProfile": {
+            "opener": "1NT-öppnare som visat minst fyra spader med 2♠.",
+            "responder": "Invitstyrka för 2NT; numerisk styrkegräns anges inte i källan."
+          }
+        }
+      ],
+      "sourceStatus": "source_qualitative",
+      "sourceStatusNote": "Endast de kvalitativa invitbetydelserna är källbelagda. Inga numeriska svarsstyrkor eller acceptgränser är angivna; trädet får förklara budens betydelse men inte klassificera handstyrka."
     }
   ],
   "valuationRules": {
