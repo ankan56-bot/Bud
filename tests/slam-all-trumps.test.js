@@ -179,6 +179,31 @@ for(const id of ['T01_RKC_HJARTER','T44_RKC_1430_SPADER_STENBERG','T45_RKC_1430_
   ];
   const small=R.nodeFor({hands:handsSix,dealer:'N',bids:sixAuction},10);
   assert.equal(small.exp,'6H','at least three partnership aces permit a 6-level suit contract');
+
+  // A void in a lower suit is shown in that suit; asker can then set 6H.
+  const responderVoidC=makeHand({trump:'H',aces:['D'],trumpKing:true,voids:['C']});
+  const askerVoidC=makeHand({aces:['S','C'],exclude:responderVoidC});
+  const handsVoidC=deal(responderVoidC,askerVoidC);
+  const voidCAuction=[
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2H'},{s:'W',c:'P'},
+    {s:'N',c:'3H'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'6C'},{s:'E',c:'P'},{s:'S',c:'P'}
+  ];
+  assert.equal(R.nodeFor({hands:handsVoidC,dealer:'N',bids:voidCAuction},10).exp,'6H',
+    '6 in a lower void suit can be followed by the agreed 6H contract');
+
+  // A void above hearts is shown by 6H itself. If the ace threshold is met,
+  // the responder has already placed the partnership in the permitted small slam.
+  const responderVoidS=makeHand({trump:'H',aces:['D'],trumpKing:true,voids:['S']});
+  const askerVoidS=makeHand({aces:['S','C'],exclude:responderVoidS});
+  const handsVoidS=deal(responderVoidS,askerVoidS);
+  const voidSAuction=[
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2H'},{s:'W',c:'P'},
+    {s:'N',c:'3H'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},
+    {s:'N',c:'6H'},{s:'E',c:'P'},{s:'S',c:'P'}
+  ];
+  assert.equal(R.nodeFor({hands:handsVoidS,dealer:'N',bids:voidSAuction},10).exp,'P',
+    'when 6H is already the legal void response, pass rather than rebid 6H');
 }
 
 // A no-trump four-ace ask reaches 7NT only when all four aces are certain.
