@@ -78,6 +78,8 @@ jobs:
         run: node tests/supplementary-logic.test.js
       - name: Run major-suit RKC 1430 tests
         run: node tests/rkc-1430-major.test.js
+      - name: Run all-trumps RKC and no-trump four-ace tests
+        run: node tests/slam-all-trumps.test.js
       - name: Run 1NT four-ace and RKC source tests
         run: |
           node tests/nt-four-ace-source.test.js
