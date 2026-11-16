@@ -194,7 +194,9 @@ var Rattning = (function(){
       return NC('Nordisk standard s. 4 anger 2NT som naturlig invit med balanserad hand utan 4-korts högfärg, men anger inte ett numeriskt HP-intervall. Ingen egen gräns införs; situationen lämnas ej täckt.',means,conv,true);
     }
     else if(hp>=gl){
-      return NC('Svarshanden har utgångsnära styrka, men numeriskt HCP-krav för 3NT efter 1NT är inte bekräftat. Varken 25 eller 26 gemensamma hp antas; situationen lämnas ej täckt.',means,conv,true);
+      if(!k&&!opener&&hp+15>=26){exp='3N';why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: 26+ gemensamma hp. 3NT.';}
+      else if(!k&&opener&&jointHp>=26){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: 26+ ger 3NT.';}
+      else return NC('26 gemensamma hp krävs för 3NT; 25 är invitnivå. Om partnerns 15–17-intervall inte garanterar 26 lämnas valet ej täckt eftersom numerisk invitgräns saknas.',means,conv,true);
     }
     else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
@@ -212,7 +214,7 @@ var Rattning = (function(){
       return null};
 
     if (r === b+'N') {
-        if(!k)return NC('2NT efter 1NT är en naturlig invit. Nordisk standard anger inte öppnarens numeriska acceptgräns; varken 25 eller 26 gemensamma hp används som automatisk regel.',means,'1NT-system',true);
+        if(!k){if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte använda partnerns dolda honnörspoäng; 26 gemensamma hp krävs för 3NT.',means,'1NT-system',true);if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-hp-gränsen, avslår 2NT-inviten.',means:means,conv:'1NT-system'};return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: 26+ accepterar 2NT-inviten med 3NT.',means:means,conv:'1NT-system'};}
         return NC('Öppnarens beslut efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,'2NT-system',true);
     }
 
