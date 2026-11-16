@@ -254,3 +254,8 @@ En ny kontroll mot Nordisk standard s. 5 har gjorts för svarshandens fortsättn
 Nya regressionstester täcker de uttryckliga färgbeskrivningarna, odefinierad prioritet mellan två möjliga lågfärger och att ej verifierade styrkegränser inte används. CI-workflowen har utökats med `tests/nt-transfer-source-boundaries.test.js`.
 
 **Nästa steg:** verifiera om ytterligare systemunderlag eller användarbekräftade styrkegränser finns för de kvalitativa invit-/svaghetsbeskrivningarna innan de automatiseras. Därefter fortsätter arbetet med Stayman-svarshandens egna fortsättningar och live/efterhandssepareringen.
+
+
+### Stayman – korrigerad styrkegräns
+
+Även Stayman 2♣ har korrigerats på svarshandens första bud: en egen fyrkortshögfärg räcker för att välja Stayman enligt Nordisk standard s. 4. Den tidigare automatiska gränsen på 8 hp saknar stöd i den citerade källan och är borttagen för 1NT-svar. Möjligheten att använda Stayman med slamintresse utan egen fyrkortshögfärg kräver separat modellering; någon ny HP-gräns har inte införts. Regressionstestet innehåller nu en fyrkortshögfärgshand under den tidigare gränsen.
