@@ -423,15 +423,15 @@ var Rattning = (function(){
     return NC('Fortsättningen beskrivs inte i dokumentet.');
   }
   function ntOpener3NTChoice(h,M){
-    var L=h.L,hp=h.hp,exp,why;
+    var L=h.L;
     var means=function(c){
-      if(c==='P')return 'Pass: inget 3-korts stöd.';
-      if(c==='4'+M)return 'Väljer utgång i högfärgen (3+ stöd).';
+      if(c==='P')return 'Passar på 3NT när öppnarens hand inte har minst tre kort i överföringsfärgen.';
+      if(c==='4'+M)return 'Öppnarens möjliga korrigering till högfärgsutgång vid 3+ stöd är inte definierad i Nordisk standard s. 5.';
       return null;
     };
-    if(L[M]>=3){exp='4'+M;why='Partnern bjöd 3NT (välj utgång). Du har 3+ '+SYM[M]+': bjud 4'+M+'.';}
-    else{exp='P';why='Partnern bjöd 3NT (välj utgång). Du har färre än 3 '+SYM[M]+': passa.';}
-    return {exp:exp,alt:[],why:why,means:means,conv:'överföring'};
+    if(L[M]>=3)
+      return NC('Svarshanden har valt 3NT som utgång efter överföring. Öppnaren har 3+ kort i överföringsfärgen, men Nordisk standard s. 5 anger inte om öppnaren ska korrigera till 4M eller passa. Fortsättningen lämnas ej täckt.',means,'överföring',true);
+    return {exp:'P',alt:[],why:'Svarshanden har valt 3NT som utgång. Öppnaren har färre än tre kort i överföringsfärgen och passar.',means:means,conv:'överföring'};
   }
 
   /* ––––– 2♣-ÖPPNING (Nordisk standard / Herbert) ––––– */
