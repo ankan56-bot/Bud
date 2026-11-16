@@ -5,6 +5,8 @@
 // qualitative invit/weak strength bands remain uncovered until verified.
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
+const A=require('../analysmotor.js');
+const lib=require('../analysbibliotek.json');
 const deck=[];
 for(const suit of ['S','H','D','C'])for(let rank=2;rank<=14;rank++)deck.push(suit+rank);
 
@@ -58,4 +60,12 @@ const balancedFiveHearts=hand(['H14','H13','H12','H11','H10','S14','S13','S12','
 assert.equal(result(balancedFiveHearts,afterHeartTransfer).exp,null,
   'balanced exact-five transfer hand has no invented 2NT/3NT threshold');
 
+// Trees with unverified numerical strength bands remain documented but
+// must not be selected as authoritative correction/analysis nodes.
+for(const id of ['T03_OVERFORING_PASS','T07_OVERFORING_HJARTER','T08_OVERFORING_SPADER','T19','T20','T27_OVERFORING_HJARTER_SEXKORT_INVIT','T28_OVERFORING_SPADER_SEXKORT_INVIT']){
+  const tree=lib.trees.find(t=>t.id===id);
+  assert.ok(tree, 'expected documented transfer tree '+id);
+  assert.equal(tree.sourceStatus,'provisional_source_gap',id+' must be marked provisional');
+  assert.equal(A.treeCompatible(tree),false,id+' must not be matched as authoritative');
+}
 console.log('1NT transfer source-boundary tests: passed.');
