@@ -202,8 +202,8 @@ var Rattning = (function(){
         else return NC('Paret når inte säkert 26 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
       }else{
         var twoNTMin=hp+20;
-        if(!opener&&twoNTMin>=26){exp='3N';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';}
-        else if(opener&&jointHp>=25){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 26-hp-gränsen för 3NT.';}
+        if(!opener&&twoNTMin>=26){exp='3N';why=hp+' egna hp plus minst 20 hp från 2NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';}
+        else if(opener&&jointHp>=26){exp='3N';why=hp+' egna hp och '+jointHp+' gemensamma hp: når 26-hp-gränsen för 3NT.';}
         else return NC('Paret når inte säkert 25 gemensamma hp för 3NT efter 2NT-öppning; situationen lämnas ej täckt.',means,conv,true);
       }
       soft=false;
@@ -226,8 +226,8 @@ var Rattning = (function(){
     if (r === b+'N') {
         if(!k){
           if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte läsa partnerns dolda hp; efter given accepteras med 3NT vid minst 26 gemensamma hp.',means,'1NT-system',true);
-          if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
-          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+          if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 26-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+          return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 26-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
         }
         return {exp:'P',alt:[],why:'3NT är slutbud efter 2NT-öppning enligt Nordisk standard.',means:means,conv:'2NT-system'};
     }
@@ -289,7 +289,7 @@ var Rattning = (function(){
     if(naturalNew.length>1)
       return NC('Efter Stayman uppfyller flera nya färger längdkravet för naturligt utgångskrav. Nordisk standard s. 4 anger ingen prioritet mellan dem.',null,'Stayman',true);
     if(!opener){
-      if(reply==='2D'&&hp>=11&&h.bal)return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT.',means:means,conv:'Stayman'};
+      if(reply==='2D'&&hp>=11&&h.bal)return {exp:'3N',alt:[],why:hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT.',means:means,conv:'Stayman'};
       return NC('Efter Stayman saknas partnerns exakta hand live. 26 gemensamma hp krävs för 3NT; 11+ egna hp efter 2♦ garanterar detta mot 1NT-minimum. Övriga fall lämnas ej täckta.',means,'Stayman',true);
     }
     if(M&&L[M]>=4&&opener&&fit>=8){
@@ -367,9 +367,9 @@ var Rattning = (function(){
     }
     var M = st_(k2);
     if(k1==='2C'&&M==='D'&&k3==='2N'){
-      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 25 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret når 25 gemensamma honnörspoäng.';return null};
-      if(!partner)return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Livebeslutet får inte använda partnerns dolda hand; efter given är 25 gemensamma hp den användaraccepterade 3NT-gränsen.',meansNoMajor,'Stayman',true);
-      if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
+      var meansNoMajor=function(c){if(c==='P')return 'Passar när paret inte når 26 gemensamma honnörspoäng.';if(c==='3N')return 'Accepterar när paret når 26 gemensamma honnörspoäng.';return null};
+      if(!partner)return NC('Efter Stayman 2♦–2NT är 2NT en balanserad sanginvit. Livebeslutet får inte använda partnerns dolda hand; efter given är 26 gemensamma hp den senare användarbekräftade 3NT-gränsen.',meansNoMajor,'Stayman',true);
+      if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen, avslår 2NT-inviten efter Stayman 2♦.',means:meansNoMajor,conv:'Stayman'};
       return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: accepterar 2NT-inviten med 3NT.',means:meansNoMajor,conv:'Stayman'};
     }
     if(k1==='2C'&&M==='H'&&k3==='2N'){
