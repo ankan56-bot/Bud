@@ -822,7 +822,7 @@ var Rattning = (function(){
       if(isBid(c)&&c[1]===os)return '10+ hp och 3+ stöd: överbud i motståndarnas färg.';
       if(isBid(c)&&c[1]!=='N'){
         var base=lowest(c[1],last),need=base&&lv(base)>=2?10:8;
-        if(c===base)return need+'+ hp och 5+ färg: rondkrav.';
+        if(c===base)return need+'+ hp och '+(c[1]==='S'||c[1]==='H'?'5+':'4+')+' färg: rondkrav.';
         if(c===jump(c[1],last))return '14+ hp, bra 6+ färg: utgångskrav.';
       }
       if(c==='P')return 'Pass när inget av systemets svarsbud uppfylls.';
