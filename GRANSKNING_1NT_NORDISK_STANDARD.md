@@ -322,3 +322,8 @@ Efter fullföljd överföring är 3♣/3♦ från svarshanden ett utgångskrav n
 ### Avgränsning: 2NT–4NT är kvantitativ invit, inte essfråga
 
 Den separata överenskommelsen för 2NT–4NT har nu kodats uttryckligen som kvantitativ invit till 6NT. Den får inte gå via fyr-essfrågan eller RKC. Öppnarens accept/pass är fortsatt ej täckt eftersom en numerisk gräns för minimum/maximum i den aktuella fortsättningen inte har verifierats här. Regressionstestet kontrollerar både att 4NT klassificeras som kvantitativ invit och att öppnarens svar inte blir ett påhittat ess-/nyckelkortssvar.
+
+
+### Live 3NT efter Stayman 2♦
+
+När öppnaren svarar 2♦ har öppnaren förnekat 4-korts högfärg. Om svarshanden har en balanserad hand med minst 11 egna hp garanteras minst 26 gemensamma hp även mot öppnarens 15-hp-minimum. Live-motorn kan därför bjuda 3NT utan att läsa öppnarens dolda kort. Med 10 hp eller mindre går det inte att garantera 26; eftersom den numeriska invitgränsen inte anges lämnas pass/invit ej täckt.
