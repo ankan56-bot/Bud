@@ -40,7 +40,7 @@ assert.equal(R.H(north).bal,true);
 const result=F.generateUndisturbedFacit({hands,dealer:'N',trainingSide:'NS'});
 assert.equal(result.status,'incomplete');
 assert.deepEqual(result.auction.map(x=>x.c),['1N','P','2H','P','2S','P']);
-assert.equal(result.steps[0].meaning,'15–17 hp, balanserad (även 5-korts högfärg).');
+assert.equal(result.steps[0].meaning,'15-17 hp, balanserad (även 5-korts högfärg).');
 assert.ok(result.uncovered);
 assert.equal(result.uncovered.seat,'S');
 assert.match(result.message,/ofullständig/);
