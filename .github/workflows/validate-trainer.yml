@@ -55,16 +55,16 @@ jobs:
           NODE
       - name: Run Stenberg 2NT regression tests
         run: node tests/stenberg-2nt.test.js
+      - name: Audit undisturbed analysis-library structure
+        run: |
+          node scripts/validate-analysis-library.js
+          node tests/analysis-library-audit.test.js
       - name: Run correction-engine regression tests
         run: node tests/reverse-hps.test.js
       - name: Run undisturbed facit generator tests
         run: node tests/facitmotor.test.js
       - name: Test uncovered bidding log and deduplication
         run: node tests/ej-tackta-logg.test.js
-      - name: Audit undisturbed analysis-library structure
-        run: |
-          node scripts/validate-analysis-library.js
-          node tests/analysis-library-audit.test.js
       - name: Characterize known live hidden-hand dependency
         run: node tests/known-live-hidden-hand-leak.test.js
       - name: Test analysis-node collision diagnostics
