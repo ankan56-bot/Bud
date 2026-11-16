@@ -467,7 +467,7 @@
         return stenberg.openerRebid(h,c1,st.hands[pt]?H(st.hands[pt]):null);
       if(!opener&&d===3&&ours[1].c==='2N')
         return stenberg.responderContinuation(h,c1,b.c,st.hands[pt]?H(st.hands[pt]):null,
-          prior,rkcTrumpFromAuction,side(me));
+          prior,rkcTrumpFromAuction,side(me),me);
       // Efter 1♦–1♥–2♠ är 2♠ öppnarens reverse och SH ska
       // höja till 4♠ med minst 8-korts fit och 26+ gemensamma spelpoäng.
       if(!opener&&d===2&&c1==='1H'&&b.c==='4S'){
