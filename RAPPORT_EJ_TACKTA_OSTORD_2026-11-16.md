@@ -8,7 +8,7 @@
 
 **Körning:** `43906900895`  
 **Commit:** `6362aa8a5aa44e71c3d2d968d39e686c03d4f587`  
-**Resultat:** <badge>SUCCESS</badge> Alla 24 valideringssteg passerade.
+**Resultat:** SUCCESS – alla 24 valideringssteg passerade.
 
 | Test | Givar | Beslut | Täckta | Ej täckta | Täckning | Tekniska/laglighetsfel |
 |---|---:|---:|---:|---:|---:|---:|
