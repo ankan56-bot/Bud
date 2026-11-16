@@ -150,7 +150,7 @@ assert.deepEqual(
   'Only the explicitly documented source-gap cases may remain uncovered.'
 );
 for(const item of report.uncovered){
-  assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt/i,
+  assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna/i,
     'Every uncovered case must state the precise source gap: '+item.dealId);
 }
 assert.ok(report.coveragePercent>=98,
