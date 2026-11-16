@@ -162,3 +162,10 @@ Genomförda synkroniseringar i denna arbetsomgång:
 - Singletonprioritet får inte hittas på när flera sidofärger är singel; void räknas inte som singleton.
 
 Nästa grind är en ny körning av de fasta ostörda givarna. Godkänt resultat kräver 100 % täckning, noll tekniska undantag och noll olagliga rekommendationer. Därefter granskas noder och handanalys mot de faktiska resultaten.
+
+
+## Ny granskningspunkt 2026-11-16
+
+- Bekräftad liveinformationsläcka mellan `botCall()` och `Rattning.nodeFor()`: se [GRANSKNING_LIVE_OCH_EFTERHAND.md](GRANSKNING_LIVE_OCH_EFTERHAND.md). Detta måste lösas före rättvis livebudgivning.
+- Analysbibliotekets nodmatchning kontrollerar inte handprofil och roll; T40 har ogiltig root och terminala grenar är inte explicit klassificerade. Se [GRANSKNING_NODMATCHNING.md](GRANSKNING_NODMATCHNING.md).
+- Nästa tekniska steg är en ren validerare och korsreferensrapport. Inga budregler ändras innan den grinden är godkänd.
