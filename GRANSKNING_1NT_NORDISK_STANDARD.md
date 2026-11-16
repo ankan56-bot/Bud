@@ -279,3 +279,8 @@ Regressionstester täcker nya färger efter 2♦, 2♥ och 2♠ samt 2NT med exa
 Nordisk standard s. 4 anger betydelsen "naturlig invit med balanserad hand utan 4-korts högfärg", men anger inte ett numeriskt HP-intervall för svarshandens val av 2NT. Därför har den tidigare kodade 8–9 hp-gränsen tagits bort som automatisk regel. Rättningsmotorn lämnar den handklassificeringen ej täckt tills gränsen kan beläggas eller bekräftas. Öppnarens beslut efter en faktisk 2NT-invit kan inte göras live med partnerns dolda hand; den efterhandsbaserade kontrollen av 26 gemensamma hp är separerad från livebeslutet.
 
 Direkt 3NT med minst 26 gemensamma honnörspoäng är fortsatt en separat verifierad gräns. Analysbibliotekets träd för direkt 3NT behålls som auktoritativa, medan invitträd med obekräftade numeriska intervall markeras `provisional_source_gap`.
+
+
+### Stayman-inviter – endast utgångsgränsen är numeriskt fastställd
+
+Efter 1NT–2♣ har nya färger nu de uttryckliga källreglerna (5+ högfärg/4+ lågfärg, utgångskrav) och 2NT efter 2♥ visar exakt fyra spader. Däremot är 2NT som naturlig invit och 3M som invit efter visad högfärg beskrivna som inviter utan numeriskt styrkeintervall i PDF:en. Därför används inte tidigare kodade 22–25- eller 8–9-gränser för att välja mellan pass och invit. Rättningsmotorn lämnar dessa fall ej täckta. Den separata, användarbekräftade 26-poängsgränsen för utgång används fortsatt när en 8-kortsfit eller sangstyrka är känd.
