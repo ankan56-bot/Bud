@@ -54,9 +54,25 @@
             if(ours[sj].s===ntOpenerSeat&&ours[sj].c==='2S')return 'S';
         }
         if(call.c==='2C'){
-          for(var mj=oi+1;mj<ours.length;mj++)
-            if(ours[mj].s===ntOpenerSeat&&(ours[mj].c==='2H'||ours[mj].c==='2S'))
-              return ours[mj].c[1];
+          for(var mj=oi+1;mj<ours.length;mj++){
+            if(ours[mj].s!==ntOpenerSeat)continue;
+            if(ours[mj].c==='2S')return 'S';
+            if(ours[mj].c==='2H'){
+              // Stayman 2H normally fixes hearts indirectly for RKC.
+              // Exception: responder's 2NT/3NT shows four spades; if
+              // opener then shows 3S/4S with 4-4 majors, spades become
+              // the agreed trump suit for a later 4NT ask.
+              for(var sj2=mj+1;sj2<ours.length;sj2++){
+                if(ours[sj2].s===ntOpenerSeat)continue;
+                if(ours[sj2].c!=='2N'&&ours[sj2].c!=='3N')continue;
+                for(var oj2=sj2+1;oj2<ours.length;oj2++){
+                  if(ours[oj2].s===ntOpenerSeat&&(ours[oj2].c==='3S'||ours[oj2].c==='4S'))
+                    return 'S';
+                }
+              }
+              return 'H';
+            }
+          }
         }
       }
     }
