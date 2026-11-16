@@ -1160,7 +1160,9 @@ var Rattning = (function(){
       var afterPartnerAsk=prior.slice(partnerAskIndex+1).filter(function(x){return x.s===me&&isBid(x.c)});
       if(!afterPartnerAsk.length){
         var partnerAskTrump=rkcTrumpFromAuction(prior,side(me));
-        if(partnerAskTrump||agreedNoTrumpAceAsk(prior,side(me)))
+        var partnerAskFour=agreedNoTrumpAceAsk(prior,side(me));
+        if(prior.some(function(x){return x.c==='2C'}))console.log('DBG_ASK_TYPE',partnerAskTrump,partnerAskFour,h.aces,h.has('H',13),h.has('S',13));
+        if(partnerAskTrump||partnerAskFour)
           return rkcReply(h,partnerAskTrump);
         return NC('Partnerns 4NT har ingen fastställd trumf och sekvensen är inte en uttryckligen avtalad fyr-essfråga enligt Nordisk standard. Svaret lämnas ej täckt.');
       }
