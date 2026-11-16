@@ -120,4 +120,45 @@ assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,own
     '8-card heart fit and 26 combined HCP do not import the separate major-game threshold into Stayman');
   assert.match(result.why,/acceptgräns|lämnas ej täckt/i);
 }
+// Stayman 2♦–2NT is a natural balanced invitation. The agreed 25-HCP
+// threshold decides acceptance after the full deal is known.
+{
+  const north=['C14','C13','C2','C3','S14','S2','S3','H13','H2','H3','D2','D3','D4'];
+  const south=['S13','S4','S5','H14','H4','H5','D12','D5','D6','C4','C5','C6','C7'];
+  assert.equal(R.H(north).hp,16);
+  assert.equal(R.H(south).hp,9);
+  assert.equal(R.H(north).bal,true);
+  assert.equal(R.H(south).bal,true);
+  const hands=deal(north,south);
+  const bids=[
+    {s:'N',c:'1N'},{s:'E',c:'P'},
+    {s:'S',c:'2C'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},
+    {s:'S',c:'2N'},{s:'W',c:'P'},
+    {s:'N',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+  assert.equal(result.exp,'3N','16+9=25 HCP accepts the 2NT invitation');
+  assert.equal(result.ruleStatus,'user_confirmed');
+}
+
+// Stayman 2♦ without a four-card major: the same agreed 25-HCP threshold
+// applies to the direct 3NT game choice after the 2♦ denial.
+{
+  const north=['C14','C13','C2','C3','S14','S12','S2','H13','H2','H3','D2','D3','D4'];
+  const south=['S13','S3','S4','H14','H4','H5','D12','D5','D6','C4','C5','C6','C7'];
+  assert.equal(R.H(north).hp,16);
+  assert.equal(R.H(south).hp,9);
+  const hands=deal(north,south);
+  const bids=[
+    {s:'N',c:'1N'},{s:'E',c:'P'},
+    {s:'S',c:'2C'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},
+    {s:'S',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},bids.length-1);
+  assert.equal(result.exp,'3N','16+9=25 HCP reaches 3NT after Stayman 2♦');
+  assert.equal(result.ruleStatus,'user_confirmed');
+}
+
 console.log('1NT Stayman continuation tests: passed.');
