@@ -9,6 +9,11 @@ const opening=R.nodeFor({hands:{N:opener21},dealer:'N',bids:[{s:'N',c:'P'}]},0);
 assert.equal(opening.exp,'2N','20-21 balanced opens 2NT');
 assert.equal(R.decideLive({seat:'N',dealer:'N',auction:[],ownHand:opener21}).exp,'2N');
 
+const opener20=opener21.map(c=>c==='C11'?'C2':c);
+assert.equal(R.H(opener20).hp,20);
+assert.equal(R.nodeFor({hands:{N:opener20},dealer:'N',bids:[{s:'N',c:'P'}]},0).exp,'2N',
+  '20 HCP balanced is the lower 2NT opening boundary');
+assert.equal(R.decideLive({seat:'N',dealer:'N',auction:[],ownHand:opener20}).exp,'2N');
 const opener19=opener21.map(c=>c==='C11'?'C2':c==='D14'?'D13':c);
 assert.equal(R.H(opener19).hp,19);
 assert.notEqual(R.nodeFor({hands:{N:opener19},dealer:'N',bids:[{s:'N',c:'P'}]},0).exp,'2N');
