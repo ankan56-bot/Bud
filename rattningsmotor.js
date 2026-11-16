@@ -256,7 +256,11 @@ var Rattning = (function(){
     // 2NT shows exactly four spades; a new suit is natural and game-forcing
     // (5+ major or 4+ minor). The same natural GF principle applies after 2♠.
     if(reply==='2H'&&L.S===4){
-      return {exp:'2N',alt:[],why:'Exakt fyra spader efter Stayman 2♥: 2NT visar den andra fyrkortshögfärgen enligt Nordisk standard s. 4.',means:function(c){return c==='2N'?'Exakt fyra spader efter Stayman 2♥.':null},conv:'Stayman'};
+      var knownJoint=opener?hp+opener.hp:null;
+      if((opener&&knownJoint>=26)||(!opener&&hp+15>=26)){
+        return {exp:'3N',alt:[],why:'Exakt fyra spader efter Stayman 2♥ och minst 26 gemensamma honnörspoäng (eller garanterat minst 26 mot 1NT-minimum): 3NT.',means:function(c){return c==='3N'?'3NT visar fyra spader och utgångsstyrka efter Stayman 2♥.':null},conv:'Stayman'};
+      }
+      return NC('Exakt fyra spader efter Stayman 2♥ är visat. 2NT är invit och 3NT visar utgång, men den exakta styrkegränsen för att välja mellan pass/invit/utgång kan inte fastställas säkert med tillgänglig information.',function(c){if(c==='2N')return 'Invit med exakt fyra spader.';if(c==='3N')return 'Utgång med exakt fyra spader.';return null},'Stayman');
     }
     var naturalNew=[];
     if(reply==='2D'){
