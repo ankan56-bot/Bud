@@ -6,6 +6,7 @@ const Rattning = require('../rattningsmotor.js');
 
 function deal(N, E, S, W) { return { N, E, S, W }; }
 function state(hands, dealer, bids) { return { hands, dealer, bids }; }
+function rotateHiddenHands(hands) { return { N: hands.E, E: hands.W, S: hands.S, W: hands.N }; }
 
 const deal023 = deal(
   ['D8','D4','S13','C12','H9','D2','H4','S5','D10','D9','D11','C2','C5'],
@@ -100,6 +101,11 @@ function completeDealWithSouth(south) {
   const node = Rattning.nodeFor(st, 2);
   assert.equal(node.exp, '1N', '6 HP with a heart stopper qualifies for 1NT');
   assert.match(node.why, /6-10 hp.*håll/i);
+  const alternate = state(rotateHiddenHands(hands), 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  assert.equal(Rattning.nodeFor(alternate, 2).exp, node.exp,
+    'Live response must not depend on partner/opponents hidden cards');
 }
 
 // The same 6 HP balanced hand without a heart stopper must not bid 1NT.
@@ -183,6 +189,11 @@ function negativeDoubleDeal(south) {
   const node = Rattning.nodeFor(st, 2);
   assert.equal(node.exp, 'X');
   assert.match(node.why, /exakt fyra spader/i);
+  const alternate = state(rotateHiddenHands(hands), 'N', [
+    {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
+  ]);
+  assert.equal(Rattning.nodeFor(alternate, 2).exp, node.exp,
+    'Negative double must depend only on own hand and public auction');
 }
 
 // BridgePlus s. 91: after 1C–1S, a negative double shows at least four hearts.
