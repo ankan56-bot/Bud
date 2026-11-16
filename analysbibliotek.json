@@ -1,5 +1,5 @@
 {
-  "version": "0.6.32",
+  "version": "0.6.33",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -6854,6 +6854,75 @@
           "handProfile": {
             "opener": "15–17 hp, balanserad hand; har fullföljt spaderöverföringen med 2♠.",
             "responder": "Minst fem spader; 4NT är uttryckligen RKC med spader som trumf enligt s. 5."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n10",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC med spader som trumf efter Stayman har hittat 4-4 i högfärgerna.",
+          "analysis": "Efter 1NT–2♣–2♥ visar svarshandens 2NT fyra spader. Öppnaren har 4-4 i högfärgerna och visar spaderfit med 3♠ (minimum). Trumfen är nu fastställd; 4NT är RKC med spader som trumf enligt slamregeln på s. 7.",
+          "handProfile": {
+            "opener": "15–16 hp, 4-4 i högfärgerna.",
+            "responder": "2NT efter Stayman 2♥ visar fyra spader."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n11",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC med spader som trumf efter att öppnaren accepterat Stayman-inviten med 4♠.",
+          "analysis": "Svarshandens 2NT visar fyra spader. Öppnaren har 4-4 i högfärgerna och 17 hp och accepterar med 4♠ enligt s. 4. Spaderfit är etablerad; 4NT är RKC med spader som trumf enligt s. 7.",
+          "handProfile": {
+            "opener": "17 hp, 4-4 i högfärgerna.",
+            "responder": "2NT efter Stayman 2♥ visar fyra spader."
+          },
+          "branches": []
+        },
+        {
+          "id": "t43_n12",
+          "sequence": [
+            "1NT",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3NT",
+            "Pass",
+            "4♠",
+            "Pass",
+            "4NT"
+          ],
+          "meaning": "4NT är RKC med spader som trumf efter att öppnaren valt 4♠ på svarshandens 3NT.",
+          "analysis": "Nordisk standard s. 4 anger att svarshandens 3NT efter 2♥ visar fyra spader och att öppnaren kan bjuda 4♠ med 4-4 i högfärgerna. Spaderfit är etablerad; 4NT är RKC med spader som trumf enligt s. 7.",
+          "handProfile": {
+            "opener": "15–17 hp, 4-4 i högfärgerna.",
+            "responder": "3NT efter Stayman 2♥ visar fyra spader."
           },
           "branches": []
         }
