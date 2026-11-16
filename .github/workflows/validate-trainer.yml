@@ -40,7 +40,7 @@ jobs:
         run: |
           node - <<'NODE'
           const R = require('./rattningsmotor.js');
-          if (typeof R.judge !== 'function' || typeof R.nodeFor !== 'function' || typeof R.validateAuction !== 'function') {
+          if (typeof R.judge !== 'function' || typeof R.nodeFor !== 'function' || typeof R.validateAuction !== 'function' || typeof R.decideLive !== 'function') {
             throw new Error('Correction engine exports are incomplete');
           }
           const hand = ['S14','S13','S12','S11','S10','H14','H13','H12','H11','D14','D13','C14','C13'];
