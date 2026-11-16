@@ -1102,7 +1102,11 @@ var Rattning = (function(){
       var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
       var partnerHasFourAceAsk=lastCall.c==='4N'&&agreedNoTrumpAceAsk(prior,side(me));
       var partnerRkcReply=/^5[CDHS]$/.test(lastCall.c)&&prior.some(function(x){return x.s===me&&x.c==='4N'})&&!!rkcTrumpFromAuction(prior,side(me));
-      if(partnerHasGame&&!partnerHasRkcAsk&&!partnerHasFourAceAsk&&!partnerRkcReply)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
+      var partnerHasStaymanSpadeChoice=lastCall.c==='3N'&&
+        prior.some(function(x){return x.c==='1N'&&side(x.s)===side(me)})&&
+        prior.some(function(x){return x.c==='2C'&&side(x.s)===side(me)})&&
+        prior.some(function(x){return x.c==='2H'&&side(x.s)===side(me)});
+      if(partnerHasGame&&!partnerHasRkcAsk&&!partnerHasFourAceAsk&&!partnerRkcReply&&!partnerHasStaymanSpadeChoice)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
     }
 
     // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
