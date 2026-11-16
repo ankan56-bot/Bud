@@ -195,15 +195,15 @@ var Rattning = (function(){
     }
     else if(hp>=gl){
       if(!k){
-        // User-confirmed 25 HCP threshold for no-trump game.
-        // 1NT shows 15–17 HCP, so 10+ own HCP guarantees 25 with opener's minimum.
+        // Later user correction: no-trump game requires 26 combined HCP; 25 is invit level.
+        // 1NT shows 15–17 HCP, so 11+ own HCP guarantees 26 with opener's minimum.
         var jointMin=hp+15;
-        if(!opener&&jointMin>=25){
+        if(!opener&&jointMin>=26){
           exp='3N';
-          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 25 gemensamma hp. 3NT är slutbud.';
-        }else if(opener&&jointHp>=25){
+          why=hp+' egna hp plus minst 15 hp från 1NT-öppnaren: minst 26 gemensamma hp. 3NT är slutbud.';
+        }else if(opener&&jointHp>=26){
           exp='3N';
-          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 25-hp-gränsen för 3NT.';
+          why=hp+' egna hp och '+jointHp+' gemensamma hp: når den bekräftade 26-hp-gränsen för 3NT.';
         }else return NC('Paret når inte säkert 25 gemensamma hp för 3NT. Den naturliga 2NT-inviten saknar numeriskt styrkeintervall i källan; situationen lämnas ej täckt.',means,conv,true);
       }else return NC('Fortsättningen efter 2NT-öppning kräver ett separat verifierat styrkekriterium; ingen numerisk gräns antas.',means,conv,true);
       soft=false;
@@ -227,7 +227,7 @@ var Rattning = (function(){
         if(!k){
           // User explicitly accepted 25 HCP for no-trump game on 2026-11-14.
           if(!responder)return NC('2NT efter 1NT är en naturlig invit. Livebeslutet får inte läsa partnerns dolda hp; efter given accepteras med 3NT vid minst 25 gemensamma hp.',means,'1NT-system',true);
-          if(jointHp<25)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
+          if(jointHp<26)return {exp:'P',alt:[],why:jointHp+' gemensamma honnörspoäng: under 25-hp-gränsen för 3NT, avslår 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
           return {exp:'3N',alt:[],why:jointHp+' gemensamma honnörspoäng: når 25-hp-gränsen för 3NT och accepterar 2NT-inviten.',means:means,conv:'1NT-system',soft:false};
         }
         return {exp:'P',alt:[],why:'3NT är slutbud efter 2NT-öppning enligt Nordisk standard.',means:means,conv:'2NT-system'};
@@ -1097,7 +1097,7 @@ var Rattning = (function(){
         if(total>=threshold-4)return {exp:'3'+first,alt:[],why:fit+'-korts fit och '+total+' gemensamma spelpoäng: invit.',means:means,conv:'svar efter öppnarens återbud'};
         return {exp:'P',alt:[],why:fit+'-korts fit men '+total+' gemensamma spelpoäng: pass.',means:means,conv:'svar efter öppnarens återbud'};
       }
-      if(totalHcp>=25)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
+      if(totalHcp>=26)return {exp:'3N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: 3NT enligt 25-poängsgränsen.',means:means,conv:'svar efter öppnarens återbud'};
       if(totalHcp>=22)return {exp:'2N',alt:[],why:'Ingen tillräcklig fit. '+totalHcp+' gemensamma honnörspoäng: invit 2NT.',means:means,conv:'svar efter öppnarens återbud'};
       return {exp:'P',alt:[],why:'Ingen tillräcklig fit och under invitstyrka: pass.',means:means,conv:'svar efter öppnarens återbud'};
     }
