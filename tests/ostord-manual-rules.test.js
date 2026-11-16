@@ -89,10 +89,10 @@ function completeDealWithSouth(south) {
 // in the opponents' overcall suit.
 {
   const hands = completeDealWithSouth([
-    'S12','S8','S6','S4','S2',
+    'S12','S8','S5',
     'H13','H8','H5',
     'D11','D7','D4',
-    'C9','C3'
+    'C9','C7','C4','C2'
   ]);
   const st = state(hands, 'N', [
     {s:'N',c:'1D'}, {s:'E',c:'1H'}, {s:'S',c:'P'}
