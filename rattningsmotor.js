@@ -65,8 +65,7 @@ var Rattning = (function(){
       rkcNextStep=slam.rkcNextStep, slamProhibitionFromAuction=slam.slamProhibitionFromAuction;
   var ntResp=sang.ntResp, ntOpener=sang.ntOpener, stay2=sang.stay2, transfer2=sang.transfer2,
       ntOpenerInvit=sang.ntOpenerInvit, ntOpener3=sang.ntOpener3, ntOpener3NTChoice=sang.ntOpener3NTChoice;
-  var overcall=stord.overcall, respOvercall=stord.respOvercall, respDouble=stord.respDouble,
-      respAfter1NT=stord.respAfter1NT, responderSecondBid=stord.responderSecondBid;
+  var respAfter1NT=stord.respAfter1NT, responderSecondBid=stord.responderSecondBid;
 
   /* ––––– ÖPPNING ––––– */
   function openingNode(h, fourthHandAfterThreePasses){
