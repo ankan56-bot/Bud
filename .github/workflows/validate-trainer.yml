@@ -59,8 +59,6 @@ jobs:
         run: |
           node scripts/validate-analysis-library.js
           node tests/analysis-library-audit.test.js
-      - name: Run correction-engine regression tests
-        run: node tests/reverse-hps.test.js
       - name: Run undisturbed facit generator tests
         run: node tests/facitmotor.test.js
       - name: Test uncovered bidding log and deduplication
@@ -126,6 +124,9 @@ jobs:
       - name: Smoke test offline analysis engine
         run: |
           node - <<'NODE'
+
+      - name: Run correction-engine regression tests
+        run: node tests/reverse-hps.test.js
           const A = require('./analysmotor.js');
           const lib = require('./analysbibliotek.json');
           if (A.version !== '1.2.0') throw new Error('Unexpected analysis engine version');
