@@ -20,6 +20,8 @@
   var agreedNoTrumpAceAsk=deps.slam.agreedNoTrumpAceAsk;
   var agreedQuantitativeNoTrumpInvite=deps.slam.agreedQuantitativeNoTrumpInvite;
   var rkcReply=deps.slam.rkcReply, rkcNextStep=deps.slam.rkcNextStep;
+  var rkcQueenReply=deps.slam.rkcQueenReply, rkcSlamNextStep=deps.slam.rkcSlamNextStep;
+  var fourAceSlamNextStep=deps.slam.fourAceSlamNextStep;
   var ntResp=deps.sang.ntResp, ntOpener=deps.sang.ntOpener, stay2=deps.sang.stay2;
   var transfer2=deps.sang.transfer2, ntOpenerInvit=deps.sang.ntOpenerInvit;
   var ntOpener3=deps.sang.ntOpener3, ntOpener3NTChoice=deps.sang.ntOpener3NTChoice;
@@ -180,17 +182,28 @@
     for(var pai=prior.length-1;pai>=0;pai--)if(prior[pai].s===pt&&prior[pai].c==='4N'){partnerAskIndex=pai;break;}
     if(partnerAskIndex>=0){
       var afterPartnerAsk=prior.slice(partnerAskIndex+1).filter(function(x){return x.s===me&&isBid(x.c)});
+      var partnerAskTrump=rkcTrumpFromAuction(prior,side(me));
+      var partnerAskFour=agreedNoTrumpAceAsk(prior,side(me));
       if(!afterPartnerAsk.length){
-        var partnerAskTrump=rkcTrumpFromAuction(prior,side(me));
-        var partnerAskFour=agreedNoTrumpAceAsk(prior,side(me));
-        if(partnerAskTrump||partnerAskFour)
-          return rkcReply(h,partnerAskTrump);
+        if(partnerAskTrump||partnerAskFour)return rkcReply(h,partnerAskTrump);
         if(agreedQuantitativeNoTrumpInvite(prior,side(me)))
           return NC('Partnerns 4NT är en kvantitativ invit till 6NT efter 2NT-öppning, inte en essfråga. Öppnarens accept/pass-gräns är inte fastställd här; använd inte ess-/nyckelkortssvar.',null,'Kvantitativ sanginvit',true);
-        return NC('Partnerns 4NT har ingen fastställd trumf och sekvensen är inte en uttryckligen avtalad fyr-essfråga enligt Nordisk standard. Svaret lämnas ej täckt.');
+        return NC('Partnerns 4NT har ingen fastställd trumf och sekvensen är inte en uttryckligen avtalad fyr-essfråga enligt Nordisk standard. Svaret lämnas ej täckt.',null,'4NT',true);
       }
-      // Svarshanden har redan svarat; efter frågeställarens sangslutbud ska den passa.
-      if(b.c==='P')return {exp:'P',alt:[],why:'Pass efter att frågeställaren har fastställt sangslutbudet.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
+      if(partnerAskTrump&&(afterPartnerAsk[0].c==='5C'||afterPartnerAsk[0].c==='5D')){
+        var responseIndex=prior.indexOf(afterPartnerAsk[0]),queenAskIndex=-1;
+        for(var qai=responseIndex+1;qai<prior.length;qai++)
+          if(prior[qai].s===pt&&isBid(prior[qai].c)){queenAskIndex=qai;break;}
+        if(queenAskIndex>=0){
+          var expectedAsk=rkcNextStep(h,partnerAskTrump,afterPartnerAsk[0].c,prior.slice(0,responseIndex+1));
+          if(expectedAsk&&expectedAsk.exp===prior[queenAskIndex].c)
+            return rkcQueenReply(h,partnerAskTrump,prior);
+          return NC('Budet efter det dubbeltydiga 5-lågsvar matchar inte den verifierade lagliga trumfdamfrågan. Sekvensen lämnas ej täckt.',null,'RKC – trumfdamfråga',true);
+        }
+      }
+      // När frågeställaren har avslutat på 6- eller 7-nivån ska svarshanden passa.
+      if(b.c==='P'&&last&&/^[67][CDHSN]$/.test(last))
+        return {exp:'P',alt:[],why:'Pass efter att partnern har fastställt slamkontraktet.',means:function(c){return c==='P'?'Pass efter slutbud.':null},conv:'slam – slutbud'};
     }
     var myAskIndex=-1;
     for(var mai=prior.length-1;mai>=0;mai--)if(prior[mai].s===me&&prior[mai].c==='4N'){myAskIndex=mai;break;}
@@ -200,9 +213,26 @@
         var response=afterMyAsk[0].c;
         var myAskTrump=rkcTrumpFromAuction(prior,side(me));
         var myAskIsAgreed=myAskTrump||agreedNoTrumpAceAsk(prior,side(me));
-        if(!myAskIsAgreed)return NC('4NT-sekvensen är inte en verifierad essfråga enligt Nordisk standard; fortsättningen lämnas ej täckt.');
-        if(isBid(b.c) && /^([56][CDHSN])$/.test(b.c))return rkcNextStep(h,myAskTrump,response);
-        if(b.c==='P' && (last==='6N'||last==='7N'))return {exp:'P',alt:[],why:'Pass efter fastställt slutbud.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
+        if(!myAskIsAgreed)return NC('4NT-sekvensen är inte en verifierad essfråga enligt Nordisk standard; fortsättningen lämnas ej täckt.',null,'4NT',true);
+        if(!myAskTrump){
+          if(afterMyAsk.length===1)return fourAceSlamNextStep(h,response);
+        }else if(response==='5C'||response==='5D'){
+          if(afterMyAsk.length===1)return rkcNextStep(h,myAskTrump,response,prior);
+          var responseIndex=prior.indexOf(afterMyAsk[0]),queenReply=afterMyAsk[1]&&afterMyAsk[1].c;
+          if(queenReply){
+            var askIndex=-1;
+            for(var qi=responseIndex+1;qi<prior.length;qi++)
+              if(prior[qi].s===me&&isBid(prior[qi].c)){askIndex=qi;break;}
+            var expectedAsk=askIndex>=0?rkcNextStep(h,myAskTrump,response,prior.slice(0,responseIndex+1)):null;
+            if(expectedAsk&&expectedAsk.exp===prior[askIndex].c)
+              return rkcSlamNextStep(h,myAskTrump,response,queenReply);
+            return NC('Trumfdamfrågans sekvens kan inte verifieras mot Nordisk standard s. 7. Läget lämnas ej täckt.',null,'RKC – slamfortsättning',true);
+          }
+        }else{
+          return rkcSlamNextStep(h,myAskTrump,response,null);
+        }
+        if(b.c==='P'&&last&&/^[67][CDHSN]$/.test(last))
+          return {exp:'P',alt:[],why:'Pass efter fastställt slamkontrakt.',means:function(c){return c==='P'?'Pass efter slutbud.':null},conv:'slam – slutbud'};
       }
     }
 
