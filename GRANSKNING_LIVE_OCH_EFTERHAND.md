@@ -194,3 +194,10 @@ Jag har återskapat seed `202615834` från 100-givarsprovet och följt varje bes
 I just denna giv har öppnaren 4-4-4-1 och 3♥ är enligt nuvarande `reb1()` ett splinterbud: singelton i hjärter och minst fyra korts stöd i svarshandens ruter. Svarshandens 2♦ har därmed fått en fitbeskrivning, men `responderSecondBid()` har ingen uttrycklig gren för splinter. Den försöker i stället behandla öppnarens återbud som en naturlig andra färg/tvåfärgshand och lämnar beslutet ej täckt.
 
 Det här är en mer precis klassificering än den äldre korta beskrivningen i loggen. **Vi ska inte hitta på svar efter splinter.** Först måste den auktoritativa systemöverenskommelsen för svarshandens styrkeintervall, kontrollvisning och signoff efter splinter verifieras. Därefter kan vi lägga till en nodfamilj och separata tester.
+### 11.1 Systemstatus för splinter – inte verifierad överenskommelse
+
+En separat genomgång av tidigare projektdiskussioner visar att följande inte har bekräftats uttryckligen av användaren som systemregel: splinter med 13+ STP, splinter med 19–21 STP, och svarshandens fortsättning efter splinter (t.ex. 3M/4M, kontrollbud eller slamintresse). De beskrivningarna förekommer i tidigare assistentförslag och har därefter lagts in i delar av biblioteket/koden, men ska inte behandlas som auktoritativ Nordisk Standard utan verifiering.
+
+Det som är uttryckligen bekräftat i tidigare diskussion är **Stenberg 2NT efter 1M med 13+ HTP och minst fyra korts stöd**. Detta är en annan konvention och får inte användas som automatiskt styrkekrav för splinter.
+
+Nuvarande `reb1()` använder `hp>=13` i splintervillkoret, medan nodtexten beskriver 13+ STP. Det är dessutom en intern kod-/dokumentationskonflikt: funktionen kontrollerar HP, inte STP. Inga ändringar ska göras innan rätt splintervillkor och efterföljande budväg har verifierats mot den auktoritativa systemkällan.
