@@ -850,17 +850,17 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast hp.",
+          "meaning": "3NT är slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast hp.",
           "analysis": "Svarshanden når minst 25 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Svarshanden når minst 26 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
+            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
           }
         }
       ],
       "sourceStatus": "user_confirmed",
-      "sourceStatusNote": "26 combined HCP for 3NT is the later explicit user correction (2026-11-14); only HCP count in no-trump. The earlier 25-HCP approval was superseded."
+      "sourceStatusNote": "3NT använder användarens accepterade gräns 25 gemensamma honnörspoäng; i sang räknas endast HP. Den senare 26-hp-gränsen kom från ett assistentförslag och har inte användarbekräftats."
     },
     {
       "id": "T10_1H_ENKEL_HOJNING",
@@ -1332,17 +1332,17 @@
             "Pass",
             "3NT"
           ],
-          "meaning": "3NT är direkt slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast hp.",
+          "meaning": "3NT är slutbud när paret har minst 25 gemensamma honnörspoäng. I sang räknas endast hp.",
           "analysis": "Svarshanden når minst 25 gemensamma hp tillsammans med öppnarens 1NT-hand. Ingen fyrkortshögfärg ska undersökas med Stayman och ingen femkortshögfärg ska överföras. 3NT är slutbud i sang.",
           "branches": [],
           "handProfile": {
             "opener": "1NT = 15–17 hp och balanserad hand.",
-            "responder": "Svarshanden når minst 26 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
+            "responder": "Svarshanden når minst 25 gemensamma honnörspoäng tillsammans med öppnaren; endast hp räknas i sang."
           }
         }
       ],
       "sourceStatus": "user_confirmed",
-      "sourceStatusNote": "26 combined HCP for 3NT is the later explicit user correction (2026-11-14); only HCP count in no-trump. The earlier 25-HCP approval was superseded."
+      "sourceStatusNote": "3NT använder användarens accepterade gräns 25 gemensamma honnörspoäng; i sang räknas endast HP. Den senare 26-hp-gränsen kom från ett assistentförslag och har inte användarbekräftats."
     },
     {
       "id": "T19",
