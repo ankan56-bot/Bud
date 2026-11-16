@@ -80,6 +80,20 @@ const openerWithoutThreeHearts=fill(['S14','S13','S12','D14','D13','D2','D3','C2
 assert.equal(live('N',afterTransfer3NTChoice,openerWithoutThreeHearts).exp,'P',
  'opener passes 3NT game-choice bid without 3+ hearts');
 
+// The 2♠ relay's later choices are live-safe: each is based on the
+// acting player's own minor-suit lengths, not partner's hidden cards.
+const relay2NTAuction=[
+ {s:'N',c:'1N'},{s:'E',c:'P'},
+ {s:'S',c:'2S'},{s:'W',c:'P'},
+ {s:'N',c:'2N'},{s:'E',c:'P'}
+];
+const relayResponderClubs=fill(['C13','C12','C11','C10','C2','D13','D2','D3','H2','H3','H4','S2','S3']);
+assert.equal(live('S',relay2NTAuction,relayResponderClubs).exp,'3C',
+ 'after 2NT responder selects the longer clubs as signoff');
+const relayOpenerAuction=relay2NTAuction.concat([{s:'S',c:'3C'},{s:'W',c:'P'}]);
+assert.equal(live('N',relayOpenerAuction,openerClubsLonger).exp,'P',
+ 'opener passes after responder signs off in 3C');
+
 const naturalInvite=[
  {s:'N',c:'1N'},{s:'E',c:'P'},
  {s:'S',c:'2N'},{s:'W',c:'P'}
