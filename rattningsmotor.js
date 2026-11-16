@@ -207,7 +207,7 @@ var Rattning = (function(){
       }else{exp=k?n2:'3N';why=hp+' hp och '+(k?'tillräcklig styrka efter 2NT-öppning':jointHp+' gemensamma honnörspoäng')+': 3NT.';}
       soft=false
     }
-    else{exp='P';why=hp+' hp utan färg att visa: pass.'}
+    else return NC('Svarshanden saknar de uttryckliga färgprofilerna för Stayman, överföring eller lågfärgsrelä. Pass med dåliga kort är en kvalitativ möjlighet, men Nordisk standard s. 4 anger ingen numerisk gräns för när pass ska väljas; handen lämnas ej täckt.',means,conv,true);
     return {exp:exp,alt:alt,why:why,means:means,conv:conv,soft:soft};
   }
   function ntOpener(h,k,r,responderCards){
