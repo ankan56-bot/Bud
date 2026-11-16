@@ -814,3 +814,8 @@ Detta är en separat strategisk slamspärr; vanliga utgångsbud kan fortfarande 
 - Ett faktiskt 6- eller 7-nivåbud i dessa lägen markeras fel. Om råmotorn annars skulle rekommendera slam returneras inte ett påhittat alternativ; positionen markeras ej täckt.
 - Upplysningsdubbling är ännu inte kopplad till slamspärren. Användarens 13 HP-exempel behöver jämkas med att nuvarande motortext anger 12+ HP för upplysningsdubbling. Exakt dolda HP får inte användas i livebeslut.
 - Rättningsmotorn är nu version 7.8. Sex handbaserade källregeltester och tre auktionstester för slamspärren är tillagda i tests/ostord-manual-rules.test.js.
+### Avgränsning av BridgePlus-svar efter öppning (2026-11-16)
+
+BridgePlus-reglerna för svar när **vår sida har öppnat och motståndarna klivit in** har separerats från svar när **motståndarna öppnat och vår partner klivit in**. Den senare situationen behåller sina tidigare styrke- och färglängdsregler. Detta fångades av reverse-HPS-regressionen och är nu verifierat.
+
+Överlapp som källan inte prioriterar lämnas ej täckta: 1NT kontra ny femkortshögfärg, stöd kontra ny färg samt negativ dubbling kontra naturligt 2♥ efter 1♠-inkliv med fem eller fler hjärter. Testerna kontrollerar också att 1NT- och negativ-dubblingsbeslut inte ändras när partnerns och motståndarnas dolda händer byts.
