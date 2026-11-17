@@ -123,10 +123,16 @@ test("one honor plus two of 10-9-8 qualifies as a good weak-two suit", () => {
   }
 });
 
-test("a six-card club suit is not treated as a weak two opening", () => {
+test("a qualifying six-card club suit remains uncovered because 2C is strong", () => {
   const opener = weakTwoHand("C");
-  const hands = completeDeal(opener,fillerHand(opener));
-  const result = node(hands,[{s:"N",c:"P"}],0);
+  const result = node(completeDeal(opener,fillerHand(opener)),[{s:"N",c:"2C"}],0);
+  assert.equal(result.exp,null);
+  assert.match(result.why,/alternativ spärrnivå.*inte fastställd/i);
+});
+
+test("a six-card club suit with no quality criterion does not open", () => {
+  const opener = poorQualityWeakTwoHand("C");
+  const result = node(completeDeal(opener,fillerHand(opener)),[{s:"N",c:"P"}],0);
   assert.equal(result.exp,"P");
 });
 
