@@ -7,7 +7,7 @@ Källa: **Nordisk standard, 2012-08-22**, s. 2–3 i användarens PDF. Ingen ext
 - `trumfstod.js` är huvudmodul för stödvisningar efter 1 i färg och öppningshandens andra bud när svarshanden visat en färg.
 - `stenberg.js` är en återanvänd special-/undermodul för Stenberg 2NT. Stenbergreglerna kopieras inte till huvudmodulen.
 - Befintliga hög- och lågfärgsmoduler fortsätter att hantera övriga svar och återbud. Trumfstödslagret dirigerar till rätt modul.
-- `budbeslut.js` använder trumfstödslagret för svar på 1 i färg, öppnarens återbud och svarshandens fortsättning efter Stenberg.
+- `budbeslut.js` skickar samtliga svar på 1 i färg genom trumfstödslagret, som avgör mellan splinter, Stenberg och vanliga färgsvar. Öppnarens återbud och svarshandens fortsättning efter Stenberg går också via huvudmodulen; budroutern har ingen direkt Stenbergkoppling.
 - `rattningsmotor.js` skapar modulen och injicerar dess beroenden. `main` är orörd.
 
 ## Kartläggning mot PDF
@@ -50,6 +50,7 @@ Kända regler och numeriska gränser ska rättas som systemregler. Endast situat
 ## Tester och status
 
 - `tests/trumfstod.test.js`: kontrollerar modulgränsen, routing till Stenberg och hög-/lågfärgsmodulerna, stödbudsklassificering samt dubbelhopp med renons och loggning av flera renoncer.
-- `tests/stenberg-2nt.test.js`: befintliga Stenbergregressioner.
+- `tests/stenberg-2nt.test.js`: Stenbergregressioner inklusive 100 deterministiska händer med 4+ hjärterstöd, 13+ htp och utan sidofärgsrenons. Renons med 4+ stöd hanteras före Stenberg som splinter enligt PDF:ens dubbelhoppsregel.
 - Nya tester: faktiska poängberäkningar för 4♥- och 4♣-spärrhöjningar, svarshandens 2-/3-/4-nivåer, öppningshandens 12–16/17–19/20+ htp-stöd och routing av Stenberg inklusive fortsättningar.
 - Kvar att verifiera: full testsvit och givbaserade gränstester för samtliga 2-/3-nivåer, spärrhöjningarnas maxgränser och dubbelhopp med renons.
+- Senaste körningen passerade Stenbergregressionerna, trumfstödmodultesterna och den breda ostörda regressionskorpusen. Den stannade därefter på det redan kända, separata `reverse-hps.test.js`-felet (förväntat 15, faktiskt 13); detta är inte ett trumfstödsfel. En ny körning behövs efter den senaste routerförenklingen.
