@@ -133,3 +133,28 @@ test('page 18: 4♣ Splinter is not accepted outside 16–17 hp', () => {
   const node = Rattning.nodeFor(st, 8);
   assert.notEqual(node && node.exp, '4C');
 });
+
+
+test('page 18: 1♥–1♠; 2♦–2NT is an 11–12 hp invite', () => {
+  const opener = ['C14','C13','C12','D14','D13','H9','H8','H7','H6','S9','S8','S7','D8'];
+  const responder = ['S14','S13','S12','S11','H11','C9','C8','C7','D9','D8','D7','H9','H8'];
+  const st = state(opener, [
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},
+    {s:'N',c:'3N'}
+  ], responder);
+  const node = expectBid(st, 8, '3N');
+  assert.equal(node.conv, 'ÖH:s tredje bud efter 2NT-invit');
+});
+
+test('page 18: 2NT invite branch requires responder 11–12 hp', () => {
+  const opener = ['C14','C13','C12','D14','D13','H9','H8','H7','H6','S9','S8','S7','D8'];
+  const responder = ['S14','S13','S12','S11','H13','C9','C8','C7','D9','D8','D7','H9','H8'];
+  const st = state(opener, [
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},
+    {s:'N',c:'3N'}
+  ], responder);
+  const node = Rattning.nodeFor(st, 8);
+  assert.notEqual(node && node.exp, '3N');
+});
