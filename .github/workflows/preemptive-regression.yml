@@ -1,0 +1,33 @@
+name: Preemptive opening regression
+
+on:
+  push:
+    branches:
+      - work/theme-dataset-analysis
+    paths:
+      - "rattningsmotor.js"
+      - "analysbibliotek.json"
+      - "testdata/weak-two.test.js"
+      - "testdata/preemptive-openings-audit.md"
+      - ".github/workflows/preemptive-regression.yml"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "rattningsmotor.js"
+      - "analysbibliotek.json"
+      - "testdata/weak-two.test.js"
+      - "testdata/preemptive-openings-audit.md"
+
+jobs:
+  preemptive-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run weak-two and preemptive-opening regression tests
+        run: node --test testdata/weak-two.test.js
