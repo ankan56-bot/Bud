@@ -29,19 +29,18 @@
     var htp=typeof handHps==='function'?handHps(hand,fit>=4?openingSuit:null):0;
     var voids=hand&&hand.L?SU.filter(function(s){return s!==openingSuit&&hand.L[s]===0;}):[];
 
+    // Vid lågfärgsöppning ska en egen 4+ högfärg visas först,
+    // även när handen också innehåller en eller flera renoncer.
+    var hasMajor= !maj(openingSuit)&&SU.some(function(s){return maj(s)&&hand.L[s]>=4;});
     // PDF s. 2: dubbelhopp i ny färg visar renons, 4+ stöd och 13+ htp.
     // Om flera renoncer finns anger källan ingen prioritet; logga i stället.
-    if(fit>=4&&htp>=13&&voids.length>1)
+    if(!hasMajor&&fit>=4&&htp>=13&&voids.length>1)
       return NC('Svarshanden har flera renoncer med 4+ stöd och 13+ htp. Nordisk standard anger dubbelhopp i renonsfärg men inte prioritet mellan flera renoncer; sekvensen lämnas EJ TÄCKT.',null,'trumfstöd',true);
-    if(fit>=4&&htp>=13&&voids.length===1){
+    if(!hasMajor&&fit>=4&&htp>=13&&voids.length===1){
       var voidSuit=voids[0];
-      // Vid lågfärgsöppning ska en egen 4+ högfärg visas först.
-      var hasMajor= !maj(openingSuit)&&SU.some(function(s){return maj(s)&&hand.L[s]>=4;});
-      if(!hasMajor){
         var first=lowest(voidSuit,opening),doubleJump=first?(lv(first)+2)+voidSuit:null;
         if(doubleJump&&lv(doubleJump)<=7)
           return {exp:doubleJump,alt:[],why:'Renons i '+({C:'♣',D:'♦',H:'♥',S:'♠'}[voidSuit])+', 4+ stöd i öppningsfärgen och '+htp+' htp: dubbelhopp i renonsfärgen enligt Nordisk standard s. 2.',means:function(c){return c===doubleJump?'Dubbelhopp: renons i färgen, 4+ stöd och 13+ htp.':null},conv:'trumfstöd – renons'};
-      }
     }
 
     var special=stenberg.responder(hand,opening);
