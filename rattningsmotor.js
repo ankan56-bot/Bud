@@ -38,7 +38,8 @@ var Rattning = (function(){
     o.stop=function(s){return o.has(s,14)||(o.has(s,13)&&L[s]>=2)||(o.has(s,12)&&L[s]>=3)||(o.has(s,11)&&L[s]>=4)};
     o.good=function(s){var t=top[s],c=[14,13,12].filter(function(n){return t.indexOf(n)>=0}).length,d=[14,13,12,11,10].filter(function(n){return t.indexOf(n)>=0}).length;return c>=2||d>=3};
     o.goodForEleven=function(s){var n=L[s],hon=[14,13,12,11].filter(function(r){return top[s].indexOf(r)>=0}).length;return (n===6&&hon>=3)||(n===7&&hon>=2)};
-    o.goodForWeakTwo=function(s){var n=L[s],hon=[14,13,12,11].filter(function(r){return top[s].indexOf(r)>=0}).length,mid=[10,9,8].filter(function(r){return top[s].indexOf(r)>=0}).length;return n===6&&(hon>=2||(hon>=1&&mid>=2))};
+    o.suitQualityCriteria=function(s){var hon=[14,13,12,11].filter(function(r){return top[s].indexOf(r)>=0}).length,mid=[10,9,8].filter(function(r){return top[s].indexOf(r)>=0}).length;return (hon>=2?1:0)+(hon>=1&&mid>=2?1:0)};
+    o.goodForWeakTwo=function(s){return L[s]===6&&o.suitQualityCriteria(s)>=1};
     o.longest=function(){return Math.max(L.C,L.D,L.H,L.S)};
     o.singles=function(){return SU.filter(function(s){return L[s]<=1})};
     return o;
@@ -98,22 +99,48 @@ var Rattning = (function(){
           ?'11 hp och sexkortsfärg i ♦/♥/♠: PDF:en anger öppning 1 i färgen i stället för svag tvåa.'
           :'11 hp med bra 5+ färg: öppna 1 i färgen; pass är också möjligt.';
     }
-    else if(hp>=6&&hp<=10&&m>=6){
-      if(m===6&&pick!=='C'&&h.goodForWeakTwo(pick)){exp='2'+pick;why='6-10 hp, exakt 6 kort och bra färg: minst 2 honnörer eller minst 1 honnör samt minst 2 av 10-9-8.'}
-      else if(m===6&&pick!=='C'){exp='P';why='6-10 hp och exakt 6 kort men färgen uppfyller inte kvalitetskravet för svag tvåa: minst 2 honnörer eller 1 honnör + 2 av 10-9-8.'}
-      else if(m===6){exp='P';why='Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass.'}
-      else if(m===7){exp='3'+pick;alt=['4'+pick];why='7-korts färg med 6-10 hp: spärrbud 3 i färg.'}
-      else {exp='4'+pick;alt=['3'+pick];why='8-korts färg med 6-10 hp: spärrbud 4 i färg.'}
+    else if(hp>=6&&hp<=10&&m>=6&&m<=8){
+      var quality=h.suitQualityCriteria(pick);
+      if(m===6&&pick!=='C'&&quality>=1){
+        exp='2'+pick;why='6-10 hp, exakt 6 kort och minst ett av de två kriterierna för bra färg: (1) minst 2 honnörer, eller (2) minst 1 honnör och minst 2 av 10-9-8.';
+      }
+      else if(m===6&&pick==='C'){
+        exp='P';why='6-korts ♣ öppnas inte svagt på 2♣ eftersom 2♣ är starköppning; sex kort räcker inte för spärröppning på 3-nivån.';
+      }
+      else if(m===6){
+        exp='P';why='6-10 hp och sexkortsfärgen uppfyller inget av kriterierna för bra färg; ingen svag tvåöppning.';
+      }
+      else if(m===7&&quality===0){
+        exp='P';why='7-kortsfärgen uppfyller inget av de två kriterierna för bra färg; ingen spärröppning.';
+      }
+      else if(m===7&&quality===1&&pick!=='C'){
+        exp='2'+pick;why='7 kort och 6-10 hp: ett av två kvalitetskriterier uppfyllt, därför öppning på 2-nivån.';
+      }
+      else if(m===7){
+        exp='3'+pick;why='7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån.';
+      }
+      else if(m===8&&quality===0){
+        exp='P';why='8-kortsfärgen uppfyller inget av de två kriterierna för bra färg; ingen spärröppning.';
+      }
+      else if(m===8&&quality===1){
+        exp='3'+pick;why='8 kort och 6-10 hp: ett av två kvalitetskriterier uppfyllt, därför spärröppning på 3-nivån.';
+      }
+      else{
+        exp='4'+pick;why='8 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, därför spärröppning på 4-nivån.';
+      }
     }
-    else{exp='P';why=hp+' hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand.'}
+    else if(hp>=6&&hp<=10&&m>=9){
+      exp=null;why='9+ kort i färg med 6-10 hp ligger utanför den definierade spärrtrappan 6-8 kort och loggas som ej täckt.';
+    }
+    else{exp='P';why=hp+' hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand.'}
     return {exp:exp,alt:alt,why:why,conv:'öppning',means:function(c){
       if(c==='P')return 'Pass: under 12 hp (11 hp kräver bra färg), ingen spärrhand eller för dålig färg för svag tvåa.';
       if(c==='1N')return '15-17 hp, balanserad (även 5-korts högfärg).';
       if(c==='2C')return 'Utgångskrav, eller 22-24 hp balanserad.';
       if(c==='2N')return '20-21 hp, balanserad.';
-      if(/^2[DHS]$/.test(c))return '6-10 hp, exakt 6-korts '+SYM[c[1]]+'.';
-      if(/^3[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 7-korts färg.';
-      if(/^4[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 8-korts färg.';
+      if(/^2[DHS]$/.test(c))return '6-10 hp, 6 kort med minst ett kvalitetskriterium eller 7 kort med exakt ett kvalitetskriterium i färgen '+SYM[c[1]]+'.';
+      if(/^3[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp: 7 kort med båda kvalitetskriterierna eller 8 kort med ett kriterium; 7-korts ♣ tvingas till 3♣ eftersom 2♣ är starköppning.';
+      if(/^4[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 8 kort med båda kvalitetskriterierna för bra färg.';
       if(/^1[CDHS]$/.test(c))return '12-19 hp, 4+ färg; 11 hp enligt 6-kortsregeln för ♦/♥/♠ eller med bra 5+ färg.';
       return null}};
   }
@@ -1529,7 +1556,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.8'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.9'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
