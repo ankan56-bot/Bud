@@ -102,7 +102,7 @@ Dessa fortsättningar avviker från Nordisk Standards exakta budbetydelser. Nord
 4. **3-stöd:** Lathunden nämner trestöd plus singelton i Plus-material. NS:s standardstöd kräver 4+ kort. Ingen generell 3-stödsregel.
 5. **Spärrhöjning:** NS:s 1 lå–4 lå och 1 hö–4 hö har olika maxstyrka (9 respektive 12 htp) och kräver bra stöd/svitad hand. Kvalitativa villkor får inte förenklas till enbart poänggräns.
 6. **Renons/splinter:** NS beskriver dubbelhopp i ny färg för renons, 4+ stöd och 13+ htp. Användaren har dock beslutat att splinter ska tas bort ur den nuvarande budgivningen tills grundmotorn är stabil. Därför är splinter inaktiv i runtime och ska inte rekommenderas eller tolkas; Stenberg 2NT påverkas inte.
-7. **Sök högfärg:** med lågfärgsstöd och 4+ högfärg visas högfärgen först. Denna prioritet går före att välja en splinterrenons.
+7. **Sök högfärg:** med lågfärgsstöd och 4+ högfärg visas högfärgen först. Splinter är för närvarande pausad och utgör därför ingen aktiv prioriteringsgren.
 
 ## 7. Kontroll av befintlig kod
 
