@@ -52,7 +52,7 @@ Alla ej täckta sekvenser ska sparas i expertloggen. Inga regler för störd bud
 
 ## Regression
 
-`testdata/weak-two.test.js` innehåller 34 regressionstester. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
+`testdata/weak-two.test.js` innehåller 35 regressionstester. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
 
 CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
 
@@ -65,8 +65,8 @@ CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
   - 4♥/4♠: minst 8-korts fit och 26 gemensamma spelpoäng.
   - 5♣/5♦: minst 8-korts fit och 28 gemensamma spelpoäng.
   - Lillslam: minst 33 gemensamma poäng; i färg krävs minst 8-korts fit och högst ett saknat ess.
-  - Storslam: alla fyra ess; i färg även trumfkungen.
+  - Storslam: minst 33 gemensamma poäng och alla fyra ess; i färg även trumfkungen.
 - Kontrollen är fristående från konventionsrättningen: ett bud kan vara korrekt tolkat som slutbud men ändå fel styrkemässigt.
 - Gemensam poängfunktion korrigerad till +1 vid 9 trumf och +2 vid 10+ trumf, enligt tidigare fastställd värdering.
 - Fem nya regressionstester täcker 10-korts trumfbonus, otillräcklig styrka för 3NT, 4♥ och 6♥.
-- Motor 9.5 och 34 tester incheckade. Testkörning/CI är ännu inte verifierad.
+- Motor 9.5 och 35 tester incheckade. Testkörning/CI är ännu inte verifierad.
