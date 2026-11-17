@@ -150,7 +150,7 @@ assert.deepEqual(
   'Only the explicitly documented source-gap cases may remain uncovered.'
 );
 for(const item of report.uncovered){
-  assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna|beskrivs inte i dokumentet|finns inte specificerad|ingen prioritet/i,
+  assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna|beskrivs inte i dokumentet|finns inte specificerad|ingen prioritet|övrig prioritet saknas/i,
     'Every uncovered case must state the precise source gap: '+item.dealId);
 }
 // The 22 remaining positions are explicit source gaps (including five newly exposed
