@@ -43,7 +43,7 @@ const responder8WithHeartFit = [
 test("1♦–1NT: balanced 18 hp opener rebids 2NT; 8 hp responder accepts 3NT", () => {
   const hands = completeDeal(
     [...cards("D","AKQJ"), ...cards("H","A23"), ...cards("S","K23"), ...cards("C","J23")],
-    [...cards("C","K234"), ...cards("D","567"), ...cards("H","K89"), ...cards("S","Q89")]
+    [...cards("C","K456"), ...cards("D","567"), ...cards("H","K89"), ...cards("S","Q89")]
   );
   const bids = auction("2N","1D");
   const opener = node(hands,bids,4);
@@ -80,7 +80,7 @@ test("1♦ opener with 6 diamonds and 15 htp rebids at the 2-level, not 3-level"
     ...cards("S","K2"), ...cards("C","45")
   ];
   const responder = [
-    ...cards("C","K234"), ...cards("D","567"),
+    ...cards("C","K236"), ...cards("D","567"),
     ...cards("H","K89"), ...cards("S","Q89")
   ];
   const hands = completeDeal(opener,responder);
