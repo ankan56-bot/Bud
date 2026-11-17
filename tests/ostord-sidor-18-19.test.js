@@ -113,7 +113,7 @@ test('page 19: 3NT after fourth-suit continuation is rejected above 17 hp', () =
 
 
 test('page 18: 4♣ Splinter is accepted with 16–17 hp', () => {
-  const hand = ['C14','C13','C9','C8','D14','D13','D9','H14','H9','H8','S12','S9','S8'];
+  const hand = ['C14','C13','C9','C8','D14','D9','D8','H13','H9','H8','S12','S9','S8'];
   const st = state(hand, [
     {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
     {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
