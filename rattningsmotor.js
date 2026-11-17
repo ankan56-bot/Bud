@@ -160,7 +160,7 @@ var Rattning = (function(){
     var node;
     try{node=nodeForRaw(st,bids.length-1);}
     catch(e){return NC('Livebeslut stoppades säkert: '+e.message,'','live');}
-    if(!node||!node.exp){
+    if(!node||!node.exp||node.sourceGap){
       if(typeof window!=='undefined'&&window.EjTacktaLogg){
         var ownHands={};ownHands[seat]=ownHand.slice();
         window.EjTacktaLogg.record({
@@ -203,8 +203,13 @@ var Rattning = (function(){
     var highestBefore=null;
     if(st&&st.bids)st.bids.slice(0,i).forEach(function(x){if(x&&isBid(x.c)&&(!highestBefore||rk(x.c)>rk(highestBefore)))highestBefore=x.c;});
     var rawIllegal=!!(node&&node.exp&&isBid(node.exp)&&highestBefore&&rk(node.exp)<=rk(highestBefore));
+    // A Stenberg singleton-priority gap may still have a safe after-deal
+    // game conclusion: the fit and partnership game threshold are independent
+    // of which singleton the opener should have shown. Keep the source gap.
+    var stenbergGameRescue=!!(node&&node.sourceGap&&node.conv&&node.conv.indexOf('Stenberg')===0&&
+      st&&st.bids&&st.bids.slice(0,i).some(function(x){return x&&x.c==='2N'&&side(x.s)===side(st.bids[i].s);}));
     if(st&&st.bids&&st.bids[i]&&!hasRkcContext&&priorPartnershipCalls>=2&&
-       (!node||(!node.exp&&!node.sourceGap)||node.exp==='P'||rawIllegal)){
+       (!node||(!node.exp&&!node.sourceGap)||node.exp==='P'||rawIllegal||stenbergGameRescue)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
         if(st.bids[ci]&&isBid(st.bids[ci].c)){
@@ -222,7 +227,9 @@ var Rattning = (function(){
           why:missed.why,
           means:function(c){return c===missed.target?'Utgång eller slam enligt partnerskapets poänggränser.':null},
           conv:'missad utgång/slam',
-          soft:false
+          soft:false,
+          sourceGap:!!(node&&node.sourceGap),
+          sourceGapWhy:node&&node.sourceGap?node.why:null
         };
       }
     }
