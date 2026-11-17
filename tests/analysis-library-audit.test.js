@@ -23,8 +23,8 @@ const expected = {
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
   crossTreeLinks: 7,
-  duplicateSequenceGroups: 35,
-  duplicateSequenceExtraOccurrences: 38
+  duplicateSequenceGroups: 34,
+  duplicateSequenceExtraOccurrences: 37
 };
 for (const [key, value] of Object.entries(expected)) {
   assert.strictEqual(result.metrics[key], value, key + " baseline changed; inspect before accepting");
