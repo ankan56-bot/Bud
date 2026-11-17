@@ -39,6 +39,13 @@ function fillerHand(usedHand) {
 function node(hands, bids, index) {
   return Rattning.nodeFor({ hands, dealer:"N", bids }, index);
 }
+function lowPointHand(usedHand) {
+  const deck=["S","H","D","C"].flatMap(suit=>
+    Array.from({length:13},(_,i)=>suit+(14-i))
+  ).sort((a,b)=>Number(a.slice(1))-Number(b.slice(1)));
+  return deck.filter(card=>!usedHand.includes(card)).slice(0,13);
+}
+
 function weakTwoHand(suit, ranks="AK9876") {
   const others = ["S","H","D","C"].filter(s => s !== suit);
   let remaining = 13 - ranks.length;
@@ -472,7 +479,7 @@ test("ten-card trump fit receives the agreed +2 trump-length bonus", () => {
 
 test("a direct 4H final contract after a weak two is rejected below 26 playing points", () => {
   const opener=weakTwoHand("H");
-  const responder=fillerHand(opener);
+  const responder=lowPointHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"4H"},
@@ -486,7 +493,7 @@ test("a direct 4H final contract after a weak two is rejected below 26 playing p
 
 test("a direct 3NT final contract after a weak two is rejected below 26 HCP", () => {
   const opener=weakTwoHand("H");
-  const responder=fillerHand(opener);
+  const responder=lowPointHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3N"},
@@ -500,7 +507,7 @@ test("a direct 3NT final contract after a weak two is rejected below 26 HCP", ()
 
 test("a direct six-level contract after a weak two requires the common 33-point slam threshold", () => {
   const opener=weakTwoHand("H");
-  const responder=fillerHand(opener);
+  const responder=lowPointHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"6H"},
@@ -515,7 +522,7 @@ test("a direct six-level contract after a weak two requires the common 33-point 
 
 test("a direct grand-slam contract after a weak two also requires the common 33-point threshold", () => {
   const opener=weakTwoHand("H");
-  const responder=fillerHand(opener);
+  const responder=lowPointHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"7N"},
