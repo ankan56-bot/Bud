@@ -461,10 +461,7 @@ test("ten-card trump fit receives the agreed +2 trump-length bonus", () => {
 
 test("a direct 4H final contract after a weak two is rejected below 26 playing points", () => {
   const opener=weakTwoHand("H");
-  const responder=[
-    ...cards("H","Q2"), ...cards("S","234"),
-    ...cards("D","456"), ...cards("C","23456")
-  ];
+  const responder=fillerHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"4H"},
