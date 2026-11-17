@@ -75,6 +75,8 @@ jobs:
         run: node tests/ej-tackta-logg.test.js
       - name: Characterize known live hidden-hand dependency
         run: node tests/known-live-hidden-hand-leak.test.js
+      - name: Verify integrated bots use information-safe live decisions
+        run: node tests/bot-live-information-boundary.test.js
       - name: Test analysis-node collision diagnostics
         run: node tests/analysis-matcher-collisions.test.js
       - name: Validate supplementary bidding logic
