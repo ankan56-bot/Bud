@@ -126,6 +126,16 @@ jobs:
           node tests/ostord-400.test.js
           node tests/ostord-coverage.test.js
           node tests/ostord-manual-rules.test.js
+      - name: Run fresh 500-deal undisturbed four-seat audit
+        run: node tests/ostord-random-500.test.js
+      - name: Preserve random audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ostord-random-500-audit
+          path: testdata/ostord_random_500_latest.json
+          if-no-files-found: warn
+
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
