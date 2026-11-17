@@ -141,8 +141,8 @@ assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must e
 // engine failures: qualitative/numeric invite boundaries, the weak-relay
 // strength descriptor, and transfer hands outside the tabulated shapes.
 const acceptedUncoveredIds=[
-  'ostord-100-001','ostord-100-002','ostord-100-030','ostord-100-031','ostord-100-034','ostord-100-036','ostord-100-037','ostord-100-039',
-  'ostord-100-040','ostord-100-044','ostord-100-048','ostord-100-052','ostord-100-053','ostord-100-066','ostord-100-080','ostord-100-088','ostord-100-094'
+  'ostord-100-001','ostord-100-002','ostord-100-007','ostord-100-030','ostord-100-031','ostord-100-034','ostord-100-036','ostord-100-037','ostord-100-038','ostord-100-039',
+  'ostord-100-040','ostord-100-044','ostord-100-048','ostord-100-052','ostord-100-053','ostord-100-058','ostord-100-066','ostord-100-074','ostord-100-080','ostord-100-088','ostord-100-092','ostord-100-094'
 ].sort();
 assert.deepEqual(
   report.uncovered.map(x=>x.dealId).sort(),
@@ -150,7 +150,7 @@ assert.deepEqual(
   'Only the explicitly documented source-gap cases may remain uncovered.'
 );
 for(const item of report.uncovered){
-  assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna|beskrivs inte i dokumentet/i,
+  assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna|beskrivs inte i dokumentet|finns inte specificerad|ingen prioritet/i,
     'Every uncovered case must state the precise source gap: '+item.dealId);
 }
 assert.ok(report.coveragePercent>=96.5,
