@@ -160,7 +160,7 @@
          means:function(b){return b==='P'?'6–10 hp utan passande stöd eller egen lång sidofärg.':null},conv:'svarshandens 2:a bud'};
      return NC('Svarshandens andra bud efter öppnarens 6+ lågfärg passar inte någon av de tydligt angivna profilerna. Sekvensen sparas för expertgranskning.',function(){return null},'svarshandens 2:a bud',true);
    }
-   return common.responderSecondBid(hand,opening,response,rebid,openerHandCards);
+   return null;
  }
 
  function openerThirdBid(hand,opening,response,rebid,responderSecond,partnerHandCards){
