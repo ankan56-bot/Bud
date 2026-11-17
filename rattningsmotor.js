@@ -1141,10 +1141,26 @@ var Rattning = (function(){
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
       var s1=ours[0].c[1], s2=ours[1].c[1];
 
-      if(d===3 && !opener && ours[2].c === '2'+s1 && isBid(b.c) && b.c[1]!==s1 && b.c[1]!==s2 && b.c[1]!=='N'){
-        if(hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg (konstgjort): 13+ hp, utgångskrav. Berättar inget om färgen.',means:function(c){return c===b.c?'Fjärde färg (utgångskrav).':null},conv:'Fjärde färg'};
-        if(hp>=10) return {exp:b.c,alt:[],why:'Tredje färg: 10+ hp, rondkrav. Kan bjudas med 3 kort om det är ett håll.',means:function(c){return c===b.c?'Tredje färg (rondkrav).':null},conv:'Tredje färg'};
-        return NC('Tredje färg kräver minst 10 hp.', null, 'Tredje färg');
+      // Sidorna 18–19: tredje respektive fjärde färg bestäms av
+      // hur många olika färger som redan visats – inte av poängstyrkan.
+      // Tredje färg = 10+ hp och rondkrav; fjärde färg = 13+ hp
+      // och utgångskrav. Den nya färgen får inte vara sang eller redan
+      // bjuden av någon i paret.
+      if(d===3 && !opener && isBid(b.c) && b.c[1]!=='N'){
+        var auctionSuits=[];
+        [ours[0].c,ours[1].c,ours[2].c].forEach(function(call){
+          if(isBid(call)&&SU.indexOf(st_(call))>=0&&auctionSuits.indexOf(st_(call))<0)
+            auctionSuits.push(st_(call));
+        });
+        var proposedSuit=st_(b.c);
+        if(auctionSuits.indexOf(proposedSuit)<0&&auctionSuits.length===2){
+          if(hp>=10) return {exp:b.c,alt:[],why:'Tredje färg enligt Nordisk Standard s. 19: 10+ hp, rondkrav. Budet visar inte nödvändigtvis egen färglängd.',means:function(c){return c===b.c?'Tredje färg: 10+ hp och rondkrav.':null},conv:'Tredje färg'};
+          return NC('Tredje färg kräver minst 10 hp enligt Nordisk Standard s. 19.',null,'Tredje färg');
+        }
+        if(auctionSuits.indexOf(proposedSuit)<0&&auctionSuits.length===3){
+          if(hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg enligt Nordisk Standard s. 19: 13+ hp, utgångskrav. Budet visar inte egen färg.',means:function(c){return c===b.c?'Fjärde färg: 13+ hp och utgångskrav.':null},conv:'Fjärde färg'};
+          return NC('Fjärde färg kräver minst 13 hp enligt Nordisk Standard s. 19.',null,'Fjärde färg');
+        }
       }
 
       var openerShowsTwoSuits = isBid(ours[2].c) &&
