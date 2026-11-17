@@ -116,7 +116,7 @@ test("opener shows maximum after the 2NT inquiry with game in the major", () => 
   const opener = weakTwoHand("H","AKQ976");
   const responder = [
     ...cards("H","T2"), ...cards("S","AK"),
-    ...cards("D","Q3456"), ...cards("C","6789")
+    ...cards("D","Q5678"), ...cards("C","6789")
   ];
   const hands = completeDeal(opener,responder);
   const bids = [
