@@ -10,7 +10,7 @@ Status: endast revision; inga budregler eller runtime-filer ändrade.
 
 Projektet har redan en stor del av den avsedda 1♥/1♠-funktionaliteten. En ny fristående 1M-motor skulle duplicera befintliga regler. Rätt väg är att behålla `ettoppningssvar.js` som gemensam regelimplementation för naturliga svar och öppnaråterbud, låta `trumfstod.js` vara routnings-/stödlager, och låta Stenberg respektive slam förbli separata specialmoduler.
 
-Det finns dock en aktiv konflikt mellan ett uttryckligt användarbeslut och koden: splinter har beslutats bort från den aktiva budgivningen, men `trumfstod.js` fortfarande testar och rekommenderar splinter före Stenberg. Denna konflikt måste rättas och testas innan den bredare integrationen kan betraktas som kvalitetssäkrad.
+Revisionen hittade en konflikt mellan det uttryckliga beslutet att pausa splinter och den befintliga runtime-koden. Den första korrigeringen är nu gjord: `trumfstod.js` går inte längre via splinter, och Stenberg prövas som separat specialmodul. Riktade tester och status-/källdokument har uppdaterats; körning av tester/CI återstår.
 
 ## 1. Befintliga komponenter och ägarskap
 
@@ -41,14 +41,14 @@ Testfilerna visar att stora delar redan finns. Att köra eller utöka dessa test
 
 ## 3. Avvikelser som måste hanteras före ny funktionalitet
 
-### A. Splinter – blockerande konflikt
+### A. Splinter – konflikt identifierad och korrigerad
 
 - Beslutet i den senaste regelloggen säger uttryckligen att splinter ska tas bort ur den aktiva budgivningen.
-- Den granskade `trumfstod.js` innehåller fortfarande en aktiv gren som identifierar renons + 4+ stöd + 13+ HTP och rekommenderar dubbelhopp före Stenberg.
-- `TRUMFSTOD_STATUS.md` beskriver också fortfarande dubbelhoppet som aktivt.
-- Stenberg- och trumfstödtesterna innehåller förväntningar som bygger på denna tidigare splintertolkning.
+- Den tidigare `trumfstod.js`-grenen som rekommenderade dubbelhopp före Stenberg är borttagen.
+- `tests/trumfstod.test.js` och `tests/stenberg-2nt.test.js` är uppdaterade: void får inte aktivera splinter och hindrar inte en i övrigt kvalificerad Stenberghand.
+- `TRUMFSTOD_STATUS.md` och `docs/rulebase/trumfstod-source-review.md` skiljer nu mellan källans beskrivning och projektets aktiva beslut.
 
-Åtgärd: avaktivera/borttag splintervägen i runtime och uppdatera dess tester/status så att 2NT Stenberg och övriga verifierade svar går genom rätt väg. Behåll historiken i loggen, men inte som aktiv regel. Detta är en synkronisering med ett redan fattat beslut, inte en ny systemregel.
+Detta synkroniserar runtime med ett redan fattat användarbeslut; det inför ingen ny systemregel.
 
 ### B. Regelstatus för RKC måste läsas från aktuell källa/status
 
@@ -60,7 +60,7 @@ Repo-grenen har CI-workflow och riktade tester. Den här läsningen har verifier
 
 ## 4. Rekommenderad integrationsplan
 
-1. Synkronisera splinterbeslutet i runtime, test och statusdokument. Kör berörda Stenberg-/trumfstödtester.
+1. Kör berörda Stenberg-/trumfstödtester efter splinterkorrigeringen och kontrollera att inga äldre tester fortfarande förutsätter aktiv splinter.
 2. Lägg till ett integrations-/kontrakttest som bevisar att 1♥ och 1♠ båda delegerar till samma gemensamma svar-/återbudsregler, utan duplicerade specialfall.
 3. Lägg till uttryckliga överlämningstester:
    - 1M–1NT → gemensam `reb1()`-logik och befintliga 1NT-fortsättningar.
