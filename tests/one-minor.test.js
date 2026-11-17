@@ -204,7 +204,7 @@ test('equally long side suits with no source priority are left uncovered',()=>{
 });
 
 
-test('1♣–1♥–2♠–3♣: opener stops in 3♣ when the weak preference does not reach 5♣',()=>{
+test('1♣–1♥–2♠–3♣: opener continuation is a source gap, not an invented 5♣ threshold',()=>{
   const opener=hand({S:'K984',H:'AQ',D:'A',C:'QJT972'});
   const responder=hand({S:'752',H:'T654',D:'T62',C:'AK6'});
   const hands=completeDeal(opener,responder);
@@ -213,7 +213,8 @@ test('1♣–1♥–2♠–3♣: opener stops in 3♣ when the weak preference d
     {s:'N',c:'2S'},{s:'E',c:'P'},{s:'S',c:'3C'},{s:'W',c:'P'},{s:'N',c:'P'}
   ];
   const result=R.nodeFor({hands,dealer:'N',bids},8);
-  assert.equal(result.exp,'P');
+  assert.equal(result.exp,null);
+  assert.equal(result.sourceGap,true);
 });
 
 test('1♣–1♦–2♣: an unbalanced 13-hp hand without club support is not automatically invited with 2NT',()=>{
@@ -226,13 +227,14 @@ test('1♣–1♦–2♣: an unbalanced 13-hp hand without club support is not a
   assert.equal(result.sourceGap,true);
 });
 
-test('1♣–1♦–2♣: balanced 10–12 hp, two-card club support and side-suit controls may invite with 2NT',()=>{
+test('1♣–1♦–2♣: balanced 10–12 hp does not inherit the major-suit 2NT invite example',()=>{
   const opener=hand({S:'J54',H:'K32',D:'4',C:'AKQ987'});
   const responder=hand({S:'A32',H:'QJ6',D:'AJT32',C:'65'});
   const hands=completeDeal(opener,responder);
   const bids=[{s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},{s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'P'}];
   const result=R.nodeFor({hands,dealer:'N',bids},6);
-  assert.equal(result.exp,'2N');
+  assert.equal(result.exp,null);
+  assert.equal(result.sourceGap,true);
 });
 
 test('1♣–1♦–1♠–3♦: opener third bid remains an explicit source gap when no continuation is defined',()=>{
