@@ -10,7 +10,7 @@
   var rk=api.rk, txt=api.txt, maj=api.maj, lowest=api.lowest, jump=api.jump;
   var H=api.H, handHps=api.handHps, partnershipPoints=api.partnershipPoints;
   var T=api.T, ok=api.ok, NC=api.NC;
-  var twoClub=deps.twoClub, weakTwo=deps.weakTwo, stenberg=deps.stenberg, trumfstod=deps.trumfstod;
+  var twoClub=deps.twoClub, weakTwo=deps.weakTwo, trumfstod=deps.trumfstod;
   var majorBidding=deps.majorBidding, minorBidding=deps.minorBidding;
   var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2;
   var resp2w=weakTwo.resp2w, open2w=weakTwo.open2w;
@@ -461,13 +461,9 @@
       return nc('Fortsättningen efter spärrbud beskrivs inte i dokumentet.');
     }
     if(/^1[CDHS]$/.test(c1)){
-      // Stenberg 2NT: särskild respons och öppnarens första återbud.
-      if(!opener&&d===1){
-        var trumpResponse=trumfstod.responder(h,c1);
-        if(b.c==='2N'&&trumpResponse&&trumpResponse.exp&&trumpResponse.exp!=='2N')return trumpResponse;
-        if(b.c==='2N')return stenberg.responder(h,c1);
-        if(trumpResponse&&trumpResponse.exp)return trumpResponse;
-      }
+      // Alla svar på 1 i färg går genom trumfstödets huvudmodul.
+      // Den avgör mellan splinter, Stenberg och ordinarie färgsvar.
+      if(!opener&&d===1)return trumfstod.responder(h,c1);
       if(opener&&d===2&&ours[1].c==='2N')
         return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]?H(st.hands[pt]):null);
       if(!opener&&d===3&&ours[1].c==='2N')
@@ -488,7 +484,6 @@
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
-      if(!opener&&d===1)return maj(st_(c1))?majorBidding.respond(h,c1):minorBidding.respond(h,c1);
       if(opener&&d===2)return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]);
       return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
     }
