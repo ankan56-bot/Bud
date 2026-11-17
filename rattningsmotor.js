@@ -431,10 +431,9 @@ var Rattning = (function(){
     if(call==='4N'){
       return {exp:call,alt:[],why:'4NT är essfråga med öppningsfärgen som trumf enligt lathundens sida 27.',means:means,conv:'Blackwood 5 ess',soft:true};
     }
-    if(isBid(call)&&s!==o&&s!=='N'&&call===jump(s,oc)){
-      if(stp>=19&&L[s]<=1)return {exp:call,alt:[],why:'Hopp i ny färg är Splinter och visar minst 19 stp.',means:means,conv:'Splinter',soft:true};
-      if(stp<19)return NC('Splinter efter svag tvåöppning kräver minst 19 stp; handen har '+stp+' stp.','', 'Splinter');
-      if(L[s]>1)return NC('Hopp i ny färg är Splinter, men den hoppade färgen är inte singel eller renons.','', 'Splinter');
+    if(isBid(call)&&s!==o&&s!=='N'&&call===jump(s,oc)&&L[s]<=1){
+      if(stp>=19)return {exp:call,alt:[],why:'Hopp i ny färg är Splinter och visar minst 19 stp.',means:means,conv:'Splinter',soft:true};
+      return NC('Splinter efter svag tvåöppning kräver minst 19 stp; handen har '+stp+' stp.','', 'Splinter');
     }
     if(isGame(call)){
       return {exp:call,alt:[],why:'Direkt utgångsbud är slutbud enligt lathundens sida 27.',means:means,conv:'svag tvåa',soft:true};
@@ -1575,7 +1574,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.3'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.4'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
