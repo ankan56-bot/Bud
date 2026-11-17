@@ -307,3 +307,6 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 
 - Rättningsmotor 9.0: 7-/8-korts spärrtrappa enligt användarbeslutet. Svar efter sjukkortig 2-nivåöppning och efter 3-/4-nivåöppningar markeras ej täckta; generiska tidigare antaganden om nya färger/3NT/spärrhöjning har tagits bort.
 - Regressionstestfilen har nu 23 tester. CI-/testkörning är ännu inte verifierad.
+
+- Analysbiblioteket uppdaterat till 0.5.16. T34–T36 begränsade till exakt sex kort och kvalitetskriteriet markeras för manuell kontroll; hindrar att sjukkortig 2-nivåöppning felaktigt förklaras som PDF:ens svaga tvåa.
+- Regressionstestfilen har nu 25 tester, inklusive analysbibliotekets exakta sexkortsvillkor. Testkörning/CI är fortfarande inte verifierad.
