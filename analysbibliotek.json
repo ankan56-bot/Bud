@@ -7351,72 +7351,72 @@
           "branches": [
             {
               "call": "2N",
-              "next": "t34_n-1",
+              "next": "t34_n1",
               "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3D",
-              "next": "t34_n-1",
+              "next": "t34_n2",
               "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
               "call": "3C",
-              "next": "t34_n-1",
+              "next": "t34_n3",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "2H",
-              "next": "t34_n-1",
+              "next": "t34_n4",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "2S",
-              "next": "t34_n-1",
+              "next": "t34_n5",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3N",
-              "next": "t34_n-1",
+              "next": "t34_n6",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4H",
-              "next": "t34_n-1",
+              "next": "t34_n7",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4S",
-              "next": "t34_n-1",
+              "next": "t34_n8",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5C",
-              "next": "t34_n-1",
+              "next": "t34_n9",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5D",
-              "next": "t34_n-1",
+              "next": "t34_n10",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4C",
-              "next": "t34_n-1",
+              "next": "t34_n11",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "3H",
-              "next": "t34_n-1",
+              "next": "t34_n12",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "3S",
-              "next": "t34_n-1",
+              "next": "t34_n13",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
-              "next": "t34_n-1",
+              "next": "t34_n14",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
           ]
@@ -7689,72 +7689,72 @@
           "branches": [
             {
               "call": "2N",
-              "next": "t35_n-1",
+              "next": "t35_n1",
               "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3H",
-              "next": "t35_n-1",
+              "next": "t35_n2",
               "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
               "call": "3C",
-              "next": "t35_n-1",
+              "next": "t35_n3",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3D",
-              "next": "t35_n-1",
+              "next": "t35_n4",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "2S",
-              "next": "t35_n-1",
+              "next": "t35_n5",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3N",
-              "next": "t35_n-1",
+              "next": "t35_n6",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4H",
-              "next": "t35_n-1",
+              "next": "t35_n7",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4S",
-              "next": "t35_n-1",
+              "next": "t35_n8",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5C",
-              "next": "t35_n-1",
+              "next": "t35_n9",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5D",
-              "next": "t35_n-1",
+              "next": "t35_n10",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4C",
-              "next": "t35_n-1",
+              "next": "t35_n11",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4D",
-              "next": "t35_n-1",
+              "next": "t35_n12",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "3S",
-              "next": "t35_n-1",
+              "next": "t35_n13",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
-              "next": "t35_n-1",
+              "next": "t35_n14",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
           ]
@@ -8027,67 +8027,67 @@
           "branches": [
             {
               "call": "2N",
-              "next": "t36_n-1",
+              "next": "t36_n1",
               "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3S",
-              "next": "t36_n-1",
+              "next": "t36_n2",
               "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
               "call": "3C",
-              "next": "t36_n-1",
+              "next": "t36_n3",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3D",
-              "next": "t36_n-1",
+              "next": "t36_n4",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3H",
-              "next": "t36_n-1",
+              "next": "t36_n5",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3N",
-              "next": "t36_n-1",
+              "next": "t36_n6",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4H",
-              "next": "t36_n-1",
+              "next": "t36_n7",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4S",
-              "next": "t36_n-1",
+              "next": "t36_n8",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5C",
-              "next": "t36_n-1",
+              "next": "t36_n9",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5D",
-              "next": "t36_n-1",
+              "next": "t36_n10",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4C",
-              "next": "t36_n-1",
+              "next": "t36_n11",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4D",
-              "next": "t36_n-1",
+              "next": "t36_n12",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
-              "next": "t36_n-1",
+              "next": "t36_n13",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
           ]
