@@ -56,3 +56,5 @@ Alla dessa sekvenser ska loggas som ej täckta tills de kan verifieras. Ingen st
 Den tidigare PDF-regeln för svag tvåa gäller fortsatt exakt sex kort. Utöver den har användaren beslutat att samma två färgkvalitetskriterier ska styra spärrnivån för 7- och 8-kortsfärger. En 7-kortsfärg med ett kriterium öppnas på 2-nivån; med båda på 3-nivån. En 8-kortsfärg med ett kriterium öppnas på 3-nivån; med båda på 4-nivån. Noll kriterier ger ingen spärröppning. Detta är ett uttryckligt användartillägg, inte en regel som tillskrivs PDF:en.
 
 Fortsättningsreglerna för exakt sexkortiga svaga tvåor får inte automatiskt överföras till en sjukkortsfärg som öppnats på 2-nivån. Svar efter 3-/4-nivåns spärröppningar är ej täckta tills systemunderlag finns. Se `testdata/preemptive-openings-audit.md`.
+
+Analysbiblioteket är uppdaterat till 0.5.16: T34–T36 har handvillkor som kräver exakt sex kort i öppningsfärgen och markerar färgkvaliteten för manuell kontroll. De ska därmed inte användas som pedagogisk beskrivning av 7-kortsöppningen på 2-nivån.
