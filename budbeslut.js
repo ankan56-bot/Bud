@@ -181,7 +181,7 @@
       if(agreedQuantitativeNoTrumpInvite(prior.concat([{s:me,c:'4N'}]),side(me))){
         return {exp:'4N',alt:[],why:'Kvantitativ invit till 6NT efter 2NT-öppning. Detta är inte en essfråga.',means:function(c){return c==='4N'?'Kvantitativ invit till 6NT; inte essfråga.':null},conv:'Kvantitativ sanginvit'};
       }
-      return NC('4NT utan fastställd trumf är inte automatiskt essfråga. I andra sangsekvenser behandlas 4NT som kvantitativt eller enligt parets särskilda överenskommelse.');
+      return NC('4NT utan fastställd trumf är inte automatiskt essfråga. I andra sangsekvenser behandlas 4NT som kvantitativt eller enligt parets särskilda överenskommelse.',null,'4NT',true);
     }
 
     var partnerAskIndex=-1;
