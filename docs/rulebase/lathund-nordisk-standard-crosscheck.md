@@ -47,6 +47,26 @@ Detta är inte helt identiskt uttryckt. Nordisk Standards specifika undantag 5�
 | Stenberg 2NT | 13+ htp, 4+ stöd, utgångskrav | Stenberg behandlas med svar som visar kortfärg, ej kortfärg, jämn hand och olika styrkenivåer | Grunddefinitionen från NS styr; Lathunden kompletterar fortsättningarna där de inte strider mot NS. |
 | Splinter | Dubbelhopp i ny färg: renons, 4+ stöd, 13+ htp | Splintertabeller med 13+ eller 19–21 stödpoäng beroende på sekvens | Lathundens styrkeintervall måste knytas till exakt sekvens; inte en generell splinterregel. |
 
+## 2A. Trumfstöd och Stenberg – detaljskillnader
+
+Nordisk Standard s. 2–3 är normerande:
+
+- 1 lå–2 lå: 6–9 htp, 4+ stöd; 1 lå–3 lå: 10–12 htp, 4+ stöd; 1 lå–4 lå: spärr, max 9 htp, bra stöd och svitad hand.
+- 1 hö–2 hö: 6–9 htp, 4+ stöd; 1 hö–3 hö: 10–12 htp, 4+ stöd; 1 hö–4 hö: spärr, max 12 htp, bra stöd och svitad hand.
+- 2NT efter 1 i färg: 13+ htp, 4+ stöd, Stenberg och utgångskrav.
+- Dubbelhopp i ny färg: renons, 4+ stöd och 13+ htp.
+
+Lathunden tryckt s. 9 anger pass 0–5 stödpoäng, enkelhöjning 6–10 stödpoäng, dubbelhöjning 11–12 stödpoäng och 2NT minst 13 stödpoäng. Den nämner ibland trestöd + singelton i Plus-material. Det är inte samma sak som NS:s vanliga 4+ stöd och ska inte införas generellt.
+
+### Stenberg – återbuden efter 2NT
+Nordisk Standard anger:
+- Efter 1 hö–2NT: 3 hö = 15+ htp utan singel; 3 lå = singel i bjuden lågfärg; 3 andra hö = singel i andra högfärgen; 3NT = 12–14 hp balanserad.
+- Efter 1 lå–2NT: 3 lå = 15+ htp utan singel; 3 andra lå = singel i andra lågfärgen; 3 hö = singel i högfärgen; 3NT = 12–14 hp balanserad.
+
+Lathunden tryckt s. 11 visar en annan uppställning: ny färg = kortfärg (Bättre bud); 3 i öppningsfärgen = ingen kortfärg, 16+ stödpoäng; 3NT efter lågfärgsöppning eller 4 i öppningsfärgen efter högfärgsöppning = ingen kortfärg, 12–15 stödpoäng. Detta avviker från NS både i budbetydelse och poänggräns. **NS ska användas.**
+
+Se [trumfstödets separata källgranskning](trumfstod-source-review.md) för hela modulgränsen och fortsättningsmatrisen.
+
 ## 3. Öppnarens andra bud efter 1 över 1
 
 Nordisk Standard anger:
