@@ -5,8 +5,8 @@
     "generator": "Budtraning.html existing newDeal/biasedDeal generator",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
     "rulesEngine": "rattningsmotor.js",
-    "rulesEngineVersion": "8.8",
-    "rulesEngineBlobSha": "7465c1c7b0ecb095f440eca8d381adef67e83a17",
+    "rulesEngineVersion": "9.6",
+    "rulesEngineBlobSha": "acd41d8c450d64ec2831dea37feed2f5f219d1ed",
     "branchBase": "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
   },
   "generation": {
@@ -30,14 +30,14 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 581,
-      "ej_täckt": 39
+      "rätt": 580,
+      "ej_täckt": 41
     },
     "themeStats": {
       "alla": {
         "deals": 10,
         "bids": 92,
-        "uncovered": 7,
+        "uncovered": 8,
         "optional": 0,
         "wrong": 0
       },
@@ -85,7 +85,7 @@
       },
       "trumf": {
         "deals": 10,
-        "bids": 80,
+        "bids": 78,
         "uncovered": 1,
         "optional": 0,
         "wrong": 0
@@ -93,7 +93,7 @@
       "sang": {
         "deals": 10,
         "bids": 84,
-        "uncovered": 0,
+        "uncovered": 1,
         "optional": 0,
         "wrong": 0
       },
@@ -113,7 +113,7 @@
       },
       "svag": {
         "deals": 10,
-        "bids": 40,
+        "bids": 41,
         "uncovered": 0,
         "optional": 0,
         "wrong": 0
@@ -261,7 +261,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -417,16 +417,16 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
+        "version": "9.6",
+        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
             "seat": "Syd",
             "bid": "Pass",
-            "grade": "rätt",
+            "grade": "ej_täckt",
             "suggested": "",
-            "reason": "Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass."
+            "reason": "6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt."
           },
           {
             "nr": 2,
@@ -557,7 +557,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -566,7 +566,7 @@
             "bid": "2♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "6-10 hp, exakt 6 kort och bra färg: minst 2 honnörer eller minst 1 honnör samt minst 2 av 10-9-8."
+            "reason": "6-10 hp, exakt 6 kort och minst ett av de två kriterierna för bra färg: (1) minst 2 honnörer, eller (2) minst 1 honnör och minst 2 av 10-9-8."
           },
           {
             "nr": 3,
@@ -574,7 +574,7 @@
             "bid": "Pass",
             "grade": "ej_täckt",
             "suggested": "",
-            "reason": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand."
+            "reason": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27."
           }
         ]
       }
@@ -685,7 +685,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -694,7 +694,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "5 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "5 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 2,
@@ -853,7 +853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 4 (Norr och Syd).",
         "items": [
           {
@@ -862,7 +862,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "5 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "5 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 2,
@@ -1065,7 +1065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1253,7 +1253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1262,7 +1262,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "10 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -1449,7 +1449,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1458,7 +1458,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "10 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -1629,7 +1629,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1801,7 +1801,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1810,7 +1810,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -1981,7 +1981,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2161,7 +2161,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2341,7 +2341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2521,7 +2521,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2701,7 +2701,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2881,7 +2881,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2914,7 +2914,7 @@
             "bid": "6♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 40 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 9,
@@ -3061,7 +3061,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3241,7 +3241,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3421,7 +3421,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3601,7 +3601,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3748,7 +3748,7 @@
         },
         {
           "s": "S",
-          "c": "6H"
+          "c": "4H"
         },
         {
           "s": "W",
@@ -3773,7 +3773,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3803,10 +3803,10 @@
           {
             "nr": 7,
             "seat": "Syd",
-            "bid": "6♥",
+            "bid": "4♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♥-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 32 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
           },
           {
             "nr": 9,
@@ -3937,7 +3937,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4109,7 +4109,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4142,7 +4142,7 @@
             "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♠ och 34 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♠ och 33 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -4150,7 +4150,7 @@
             "bid": "6♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 34 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -4281,7 +4281,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4437,7 +4437,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4601,7 +4601,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4765,7 +4765,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4921,7 +4921,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5085,7 +5085,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5257,7 +5257,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5290,7 +5290,7 @@
             "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♠ och 32 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♠ och 31 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -5445,7 +5445,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5641,7 +5641,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5821,7 +5821,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5993,7 +5993,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6165,7 +6165,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6345,7 +6345,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6533,7 +6533,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6713,7 +6713,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6885,7 +6885,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7065,7 +7065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7253,7 +7253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7286,7 +7286,7 @@
             "bid": "4♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♥ och 37 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♥ och 36 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -7294,7 +7294,7 @@
             "bid": "6♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 37 poäng (naturligt visad ♥-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♥-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -7441,7 +7441,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7621,7 +7621,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7793,7 +7793,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7973,7 +7973,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8006,7 +8006,7 @@
             "bid": "4♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♠ och 40 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♠ och 39 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8014,7 +8014,7 @@
             "bid": "6♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 40 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8161,7 +8161,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8194,7 +8194,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11-korts fit i ♦ och 37 gemensamma spelpoäng: utgång."
+            "reason": "11-korts fit i ♦ och 36 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8202,7 +8202,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 37 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8341,7 +8341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8513,7 +8513,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8546,7 +8546,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 38 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 9,
@@ -8693,7 +8693,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8726,7 +8726,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♦ och 39 gemensamma spelpoäng: utgång."
+            "reason": "10-korts fit i ♦ och 38 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -8734,7 +8734,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 39 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 38 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -8881,7 +8881,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9053,7 +9053,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9197,7 +9197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -9361,7 +9361,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9533,7 +9533,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9697,7 +9697,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9853,7 +9853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10025,7 +10025,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10058,7 +10058,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11-korts fit i ♦ och 36 gemensamma spelpoäng: utgång."
+            "reason": "11-korts fit i ♦ och 35 gemensamma spelpoäng: utgång."
           },
           {
             "nr": 9,
@@ -10066,7 +10066,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 35 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -10197,7 +10197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10361,7 +10361,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10533,7 +10533,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10705,7 +10705,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10877,7 +10877,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11049,7 +11049,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11229,7 +11229,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11417,7 +11417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11589,7 +11589,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11753,7 +11753,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11917,7 +11917,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12081,7 +12081,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12253,7 +12253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12417,7 +12417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12556,18 +12556,10 @@
         },
         {
           "s": "N",
-          "c": "6S"
+          "c": "P"
         },
         {
           "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
           "c": "P"
         }
       ],
@@ -12581,8 +12573,8 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "9.6",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -12611,14 +12603,6 @@
           {
             "nr": 7,
             "seat": "Norr",
-            "bid": "6♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♠-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
-          },
-          {
-            "nr": 9,
-            "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -12737,7 +12721,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -12885,7 +12869,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13041,7 +13025,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13197,7 +13181,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13328,7 +13312,7 @@
         },
         {
           "s": "N",
-          "c": "6D"
+          "c": "5D"
         },
         {
           "s": "E",
@@ -13353,7 +13337,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13375,10 +13359,10 @@
           {
             "nr": 5,
             "seat": "Norr",
-            "bid": "6♦",
+            "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 32 poäng. 28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
           },
           {
             "nr": 7,
@@ -13509,7 +13493,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13665,7 +13649,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13821,7 +13805,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13977,7 +13961,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14141,7 +14125,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14150,7 +14134,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "9 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "9 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -14313,16 +14297,16 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "9.6",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
             "seat": "Norr",
             "bid": "Pass",
-            "grade": "rätt",
+            "grade": "ej_täckt",
             "suggested": "",
-            "reason": "Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass."
+            "reason": "6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt."
           },
           {
             "nr": 3,
@@ -14477,7 +14461,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14633,7 +14617,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14642,7 +14626,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "8 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "8 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -14789,7 +14773,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14937,7 +14921,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15077,7 +15061,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15233,7 +15217,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15242,7 +15226,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -15405,7 +15389,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15414,7 +15398,7 @@
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen spärrhand."
+            "reason": "11 hp räcker inte för öppning (12+, 11 med bra färg) och ingen definierad spärrhand."
           },
           {
             "nr": 3,
@@ -15561,7 +15545,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15701,7 +15685,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15841,7 +15825,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15981,7 +15965,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16129,7 +16113,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16277,7 +16261,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16425,7 +16409,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16573,7 +16557,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16721,7 +16705,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16869,7 +16853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17033,7 +17017,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17193,7 +17177,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -17349,7 +17333,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17513,7 +17497,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17673,7 +17657,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -17853,7 +17837,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18033,7 +18017,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18066,7 +18050,7 @@
             "bid": "5♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "10-korts fit i ♦ och 36 gemensamma spelpoäng: utgång enligt våra gränser (28+)."
+            "reason": "10-korts fit i ♦ och 35 gemensamma spelpoäng: utgång enligt våra gränser (28+)."
           },
           {
             "nr": 9,
@@ -18074,7 +18058,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 36 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 35 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 11,
@@ -18213,7 +18197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18246,7 +18230,7 @@
             "bid": "6♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 34 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♦-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
           },
           {
             "nr": 9,
@@ -18393,7 +18377,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18573,7 +18557,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18633,932 +18617,64 @@
       "dealer": "S",
       "hands": {
         "N": [
-          "C11",
-          "H10",
-          "C7",
-          "S9",
-          "D7",
-          "H2",
-          "S11",
-          "S8",
-          "C14",
-          "C12",
-          "D12",
-          "C8",
-          "C13"
-        ],
-        "E": [
-          "H12",
-          "D2",
-          "C10",
-          "D10",
-          "D9",
-          "C3",
-          "H4",
-          "H11",
-          "D6",
-          "H8",
-          "S13",
-          "D8",
-          "D14"
-        ],
-        "S": [
-          "S3",
-          "S5",
-          "S6",
-          "D11",
-          "C6",
-          "D13",
-          "H9",
-          "S2",
-          "H7",
-          "S12",
-          "S10",
-          "H13",
-          "S7"
-        ],
-        "W": [
-          "C9",
-          "D5",
-          "C4",
-          "C2",
-          "C5",
-          "S4",
-          "H6",
-          "H3",
-          "H14",
-          "S14",
-          "D4",
-          "H5",
-          "D3"
-        ]
-      },
-      "bids": [
-        {
-          "s": "S",
-          "c": "3S"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Syd",
-            "bid": "3♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-02",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "stord",
-      "seed": 434754,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "S",
-      "hands": {
-        "N": [
-          "D14",
-          "H5",
-          "D9",
-          "H14",
-          "C5",
-          "S10",
-          "S2",
-          "S7",
-          "D13",
-          "C13",
-          "H8",
-          "H4",
-          "H9"
-        ],
-        "E": [
-          "H13",
-          "D10",
-          "S14",
-          "C6",
-          "H2",
-          "D2",
-          "S3",
-          "C7",
-          "C10",
-          "S12",
-          "C2",
-          "H7",
-          "H6"
-        ],
-        "S": [
           "D3",
-          "C4",
-          "C12",
-          "D6",
-          "D12",
-          "S13",
-          "S4",
           "D5",
-          "D8",
-          "D4",
-          "S11",
-          "D11",
-          "C9"
-        ],
-        "W": [
-          "C3",
           "H3",
-          "S9",
-          "C11",
-          "C14",
-          "C8",
-          "S6",
-          "D7",
-          "H11",
-          "S8",
-          "S5",
-          "H10",
-          "H12"
-        ]
-      },
-      "bids": [
-        {
-          "s": "S",
-          "c": "3D"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Syd",
-            "bid": "3♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Norr",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-03",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "stord",
-      "seed": 442673,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "S14",
-          "S4",
-          "D13",
-          "S2",
-          "S5",
-          "S3",
-          "H5",
-          "D10",
-          "S9",
-          "S12",
-          "D5",
-          "D6",
-          "H10"
-        ],
-        "E": [
-          "D12",
-          "H6",
-          "D7",
-          "C3",
-          "H2",
-          "C9",
-          "D3",
-          "C12",
+          "S10",
           "D14",
-          "C5",
-          "D11",
-          "C11",
-          "D9"
-        ],
-        "S": [
-          "C4",
-          "S7",
-          "H12",
-          "H11",
-          "C2",
-          "S8",
-          "S13",
-          "H14",
-          "H7",
-          "H13",
-          "H8",
-          "H3",
-          "D8"
-        ],
-        "W": [
-          "C10",
-          "C7",
-          "D2",
-          "H9",
-          "S11",
-          "H4",
-          "D4",
-          "S6",
-          "C14",
-          "S10",
-          "C13",
-          "C8",
-          "C6"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "3S"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "3♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-04",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "stord",
-      "seed": 450592,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "S7",
-          "C11",
-          "D12",
-          "D6",
-          "S3",
-          "D3",
-          "S8",
-          "S5",
-          "S2",
-          "S10",
-          "C14",
-          "S9",
-          "D9"
-        ],
-        "E": [
-          "H8",
-          "H11",
-          "D13",
-          "H9",
-          "D14",
-          "D11",
           "H2",
-          "H3",
-          "S4",
-          "C6",
-          "H6",
-          "C5",
-          "D4"
-        ],
-        "S": [
           "D10",
-          "C3",
-          "H5",
-          "D8",
-          "D2",
-          "S6",
-          "H12",
-          "H14",
-          "S11",
-          "C13",
-          "C10",
-          "C12",
-          "S12"
-        ],
-        "W": [
-          "C8",
-          "D7",
-          "H4",
-          "C4",
-          "H10",
-          "S14",
-          "H13",
-          "C7",
-          "S13",
-          "D5",
-          "C9",
-          "C2",
-          "H7"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "3S"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "3♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-05",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "stord",
-      "seed": 458511,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "C2",
-          "C10",
-          "H13",
-          "H6",
-          "H12",
-          "D9",
+          "C14",
+          "D13",
           "H11",
-          "H8",
-          "C9",
-          "C13",
-          "H4",
-          "C7",
-          "H3"
-        ],
-        "E": [
-          "D4",
-          "C6",
-          "C12",
-          "D11",
-          "H14",
-          "S10",
-          "C4",
-          "S12",
-          "C8",
-          "S7",
-          "D6",
-          "D7",
+          "H6",
+          "S4",
           "H5"
         ],
-        "S": [
-          "S13",
+        "E": [
           "S9",
-          "D14",
-          "H7",
-          "S5",
-          "D12",
-          "C11",
-          "D13",
-          "S14",
-          "C3",
-          "S3",
-          "C5",
-          "D3"
-        ],
-        "W": [
-          "H2",
-          "D2",
-          "S6",
-          "D10",
-          "S8",
-          "D8",
-          "D5",
-          "H9",
-          "S11",
-          "H10",
-          "C14",
-          "S4",
-          "S2"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "3H"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "3♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-06",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "ostord",
-      "seed": 466447,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "H7",
-          "H3",
+          "S2",
           "D9",
-          "H12",
-          "S11",
+          "S12",
+          "S8",
+          "S5",
+          "D2",
+          "H10",
+          "D7",
+          "H13",
           "H14",
-          "C2",
-          "D10",
+          "D11",
+          "S6"
+        ],
+        "S": [
           "C8",
-          "H8",
-          "H11",
-          "H2",
+          "C2",
+          "C7",
+          "H4",
+          "D4",
+          "C9",
+          "C13",
+          "S7",
+          "S13",
+          "C5",
+          "C6",
+          "S3",
           "C10"
         ],
-        "E": [
-          "H9",
-          "C3",
-          "C9",
-          "D6",
-          "S8",
-          "D5",
-          "H10",
-          "C5",
-          "C11",
-          "H13",
-          "S7",
-          "S12",
-          "D13"
-        ],
-        "S": [
-          "D3",
-          "D4",
-          "H5",
-          "S14",
-          "S3",
-          "D8",
-          "C12",
-          "H6",
-          "D2",
-          "S13",
-          "C13",
-          "S9",
-          "C14"
-        ],
         "W": [
-          "S6",
-          "D14",
-          "S2",
-          "C6",
-          "D11",
-          "S5",
-          "C7",
-          "D12",
-          "S4",
-          "H4",
-          "C4",
-          "D7",
-          "S10"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "3H"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "3♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-07",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "ostord",
-      "seed": 474366,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "N",
-      "hands": {
-        "N": [
-          "C9",
-          "D9",
-          "S3",
-          "H5",
-          "D2",
-          "D11",
+          "H9",
           "D6",
-          "D13",
-          "D14",
+          "D12",
+          "C4",
+          "C12",
+          "C3",
+          "S14",
           "H8",
-          "D12",
-          "H10",
-          "H7"
-        ],
-        "E": [
-          "H3",
-          "D8",
-          "C6",
-          "H14",
-          "H4",
-          "S5",
-          "C10",
-          "S12",
-          "S4",
-          "C8",
-          "D7",
-          "C11",
-          "S9"
-        ],
-        "S": [
-          "H12",
-          "S2",
-          "C13",
-          "D5",
-          "H13",
-          "C5",
-          "D10",
-          "C2",
-          "S10",
-          "D4",
-          "C12",
-          "H2",
-          "C14"
-        ],
-        "W": [
-          "C3",
           "S11",
-          "D3",
-          "S8",
-          "H11",
-          "H9",
-          "C4",
-          "C7",
-          "S14",
-          "S7",
-          "S13",
-          "H6",
-          "S6"
-        ]
-      },
-      "bids": [
-        {
-          "s": "N",
-          "c": "3D"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        }
-      ],
-      "checks": {
-        "uniqueCards": 52,
-        "thirteenCardsPerSeat": true,
-        "themeCondition": true,
-        "quietModeCondition": true,
-        "auctionErrors": 0,
-        "openingNTValidated": true,
-        "openingStrongTwoValidated": true
-      },
-      "correction": {
-        "version": "8.8",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
-        "items": [
-          {
-            "nr": 1,
-            "seat": "Norr",
-            "bid": "3♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
-          },
-          {
-            "nr": 3,
-            "seat": "Syd",
-            "bid": "Pass",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
-          }
-        ]
-      }
-    },
-    {
-      "id": "svag-08",
-      "theme": "svag",
-      "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "ostord",
-      "seed": 482285,
-      "caseType": "unclassified",
-      "classification": {
-        "status": "pending",
-        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
-      },
-      "dealer": "S",
-      "hands": {
-        "N": [
-          "D12",
-          "S10",
-          "C14",
-          "C12",
-          "D4",
-          "H11",
-          "D6",
-          "S14",
           "H7",
-          "D11",
-          "S3",
-          "S7",
-          "S13"
-        ],
-        "E": [
-          "D3",
-          "H12",
-          "D10",
-          "C10",
-          "H14",
-          "H3",
-          "C2",
-          "S2",
-          "H2",
-          "S9",
-          "C8",
-          "S11",
-          "D9"
-        ],
-        "S": [
-          "H4",
-          "S4",
-          "C6",
-          "C11",
           "D8",
-          "C3",
-          "S6",
-          "C7",
-          "D13",
-          "H13",
-          "C9",
-          "C5",
-          "C4"
-        ],
-        "W": [
-          "H10",
-          "H5",
-          "S5",
-          "D2",
-          "H6",
-          "S12",
-          "D14",
-          "H8",
-          "C13",
-          "D5",
-          "D7",
-          "H9",
-          "S8"
+          "H12",
+          "C11"
         ]
       },
       "bids": [
@@ -19589,7 +18705,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19598,7 +18714,7 @@
             "bid": "3♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
+            "reason": "8 kort och 6-10 hp: ett av två kvalitetskriterier uppfyllt, därför spärröppning på 3-nivån."
           },
           {
             "nr": 3,
@@ -19612,11 +18728,279 @@
       }
     },
     {
-      "id": "svag-09",
+      "id": "svag-02",
       "theme": "svag",
       "themeTitle": "Svaga öppningar och spärrbud",
-      "mode": "ostord",
-      "seed": 490204,
+      "mode": "stord",
+      "seed": 434754,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "D11",
+          "D10",
+          "S2",
+          "D13",
+          "C6",
+          "D14",
+          "S5",
+          "D6",
+          "S14",
+          "C11",
+          "H5",
+          "C4",
+          "D5"
+        ],
+        "E": [
+          "D7",
+          "C7",
+          "S3",
+          "D9",
+          "H2",
+          "S7",
+          "D4",
+          "C10",
+          "H4",
+          "S4",
+          "C3",
+          "H12",
+          "S9"
+        ],
+        "S": [
+          "H11",
+          "H3",
+          "H8",
+          "C2",
+          "C9",
+          "H6",
+          "S10",
+          "S6",
+          "H7",
+          "H13",
+          "S12",
+          "H10",
+          "C5"
+        ],
+        "W": [
+          "C12",
+          "H14",
+          "D12",
+          "C14",
+          "C8",
+          "D3",
+          "D8",
+          "C13",
+          "S11",
+          "S13",
+          "D2",
+          "H9",
+          "S8"
+        ]
+      },
+      "bids": [
+        {
+          "s": "S",
+          "c": "3H"
+        },
+        {
+          "s": "W",
+          "c": "X"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Syd",
+            "bid": "3♥",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
+          },
+          {
+            "nr": 2,
+            "seat": "Väst",
+            "bid": "X",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Motståndarens bud visas som kontext och poängsätts inte."
+          },
+          {
+            "nr": 3,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          },
+          {
+            "nr": 5,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-03",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "stord",
+      "seed": 442673,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "H13",
+          "D14",
+          "D10",
+          "H6",
+          "C11",
+          "H8",
+          "H12",
+          "C4",
+          "H4",
+          "C3",
+          "D13",
+          "C9",
+          "H10"
+        ],
+        "E": [
+          "H7",
+          "C10",
+          "D12",
+          "C7",
+          "H3",
+          "H5",
+          "S9",
+          "D2",
+          "S12",
+          "D5",
+          "S6",
+          "C6",
+          "C2"
+        ],
+        "S": [
+          "D4",
+          "S4",
+          "S14",
+          "S8",
+          "C12",
+          "S10",
+          "S11",
+          "S3",
+          "D11",
+          "D7",
+          "S5",
+          "D3",
+          "C5"
+        ],
+        "W": [
+          "H2",
+          "S13",
+          "S7",
+          "D6",
+          "H11",
+          "S2",
+          "C14",
+          "D8",
+          "C13",
+          "H14",
+          "H9",
+          "C8",
+          "D9"
+        ]
+      },
+      "bids": [
+        {
+          "s": "S",
+          "c": "3S"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Syd",
+            "bid": "3♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
+          },
+          {
+            "nr": 3,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-04",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "stord",
+      "seed": 450592,
       "caseType": "unclassified",
       "classification": {
         "status": "pending",
@@ -19625,70 +19009,70 @@
       "dealer": "N",
       "hands": {
         "N": [
-          "S10",
-          "S5",
-          "H11",
-          "H12",
-          "S7",
-          "H14",
-          "H7",
-          "C9",
+          "C2",
+          "D4",
+          "C14",
           "H2",
-          "C10",
-          "D7",
-          "H8",
-          "H13"
+          "H9",
+          "C8",
+          "C12",
+          "C13",
+          "H10",
+          "C9",
+          "S3",
+          "D11",
+          "C6"
         ],
         "E": [
-          "S12",
-          "D10",
-          "S2",
-          "H10",
-          "C8",
-          "C13",
-          "D6",
+          "S11",
+          "H5",
+          "C7",
+          "S8",
+          "H8",
           "D13",
+          "S10",
+          "H12",
           "C5",
-          "D5",
-          "H4",
+          "S13",
+          "S4",
           "H6",
-          "C4"
+          "D9"
         ],
         "S": [
+          "S2",
+          "C4",
+          "D14",
+          "H13",
+          "S12",
+          "D5",
+          "S7",
           "D12",
+          "D6",
           "H3",
-          "C6",
-          "C12",
-          "D9",
-          "S11",
-          "S3",
-          "D8",
-          "S14",
-          "C14",
-          "C2",
-          "C11",
-          "S8"
+          "S5",
+          "H14",
+          "S9"
         ],
         "W": [
-          "D2",
-          "H9",
-          "S13",
           "D3",
-          "S4",
-          "S9",
-          "D4",
-          "D14",
+          "D10",
           "S6",
-          "H5",
+          "D7",
+          "C10",
+          "D8",
+          "S14",
+          "C11",
+          "H4",
+          "H11",
+          "H7",
           "C3",
-          "C7",
-          "D11"
+          "D2"
         ]
       },
       "bids": [
         {
           "s": "N",
-          "c": "3H"
+          "c": "3C"
         },
         {
           "s": "E",
@@ -19713,16 +19097,636 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
             "seat": "Norr",
-            "bid": "3♥",
+            "bid": "3♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
+          },
+          {
+            "nr": 3,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-05",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "stord",
+      "seed": 458511,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "H4",
+          "C4",
+          "H2",
+          "C14",
+          "C10",
+          "S8",
+          "C11",
+          "H13",
+          "C8",
+          "C6",
+          "S6",
+          "C2",
+          "H8"
+        ],
+        "E": [
+          "S12",
+          "H5",
+          "H3",
+          "S7",
+          "H10",
+          "C5",
+          "D8",
+          "S2",
+          "S3",
+          "S9",
+          "D5",
+          "H7",
+          "D11"
+        ],
+        "S": [
+          "D14",
+          "H6",
+          "D13",
+          "S11",
+          "D7",
+          "S13",
+          "D12",
+          "D6",
+          "C12",
+          "H12",
+          "C13",
+          "S14",
+          "D2"
+        ],
+        "W": [
+          "S4",
+          "S10",
+          "D3",
+          "C3",
+          "D10",
+          "S5",
+          "H9",
+          "H14",
+          "D4",
+          "H11",
+          "D9",
+          "C7",
+          "C9"
+        ]
+      },
+      "bids": [
+        {
+          "s": "N",
+          "c": "3C"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Norr",
+            "bid": "3♣",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
+          },
+          {
+            "nr": 3,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-06",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "ostord",
+      "seed": 466447,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "S",
+      "hands": {
+        "N": [
+          "C10",
+          "H12",
+          "D6",
+          "C5",
+          "C11",
+          "H14",
+          "S2",
+          "D14",
+          "D9",
+          "D13",
+          "D3",
+          "S14",
+          "C6"
+        ],
+        "E": [
+          "S8",
+          "S10",
+          "H9",
+          "H10",
+          "H3",
+          "S6",
+          "C2",
+          "S4",
+          "S12",
+          "D2",
+          "S13",
+          "H4",
+          "H8"
+        ],
+        "S": [
+          "S5",
+          "C3",
+          "C8",
+          "H13",
+          "H6",
+          "S7",
+          "C14",
+          "C9",
+          "C4",
+          "C7",
+          "D5",
+          "C13",
+          "D8"
+        ],
+        "W": [
+          "D7",
+          "S3",
+          "S11",
+          "D11",
+          "C12",
+          "D10",
+          "H7",
+          "D4",
+          "S9",
+          "H11",
+          "H2",
+          "H5",
+          "D12"
+        ]
+      },
+      "bids": [
+        {
+          "s": "S",
+          "c": "3C"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Syd",
+            "bid": "3♣",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
+          },
+          {
+            "nr": 3,
+            "seat": "Norr",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-07",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "ostord",
+      "seed": 474366,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "C6",
+          "S4",
+          "C11",
+          "H9",
+          "D10",
+          "C9",
+          "H13",
+          "S10",
+          "C3",
+          "C4",
+          "C13",
+          "C12",
+          "D4"
+        ],
+        "E": [
+          "H4",
+          "D2",
+          "S9",
+          "H2",
+          "S12",
+          "D3",
+          "C8",
+          "S2",
+          "D5",
+          "H7",
+          "D6",
+          "C2",
+          "D14"
+        ],
+        "S": [
+          "S5",
+          "D7",
+          "S6",
+          "S3",
+          "S14",
+          "D12",
+          "H14",
+          "D13",
+          "S13",
+          "H5",
+          "H10",
+          "C14",
+          "H3"
+        ],
+        "W": [
+          "C10",
+          "C5",
+          "C7",
+          "S7",
+          "H6",
+          "D9",
+          "H12",
+          "D8",
+          "S11",
+          "D11",
+          "S8",
+          "H11",
+          "H8"
+        ]
+      },
+      "bids": [
+        {
+          "s": "N",
+          "c": "3C"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Norr",
+            "bid": "3♣",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
+          },
+          {
+            "nr": 3,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-08",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "ostord",
+      "seed": 482285,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "C12",
+          "D4",
+          "H10",
+          "S13",
+          "S3",
+          "H8",
+          "S2",
+          "S11",
+          "H3",
+          "S9",
+          "S8",
+          "S4",
+          "S12"
+        ],
+        "E": [
+          "D14",
+          "C5",
+          "C9",
+          "S5",
+          "C8",
+          "H7",
+          "H5",
+          "C11",
+          "H12",
+          "C10",
+          "D3",
+          "H4",
+          "D12"
+        ],
+        "S": [
+          "H6",
+          "H2",
+          "D7",
+          "S10",
+          "C13",
+          "C6",
+          "D13",
+          "D9",
+          "H14",
+          "C14",
+          "H11",
+          "D5",
+          "D11"
+        ],
+        "W": [
+          "H9",
+          "D10",
+          "D8",
+          "S7",
+          "C7",
+          "C4",
+          "D2",
+          "D6",
+          "H13",
+          "S6",
+          "S14",
+          "C3",
+          "C2"
+        ]
+      },
+      "bids": [
+        {
+          "s": "N",
+          "c": "4S"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Norr",
+            "bid": "4♠",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "8 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, därför spärröppning på 4-nivån."
+          },
+          {
+            "nr": 3,
+            "seat": "Syd",
+            "bid": "Pass",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+          }
+        ]
+      }
+    },
+    {
+      "id": "svag-09",
+      "theme": "svag",
+      "themeTitle": "Svaga öppningar och spärrbud",
+      "mode": "ostord",
+      "seed": 490204,
+      "caseType": "unclassified",
+      "classification": {
+        "status": "pending",
+        "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
+      },
+      "dealer": "N",
+      "hands": {
+        "N": [
+          "C11",
+          "H7",
+          "H4",
+          "S6",
+          "H11",
+          "C8",
+          "C13",
+          "C9",
+          "S13",
+          "H8",
+          "C3",
+          "C12",
+          "C5"
+        ],
+        "E": [
+          "H10",
+          "S10",
+          "D7",
+          "C4",
+          "D2",
+          "D10",
+          "D11",
+          "S2",
+          "H3",
+          "S9",
+          "C6",
+          "H13",
+          "D3"
+        ],
+        "S": [
+          "D6",
+          "S14",
+          "S8",
+          "H6",
+          "H14",
+          "D14",
+          "D9",
+          "C14",
+          "C2",
+          "S11",
+          "C10",
+          "H9",
+          "H2"
+        ],
+        "W": [
+          "S12",
+          "D8",
+          "H12",
+          "S4",
+          "S7",
+          "H5",
+          "D12",
+          "D5",
+          "D13",
+          "S5",
+          "S3",
+          "C7",
+          "D4"
+        ]
+      },
+      "bids": [
+        {
+          "s": "N",
+          "c": "3C"
+        },
+        {
+          "s": "E",
+          "c": "P"
+        },
+        {
+          "s": "S",
+          "c": "P"
+        },
+        {
+          "s": "W",
+          "c": "P"
+        }
+      ],
+      "checks": {
+        "uniqueCards": 52,
+        "thirteenCardsPerSeat": true,
+        "themeCondition": true,
+        "quietModeCondition": true,
+        "auctionErrors": 0,
+        "openingNTValidated": true,
+        "openingStrongTwoValidated": true
+      },
+      "correction": {
+        "version": "9.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "items": [
+          {
+            "nr": 1,
+            "seat": "Norr",
+            "bid": "3♣",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
           },
           {
             "nr": 3,
@@ -19746,84 +19750,84 @@
         "status": "pending",
         "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
       },
-      "dealer": "N",
+      "dealer": "S",
       "hands": {
         "N": [
+          "H2",
+          "C14",
           "S7",
-          "D7",
-          "D13",
-          "S3",
-          "S13",
-          "D12",
-          "D5",
           "H5",
-          "S12",
           "S6",
-          "H4",
-          "S5",
-          "S4"
+          "D12",
+          "S12",
+          "H13",
+          "S13",
+          "D3",
+          "D14",
+          "S14",
+          "H12"
         ],
         "E": [
-          "H7",
-          "C7",
-          "D4",
+          "D2",
           "S10",
-          "C3",
+          "S3",
+          "S4",
           "C4",
+          "H3",
+          "H10",
+          "D7",
+          "D5",
+          "H9",
+          "C13",
           "C5",
-          "S2",
-          "H11",
-          "C10",
-          "S8",
-          "D10",
-          "D6"
+          "C10"
         ],
         "S": [
-          "D14",
-          "H13",
           "D9",
-          "D8",
-          "H10",
-          "C14",
-          "H2",
-          "C13",
-          "C6",
           "C11",
-          "S9",
-          "S14",
-          "H14"
+          "D4",
+          "C7",
+          "D8",
+          "D11",
+          "C6",
+          "D13",
+          "H14",
+          "D6",
+          "S2",
+          "D10",
+          "S11"
         ],
         "W": [
-          "D3",
-          "C12",
-          "D2",
-          "H8",
-          "H9",
-          "C8",
           "C9",
+          "S9",
+          "C12",
+          "H8",
+          "H4",
+          "S8",
           "C2",
-          "H6",
-          "H3",
-          "S11",
-          "D11",
-          "H12"
+          "H11",
+          "C3",
+          "S5",
+          "H7",
+          "C8",
+          "H6"
         ]
       },
       "bids": [
         {
-          "s": "N",
-          "c": "3S"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
           "s": "S",
-          "c": "P"
+          "c": "3D"
         },
         {
           "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
           "c": "P"
         }
       ],
@@ -19837,20 +19841,20 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Norr",
-            "bid": "3♠",
+            "seat": "Syd",
+            "bid": "3♦",
             "grade": "rätt",
             "suggested": "",
-            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
+            "reason": "7 kort och 6-10 hp: båda kvalitetskriterierna uppfyllda, eller 2♣ är reserverat för starköppning; därför spärröppning på 3-nivån."
           },
           {
             "nr": 3,
-            "seat": "Syd",
+            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -19973,7 +19977,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20117,7 +20121,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -20269,7 +20273,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20421,7 +20425,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -20589,7 +20593,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20741,7 +20745,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20893,7 +20897,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21045,7 +21049,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21197,7 +21201,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -21365,7 +21369,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21509,7 +21513,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21645,7 +21649,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21781,7 +21785,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21917,7 +21921,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22061,7 +22065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -22205,7 +22209,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22341,7 +22345,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22477,7 +22481,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22621,7 +22625,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22765,7 +22769,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.8",
+        "version": "9.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
