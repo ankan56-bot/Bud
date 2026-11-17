@@ -1183,7 +1183,7 @@ var Rattning = (function(){
 
       // Sida 19, exakt exempel: 1♥–1♣; 2♣–2♦.
       // Öppnarens tabellrader som kan avgöras direkt av färglängd.
-      if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1C' &&
+      if(d===4 && opener && ours[0].c==='1C' && ours[1].c==='1H' &&
          ours[2].c==='2C' && ours[3].c==='2D'){
         if(b.c==='P')return NC('Pass är uttryckligen inte tillåtet efter tredje färg enligt Nordisk Standard s. 19.',null,'Tredje färg');
         if(b.c==='2H'&&h.L.H===2)return {exp:'2H',alt:[],why:'2♥ visar tvåkorts hjärter och minimum enligt tabellen efter tredje färg.',means:function(c){return c==='2H'?'Tvåkorts hjärter, minimum.':null},conv:'Tredje färg'};
