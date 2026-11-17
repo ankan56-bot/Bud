@@ -1180,7 +1180,9 @@ var Rattning = (function(){
         return {exp:'3C',alt:[],why:'3♣ visar 5–5-fördelning och 15–17 hp enligt sida 18.',means:function(c){return c==='3C'?'5–5-fördelning, 15–17 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
       if(b.c==='3H'&&shape64Pref&&h.hp>=15&&h.hp<=17)
         return {exp:'3H',alt:[],why:'3♥ visar 6–4-fördelning och 15–17 hp enligt sida 18.',means:function(c){return c==='3H'?'6–4-fördelning, 15–17 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
-      if(b.c==='4H')return NC('4♥ kräver minst 6–4-fördelning och stark hand. Tabellen anger ingen numerisk styrkegräns för ”stark hand”; expertbedömning krävs.',null,'ÖH:s tredje bud efter preferens');
+      if(b.c==='4H'&&shape64Pref&&h.hp>=18)
+        return {exp:'4H',alt:[],why:'4♥ visar minst 6–4-fördelning och stark hand, här preciserad till 18+ hp.',means:function(c){return c==='4H'?'Minst 6–4-fördelning, 18+ hp.':null},conv:'ÖH:s tredje bud efter preferens'};
+      if(b.c==='4H')return NC('4♥ kräver minst 6–4-fördelning och 18+ hp samt minst 6–4-fördelning. Handen uppfyller inte säkert kraven.',null,'ÖH:s tredje bud efter preferens');
     }
 
     // Sida 18: SH bjuder om sin färg. Exempel: 1♥–1♦; 2♥–2♦.
@@ -1190,8 +1192,8 @@ var Rattning = (function(){
       var shape65Rebid=lensRebid[0]===6&&lensRebid[1]===5;
       if(b.c==='P'&&h.hp>=11&&h.hp<=15)
         return {exp:'P',alt:[],why:'Pass med 11–15 hp enligt sida 18.',means:function(c){return c==='P'?'11–15 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
-      if(b.c==='2S'&&shape65Rebid)
-        return NC('2♠ visar 6–5-fördelning och minimum. Källtabellen anger inte numerisk gräns för minimum i denna fortsättning.',null,'ÖH:s tredje bud efter ombud');
+      if(b.c==='2S'&&shape65Rebid&&h.hp>=11&&h.hp<=15)
+        return {exp:'2S',alt:[],why:'2♠ visar 6–5-fördelning och minimum, 11–15 hp enligt användarens precisering.',means:function(c){return c==='2S'?'6–5-fördelning, minimum 11–15 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
       if(b.c==='2N'&&h.hp>=15&&h.hp<=17)
         return {exp:'2N',alt:[],why:'2NT är invit med (15) 16–17 hp enligt sida 18.',means:function(c){return c==='2N'?'Invit, (15) 16–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
       if(b.c==='3D'&&h.L.D===6&&h.hp>=15&&h.hp<=17)
@@ -1209,7 +1211,17 @@ var Rattning = (function(){
        ours[2].c==='2H' && ours[3].c==='2N'){
       if(b.c==='3C')return {exp:'3C',alt:[],why:'3♣ är svagt fjärde färgsbud men utgångskrav enligt sida 18.',means:function(c){return c==='3C'?'Svagt, fjärde färg, utgångskrav.':null},conv:'ÖH:s tredje bud efter 2NT-invit',soft:false};
       if(b.c==='3N')return {exp:'3N',alt:[],why:'3NT är slutbud enligt tabellen på sida 18.',means:function(c){return c==='3N'?'Slutbud.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
-      if(b.c==='3D'||b.c==='3H'||b.c==='3S')return NC('Budet kräver 5–5/minimum (3♦), 6–4/minimum (3♥) eller trekortsspader/maximum (3♠). Tabellen anger inte numeriska gränser för minimum/maximum; expertbedömning krävs.',null,'ÖH:s tredje bud efter 2NT-invit');
+      var lens65TwoNT=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
+      var shape55TwoNT=lens65TwoNT[0]===5&&lens65TwoNT[1]===5;
+      var shape64TwoNT=lens65TwoNT[0]===6&&lens65TwoNT[1]===4;
+      if(b.c==='3D'&&shape55TwoNT&&h.hp>=11&&h.hp<=14)
+        return {exp:'3D',alt:[],why:'3♦ visar 5–5-fördelning och minimum 11–14 hp enligt användarens precisering.',means:function(c){return c==='3D'?'5–5-fördelning, minimum 11–14 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
+      if(b.c==='3H'&&shape64TwoNT&&h.hp>=11&&h.hp<=14)
+        return {exp:'3H',alt:[],why:'3♥ visar 6–4-fördelning och minimum 11–14 hp enligt användarens precisering.',means:function(c){return c==='3H'?'6–4-fördelning, minimum 11–14 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
+      if(b.c==='3S'&&h.L.S===3&&h.hp>=15&&h.hp<=17)
+        return {exp:'3S',alt:[],why:'3♠ visar trekortsstöd i spader och maximum 15–17 hp enligt användarens precisering.',means:function(c){return c==='3S'?'Trekortsstöd i spader, maximum 15–17 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
+      if(b.c==='3N'&&h.hp>=15&&h.hp<=17)
+        return {exp:'3N',alt:[],why:'3NT visar 15–17 hp enligt användarens precisering; budet ska inte reduceras till enbart etiketten slutbud.',means:function(c){return c==='3N'?'15–17 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
     }
 
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
@@ -1235,12 +1247,13 @@ var Rattning = (function(){
       if(d===4 && opener && ours[0].c==='1C' && ours[1].c==='1H' &&
          ours[2].c==='2C' && ours[3].c==='2D'){
         if(b.c==='P')return NC('Pass är uttryckligen inte tillåtet efter tredje färg enligt Nordisk Standard s. 19.',null,'Tredje färg');
-        if(b.c==='2H'&&h.L.H===2)return {exp:'2H',alt:[],why:'2♥ visar tvåkorts hjärter och minimum enligt tabellen efter tredje färg.',means:function(c){return c==='2H'?'Tvåkorts hjärter, minimum.':null},conv:'Tredje färg'};
+        if(b.c==='2H'&&h.L.H===2&&h.hp>=11&&h.hp<=14)return {exp:'2H',alt:[],why:'2♥ visar tvåkorts hjärter och minimum 11–14 hp enligt användarens precisering.',means:function(c){return c==='2H'?'Tvåkorts hjärter, minimum 11–14 hp.':null},conv:'Tredje färg'};
         if(b.c==='2S')return {exp:'2S',alt:[],why:'2♠ är fjärde färg och utgångskrav enligt tabellen.',means:function(c){return c==='2S'?'Fjärde färg, utgångskrav.':null},conv:'Fjärde färg',soft:false};
-        if(b.c==='3C'&&h.L.C===6)return {exp:'3C',alt:[],why:'3♣ visar sexkortsfärg, minimum enligt tabellen.',means:function(c){return c==='3C'?'Sexkortsfärg, minimum.':null},conv:'Tredje färg'};
+        if(b.c==='3C'&&h.L.C===6&&h.hp>=11&&h.hp<=14)return {exp:'3C',alt:[],why:'3♣ visar sexkortsklöver och minimum 11–14 hp enligt användarens precisering.',means:function(c){return c==='3C'?'Sexkortsklöver, minimum 11–14 hp.':null},conv:'Tredje färg'};
         if(b.c==='3D'&&h.L.D===4)return {exp:'3D',alt:[],why:'3♦ visar fyrkortsstöd enligt tabellen.',means:function(c){return c==='3D'?'Fyrkortsstöd.':null},conv:'Tredje färg'};
         if(b.c==='3H'&&h.L.H===3)return {exp:'3H',alt:[],why:'3♥ visar trekortsstöd enligt tabellen.',means:function(c){return c==='3H'?'Trekortsstöd.':null},conv:'Tredje färg'};
-        if(b.c==='2N'||b.c==='3N')return NC('Sangbuden efter tredje färg kräver spaderhåll och skiljer minimum från maximum. Källtabellen anger inte numeriska hp-gränser för minimum/maximum; denna hand behöver expertbedömning.',null,'Tredje färg');
+        if(b.c==='2N'&&h.stop('S')&&h.hp>=11&&h.hp<=14)return {exp:'2N',alt:[],why:'2NT visar spaderhåll och minimum 11–14 hp enligt användarens precisering.',means:function(c){return c==='2N'?'Spaderhåll, minimum 11–14 hp.':null},conv:'Tredje färg'};
+        if(b.c==='3N'&&h.stop('S')&&h.hp>=15&&h.hp<=17)return {exp:'3N',alt:[],why:'3NT visar spaderhåll och maximum 15–17 hp enligt användarens precisering.',means:function(c){return c==='3N'?'Spaderhåll, maximum 15–17 hp.':null},conv:'Tredje färg'};
       }
 
       // Sida 19, exakt exempel: 1♥–1♠; 2♣–2♦.
@@ -1276,10 +1289,18 @@ var Rattning = (function(){
        ours[2].c==='2C' && ours[3].c==='2D'){
       if(b.c==='2N'&&h.hp>=13&&h.stop('D'))
         return {exp:'2N',alt:[],why:'2NT visar ruterhåll och minst 13 hp enligt fortsättningstabellen efter fjärde färg.',means:function(c){return c==='2N'?'Ruterhåll, 13+ hp.':null},conv:'Fortsättning efter fjärde färg'};
-      if(b.c==='3N'&&h.stop('D'))
-        return {exp:'3N',alt:[],why:'3NT visar ruterhåll och är slutbud enligt sida 19.',means:function(c){return c==='3N'?'Ruterhåll, slutbud.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='3N'&&h.stop('D')&&h.hp<=17)
+        return {exp:'3N',alt:[],why:'3NT visar ruterhåll och är slutbud. Slutbudet begränsas uppåt till 17 hp enligt användarens precisering.',means:function(c){return c==='3N'?'Ruterhåll, slutbud, högst 17 hp.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='3C'&&h.L.S>=4&&h.htp('S')>=13)
+        return {exp:'3C',alt:[],why:'3♣ visar minst fyrkortsstöd i spader och minst 13 stp enligt sida 19.',means:function(c){return c==='3C'?'Minst 4-kortsstöd, 13+ stp.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='3H'&&h.L.S===3&&h.htp('S')>=16)
+        return {exp:'3H',alt:[],why:'3♥ visar trekortsstöd i spader och minst 16 stp enligt sida 19.',means:function(c){return c==='3H'?'3-kortsstöd, 16+ stp.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='3S'&&h.L.S>=6&&h.htp('S')>=16)
+        return {exp:'3S',alt:[],why:'3♠ visar minst sexkortsspader och minst 16 stp enligt sida 19.',means:function(c){return c==='3S'?'Minst 6-kortsspader, 16+ stp.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='4S'&&h.L.S>=6&&h.htp('S')<=15)
+        return {exp:'4S',alt:[],why:'4♠ visar minst sexkortsspader och maximum 15 stp enligt sida 19.',means:function(c){return c==='4S'?'Minst 6-kortsspader, max 15 stp.':null},conv:'Fortsättning efter fjärde färg'};
       if(b.c==='3C'||b.c==='3H'||b.c==='3S'||b.c==='4S')
-        return NC('Budet efter fjärde färg bedöms med stödpoäng (stp). Rättningsmotorn har ännu ingen källverifierad beräkning som motsvarar just dessa stp-gränser; sekvensen loggas för expertkontroll.',null,'Fortsättning efter fjärde färg');
+        return NC('Budet efter fjärde färg kräver den angivna stödpoängsgränsen och färglängden. Handen uppfyller inte säkert hela beskrivningen; sekvensen loggas för expertgranskning.',null,'Fortsättning efter fjärde färg');
     }
 
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
