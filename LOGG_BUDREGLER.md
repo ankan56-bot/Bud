@@ -310,3 +310,5 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 
 - Analysbiblioteket uppdaterat till 0.5.16. T34–T36 begränsade till exakt sex kort och kvalitetskriteriet markeras för manuell kontroll; hindrar att sjukkortig 2-nivåöppning felaktigt förklaras som PDF:ens svaga tvåa.
 - Regressionstestfilen har nu 25 tester, inklusive analysbibliotekets exakta sexkortsvillkor. Testkörning/CI är fortfarande inte verifierad.
+
+- Rättningsmotor 9.1: sexkortig ♣ med bra färg lämnas ej täckt eftersom 2♣ är starköppning och alternativ nivå saknas i underlaget. Ingen pass-/3♣-regel hittas på. Manifest och regressionstester uppdaterade; 26 tester finns, körning/CI ej verifierad.
