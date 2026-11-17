@@ -304,3 +304,6 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 
 - Kvar att expertgranska: lika långa spärrfärger med olika färgkvalitet samt fortsättningar efter 3-/4-nivåns spärröppningar. 9+ kort med 6-10 hp är ej täckt.
 - 20 regressionstester finns i `testdata/weak-two.test.js`; testkörning/CI är ännu inte verifierad och ska inte beskrivas som godkänd.
+
+- Rättningsmotor 9.0: 7-/8-korts spärrtrappa enligt användarbeslutet. Svar efter sjukkortig 2-nivåöppning och efter 3-/4-nivåöppningar markeras ej täckta; generiska tidigare antaganden om nya färger/3NT/spärrhöjning har tagits bort.
+- Regressionstestfilen har nu 23 tester. CI-/testkörning är ännu inte verifierad.
