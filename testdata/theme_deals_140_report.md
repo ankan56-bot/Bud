@@ -6,7 +6,7 @@
 - Samtliga givare har 52 unika kort och 13 kort per hand.
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
-- Rättningsmotor: version 8.7.
+- Rättningsmotor: version 8.8.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Stenberg och trumfstöd är ostörda för att isolera respektive konvention; dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`.
@@ -15,10 +15,10 @@
 
 | Bedömning | Antal |
 |---|---:|
-| Rätt | 579 |
+| Rätt | 581 |
 | Fel | 0 |
 | Valfritt | 0 |
-| Ej täckt | 40 |
+| Ej täckt | 39 |
 
 De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grundsystemets nuvarande rättningsnyckel inte ger ett entydigt facit. De ska analyseras mot källsystemet innan kompletterande regler föreslås.
 
@@ -34,13 +34,13 @@ De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grun
 | Slambudgivning i färg | 10 | 89 | 2 | 0 |
 | Slambudgivning i sang | 10 | 100 | 0 | 0 |
 | Trumfstöd | 10 | 80 | 1 | 0 |
-| Sanghänder | 10 | 80 | 1 | 0 |
+| Sanghänder | 10 | 84 | 0 | 0 |
 | Inviter | 10 | 66 | 0 | 0 |
 | Tvåfärgshänder | 10 | 96 | 5 | 0 |
 | Svaga öppningar och spärrbud | 10 | 40 | 0 | 0 |
 | Upplysningsdubbling | 10 | 68 | 15 | 0 |
 | Inkliv och dubbling | 10 | 54 | 9 | 0 |
-| **Totalt** | **140** | **1 181** | **40** | **0** |
+| **Totalt** | **140** | **1 185** | **39** | **0** |
 
 ## Tolkning av temagivarna som stresstest
 
@@ -56,7 +56,7 @@ I den aktuella versionen är endast 1NT-temats öppningsvillkor klassificerade m
 
 ## Analys av ej täckta budpositioner
 
-Samtliga 38 ej täckta bedömningar ska behandlas som granskningspunkter, inte automatiskt som fel. Referensgeneratorn väljer pass när rättningsmotorn saknar ett säkert budförslag. Därför behöver dessa positioner granskas separat innan de kan användas som facit för en AI-modell.
+Samtliga 39 ej täckta bedömningar ska behandlas som granskningspunkter, inte automatiskt som fel. Referensgeneratorn väljer pass när rättningsmotorn saknar ett säkert budförslag. Därför behöver dessa positioner granskas separat innan de kan användas som facit för en AI-modell.
 
 ## Viktig metodbegränsning
 
@@ -70,4 +70,4 @@ AI-analyser som senare läggs till i analysbiblioteket ska granskas mot källsys
 
 ## Senaste verifiering
 
-GitHub Actions workflow `Theme deal regression`, körning `44097665339`, för engine 8.7: **success**. Testjobbet `theme-deals` slutfördes utan fel, inklusive svag-två-regressionerna (6/6).
+GitHub Actions workflow `Theme deal regression`, körning `44100697247`, för engine 8.8: **success**. Testjobbet `theme-deals` slutfördes utan fel, inklusive svag-två-regressionerna (6/6).
