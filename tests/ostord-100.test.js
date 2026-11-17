@@ -153,5 +153,7 @@ for(const item of report.uncovered){
   assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna|beskrivs inte i dokumentet|finns inte specificerad|ingen prioritet/i,
     'Every uncovered case must state the precise source gap: '+item.dealId);
 }
-assert.ok(report.coveragePercent>=96.5,
-  'The 100-deal test must retain at least 96.5% coverage while reporting newly exposed Stenberg source gaps honestly.');
+// The 22 remaining positions are explicit source gaps (including five newly exposed
+// 2C/Stayman/transfer continuations); do not invent bids to raise this percentage.
+assert.ok(report.coveragePercent>=95.5,
+  'The 100-deal test must retain at least 95.5% coverage while reporting documented source gaps honestly.');
