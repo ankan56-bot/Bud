@@ -32,6 +32,19 @@ const majorPreempt=commonResponses.resp1(scoring.H(['H13','H12','H11','H10','H9'
 assert.equal(majorPreempt.exp,'4H','4+ good heart support, 12 or fewer htp and a distributional hand should preempt to 4H');
 const minorPreempt=commonResponses.resp1(scoring.H(['C13','C12','C11','C10','C9','D2','D3','D4','D5','D6','H2','S2','S3']),'1C');
 assert.equal(minorPreempt.exp,'4C','4+ good club support, at most 9 htp and a distributional hand should preempt to 4C');
+const majorLow=commonResponses.resp1(scoring.H(['H13','H2','H3','H4','S12','S2','S3','D11','D2','D3','C2','C3','C4']),'1H');
+assert.equal(majorLow.exp,'2H','6-9 htp with four-card major support should raise to two');
+const majorInvite=commonResponses.resp1(scoring.H(['H13','H12','H2','H3','S13','S2','S3','D12','D2','D3','C2','C3','C4']),'1H');
+assert.equal(majorInvite.exp,'3H','10-12 htp with four-card major support should raise to three');
+const majorStenberg=commonResponses.resp1(scoring.H(['H13','H12','H2','H3','S13','S2','S3','D14','D2','D3','C11','C2','C3']),'1H');
+assert.equal(majorStenberg.exp,'2N','13+ htp with four-card major support should use Stenberg');
+const minorLow=commonResponses.resp1(scoring.H(['C13','C2','C3','C4','D12','D2','D3','H11','H2','H3','S2','S3','S4']),'1C');
+assert.equal(minorLow.exp,'2C','6-9 htp with four-card minor support and no four-card major should raise to two');
+const minorInvite=commonResponses.resp1(scoring.H(['C13','C12','C2','C3','D13','D2','D3','H12','H2','H3','S2','S3','S4']),'1C');
+assert.equal(minorInvite.exp,'3C','10-12 htp with four-card minor support and no four-card major should raise to three');
+const minorStenberg=commonResponses.resp1(scoring.H(['C13','C12','C2','C3','D14','D2','D3','H13','H2','H3','S11','S2','S3']),'1C');
+assert.equal(minorStenberg.exp,'2N','13+ htp with four-card minor support and no four-card major should use Stenberg');
+
 
 
 assert.deepEqual(trumfstod.responder({special:true},'1H'),{exp:'2N',conv:'Stenberg'});
