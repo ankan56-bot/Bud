@@ -448,9 +448,10 @@ var Rattning = (function(){
       else return {exp:null,alt:[],why:'Med 20+ htp och lågfärgsstöd ska man först undersöka 3NT; dokumentet anger inte budet.',means:means,conv:'öppnarens 2:a bud'};
       soft=false;
     }else if(L[o]>=6&&!SU.some(function(s){return s!==o&&L[s]>=4})){
-      if(hp<=14){exp=low(o);why='Egen 6+ färg utan sidofärg: lägsta nivå (12-14).'}
-      else if(hp<=17){exp=jump(o,r);why='Egen 6+ färg: enkelhopp (15-17).'}
-      else if(hp>=18){exp=maj(o)?'4'+o:NC('Dokumentet anger inte budet för denna hand.',means).exp;why='Egen 6+ högfärg, 18+: utgång.'}
+      var ownSuitHtp=h.htp(o);
+      if(ownSuitHtp<=16){exp=low(o);why='Egen 6+ färg utan sidofärg: '+ownSuitHtp+' htp, lägsta nivå (12-16).'}
+      else if(ownSuitHtp<=19){exp=jump(o,r);why='Egen 6+ färg: '+ownSuitHtp+' htp, enkelhopp (17-19).'}
+      else if(ownSuitHtp>=20){exp=maj(o)?'4'+o:NC('Dokumentet anger inte budet för denna hand.',means).exp;why='Egen 6+ högfärg, 20+ htp: utgång.'}
       else return NC('Dokumentet anger inte budet för denna hand.',means);
     }else if(h.bal){
       if(r==='1N'){if(hp<=14){exp='P';why='Balanserad 12-14: pass efter partnerns 1NT.'}else if(hp>=18&&hp<=19){exp='2N';why='Balanserad 18-19: 2NT.'}else return NC('Dokumentet anger inte budet för denna styrka.',means)}
@@ -727,6 +728,29 @@ var Rattning = (function(){
     return {exp:exp,alt:alt,why:why||'',means:means,conv:'dubbling',soft:true};
   }
 
+  /* ––––– 1 I FÄRG – 1NT – 2NT: VAL AV UTGÅNG ––––– */
+  function responderAfterOneOneNT2NT(h,openerCards){
+    var opener=H(openerCards),totalHcp=h.hp+opener.hp;
+    var majorFits=['H','S'].map(function(s){
+      return {s:s,fit:h.L[s]+opener.L[s],points:partnershipPoints(h,opener,s)};
+    }).filter(function(x){return x.fit>=8&&x.points>=26;});
+    majorFits.sort(function(a,b){return b.points-a.points||b.fit-a.fit;});
+    var means=function(c){
+      if(c==='P')return '6-7 hp eller otillräcklig gemensam styrka: avböjer 2NT-inviten.';
+      if(c==='3N')return 'Minst 26 gemensamma honnörspoäng utan kvalificerande högfärgsfit: utgång i sang.';
+      if(c==='4H'||c==='4S')return 'Minst 26 gemensamma spelpoäng och minst 8-korts högfärgsfit: utgång i högfärgen.';
+      return null;
+    };
+    if(majorFits.length){
+      var m=majorFits[0].s;
+      return {exp:'4'+m,alt:[],why:majorFits[0].fit+'-korts fit i '+SYM[m]+' och '+majorFits[0].points+' gemensamma spelpoäng: acceptera 2NT-inviten med 4'+SYM[m]+'. Ingen slamfortsättning ingår i denna gren.',means:means,conv:'1-1NT / utgång',soft:false};
+    }
+    if(totalHcp>=26){
+      return {exp:'3N',alt:[],why:totalHcp+' gemensamma honnörspoäng: acceptera 2NT-inviten med 3NT. Denna gren stannar vid utgång.',means:means,conv:'1-1NT / utgång',soft:false};
+    }
+    return {exp:'P',alt:[],why:totalHcp+' gemensamma honnörspoäng och ingen högfärgsfit som når 26 spelpoäng: avböj 2NT-inviten. Ingen slamfortsättning ingår i denna gren.',means:means,conv:'1-1NT / utgång',soft:false};
+  }
+
   /* ––––– SVARSHANDENS ANDRA BUD EFTER 1NT-SVAR ––––– */
   function respAfter1NT(h,opening,rebid,act){
     var hp=h.hp,L=h.L, suit=isBid(act)?st_(act):null;
@@ -741,7 +765,10 @@ var Rattning = (function(){
       }
       return null;
     };
-    var allowed=hp>=6&&hp<=9&&suit&&L[suit]>=6&&lv(act)===3&&((isOpeningSuit&&act==='3'+suit)||(!isOpeningSuit&&lowestNewSuit));
+    // Efter 1NT får svarshanden återbjuda en egen 6+ färg med 6-9 hp
+    // på lägsta lagliga nivå. Om det är öppningsfärgen blir nivån 3.
+    var allowed=hp>=6&&hp<=9&&suit&&L[suit]>=6&&
+      ((isOpeningSuit&&act==='3'+suit)||(!isOpeningSuit&&lowestNewSuit));
     if(allowed){
       return {exp:act,alt:[],why:hp+' hp och 6+ '+SYM[suit]+': bjud färgen på lägsta nivå i andra budronden. Budet är inte krav.',means:means,conv:'svar efter 1NT',soft:false};
     }
@@ -1124,8 +1151,10 @@ var Rattning = (function(){
       return nc('Fortsättningen efter spärrbud beskrivs inte i dokumentet.');
     }
     if(/^1[CDHS]$/.test(c1)){
-      // Efter 1♦–1♥–2♠ är 2♠ öppnarens reverse och SH ska
-      // höja till 4♠ med minst 8-korts fit och 26+ gemensamma spelpoäng.
+      // Separat 1-färg–1NT-gren. Lågfärg (1♦) och högfärg (1♥/1♠)
+      // följer samma källstyrda principer men testas var för sig.
+      // Efter 1♦–1♥–2♠ är 2♠ öppnarens reverse och SH ska höja
+      // till 4♠ med minst 8-korts fit och 26+ gemensamma spelpoäng.
       if(!opener&&d===2&&c1==='1H'&&b.c==='4S'){
         var partnerCalls=prior.filter(function(x){return x.s===pt&&x.c!=='P'&&isBid(x.c)});
         var partnerRebid=partnerCalls.length>1?partnerCalls[1].c:null;
@@ -1135,8 +1164,10 @@ var Rattning = (function(){
           return {exp:'4S',alt:[],why:'Reverse 1♦–1♥–2♠. Minst 8-korts spaderfit och '+totalS+' gemensamma spelpoäng (26+): SH ska bjuda 4♠.',means:function(c){return c==='4S'?'Utgång i ♠: minst 8-korts fit och 26+ gemensamma spelpoäng.':null},conv:'reverse och utgång'};
         }
       }
-      if(!opener&&d===3&&ours[1].c==='1N')
+      if(!opener&&d===3&&ours[1].c==='1N'){
+        if(ours[2].c==='2N')return responderAfterOneOneNT2NT(h,st.hands[pt]);
         return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
+      }
       if(!opener&&d===3){
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
@@ -1470,7 +1501,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.3'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.4'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
