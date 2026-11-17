@@ -41,7 +41,7 @@
         if(l2>lv(lo))return 'Dubbelhopp i ny färg: renons i färgen, 4+ stöd och 13+ htp.'}
       return null};
 
-    if(M&&sup&&!h.bal&&h.good(o)&&htp>=6&&htp<=12){
+    if(M&&sup&&!h.bal&&h.good(o)&&htp<=12){
       exp='4'+o;why=htp+' htp, 4+ högfärgsstöd, bra stöd och obalanserad/svitad hand: spärrhöjning till 4'+o+'.';
     }else if(M&&sup){
       if(htp<6){exp='P';why='Bara '+htp+' htp med stöd: för svag för att svara.'}
@@ -51,7 +51,7 @@
     }else if(hp<6&&(!sup||htp<6)){exp='P';why='Under 6 hp: pass.'}
     else if(!M&&sup&&cand.some(maj)){var cm=cand.filter(maj);exp=lowest(pickBest(cm),oc);why='Stöd i lågfärg men egen 4+ högfärg: visa högfärgen först (sök högfärg).';
       if(cm.length>1&&L[cm[0]]===L[cm[1]])alt.push(lowest(cm[0]===pickBest(cm)?cm[1]:cm[0],oc))}
-    else if(!M&&sup&&!h.bal&&h.good(o)&&htp>=6&&htp<=9){
+    else if(!M&&sup&&!h.bal&&h.good(o)&&htp<=9){
       exp='4'+o;why=htp+' htp, 4+ lågfärgsstöd, bra stöd och obalanserad/svitad hand: spärrhöjning till 4'+o+'.';
     }else if(!M&&sup){
       if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen (6-9).'}
