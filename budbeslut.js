@@ -10,7 +10,7 @@
   var rk=api.rk, txt=api.txt, maj=api.maj, lowest=api.lowest, jump=api.jump;
   var H=api.H, handHps=api.handHps, partnershipPoints=api.partnershipPoints;
   var T=api.T, ok=api.ok, NC=api.NC;
-  var twoClub=deps.twoClub, weakTwo=deps.weakTwo, stenberg=deps.stenberg;
+  var twoClub=deps.twoClub, weakTwo=deps.weakTwo, stenberg=deps.stenberg, trumfstod=deps.trumfstod;
   var majorBidding=deps.majorBidding, minorBidding=deps.minorBidding;
   var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2;
   var resp2w=weakTwo.resp2w, open2w=weakTwo.open2w;
@@ -463,14 +463,13 @@
     if(/^1[CDHS]$/.test(c1)){
       // Stenberg 2NT: särskild respons och öppnarens första återbud.
       if(!opener&&d===1){
-        var stenbergResponse=stenberg.responder(h,c1);
-        if(stenbergResponse&&stenbergResponse.exp)return stenbergResponse;
-        var ordinaryResponse=maj(st_(c1))?majorBidding.respond(h,c1):minorBidding.respond(h,c1);
-        if(b.c==='2N'&&ordinaryResponse&&ordinaryResponse.exp&&ordinaryResponse.exp!=='2N')return ordinaryResponse;
-        if(b.c==='2N')return stenbergResponse;
+        var trumpResponse=trumfstod.responder(h,c1);
+        if(b.c==='2N'&&trumpResponse&&trumpResponse.exp&&trumpResponse.exp!=='2N')return trumpResponse;
+        if(b.c==='2N')return stenberg.responder(h,c1);
+        if(trumpResponse&&trumpResponse.exp)return trumpResponse;
       }
       if(opener&&d===2&&ours[1].c==='2N')
-        return stenberg.openerRebid(h,c1,st.hands[pt]?H(st.hands[pt]):null);
+        return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]?H(st.hands[pt]):null);
       if(!opener&&d===3&&ours[1].c==='2N')
         return stenberg.responderContinuation(h,c1,b.c,st.hands[pt]?H(st.hands[pt]):null,
           prior,rkcTrumpFromAuction,side(me),me);
