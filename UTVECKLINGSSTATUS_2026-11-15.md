@@ -346,3 +346,15 @@ main är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
 - Den reproducerbara baslinjen med motor 8.5 uppdaterades: 140 givare, 592 rätt, 38 ej täckta, 0 fel. DDS har inte körts.
 - Kvarvarande svag-två-grenar finns i `testdata/weak-two-audit.md` och ska förbli ej täckta tills exakt budbetydelse och handvillkor har verifierats. Särskilt gäller det ny färg, direkta 3NT-svar, renons-/slaminvit och fortsättningar efter öppnarens min/max-besked.
 - Modulen är därför inte färdigförklarad ännu. Nästa steg är att slutföra och testa de återstående ostörda grenarna innan 3- och 4-öppningar eller störd budgivning tas upp.
+
+
+## Korrigerad PDF-verifiering – svaga tvåöppningar 2026-11-17
+
+Den fullständiga `nordisk_standard.pdf` (2012-08-22) återfanns i ChatGPT-biblioteket. PDF sida 4 har nu använts direkt och ersätter den tidigare preliminära läsningen av den inbäddade HTML-sammanfattningen.
+
+- 2NT-inviten efter svag tvåa kräver minst 2 stödkort. PDF:en anger inget exakt hp-intervall för svarshanden; den tidigare 9–10 hp-gränsen på svarshanden är borttagen.
+- 6–8 hp (minimum) och 9–10 hp (maximum) gäller öppnarens ombud efter 2NT.
+- Maximum visas med 3NT/4 högfärg; efter 2 lå visas 3NT, inte 4 lå.
+- Ny färg 5+ är krav till minst 3 i öppningsfärgen. Hopp i ny färg visar renons och är slaminvit. 3NT är slutbud. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, ej invit.
+- Rättningsmotor 8.6 implementerar dessa källregler. Regressionerna har utökats; resultat inväntas i GitHub Actions.
+- Fortsättningar som PDF:en inte definierar är kvar i expertloggen. Störd budgivning är fortfarande pausad.
