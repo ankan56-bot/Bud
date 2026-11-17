@@ -21,7 +21,10 @@
 | 11 | 28–29 | Slamområde: kontrollbud, essfrågor/RKC och relaterade slamsekvenser. | Jämför mot befintlig slammodul; fånga exakt svarsskala och trumfkontext. |
 | 12 | 30–31 | Slamfortsättning och relaterade sekvenser; ytterligare exempel. | Granska nivåkrav, kontrollbud och när frågebud används. |
 | 13 | 32–33 | Slam/RKC, Stenberg/relaterade fortsättningar och splinterreferenser. | Jämför mot slam- och trumfstödsmoduler; notera hänvisningar. |
-| 14 | 34–35 | Fortsättningar, spärr-/öppningsfamiljer och avslutande systemöversikt. | Kontrollera att ingen avslutande regel eller fotnot missas. |
+| 14 | 34–35 | Övergång till avsnittet om störd budgivning; grundprinciper för störning och svar efter inkliv 1♥. | Ska inventeras i störd budgivning, inte räknas som ostörd modul. |
+
+## Avgränsning
+PDF-bild 14 (tryckt s. 34–35) är redan början på störd budgivning. Den ostörda delen i denna bok slutar därför på tryckt s. 33. Den separata PDF:en för störd budgivning överlappar från tryckt s. 34.
 
 ## Identifierade huvudmoduler
 1. Öppningsbud.
