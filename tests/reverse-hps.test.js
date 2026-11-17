@@ -955,7 +955,7 @@ function assessReverse(shape, honors) {
   const state = { hands, dealer: 'N', bids };
   const raw = Rattning.nodeForRaw(state, 4);
   assert.equal(raw.exp, null);
-  assert.match(raw.why, /Flera sidofärger är singel/i);
+  assert.match(raw.why, /prioritet mellan två eller fler singeltoner/i);
   const node = Rattning.nodeFor(state, 4);
   assert.equal(node.exp, '4H', 'The separate game-point safety check still finds the mandatory major game after Stenberg.');
 }
