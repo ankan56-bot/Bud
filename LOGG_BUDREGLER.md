@@ -864,3 +864,23 @@ Testgeneratorn i `tests/one-major-100.test.js` är deterministisk och kan åters
 
 De fokuserade högfärgs-/trumfstöds-/Stenberg-/RKC-testerna passerar. Den fullständiga workflowen stannar senare i den breda, separata ostörda regressionskorpusen vid `tests/ostord-100.test.js`: den faktiska listan över ej täckta 1NT-/2♣-positioner avviker från testets förväntade baslinjelista. De sekvenserna ligger utanför 1♥/1♠-ändringarna och ska utredas separat; ingen testbaslinje har ändrats för att dölja avvikelsen.
 
+### Utökad 200-givarskontroll av 1♥/1♠ – 2026-11-17
+
+Testet har utökats från 100 till 200 deterministiska givare. En ny testkörning hittade dessutom ett faktiskt tekniskt fel i 10 hp-grenen: koden skickade längden på längsta färgen till `h.good()` i stället för färgkoden. Det gav ett undantag för en hand med 10 hp och sexkortsfärg. Funktionen är korrigerad och ett riktat regressionstest säkerställer nu att en bra sexkortsfärg med 10 hp behandlas som 2 över 1, inte 1NT.
+
+**Godkänt resultat efter korrigeringen:**
+- 200 givare: 95 öppningar 1♥ och 105 öppningar 1♠.
+- 1 038 beslut: 1 033 täckta, 5 ej täckta (**99,5 %**).
+- 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga/ofärdiga auktioner och 0 kortintegritetsfel.
+- 3M-invit: 4/4 riktade tester godkända.
+- Alla fem ej täckta positioner inklusive samtliga fyra händer per givare finns sparade i `testdata/one_major_200_uncovered_2026-11-17.json`.
+
+**De fem öppna positionerna:**
+1. Seed 202612662 – `1♥–Pass–2NT–Pass–?`: öppnarens hand matchar inte de dokumenterade Stenbergåterbuden.
+2. Seed 202613691 – `1♠–Pass–2NT–Pass–?`: motsvarande ej täckta Stenberghand.
+3. Seed 202627277 – `1♥–Pass–2♦–Pass–?`: 20+ htp och 4+ lågfärgsstöd; 3NT ska undersökas först men exakt fortsättningssekvens och val mellan 3NT/5 lågfärg saknar källstöd.
+4. Seed 202631448 – `1♥–Pass–2NT–Pass–?`: öppnaren har renons; Nordisk standard anger inte Stenbergfortsättning med renons.
+5. Seed 202632417 – `1♥–Pass–2♣–Pass–?`: 20+ htp och 4+ lågfärgsstöd; samma odokumenterade 3NT-/5-lågfärgsutforskning.
+
+Inga av dessa luckor har fyllts med antagna regler. Fullständiga händer och motiveringar finns i JSON-filen ovan.
+
