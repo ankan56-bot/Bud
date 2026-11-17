@@ -26,7 +26,7 @@ Källa: **Nordisk standard, 2012-08-22**, s. 2–3 i användarens PDF. Ingen ext
 | 1 hö | 2NT | 13+ htp, 4+ stöd; Stenberg och utgångskrav |
 | 1 i färg | dubbelhopp i ny färg | Renons i bjuden färg, 4+ stöd och 13+ htp |
 
-**Prioritet:** Med lågfärgsstöd och 4+ kort i högfärg ska högfärgen visas först. Högfärgsstöd visas alltid. En enda renons med 4+ stöd och 13+ htp visas med dubbelhopp i renonsfärgen. Om handen har flera renoncer anger PDF:en ingen prioritet; dessa lägen lämnas EJ TÄCKTA i stället för att välja godtyckligt.
+**Prioritet:** Med lågfärgsstöd och 4+ kort i högfärg ska högfärgen visas först. Högfärgsstöd visas alltid. Spärrhöjning till 4 i öppningsfärgen används inom PDF:ens maxgräns när handen är obalanserad och stöd-/trumffärgen klarar projektets befintliga `good()`-kontroll. Eftersom PDF:en inte definierar 'bra stöd' eller 'svitad hand' numeriskt är detta en uttrycklig första operationalisering, och en expertfråga finns i `ej-tackta-logg.js`. En enda renons med 4+ stöd och 13+ htp visas med dubbelhopp i renonsfärgen. Om handen har flera renoncer anger PDF:en ingen prioritet; dessa lägen lämnas EJ TÄCKTA i stället för att välja godtyckligt.
 
 ### Stenberg
 
@@ -47,4 +47,5 @@ Kända regler och numeriska gränser ska rättas som systemregler. Endast situat
 
 - `tests/trumfstod.test.js`: kontrollerar modulgränsen, routing till Stenberg och hög-/lågfärgsmodulerna, stödbudsklassificering samt dubbelhopp med renons och loggning av flera renoncer.
 - `tests/stenberg-2nt.test.js`: befintliga Stenbergregressioner.
-- Nästa verifieringssteg: köra hela testsviten och lägga till fullständiga givbaserade gränstester för varje rad i stödtabellen, särskilt spärrhöjningarna och dubbelhopp med renons.
+- Nya tester: faktiska poängberäkningar för 4♥- och 4♣-spärrhöjningar samt routing-/Stenberg-/renonsfall.
+- Kvar att verifiera: full testsvit och givbaserade gränstester för samtliga 2-/3-nivåer, spärrhöjningarnas maxgränser och dubbelhopp med renons.
