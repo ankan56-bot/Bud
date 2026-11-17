@@ -387,3 +387,13 @@ Den fullständiga `nordisk_standard.pdf` (2012-08-22) återfanns i ChatGPT-bibli
 - Hela GitHub Actions-körningen `44098066656`: **success**, inklusive analysis-library-matchning och strukturerade handprofiltester.
 - 140-givarsbaslinje: 579 rätt, 40 ej täckta, 0 fel (1 181 budpositioner).
 - Endast de sekvenser som PDF:en inte definierar återstår i expertloggen. Störd budgivning är fortfarande inte påbörjad.
+
+
+## Ändring efter användarens förtydligande – färgkvalitet återställd
+
+Användaren bad uttryckligen att återinföra det tidigare kravet på bra färg för svaga tvåöppningar. Rättningsmotor 8.8 gör därför följande:
+- 2♦/2♥/2♠: 6–10 hp, exakt sex kort och antingen minst 2 honnörer (A/K/Q/J), eller minst 1 honnör plus minst 2 av 10–9–8.
+- Sexkortsfärg utan denna kvalitet ger inte svag tvåöppning.
+- 16 regressionstester passerar, inklusive gränsen med en honnör + två mellankort.
+- Hela GitHub Actions `44100697247`: **success**.
+- 140 givare: 581 rätt, 39 ej täckta, 0 fel; 1 185 budpositioner.
