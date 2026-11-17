@@ -7342,7 +7342,7 @@
       "root": "t34_n0",
       "nodes": [
         {
-          "id": "t34_dn0",
+          "id": "t34_n0",
           "sequence": [
             "2D"
           ],
@@ -7351,78 +7351,78 @@
           "branches": [
             {
               "call": "2N",
-              "next": "t34_dn1",
+              "next": "t34_n-1",
               "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3D",
-              "next": "t34_dn2",
+              "next": "t34_n-1",
               "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
               "call": "3C",
-              "next": "t34_dn3",
+              "next": "t34_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "2H",
-              "next": "t34_dn4",
+              "next": "t34_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "2S",
-              "next": "t34_dn5",
+              "next": "t34_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3N",
-              "next": "t34_dn6",
+              "next": "t34_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4H",
-              "next": "t34_dn7",
+              "next": "t34_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4S",
-              "next": "t34_dn8",
+              "next": "t34_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5C",
-              "next": "t34_dn9",
+              "next": "t34_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5D",
-              "next": "t34_dn10",
+              "next": "t34_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4C",
-              "next": "t34_dn11",
+              "next": "t34_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "3H",
-              "next": "t34_dn12",
+              "next": "t34_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "3S",
-              "next": "t34_dn13",
+              "next": "t34_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
-              "next": "t34_dn14",
+              "next": "t34_n-1",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
           ]
         },
         {
-          "id": "t34_dn1",
+          "id": "t34_n1",
           "sequence": [
             "2D",
             "Pass",
@@ -7442,7 +7442,7 @@
           }
         },
         {
-          "id": "t34_dn2",
+          "id": "t34_n2",
           "sequence": [
             "2D",
             "Pass",
@@ -7462,7 +7462,7 @@
           }
         },
         {
-          "id": "t34_dn3",
+          "id": "t34_n3",
           "sequence": [
             "2D",
             "Pass",
@@ -7485,7 +7485,7 @@
           }
         },
         {
-          "id": "t34_dn4",
+          "id": "t34_n4",
           "sequence": [
             "2D",
             "Pass",
@@ -7508,7 +7508,7 @@
           }
         },
         {
-          "id": "t34_dn5",
+          "id": "t34_n5",
           "sequence": [
             "2D",
             "Pass",
@@ -7531,7 +7531,7 @@
           }
         },
         {
-          "id": "t34_dn6",
+          "id": "t34_n6",
           "sequence": [
             "2D",
             "Pass",
@@ -7542,7 +7542,7 @@
           "branches": []
         },
         {
-          "id": "t34_dn7",
+          "id": "t34_n7",
           "sequence": [
             "2D",
             "Pass",
@@ -7553,7 +7553,7 @@
           "branches": []
         },
         {
-          "id": "t34_dn8",
+          "id": "t34_n8",
           "sequence": [
             "2D",
             "Pass",
@@ -7564,7 +7564,7 @@
           "branches": []
         },
         {
-          "id": "t34_dn9",
+          "id": "t34_n9",
           "sequence": [
             "2D",
             "Pass",
@@ -7575,7 +7575,7 @@
           "branches": []
         },
         {
-          "id": "t34_dn10",
+          "id": "t34_n10",
           "sequence": [
             "2D",
             "Pass",
@@ -7586,7 +7586,7 @@
           "branches": []
         },
         {
-          "id": "t34_dn11",
+          "id": "t34_n11",
           "sequence": [
             "2D",
             "Pass",
@@ -7606,7 +7606,7 @@
           }
         },
         {
-          "id": "t34_dn12",
+          "id": "t34_n12",
           "sequence": [
             "2D",
             "Pass",
@@ -7626,7 +7626,7 @@
           }
         },
         {
-          "id": "t34_dn13",
+          "id": "t34_n13",
           "sequence": [
             "2D",
             "Pass",
@@ -7646,7 +7646,7 @@
           }
         },
         {
-          "id": "t34_dn14",
+          "id": "t34_n14",
           "sequence": [
             "2D",
             "Pass",
@@ -7680,7 +7680,7 @@
       "root": "t35_n0",
       "nodes": [
         {
-          "id": "t35_hn0",
+          "id": "t35_n0",
           "sequence": [
             "2H"
           ],
@@ -7689,78 +7689,78 @@
           "branches": [
             {
               "call": "2N",
-              "next": "t35_hn1",
+              "next": "t35_n-1",
               "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3H",
-              "next": "t35_hn2",
+              "next": "t35_n-1",
               "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
               "call": "3C",
-              "next": "t35_hn3",
+              "next": "t35_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3D",
-              "next": "t35_hn4",
+              "next": "t35_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "2S",
-              "next": "t35_hn5",
+              "next": "t35_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3N",
-              "next": "t35_hn6",
+              "next": "t35_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4H",
-              "next": "t35_hn7",
+              "next": "t35_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4S",
-              "next": "t35_hn8",
+              "next": "t35_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5C",
-              "next": "t35_hn9",
+              "next": "t35_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5D",
-              "next": "t35_hn10",
+              "next": "t35_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4C",
-              "next": "t35_hn11",
+              "next": "t35_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4D",
-              "next": "t35_hn12",
+              "next": "t35_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "3S",
-              "next": "t35_hn13",
+              "next": "t35_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
-              "next": "t35_hn14",
+              "next": "t35_n-1",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
           ]
         },
         {
-          "id": "t35_hn1",
+          "id": "t35_n1",
           "sequence": [
             "2H",
             "Pass",
@@ -7780,7 +7780,7 @@
           }
         },
         {
-          "id": "t35_hn2",
+          "id": "t35_n2",
           "sequence": [
             "2H",
             "Pass",
@@ -7800,7 +7800,7 @@
           }
         },
         {
-          "id": "t35_hn3",
+          "id": "t35_n3",
           "sequence": [
             "2H",
             "Pass",
@@ -7823,7 +7823,7 @@
           }
         },
         {
-          "id": "t35_hn4",
+          "id": "t35_n4",
           "sequence": [
             "2H",
             "Pass",
@@ -7846,7 +7846,7 @@
           }
         },
         {
-          "id": "t35_hn5",
+          "id": "t35_n5",
           "sequence": [
             "2H",
             "Pass",
@@ -7869,7 +7869,7 @@
           }
         },
         {
-          "id": "t35_hn6",
+          "id": "t35_n6",
           "sequence": [
             "2H",
             "Pass",
@@ -7880,7 +7880,7 @@
           "branches": []
         },
         {
-          "id": "t35_hn7",
+          "id": "t35_n7",
           "sequence": [
             "2H",
             "Pass",
@@ -7891,7 +7891,7 @@
           "branches": []
         },
         {
-          "id": "t35_hn8",
+          "id": "t35_n8",
           "sequence": [
             "2H",
             "Pass",
@@ -7902,7 +7902,7 @@
           "branches": []
         },
         {
-          "id": "t35_hn9",
+          "id": "t35_n9",
           "sequence": [
             "2H",
             "Pass",
@@ -7913,7 +7913,7 @@
           "branches": []
         },
         {
-          "id": "t35_hn10",
+          "id": "t35_n10",
           "sequence": [
             "2H",
             "Pass",
@@ -7924,7 +7924,7 @@
           "branches": []
         },
         {
-          "id": "t35_hn11",
+          "id": "t35_n11",
           "sequence": [
             "2H",
             "Pass",
@@ -7944,7 +7944,7 @@
           }
         },
         {
-          "id": "t35_hn12",
+          "id": "t35_n12",
           "sequence": [
             "2H",
             "Pass",
@@ -7964,7 +7964,7 @@
           }
         },
         {
-          "id": "t35_hn13",
+          "id": "t35_n13",
           "sequence": [
             "2H",
             "Pass",
@@ -7984,7 +7984,7 @@
           }
         },
         {
-          "id": "t35_hn14",
+          "id": "t35_n14",
           "sequence": [
             "2H",
             "Pass",
@@ -8018,7 +8018,7 @@
       "root": "t36_n0",
       "nodes": [
         {
-          "id": "t36_sn0",
+          "id": "t36_n0",
           "sequence": [
             "2S"
           ],
@@ -8027,73 +8027,73 @@
           "branches": [
             {
               "call": "2N",
-              "next": "t36_sn1",
+              "next": "t36_n-1",
               "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3S",
-              "next": "t36_sn2",
+              "next": "t36_n-1",
               "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
               "call": "3C",
-              "next": "t36_sn3",
+              "next": "t36_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3D",
-              "next": "t36_sn4",
+              "next": "t36_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3H",
-              "next": "t36_sn5",
+              "next": "t36_n-1",
               "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
               "call": "3N",
-              "next": "t36_sn6",
+              "next": "t36_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4H",
-              "next": "t36_sn7",
+              "next": "t36_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4S",
-              "next": "t36_sn8",
+              "next": "t36_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5C",
-              "next": "t36_sn9",
+              "next": "t36_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "5D",
-              "next": "t36_sn10",
+              "next": "t36_n-1",
               "label": "Utgångsbud – slutbud"
             },
             {
               "call": "4C",
-              "next": "t36_sn11",
+              "next": "t36_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4D",
-              "next": "t36_sn12",
+              "next": "t36_n-1",
               "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
-              "next": "t36_sn13",
+              "next": "t36_n-1",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
           ]
         },
         {
-          "id": "t36_sn1",
+          "id": "t36_n1",
           "sequence": [
             "2S",
             "Pass",
@@ -8113,7 +8113,7 @@
           }
         },
         {
-          "id": "t36_sn2",
+          "id": "t36_n2",
           "sequence": [
             "2S",
             "Pass",
@@ -8133,7 +8133,7 @@
           }
         },
         {
-          "id": "t36_sn3",
+          "id": "t36_n3",
           "sequence": [
             "2S",
             "Pass",
@@ -8156,7 +8156,7 @@
           }
         },
         {
-          "id": "t36_sn4",
+          "id": "t36_n4",
           "sequence": [
             "2S",
             "Pass",
@@ -8179,7 +8179,7 @@
           }
         },
         {
-          "id": "t36_sn5",
+          "id": "t36_n5",
           "sequence": [
             "2S",
             "Pass",
@@ -8202,7 +8202,7 @@
           }
         },
         {
-          "id": "t36_sn6",
+          "id": "t36_n6",
           "sequence": [
             "2S",
             "Pass",
@@ -8213,7 +8213,7 @@
           "branches": []
         },
         {
-          "id": "t36_sn7",
+          "id": "t36_n7",
           "sequence": [
             "2S",
             "Pass",
@@ -8224,7 +8224,7 @@
           "branches": []
         },
         {
-          "id": "t36_sn8",
+          "id": "t36_n8",
           "sequence": [
             "2S",
             "Pass",
@@ -8235,7 +8235,7 @@
           "branches": []
         },
         {
-          "id": "t36_sn9",
+          "id": "t36_n9",
           "sequence": [
             "2S",
             "Pass",
@@ -8246,7 +8246,7 @@
           "branches": []
         },
         {
-          "id": "t36_sn10",
+          "id": "t36_n10",
           "sequence": [
             "2S",
             "Pass",
@@ -8257,7 +8257,7 @@
           "branches": []
         },
         {
-          "id": "t36_sn11",
+          "id": "t36_n11",
           "sequence": [
             "2S",
             "Pass",
@@ -8277,7 +8277,7 @@
           }
         },
         {
-          "id": "t36_sn12",
+          "id": "t36_n12",
           "sequence": [
             "2S",
             "Pass",
@@ -8297,7 +8297,7 @@
           }
         },
         {
-          "id": "t36_sn13",
+          "id": "t36_n13",
           "sequence": [
             "2S",
             "Pass",
