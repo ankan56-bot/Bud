@@ -45,9 +45,9 @@ function openingNode(north) {
 
 const c12=hand({C:'AKQ98',D:'Q2',H:'J23',S:'234'});
 const d12=hand({D:'AKQ98',C:'Q2',H:'J23',S:'234'});
-const good11C=hand({C:'AKJ98',D:'Q',H:'J23',S:'234'});
-const good11D=hand({D:'AKJ98',C:'Q',H:'J23',S:'234'});
-const poor11C=hand({C:'98765',D:'AKQ',H:'Q23',S:'234'});
+const good11C=hand({C:'AKJ98',D:'Q',H:'J23',S:'2345'});
+const good11D=hand({D:'AKJ98',C:'Q',H:'J23',S:'2345'});
+const poor11C=hand({C:'98765',D:'AKQ',H:'Q23',S:'23'});
 
 test('1♣ and 1♦ open with 12–19 hp and at least four cards in the minor',()=>{
   assert.equal(openingNode(c12).exp,'1C');
@@ -165,7 +165,7 @@ test('1♣–1♦: own six-card club suit uses the 17–19 HTP simple jump range
 });
 
 test('20+ HTP with a long minor and no side suit is not assigned an invented 5-minor contract',()=>{
-  const opener=hand({C:'AKQJ98',D:'AK',H:'2',S:'234'});
+  const opener=hand({C:'AKQJ98',D:'AK',H:'2',S:'2345'});
   const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,null);
@@ -195,7 +195,7 @@ test('1♦–1♥–1♠ is a natural one-level second suit, not a reverse',()=>
 });
 
 test('equally long side suits with no source priority are left uncovered',()=>{
-  const opener=hand({C:'AKQ98',H:'KQJ2',S:'QJ98',D:'23'});
+  const opener=hand({C:'AKQ98',H:'KQJ2',S:'QJ98'});
   const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,null);
