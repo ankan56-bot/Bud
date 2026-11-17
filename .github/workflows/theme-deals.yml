@@ -37,6 +37,8 @@ jobs:
         run: node --test testdata/theme-deals.test.js
       - name: Run auction dispatch regression tests
         run: node --test testdata/auction-dispatch.test.js
+      - name: Run 1-level suit to 1NT regression tests
+        run: node --test testdata/one-one-notrump.test.js
       - name: Run documented overcall response tests
         run: node --test testdata/overcall-responses.test.js
       - name: Guard unresolved system gaps
