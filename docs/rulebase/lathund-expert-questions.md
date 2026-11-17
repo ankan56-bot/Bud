@@ -99,7 +99,7 @@
 ### A17. 4NT efter stark 2♣-fortsättningar
 - Lathunden tryckt s. 25 anger 4NT som essfråga med klöver som trumf efter 2♣–2♦–3♣–3♦, och med hjärter som trumf efter 2♣–2♦–3♥–3♠.
 - **Fråga:** Bekräfta hur dessa sekvenser ska identifiera fastställd trumf och hur de ska lämnas över till Nordisk Standards RKC-svarstabell.
-- **Status:** Visningsbetydelsen dokumenterad; automatisk 4NT-rättning avvaktar säker koppling till befintlig RKC-motor och slamvillkor.
+- **Status:** De två uttryckliga färgsekvenserna och de tre 2NT-fortsättningarna med namngiven trumf är nu kopplade till befintlig Nordisk Standard-RKC. Trumfen behålls även efter RKC-svaret. Själva RKC-svar och slamfortsättning hanteras av `slamlogik.js`; osäkra eller ej specificerade 4NT-sekvenser lämnas fortsatt ej täckta. Ingen ny slamtröskel har lagts till.
 
 ## B. Störd budgivning
 
