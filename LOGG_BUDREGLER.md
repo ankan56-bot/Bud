@@ -228,3 +228,12 @@ Källgrund: **Nordisk standard 2012-08-22, sida 3**. Detta är en avgränsad for
 4. Under nuvarande svarstabell går 1♣–1NT inte att nå naturligt: en 4+ färg kan visas på 1-nivån eller som klöverstöd. Detta bör bekräftas mot parets fullständiga svarssystem innan sekvensen avförs som omöjlig.
 
 Alla ovanstående luckor ska ligga kvar som ej bedömda och föras vidare i luckloggen; de får inte fyllas med antagna budregler.
+
+
+## Svaga tvåöppningar – arbetsstart 2026-11-17
+
+- Separat audit finns i `testdata/weak-two-audit.md`.
+- Projektets inbäddade Nordisk Standard-text har använts som tillgängligt underlag; ingen PDF har hittats i den aktuella arbetsgrenen. Ingen extern webbsökning har använts.
+- Rättningsmotor 8.5 korrigerar 3-höjningen efter svag tvåa till spärrhöjning (3+ stöd, ej invit) och kräver 2+ stöd för 2NT-invit (9–10 hp).
+- Oklara styrkegränser och fortsättningar dokumenteras som ej täckta i auditrapporten i stället för att fyllas med antaganden.
+- Störd budgivning lämnas helt utanför arbetet.
