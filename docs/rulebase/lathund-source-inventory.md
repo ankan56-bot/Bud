@@ -118,18 +118,31 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Bud i motståndarnas färg och kontroll-/kravbetydelser.
 - Sekvenserna innehåller flera olika styrke- och färglängdskrav; de ska registreras per position och inte sammanfattas till en generell UD-regel.
 
-### Tryckta sidor 44–47: Balansering och fortsättningar
-- Balansering efter att motståndarna öppnat och budgivningen riskerar att dö ut.
-- Balanseringsdubbling och balanseringsinkliv.
-- Fortsättningar efter balansering.
-- Lathunden anger att balansering kan göras med svagare hand än ett direkt bud i vissa positioner; exakt intervall och handtyp är positionsberoende.
-- Fortsättningar efter inkliv, UD och motståndarnas konkurrens.
+### Tryckta sidor 44–45: Sangförsvar, tredje hand och svar efter inkliv
+- Försvar mot motståndarnas 1NT: straffdubbling, Landy 2♣ för båda högfärgerna, 2♦/2♥/2♠ med angivna färglängder och styrkeintervall samt 3 i färg som spärr.
+- Tredje hand efter partnerns 1NT-inkliv: dubbling och bud i högfärg med angivna färglängder/styrkor.
+- Svar efter partnerns dubbling (UD): pass som normalt bud utan styrka, 2♣/2♦ och 2♥/2♠ med minst 5-kortsfärg och 0–3 hp i vissa lägen.
+- Svar efter inkliv på 2-nivån, inkliv på 1-nivån och inkliv i motståndarnas färg. 2NT efter inkliv anges som Stenbergs 2NT med 13+ stödpoäng i angiven sekvens.
+- Fortsättningar efter överbud och efter inkliv på tvåläget är positionsbundna.
 
-### Tryckta sidor 48–49: Svarsdubbling, utspelsdubbling och ovanliga sangbud
-- Svarsdubbling används för att visa ytterligare information om handen, bland annat när en gemensam färg inte hittats.
-- Utspelsdubbling används för att peka ut önskad utspelsfärg.
-- Ovanliga sangbud visar normalt de lägsta objudna färgerna eller två angivna färger beroende på läge.
-- Fortsättningar efter dessa bud finns illustrerade i exempel.
+### Tryckta sidor 46–47: 5–5-överbud, UD och upprepad UD
+- Överbud som visar 5–5 i två färger och fortsättningar efter 2NT med 5–5.
+- Efter en UD: svar med pass, 1♥/1♠, 1NT, 2♣/2♦, 2♥/2♠, 3NT och spärr-/stödjande höjningar med separata styrkeintervall.
+- Öppnarens partners bud efter UD och öppnarens fortsättning efter svar.
+- Dubblaren bjuder igen: texten anger att en svag färgbudgivning från partnern kräver minst 17 hp/stödpoäng för att dubblaren ska bjuda vidare; tabellerna skiljer mellan 12–16 hp/stp, 17+ hp och jämna händer.
+- Upprepad UD behandlas som 17+ hp när partnern inte visat styrka, med egna svarstabeller.
+
+### Tryckta sidor 48–49: Svarsdubbling, utspelsdubbling, balansering och ovanliga sangbud
+- Responsiv dubbling efter motståndarnas färgbud: beskriven som UD-liknande och ber partnern välja färg; tabellen visar styrkeintervall för olika höjningar.
+- Utspelsdubbling används när man dubblar ett bud som inte visar den färg man vill ha utspel i; dubblingen visar styrka i färgen och normalt minst fem kort. Lightnerdubbling beskrivs mot slamkontrakt.
+- Balansering: Lathunden anger lägre styrkekrav i balanseringsposition än direktposition, med särskilda intervall för dubbling, 1NT, 2NT, färginkliv och hopp.
+- Ovanliga sangbud: normalt de lägsta objudna färgerna; kan vara 2NT eller 4NT beroende på nivå. Exempel anger 5–5 i lågfärgerna.
+
+### Tryckta sidor 50–51: Alla bjuder; lag och offringar
+- När ena sidan har minst åtta kort i en trumffärg har den andra sidan nästan alltid också en gemensam trumffärg; vid jämn styrka ska man normalt visa trumfstöd.
+- Lagen: 2-tricksnivån med åtta trumf, 3-tricksnivån med nio trumf och 4-tricksnivån med tio trumf.
+- Offringar på högre nivå kan vara bra när båda sidor har många trumf; zonförhållandena styr hur många dubblade straffar man kan tåla.
+- Den högra sidan på tryckt s. 51 börjar utspels- och markeringskapitlet, vilket ligger utanför budrättningsmodulen.
 
 ### Tryckta sidor 50–51: Alla bjuder; utspel och markeringar
 - Resonemang om att båda sidor ofta har trumfstöd när ena sidan har minst åtta kort i trumf.
