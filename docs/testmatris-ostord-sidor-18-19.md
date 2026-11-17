@@ -86,4 +86,19 @@ Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen 
 6. 4♣ Splinter är en uttrycklig konflikt mellan lathunden och projektets tidigare beslut att ta bort Splinter. Logga för expertbeslut.
 7. Otydliga eller ej specificerade handvärderingar ska hamna i ej-täckt-loggen.
 
-**Status:** Källavskriften är korrigerad. Klassificeringen av tredje/fjärde färg är korrigerad i motorn. Fullständig handbaserad regressionstestning av samtliga rader återstår; dokumentet ska inte tolkas som att alla rader är godkända.
+## Faktisk kodstatus i rättningsmotorn
+
+- Sida 18: tredje bud efter 1NT-återbud har implementerade kontroller för samtliga sju budrader i det avbildade exemplet.
+- Sida 18: preferensgrenen har implementerade kontroller för pass, 2♠, 2NT, 3♣ och 3♥. 4♥ lämnas ej täckt eftersom ”stark hand” saknar numerisk gräns.
+- Sida 18: ombud-grenen har kontroller för pass, 2NT, 3♦, 3♥, 3♠ och 4♥. 2♠/6–5 minimum lämnas ej täckt eftersom minimum inte är numeriskt definierat. 4♣ Splinter lämnas ej täckt på grund av projektkonflikten.
+- Sida 18: 2NT-invitgrenen känner igen 3♣ som fjärde färg/utgångskrav och 3NT som slutbud. 3♦, 3♥ och 3♠ lämnas ej täckta eftersom minimum/maximum inte är numeriskt definierat.
+- Sida 19: svarshandens tredje och fjärde färg identifieras efter antalet olika färger paret redan visat. Nya färgbud godtas som kravbud; inga generella hp-gränser har hittats på.
+- Sida 19: öppnarens tabell efter tredje färg har direkta kontroller för 2♥ med två hjärter, 2♠ som fjärde färg/utgångskrav, 3♣ med sex klöver, 3♦ med fyrkortsstöd och 3♥ med trekortsstöd. Sangvalen lämnas ej täckta eftersom minimum/maximum saknar numeriska gränser.
+- Sida 19: öppnarens tabell efter fjärde färg har direkta kontroller för 2♠ med två spader, 2NT med ruterhåll, 3♣ med 5–5 och 3♦ med fyrkortsfärg. 2♥ (”inget bättre bud”) samt 3♥/3♠ (maximum) lämnas ej täckta. Pass och 3NT anges som uttryckligt otillåtna och loggas som ej täckta med förklaring.
+- Fortsättningstabellerna efter tredje respektive fjärde färg är dokumenterade men ännu inte fullständigt implementerade.
+
+## Teststatus
+
+Regressionstester finns i `tests/ostord-sidor-18-19.test.js` för 1NT-återbud, preferens, tredje/fjärde färg och vissa fortsättningsbud. Ett körbart GitHub Actions-arbetsflöde finns i `.github/workflows/ostord-pages-18-19.yml`.
+
+**Viktigt:** Jag har inte fått någon körningsrapport från GitHub Actions för den här grenen. Testerna är därför tillagda men inte verifierade som gröna. Modulen ska inte markeras helt färdig förrän fortsättningstabellerna har implementerats och hela testsviten har körts.
