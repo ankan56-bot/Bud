@@ -40,7 +40,7 @@ for(const deal of deals){
     const node=R.nodeFor(st,index);
     if(node&&node.exp){call=node.exp;report.covered++;}
     else report.uncovered.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),hands:deal.hands,reason:node&&node.why?node.why:'No matching rule'});
-   }catch(e){report.exceptions.push({dealId:deal.id,seat,message:String(e&&e.message||e)});}
+   }catch(e){report.exceptions.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),hands:deal.hands,message:String(e&&e.message||e)});}
    st.bids[index]={s:seat,c:call};
   }else st.bids.push({s:seat,c:'P'});
   const v=R.validateAuction(st);
@@ -54,7 +54,7 @@ for(const deal of deals){
 report.coveragePercent=report.turns?Math.round(report.covered/report.turns*1000)/10:0;
 fs.mkdirSync('testdata',{recursive:true});
 fs.writeFileSync('testdata/one_major_200_validation_latest.json',JSON.stringify(report,null,2)+'\n');
-console.log(JSON.stringify({deals:report.deals,openings:report.openings,turns:report.turns,covered:report.covered,uncovered:report.uncovered.length,coveragePercent:report.coveragePercent,exceptions:report.exceptions.length,illegalRecommendations:report.illegalRecommendations.length,invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,cardIntegrityErrors:report.cardIntegrityErrors.length,uncoveredDetails:report.uncovered},null,2));
+console.log(JSON.stringify({deals:report.deals,openings:report.openings,turns:report.turns,covered:report.covered,uncovered:report.uncovered.length,coveragePercent:report.coveragePercent,exceptions:report.exceptions.length,exceptionDetails:report.exceptions,illegalRecommendations:report.illegalRecommendations.length,invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,cardIntegrityErrors:report.cardIntegrityErrors.length,uncoveredDetails:report.uncovered},null,2));
 assert.equal(report.cardIntegrityErrors.length,0);
 assert.equal(report.exceptions.length,0);
 assert.equal(report.illegalRecommendations.length,0);
