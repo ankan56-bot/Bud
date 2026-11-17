@@ -1,6 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict');
 const R = require('../rattningsmotor.js');
+const {test} = require('node:test');
 
 const RANK = {A:14,K:13,Q:12,J:11,T:10};
 function hand(spec) {
