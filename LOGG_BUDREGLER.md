@@ -353,3 +353,5 @@ Källa: Nordisk standard 2012-08-22, sida 3, avsnittet "Öppningshandens andra b
 - Fördelningar/styrkor som inte matchar någon av de uttryckliga raderna lämnas ej täckta i stället för att anta en regel.
 
 Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförklaring för både positiv och negativ betydelse. Regressionstester tillagda för 5–4 vid 14/17/18 hp, 6–4 med 18 htp samt ej täckt 6–4 på 12–17 hp.
+
+- Regressionkontroll: svarshandens andra bud efter 1 i färg–1NT flyttat före generell tredje-/fjärde-färgsdispatch så 1♥–1NT–2♣–2♦ bedöms enligt 1NT-undantaget.

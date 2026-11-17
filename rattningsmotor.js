@@ -1257,6 +1257,13 @@ var Rattning = (function(){
         return {exp:'3N',alt:[],why:'3NT visar 15–17 hp enligt användarens precisering; budet ska inte reduceras till enbart etiketten slutbud.',means:function(c){return c==='3N'?'15–17 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
     }
 
+    // Efter 1 i färg–1NT ska svarshandens andra bud hanteras före
+    // den generella tredje-/fjärde-färgslogiken. Annars kan t.ex.
+    // 1♥–1NT–2♣–2♦ felklassas som tredje färg i stället för 6+ ♦.
+    if(d===3&&!opener&&/^1[CDHS]$/.test(ours[0].c)&&ours[1].c==='1N'&&isBid(ours[2].c)){
+      return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
+    }
+
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
       // Sida 19: klassificera svarshandens nya färg efter vilka färger
       // paret redan har visat. Både tredje och fjärde färg är kravbud.
