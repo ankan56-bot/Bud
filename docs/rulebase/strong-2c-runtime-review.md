@@ -2,7 +2,7 @@
 
 **Branch:** work/undisturbed-architecture  
 **Fil:** `2kloveroppning.js`  
-**Status:** Kod uppdaterad för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Gränstester är tillagda och inkopplade i CI. JavaScript-syntax är kontrollerad och sju direkta regelkontroller för de nya fortsättningarna passerade; full CI-körning är ännu inte verifierad här. Svarshandens senare fortsättningar är delvis routade: 2NT-systemets första svar och öppnarsvar återanvänds; unika fördelningsgrenar från Lathunden s. 25 är implementerade, medan överlapp och externa Plus/PRO/Slam-grenar är ej täckta.  
+**Status:** Öppning, alltid 2♦, öppnarens återbud och de källbelagda fortsättningarna efter 2NT är implementerade. Entydiga fördelningsgrenar från Lathunden s. 25 är routade; överlapp och externa Plus/PRO/Slam-grenar lämnas ej täckta. Lathundens uttryckliga 4NT-essfrågor med klöver/hjärter/spader som trumf är nu kopplade till befintlig Nordisk Standard-RKC i `slamlogik.js`, inklusive bibehållen trumfidentifiering efter RKC-svaret. Fem direkta runtime-kontroller av trumfkopplingen passerade. Full GitHub Actions-körning ska verifieras separat.  
 **Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.  
 **Systembeslut:** Svarshanden bjuder alltid 2♦ på 2♣. 2♥ som svagt svar används inte.
 
@@ -88,7 +88,7 @@ Risker:
 - Efter 2♣–2♦–2NT återanvänds den befintliga 2NT-familjen för Stayman/överföringens första svar och öppnarens svar. Svarshandens 5-4-högfärgsfortsättningar efter Stayman samt 3NT med femkortshögfärg efter överföring är också routade enligt Lathunden s. 25. Överlapp mellan 3NT och Slam-hänvisade 4♣/4♦ lämnas ej täckt. Lågfärgsfrågan 3♠ (PRO) och 4♣/4♦ slaminviter (Slam) hålls utanför grundprofilen.
 - Efter 2♣–2♦–2♠–2NT, 2♣–2♦–3♣–3♦ och 2♣–2♦–3♥–3♠ finns fördelningstabeller i Lathunden s. 25. Dessa är nu routade via `openerThirdAfter2c`. Endast entydiga 5-4-/6-kortsprofiler ger automatiskt bud; överlappande profiler lämnas ej täckta.
 - Lathunden s. 26 innehåller ytterligare svarshandsfortsättningar med STP, kortfärg, kontrollbud och stöd. De har inte översatts till HP/HTP och ska granskas separat.
-- 4NT i de senare färgsekvenserna anges som essfråga med viss trumf, men slamtröskeln och hela fortsättningen måste kopplas till den befintliga RKC-motorn innan automatisk rättning.
+- 4NT i de uttryckliga sekvenserna är nu kopplat till befintlig RKC-motor. Fortsättningen använder samma Nordisk Standard-regler och befintliga gap-hantering; inget nytt slamvillkor har skapats.
 
 ## Slutsats
-Modulen använder alltid 2♦ och öppnarens återbud är avgränsade till 4NT. Nordisk Standards intervall 2NT 22–24 och 3NT 25–27 följs; Lathundens 4NT 28–29 är ett tydligt märkt tillägg. Den första 2NT-svarsrundan och vissa entydiga tredje-budsgrenar är nu integrerade. Alla osäkra överlapp och Plus/PRO/Slam-tillägg lämnas ej täckta.
+Modulen använder alltid 2♦ och täcker öppnarens återbud, de verifierade 2NT-fortsättningarna, de entydiga tredje-budsgrenarna samt de källbelagda 4NT-essfrågorna kopplade till befintlig RKC. Nordisk Standards intervall 2NT 22–24 och 3NT 25–27 följs; Lathundens 4NT 28–29 är ett tydligt märkt tillägg. Alla osäkra överlapp och Plus/PRO/Slam-hänvisningar utan verifierade villkor lämnas ej täckta.
