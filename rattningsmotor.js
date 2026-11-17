@@ -104,8 +104,11 @@ var Rattning = (function(){
       if(m===6&&pick!=='C'&&quality>=1){
         exp='2'+pick;why='6-10 hp, exakt 6 kort och minst ett av de två kriterierna för bra färg: (1) minst 2 honnörer, eller (2) minst 1 honnör och minst 2 av 10-9-8.';
       }
+      else if(m===6&&pick==='C'&&quality>=1){
+        exp=null;why='6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt.';
+      }
       else if(m===6&&pick==='C'){
-        exp='P';why='6-korts ♣ öppnas inte svagt på 2♣ eftersom 2♣ är starköppning; sex kort räcker inte för spärröppning på 3-nivån.';
+        exp='P';why='6-korts ♣ uppfyller inget kvalitetskriterium och 2♣ är reserverat för starköppning.';
       }
       else if(m===6){
         exp='P';why='6-10 hp och sexkortsfärgen uppfyller inget av kriterierna för bra färg; ingen svag tvåöppning.';
@@ -1557,7 +1560,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.0'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.1'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
