@@ -94,6 +94,32 @@
 - **Fråga:** Vilken exakt konvention används efter respektive öppning och på respektive nivå?
 - **Status:** PRO-hänvisning; inte antagen utan beslut.
 
+
+### B9. Landy och försvar mot 1NT
+- Lathunden tryckt s. 44 beskriver 2♣ som Landy för båda högfärgerna och märker konventionen PRO. Den visar även dubbling som straffdubbling med minst 16 hp i en tidigare tabell, och på s. 44 en annan försvarsuppställning med andra styrkeintervall.
+- **Fråga:** Vilken 1NT-försvarsprofil är vår grundprofil? Ska Landy helt exkluderas?
+- **Status:** Nordisk Standard styr tills separat systembeslut.
+
+### B10. Lebensohl efter motståndarnas inkliv mot 1NT
+- Lathunden tryckt s. 40 visar 2NT som Lebensohl och anger att öppnaren alltid bjuder 3♣; svarshandens fortsättningar har styrke- och färgkrav.
+- **Fråga:** Ingår Lebensohl i vår standardprofil, och i så fall exakt efter vilka inkliv och med vilka fortsättningar?
+- **Status:** Ej implementerad som generell konvention.
+
+### B11. Direkt inkliv, hoppinkliv och inkliv mot svaga öppningar
+- Lathunden tryckt s. 41–43 visar olika krav för entricksinkliv, tvåtricksinkliv, 1NT-inkliv, hoppinkliv och inkliv mot svaga öppningar. Exempelvis anges 1NT-inkliv som 15–17 hp, jämn hand och håll i öppningsfärgen; mot svaga öppningar anges andra styrkeintervall.
+- **Fråga:** Vilka av dessa intervall är redan bindande i Nordisk Standard och vilka är Lathundstillägg?
+- **Status:** Måste jämföras position för position mot NS innan implementering.
+
+### B12. 5–5-överbud och ovanliga sangbud
+- Lathunden tryckt s. 41 och 46–49 visar tvåfärgsvisande överbud, 2NT och 4NT med 5–5 i angivna färger. Vissa avsnitt är märkta PRO.
+- **Fråga:** Vilka exakta färgkombinationer och budnivåer ingår i systemet?
+- **Status:** Inte antaget som grundregel.
+
+### B13. Hög störning och kravpass
+- Lathunden tryckt s. 39 anger kravpass när motståndarna bjuder högre än utgång; partnern får välja mellan straffdubbling och bud över, men inte pass.
+- **Fråga:** Ska kravpassregeln implementeras, och i vilka exakta sekvenser?
+- **Status:** Kräver explicit regelstöd och testfall.
+
 ## C. Systembeslut som redan är låsta
 
 1. Efter 2♣ svarar vi alltid 2♦. 2♥ som svagt svar används aldrig i vår valda profil.
