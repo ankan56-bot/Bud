@@ -52,6 +52,35 @@
 - **Fråga:** Kan en skarpare originalskanning eller expertavläsning tillhandahållas?
 - **Status:** Sidan är markerad delvis verifierad; inga exakta intervall från den används som enda regelunderlag.
 
+
+### A9. Öppning med 11 hp och 1 i färg
+- Lathunden tryckt s. 8 anger 1 i färg (11)12–19 hp och texten säger att semibalanserad eller obalanserad hand kan öppnas med 11 hp (Plus).
+- Nordisk Standard anger 11 hp endast med bra femkortsfärg.
+- **Fråga:** Ska Plus-undantaget med 11 hp och semibalanserad/obalanserad hand uteslutas helt?
+- **Status:** NS gäller; Plus-undantaget är inte antaget.
+
+### A10. Stöd med tre kort efter 1 i färg
+- Lathunden tryckt s. 9 anger enkelhöjning 6–10 stödpoäng och nämner ibland trestöd plus singelton (Plus). På s. 11 finns exempel på stödfortsättningar med tre kort i vissa sekvenser.
+- Nordisk Standard kräver normalt fyra korts stöd för de vanliga höjningarna.
+- **Fråga:** Finns något uttryckligt trekortsstöd i vår valda systemprofil, eller ska samtliga Plus-exempel hållas utanför?
+- **Status:** NS:s 4+ stöd gäller som grundregel.
+
+### A11. Två-över-en – färglängd och styrka
+- Lathunden tryckt s. 9–10 visar olika gränser beroende på öppningsfärg och svarsfärg: minst (10)11 hp, ibland minst fyra kort, ibland fem kort; med sexkortsfärg kan 10 hp förekomma.
+- Nordisk Standard anger 11+ hp och minst fyra kort.
+- **Fråga:** Ska någon av Lathundens färgspecifika undantag ingå, eller gäller NS:s generella 11+ hp/4+ färg i alla lägen?
+- **Status:** NS är norm; undantagen är inte antagna.
+
+### A12. Tredje färg, fjärde färg och försenad Stayman
+- Lathunden tryckt s. 14–17 visar tredje färg och fjärde färg som särskilda kravbud, samt försenad Stayman efter 1NT-återbud märkt PRO.
+- **Fråga:** Vilka av dessa konventioner ingår i vår grundprofil och vilka kräver Plus/PRO?
+- **Status:** Ska inte implementeras utifrån enbart hänvisningarna.
+
+### A13. Styrkeintervall i stödpoäng efter enkelhöjning och två-över-en
+- Lathunden tryckt s. 11–13 använder bland annat 12–15, 16–18 och 19–21 stödpoäng, och splinter med olika trösklar efter en-över-en respektive två-över-en.
+- **Fråga:** Hur ska dessa intervall mappas till Nordisk Standards htp och vår befintliga poängmotor? Är stp och htp identiska i dessa sammanhang?
+- **Status:** Ingen automatisk konvertering. Kräver definition och test.
+
 ## B. Störd budgivning
 
 ### B1. Negativa dubblingar och konkurrensnivåer
