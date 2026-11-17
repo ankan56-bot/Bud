@@ -49,8 +49,8 @@ Kända regler och numeriska gränser ska rättas som systemregler. Endast situat
 
 ## Tester och status
 
-- `tests/trumfstod.test.js`: kontrollerar modulgränsen, routing till Stenberg och hög-/lågfärgsmodulerna, stödbudsklassificering, dubbelhopp med renons, flera renoncer samt att dokumenterad högfärgsprioritet går före en källucka om renonsprioritet.
+- `tests/trumfstod.test.js`: kontrollerar modulgränsen, routing till Stenberg och hög-/lågfärgsmodulerna, stödbudsklassificering, dubbelhopp med renons, flera renoncer, major-first-prioritet och en full `R.nodeFor`-integration som bevarar 20+ htp-lågfärgsfit som `sourceGap`.
 - `tests/stenberg-2nt.test.js`: Stenbergregressioner inklusive 100 deterministiska händer med 4+ hjärterstöd, 13+ htp och utan sidofärgsrenons. Renons med 4+ stöd hanteras före Stenberg som splinter enligt PDF:ens dubbelhoppsregel.
-- Nya tester: faktiska poängberäkningar för 4♥- och 4♣-spärrhöjningar, svarshandens 2-/3-/4-nivåer, öppningshandens 12–16/17–19/20+ htp-stöd, Stenbergrouting samt att 20+ htp med lågfärgsfit inte får en påhittad 3NT/5-lågfärgssekvens.
+- Nya tester: faktiska poängberäkningar för 4♥- och 4♣-spärrhöjningar med kontroll precis över maxgränserna (13 htp i högfärg och 10 htp i lågfärg), svarshandens 2-/3-/4-nivåer, öppningshandens 12–16/17–19/20+ htp-stöd, Stenbergrouting samt end-to-end-kontroll av att 20+ htp med lågfärgsfit inte får en påhittad 3NT/5-lågfärgssekvens.
 - Kvar att verifiera: full testsvit och givbaserade gränstester för samtliga 2-/3-nivåer, spärrhöjningarnas maxgränser och dubbelhopp med renons.
 - Senaste verifierade körningen passerade Stenbergregressionerna, trumfstödmodultesterna, den breda ostörda regressionskorpusen, manuella regelkontrollerna och applikationskopplingen. Den stannade därefter på det redan kända, separata `reverse-hps.test.js`-felet (förväntat 15, faktiskt 13); detta är inte ett trumfstödsfel. En ny körning på senaste expertloggsjusteringen pågår.
