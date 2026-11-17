@@ -23,7 +23,7 @@
  var ok=api.ok;
  var NC=api.NC;
   function resp1(h,oc){
-    var o=st_(oc),hp=h.hp,L=h.L,M=maj(o),sup=L[o]>=4,htp=sup?h.htp(o):hp,exp,why,alt=[];
+    var o=st_(oc),hp=h.hp,L=h.L,M=maj(o),sup=L[o]>=4,htp=sup?h.htp(o):hp,exp,why,alt=[],ruleStatus=null;
     var cand=SU.filter(function(s){return s!==o&&rk('1'+s)>rk(oc)&&L[s]>=4});
     function pickBest(cs){var b=cs[0];cs.forEach(function(s){if(L[s]>L[b])b=s});return b}
 
@@ -42,7 +42,7 @@
       return null};
 
     if(M&&sup&&!h.bal&&h.good(o)&&htp<=12){
-      exp='4'+o;why=htp+' htp, 4+ högfärgsstöd, bra stöd och obalanserad/svitad hand: spärrhöjning till 4'+o+'.';
+      exp='4'+o;ruleStatus='source_interpretation';why=htp+' htp, 4+ högfärgsstöd, bra stöd och obalanserad/svitad hand: spärrhöjning till 4'+o+'.';
     }else if(M&&sup){
       if(htp<6){exp='P';why='Bara '+htp+' htp med stöd: för svag för att svara.'}
       else if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i högfärgen: 2 i färgen (6-9 stp).'}
@@ -52,7 +52,7 @@
     else if(!M&&sup&&cand.some(maj)){var cm=cand.filter(maj);exp=lowest(pickBest(cm),oc);why='Stöd i lågfärg men egen 4+ högfärg: visa högfärgen först (sök högfärg).';
       if(cm.length>1&&L[cm[0]]===L[cm[1]])alt.push(lowest(cm[0]===pickBest(cm)?cm[1]:cm[0],oc))}
     else if(!M&&sup&&!h.bal&&h.good(o)&&htp<=9){
-      exp='4'+o;why=htp+' htp, 4+ lågfärgsstöd, bra stöd och obalanserad/svitad hand: spärrhöjning till 4'+o+'.';
+      exp='4'+o;ruleStatus='source_interpretation';why=htp+' htp, 4+ lågfärgsstöd, bra stöd och obalanserad/svitad hand: spärrhöjning till 4'+o+'.';
     }else if(!M&&sup){
       if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen (6-9).'}
       else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (10-12).'}
@@ -66,7 +66,7 @@
       if(c2.length){var b2=pickBest(c2);exp=lowest(b2,oc);why=hp+' hp och 4+ färg: 2 över 1 (11+, rondkrav).'}
       else return {exp:null,alt:[],why:hp+' hp utan färg att visa: dokumentet beskriver inte detta bud.',means:means,conv:'svar'}
     }
-    return {exp:exp,alt:alt,why:why,means:means,conv:htp>=13&&exp==='2N'?'Stenberg':'svar'};
+    return {exp:exp,alt:alt,why:why,means:means,conv:htp>=13&&exp==='2N'?'Stenberg':'svar',ruleStatus:ruleStatus};
   }
 
   /* ––––– 1NT / 2NT-STRUKTUR (Plus) ––––– */
