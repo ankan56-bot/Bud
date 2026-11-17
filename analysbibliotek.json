@@ -1,5 +1,5 @@
 {
-  "version": "0.5.14",
+  "version": "0.5.15",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7331,8 +7331,8 @@
         "2NT-invit"
       ],
       "conditions": [
-        "2♦: 6–10 hp och exakt sex kort i öppningsfärgen.",
-        "Inget separat krav på färgkvalitet anges i Nordisk Standard.",
+        "♦: 6–10 hp, exakt sex kort och bra färg: minst 2 honnörer eller minst 1 honnör + minst 2 av 10-9-8.",
+        "Färgkvalitet räknas med honnörerna A/K/Q/J samt mellankorten 10/9/8.",
         "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
@@ -7343,8 +7343,8 @@
           "sequence": [
             "2♦"
           ],
-          "meaning": "2♦ visar 6–10 hp och exakt sex kort i ruter.",
-          "analysis": "Nordisk Standard anger inget separat krav på färgkvalitet för svag tvåöppning. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "meaning": "2♦ visar 6–10 hp, exakt sex kort och bra färgkvalitet i ruter.",
+          "analysis": "Färgen ska innehålla minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10-9-8. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
           "branches": [
             {
               "call": "2NT",
@@ -7497,8 +7497,8 @@
         "2NT-invit"
       ],
       "conditions": [
-        "2♥: 6–10 hp och exakt sex kort i öppningsfärgen.",
-        "Inget separat krav på färgkvalitet anges i Nordisk Standard.",
+        "♥: 6–10 hp, exakt sex kort och bra färg: minst 2 honnörer eller minst 1 honnör + minst 2 av 10-9-8.",
+        "Färgkvalitet räknas med honnörerna A/K/Q/J samt mellankorten 10/9/8.",
         "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
@@ -7509,8 +7509,8 @@
           "sequence": [
             "2♥"
           ],
-          "meaning": "2♥ visar 6–10 hp och exakt sex kort i hjärter.",
-          "analysis": "Nordisk Standard anger inget separat krav på färgkvalitet för svag tvåöppning. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "meaning": "2♥ visar 6–10 hp, exakt sex kort och bra färgkvalitet i hjärter.",
+          "analysis": "Färgen ska innehålla minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10-9-8. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
           "branches": [
             {
               "call": "2NT",
@@ -7681,8 +7681,8 @@
         "2NT-invit"
       ],
       "conditions": [
-        "2♠: 6–10 hp och exakt sex kort i öppningsfärgen.",
-        "Inget separat krav på färgkvalitet anges i Nordisk Standard.",
+        "♠: 6–10 hp, exakt sex kort och bra färg: minst 2 honnörer eller minst 1 honnör + minst 2 av 10-9-8.",
+        "Färgkvalitet räknas med honnörerna A/K/Q/J samt mellankorten 10/9/8.",
         "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
@@ -7693,8 +7693,8 @@
           "sequence": [
             "2♠"
           ],
-          "meaning": "2♠ visar 6–10 hp och exakt sex kort i spader.",
-          "analysis": "Nordisk Standard anger inget separat krav på färgkvalitet för svag tvåöppning. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "meaning": "2♠ visar 6–10 hp, exakt sex kort och bra färgkvalitet i spader.",
+          "analysis": "Färgen ska innehålla minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10-9-8. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
           "branches": [
             {
               "call": "2NT",
