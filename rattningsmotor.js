@@ -1390,7 +1390,7 @@ var Rattning = (function(){
     // av den generella poängkontrollen för missad utgång/slam.
     var unresolvedRkc=!!(node&&!node.exp&&node.conv==='Blackwood 5 ess');
     var unresolvedStenberg=!!(node&&!node.exp&&node.conv==='Stenberg');
-    var unresolvedSourceRule=!!(node&&!node.exp&&/^(Tredje färg|Fjärde färg|ÖH:s tredje bud|Splinter – konflikt)/.test(node.conv||''));
+    var unresolvedSourceRule=!!(node&&!node.exp&&/^(Tredje färg|Fjärde färg|ÖH:s tredje bud|Fortsättning efter tredje färg|Fortsättning efter fjärde färg|Splinter – konflikt)/.test(node.conv||''));
     if(!unresolvedRkc&&!unresolvedStenberg&&!unresolvedSourceRule&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
