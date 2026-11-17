@@ -45,7 +45,18 @@ Nordisk standard styr över Lathundens avvikande tillägg:
 - Lika långa alternativa sidofärger utan uttrycklig prioritet lämnas ej täckta.
 - Balanserade återbud och 1NT-fortsättningen återanvänder den tidigare gemensamma logiken.
 
-## 5. Källuckor – inga antaganden
+## 5. Svarshandens andra bud och öppnarens tredje bud
+
+- Efter öppnarens 6+ lågfärg kan 2NT bara användas med balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna.
+- 3 i öppningslågfärgen visar 11–12 HTP och minst tre korts stöd; 4 i öppningslågfärgen visar 13–18 HTP och minst fyra korts stöd.
+- 3NT kräver minst 13 hp, balanserad hand och håll i sidofärgerna.
+- 6–10 hp utan stöd eller egen lång sidofärg kan passa.
+- Generiska poängsummeringar får inte skapa 2NT med obalanserad hand och lång sidofärg utan stöd. Sådana lägen lämnas ej täckta om ingen annan källregel passar.
+- Efter en preferens/höjning till 3 i öppningslågfärgen kontrolleras minst åtta trumf och gemensam styrka. 28+ ger 5 i lågfärgen; annars stannar öppnaren i 3-lågfärgen.
+- Öppnarens tredje bud efter andra färgval, 2NT-inviter utan erforderligt håll och senare fortsättningar utan tydlig källregel sparas som source gaps.
+- Stenberg, 1NT-familjen och slam fortsätter att ägas av sina befintliga moduler.
+
+## 6. Källuckor – inga antaganden
 
 Följande ska fortsatt sparas med budsekvens och alla fyra händer i ej-täckta-loggen:
 
@@ -55,7 +66,7 @@ Följande ska fortsatt sparas med budsekvens och alla fyra händer i ej-täckta-
 4. Numerisk definition av ”bra 5+ färg” vid 11 hp.
 5. Undantaget 5–5 i spader–klöver där 1♣ kan väljas om spaderfärgen är dålig. Öppningsvalets kvalitetskriterium är inte definierat och den centrala öppningsväljaren ändras inte här.
 
-## 6. Regression och skydd
+## 7. Regression och skydd
 
 - Högfärgsmodulen ändras inte.
 - 1NT-, trumfstöds-, Stenberg- och slammodulerna återanvänds.
