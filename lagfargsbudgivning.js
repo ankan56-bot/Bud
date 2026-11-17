@@ -134,23 +134,53 @@
 
  function responderSecondBid(hand,opening,response,rebid,openerHandCards){
    if(!accepts(opening))return NC('Fel modul för öppningsfärgen.');
-   var o=st_(opening),rb=st_(rebid),oh=H(openerHandCards);
+   var o=st_(opening),r=st_(response),rb=st_(rebid),oh=H(openerHandCards);
    if(rb===o&&oh.L[o]>=5){
-     // Nordisk Standard does not define responder's second-bid
-     // continuations after 1m-1x-2m. The printed 2NT/3m invit
-     // examples are for major openings, so do not copy them here.
-     return NC('Efter 1 lågfärg–svar på 1-nivån–2 lågfärg saknas en uttrycklig regel för svarshandens andra bud i Nordisk Standard. Högfärgsinvitens 2NT/3-lågfärgsexempel generaliseras inte till lågfärgsöppning.',function(){return null},'svarshandens 2:a bud',true);
+     var support=hand.L[o],htp=handHps(hand,o);
+     var side=SU.filter(function(s){return s!==o&&s!==r;});
+     var controls=side.every(function(s){return hand.stop(s);});
+     // These minor continuations are already specified in T40 of the
+     // project analysis library. They are project extensions, not claims
+     // that the PDF's major-suit invit examples automatically generalize.
+     if(hand.bal&&hand.hp>=10&&hand.hp<=12&&support>=2&&controls)
+       return {exp:'2N',alt:[],why:'10–12 hp, balanserad hand, minst två korts stöd i öppningslågfärgen och håll i sidofärgerna: invit till sang (projektets T40-gren).',
+         means:function(b){return b==='2N'?'10–12 hp, balanserad, minst två korts stöd och håll i sidofärgerna.':null},conv:'svarshandens 2:a bud',ruleStatus:'project_extension'};
+     if(support>=3&&htp>=11&&htp<=12)
+       return {exp:'3'+o,alt:[],why:'11–12 HTP och minst tre korts stöd i öppnarens långfärg: invitativt stöd (projektets T40-gren).',
+         means:function(b){return b==='3'+o?'11–12 HTP och minst tre korts stöd i öppningsfärgen.':null},conv:'svarshandens 2:a bud',ruleStatus:'project_extension'};
+     if(support>=4&&htp>=13&&htp<=18)
+       return {exp:'4'+o,alt:[],why:'13–18 HTP och minst fyra korts stöd i öppnarens långfärg: starkt stöd/invit (projektets T40-gren).',
+         means:function(b){return b==='4'+o?'13–18 HTP och minst fyra korts stöd i öppningsfärgen.':null},conv:'svarshandens 2:a bud',ruleStatus:'project_extension'};
+     if(hand.hp>=13&&hand.bal&&controls)
+       return {exp:'3N',alt:[],why:'13+ hp, balanserad hand och håll i sidofärgerna: naturlig sangutgång (projektets T40-gren).',
+         means:function(b){return b==='3N'?'13+ hp, balanserad hand med håll i sidofärgerna.':null},conv:'svarshandens 2:a bud',ruleStatus:'project_extension'};
+     if(hand.hp>=6&&hand.hp<=10&&support<=1&&
+        !SU.some(function(s){return s!==o&&s!==r&&hand.L[s]>=6;}))
+       return {exp:'P',alt:[],why:'6–10 hp utan stöd för öppnarens långfärg eller egen lång sidofärg: pass efter öppnarens 6+ lågfärg (projektets T40-gren).',
+         means:function(b){return b==='P'?'6–10 hp utan passande stöd eller egen lång sidofärg.':null},conv:'svarshandens 2:a bud',ruleStatus:'project_extension'};
+     if(hand.hp>=13&&!hand.bal&&support<2&&
+        SU.some(function(s){return s!==o&&hand.L[s]>=6;}))
+       return NC('13+ hp, obalanserad hand och lång sidofärg utan minst två korts stöd: 2NT saknar den balanserade/stödprofilen i T40. Exakt naturlig fortsättning lämnas ej täckt.',function(){return null},'svarshandens 2:a bud',true);
+     return NC('Svarshandens andra bud efter öppnarens 6+ lågfärg passar inte någon av de dokumenterade T40-profilerna. Sekvensen sparas för expertgranskning.',function(){return null},'svarshandens 2:a bud',true);
    }
    return null;
  }
 
  function openerThirdBid(hand,opening,response,rebid,responderSecond,partnerHandCards){
    if(!accepts(opening))return NC('Fel modul för öppningsfärgen.');
-   var o=st_(opening),rb=st_(rebid);
-   if(rb===o&&/^[34]$/.test(String(lv(responderSecond)))){
-     return NC('Efter preferens/höjning av öppnarens egen lågfärg saknas en uttrycklig regel för öppnarens nästa bud i Nordisk Standard. Kravet att undersöka 3NT före lågfärgsutgång gäller, men den exakta fortsättningen i denna sekvens är inte definierad.',function(){return null},'öppnarens 3:e bud',true);
+   var o=st_(opening),second=st_(responderSecond),partner=H(partnerHandCards);
+   if(second===o&&lv(responderSecond)>=3&&hand.L[o]>=4&&partner.L[o]>=3){
+     var fit=hand.L[o]+partner.L[o],total=partnershipPoints(hand,partner,o);
+     if(fit>=8&&total>=28)
+       return {exp:'5'+o,alt:[],why:total+' gemensamma HTP/poäng och '+fit+' korts trumfstöd: lågfärgsutgång enligt projektets T40-gren.',
+         means:function(b){return b==='5'+o?'Minst åtta trumf och 28+ gemensamma poäng enligt projektets T40-gren.':null},conv:'öppnarens 3:e bud',ruleStatus:'project_extension'};
+     if(fit>=8)
+       return {exp:'P',alt:[],why:total+' gemensamma HTP/poäng och '+fit+' korts trumfstöd: under 28; stanna i 3-lågfärg enligt projektets T40-gren.',
+         means:function(b){return b==='P'?'Under 28 gemensamma poäng med minst åtta trumf.':null},conv:'öppnarens 3:e bud',ruleStatus:'project_extension'};
    }
-   return NC('Öppnarens tredje bud efter svarshandens andra bud i 1♣/1♦-sekvensen saknar en entydig fortsättningsregel i det tillgängliga underlaget. Sekvensen sparas för expertgranskning.',function(){return null},'öppnarens 3:e bud',true);
+   if(second==='2N')
+     return NC('Öppnarens fortsättning efter 2NT-invit i denna lågfärgssekvens är inte fullständigt definierad i T40. Spara sekvensen för expertgranskning.',function(){return null},'öppnarens 3:e bud',true);
+   return NC('Öppnarens tredje bud efter svarshandens andra bud i 1♣/1♦-sekvensen saknar en entydig fortsättningsregel i T40. Sekvensen sparas för expertgranskning.',function(){return null},'öppnarens 3:e bud',true);
  }
 
  return {accepts:accepts,open:open,respond:respond,rebid:rebid,responderSecondBid:responderSecondBid,openerThirdBid:openerThirdBid};
