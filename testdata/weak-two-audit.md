@@ -1,7 +1,7 @@
 # Svaga tvåöppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 9.5  
+Rättningsmotor: 9.6  
 Analysbibliotek: 0.5.17  
 Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
 
@@ -70,3 +70,12 @@ CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
 - Gemensam poängfunktion korrigerad till +1 vid 9 trumf och +2 vid 10+ trumf, enligt tidigare fastställd värdering.
 - Fem nya regressionstester täcker 10-korts trumfbonus, otillräcklig styrka för 3NT, 4♥ och 6♥.
 - Motor 9.5 och 35 tester incheckade. Testkörning/CI är ännu inte verifierad.
+
+
+## Regressionfix motor 9.6
+
+- Ej täckta fortsättningar efter Stenberg 2NT skyddas nu från den generella kontrollen för missad utgång. Den kontrollen får inte hitta på en fortsättning som källunderlaget inte beskriver.
+- Separat styrkekontroll av faktiskt valt slutkontrakt ligger kvar.
+- Testfixturerna skapar nu fullständiga, unika händer även när ursprungliga exempel saknade eller överlappade kort.
+- Analysnodernas manuella färgkvalitetsfält testas mot den faktiska etiketten.
+- Gemensamt regressionstest för 10-/11-korts fit uppdaterat till +2 längdbonus.
