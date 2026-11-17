@@ -15,6 +15,7 @@ jobs:
         run: |
           node --check rattningsmotor.js
           node --check stenberg.js
+          node --check trumfstod.js
           node --check sangbudgivning.js
           node --check slamlogik.js
           node --check dds-integration.js
@@ -55,6 +56,8 @@ jobs:
           NODE
       - name: Run Stenberg 2NT regression tests
         run: node tests/stenberg-2nt.test.js
+      - name: Run trump-support module tests
+        run: node tests/trumfstod.test.js
       - name: Audit undisturbed analysis-library structure
         run: |
           node scripts/validate-analysis-library.js
