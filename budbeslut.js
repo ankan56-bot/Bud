@@ -366,6 +366,11 @@
          if (h.L[s1] >= 5) return {exp:lowest(s1, last), alt:[], why:'Ingen lämplig preferens; bjuder om egen femkortsfärg.', conv:'Fjärde färg'};
          return {exp:lowest(s2, last), alt:[], why:'Preferens till partnerns första färg.', conv:'Fjärde färg'};
       }
+      if(d===4&&opener&&(s1==='C'||s1==='D')&&
+         ours[1].c!=='1N'&&ours[1].c!=='2N'&&
+         ours[2].c!=='1N'&&ours[2].c!=='2N'){
+        return minorBidding.openerThirdBid(h,ours[0].c,ours[1].c,ours[2].c,ours[3].c,st.hands[pt]);
+      }
     }
 
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
@@ -491,6 +496,10 @@
       }
       if(!opener&&d===3){
         var openerHand=st.hands[pt];
+        if(ours[0].c==='1C'||ours[0].c==='1D'){
+          var minorSecond=minorBidding.responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
+          if(minorSecond)return minorSecond;
+        }
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
       if(opener&&d===2)return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]);
