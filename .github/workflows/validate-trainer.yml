@@ -47,6 +47,8 @@ jobs:
           print(f"Found {len(scripts)} inline script(s)")
           PY
           for file in /tmp/inline-*.js; do node --check "$file"; done
+      - name: Build and verify minimal GitHub Pages bundle
+        run: node scripts/stage-pages.js
       - name: Smoke test correction engine exports
         run: |
           node - <<'NODE'
