@@ -76,12 +76,13 @@ var Rattning = (function(){
       // 5-5 ordning: Spader > Hjärter > Ruter > Klöver
       var order55 = ['S', 'H', 'D', 'C'];
       pick = cs.sort(function(a,b){ return order55.indexOf(a) - order55.indexOf(b); })[0];
-      if(cs.length>1) alt.push('1'+cs[1]);
+      // 5-5 öppnas med högsta färgen, utom 5-5 i ♠/♣ där dåliga ♠ tillåter 1♣.
+      if(cs.length>1 && cs.indexOf('S')>=0 && cs.indexOf('C')>=0 && !h.good('S'))pick='C';
+      if(cs.length>1) alt.push('1'+cs.filter(function(s){return s!==pick})[0]);
     } else {
-      // 4-4 ordning: Hjärter > Spader > Klöver > Ruter
+      // Två eller tre fyrkortsfärger: öppna med den lägsta.
       var f=SU.filter(function(s){return L[s]===4});
-      var order44 = ['H', 'S', 'C', 'D'];
-      pick = f.sort(function(a,b){ return order44.indexOf(a) - order44.indexOf(b); })[0];
+      pick=f[0];
     }
 
     var one='1'+pick;
@@ -159,31 +160,34 @@ var Rattning = (function(){
       if(c==='1N')return '6-10 hp, förnekar 4-korts stöd och färg på 1-nivå. Lovar ej jämn hand.';
       if(c==='2N')return 'Stenberg: 13+ htp, 4+ stöd, utgångskrav.';
       if(isBid(c)&&st_(c)===o){var l=lv(c);
-        if(l===2)return '6-10 htp, 4+ stöd.';
-        if(l===3)return '11-12 htp, 4+ stöd.';
+        if(l===2)return '6-9 htp, 4+ stöd.';
+        if(l===3)return '10-12 htp, 4+ stöd.';
         if(l===4)return M?'Spärrbud, max 12 htp, bra stöd och svitad hand.':'Spärrbud, max 9 htp, bra stöd och svitad hand.'}
+      if(oc==='1S'&&c==='2H')return '11+ hp och minst 5 kort i ♥; det oekonomiska budet är rondkrav.';
+      if(oc==='1S'&&c==='2C'&&L.H===4&&L.C===3&&L.D===3&&L.S===3)return '11+ hp, 4-korts ♥ och 3-korts ♣ i 4-3-3-3; 2♣ enligt specialfallet.';
       if(isBid(c)&&st_(c)!=='N'&&st_(c)!==o){var lo=lowest(st_(c),oc),l2=lv(c);
         if(c===lo&&l2===1)return '1 över 1: 6+ hp, 4+ färg, rondkrav.';
-        if(c===lo&&l2===2){if(hp>=11||(hp===10&&L[st_(c)]>=6&&h.good(st_(c))))return '2 över 1: 11+ hp (eller 10 hp med bra 6-kortsfärg), 4+ färg, rondkrav.'}
-        if(l2>lv(lo))return 'Dubbelhopp i ny färg: renons i färgen, 4+ stöd och 13+ htp.'}
+        if(c===lo&&l2===2&&hp>=11)return '2 över 1: 11+ hp, 4+ färg, rondkrav.'}
       return null};
 
     if(M&&sup){
       if(htp<6){exp='P';why='Bara '+htp+' htp med stöd: för svag för att svara.'}
-      else if(htp<=10){exp='2'+o;why=htp+' htp med 4+ stöd i högfärgen: 2 i färgen (6-10 stp).'}
-      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (11-12 stp).'}
+      else if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i högfärgen: 2 i färgen (6-9 stp).'}
+      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (10-12 stp).'}
       else{exp='2N';why=htp+' htp med 4+ stöd: Stenberg 2NT (13+).'}
     }else if(hp<6&&(!sup||htp<6)){exp='P';why='Under 6 hp: pass.'}
     else if(!M&&sup&&cand.some(maj)){var cm=cand.filter(maj);exp=lowest(pickBest(cm),oc);why='Stöd i lågfärg men egen 4+ högfärg: visa högfärgen först (sök högfärg).';
       if(cm.length>1&&L[cm[0]]===L[cm[1]])alt.push(lowest(cm[0]===pickBest(cm)?cm[1]:cm[0],oc))}
     else if(!M&&sup){
-      if(htp<=10){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen.'}
-      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen.'}
+      if(htp<=9){exp='2'+o;why=htp+' htp med 4+ stöd i lågfärgen: 2 i färgen (6-9 stp).'}
+      else if(htp<=12){exp='3'+o;why=htp+' htp med 4+ stöd: 3 i färgen (10-12 stp).'}
       else{exp='2N';why=htp+' htp med 4+ stöd: Stenberg 2NT.'}
     }
+    else if(oc==='1S'&&hp>=11&&L.H>=5){exp='2H';why='11+ hp och 5+ ♥: 2♥ är det oekonomiska, rondkrävande svaret enligt Nordisk standard.'}
+    else if(oc==='1S'&&hp>=11&&L.H===4&&L.C===3&&L.D===3&&L.S===3){exp='2C';why='11+ hp, 4♥ och 3♣ i 4-3-3-3: 2♣ enligt specialfallet i Nordisk standard.'}
     else if(cand.length){var b=pickBest(cand);exp=lowest(b,oc);why='6+ hp och en 4+ färg på 1-nivå: 1 över 1.';
       cand.forEach(function(s){if(s!==b&&L[s]===L[b])alt.push(lowest(s,oc))})}
-    else if(hp<=10&&!(hp===10&&h.longest()>=6&&h.good(h.longest()))){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
+    else if(hp<=10){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
     else{
       var c2=SU.filter(function(s){return s!==o&&L[s]>=4});
       if(c2.length){var b2=pickBest(c2);exp=lowest(b2,oc);why=hp+' hp och 4+ färg: 2 över 1 (11+, rondkrav).'}
@@ -415,7 +419,6 @@ var Rattning = (function(){
       if(c==='4N')return 'Essfråga med öppningsfärgen som trumf.';
       if(isGame(c))return 'Utgångsbud – slutbud.';
       if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===lowest(st_(c),oc))return 'Ny färg, ofta sexkortsfärg, minst 15–16 hp och rondkrav.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===jump(st_(c),oc))return 'Splinter i den hoppade färgen, 19+ stp.';
       return null;
     };
 
@@ -431,9 +434,8 @@ var Rattning = (function(){
     if(call==='4N'){
       return {exp:call,alt:[],why:'4NT är essfråga med öppningsfärgen som trumf enligt lathundens sida 27.',means:means,conv:'Blackwood 5 ess',soft:true};
     }
-    if(isBid(call)&&s!==o&&s!=='N'&&call===jump(s,oc)&&L[s]<=1){
-      if(stp>=19)return {exp:call,alt:[],why:'Hopp i ny färg är Splinter och visar minst 19 stp.',means:means,conv:'Splinter',soft:true};
-      return NC('Splinter efter svag tvåöppning kräver minst 19 stp; handen har '+stp+' stp.','', 'Splinter');
+    if(isBid(call)&&s!==o&&s!=='N'&&call===jump(s,oc)){
+      return NC('Hopp i ny färg efter svag tvåöppning ingår inte i den aktiva budmodellen. Splinter är borttaget; sekvensen lämnas ej täckt.','', 'svag tvåa');
     }
     if(isGame(call)){
       return {exp:call,alt:[],why:'Direkt utgångsbud är slutbud enligt lathundens sida 27.',means:means,conv:'svag tvåa',soft:true};
@@ -1229,9 +1231,7 @@ var Rattning = (function(){
         return {exp:'3H',alt:[],why:'3♥ är invit enligt sida 18; invitbuden visar cirka 15–17 hp.',means:function(c){return c==='3H'?'Invit, cirka 15–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
       if(b.c==='3S'&&shape65Rebid&&h.hp>=14&&h.hp<=17)
         return {exp:'3S',alt:[],why:'3♠ visar 6–5-fördelning och 14–17 hp enligt sida 18.',means:function(c){return c==='3S'?'6–5-fördelning, 14–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
-      if(b.c==='4C'&&h.hp>=16&&h.hp<=17)
-        return {exp:'4C',alt:[],why:'4♣ är Splinter och visar 16–17 hp enligt lathunden på sida 18.',means:function(c){return c==='4C'?'Splinter, 16–17 hp.':null},conv:'Splinter',soft:true};
-      if(b.c==='4C')return NC('4♣ Splinter enligt sida 18 kräver 16–17 hp; handen har '+h.hp+' hp. Övriga handkrav för Splinter är inte numeriskt specificerade i den avbildade tabellraden.','', 'Splinter');
+      if(b.c==='4C')return NC('Splinter är borttaget ur det aktiva budsystemet. 4♣ i denna sekvens lämnas ej täckt.','', 'ÖH:s tredje bud efter ombud');
       if(b.c==='4H')return {exp:'4H',alt:[],why:'4♥ är slutbud enligt tabellen på sida 18.',means:function(c){return c==='4H'?'Slutbud.':null},conv:'ÖH:s tredje bud efter ombud'};
     }
 
@@ -1422,6 +1422,29 @@ var Rattning = (function(){
         return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
       }
       if(!opener&&d===3){
+        // Exakta fortsättningar från Nordisk standard s. 3 och användarens 2NT-invit.
+        if(ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2D'){
+          if(b.c==='2N'){
+            if(hp>=11&&hp<=12)return {exp:'2N',alt:[],why:'2NT är invit med 11–12 hp efter 1♥–1♠–2♦ enligt användarens precisering.',means:function(c){return c==='2N'?'Invit, 11–12 hp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♦',soft:false};
+            return NC('2NT efter 1♥–1♠–2♦ är invit med 11–12 hp. Handen ligger utanför intervallet; sekvensen lämnas ej täckt.','', 'SH:s andra bud efter 1♥–1♠–2♦');
+          }
+          if(b.c==='3S'){
+            var spadeHtp=h.htp('S');
+            if(h.L.S>=6&&spadeHtp>=10&&spadeHtp<=12)return {exp:'3S',alt:[],why:'3♠ visar 6+ ♠ och 10–12 htp enligt Nordisk standard s. 3.',means:function(c){return c==='3S'?'6+ ♠, 10–12 htp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♦',soft:false};
+            return NC('3♠ efter 1♥–1♠–2♦ kräver 6+ ♠ och 10–12 htp enligt sida 3. Handen uppfyller inte hela beskrivningen.','', 'SH:s andra bud efter 1♥–1♠–2♦');
+          }
+        }
+        if(ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2C'){
+          if(b.c==='2N'){
+            if(h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&hp>=10&&hp<=12)return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
+            return NC('2NT efter 1♥–1♠–2♣ kräver 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt sida 3.','', 'SH:s andra bud efter 1♥–1♠–2♣');
+          }
+          if(b.c==='3H'){
+            var heartHtp=h.htp('H');
+            if(h.L.H===3&&heartHtp>=10&&heartHtp<=12)return {exp:'3H',alt:[],why:'3♥ visar 3-korts ♥-stöd och 10–12 htp enligt Nordisk standard s. 3.',means:function(c){return c==='3H'?'3-korts ♥-stöd, 10–12 htp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
+            return NC('3♥ efter 1♥–1♠–2♣ kräver 3-korts ♥-stöd och 10–12 htp enligt sida 3.','', 'SH:s andra bud efter 1♥–1♠–2♣');
+          }
+        }
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
@@ -1452,7 +1475,7 @@ var Rattning = (function(){
     // av den generella poängkontrollen för missad utgång/slam.
     var unresolvedRkc=!!(node&&!node.exp&&node.conv==='Blackwood 5 ess');
     var unresolvedStenberg=!!(node&&!node.exp&&node.conv==='Stenberg');
-    var unresolvedSourceRule=!!(node&&!node.exp&&/^(Tredje färg|Fjärde färg|ÖH:s tredje bud|Fortsättning efter tredje färg|Fortsättning efter fjärde färg|Splinter – konflikt)/.test(node.conv||''));
+    var unresolvedSourceRule=!!(node&&!node.exp&&/^(Tredje färg|Fjärde färg|ÖH:s tredje bud|SH:s andra bud|Fortsättning efter tredje färg|Fortsättning efter fjärde färg|Splinter – konflikt)/.test(node.conv||''));
     if(!unresolvedRkc&&!unresolvedStenberg&&!unresolvedSourceRule&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
@@ -1797,7 +1820,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.7'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.8'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;

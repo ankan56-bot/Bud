@@ -241,7 +241,7 @@ test("a five-card new suit after a weak two is left for expert review", () => {
   assert.match(result.why,/femkortsfärg.*expertbedömning/i);
 });
 
-test("a jump in a new suit is a Splinter with singleton/void and at least 19 stp", () => {
+test("a jump in a new suit after a weak two is uncovered because Splinter is disabled", () => {
   const opener=weakTwoHand("H");
   const responder=[
     ...cards("H","Q2"), ...cards("S","5"),
@@ -250,9 +250,9 @@ test("a jump in a new suit is a Splinter with singleton/void and at least 19 stp
   const result=node(completeDeal(opener,responder),[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3S"}
   ],2);
-  assert.equal(result.exp,"3S");
-  assert.equal(result.conv,"Splinter");
-  assert.match(result.why,/Splinter.*19 stp/);
+  assert.equal(result.exp,null);
+  assert.match(result.why,/Splinter är borttaget/);
+  assert.notEqual(result.conv,"Splinter");
 });
 
 test("3NT is treated as the documented final contract", () => {
@@ -459,7 +459,8 @@ test("weak-two analysis trees use Lathund page 27 response meanings", () => {
     assert.match(labels,/Invit.*14–16 stp/);
     assert.match(labels,/Ny färg.*15–16\+ hp.*rondkrav/);
     assert.match(labels,/Utgångsbud.*slutbud/);
-    assert.match(labels,/Splinter.*19\+ stp/);
+    assert.doesNotMatch(labels,/Splinter/i);
+    assert.ok(!tree.nodes.some(node=>/Splinter/i.test(JSON.stringify(node))));
     assert.match(labels,/Essfråga.*trumf/);
     assert.ok(tree.nodes.some(node=>node.sequence.join(",")===[opening,"Pass","4N"].join(",")));
   }

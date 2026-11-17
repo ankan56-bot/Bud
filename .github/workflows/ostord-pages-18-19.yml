@@ -1,4 +1,4 @@
-name: Ostörd budgivning – sidor 18–19
+name: Ostörd budgivning – kärna och sidor 18–19
 
 on:
   push:
@@ -6,7 +6,11 @@ on:
       - work/theme-dataset-analysis
     paths:
       - 'rattningsmotor.js'
-      - 'tests/ostord-sidor-18-19.test.js'
+      - 'analysbibliotek.json'
+      - 'tests/ostord-*.test.js'
+      - 'testdata/weak-two.test.js'
+      - 'testdata/weak-two-audit.md'
+      - 'LOGG_BUDREGLER.md'
       - '.github/workflows/ostord-pages-18-19.yml'
   workflow_dispatch:
 
@@ -18,5 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Kör regressionstester
-        run: node --test tests/ostord-sidor-18-19.test.js
+      - name: Kör kärn- och sidtester för ostörd budgivning
+        run: node --test tests/ostord-sidor-18-19.test.js tests/ostord-core.test.js
+      - name: Kör svag-två-regression inklusive ej täckta hoppbud
+        run: node --test testdata/weak-two.test.js

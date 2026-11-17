@@ -79,3 +79,8 @@ CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
 - Testfixturerna skapar nu fullständiga, unika händer även när ursprungliga exempel saknade eller överlappade kort.
 - Analysnodernas manuella färgkvalitetsfält testas mot den faktiska etiketten.
 - Gemensamt regressionstest för 10-/11-korts fit uppdaterat till +2 längdbonus.
+
+
+## Beslut efter expert-/användarstyrd avgränsning (2026-11-17)
+
+Den historiska lathundsraden om hoppande ny färg/Splinter återges ovan som källtext, men den är **inte aktiv systemregel**. Splinter är borttaget ur tränaren enligt användarens senare beslut. Dessa sekvenser ska därför markeras ej täckta och får inte rekommenderas eller rättas som Splinter.

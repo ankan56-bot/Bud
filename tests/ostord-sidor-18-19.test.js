@@ -112,26 +112,16 @@ test('page 19: 3NT after fourth-suit continuation is rejected above 17 hp', () =
 });
 
 
-test('page 18: 4♣ Splinter is accepted with 16–17 hp', () => {
+test('page 18: former 4♣ Splinter route is uncovered because Splinter is disabled', () => {
   const hand = ['C14','C13','C9','C8','D14','D9','D8','H13','H9','H8','S12','S9','S8'];
   const st = state(hand, [
     {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
     {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
     {s:'N',c:'4C'}
   ]);
-  const node = expectBid(st, 8, '4C');
-  assert.equal(node.conv, 'Splinter');
-});
-
-test('page 18: 4♣ Splinter is not accepted outside 16–17 hp', () => {
-  const hand = ['C14','C13','C9','C8','D14','D13','D9','H9','H8','H7','S9','S8','S7'];
-  const st = state(hand, [
-    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
-    {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
-    {s:'N',c:'4C'}
-  ]);
   const node = Rattning.nodeFor(st, 8);
-  assert.notEqual(node && node.exp, '4C');
+  assert.equal(node.exp, null, node.why);
+  assert.match(node.why,/Splinter är borttaget/);
 });
 
 

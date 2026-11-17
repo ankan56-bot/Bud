@@ -1,5 +1,5 @@
 {
-  "version": "0.5.17",
+  "version": "0.5.18",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7336,7 +7336,7 @@
         "3 i öppningsfärgen: invit cirka 14–16 stp.",
         "2NT: Stenberg 2NT, 13+ stp.",
         "Ny färg: ofta sexkortsfärg, minst 15–16 hp, rondkrav.",
-        "Direkt utgång är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
+        "Direkt utgång är slutbud; hopp i ny färg är ej täckt i aktiv modell; 4NT är essfråga med öppningsfärgen som trumf.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
       "root": "t34_n0",
@@ -7347,7 +7347,7 @@
             "2D"
           ],
           "meaning": "2D visar 6–10 hp, exakt sex kort och bra färg enligt öppningsregeln.",
-          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
+          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg ingår inte i den aktiva modellen och lämnas ej täckt; 4NT är essfråga med öppningsfärgen som trumf.",
           "branches": [
             {
               "call": "2N",
@@ -7398,21 +7398,6 @@
               "call": "5D",
               "next": "t34_n10",
               "label": "Utgångsbud – slutbud"
-            },
-            {
-              "call": "4C",
-              "next": "t34_n11",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
-            },
-            {
-              "call": "3H",
-              "next": "t34_n12",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
-            },
-            {
-              "call": "3S",
-              "next": "t34_n13",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
@@ -7605,66 +7590,6 @@
           "branches": []
         },
         {
-          "id": "t34_n11",
-          "sequence": [
-            "2D",
-            "Pass",
-            "4C"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
-          "id": "t34_n12",
-          "sequence": [
-            "2D",
-            "Pass",
-            "3H"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
-          "id": "t34_n13",
-          "sequence": [
-            "2D",
-            "Pass",
-            "3S"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
           "id": "t34_n14",
           "sequence": [
             "2D",
@@ -7693,7 +7618,7 @@
         "3 i öppningsfärgen: invit cirka 14–16 stp.",
         "2NT: Stenberg 2NT, 13+ stp.",
         "Ny färg: ofta sexkortsfärg, minst 15–16 hp, rondkrav.",
-        "Direkt utgång är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
+        "Direkt utgång är slutbud; hopp i ny färg är ej täckt i aktiv modell; 4NT är essfråga med öppningsfärgen som trumf.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
       "root": "t35_n0",
@@ -7704,7 +7629,7 @@
             "2H"
           ],
           "meaning": "2H visar 6–10 hp, exakt sex kort och bra färg enligt öppningsregeln.",
-          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
+          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg ingår inte i den aktiva modellen och lämnas ej täckt; 4NT är essfråga med öppningsfärgen som trumf.",
           "branches": [
             {
               "call": "2N",
@@ -7755,21 +7680,6 @@
               "call": "5D",
               "next": "t35_n10",
               "label": "Utgångsbud – slutbud"
-            },
-            {
-              "call": "4C",
-              "next": "t35_n11",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
-            },
-            {
-              "call": "4D",
-              "next": "t35_n12",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
-            },
-            {
-              "call": "3S",
-              "next": "t35_n13",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
@@ -7962,66 +7872,6 @@
           "branches": []
         },
         {
-          "id": "t35_n11",
-          "sequence": [
-            "2H",
-            "Pass",
-            "4C"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
-          "id": "t35_n12",
-          "sequence": [
-            "2H",
-            "Pass",
-            "4D"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
-          "id": "t35_n13",
-          "sequence": [
-            "2H",
-            "Pass",
-            "3S"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
           "id": "t35_n14",
           "sequence": [
             "2H",
@@ -8050,7 +7900,7 @@
         "3 i öppningsfärgen: invit cirka 14–16 stp.",
         "2NT: Stenberg 2NT, 13+ stp.",
         "Ny färg: ofta sexkortsfärg, minst 15–16 hp, rondkrav.",
-        "Direkt utgång är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
+        "Direkt utgång är slutbud; hopp i ny färg är ej täckt i aktiv modell; 4NT är essfråga med öppningsfärgen som trumf.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
       "root": "t36_n0",
@@ -8061,7 +7911,7 @@
             "2S"
           ],
           "meaning": "2S visar 6–10 hp, exakt sex kort och bra färg enligt öppningsregeln.",
-          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
+          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg ingår inte i den aktiva modellen och lämnas ej täckt; 4NT är essfråga med öppningsfärgen som trumf.",
           "branches": [
             {
               "call": "2N",
@@ -8112,16 +7962,6 @@
               "call": "5D",
               "next": "t36_n10",
               "label": "Utgångsbud – slutbud"
-            },
-            {
-              "call": "4C",
-              "next": "t36_n11",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
-            },
-            {
-              "call": "4D",
-              "next": "t36_n12",
-              "label": "Hopp i ny färg – Splinter, 19+ stp"
             },
             {
               "call": "4N",
@@ -8312,46 +8152,6 @@
           "meaning": "Utgångsbud – slutbud",
           "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
-        },
-        {
-          "id": "t36_n11",
-          "sequence": [
-            "2S",
-            "Pass",
-            "4C"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
-        },
-        {
-          "id": "t36_n12",
-          "sequence": [
-            "2S",
-            "Pass",
-            "4D"
-          ],
-          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
-          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
-          "branches": [],
-          "handConditions": {
-            "schemaVersion": 1,
-            "seat": "responder",
-            "authority": "analysis_only",
-            "sourceText": "Splinter, 19+ stp.",
-            "manual": [
-              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
-            ]
-          }
         },
         {
           "id": "t36_n13",
