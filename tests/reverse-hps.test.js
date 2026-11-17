@@ -252,14 +252,14 @@ function assessReverse(shape, honors) {
   assert.match(item.motivering, /20 HTP/);
 }
 
-// A 4-5 distribution is not a 5-4 reverse, even with 18 HTP.
+// A 4-5 distribution is not a reverse; 1S is the cheapest natural second-suit call.
 {
   const item = assessReverse(
     { C: 1, D: 4, H: 3, S: 5 },
     { D: [14, 13], S: [14, 13], H: [13], C: [11] }
   );
-  assert.equal(item.bedomning, 'fel');
-  assert.equal(item.htp, 18, '5-4 is required; 4-5 without support counts HP only');
+  assert.equal(item.bedomning, 'rätt', '2S is system-legal, but it is not classified as a reverse.');
+  assert.equal(item.htp, 18, 'The hand has 18 HTP; the 4-5 shape is shown naturally.');
   assert.equal(item.battre, '1♠', 'Show the second suit at the lowest level instead of a false reverse');
 }
 
