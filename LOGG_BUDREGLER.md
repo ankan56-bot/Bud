@@ -357,3 +357,5 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 - Regressionkontroll: svarshandens andra bud efter 1 i färg–1NT flyttat före generell tredje-/fjärde-färgsdispatch så 1♥–1NT–2♣–2♦ bedöms enligt 1NT-undantaget.
 
 - Dispatchförfining: 1M–1NT–2NT går till den separata utgångsbedömningen (hp/fit); övriga återbud efter 1M–1NT går till respAfter1NT. Detta hindrar att 2NT-inviten felaktigt behandlas som ett svagt färgåterbud.
+
+- Rättningsmotor uppdaterad till 9.7 efter tvåfärgsgrenens styrke- och dispatchkorrigering. Negativt test tillagt: 2♣ på lägsta nivå avvisas när handen kräver 3♣ med 18+ htp.

@@ -5,8 +5,8 @@
     "generator": "Budtraning.html existing newDeal/biasedDeal generator",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
     "rulesEngine": "rattningsmotor.js",
-    "rulesEngineVersion": "9.6",
-    "rulesEngineBlobSha": "60ba9d4787087e829bc214729723169347d94d74",
+    "rulesEngineVersion": "9.7",
+    "rulesEngineBlobSha": "1158331074e06d942219f7c6bad1bb9c0e43c477",
     "branchBase": "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
   },
   "generation": {

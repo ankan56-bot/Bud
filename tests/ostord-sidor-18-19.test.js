@@ -201,3 +201,9 @@ test('a low-level second-color rebid is not generalized to 6–4 or 5–5 at 12�
   assert.equal(node.exp,null,node.why);
   assert.equal(node.conv,'tvåfärgshand');
 });
+test('1♥–1♠–2♣ is rejected when the hand has 18+ htp and the jump is required', () => {
+  const hand=['H14','H13','H12','H9','H8','C14','C13','C9','C8','D12','D9','D8','S2'];
+  const node=Rattning.nodeFor(openerTwoSuitState(hand,'2C'),4);
+  assert.equal(node.exp,'3C',node.why);
+  assert.match(node.means('2C'),/12–17 hp/);
+});
