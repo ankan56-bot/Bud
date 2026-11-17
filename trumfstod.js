@@ -60,7 +60,7 @@
   function isSupportResponse(hand,opening,bid){
     if(!isOneLevelSuit(opening)||!isBid(bid)) return false;
     var suit=st_(opening);
-    if(st_(bid)===suit) return lv(bid)>=2;
+    if(st_(bid)===suit) return hand&&hand.L&&hand.L[suit]>=4&&lv(bid)>=2;
     return bid==='2N'&&hand&&hand.L&&hand.L[suit]>=4;
   }
 
