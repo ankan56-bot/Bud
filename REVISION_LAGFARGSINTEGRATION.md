@@ -40,7 +40,7 @@ Nordisk standard styr över Lathundens avvikande tillägg:
 - 4+ stöd i svarsfärgen lämnas till gemensam trumfstödslogik.
 - Egen 6+ lågfärg utan 4+ sidofärg använder 12–16 HTP på lägsta nivå och 17–19 HTP med enkelhopp.
 - 20+ HTP med egen lång lågfärg och utan sidofärg lämnas ej täckt; ingen 5-lågfärg antas.
-- Tvåfärgshänder med minst nio kort i de två färgerna hanteras sekvensbundet. 12–17 hp visar andra färgen på lägsta nivå; 18+ HTP visar hopp i andra färgen.
+- Tvåfärgshänder med minst nio kort i de två färgerna hanteras sekvensbundet. För hopp/omvänd visning krävs minst fem kort i öppningsfärgen och minst fyra i den andra färgen; 4–5 med kortare öppningsfärg får inte automatiskt hoppa. 12–17 hp visar andra färgen på lägsta nivå; 18+ HTP visar hopp när 5–4-profilen är uppfylld.
 - Reverse identifieras utifrån den billigaste lagliga nivån: en högre sidofärg är reverse först när den billigaste visningen ligger på 2-nivån. En färg som kan visas på 1-nivån är ett naturligt färgbud, inte reverse.
 - Lika långa alternativa sidofärger utan uttrycklig prioritet lämnas ej täckta.
 - Balanserade återbud och 1NT-fortsättningen återanvänder den tidigare gemensamma logiken.
@@ -66,6 +66,8 @@ Följande ska fortsatt sparas med budsekvens och alla fyra händer i ej-täckta-
 6. Undantaget 5–5 i spader–klöver där 1♣ kan väljas om spaderfärgen är dålig. Öppningsvalets kvalitetskriterium är inte definierat och den centrala öppningsväljaren ändras inte här.
 
 ## 7. Regression och skydd
+
+- 200-givarsvalideringen för 1♣/1♦: 1 026 N/S-positioner, 970 täckta (94,5 %), 56 explicita source gaps. Alla 56 sparas i `one_minor_200_uncovered_latest.json`; 0 olagliga rekommendationer, 0 ogiltiga budgivningar, 0 exceptions och 0 ofrivilligt oavslutade givar.
 
 - Högfärgsmodulen ändras inte.
 - 1NT-, trumfstöds-, Stenberg- och slammodulerna återanvänds.
