@@ -56,9 +56,11 @@ Revisionens första CI-körning visade att 4NT efter 1♣–2NT–3♣ inte iden
 
 ### C. Fokuserad verifiering – godkänd
 
-Senaste fokuserade CI-körning har godkänt Stenberg 2NT, trumfstöd, högfärgs-RKC, 100-givarsprovet för 1♥/1♠ och 3M-invit. I 100-givarsprovet är 100/100 givar giltiga; 527 beslut gav 525 täckta och 2 ej täckta (99,6 %), utan undantag, olagliga rekommendationer, ogiltiga/ofärdiga auktioner eller kortintegritetsfel. 3M-invit: 4/4 tester godkända.
+Senaste fokuserade CI-körning har godkänt Stenberg 2NT, trumfstöd, högfärgs-RKC, 200-givarsprovet för 1♥/1♠ och 3M-invit. I 200-givarsprovet är 200/200 givar giltiga; 1 038 beslut gav 1 033 täckta och 5 ej täckta (**99,5 %**), med 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga/ofärdiga auktioner och 0 kortintegritetsfel. 3M-invit: 4/4 tester godkända.
 
-De två källuckorna är öppnarens återbud efter `1♥–2NT` respektive `1♠–2NT`, där handen inte passar någon av de uttryckligen dokumenterade Stenbergprofilerna. Seeds 202612662 och 202613691 finns i `LOGG_BUDREGLER.md`; inga återbud har hittats på.
+200-givarsprovet hittade också ett tekniskt fel i 10 hp-grenen för sexkortsfärg: `h.longest()` returnerar en längd, inte en färgkod. Koden skickade längden till `h.good()` och kunde kasta undantag. Det är nu korrigerat med ett färgvis `SU.some(...)`-villkor och ett riktat regressionstest.
+
+De fem källuckorna är sparade med alla fyra händer i `testdata/one_major_200_uncovered_2026-11-17.json` och beskrivna i `LOGG_BUDREGLER.md`: två öppnarhänder som inte matchar dokumenterade Stenbergåterbud, en renons efter Stenberg utan definierad fortsättning, samt två lägen med 20+ htp och lågfärgsstöd där 3NT-/5-lågfärgsutforskningen inte är fullständigt definierad. Inga återbud har hittats på.
 
 ### D. Full CI – separat befintlig avvikelse
 
