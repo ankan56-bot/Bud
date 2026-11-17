@@ -371,6 +371,12 @@
          ours[2].c!=='1N'&&ours[2].c!=='2N'){
         return minorBidding.openerThirdBid(h,ours[0].c,ours[1].c,ours[2].c,ours[3].c,st.hands[pt]);
       }
+      if(d>=5&&(s1==='C'||s1==='D')&&
+         ours[1].c!=='1N'&&ours[1].c!=='2N'&&
+         ours[2].c!=='1N'&&ours[2].c!=='2N'&&
+         ours[3].c!=='1N'&&ours[3].c!=='2N'){
+        return NC('Fortsättningen efter öppnarens tredje bud i 1♣/1♦-sekvensen saknar en entydig källregel i den aktuella grenen. Sekvensen sparas för expertgranskning.',function(){return null},'fortsättning efter tredje budet',true);
+      }
     }
 
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
