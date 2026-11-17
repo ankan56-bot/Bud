@@ -1139,11 +1139,8 @@ var Rattning = (function(){
     }
 
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
-      // Sidorna 18–19 skiljer tredje och fjärde färg åt genom
-      // antalet olika färger paret redan har visat.
-      // Tabellen anger tvångskaraktären i vissa fortsättningar men
-      // specificerar inte ett generellt hp-intervall för själva budet.
-      // Därför får motorn inte hitta på gränser som 10 eller 13 hp.
+      // Sida 19: klassificera svarshandens nya färg efter vilka färger
+      // paret redan har visat. Både tredje och fjärde färg är kravbud.
       if(d===3 && !opener && isBid(b.c) && st_(b.c)!=='N'){
         var shownSuits=[];
         ours.slice(0,3).forEach(function(call){
@@ -1152,25 +1149,36 @@ var Rattning = (function(){
         });
         var newSuit=st_(b.c);
         if(shownSuits.indexOf(newSuit)<0&&shownSuits.length===2){
-          return NC('Tredje färg identifierad enligt Nordisk Standard s. 19. Källtabellen anger att svarshanden kräver, men ger ingen generell hp-gräns för själva tredje-färgsbudet. Sekvensen loggas för expertkontroll.',null,'Tredje färg');
+          return {exp:b.c,alt:[],why:'Tredje färg enligt Nordisk Standard s. 19. Svarshanden kräver genom att bjuda en ny färg; fortsättningen ska därför bedömas som kravbud.',means:function(c){return c===b.c?'Tredje färg – kravbud.':null},conv:'Tredje färg',soft:false};
         }
         if(shownSuits.indexOf(newSuit)<0&&shownSuits.length===3){
-          return NC('Fjärde färg identifierad enligt Nordisk Standard s. 19. Exakt generell styrkegräns för själva fjärde-färgsbudet framgår inte av tabellen; sekvensen loggas för expertkontroll.',null,'Fjärde färg');
+          return {exp:b.c,alt:[],why:'Fjärde färg enligt Nordisk Standard s. 19. Svarshanden kräver genom att bjuda en ny färg; fortsättningen ska därför bedömas som kravbud.',means:function(c){return c===b.c?'Fjärde färg – kravbud.':null},conv:'Fjärde färg',soft:false};
         }
       }
 
-      var openerShowsTwoSuits = isBid(ours[2].c) &&
-        ours[2].c[1] !== ours[0].c[1] && ours[2].c[1] !== 'N' &&
-        h.L[ours[0].c[1]] >= 4 && h.L[ours[2].c[1]] >= 4;
-      if(d===4 && opener && isBid(ours[3].c) && ours[3].c[1]!=='N'){
-        var shownByResponder=[];
-        [ours[0].c,ours[1].c,ours[2].c].forEach(function(call){
-          var suit=st_(call);
-          if(isBid(call)&&suit!=='N'&&shownByResponder.indexOf(suit)<0)shownByResponder.push(suit);
-        });
-        if(shownByResponder.length===3 && shownByResponder.indexOf(st_(ours[3].c))<0){
-          return NC('Öppnarens fortsättning efter svarshandens fjärde färg ska bedömas enligt tabellen på s. 19. Den exakta handvärderingen för denna giv kan inte härledas säkert ur tabellraden och loggas för expertkontroll.',null,'Fjärde färg');
-        }
+      // Sida 19, exakt exempel: 1♥–1♣; 2♣–2♦.
+      // Öppnarens tabellrader som kan avgöras direkt av färglängd.
+      if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1C' &&
+         ours[2].c==='2C' && ours[3].c==='2D'){
+        if(b.c==='P')return NC('Pass är uttryckligen inte tillåtet efter tredje färg enligt Nordisk Standard s. 19.',null,'Tredje färg');
+        if(b.c==='2H'&&h.L.H===2)return {exp:'2H',alt:[],why:'2♥ visar tvåkorts hjärter och minimum enligt tabellen efter tredje färg.',means:function(c){return c==='2H'?'Tvåkorts hjärter, minimum.':null},conv:'Tredje färg'};
+        if(b.c==='2S')return {exp:'2S',alt:[],why:'2♠ är fjärde färg och utgångskrav enligt tabellen.',means:function(c){return c==='2S'?'Fjärde färg, utgångskrav.':null},conv:'Fjärde färg',soft:false};
+        if(b.c==='3C'&&h.L.C===6)return {exp:'3C',alt:[],why:'3♣ visar sexkortsfärg, minimum enligt tabellen.',means:function(c){return c==='3C'?'Sexkortsfärg, minimum.':null},conv:'Tredje färg'};
+        if(b.c==='3D'&&h.L.D===4)return {exp:'3D',alt:[],why:'3♦ visar fyrkortsstöd enligt tabellen.',means:function(c){return c==='3D'?'Fyrkortsstöd.':null},conv:'Tredje färg'};
+        if(b.c==='3H'&&h.L.H===3)return {exp:'3H',alt:[],why:'3♥ visar trekortsstöd enligt tabellen.',means:function(c){return c==='3H'?'Trekortsstöd.':null},conv:'Tredje färg'};
+        if(b.c==='2N'||b.c==='3N')return NC('Sangbuden efter tredje färg kräver spaderhåll och skiljer minimum från maximum. Källtabellen anger inte numeriska hp-gränser för minimum/maximum; denna hand behöver expertbedömning.',null,'Tredje färg');
+      }
+
+      // Sida 19, exakt exempel: 1♥–1♠; 2♣–2♦.
+      if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1S' &&
+         ours[2].c==='2C' && ours[3].c==='2D'){
+        if(b.c==='P'||b.c==='3N')return NC('Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19.',null,'Fjärde färg');
+        if(b.c==='2H')return NC('2♥ betyder ”inget bättre bud”. Tabellen definierar inte en maskinellt verifierbar handgräns för detta val.',null,'Fjärde färg');
+        if(b.c==='2S'&&h.L.S===2)return {exp:'2S',alt:[],why:'2♠ visar tvåkorts spader enligt tabellen efter fjärde färg.',means:function(c){return c==='2S'?'Tvåkorts spader.':null},conv:'Fjärde färg'};
+        if(b.c==='2N'&&h.stop('D'))return {exp:'2N',alt:[],why:'2NT visar ruterhåll enligt tabellen efter fjärde färg.',means:function(c){return c==='2N'?'Ruterhåll.':null},conv:'Fjärde färg'};
+        if(b.c==='3C'&&h.L.C===5&&h.L.D===5)return {exp:'3C',alt:[],why:'3♣ visar 5–5-fördelning enligt tabellen.',means:function(c){return c==='3C'?'5–5-fördelning.':null},conv:'Fjärde färg'};
+        if(b.c==='3D'&&h.L.D===4)return {exp:'3D',alt:[],why:'3♦ visar fyrkortsfärg enligt tabellen.',means:function(c){return c==='3D'?'Fyrkortsfärg.':null},conv:'Fjärde färg'};
+        if(b.c==='3H'||b.c==='3S')return NC('Budet kräver maximum samt exakt 6–4-fördelning (3♥) eller trekortsstöd (3♠). Källtabellen anger ingen numerisk hp-gräns för maximum; expertbedömning krävs.',null,'Fjärde färg');
       }
     }
 
