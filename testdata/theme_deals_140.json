@@ -5,8 +5,8 @@
     "generator": "Budtraning.html existing newDeal/biasedDeal generator",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
     "rulesEngine": "rattningsmotor.js",
-    "rulesEngineVersion": "8.5",
-    "rulesEngineBlobSha": "e06f7229d830f61369b5740392cb4e505c1edd15",
+    "rulesEngineVersion": "8.6",
+    "rulesEngineBlobSha": "16285da62a5a90191d15844da692f1a3d85081d1",
     "branchBase": "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
   },
   "generation": {
@@ -30,14 +30,14 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 592,
-      "ej_täckt": 38
+      "rätt": 581,
+      "ej_täckt": 39
     },
     "themeStats": {
       "alla": {
         "deals": 10,
         "bids": 92,
-        "uncovered": 6,
+        "uncovered": 7,
         "optional": 0,
         "wrong": 0
       },
@@ -113,7 +113,7 @@
       },
       "svag": {
         "deals": 10,
-        "bids": 60,
+        "bids": 40,
         "uncovered": 0,
         "optional": 0,
         "wrong": 0
@@ -261,7 +261,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -417,7 +417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -557,8 +557,8 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
-        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "8.6",
+        "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -572,9 +572,9 @@
             "nr": 3,
             "seat": "Norr",
             "bid": "Pass",
-            "grade": "rätt",
+            "grade": "ej_täckt",
             "suggested": "",
-            "reason": "0-8 hp utan minst 3 korts stöd eller annat definierat svar: pass."
+            "reason": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand."
           }
         ]
       }
@@ -685,7 +685,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -853,7 +853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 4 (Norr och Syd).",
         "items": [
           {
@@ -1065,7 +1065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1253,7 +1253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1449,7 +1449,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1629,7 +1629,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1801,7 +1801,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -1981,7 +1981,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2161,7 +2161,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2341,7 +2341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2521,7 +2521,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2701,7 +2701,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -2881,7 +2881,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3061,7 +3061,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3241,7 +3241,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3421,7 +3421,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3601,7 +3601,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3773,7 +3773,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -3937,7 +3937,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4109,7 +4109,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4281,7 +4281,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4437,7 +4437,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4601,7 +4601,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4765,7 +4765,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -4921,7 +4921,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5085,7 +5085,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5257,7 +5257,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5445,7 +5445,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 7 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5641,7 +5641,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5821,7 +5821,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -5993,7 +5993,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6165,7 +6165,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6345,7 +6345,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6533,7 +6533,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6713,7 +6713,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -6885,7 +6885,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7065,7 +7065,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7253,7 +7253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7441,7 +7441,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7621,7 +7621,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7793,7 +7793,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -7973,7 +7973,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8161,7 +8161,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8341,7 +8341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8513,7 +8513,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8693,7 +8693,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -8881,7 +8881,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9053,7 +9053,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9197,7 +9197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -9361,7 +9361,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9533,7 +9533,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9697,7 +9697,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -9853,7 +9853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10025,7 +10025,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10197,7 +10197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10361,7 +10361,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10533,7 +10533,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10705,7 +10705,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -10877,7 +10877,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11049,7 +11049,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11229,7 +11229,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11417,7 +11417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11589,7 +11589,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11753,7 +11753,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -11917,7 +11917,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12081,7 +12081,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12253,7 +12253,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12417,7 +12417,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12581,7 +12581,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -12737,7 +12737,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -12885,7 +12885,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13041,7 +13041,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13197,7 +13197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13353,7 +13353,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13509,7 +13509,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13665,7 +13665,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13821,7 +13821,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -13977,7 +13977,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14141,7 +14141,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14313,7 +14313,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14477,7 +14477,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14633,7 +14633,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14789,7 +14789,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -14937,7 +14937,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15077,7 +15077,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15233,7 +15233,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15405,7 +15405,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15561,7 +15561,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15701,7 +15701,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15841,7 +15841,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -15981,7 +15981,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16129,7 +16129,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16277,7 +16277,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16425,7 +16425,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16573,7 +16573,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16721,7 +16721,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -16869,7 +16869,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17033,7 +17033,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17193,7 +17193,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -17349,7 +17349,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17513,7 +17513,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -17673,7 +17673,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -17853,7 +17853,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18033,7 +18033,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18213,7 +18213,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18393,7 +18393,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18573,7 +18573,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18721,7 +18721,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18845,7 +18845,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -18878,81 +18878,73 @@
         "status": "pending",
         "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
       },
-      "dealer": "S",
+      "dealer": "N",
       "hands": {
         "N": [
-          "D11",
+          "S14",
+          "S4",
           "D13",
-          "D12",
-          "C14",
-          "D14",
-          "D4",
-          "C5",
-          "C4",
-          "C9",
-          "C2",
+          "S2",
+          "S5",
           "S3",
-          "H12",
-          "H6"
+          "H5",
+          "D10",
+          "S9",
+          "S12",
+          "D5",
+          "D6",
+          "H10"
         ],
         "E": [
-          "H7",
-          "D10",
-          "S4",
-          "H3",
-          "C10",
-          "H14",
-          "D3",
-          "S10",
-          "C8",
-          "D5",
-          "C13",
-          "S11",
-          "C6"
-        ],
-        "S": [
-          "S5",
-          "H9",
+          "D12",
+          "H6",
           "D7",
           "C3",
-          "C11",
-          "H10",
-          "H8",
-          "S13",
-          "D2",
           "H2",
-          "S6",
+          "C9",
+          "D3",
+          "C12",
+          "D14",
+          "C5",
+          "D11",
+          "C11",
+          "D9"
+        ],
+        "S": [
+          "C4",
+          "S7",
+          "H12",
+          "H11",
+          "C2",
+          "S8",
+          "S13",
+          "H14",
+          "H7",
           "H13",
-          "H11"
+          "H8",
+          "H3",
+          "D8"
         ],
         "W": [
-          "C12",
-          "S9",
-          "S2",
-          "S7",
+          "C10",
+          "C7",
+          "D2",
+          "H9",
+          "S11",
           "H4",
-          "H5",
-          "D9",
-          "S12",
-          "D6",
-          "D8",
-          "S8",
-          "S14",
-          "C7"
+          "D4",
+          "S6",
+          "C14",
+          "S10",
+          "C13",
+          "C8",
+          "C6"
         ]
       },
       "bids": [
         {
-          "s": "S",
-          "c": "2H"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
           "s": "N",
-          "c": "3C"
+          "c": "3S"
         },
         {
           "s": "E",
@@ -18960,18 +18952,10 @@
         },
         {
           "s": "S",
-          "c": "4H"
+          "c": "P"
         },
         {
           "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
           "c": "P"
         }
       ],
@@ -18985,40 +18969,24 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
-        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "8.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Syd",
-            "bid": "2♥",
+            "seat": "Norr",
+            "bid": "3♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "6-10 hp och exakt 6-korts ♥ med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa."
+            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
           },
           {
             "nr": 3,
-            "seat": "Norr",
-            "bid": "3♣",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "16 hp och 5+ ♣: ny färg, krav till minst 3 i öppningsfärgen."
-          },
-          {
-            "nr": 5,
             "seat": "Syd",
-            "bid": "4♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 28 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 7,
-            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
           }
         ]
       }
@@ -19037,86 +19005,70 @@
       "dealer": "N",
       "hands": {
         "N": [
-          "H8",
-          "C8",
-          "S2",
-          "C3",
+          "S7",
+          "C11",
+          "D12",
+          "D6",
           "S3",
-          "H3",
-          "C6",
-          "H6",
-          "H12",
-          "C9",
-          "S13",
-          "H5",
-          "H11"
+          "D3",
+          "S8",
+          "S5",
+          "S2",
+          "S10",
+          "C14",
+          "S9",
+          "D9"
         ],
         "E": [
-          "D7",
-          "S10",
-          "C13",
-          "D12",
-          "D9",
-          "D8",
-          "C12",
+          "H8",
+          "H11",
+          "D13",
           "H9",
-          "H7",
-          "D3",
-          "C2",
-          "D2",
-          "S6"
+          "D14",
+          "D11",
+          "H2",
+          "H3",
+          "S4",
+          "C6",
+          "H6",
+          "C5",
+          "D4"
         ],
         "S": [
+          "D10",
+          "C3",
+          "H5",
+          "D8",
+          "D2",
+          "S6",
+          "H12",
           "H14",
-          "H13",
-          "C11",
-          "S14",
-          "S7",
-          "S8",
-          "C7",
-          "H2",
-          "S9",
-          "C10",
           "S11",
-          "D14",
-          "D10"
+          "C13",
+          "C10",
+          "C12",
+          "S12"
         ],
         "W": [
-          "S5",
-          "C4",
-          "C5",
-          "S4",
-          "D11",
-          "D13",
-          "S12",
-          "C14",
-          "D6",
-          "D5",
-          "H10",
+          "C8",
+          "D7",
           "H4",
-          "D4"
+          "C4",
+          "H10",
+          "S14",
+          "H13",
+          "C7",
+          "S13",
+          "D5",
+          "C9",
+          "C2",
+          "H7"
         ]
       },
       "bids": [
         {
           "s": "N",
-          "c": "2H"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "2S"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "4H"
+          "c": "3S"
         },
         {
           "s": "E",
@@ -19141,40 +19093,24 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
-        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "8.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
             "seat": "Norr",
-            "bid": "2♥",
+            "bid": "3♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "6-10 hp och exakt 6-korts ♥ med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa."
+            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
           },
           {
             "nr": 3,
             "seat": "Syd",
-            "bid": "2♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "17 hp och 5+ ♠: ny färg, krav till minst 3 i öppningsfärgen."
-          },
-          {
-            "nr": 5,
-            "seat": "Norr",
-            "bid": "4♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 28 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 7,
-            "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
           }
         ]
       }
@@ -19281,7 +19217,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19405,7 +19341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19529,7 +19465,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -19562,81 +19498,73 @@
         "status": "pending",
         "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
       },
-      "dealer": "N",
+      "dealer": "S",
       "hands": {
         "N": [
-          "D7",
-          "S2",
-          "H4",
-          "S13",
-          "S12",
-          "S4",
-          "S5",
-          "H9",
           "D12",
-          "C7",
+          "S10",
+          "C14",
+          "C12",
+          "D4",
+          "H11",
+          "D6",
+          "S14",
+          "H7",
+          "D11",
           "S3",
-          "H3",
-          "C8"
+          "S7",
+          "S13"
         ],
         "E": [
-          "H5",
-          "C4",
-          "C10",
+          "D3",
           "H12",
-          "S7",
-          "H8",
-          "C6",
-          "D8",
-          "C13",
-          "C3",
-          "S10",
+          "D10",
+          "C10",
+          "H14",
+          "H3",
+          "C2",
+          "S2",
           "H2",
-          "D5"
+          "S9",
+          "C8",
+          "S11",
+          "D9"
         ],
         "S": [
-          "C5",
-          "D3",
-          "D14",
-          "C12",
-          "H11",
+          "H4",
+          "S4",
+          "C6",
+          "C11",
+          "D8",
+          "C3",
           "S6",
-          "C14",
-          "H7",
-          "H14",
-          "D11",
+          "C7",
           "D13",
-          "D2",
-          "H13"
+          "H13",
+          "C9",
+          "C5",
+          "C4"
         ],
         "W": [
-          "H6",
-          "D9",
-          "S11",
           "H10",
-          "S8",
-          "C2",
-          "D6",
-          "D10",
-          "C9",
-          "D4",
-          "C11",
-          "S14",
-          "S9"
+          "H5",
+          "S5",
+          "D2",
+          "H6",
+          "S12",
+          "D14",
+          "H8",
+          "C13",
+          "D5",
+          "D7",
+          "H9",
+          "S8"
         ]
       },
       "bids": [
         {
-          "s": "N",
-          "c": "2S"
-        },
-        {
-          "s": "E",
-          "c": "P"
-        },
-        {
           "s": "S",
-          "c": "3D"
+          "c": "3C"
         },
         {
           "s": "W",
@@ -19644,18 +19572,10 @@
         },
         {
           "s": "N",
-          "c": "3N"
+          "c": "P"
         },
         {
           "s": "E",
-          "c": "P"
-        },
-        {
-          "s": "S",
-          "c": "P"
-        },
-        {
-          "s": "W",
           "c": "P"
         }
       ],
@@ -19669,40 +19589,24 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
-        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "8.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Norr",
-            "bid": "2♠",
+            "seat": "Syd",
+            "bid": "3♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "6-10 hp och exakt 6-korts ♠ med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa."
+            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
           },
           {
             "nr": 3,
-            "seat": "Syd",
-            "bid": "3♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "22 hp och 5+ ♦: ny färg, krav till minst 3 i öppningsfärgen."
-          },
-          {
-            "nr": 5,
             "seat": "Norr",
-            "bid": "3NT",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 29 poäng. 26+ honnörspoäng i sang innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 7,
-            "seat": "Syd",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
           }
         ]
       }
@@ -19718,81 +19622,73 @@
         "status": "pending",
         "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
       },
-      "dealer": "S",
+      "dealer": "N",
       "hands": {
         "N": [
-          "S4",
-          "D13",
-          "D11",
-          "H11",
-          "C9",
-          "D2",
-          "D10",
-          "D14",
           "S10",
+          "S5",
+          "H11",
           "H12",
-          "H5",
-          "S11",
+          "S7",
+          "H14",
+          "H7",
+          "C9",
+          "H2",
+          "C10",
+          "D7",
+          "H8",
           "H13"
         ],
         "E": [
-          "H6",
+          "S12",
+          "D10",
+          "S2",
+          "H10",
+          "C8",
+          "C13",
           "D6",
-          "H4",
-          "H3",
-          "H9",
-          "C12",
-          "D5",
-          "S6",
-          "S5",
+          "D13",
           "C5",
-          "H7",
-          "H14",
-          "C13"
+          "D5",
+          "H4",
+          "H6",
+          "C4"
         ],
         "S": [
-          "S2",
+          "D12",
+          "H3",
+          "C6",
+          "C12",
+          "D9",
+          "S11",
           "S3",
-          "C7",
-          "H2",
-          "C3",
-          "S13",
-          "S7",
-          "S12",
           "D8",
-          "C10",
-          "H8",
-          "C8",
-          "S14"
+          "S14",
+          "C14",
+          "C2",
+          "C11",
+          "S8"
         ],
         "W": [
-          "D7",
-          "S9",
-          "D12",
-          "C14",
-          "S8",
-          "C11",
-          "C2",
-          "H10",
-          "D4",
-          "C6",
+          "D2",
+          "H9",
+          "S13",
           "D3",
-          "D9",
-          "C4"
+          "S4",
+          "S9",
+          "D4",
+          "D14",
+          "S6",
+          "H5",
+          "C3",
+          "C7",
+          "D11"
         ]
       },
       "bids": [
         {
-          "s": "S",
-          "c": "2S"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
           "s": "N",
-          "c": "3D"
+          "c": "3H"
         },
         {
           "s": "E",
@@ -19800,18 +19696,10 @@
         },
         {
           "s": "S",
-          "c": "4S"
+          "c": "P"
         },
         {
           "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
           "c": "P"
         }
       ],
@@ -19825,40 +19713,24 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
-        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "8.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Syd",
-            "bid": "2♠",
+            "seat": "Norr",
+            "bid": "3♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "6-10 hp och exakt 6-korts ♠ med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa."
+            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
           },
           {
             "nr": 3,
-            "seat": "Norr",
-            "bid": "3♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "15 hp och 5+ ♦: ny färg, krav till minst 3 i öppningsfärgen."
-          },
-          {
-            "nr": 5,
             "seat": "Syd",
-            "bid": "4♠",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 30 poäng. 26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 7,
-            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
           }
         ]
       }
@@ -19874,81 +19746,73 @@
         "status": "pending",
         "reason": "Temats beslutströsklar är ännu inte fullständigt modellerade med verifierbara egenskaper."
       },
-      "dealer": "S",
+      "dealer": "N",
       "hands": {
         "N": [
-          "H13",
-          "S2",
-          "C9",
-          "S5",
-          "H9",
-          "H14",
-          "S14",
-          "C14",
-          "S9",
-          "H3",
+          "S7",
+          "D7",
           "D13",
-          "H2",
-          "D8"
+          "S3",
+          "S13",
+          "D12",
+          "D5",
+          "H5",
+          "S12",
+          "S6",
+          "H4",
+          "S5",
+          "S4"
         ],
         "E": [
           "H7",
-          "D10",
-          "S11",
-          "D9",
-          "S6",
-          "S4",
-          "H12",
-          "D2",
-          "C13",
-          "S3",
+          "C7",
+          "D4",
+          "S10",
           "C3",
-          "D12",
-          "C6"
+          "C4",
+          "C5",
+          "S2",
+          "H11",
+          "C10",
+          "S8",
+          "D10",
+          "D6"
         ],
         "S": [
-          "C11",
-          "C10",
-          "D7",
           "D14",
-          "D11",
+          "H13",
+          "D9",
+          "D8",
           "H10",
-          "C5",
-          "D6",
-          "S7",
-          "H6",
-          "D5",
-          "C12",
-          "D4"
+          "C14",
+          "H2",
+          "C13",
+          "C6",
+          "C11",
+          "S9",
+          "S14",
+          "H14"
         ],
         "W": [
-          "S13",
-          "H5",
-          "H8",
-          "S12",
           "D3",
-          "H4",
+          "C12",
+          "D2",
+          "H8",
+          "H9",
           "C8",
-          "C4",
-          "S10",
-          "S8",
-          "C7",
+          "C9",
           "C2",
-          "H11"
+          "H6",
+          "H3",
+          "S11",
+          "D11",
+          "H12"
         ]
       },
       "bids": [
         {
-          "s": "S",
-          "c": "2D"
-        },
-        {
-          "s": "W",
-          "c": "P"
-        },
-        {
           "s": "N",
-          "c": "2H"
+          "c": "3S"
         },
         {
           "s": "E",
@@ -19956,18 +19820,10 @@
         },
         {
           "s": "S",
-          "c": "5D"
+          "c": "P"
         },
         {
           "s": "W",
-          "c": "P"
-        },
-        {
-          "s": "N",
-          "c": "P"
-        },
-        {
-          "s": "E",
           "c": "P"
         }
       ],
@@ -19981,40 +19837,24 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
-        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "version": "8.6",
+        "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
-            "seat": "Syd",
-            "bid": "2♦",
+            "seat": "Norr",
+            "bid": "3♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "6-10 hp och exakt 6-korts ♦ med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa."
+            "reason": "7-korts färg med 6-10 hp: spärrbud 3 i färg."
           },
           {
             "nr": 3,
-            "seat": "Norr",
-            "bid": "2♥",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "18 hp och 5+ ♥: ny färg, krav till minst 3 i öppningsfärgen."
-          },
-          {
-            "nr": 5,
             "seat": "Syd",
-            "bid": "5♦",
-            "grade": "rätt",
-            "suggested": "",
-            "reason": "Partnerskapets sammanlagda styrka är 30 poäng. 28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång."
-          },
-          {
-            "nr": 7,
-            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam."
+            "reason": "Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång."
           }
         ]
       }
@@ -20133,7 +19973,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20277,7 +20117,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 2 (Norr och Syd).",
         "items": [
           {
@@ -20429,7 +20269,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20581,7 +20421,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -20749,7 +20589,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -20901,7 +20741,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21053,7 +20893,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21205,7 +21045,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21357,7 +21197,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 3 (Norr och Syd).",
         "items": [
           {
@@ -21525,7 +21365,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21669,7 +21509,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21805,7 +21645,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -21941,7 +21781,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22077,7 +21917,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22221,7 +22061,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 3 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
@@ -22365,7 +22205,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22501,7 +22341,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22637,7 +22477,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22781,7 +22621,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 2 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
@@ -22925,7 +22765,7 @@
         "openingStrongTwoValidated": true
       },
       "correction": {
-        "version": "8.5",
+        "version": "8.6",
         "summary": "Rätt 1 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
