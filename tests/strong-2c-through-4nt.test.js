@@ -109,8 +109,8 @@ function makeDeal(north,south){
   const rest=deck.filter(card=>!used.has(card));
   return {N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
 }
-const ntOpenerHand=['H14','H13','H12','H11','S14','S13','S12','D14','D13','D2','C14','C13','C2'];
-const ntResponderHand=['H10','H9','H8','H7','S2','S3','S4','D3','D4','D5','C3','C4','C5'];
+const ntOpenerHand=['H14','H13','H12','H11','S14','S13','S2','D14','D2','D3','C13','C2','C3'];
+const ntResponderHand=['H10','H9','H8','H7','S3','S4','S5','D4','D5','D6','C4','C5','C6'];
 const ntDeal=makeDeal(ntOpenerHand,ntResponderHand);
 const ntStaymanAuction=[
   {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
