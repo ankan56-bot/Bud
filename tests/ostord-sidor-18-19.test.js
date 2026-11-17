@@ -2,10 +2,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const Rattning = require('../rattningsmotor.js');
 
-function state(handN, bids) {
+function state(handN, bids, handS) {
   const empty = ['C2','C3','C4','C5','C6','D2','D3','D4','H2','H3','S2','S3','S4'];
   return {
-    hands: { N: handN, S: empty, E: empty, W: empty },
+    hands: { N: handN, S: handS || empty, E: empty, W: empty },
     bids
   };
 }
@@ -76,4 +76,25 @@ test('page 19: opener shows four-card diamond support after third suit', () => {
     {s:'N',c:'3D'}
   ]);
   expectBid(st, 8, '3D');
+});
+
+test('page 19: after third suit, 6-card hearts and 11 hp permits 3♥', () => {
+  const handS = ['H14','H13','H9','H8','H7','H6','C14','C9','D9','D8','S9','S8','S7'];
+  const st = state([], [
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+    {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'3H'}
+  ], handS);
+  expectBid(st, 10, '3H');
+});
+
+test('page 19: responder can use 2♠ as fourth suit after third-suit sequence', () => {
+  const handS = ['H14','H13','H9','H8','H7','H6','C14','C9','D9','D8','S9','S8','S7'];
+  const st = state([], [
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+    {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'2S'}
+  ], handS);
+  const node = expectBid(st, 10, '2S');
+  assert.equal(node.conv, 'Fjärde färg');
 });
