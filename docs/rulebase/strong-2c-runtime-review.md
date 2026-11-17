@@ -3,39 +3,32 @@
 **Branch:** work/undisturbed-architecture  
 **Fil:** `2kloveroppning.js`  
 **Status:** Endast läsgranskning. Ingen kod ändrad.  
-**Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.
+**Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.  
+**Systembeslut:** Svarshanden bjuder alltid 2♦ på 2♣. 2♥ som svagt svar används inte.
 
 ## Befintlig struktur
-Modulen exponerar fyra funktioner:
+Modulen exponerar:
 - `opening(h)`
 - `resp2c(h)`
 - `reb2c(h,r)`
 - `resp2c2(h,rb,mine)`
 
-Den använder den förenklade svarsvägen där SH alltid svarar 2♦ på 2♣. Det är en uttryckligen tillåten variant i Nordisk Standard (”En variant är att alltid svara 2♦”), så detta är inte i sig en avvikelse.
+Den använder alltid 2♦ som svar på 2♣. Det stämmer med användarens val och med den always-2♦-variant som Nordisk Standard uttryckligen tillåter.
 
 ## Jämförelse och risker
 
 ### 1. Öppning
-Nuvarande kod:
-- öppnar 2♣ med 22+ hp balanserad,
-- öppnar 2♣ med 20+ hp obalanserad.
+Nuvarande kod öppnar 2♣ med:
+- 22+ hp balanserad,
+- 20+ hp obalanserad.
 
-Nordisk Standard:
-- utgångskrav eller minst 22 hp och balanserad.
-
-Lathunden:
-- 20+ hp obalanserad eller 22+ hp balanserad.
-
-Bedömning:
-- Den balanserade gränsen är förenlig med NS:s 22+ i öppningsdefinitionen, men senare återbud måste hålla 22–24/25–27 enligt NS.
-- 20+ obalanserad kommer från Lathunden och behöver finnas som uttrycklig tillåten stark öppning i den valda systemprofilen.
-- Koden har ingen separat kontroll för ”utgångskrav” som inte fångas av poänggränsen. Om starka GF-händer med lägre hp är tillåtna i systemet kan de missas. Detta måste bedömas med befintliga handklassificeringar, inte antas.
+Nordisk Standard anger utgångskrav eller minst 22 hp och balanserad hand. Lathunden anger 20+ obalanserad eller 22+ balanserad. 20+ obalanserad behöver därför bekräftas mot systemets valda starka öppningsdefinition. Koden har inte en separat klassificering av GF-händer som inte fångas av hp-gränsen.
 
 ### 2. Svar
-Nuvarande kod väljer alltid 2♦. Nordisk Standard tillåter alltid-2♦-varianten. Den använder inte NS:s alternativa svar 2♥ (6+ hp och bra 5+ högfärg) eller 3 lå (6+ hp och bra 6+ lågfärg). Det är ett medvetet systemschema i nuvarande kod, men det ska dokumenteras som valt alternativ.
-
-Lathundens 2♥-svar 0–4 hp utan ess är markerat Plus och står i direkt konflikt med NS:s 2♥-svar 6+ hp och bra 5+ högfärg. Koden använder inte detta svaga svar, vilket är säkrare för grundsystemet.
+Nuvarande kod väljer alltid 2♦. Detta är beslutat och ska behållas.
+- Inget alternativt 2♥-svar ska genereras.
+- Lathundens 2♥ med 0–4 hp och inget ess är Plus-variant och används inte.
+- NS:s alternativa 2♥/3 lå-svar används inte i vår valda svarsväg.
 
 ### 3. Öppnarens återbud efter 2♣–2♦
 Koden:
@@ -43,38 +36,37 @@ Koden:
 - väljer 3NT för alla balanserade händer över 24 hp,
 - väljer 2♥/2♠ eller 3♣/3♦ vid minst 5 kort i färg.
 
-Nordisk Standard anger uttryckligen:
+Nordisk Standard anger:
 - 2♥/2♠: utgångskrav, 5+ högfärg,
 - 2NT: 22–24 hp jämn,
 - 3 lå: utgångskrav, 5+ lågfärg,
 - 3NT: 25–27 hp jämn.
 
-Risk:
+Risker:
 - Koden har ingen separat hantering av 28–29 hp jämn hand som Lathunden visar med 4NT. NS anger inte denna gren. Den får inte tyst styras till 3NT.
-- Om en obalanserad hand saknar 5+ färg returnerar koden ingen rekommendation; det är en lämplig ej-täckt situation tills källan ger svar.
-- Koden måste också säkerställa att 3NT bara används i NS:s 25–27-intervall.
+- Om obalanserad hand saknar 5+ färg returnerar koden ingen rekommendation; detta är bättre än att hitta på ett bud.
+- 3NT måste begränsas till 25–27 hp enligt NS.
 
 ### 4. Svarshandens fortsättning / Herbertavslag
-Koden har stöd för de fyra Herbertavslagssekvenser som anges i NS:
-- efter 2♥: närmaste bud 2♠,
-- efter 2♠: 2NT,
-- efter 3♣: 3♦,
-- efter 3♦: 3♥.
+Koden har stöd för Herbertavslag efter 2♥, 2♠, 3♣ och 3♦:
+- 2♥ → 2♠,
+- 2♠ → 2NT,
+- 3♣ → 3♦,
+- 3♦ → 3♥.
 
 Den hanterar även stöd, ny färg och 3NT i flera fall.
 
-Identifierade risker:
-- NS:s 4M-svar med 0–5 hp kräver ”stöldvärde” och 4+ stöd. Koden testar 4+ stöd och singelton, men kontrollerar inte uttryckligen renons/void som också kan ge stöldvärde.
-- Efter 2♣–2♦–3 lå anger NS 4 lå som 6+ hp, 3+ stöd **och slamintresse**. Koden väljer 4 lå när den ser 3+ stöd men testar inte separat slamintresse.
-- Efter 3 lå anger NS 3 hö som 6+ hp och 4+ färg. Koden väljer bland 4+ högfärger; den exakta prioriteringen mellan två möjliga färger behöver verifieras mot systemets valregel.
-- Koden måste säkerställa att 0–5 hp med stöldvärde och bra trumfstöd efter 3 lå blir 5 lå, inte Herbertavslag.
+Risker:
+- NS:s 4M-svar med 0–5 hp kräver stöldvärde och 4+ stöd. Koden testar 4+ stöd och singelton, men inte uttryckligen renons.
+- Efter 2♣–2♦–3 lå anger NS 4 lå som 6+ hp, 3+ stöd och slamintresse. Koden testar inte separat slamintresse.
+- Efter 3 lå anger NS 3 hö som 6+ hp och 4+ färg. Exakt färgprioritering måste verifieras.
+- 0–5 hp med stöldvärde och bra trumfstöd efter 3 lå ska ge 5 lå, inte Herbertavslag.
 
-### 5. Täckning som saknas eller måste verifieras
+### 5. Kvarvarande täckningsluckor
 - 28–29 hp balanserad öppnarhand efter 2♣–2♦.
 - Stark 2♣-hand utan 5+ färg i obalanserad gren.
-- Om systemprofilen ska stödja NS:s alternativa svar 2♥/3 lå, eller enbart always-2♦.
 - Hur stöldvärde ska beräknas (singelton, renons och eventuell annan definition).
-- Hur ”slamintresse” identifieras i 4 lå-grenen.
+- Hur slamintresse identifieras i 4 lå-grenen.
 - Alla fortsättningar som Lathunden hänvisar till Bättre bud, Plus eller Slam.
 - Alla sekvenser där motståndarna kliver in (ska ligga utanför ostörd modul).
 
@@ -91,4 +83,4 @@ Identifierade risker:
 10. Verifiera att varje odefinierad sekvens hamnar i separat expertlogg.
 
 ## Slutsats
-Modulen har redan en betydande regelstruktur och bygger på always-2♦-varianten. Den ska inte skrivas om från början. När ÖH 2♣ blir nästa aktiva modul ska befintliga funktioner och tester bevaras, men de identifierade luckorna måste testas och rättas mot Nordisk Standard innan modulen kan godkännas. Ingen kod har ändrats i denna granskning.
+Modulen har redan en betydande regelstruktur och använder rätt svarsväg: alltid 2♦. Den ska inte skrivas om från början. När ÖH 2♣ blir nästa aktiva modul ska befintliga funktioner och tester bevaras, och de kvarvarande luckorna rättas mot Nordisk Standard. Ingen kod har ändrats i denna granskning.
