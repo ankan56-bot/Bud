@@ -85,7 +85,7 @@ Risker:
 10. Verifiera att varje odefinierad sekvens hamnar i separat expertlogg.
 
 ## 6. Fortsättningar efter öppnarens återbud
-- Efter 2♣–2♦–2NT återanvänds den befintliga 2NT-familjen för Stayman/överföringens första svar och öppnarens svar. Lathundens 3♠ lågfärgsfråga (PRO) och 4♣/4♦ slaminviter (Slam) hålls utanför grundprofilen.
+- Efter 2♣–2♦–2NT återanvänds den befintliga 2NT-familjen för Stayman/överföringens första svar och öppnarens svar. Svarshandens 5-4-högfärgsfortsättningar efter Stayman samt 3NT med femkortshögfärg efter överföring är också routade enligt Lathunden s. 25. Överlapp mellan 3NT och Slam-hänvisade 4♣/4♦ lämnas ej täckt. Lågfärgsfrågan 3♠ (PRO) och 4♣/4♦ slaminviter (Slam) hålls utanför grundprofilen.
 - Efter 2♣–2♦–2♠–2NT, 2♣–2♦–3♣–3♦ och 2♣–2♦–3♥–3♠ finns fördelningstabeller i Lathunden s. 25. Dessa är nu routade via `openerThirdAfter2c`. Endast entydiga 5-4-/6-kortsprofiler ger automatiskt bud; överlappande profiler lämnas ej täckta.
 - Lathunden s. 26 innehåller ytterligare svarshandsfortsättningar med STP, kortfärg, kontrollbud och stöd. De har inte översatts till HP/HTP och ska granskas separat.
 - 4NT i de senare färgsekvenserna anges som essfråga med viss trumf, men slamtröskeln och hela fortsättningen måste kopplas till den befintliga RKC-motorn innan automatisk rättning.
