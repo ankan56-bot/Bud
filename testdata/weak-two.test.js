@@ -429,3 +429,20 @@ test("4NT after a weak two is RKC with the opening suit as trump", () => {
   assert.equal(result.conv,"Blackwood 5 ess");
   assert.match(result.why,/hjärter som trumf|trumf/);
 });
+
+test("weak-two analysis trees use Lathund page 27 response meanings", () => {
+  for (const [id,opening] of [
+    ["T34_SVAG_TVA_D","2D"],["T35_SVAG_TVA_H","2H"],["T36_SVAG_TVA_S","2S"]
+  ]) {
+    const tree=analysisLibrary.trees.find(item=>item.id===id);
+    const root=tree.nodes.find(item=>item.id===tree.root);
+    const labels=root.branches.map(branch=>branch.label).join(" | ");
+    assert.match(labels,/Stenberg 2NT.*13\+ stp/);
+    assert.match(labels,/Invit.*14–16 stp/);
+    assert.match(labels,/Ny färg.*15–16\+ hp.*rondkrav/);
+    assert.match(labels,/Utgångsbud.*slutbud/);
+    assert.match(labels,/Splinter.*19\+ stp/);
+    assert.match(labels,/Essfråga.*trumf/);
+    assert.ok(tree.nodes.some(node=>node.sequence.join(",")===[opening,"Pass","4N"].join(",")));
+  }
+});
