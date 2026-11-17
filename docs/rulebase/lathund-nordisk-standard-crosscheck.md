@@ -90,8 +90,7 @@ Lathundens 1NT-tabell innehåller:
 **Övrigt:** Lathundens Stayman 8+ hp och 2NT 8–9 hp är mer specificerade än Nordisk Standard. De kan komplettera endast om de är förenliga med den befintliga systemdefinitionen. Hänvisningen till PRO för 2♠-lågfärgsfrågan är inte verifierad och är inte automatiskt en systemregel.
 
 ## 5. Starka 2♣
-
-Se den separata filen [strong-2c-source-review.md](strong-2c-source-review.md). Den filen innehåller fullare jämförelse mot Nordisk Standards sida 6, inklusive svarsalternativ och Herbertavslag. Den ersätter tidigare preliminära antaganden om att Nordisk Standard bara gav öppningsdefinitionen.
+Vårt valda schema är alltid 2♦ som svar på 2♣. 2♥ som svagt svar (0–4 hp, inget ess) från Lathundens Plus-variant används inte. Se `strong-2c-source-review.md` för den detaljerade jämförelsen av återbud och fortsättningar.
 
 ## 6. Slam
 
@@ -105,17 +104,14 @@ Nordisk Standard s. 7 definierar RKC:
 Lathundens slamavsnitt (tryckta s. 30–33) behandlar RKC, trumfdamsfråga, renonsvisning, kontrollbud och splinter. Dessa ska detaljgranskas mot Nordisk Standards exakta RKC-tabell. Ingen alternativ RKC-tabell får införas utan ett uttryckligt systembeslut.
 
 ## 7. Konflikt- och expertfrågelista
-
-1. **2♣-svar:** Lathunden visar 2♥ 0–4 hp utan ess (Plus), medan Nordisk Standard visar 2♥ 6+ hp och bra 5+ högfärg.
-2. **2♠ efter 1NT:** Lathunden anger lågfärgsfråga 10+ hp (PRO); Nordisk Standard anger svagt bud med 6+ lågfärg.
-3. **2 över 1:** Lathunden anger minst 5-kortsfärg och kan tillåta 10 hp med 6+ färg; Nordisk Standard anger 11+ hp och 4+ färg.
-4. **Öppning 2♣:** Lathundens formulering 20+ obalanserad/22+ balanserad måste tolkas mot NS:s GF eller 22–24 balanserad.
-5. **5–5 spader–klöver:** Nordisk Standard tillåter 1♣ om spaderfärgen är dålig; Lathunden anger generellt högsta färgen med 5–5.
-6. **Stöd med 3 kort:** Lathunden visar vissa 3-kortsstöd i särskilda handtyper; NS:s standardhöjningar kräver 4+ stöd. Varje sådant undantag måste hållas sekvensbundet.
-7. **Splinterintervall:** Lathunden använder olika stödpoängsintervall beroende på budsekvens; NS:s grunddefinition är dubbelhopp, renons, 4+ stöd och 13+ htp.
-8. **Staymanminimum och invitintervall:** Lathunden preciserar 8+ för Stayman och 8–9 för 2NT; NS anger betydelser men inte samma numeriska intervall i texten.
-9. **RKC:** Lathundens svar och fortsättningar måste jämföras mot NS:s RKC-tabell innan implementation.
+1. **2♠ efter 1NT:** Lathunden anger lågfärgsfråga 10+ hp (PRO); Nordisk Standard anger svagt bud med 6+ lågfärg.
+2. **2 över 1:** Lathunden anger minst 5-kortsfärg och kan tillåta 10 hp med 6+ färg; Nordisk Standard anger 11+ hp och 4+ färg.
+3. **Öppning 2♣:** Lathundens formulering 20+ obalanserad/22+ balanserad måste tolkas mot NS:s GF eller 22–24 balanserad.
+4. **5–5 spader–klöver:** Nordisk Standard tillåter 1♣ om spaderfärgen är dålig; Lathunden anger generellt högsta färgen med 5–5.
+5. **Stöd med 3 kort:** Lathunden visar vissa 3-kortsstöd i särskilda handtyper; NS:s standardhöjningar kräver 4+ stöd. Varje sådant undantag måste hållas sekvensbundet.
+6. **Splinterintervall:** Lathunden använder olika stödpoängsintervall beroende på budsekvens; NS:s grunddefinition är dubbelhopp, renons, 4+ stöd och 13+ htp.
+7. **Staymanminimum och invitintervall:** Lathunden preciserar 8+ för Stayman och 8–9 för 2NT; NS anger betydelser men inte samma numeriska intervall i texten.
+8. **RKC:** Lathundens svar och fortsättningar måste jämföras mot NS:s RKC-tabell innan implementation.
 
 ## 8. Kvalitets- och statusnotering
-
 Detta är en källjämförelse, inte en färdig regelmotor. Flera Lathundssidor är skannade med låg kontrast och vissa tabeller har små budsymboler. Alla exakta styrkeintervall, särskilt i fortsättningsbud, ska verifieras visuellt i original-PDF innan kodändring. Ingen oklar ruta ska fyllas ut med bridgekonventioner från allmän kunskap.
