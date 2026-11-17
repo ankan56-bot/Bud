@@ -1202,7 +1202,7 @@ var Rattning = (function(){
         return {exp:'3H',alt:[],why:'3♥ är invit enligt sida 18; invitbuden visar cirka 15–17 hp.',means:function(c){return c==='3H'?'Invit, cirka 15–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
       if(b.c==='3S'&&shape65Rebid&&h.hp>=14&&h.hp<=17)
         return {exp:'3S',alt:[],why:'3♠ visar 6–5-fördelning och 14–17 hp enligt sida 18.',means:function(c){return c==='3S'?'6–5-fördelning, 14–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
-      if(b.c==='4C')return NC('Lathunden anger 4♣ Splinter, 16–17 hp, men projektets tidigare beslut tog bort Splinter. Konflikten ska avgöras av expert innan budet aktiveras.',null,'Splinter – konflikt');
+      if(b.c==='4C'&&h.hp>=16&&h.hp<=17)\n        return {exp:'4C',alt:[],why:'4♣ är Splinter och visar 16–17 hp enligt lathunden på sida 18.',means:function(c){return c==='4C'?'Splinter, 16–17 hp.':null},conv:'Splinter',soft:true};\n      if(b.c==='4C')return NC('4♣ Splinter enligt sida 18 kräver 16–17 hp; handen har '+h.hp+' hp. Övriga handkrav för Splinter är inte numeriskt specificerade i den avbildade tabellraden.','', 'Splinter');
       if(b.c==='4H')return {exp:'4H',alt:[],why:'4♥ är slutbud enligt tabellen på sida 18.',means:function(c){return c==='4H'?'Slutbud.':null},conv:'ÖH:s tredje bud efter ombud'};
     }
 
