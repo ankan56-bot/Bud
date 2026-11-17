@@ -10,7 +10,7 @@ Innan nästa budmodul öppnas ska båda Lathundarna inventeras:
 - Ostörd budgivning: *Bridge Lathund bok(2).pdf*.
 - Störd budgivning: *Bridge Lathund störd budgivning.pdf*.
 
-Ämnes- och källkartan finns i [Lathundens källinventering](lathund-source-inventory.md).
+Ämnes- och källkartan finns i [Lathundens källinventering](lathund-source-inventory.md). Alla olösta källkonflikter och sekvenser som kräver expertbedömning samlas i [Lathundens expertfrågelogg](lathund-expert-questions.md).
 
 Källinventeringen är en karta, inte en färdig regeltranskription. Varje budruta som ska påverka rättningen måste därefter verifieras mot originalsidan och jämföras med Nordisk Standard. OCR får endast vara läshjälp, aldrig ensam regelkälla.
 
@@ -59,10 +59,10 @@ Den störda Lathunden inventeras nu som källa, men kodändringar i störd budgi
 ## Status
 | Arbetsdel | Status |
 |---|---|
-| Identifiera och läsa in båda Lathundarna | Genomfört på källnivå |
-| Skapa ämnes- och källkarta | Påbörjad, dokumenterad i lathund-source-inventory.md |
-| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Pågår; öppningsbud, svar efter 1 i färg, 1NT och stark 2♣ har börjat verifieras |
-| Jämförelse mot Nordisk Standard | Pågår; första jämförelsen dokumenterad i lathund-nordisk-standard-crosscheck.md och strong-2c-source-review.md |
-| Konflikt- och expertfrågelogg från jämförelsen | Pågår; identifierade konflikter dokumenterade i crosscheck- och 2♣-granskningen |
+| Identifiera och läsa in båda Lathundarna | Genomfört; båda PDF:erna är visuellt öppnade och sidindelade |
+| Skapa ämnes- och källkarta | Genomförd på ämnesnivå; sidgränser och flera tabeller rättade efter visuell kontroll |
+| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Pågår; öppnings-/svarsfamiljer, 1NT, stark 2♣, slam och delar av störd budgivning visuellt kontrollerade. Tryckt s. 18–19 i ostörd PDF är svårläst. |
+| Jämförelse mot Nordisk Standard | Pågår; första jämförelser finns i lathund-nordisk-standard-crosscheck.md och strong-2c-source-review.md |
+| Konflikt- och expertfrågelogg från jämförelsen | Påbörjad i lathund-expert-questions.md; varje olöst sekvens ska föras dit |
 | ÖH 2♣ | Källgranskning och första runtime-granskning dokumenterade; väntar på avslutad källinventering och beslut om konflikter |
 | Kodändring | Inte påbörjad; endast dokumentation och läsgranskning |
