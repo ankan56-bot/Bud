@@ -64,7 +64,7 @@ test("1♥–1NT: 8-card heart fit and 26+ playing points selects 4♥", () => {
 
 test("1♥–1NT: 18 + 7 hp is below game and passes 2NT", () => {
   const responder7 = [
-    ...cards("H","4"), ...cards("S","J34"),
+    ...cards("H","4"), ...cards("S","J345"),
     ...cards("D","A45"), ...cards("C","Q6789")
   ];
   const hands = completeDeal(balanced18,responder7);
