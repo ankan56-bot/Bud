@@ -7,7 +7,7 @@ Källa: **Nordisk standard, 2012-08-22**, s. 2–3 i användarens PDF. Ingen ext
 - `trumfstod.js` är huvudmodul för stödvisningar efter 1 i färg och öppningshandens andra bud när svarshanden visat en färg.
 - `stenberg.js` är en återanvänd special-/undermodul för Stenberg 2NT. Stenbergreglerna kopieras inte till huvudmodulen.
 - Befintliga hög- och lågfärgsmoduler fortsätter att hantera övriga svar och återbud. Trumfstödslagret dirigerar till rätt modul.
-- `budbeslut.js` använder trumfstödslagret för svar på 1 i färg och för öppnarens återbud efter Stenberg.
+- `budbeslut.js` använder trumfstödslagret för svar på 1 i färg, öppnarens återbud och svarshandens fortsättning efter Stenberg.
 - `rattningsmotor.js` skapar modulen och injicerar dess beroenden. `main` är orörd.
 
 ## Kartläggning mot PDF
@@ -39,6 +39,10 @@ Hög- och lågfärgsvarianterna finns kvar i `stenberg.js`. Huvudmodulen skickar
 - Hopp till utgång: 20+ htp.
 - Med lågfärgsstöd och 20+ htp ska 3NT undersökas först.
 
+## Kvalitativa spärrhöjningar
+
+4 i öppningsfärgen är nu implementerat som spärrhöjning enligt PDF:ens maxgränser: 12 htp i högfärg och 9 htp i lågfärg. För att göra orden 'bra stöd' och 'svitad hand' körbara används projektets befintliga `good()`-kontroll för öppningsfärgen och en obalanserad hand. Detta är dokumenterat som en preliminär operationalisering och finns som expertfråga i loggen; det är inte en ny numerisk systemregel.
+
 ## Källluckor och expertlogg
 
 Kända regler och numeriska gränser ska rättas som systemregler. Endast situationer som PDF:en inte täcker ska märkas `sourceGap`/EJ TÄCKT och gå till den befintliga expertloggen. Inga saknade prioriteringar eller fortsättningar fylls i genom antaganden.
@@ -47,5 +51,5 @@ Kända regler och numeriska gränser ska rättas som systemregler. Endast situat
 
 - `tests/trumfstod.test.js`: kontrollerar modulgränsen, routing till Stenberg och hög-/lågfärgsmodulerna, stödbudsklassificering samt dubbelhopp med renons och loggning av flera renoncer.
 - `tests/stenberg-2nt.test.js`: befintliga Stenbergregressioner.
-- Nya tester: faktiska poängberäkningar för 4♥- och 4♣-spärrhöjningar samt routing-/Stenberg-/renonsfall.
+- Nya tester: faktiska poängberäkningar för 4♥- och 4♣-spärrhöjningar, svarshandens 2-/3-/4-nivåer, öppningshandens 12–16/17–19/20+ htp-stöd och routing av Stenberg inklusive fortsättningar.
 - Kvar att verifiera: full testsvit och givbaserade gränstester för samtliga 2-/3-nivåer, spärrhöjningarnas maxgränser och dubbelhopp med renons.
