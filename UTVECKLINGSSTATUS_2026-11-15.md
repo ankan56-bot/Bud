@@ -318,10 +318,10 @@ main är fortsatt orörd. Allt arbete ligger på work/theme-dataset-analysis.
 - Befintliga regler för tvåfärgshand, andra färgen och reverse ligger kvar. Inga nya systemregler har lagts till för sekvenser där PDF:en inte ger stöd.
 
 ### Test och verifiering
-- Ny testfil: `testdata/one-one-notrump.test.js` med 6 regressionsfall.
-- Testar 1♦–1NT–2NT–3NT, högfärgsfit till 4♥, avslag på invit under 26, 6+ lågfärg med HTP-gräns, samt 6–9 hp/6+ färg på lägsta lagliga nivå.
+- Ny testfil: `testdata/one-one-notrump.test.js` med 7 regressionsfall.
+- Testar 1♦–1NT–2NT–3NT, 1♥/1♠ med högfärgsfit till utgång, avslag på invit under 26, 6+ lågfärg med HTP-gräns, samt 6–9 hp/6+ färg på lägsta lagliga nivå.
 - Särskild kontroll säkerställer att grenen inte rekommenderar slam.
-- GitHub Actions `Theme deal regression`, körning `44075222891`: **success**. Dataset/reproducerbarhet, auktion-dispatch, den nya 1–1NT-sviten, inklivssvar, luckskydd, analysbibliotek, handvillkor, handprofiler, AI-seat-isolering, spelarroller, RKC och DDS-paketering passerade.
+- GitHub Actions `Theme deal regression`, körning `44075488456`: **success**. Dataset/reproducerbarhet, auktion-dispatch, den nya 1–1NT-sviten, inklivssvar, luckskydd, analysbibliotek, handvillkor, handprofiler, AI-seat-isolering, spelarroller, RKC och DDS-paketering passerade.
 - Rättningsmotor: version 8.4. Baslinjen är regenererad och committad av CI som `f8d314e`.
 - Uppdaterad baslinje: 140 givare, 591 rätt, 0 fel, 0 valfria och 38 ej täckta. Rapporten finns i `testdata/theme_deals_140_report.md`.
 
