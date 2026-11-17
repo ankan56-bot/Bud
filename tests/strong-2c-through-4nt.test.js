@@ -151,4 +151,24 @@ const sixClubNode=R.nodeFor({hands:sixClubDeal,dealer:'N',bids:sixClubAuction},6
 assert.equal(sixClubNode.exp,null,'PRO/Slam low-suit continuations must remain uncovered');
 assert.equal(sixClubNode.sourceGap,true);
 
+// Strong 2♣ 4NT continuations: use the exact trump suit stated by
+// Lathunden s. 25, even where the auction has not shown a mutual fit.
+const slam=require('../slamlogik.js')(api);
+function auction(calls){return calls.map(([s,c])=>({s,c}));}
+assert.equal(slam.rkcTrumpFromAuction(auction([
+  ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','3C'],['E','P'],['S','3D'],['W','P'],['N','4N']
+]),0),'C','4NT after 2C-2D-3C-3D is an ace ask with clubs as trump');
+assert.equal(slam.rkcTrumpFromAuction(auction([
+  ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','3H'],['E','P'],['S','3S'],['W','P'],['N','4N']
+]),0),'H','4NT after 2C-2D-3H-3S is an ace ask with hearts as trump');
+assert.equal(slam.rkcTrumpFromAuction(auction([
+  ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','2N'],['E','P'],['S','3C'],['W','P'],['N','3H'],['E','P'],['S','4N']
+]),1),'H','4NT after 2NT-Stayman 3H reply is an ace ask with hearts as trump');
+assert.equal(slam.rkcTrumpFromAuction(auction([
+  ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','2N'],['E','P'],['S','3H'],['W','P'],['N','3S'],['E','P'],['S','4N']
+]),1),'S','4NT after 2NT transfer to spades is an ace ask with spades as trump');
+assert.equal(slam.rkcTrumpFromAuction(auction([
+  ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','2N'],['E','P'],['S','3D'],['W','P'],['N','3H'],['E','P'],['S','4N']
+]),1),'H','4NT after 2NT transfer to hearts is an ace ask with hearts as trump');
+
 console.log('Strong 2C through 4NT and source-bound third-bid branches: all tests passed.');
