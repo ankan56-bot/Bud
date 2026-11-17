@@ -1045,7 +1045,7 @@ var Rattning = (function(){
       return {exp:'P',alt:[],why:'Partnerns 3-nivåhöjning i lågfärg är invitativ. Pass med minimum; utgångskontrollen fångar 28+ spelpoäng.',means:function(c){return c==='P'?'Pass med minimum efter lågfärgsinvit.':null},conv:'trumfstöd'};
     }
 
-    var trumpForSide=rkcTrumpFromAuction(prior,side(me));
+    var trumpForSide=rkcTrumpFromAuction(prior.concat([{s:me,c:b.c}]),side(me));
     if(b.c==='4N'){
       if(trumpForSide){
         return {exp:'4N',alt:[],why:'Essfråga (Blackwood 5 ess) med '+SYM[trumpForSide]+' som fastställd trumf.',means:function(c){return c==='4N'?'Essfråga (Blackwood 5 ess).':null},conv:'Blackwood 5 ess'};
