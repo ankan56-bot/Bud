@@ -79,44 +79,33 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 ## 3. Störd budgivning – ämnesregister
 
 ### Tryckta sidor 34–35: Kontrollbud och grundprinciper vid störning
-- Kontrollbud efter att trumffärg är bestämd och slamintresse finns.
-- Första kontroll: ess eller renons. Andra kontroll: kung eller singelton.
-- Närmaste kontroll bjuds först; att gå förbi en färg förnekar kontroll där.
-- Lathunden anger att poängstyrkan för buden i övrigt är oförändrad i de beskrivna störda sekvenserna, men särskilda konkurrenssekvenser har egna villkor.
-- Sekvenser efter inkliv med 1♥/1♠ och negativ dubbling behandlas.
-- Bud i motståndarnas färg kan vara kravbud/kontrollbud beroende på sammanhang; sammanhanget måste bevaras.
+- Tryckt s. 34 ligger i slamkapitlet och beskriver kontrollbud: ess/renons är första kontroll; kung/singelton är andra kontroll. Närmaste kontroll bjuds först; att gå förbi en färg förnekar kontroll där. Kontrollbud efter splinter behandlas också.
+- Tryckt s. 35 anger grundprinciper för störd budgivning: poängstyrkan för buden är i grunden oförändrad; ny högfärg kräver minst fem kort; 1NT lovar håll i motståndarnas inklivsfärg; dubbling från svarshanden är negativ; bud i motståndarnas färg är kravbud.
+- Sidan visar svar efter inkliv med 1♥ och 1♠ samt när ingen högfärg har bjudits. Detaljkrav för exakt fyrkortsfärg/femkortsfärg och poängintervall skiljer mellan sekvenser.
 
-### Tryckta sidor 36–37: Dubblingar, redubblingar och motståndarnas inkliv
-- Negativa dubblingar efter inkliv; Lathunden beskriver vilka objudna högfärger som kan visas.
-- Skillnad mellan negativ dubbling och straffdubbling.
-- Redubbling efter motståndarnas dubbling.
-- Svar efter inkliv på olika nivåer.
-- Motståndarnas spärrbud och konkurrensbud.
-- Stenberg efter att motståndarna ingripit.
-- Negativ dubbling på högre nivå och ökade styrkekrav när motståndarna stör högre.
+### Tryckta sidor 36–37: Båda högfärgerna, spärr, RD och konkurrens efter 1NT
+- Tryckt s. 36 visar svar när båda högfärgerna är bjudna, negativa dubblingar på högre nivå, styrkekrav för SH:s färgbud och störning på tvåläget.
+- På s. 36 beskrivs bl.a. att negativ dubbling efter högre störning kräver högre styrka; färgbud på tvåtricksnivån och tretricksnivån har olika krav.
+- Tryckt s. 37 visar motståndarnas spärrbud, motståndarnas inkliv med 1NT, svar efter sanginkliv, UD efter inkliv och svar efter redubbling.
+- Exempelrutor innehåller specifika stödpoäng och färglängder. De ska inte omvandlas till generella regler utanför exakt sekvens.
 
-### Tryckta sidor 38–39: Dubbling efter svar, Stenberg och konkurrens
-- Motståndarna dubblar efter en-över-en: svarshandens och öppnarens fortsättningar.
-- Öppnaren kan i vissa lägen passa med minimum; starkare hand eller god fördelning krävs för fortsatt budgivning enligt texten.
-- Motståndarna stör efter Stenberg 2NT.
-- Öppnarens återbud och svarshandens fortsättningar efter konkurrens.
-- Lathunden anger särskilda betydelser för pass, dubbling och nya färger i dessa sekvenser; de får inte generaliseras till andra lägen.
+### Tryckta sidor 38–39: Dubbling efter en-över-en/två-över-en och störning efter Stenberg
+- Tryckt s. 38 beskriver motståndarnas dubbling efter en-över-en och efter två-över-en. Öppnaren kan i vissa lägen passa eftersom svarshanden får en ny chans att bjuda.
+- Sidan visar även störd enkelhöjning efter att motståndarna dubblat ett stödjande bud.
+- Tryckt s. 39 visar motståndarnas störning efter Stenberg 2NT, hög störning och öppnarens fortsättning när SH passat.
+- Efter Stenberg kan dubbling vara straffdubbling; ny färg kan visa kortfärg; bud i trumffärgen och 3NT har särskilda betydelser enligt den visade sekvensen.
 
-### Tryckta sidor 40–41: Motståndarna kliver in efter 1NT, Lebensohl och ovanliga sangbud
-- Försvar mot motståndarnas 1NT.
-- Landy och tvåfärgsvisande bud.
-- Lebensohl 2NT i angivna konkurrenslägen.
-- Bud efter inkliv på tvåläget och efter UD.
-- Svar efter redubbling.
-- Ovanliga 2NT-bud som visar två färger behandlas; exakt vilka färger beror på läget.
+### Tryckta sidor 40–41: Motståndarna stör 1NT, Lebensohl, inkliv och tvåfärgsvisande bud
+- Tryckt s. 40 visar motståndarnas inkliv mot 1NT, svar efter inkliv och Lebensohl 2NT. Efter Lebensohl anges att ÖH alltid bjuder 3♣ och SH fortsätter enligt tabell.
+- Sidan visar också motståndarnas dubbling av 1NT och svar efter RD.
+- Tryckt s. 41 anger inkliv på entricksnivån (minst femkortsfärg, 10–16 hp), inkliv på tvåtricksnivån (normalt minst sexkortsfärg, 10–16 hp), 1NT-inkliv (15–17 hp, jämn hand, håll i öppningsfärgen) samt grundkrav för UD.
+- Tvåfärgsvisande bud är märkta PRO. Överbud och hoppinkliv med 2NT visar 5–5 enligt de beskrivna exemplen; detta ska inte antas ingå i grundsystemet utan beslut.
 
-### Tryckta sidor 42–43: Spärröppningar, UD och mothandsbud
-- Motståndarnas svaga öppningar och högre spärrbud.
-- Partnerns UD: svar och fortsättningar.
-- Partnerns inkliv: svar, höjningar och krav.
-- Hoppande inkliv och 3NT-inkliv.
-- Bud i motståndarnas färg och kontroll-/kravbetydelser.
-- Sekvenserna innehåller flera olika styrke- och färglängdskrav; de ska registreras per position och inte sammanfattas till en generell UD-regel.
+### Tryckta sidor 42–43: Hoppande inkliv, svaga öppningar, spärrbud och partnerns inkliv/UD
+- Tryckt s. 42 beskriver hoppande inkliv: 2 i färg visar sexkortsfärg, 3 i färg sjukortsfärg och 4 i färg åttakortsfärg, med 6–10 hp i tabellen; hänvisning Bättre bud.
+- Mot svaga öppningsbud anges direkt inkliv med minst femkortsfärg och 12–16 hp; UD med minst 12 hp och minst tre kort i alla objudna färger eller minst 17 hp; 2NT visar jämn hand med håll och 15–17 (18) hp.
+- Tryckt s. 43 visar inkliv mot högre spärrbud, partnerns svar efter inkliv och partnerns svar efter UD. När motståndarna bjudit två färger visar UD enligt texten minst 4–4 i de objudna färgerna eller minst 17 hp oavsett fördelning.
+- Samtliga svar efter partnerns inkliv/UD har egna styrke- och färglängdsvillkor. De ska registreras per sekvens.
 
 ### Tryckta sidor 44–45: Sangförsvar, tredje hand och svar efter inkliv
 - Försvar mot motståndarnas 1NT: straffdubbling, Landy 2♣ för båda högfärgerna, 2♦/2♥/2♠ med angivna färglängder och styrkeintervall samt 3 i färg som spärr.
