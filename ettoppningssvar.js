@@ -66,7 +66,7 @@
       if(c2.length){var b2=pickBest(c2);exp=lowest(b2,oc);why=hp+' hp och 4+ färg: 2 över 1 (11+, rondkrav).'}
       else return {exp:null,alt:[],why:hp+' hp utan färg att visa: dokumentet beskriver inte detta bud.',means:means,conv:'svar'}
     }
-    return {exp:exp,alt:alt,why:why,means:means,conv:htp>=13&&exp==='2N'?'Stenberg':'svar',ruleStatus:ruleStatus};
+    return {exp:exp,alt:alt,why:why,means:means,conv:htp>=13&&exp==='2N'?'Stenberg':'svar',ruleStatus:ruleStatus,soft:ruleStatus==='source_interpretation'};
   }
 
   /* ––––– 1NT / 2NT-STRUKTUR (Plus) ––––– */
