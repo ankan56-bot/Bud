@@ -95,7 +95,7 @@ Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen 
 - Sida 19: svarshandens tredje och fjärde färg identifieras efter antalet olika färger paret redan visat. Nya färgbud godtas som kravbud; inga generella hp-gränser har hittats på.
 - Sida 19: öppnarens tabell efter tredje färg har direkta kontroller för 2♥ med två hjärter, 2♠ som fjärde färg/utgångskrav, 3♣ med sex klöver, 3♦ med fyrkortsstöd och 3♥ med trekortsstöd. Sangvalen lämnas ej täckta eftersom minimum/maximum saknar numeriska gränser.
 - Sida 19: öppnarens tabell efter fjärde färg har direkta kontroller för 2♠ med två spader, 2NT med ruterhåll, 3♣ med 5–5 och 3♦ med fyrkortsfärg. 2♥ (”inget bättre bud”) samt 3♥/3♠ (maximum) lämnas ej täckta. Pass och 3NT anges som uttryckligt otillåtna och loggas som ej täckta med förklaring.
-- Fortsättningstabellerna efter tredje respektive fjärde färg är dokumenterade men ännu inte fullständigt implementerade.
+- Fortsättning efter tredje färg: 2♠ fjärde färg/utgångskrav, 2NT och 3♣ invit 11–12 hp, 3♦ 5–5 med 11–12 hp och 3♥ sexkortshjärter med 11–12 hp har nu kodstöd för den avbildade exempelvägen.\n- Fortsättning efter fjärde färg: 2NT med ruterhåll och 13+ hp samt 3NT med ruterhåll som slutbud har kodstöd. Bud som kräver stp-gränser lämnas ej täckta eftersom stp-beräkningen inte är verifierad mot denna tabell.
 
 ## Teststatus
 
