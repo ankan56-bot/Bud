@@ -204,7 +204,7 @@ var Rattning = (function(){
     if(st&&st.bids)st.bids.slice(0,i).forEach(function(x){if(x&&isBid(x.c)&&(!highestBefore||rk(x.c)>rk(highestBefore)))highestBefore=x.c;});
     var rawIllegal=!!(node&&node.exp&&isBid(node.exp)&&highestBefore&&rk(node.exp)<=rk(highestBefore));
     if(st&&st.bids&&st.bids[i]&&!hasRkcContext&&priorPartnershipCalls>=2&&
-       (!node||(!node.exp&&!node.sourceGap)||node.exp==='P'||rawIllegal)){
+       (!node||(!node.exp&&(!node.sourceGap||node.allowSafetyRescue))||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
         if(st.bids[ci]&&isBid(st.bids[ci].c)){
