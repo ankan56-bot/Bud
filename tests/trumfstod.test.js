@@ -43,6 +43,8 @@ assert.equal(minorPreempt.soft,true);
 const minorAbovePreemptLimit=scoring.H(['C13','C12','C2','C3','D12','D2','D3','D4','D5','D6','H2','H3','S2']);
 assert.equal(scoring.handHps(minorAbovePreemptLimit,'C'),10);
 assert.equal(commonResponses.resp1(minorAbovePreemptLimit,'1C').exp,'3C','10 htp with an unbalanced good minor fit is a 3-level raise, not the 4-level preempt');
+const tenHcpGoodSixClub=commonResponses.resp1(scoring.H(['C14','C13','C12','C9','C8','C7','D11','H2','H3','H4','S2','S3','S4']),'1H');
+assert.equal(tenHcpGoodSixClub.exp,'2C','10 hp with a good six-card suit is a 2-over-1 response, not 1NT');
 const majorLow=commonResponses.resp1(scoring.H(['H13','H2','H3','H4','S12','S2','S3','D11','D2','D3','C2','C3','C4']),'1H');
 assert.equal(majorLow.exp,'2H','6-9 htp with four-card major support should raise to two');
 const majorInvite=commonResponses.resp1(scoring.H(['H13','H12','H2','H3','S13','S2','S3','D12','D2','D3','C2','C3','C4']),'1H');
