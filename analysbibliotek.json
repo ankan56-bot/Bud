@@ -1,5 +1,5 @@
 {
-  "version": "0.5.11",
+  "version": "0.5.12",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7319,6 +7319,580 @@
         }
       ],
       "ignorePasses": true
+    },
+    {
+      "id": "T34_SVAG_TVA_D",
+      "title": "Svag tvåöppning 2♦ – ostörd budgivning",
+      "tags": [
+        "svag tvåa",
+        "2♦",
+        "ostörd",
+        "spärrbud",
+        "2NT-invit"
+      ],
+      "conditions": [
+        "2♦: 6–10 hp och exakt sex kort i öppningsfärgen.",
+        "Inget separat krav på färgkvalitet anges i Nordisk Standard.",
+        "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
+        "Endast ostörd budgivning; störda sekvenser ingår inte."
+      ],
+      "root": "t34_n0",
+      "nodes": [
+        {
+          "id": "t34_n0",
+          "sequence": [
+            "2♦"
+          ],
+          "meaning": "2♦ visar 6–10 hp och exakt sex kort i ruter.",
+          "analysis": "Nordisk Standard anger inget separat krav på färgkvalitet för svag tvåöppning. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t34_n1",
+              "label": "Invit med minst två stödkort"
+            },
+            {
+              "call": "3D",
+              "next": "t34_n2",
+              "label": "Spärrhöjning med minst tre stödkort"
+            },
+            {
+              "call": "3NT",
+              "next": "t34_n3",
+              "label": "Slutbud"
+            },
+            {
+              "call": "2♥",
+              "next": "t34_n4",
+              "label": "Ny färg med minst fem kort – krav"
+            },
+            {
+              "call": "3♥",
+              "next": "t34_n5",
+              "label": "Hopp i ny färg med renons – slaminvit"
+            }
+          ],
+          "handProfile": {
+            "opener": "6–10 hp, exakt sex kort i öppningsfärgen"
+          }
+        },
+        {
+          "id": "t34_n1",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT är invitbud med minst två stödkort.",
+          "analysis": "PDF:en anger ingen exakt hp-gräns för svarshandens invit. Rättningen ska därför kontrollera stödlängden men inte lägga till ett eget poängintervall.",
+          "branches": [
+            {
+              "call": "3D",
+              "next": "t34_n6",
+              "label": "Öppnaren visar minimum, 6–8 hp"
+            },
+            {
+              "call": "3NT",
+              "next": "t34_n8",
+              "label": "Öppnaren visar maximum, 9–10 hp"
+            }
+          ]
+        },
+        {
+          "id": "t34_n2",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "3D"
+          ],
+          "meaning": "3D är en spärrhöjning med minst tre stödkort, inte en invit.",
+          "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
+          "branches": [],
+          "handProfile": {
+            "responder": "Minst tre stödkort; spärrhöjning, ej invit"
+          }
+        },
+        {
+          "id": "t34_n3",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT är slutbud.",
+          "analysis": "Svarshanden väljer sangutgång direkt. Enligt PDF-avsnittet är 3NT slutbud; ytterligare budgivning ska inte fortsätta.",
+          "branches": []
+        },
+        {
+          "id": "t34_n4",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "2♥"
+          ],
+          "meaning": "2♥ visar minst fem kort i ny färg och är krav till minst 3 i öppningsfärgen.",
+          "analysis": "Svarshanden har minst fem kort i hjärter. Budet är krav. Öppnaren fullgör minimikravet med 3D. Fortsättningen efter detta återbud är inte specificerad i PDF-avsnittet.",
+          "branches": [
+            {
+              "call": "3D",
+              "next": "t34_n9",
+              "label": "Öppnaren fullgör kravet med 3D"
+            }
+          ]
+        },
+        {
+          "id": "t34_n5",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ visar renons i den bjudna färgen och är slaminvit.",
+          "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
+          "branches": [],
+          "handProfile": {
+            "responder": "Renons i hjärter; slaminvit"
+          }
+        },
+        {
+          "id": "t34_n6",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3D"
+          ],
+          "meaning": "Öppnaren visar minimum med 3D och 6–8 hp.",
+          "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
+          "branches": []
+        },
+        {
+          "id": "t34_n7",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4D"
+          ],
+          "meaning": "Öppnaren visar maximum med 9–10 hp och 4D.",
+          "analysis": "Efter högfärgsöppning är 4 i öppningshögfärgen ett av de angivna maxbeskeden. PDF:en anger även 3NT som alternativ men inte vilket handvillkor som väljer mellan dem.",
+          "branches": []
+        },
+        {
+          "id": "t34_n8",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren visar maximum med 9–10 hp via 3NT.",
+          "analysis": "Efter lågfärgsöppning är 3NT maxbeskedet. 4 i lågfärgen ska inte användas som maxbesked.",
+          "branches": []
+        },
+        {
+          "id": "t34_n9",
+          "sequence": [
+            "2♦",
+            "Pass",
+            "2♥",
+            "Pass",
+            "3D"
+          ],
+          "meaning": "Öppnaren fullgör färgkravet med minst 3 i öppningsfärgen.",
+          "analysis": "Den nya färgen är krav till minst tre i öppningsfärgen. Fortsättningen efter att öppnaren fullgjort kravet är inte närmare beskriven i PDF-avsnittet.",
+          "branches": []
+        }
+      ]
+    },
+    {
+      "id": "T35_SVAG_TVA_H",
+      "title": "Svag tvåöppning 2♥ – ostörd budgivning",
+      "tags": [
+        "svag tvåa",
+        "2♥",
+        "ostörd",
+        "spärrbud",
+        "2NT-invit"
+      ],
+      "conditions": [
+        "2♥: 6–10 hp och exakt sex kort i öppningsfärgen.",
+        "Inget separat krav på färgkvalitet anges i Nordisk Standard.",
+        "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
+        "Endast ostörd budgivning; störda sekvenser ingår inte."
+      ],
+      "root": "t35_n0",
+      "nodes": [
+        {
+          "id": "t35_n0",
+          "sequence": [
+            "2♥"
+          ],
+          "meaning": "2♥ visar 6–10 hp och exakt sex kort i hjärter.",
+          "analysis": "Nordisk Standard anger inget separat krav på färgkvalitet för svag tvåöppning. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t35_n1",
+              "label": "Invit med minst två stödkort"
+            },
+            {
+              "call": "3H",
+              "next": "t35_n2",
+              "label": "Spärrhöjning med minst tre stödkort"
+            },
+            {
+              "call": "3NT",
+              "next": "t35_n3",
+              "label": "Slutbud"
+            },
+            {
+              "call": "2♠",
+              "next": "t35_n4",
+              "label": "Ny färg med minst fem kort – krav"
+            },
+            {
+              "call": "3♠",
+              "next": "t35_n5",
+              "label": "Hopp i ny färg med renons – slaminvit"
+            }
+          ],
+          "handProfile": {
+            "opener": "6–10 hp, exakt sex kort i öppningsfärgen"
+          }
+        },
+        {
+          "id": "t35_n1",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT är invitbud med minst två stödkort.",
+          "analysis": "PDF:en anger ingen exakt hp-gräns för svarshandens invit. Rättningen ska därför kontrollera stödlängden men inte lägga till ett eget poängintervall.",
+          "branches": [
+            {
+              "call": "3H",
+              "next": "t35_n6",
+              "label": "Öppnaren visar minimum, 6–8 hp"
+            },
+            {
+              "call": "4H",
+              "next": "t35_n7",
+              "label": "Öppnaren visar maximum, 9–10 hp"
+            },
+            {
+              "call": "3NT",
+              "next": "t35_n8",
+              "label": "Alternativt maxbesked i sang"
+            }
+          ]
+        },
+        {
+          "id": "t35_n2",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "3H"
+          ],
+          "meaning": "3H är en spärrhöjning med minst tre stödkort, inte en invit.",
+          "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
+          "branches": [],
+          "handProfile": {
+            "responder": "Minst tre stödkort; spärrhöjning, ej invit"
+          }
+        },
+        {
+          "id": "t35_n3",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT är slutbud.",
+          "analysis": "Svarshanden väljer sangutgång direkt. Enligt PDF-avsnittet är 3NT slutbud; ytterligare budgivning ska inte fortsätta.",
+          "branches": []
+        },
+        {
+          "id": "t35_n4",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "2♠"
+          ],
+          "meaning": "2♠ visar minst fem kort i ny färg och är krav till minst 3 i öppningsfärgen.",
+          "analysis": "Svarshanden har minst fem kort i spader. Budet är krav. Öppnaren fullgör minimikravet med 3H. Fortsättningen efter detta återbud är inte specificerad i PDF-avsnittet.",
+          "branches": [
+            {
+              "call": "3H",
+              "next": "t35_n9",
+              "label": "Öppnaren fullgör kravet med 3H"
+            }
+          ]
+        },
+        {
+          "id": "t35_n5",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ visar renons i den bjudna färgen och är slaminvit.",
+          "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
+          "branches": [],
+          "handProfile": {
+            "responder": "Renons i spader; slaminvit"
+          }
+        },
+        {
+          "id": "t35_n6",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3H"
+          ],
+          "meaning": "Öppnaren visar minimum med 3H och 6–8 hp.",
+          "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
+          "branches": []
+        },
+        {
+          "id": "t35_n7",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4H"
+          ],
+          "meaning": "Öppnaren visar maximum med 9–10 hp och 4H.",
+          "analysis": "Efter högfärgsöppning är 4 i öppningshögfärgen ett av de angivna maxbeskeden. PDF:en anger även 3NT som alternativ men inte vilket handvillkor som väljer mellan dem.",
+          "branches": []
+        },
+        {
+          "id": "t35_n8",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren visar maximum med 9–10 hp via 3NT.",
+          "analysis": "Efter högfärgsöppning är 3NT ett angivet alternativ till 4 i öppningsfärgen; urvalskriteriet saknas i PDF:en.",
+          "branches": []
+        },
+        {
+          "id": "t35_n9",
+          "sequence": [
+            "2♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3H"
+          ],
+          "meaning": "Öppnaren fullgör färgkravet med minst 3 i öppningsfärgen.",
+          "analysis": "Den nya färgen är krav till minst tre i öppningsfärgen. Fortsättningen efter att öppnaren fullgjort kravet är inte närmare beskriven i PDF-avsnittet.",
+          "branches": []
+        }
+      ]
+    },
+    {
+      "id": "T36_SVAG_TVA_S",
+      "title": "Svag tvåöppning 2♠ – ostörd budgivning",
+      "tags": [
+        "svag tvåa",
+        "2♠",
+        "ostörd",
+        "spärrbud",
+        "2NT-invit"
+      ],
+      "conditions": [
+        "2♠: 6–10 hp och exakt sex kort i öppningsfärgen.",
+        "Inget separat krav på färgkvalitet anges i Nordisk Standard.",
+        "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
+        "Endast ostörd budgivning; störda sekvenser ingår inte."
+      ],
+      "root": "t36_n0",
+      "nodes": [
+        {
+          "id": "t36_n0",
+          "sequence": [
+            "2♠"
+          ],
+          "meaning": "2♠ visar 6–10 hp och exakt sex kort i spader.",
+          "analysis": "Nordisk Standard anger inget separat krav på färgkvalitet för svag tvåöppning. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "branches": [
+            {
+              "call": "2NT",
+              "next": "t36_n1",
+              "label": "Invit med minst två stödkort"
+            },
+            {
+              "call": "3S",
+              "next": "t36_n2",
+              "label": "Spärrhöjning med minst tre stödkort"
+            },
+            {
+              "call": "3NT",
+              "next": "t36_n3",
+              "label": "Slutbud"
+            },
+            {
+              "call": "3♣",
+              "next": "t36_n4",
+              "label": "Ny färg med minst fem kort – krav"
+            },
+            {
+              "call": "4♣",
+              "next": "t36_n5",
+              "label": "Hopp i ny färg med renons – slaminvit"
+            }
+          ],
+          "handProfile": {
+            "opener": "6–10 hp, exakt sex kort i öppningsfärgen"
+          }
+        },
+        {
+          "id": "t36_n1",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "2NT"
+          ],
+          "meaning": "2NT är invitbud med minst två stödkort.",
+          "analysis": "PDF:en anger ingen exakt hp-gräns för svarshandens invit. Rättningen ska därför kontrollera stödlängden men inte lägga till ett eget poängintervall.",
+          "branches": [
+            {
+              "call": "3S",
+              "next": "t36_n6",
+              "label": "Öppnaren visar minimum, 6–8 hp"
+            },
+            {
+              "call": "4S",
+              "next": "t36_n7",
+              "label": "Öppnaren visar maximum, 9–10 hp"
+            },
+            {
+              "call": "3NT",
+              "next": "t36_n8",
+              "label": "Alternativt maxbesked i sang"
+            }
+          ]
+        },
+        {
+          "id": "t36_n2",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "3S"
+          ],
+          "meaning": "3S är en spärrhöjning med minst tre stödkort, inte en invit.",
+          "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
+          "branches": [],
+          "handProfile": {
+            "responder": "Minst tre stödkort; spärrhöjning, ej invit"
+          }
+        },
+        {
+          "id": "t36_n3",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "3NT är slutbud.",
+          "analysis": "Svarshanden väljer sangutgång direkt. Enligt PDF-avsnittet är 3NT slutbud; ytterligare budgivning ska inte fortsätta.",
+          "branches": []
+        },
+        {
+          "id": "t36_n4",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "3♣ visar minst fem kort i ny färg och är krav till minst 3 i öppningsfärgen.",
+          "analysis": "Svarshanden har minst fem kort i klöver. Budet är krav. Öppnaren fullgör minimikravet med 3S. Fortsättningen efter detta återbud är inte specificerad i PDF-avsnittet.",
+          "branches": [
+            {
+              "call": "3S",
+              "next": "t36_n9",
+              "label": "Öppnaren fullgör kravet med 3S"
+            }
+          ]
+        },
+        {
+          "id": "t36_n5",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "4♣"
+          ],
+          "meaning": "4♣ visar renons i den bjudna färgen och är slaminvit.",
+          "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
+          "branches": [],
+          "handProfile": {
+            "responder": "Renons i klöver; slaminvit"
+          }
+        },
+        {
+          "id": "t36_n6",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3S"
+          ],
+          "meaning": "Öppnaren visar minimum med 3S och 6–8 hp.",
+          "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
+          "branches": []
+        },
+        {
+          "id": "t36_n7",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "4S"
+          ],
+          "meaning": "Öppnaren visar maximum med 9–10 hp och 4S.",
+          "analysis": "Efter högfärgsöppning är 4 i öppningshögfärgen ett av de angivna maxbeskeden. PDF:en anger även 3NT som alternativ men inte vilket handvillkor som väljer mellan dem.",
+          "branches": []
+        },
+        {
+          "id": "t36_n8",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3NT"
+          ],
+          "meaning": "Öppnaren visar maximum med 9–10 hp via 3NT.",
+          "analysis": "Efter högfärgsöppning är 3NT ett angivet alternativ till 4 i öppningsfärgen; urvalskriteriet saknas i PDF:en.",
+          "branches": []
+        },
+        {
+          "id": "t36_n9",
+          "sequence": [
+            "2♠",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3S"
+          ],
+          "meaning": "Öppnaren fullgör färgkravet med minst 3 i öppningsfärgen.",
+          "analysis": "Den nya färgen är krav till minst tre i öppningsfärgen. Fortsättningen efter att öppnaren fullgjort kravet är inte närmare beskriven i PDF-avsnittet.",
+          "branches": []
+        }
+      ]
     }
   ],
   "valuationRules": {
