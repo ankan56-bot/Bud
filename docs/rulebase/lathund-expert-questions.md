@@ -80,6 +80,26 @@
 - **Fråga:** Hur ska dessa intervall mappas till Nordisk Standards htp och vår befintliga poängmotor? Är stp och htp identiska i dessa sammanhang?
 - **Status:** Ingen automatisk konvertering. Kräver definition och test.
 
+### A14. Fortsättningar efter 2♣–2♦–2NT
+- Lathunden tryckt s. 25 återanvänder 2NT-systemet efter 2♣–2♦–2NT: 3♣ Stayman, 3♦/3♥ överföring, 3♠ lågfärgsfråga (PRO), 3NT slutbud och 4♣/4♦ slaminvit (Slam).
+- **Fråga:** Ska 3♠-konventionen och 4♣/4♦-slamvägarna ingå, eller ska de externa PRO/Slam-hänvisningarna hållas utanför?
+- **Status:** 3♣/3♦/3♥/3NT första svarsrundan återanvänder befintlig 2NT-familj. 3♠ och 4♣/4♦ är inte antagna som grundsystem.
+
+### A15. Öppnarens tredje bud efter 2♣-återbud
+- Lathunden tryckt s. 25 visar fördelningsbud efter 2♣–2♦–2♠–2NT, 2♣–2♦–3♣–3♦ och 2♣–2♦–3♥–3♠. Flera bud bygger på 5-4-fördelning eller 6-kortsfärg.
+- **Fråga:** Bekräfta om samtliga dessa fördelningsgrenar ska ingå i vår obligatoriska profil och hur prioritet ska avgöras när en hand passar flera rutor.
+- **Status:** Entydiga fördelningsgrenar implementerade som Lathundstillägg. Överlapp loggas som ej täckt; ingen prioritet hittas på.
+
+### A16. Svarshandens tredje bud efter 2♣
+- Lathunden tryckt s. 26 visar bland annat 2-kortsstöd, kontrollbud med stöd och stödpoängsintervall (STP), kortfärg och trumfstöd.
+- **Fråga:** Vilka av dessa Plus-/STP-grenar ska ingå i vår systemprofil? Hur definieras STP i förhållande till vår HP/HTP-motor?
+- **Status:** Inte implementerat. STP har inte översatts till HP/HTP.
+
+### A17. 4NT efter stark 2♣-fortsättningar
+- Lathunden tryckt s. 25 anger 4NT som essfråga med klöver som trumf efter 2♣–2♦–3♣–3♦, och med hjärter som trumf efter 2♣–2♦–3♥–3♠.
+- **Fråga:** Bekräfta hur dessa sekvenser ska identifiera fastställd trumf och hur de ska lämnas över till Nordisk Standards RKC-svarstabell.
+- **Status:** Visningsbetydelsen dokumenterad; automatisk 4NT-rättning avvaktar säker koppling till befintlig RKC-motor och slamvillkor.
+
 ## B. Störd budgivning
 
 ### B1. Negativa dubblingar och konkurrensnivåer
