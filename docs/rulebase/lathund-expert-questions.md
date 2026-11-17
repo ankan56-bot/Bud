@@ -83,7 +83,7 @@
 ### A14. Fortsättningar efter 2♣–2♦–2NT
 - Lathunden tryckt s. 25 återanvänder 2NT-systemet efter 2♣–2♦–2NT: 3♣ Stayman, 3♦/3♥ överföring, 3♠ lågfärgsfråga (PRO), 3NT slutbud och 4♣/4♦ slaminvit (Slam).
 - **Fråga:** Ska 3♠-konventionen och 4♣/4♦-slamvägarna ingå, eller ska de externa PRO/Slam-hänvisningarna hållas utanför?
-- **Status:** 3♣/3♦/3♥/3NT första svarsrundan återanvänder befintlig 2NT-familj. 3♠ och 4♣/4♦ är inte antagna som grundsystem.
+- **Status:** 3♣/3♦/3♥/3NT första svarsrundan återanvänder befintlig 2NT-familj. 5-4-högfärgsfortsättningar efter Stayman och 3NT efter femkortshögfärgsöverföring är implementerade där profilen är entydig. 3♠ och Slam-hänvisade 4♣/4♦ är inte antagna som grundsystem.
 
 ### A15. Öppnarens tredje bud efter 2♣-återbud
 - Lathunden tryckt s. 25 visar fördelningsbud efter 2♣–2♦–2♠–2NT, 2♣–2♦–3♣–3♦ och 2♣–2♦–3♥–3♠. Flera bud bygger på 5-4-fördelning eller 6-kortsfärg.
