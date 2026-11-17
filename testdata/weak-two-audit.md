@@ -58,3 +58,5 @@ Den tidigare PDF-regeln för svag tvåa gäller fortsatt exakt sex kort. Utöver
 Fortsättningsreglerna för exakt sexkortiga svaga tvåor får inte automatiskt överföras till en sjukkortsfärg som öppnats på 2-nivån. Svar efter 3-/4-nivåns spärröppningar är ej täckta tills systemunderlag finns. Se `testdata/preemptive-openings-audit.md`.
 
 Analysbiblioteket är uppdaterat till 0.5.16: T34–T36 har handvillkor som kräver exakt sex kort i öppningsfärgen och markerar färgkvaliteten för manuell kontroll. De ska därmed inte användas som pedagogisk beskrivning av 7-kortsöppningen på 2-nivån.
+
+Sexkortig klöver med bra färg men 6–10 hp är ej täckt: 2♣ är starköppning och dokumentet fastställer ingen alternativ spärrnivå. Motorn ska inte anta pass eller 3♣.
