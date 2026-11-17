@@ -328,3 +328,12 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 - 4NT = essfråga med öppningsfärgen som trumf; trumfdetektionen i RKC har utökats för svaga 2-öppningar.
 - Den tidigare min/max-stegen efter 2NT är avstängd. Öppnarens fortsättning efter Stenberg behöver egen verifiering och loggas ej täckt.
 - Rättningsmotor 9.4, analysbibliotek 0.5.17 och 30 regressionstester incheckade på arbetsgrenen. CI är ännu inte verifierad.
+
+
+## Gemensamma poängkrav för utgång och slam efter svag tvåa – 2026-11-17
+
+- Beslut: samma normala styrkekrav ska gälla även efter svag tvåöppning; ingen separat poängskala.
+- Rättningsmotor 9.5 skiljer mellan budets systembetydelse och kontraktets styrkemässiga kvalitet. Direkt utgång enligt Lathunden är fortsatt ett slutbud, men kontraktet kontrolleras separat.
+- Gemensam kontraktskontroll: 3NT 26 hp; 4♥/4♠ 26 spelpoäng + minst 8-korts fit; 5♣/5♦ 28 spelpoäng + minst 8-korts fit; lillslam 33 poäng + högst ett saknat ess (och fit i färg); storslam alla fyra ess samt trumfkungen i färg.
+- Korrigerad gemensam trumflängdsbonus: 9 trumf +1, 10+ trumf +2.
+- Fyra regressionstester tillagda. Testkörning/CI inväntar verifiering.
