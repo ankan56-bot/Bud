@@ -16,6 +16,7 @@ jobs:
           node --check rattningsmotor.js
           node --check stenberg.js
           node --check trumfstod.js
+          node --check 2kloveroppning.js
           node --check ettoppningssvar.js
           node --check budbeslut.js
           node --check sangbudgivning.js
@@ -60,6 +61,8 @@ jobs:
         run: node tests/stenberg-2nt.test.js
       - name: Run trump-support module tests
         run: node tests/trumfstod.test.js
+      - name: Run strong 2C module tests through 4NT
+        run: node tests/strong-2c-through-4nt.test.js
       - name: Audit undisturbed analysis-library structure
         run: |
           node scripts/validate-analysis-library.js
