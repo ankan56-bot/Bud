@@ -277,3 +277,16 @@ PDF:en `nordisk_standard.pdf` (2012-08-22), sida 4, återfanns i ChatGPT-bibliot
 - Analysbiblioteket har tre pedagogiska träd tillagda: `T34_SVAG_TVA_D`, `T35_SVAG_TVA_H`, `T36_SVAG_TVA_S`. De täcker de tre öppningarna och de dokumenterade svarstyperna. Odefinierade fortsättningar är uttryckligen märkta, inte påhittade.
 - Full GitHub Actions-körning `44098066656`: **success**, inklusive analysbibliotekets matchning och handprofiltester.
 - 140-givarsbaslinjen för motor 8.7: 579 rätt, 40 ej täckta, 0 fel (1 181 budpositioner).
+
+
+## Återställd färgkvalitet för svaga tvåöppningar – 2026-11-17
+
+Användarens uttryckliga instruktion återställer den tidigare definitionen av god färg för 2♦/2♥/2♠. Detta ersätter den tidigare ändringen i motor 8.7 där kvalitetskravet togs bort.
+
+- Exakt sex kort i öppningsfärgen och 6–10 hp gäller fortsatt.
+- Färgkvalitet: minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10–9–8.
+- En sexkortsfärg som inte uppfyller kvalitetskravet ska inte öppnas svagt på 2-läget.
+- Rättningsmotor 8.8 återinför kontrollen via den befintliga `goodForWeakTwo`-funktionen.
+- 16 regressionstester täcker både två honnörer, en honnör + två mellankort samt otillräcklig färgkvalitet.
+- GitHub Actions `44100697247`: hela testkedjan **success**.
+- Uppdaterad 140-givarsbaslinje: 581 rätt, 39 ej täckta, 0 fel; 1 185 budpositioner.
