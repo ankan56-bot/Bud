@@ -135,9 +135,6 @@
  function responderSecondBid(hand,opening,response,rebid,openerHandCards){
    if(!accepts(opening))return NC('Fel modul för öppningsfärgen.');
    var o=st_(opening),r=st_(response),rb=st_(rebid),oh=H(openerHandCards);
-   // Efter öppnarens återbud i egen lågfärg (6+ kort) används
-   // de dokumenterade fortsättningarna konservativt. Generisk
-   // poängsummering får inte skapa 2NT utan stöd för budets handprofil.
    if(rb===o&&oh.L[o]>=5){
      var support=hand.L[o],htp=handHps(hand,o);
      var side=SU.filter(function(s){return s!==o&&s!==r;});
@@ -158,7 +155,14 @@
         !SU.some(function(s){return s!==o&&s!==r&&hand.L[s]>=6;}))
        return {exp:'P',alt:[],why:'6–10 hp utan stöd för öppnarens långfärg eller egen lång sidofärg: pass efter öppnarens 6+ lågfärg.',
          means:function(b){return b==='P'?'6–10 hp utan passande stöd eller egen lång sidofärg.':null},conv:'svarshandens 2:a bud'};
-     return NC('Svarshandens andra bud efter öppnarens 6+ lågfärg passar inte någon av de tydligt angivna profilerna. Sekvensen sparas för expertgranskning.',function(){return null},'svarshandens 2:a bud',true);
+     // The generic engine tends to over-invite with 2NT when the
+     // responder has 13+ hp, is unbalanced, and has neither two-card
+     // support nor a documented stopper profile. Preserve the gap.
+     if(hand.hp>=13&&!hand.bal&&support<2&&
+        SU.some(function(s){return s!==o&&s!==r&&hand.L[s]>=6;}))
+       return NC('13+ hp, obalanserad hand och lång sidofärg utan minst två korts stöd: 2NT saknar den dokumenterade balanserade/stödprofilen. Exakt naturlig fortsättning lämnas ej täckt.',function(){return null},'svarshandens 2:a bud',true);
+     if(hand.bal&&hand.hp>=10&&hand.hp<=12&&(support<2||!controls))
+       return NC('2NT efter öppnarens 6+ lågfärg kräver balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna. Handen uppfyller inte hela profilen.',function(){return null},'svarshandens 2:a bud',true);
    }
    return null;
  }
