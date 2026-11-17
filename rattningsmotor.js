@@ -90,10 +90,16 @@ var Rattning = (function(){
     else if(hp>=22){exp='2C';why=hp+' hp är utgångskrav: öppna 2♣.'}
     else if(hp>=20){exp='2C';alt=[one];why=hp+' hp obalanserad är starkare än 1 i färg (12-19): 2♣, utgångskrav.'}
     else if(hp>=12){exp=one;why=hp+' hp med längsta färgen '+SYM[pick]+' ('+L[pick]+' kort): 1 i färg (12-19 hp).'}
-    else if(hp===11&&(fourthHandAfterThreePasses||h.goodForEleven(pick))){exp=one;alt=['P'];why=fourthHandAfterThreePasses?'Fjärde hand efter tre pass: 11 hp räcker för öppning utan särskilt färgkvalitetskrav.':'11 hp med bra färg: 6 kort och minst 3 honnörer eller 7 kort och minst 2 honnörer. 1 i färg är tillåtet; pass är också möjligt.'}
+    else if(hp===11&&(fourthHandAfterThreePasses||(pick!=='C'&&L[pick]===6)||h.goodForEleven(pick))){
+      exp=one;alt=['P'];
+      why=fourthHandAfterThreePasses
+        ?'Fjärde hand efter tre pass: 11 hp räcker för öppning utan särskilt färgkvalitetskrav.'
+        :(pick!=='C'&&L[pick]===6)
+          ?'11 hp och sexkortsfärg i ♦/♥/♠: PDF:en anger öppning 1 i färgen i stället för svag tvåa.'
+          :'11 hp med bra 5+ färg: öppna 1 i färgen; pass är också möjligt.';
+    }
     else if(hp>=6&&hp<=10&&m>=6){
-      if(m===6&&pick!=='C'&&h.goodForWeakTwo(pick)){exp='2'+pick;why='6-10 hp och exakt 6-korts '+SYM[pick]+' med bra kvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8): svag tvåa.'}
-      else if(m===6&&pick!=='C'&&!h.goodForWeakTwo(pick)){exp='P';why='6-10 hp och 6-korts '+SYM[pick]+' men för dålig färgkvalitet för svag tvåa: pass.'}
+      if(m===6&&pick!=='C'){exp='2'+pick;why='6-10 hp och exakt 6-korts '+SYM[pick]+': svag tvåa enligt Nordisk Standard.'}
       else if(m===6){exp='P';why='Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass.'}
       else if(m===7){exp='3'+pick;alt=['4'+pick];why='7-korts färg med 6-10 hp: spärrbud 3 i färg.'}
       else {exp='4'+pick;alt=['3'+pick];why='8-korts färg med 6-10 hp: spärrbud 4 i färg.'}
@@ -104,10 +110,10 @@ var Rattning = (function(){
       if(c==='1N')return '15-17 hp, balanserad (även 5-korts högfärg).';
       if(c==='2C')return 'Utgångskrav, eller 22-24 hp balanserad.';
       if(c==='2N')return '20-21 hp, balanserad.';
-      if(/^2[DHS]$/.test(c))return '6-10 hp, exakt 6-korts '+SYM[c[1]]+', bra färg (2 honnörer eller 1 honnör + 2 av 10-9-8).';
+      if(/^2[DHS]$/.test(c))return '6-10 hp, exakt 6-korts '+SYM[c[1]]+'.';
       if(/^3[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 7-korts färg.';
       if(/^4[CDHS]$/.test(c))return 'Spärrbud, 6-10 hp, 8-korts färg.';
-      if(/^1[CDHS]$/.test(c))return '12-19 hp, 4+ färg (11 hp endast med 6 kort + 3 honnörer eller 7 kort + 2 honnörer).';
+      if(/^1[CDHS]$/.test(c))return '12-19 hp, 4+ färg; 11 hp enligt 6-kortsregeln för ♦/♥/♠ eller med bra 5+ färg.';
       return null}};
   }
 
@@ -1522,7 +1528,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.6'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.7'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
