@@ -340,3 +340,16 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 
 
 - Motor 9.6: generell missad-utgång-kontroll får inte överskriva ej täckta fortsättningar efter Stenberg 2NT. Slutkontraktets separata poängkontroll gäller fortsatt. Testfixturer och +2-trumfbonusregression rättade.
+
+## Öppnarens andra färg – positiv och negativ betydelse (2026-11-17)
+
+Källa: Nordisk standard 2012-08-22, sida 3, avsnittet "Öppningshandens andra bud".
+
+- 1♥–1♠–2♣: andra färgen på lägsta nivå. Visar 12–17 hp och exakt 5–4 i de två färgerna. SH får passa med 6–7 hp och stöd.
+- 1♥–1♠–3♣: hopp i andra färgen. Visar 18+ htp och minst 5–4 i båda färgerna.
+- Stigande budgivning (reverse): 18+ hp och minst 5–4; andra färgen är högre än den första.
+- Negativ betydelse ska visas uttryckligen: 2♣ på lägsta nivå utesluter 18+ htp; 3♣ med hopp utesluter intervallet 12–17 hp för den enkla 5–4-beskrivningen.
+- HTP ska inte räknas slentrianmässigt på varje 5–4-hand. För denna tvåfärgsgren räknas stöd-/fördelningspoäng när handen har egen 6+ färg eller 5–5, i enlighet med definitionen på sida 1. En vanlig 5–4-hand använder hp.
+- Fördelningar/styrkor som inte matchar någon av de uttryckliga raderna lämnas ej täckta i stället för att anta en regel.
+
+Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförklaring för både positiv och negativ betydelse. Regressionstester tillagda för 5–4 vid 14/17/18 hp, 6–4 med 18 htp samt ej täckt 6–4 på 12–17 hp.

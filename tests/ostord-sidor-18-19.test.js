@@ -158,3 +158,46 @@ test('page 18: 2NT invite branch requires responder 11–12 hp', () => {
   const node = Rattning.nodeFor(st, 8);
   assert.notEqual(node && node.exp, '3N');
 });
+
+function openerTwoSuitState(hand, call) {
+  const empty = ['C2','C3','C4','C5','C6','D2','D3','D4','H2','H3','S2','S3','S4'];
+  return { hands:{N:hand,S:empty,E:empty,W:empty}, bids:[
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},{s:'N',c:call}
+  ]};
+}
+
+test('1♥–1♠–2♣: 12–17 hp and exact 5–4; meaning explicitly excludes the jump range', () => {
+  const hand=['H14','H13','H9','H8','H7','C14','C13','C9','C8','D9','D8','S9','S8'];
+  const node=Rattning.nodeFor(openerTwoSuitState(hand,'2C'),4);
+  assert.equal(node.exp,'2C',node.why);
+  assert.equal(node.conv,'tvåfärgshand');
+  assert.match(node.means('2C'),/12–17 hp/);
+  assert.match(node.means('2C'),/Utesluter 18\+ htp/);
+});
+
+test('1♥–1♠–2♣ remains the low rebid at 17 hp with exact 5–4', () => {
+  const hand=['H14','H13','H12','H9','H8','C14','C13','C9','C8','D11','D8','S9','S8'];
+  const node=Rattning.nodeFor(openerTwoSuitState(hand,'2C'),4);
+  assert.equal(node.exp,'2C',node.why);
+});
+
+test('1♥–1♠–3♣: jump shows 18+ htp with at least 5–4', () => {
+  const hand=['H14','H13','H12','H9','H8','C14','C13','C9','C8','D12','D9','D8','S2'];
+  const node=Rattning.nodeFor(openerTwoSuitState(hand,'3C'),4);
+  assert.equal(node.exp,'3C',node.why);
+  assert.match(node.means('3C'),/18\+ htp/);
+  assert.match(node.means('3C'),/minst 5–4/);
+});
+
+test('1♥–1♠–3♣: 16 hp can qualify through 18 htp with a 6–4 hand', () => {
+  const hand=['H14','H13','H9','H8','H7','H6','C14','C13','C9','C8','D12','D9','S2'];
+  const node=Rattning.nodeFor(openerTwoSuitState(hand,'3C'),4);
+  assert.equal(node.exp,'3C',node.why);
+});
+
+test('a low-level second-color rebid is not generalized to 6–4 or 5–5 at 12–17 hp', () => {
+  const hand=['H14','H13','H9','H8','H7','H6','C14','C13','C9','C8','D9','D8','S9'];
+  const node=Rattning.nodeFor(openerTwoSuitState(hand,'2C'),4);
+  assert.equal(node.exp,null,node.why);
+  assert.equal(node.conv,'tvåfärgshand');
+});

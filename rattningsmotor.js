@@ -478,6 +478,18 @@ var Rattning = (function(){
       if(rs===o&&lv(r)===2){if(c==='4'+o)return '19+ stp: utgång.';if(c==='3'+o)return '16-18 stp, naturlig invit.';if(c==='P')return 'Pass: 13-15 stp.'}
       if(rs!==o&&rs!=='N'&&c===lv(r)+1+rs)return 'Trumfstöd, lägsta höjning: 12-16 stp.';
       if(rs!==o&&rs!=='N'&&c===(lv(r)+2)+rs)return 'Trumfstöd, enkelhopp: 17-19 stp.';
+      // Positiv och negativ betydelse för öppnarens andra färg.
+      var secondColor=SU.filter(function(s){return s!==o&&s!==rs&&L[s]>=4&&L[o]+L[s]>=9})
+        .sort(function(a,b){return L[b]-L[a]})[0];
+      if(secondColor){
+        var secondIsReverse=SU.indexOf(secondColor)>SU.indexOf(o);
+        if(secondIsReverse&&c===lowest(secondColor,r))
+          return 'Reverse: stigande budgivning, 18+ hp och minst 5–4 i de två färgerna.';
+        if(!secondIsReverse&&c===lowest(secondColor,r)&&L[o]===5&&L[secondColor]===4)
+          return 'Andra färgen på lägsta nivå: 12–17 hp och exakt 5–4. Utesluter 18+ htp, som visas med hopp i andra färgen.';
+        if(!secondIsReverse&&c===jump(secondColor,r))
+          return 'Hopp i andra färgen: 18+ htp och minst 5–4 i båda färgerna. Utesluter intervallet 12–17 hp för 5–4 på lägsta nivå.';
+      }
       if(isBid(c)&&st_(c)===o&&rs!==o)return 'Egen färg.';
       if(c==='1N'||c==='2N'&&lv(r)===1&&r!=='1N')return c==='1N'?'12-14 hp, balanserad (NT på lägsta nivå).':'18-19 hp, balanserad (hopp i NT).';
       if(r==='1N'&&c==='2N')return '18-19 hp, balanserad (2NT när partnern bjöd 1NT).';
@@ -526,14 +538,29 @@ var Rattning = (function(){
       else return NC('Dokumentet anger inte budet för balanserad hand med '+hp+' hp i denna situation.',means);
     }else{
       var s2=side4.filter(function(s){return s!==rs&&L[o]+L[s]>=9}).sort(function(a,b){return L[b]-L[a]})[0];
-      if(s2){var x=low(s2),rev=SU.indexOf(s2)>SU.indexOf(o)&&lv(x)===2&&lv(r)===1;
-        if(rev){if(hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+ hp.'}else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}else return NC('Dokumentet anger inte budet.',means)}
-        else if(hp>=18){exp=jump(s2,r);why='Hopp i andra färgen: 18+ htp med minst 5-4.'}
-        else{exp=x;why='Andra färgen på lägsta nivå: 12-17 hp med 5-4.'}
+      if(s2){
+        var x=low(s2),rev=SU.indexOf(s2)>SU.indexOf(o)&&lv(x)===2&&lv(r)===1;
+        var twoSuitFit=L[o]>=5&&L[s2]>=4&&L[o]+L[s2]>=9;
+        // HTP räknas för egen 6+ färg eller 5–5, inte automatiskt för 5–4.
+        var twoSuitHtp=(L[o]>=6||(L[o]>=5&&L[s2]>=5))?h.htp(o):hp;
+        if(rev){
+          if(hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+ hp och minst 5–4 i färgerna.'}
+          else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}
+          else return NC('Dokumentet anger inte budet.',means);
+        }
+        else if(twoSuitFit&&twoSuitHtp>=18){
+          exp=jump(s2,r);why='Hopp i andra färgen: 18+ htp och minst 5–4 i båda färgerna. HTP räknas enligt systemets villkor för 6+ färg eller 5–5.';
+        }
+        else if(L[o]===5&&L[s2]===4&&hp>=12&&hp<=17){
+          exp=x;why='Andra färgen på lägsta nivå: 12–17 hp med exakt 5–4. SH får passa med 6–7 hp och stöd.';
+        }
+        else{
+          return NC('Tvåfärgshandens andra bud är inte täckt för denna styrka/fördelning. Lägsta bud i andra färgen 12–17 hp gäller endast exakt 5–4; hopp kräver 18+ htp och minst 5–4.',means,'tvåfärgshand');
+        }
       }else if(L[o]>=5){exp=low(o);why='Bjuder om första färgen (5+ kort).';soft=true}
       else return NC('Dokumentet anger inte budet för denna hand.',means);
     }
-    return {exp:exp,alt:alt,why:why,means:means,conv:'öppnarens 2:a bud',soft:soft};
+    return {exp:exp,alt:alt,why:why,means:means,conv:(s2?'tvåfärgshand':'öppnarens 2:a bud'),soft:soft};
   }
 
   /* ––––– RKC / BLACKWOOD 5 ESS ––––– */
@@ -1479,6 +1506,7 @@ var Rattning = (function(){
       'Herbert':'Herbertavslag är det närmaste tillgängliga budet efter 2♣–2♦–2M. Det visar 0–5 hp och säger i sig inget om den färg som bjuds.',
       'svag tvåa':'En svag tvåöppning visar 6–10 hp och exakt 6 kort i ♦ eller högfärg, med bra färgkvalitet (2 honnörer eller 1 honnör + 2 av 10-9-8). 3 i öppningsfärgen är invit (14-16 stp), 2NT är invit (9-10 hp).',
       'öppnarens 2:a bud':'Öppnarens andra bud preciserar styrka och fördelning efter svarshandens första bud.',
+      'tvåfärgshand':'Öppnarens andra färg beskriver en tvåfärgshand. På lägsta nivå visar 12–17 hp med exakt 5–4; detta utesluter 18+ htp. Hopp i andra färgen visar 18+ htp och minst 5–4. Reverse (stigande budgivning) visar 18+ hp och minst 5–4. HTP räknas bara när handen uppfyller systemets villkor för 6+ färg eller 5–5.',
       'RKC':'RKC är essfråga. När trumf är fastställd räknas fyra ess plus trumfkungen som femte ess.',
       'Blackwood 5 ess':'Blackwood 5 ess (0314) används när trumf är fastställd. 5♣ = 0 eller 3, 5♦ = 1 eller 4, 5♥ = 2 utan dam, 5♠ = 2 med dam. Efter 5NT kan fortsatt budgivning följa RKC-reglerna för fastställd trumf.',
       'Fyr-essfråga utan trumf':'Fyr-essfråga utan fastställd trumf används bara i uttryckligen överenskomna sangsekvenser: 1NT–4NT, 1NT–2♣–2♦–4NT, 2NT–4NT, 2NT–3♣–3♦–4NT och 2♣–2♦–2NT–4NT. 5♣ = 0 ess, 5♦ = 1 ess, 5♥ = 2 ess, 5♠ = 3 ess, 5NT = 4 ess. Efter 5NT bjuder frågeställaren 6NT och därefter pass. Ingen kungfråga används.',
