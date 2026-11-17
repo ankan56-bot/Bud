@@ -28,7 +28,7 @@ Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen 
 - 3♦: 6-kortsfärg, 15–17 hp
 - 3♥: invit
 - 3♠: 6–5-fördelning, 14–17 hp
-- 4♣: Splinter, 16–17 hp (konflikt med projektbeslutet att ta bort Splinter; får inte återinföras automatiskt)
+- 4♣: Splinter, 16–17 hp (nu aktiverat enligt användarens uttryckliga beslut)
 - 4♥: slutbud
 
 ### SH inviterar med 2NT
@@ -83,14 +83,14 @@ Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen 
 3. Tabellens inledning säger att ny färg är krav, men tabellen ger ingen generell hp-gräns för själva tredje-/fjärde-färgsbudet. Motorn får därför inte använda påhittade generella gränser på 10 respektive 13 hp.
 4. Testa uttryckliga förbud: pass efter tredje färg, pass efter fjärde färg och 3NT efter fjärde färg.
 5. Testa hp och stp separat; de får inte blandas.
-6. 4♣ Splinter är en uttrycklig konflikt mellan lathunden och projektets tidigare beslut att ta bort Splinter. Logga för expertbeslut.
+6. 4♣ Splinter är återinfört enligt användarens uttryckliga beslut: 16–17 hp. Övriga handkrav som inte anges i tabellraden får inte hittas på.
 7. Otydliga eller ej specificerade handvärderingar ska hamna i ej-täckt-loggen.
 
 ## Faktisk kodstatus i rättningsmotorn
 
 - Sida 18: tredje bud efter 1NT-återbud har implementerade kontroller för samtliga sju budrader i det avbildade exemplet.
 - Sida 18: preferensgrenen har implementerade kontroller för pass, 2♠, 2NT, 3♣ och 3♥. 4♥ lämnas ej täckt eftersom ”stark hand” saknar numerisk gräns.
-- Sida 18: ombud-grenen har kontroller för pass, 2NT, 3♦, 3♥, 3♠ och 4♥. 2♠/6–5 minimum lämnas ej täckt eftersom minimum inte är numeriskt definierat. 4♣ Splinter lämnas ej täckt på grund av projektkonflikten.
+- Sida 18: ombud-grenen har kontroller för pass, 2NT, 3♦, 3♥, 3♠ och 4♥. 2♠/6–5 minimum lämnas ej täckt eftersom minimum inte är numeriskt definierat. 4♣ Splinter är implementerat med 16–17 hp enligt lathunden och användarens beslut.
 - Sida 18: 2NT-invitgrenen känner igen 3♣ som fjärde färg/utgångskrav och 3NT som slutbud. 3♦, 3♥ och 3♠ lämnas ej täckta eftersom minimum/maximum inte är numeriskt definierat.
 - Sida 19: svarshandens tredje och fjärde färg identifieras efter antalet olika färger paret redan visat. Nya färgbud godtas som kravbud; inga generella hp-gränser har hittats på.
 - Sida 19: öppnarens tabell efter tredje färg har direkta kontroller för 2♥ med två hjärter, 2♠ som fjärde färg/utgångskrav, 3♣ med sex klöver, 3♦ med fyrkortsstöd och 3♥ med trekortsstöd. Sangvalen lämnas ej täckta eftersom minimum/maximum saknar numeriska gränser.
@@ -123,18 +123,18 @@ GitHub Actions körde `node --test tests/ostord-sidor-18-19.test.js` på commit 
 ### Kvarstående ej täckt / behöver källkontroll
 
 - Sida 18, 2NT-invitgrenen har i befintlig dispatch en hårdkodad exempelauktion `1♥–1♦; 2♥–2NT`. Den auktionen är inte budtekniskt giltig eftersom 1♦ ligger under 1♥. Jag har inte gissat vilken auktion som ska ersätta den; grenen behöver jämföras med originalfotot innan den kan godkännas som körbar.
-- Sida 18, 4♣ Splinter kvarstår som uttrycklig konflikt mellan lathunden och tidigare projektbeslut. Den aktiveras inte.
+- Sida 18, 4♣ Splinter är nu aktiverat vid 16–17 hp. Handkrav utöver den angivna styrkan har inte lagts till utan källstöd.
 - Sida 19, 2♥ efter fjärde färg (”inget bättre bud”) saknar fortfarande maskinellt verifierbar handdefinition.
 - Bud som inte uppfyller en fullständig tabellrad ska fortsätta returneras som ej täckta och sparas för expertgranskning. Testerna visar inte att samtliga sådana sekvenser redan skrivs till en separat beständig logg; den persistenta loggningen behöver verifieras separat.
 
 
-### Expertlogg – konflikt om 4♣ Splinter (sida 18)
+### Beslut – 4♣ Splinter (sida 18)
 
-**Status: Öppen – kräver expertbeslut.**
+**Status: Beslut fattat – återinfört.**
 
-- **Källan:** Lathunden anger 4♣ som Splinter, 16–17 hp, i ÖH:s tredje bud efter att SH bjudit om sin färg.
-- **Projektbeslut:** Ett tidigare beslut i projektet tog bort Splinter från denna gren.
-- **Konflikt:** Källans uttryckliga buddefinition står alltså i konflikt med det tidigare systembeslutet.
-- **Nuvarande motorbeteende:** 4♣ aktiveras inte som giltigt systembud i denna gren. Motorn lämnar sekvensen ej täckt med hänvisning till konflikten.
-- **Fråga till expert/användaren:** Ska 4♣ Splinter återinföras enligt lathunden (16–17 hp), eller ska det tidigare projektbeslutet att ta bort Splinter gälla?
-- **Skyddsprincip:** Ingen automatisk ändring av systemregeln innan konflikten är avgjord.
+- Lathunden anger 4♣ som Splinter, 16–17 hp, i ÖH:s tredje bud efter att SH bjudit om sin färg.
+- Användaren har uttryckligen beslutat att 4♣ Splinter ska läggas till.
+- Motorn godkänner nu 4♣ med 16–17 hp och klassar budet som Splinter.
+- Utanför intervallet 16–17 hp lämnas budet ej täckt med förklaring.
+- Inga ytterligare krav på trumfstöd eller korthet har lagts till eftersom de inte är numeriskt angivna i den aktuella tabellraden.
+
