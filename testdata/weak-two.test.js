@@ -336,3 +336,42 @@ test("eight-card club preempts use 3C with one criterion and 4C with both", () =
     assert.equal(result.exp,expected,ranks);
   }
 });
+
+test("a seven-card 2-level opening does not inherit the six-card weak-two response system", () => {
+  const opener=preemptHand("H","AK76543");
+  const responder=[
+    ...cards("H","Q2"), ...cards("S","AKQJ"),
+    ...cards("D","5678"), ...cards("C","678")
+  ];
+  const result=node(completeDeal(opener,responder),[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"}
+  ],2);
+  assert.equal(result.exp,null);
+  assert.match(result.why,/sjukortsfärg/);
+});
+
+test("responses after a three-level preempt are uncovered unless explicitly documented", () => {
+  const opener=preemptHand("H","AKT9876");
+  const responder=[
+    ...cards("H","2"), ...cards("S","AKQJ9"),
+    ...cards("D","5678"), ...cards("C","678")
+  ];
+  const result=node(completeDeal(opener,responder),[
+    {s:"N",c:"3H"},{s:"E",c:"P"},{s:"S",c:"3N"}
+  ],2);
+  assert.equal(result.exp,null);
+  assert.match(result.why,/inte definierade/);
+});
+
+test("responses after a four-level preempt are uncovered unless explicitly documented", () => {
+  const opener=preemptHand("H","AKT98765");
+  const responder=[
+    ...cards("H","2"), ...cards("S","AKQJ9"),
+    ...cards("D","5678"), ...cards("C","678")
+  ];
+  const result=node(completeDeal(opener,responder),[
+    {s:"N",c:"4H"},{s:"E",c:"P"},{s:"S",c:"5C"}
+  ],2);
+  assert.equal(result.exp,null);
+  assert.match(result.why,/inte definierade/);
+});
