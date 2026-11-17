@@ -137,7 +137,15 @@
     // partnern passat. Det är en giltig auktion, men konkurrensåterbudet
     // efter partnerns pass måste bedömas som ej täckt – inte som fel turordning.
     var weakMinorRelayFinalPass = b.c==='P'&&ours.length===3&&ours[0].c==='1N'&&ours[1].c==='2S'&&ours[2].c==='3C'&&ours[0].s===me&&ours[2].s===me;
-    if(ours.length&&ours[ours.length-1].s===me&&!weakMinorRelayFinalPass)
+    var lastOwnBidIndex=ours.length?prior.indexOf(ours[ours.length-1]):-1;
+    var lastPartnerBidIndex=-1;
+    for(var pbi=0;pbi<prior.length;pbi++)
+      if(prior[pbi].s===pt&&isBid(prior[pbi].c))lastPartnerBidIndex=pbi;
+    // Only classify "partner passed after our last bid" when our last bid
+    // actually occurred after partner's last non-pass bid. If partner has
+    // since made a new bid (e.g. a game-forcing new suit), we must continue
+    // to evaluate that response instead of incorrectly abstaining.
+    if(ours.length&&ours[ours.length-1].s===me&&lastOwnBidIndex>lastPartnerBidIndex&&!weakMinorRelayFinalPass)
       return nc('Partnern har passat efter vår senaste budgivning; konkurrensfortsättningen i den här sekvensen är inte beskriven i systemunderlaget.');
     var d=ours.length,opener=ours[0].s===me,f=ours[0].c;
     if(weakMinorRelayFinalPass&&opener&&d===3)
