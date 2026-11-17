@@ -218,7 +218,7 @@ function assessReverse(shape, honors) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
-// 18 HPS, 5-4 shape: reverse is allowed without an agreed trump suit.
+// 18 HTP, 5-4 shape: reverse is allowed without an agreed trump suit.
 {
   const item = assessReverse(
     { C: 1, D: 5, H: 3, S: 4 },
@@ -226,7 +226,7 @@ function assessReverse(shape, honors) {
   );
   assert.equal(item.bedomning, 'rätt');
   assert.equal(item.htp, 18, '5-4 without 6+ suit or 5-5 has no STP');
-  assert.match(item.motivering, /18 HPS/);
+  assert.match(item.motivering, /18 HTP/);
 }
 
 // 17 HP, 5-4 shape: singleton/doubleton elsewhere must not create STP.
