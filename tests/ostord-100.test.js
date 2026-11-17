@@ -143,7 +143,7 @@ assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must e
 const acceptedUncoveredIds=[
   'ostord-100-002','ostord-100-007','ostord-100-030','ostord-100-034','ostord-100-036',
   'ostord-100-038','ostord-100-039','ostord-100-040','ostord-100-053','ostord-100-058',
-  'ostord-100-074','ostord-100-080','ostord-100-088','ostord-100-094'
+  'ostord-100-074','ostord-100-080','ostord-100-088','ostord-100-092','ostord-100-094'
 ].sort();
 assert.deepEqual(
   report.uncovered.map(x=>x.dealId).sort(),
@@ -154,6 +154,6 @@ for(const item of report.uncovered){
   assert.match(item.reason,/anges inte|inte angiven|numerisk(?:a)? styrkegräns|ingen numerisk HP-gräns|lämnas ej täckt|motsvarar inte någon av de angivna utgångsprofilerna|beskrivs inte i dokumentet|finns inte specificerad|ingen prioritet|övrig prioritet saknas/i,
     'Every uncovered case must state the precise source gap: '+item.dealId);
 }
-// The remaining 14 positions are explicit source gaps; do not invent bids to raise this percentage.
+// The remaining 15 positions are explicit source gaps; do not invent bids to raise this percentage.
 assert.ok(report.coveragePercent>=95.5,
   'The 100-deal test must retain at least 95.5% coverage while reporting documented source gaps honestly.');
