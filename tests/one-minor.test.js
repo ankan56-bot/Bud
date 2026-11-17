@@ -136,14 +136,14 @@ test('1♣–1♦–2♦: opener with 12–16 htp and four-card diamond support 
 
 test('1♣–1♦–3♦: opener with 17–19 htp and four-card support jumps to 3♦',()=>{
   const opener=hand({C:'AKJ2',D:'AKQ2',H:'J2',S:'234'});
-  const responder=hand({D:'KQJ9',C:'456',H:'567',S:'234'});
+  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,'3D');
 });
 
 test('20+ htp with minor support remains an explicit source gap when 3NT exploration is undefined',()=>{
   const opener=hand({C:'AKQJ2',D:'AKQ2',H:'2',S:'234'});
-  const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
+  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,null);
   assert.equal(result.sourceGap,true);
@@ -151,7 +151,7 @@ test('20+ htp with minor support remains an explicit source gap when 3NT explora
 
 test('1♣–1♦: own six-card club suit uses the 12–16 HTP rebid range',()=>{
   const opener=hand({C:'AKQ987',D:'K',H:'234',S:'234'});
-  const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
+  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,'2C');
   assert.match(result.why,/12–16 HTP/);
@@ -159,7 +159,7 @@ test('1♣–1♦: own six-card club suit uses the 12–16 HTP rebid range',()=>
 
 test('1♣–1♦: own six-card club suit uses the 17–19 HTP simple jump range',()=>{
   const opener=hand({C:'AKQJ98',D:'AK',H:'234',S:'23'});
-  const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
+  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,'3C');
   assert.match(result.why,/17–19 HTP/);
@@ -167,7 +167,7 @@ test('1♣–1♦: own six-card club suit uses the 17–19 HTP simple jump range
 
 test('20+ HTP with a long minor and no side suit is not assigned an invented 5-minor contract',()=>{
   const opener=hand({C:'AKQJ98',D:'AKQ',H:'23',S:'23'});
-  const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
+  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,null);
   assert.equal(result.sourceGap,true);
@@ -175,7 +175,7 @@ test('20+ HTP with a long minor and no side suit is not assigned an invented 5-m
 
 test('1♣–1♦–1♥ is a natural one-level second suit, not a reverse',()=>{
   const opener=hand({C:'AKQ98',H:'KQJ2',D:'23',S:'45'});
-  const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
+  const responder=hand({D:'KQJ9',C:'456',H:'567',S:'678'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,'1H');
 });
@@ -197,7 +197,7 @@ test('1♦–1♥–1♠ is a natural one-level second suit, not a reverse',()=>
 
 test('equally long side suits with no source priority are left uncovered',()=>{
   const opener=hand({C:'AKQ98',H:'KQJ2',S:'QJ98'});
-  const responder=hand({D:'KQJ2',C:'987',H:'234',S:'567'});
+  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,null);
   assert.equal(result.sourceGap,true);
