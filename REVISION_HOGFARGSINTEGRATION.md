@@ -80,4 +80,4 @@ Repo-grenen har CI-workflow och riktade tester. Den här läsningen har verifier
 
 ## Slutbedömning
 
-Arkitekturen är redan närmare målet än vad en ny 1♥/1♠-modul skulle antyda. Nästa kodändring ska vara en riktad korrigering av den kända splinterkonflikten och dess tester, följd av integrationstester. Först därefter ska den återstående budkartan fyllas på.
+Arkitekturen är redan närmare målet än vad en ny 1♥/1♠-modul skulle antyda. Splinterkonflikten är nu synkroniserad med användarbeslutet. Nästa kodsteg är att verifiera integrationerna och därefter fylla endast de luckor som återstår i budkartan.
