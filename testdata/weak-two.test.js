@@ -18,6 +18,12 @@ function completeDeal(north, south) {
   const rest = deck.filter(card => !used.includes(card));
   return { N:north, E:rest.slice(0,13), S:south, W:rest.slice(13,26) };
 }
+function fillerHand(usedHand) {
+  const deck = ["S","H","D","C"].flatMap(suit =>
+    Array.from({length:13}, (_,i) => suit + (14-i))
+  );
+  return deck.filter(card => !usedHand.includes(card)).slice(0,13);
+}
 function node(hands, bids, index) {
   return Rattning.nodeFor({ hands, dealer:"N", bids }, index);
 }
@@ -34,9 +40,7 @@ function weakTwoHand(suit, ranks="AK9876") {
 test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and a good suit", () => {
   for (const suit of ["D","H","S"]) {
     const opener = weakTwoHand(suit);
-    const hands = completeDeal(opener, [
-      ...cards("C","AKQ"), ...cards("D","345"), ...cards("H","345"), ...cards("S","34")
-    ]);
+    const hands = completeDeal(opener, fillerHand(opener));
     const expected = "2" + suit;
     const result = node(hands,[{s:"N",c:expected}],0);
     assert.equal(result.exp,expected,suit);
@@ -46,9 +50,7 @@ test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and a goo
 
 test("a six-card club suit is not treated as a weak two opening", () => {
   const opener = weakTwoHand("C");
-  const hands = completeDeal(opener,[
-    ...cards("S","AKQ"), ...cards("H","345"), ...cards("D","345"), ...cards("C","34")
-  ]);
+  const hands = completeDeal(opener,fillerHand(opener));
   const result = node(hands,[{s:"N",c:"P"}],0);
   assert.equal(result.exp,"P");
 });
@@ -59,8 +61,8 @@ test("responder's 3-level raise with 3+ support is preemptive, not an invit", ()
     ...cards("D","234"), ...cards("C","2")
   ];
   const responder = [
-    ...cards("H","Q32"), ...cards("S","456"),
-    ...cards("D","K45"), ...cards("C","6789")
+    ...cards("H","Q32"), ...cards("S","567"),
+    ...cards("D","K89"), ...cards("C","6789")
   ];
   const hands = completeDeal(opener,responder);
   const bids = [{s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3H"}];
@@ -74,7 +76,7 @@ test("2NT response is an invit only with 9-10 HCP and at least two-card support"
   const opener = weakTwoHand("H");
   const supportedResponder = [
     ...cards("H","Q2"), ...cards("S","AK"),
-    ...cards("D","Q345"), ...cards("C","678")
+    ...cards("D","56789"), ...cards("C","6789")
   ];
   const supportedHands = completeDeal(opener,supportedResponder);
   const supported = node(supportedHands,[
@@ -84,7 +86,7 @@ test("2NT response is an invit only with 9-10 HCP and at least two-card support"
 
   const unsupportedResponder = [
     ...cards("H","2"), ...cards("S","AK"),
-    ...cards("D","Q345"), ...cards("C","6789")
+    ...cards("D","Q56789T"), ...cards("C","6789")
   ];
   const unsupportedHands = completeDeal(opener,unsupportedResponder);
   const unsupported = node(unsupportedHands,[
