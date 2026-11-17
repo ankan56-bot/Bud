@@ -49,3 +49,8 @@ Efter uppdatering av rättningsmotorn till v8.0 identifierades fem ytterligare p
 | ostord-100-092 | 202614466 | 2♣ – pass – 2♦ – pass – 2♥ – pass – 3♦ – pass | Tredje budet efter stark 2♣-öppning är inte specificerat i den granskade rutan. |
 
 Den deterministiska 100-givarskörningen omfattar 526 beslut: 504 täckta och 22 ej täckta (95,8 %). Den har 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga auktioner, 0 ofärdiga auktioner och 0 kortintegritetsfel. De fem nya positionerna ovan är en del av de 22 ej täckta; de ska granskas mot lathunden innan någon regel införs.
+
+
+### Förtydligande – Stenberg och obligatorisk utgång
+
+En tidigare Stenbergposition (ostord-100-044) hade flera singeltoner och saknade fortfarande källstöd för prioriteringen mellan dem. Den råa Stenberggrenen är därför fortsatt EJ TÄCKT. När efterhandsanalysen samtidigt kan verifiera minst 8-korts hjärterfit och projektets 26-poängsgräns får den separata utgångskontrollen ändå rekommendera 4♥. Den ursprungliga Stenberg-källuckan flaggas och loggas fortfarande; ingen singeltonsprioritet har hittats på. Livebudgivningen använder inte denna efterhandsräddning.
