@@ -203,4 +203,62 @@ test('equally long side suits with no source priority are left uncovered',()=>{
   assert.equal(result.sourceGap,true);
 });
 
+
+test('1♣–1♥–2♠–3♣: opener stops in 3♣ when the weak preference does not reach 5♣',()=>{
+  const opener=hand({S:'K984',H:'AQ',D:'A',C:'QJT972'});
+  const responder=hand({S:'752',H:'T654',D:'T62',C:'AK6'});
+  const hands=completeDeal(opener,responder);
+  const bids=[
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2S'},{s:'E',c:'P'},{s:'S',c:'3C'},{s:'W',c:'P'},{s:'N',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},8);
+  assert.equal(result.exp,'P');
+});
+
+test('1♣–1♦–2♣: an unbalanced 13-hp hand without club support is not automatically invited with 2NT',()=>{
+  const opener=hand({S:'AJ5',H:'832',D:'K',C:'QJT543'});
+  const responder=hand({S:'Q3',H:'A97',D:'AQJ9732',C:'2'});
+  const hands=completeDeal(opener,responder);
+  const bids=[{s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},{s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'P'}];
+  const result=R.nodeFor({hands,dealer:'N',bids},6);
+  assert.equal(result.exp,null);
+  assert.equal(result.sourceGap,true);
+});
+
+test('1♣–1♦–2♣: balanced 10–12 hp, two-card club support and side-suit controls may invite with 2NT',()=>{
+  const opener=hand({S:'J54',H:'K32',D:'4',C:'AKQ987'});
+  const responder=hand({S:'A32',H:'QJ6',D:'AJT32',C:'65'});
+  const hands=completeDeal(opener,responder);
+  const bids=[{s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},{s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'P'}];
+  const result=R.nodeFor({hands,dealer:'N',bids},6);
+  assert.equal(result.exp,'2N');
+});
+
+test('1♣–1♦–1♠–3♦: opener third bid remains an explicit source gap when no continuation is defined',()=>{
+  const opener=hand({S:'AQ42',H:'9',D:'AT6',C:'QT976'});
+  const responder=hand({S:'JT6',H:'AJT',D:'8543',C:'AK5'});
+  const hands=completeDeal(opener,responder);
+  const bids=[
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
+    {s:'N',c:'1S'},{s:'E',c:'P'},{s:'S',c:'3D'},{s:'W',c:'P'},{s:'N',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},8);
+  assert.equal(result.exp,null);
+  assert.equal(result.sourceGap,true);
+});
+
+test('1♣–1♦–2♣–2NT: opener continuation without the required heart stop is logged',()=>{
+  const opener=hand({S:'AJ5',H:'832',D:'K',C:'QJT543'});
+  const responder=hand({S:'Q3',H:'A97',D:'AQJ9732',C:'2'});
+  const hands=completeDeal(opener,responder);
+  const bids=[
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},{s:'N',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},8);
+  assert.equal(result.exp,null);
+  assert.equal(result.sourceGap,true);
+});
+
 console.log('1♣/1♦ targeted module tests: passed.');
