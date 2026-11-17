@@ -39,7 +39,7 @@ Följande tester finns på den granskade grenen:
 
 Testfilerna visar att stora delar redan finns. Att köra eller utöka dessa tester är nästa verifieringssteg; den här dokumentrevisionen gör inget anspråk på att testerna har körts i denna session.
 
-## 3. Avvikelser som måste hanteras före ny funktionalitet
+## 3. Verifierade resultat och kvarstående avvikelser
 
 ### A. Splinter – konflikt identifierad och korrigerad
 
@@ -50,20 +50,26 @@ Testfilerna visar att stora delar redan finns. Att köra eller utöka dessa test
 
 Detta synkroniserar runtime med ett redan fattat användarbeslut; det inför ingen ny systemregel.
 
-### B. Regelstatus för RKC måste läsas från aktuell källa/status
+### B. RKC-överlämning efter Stenberg – korrigerad och testad
 
-Den aktuella `SLAMKOMPLEX_4NT_STATUS.md` och `tests/rkc-nordisk-standard-major.test.js` anger Nordisk standards svarstabell: 5♣ = 0/3 och 5♦ = 1/4, med 5♥/5♠ för två nyckelkort beroende på trumfdam. Äldre anteckningar om 1430 förekommer i historiken. Vid integration ska endast den aktuella, källkontrollerade RKC-implementationen i `slamlogik.js` användas. 1M-koden ska inte ha en egen RKC-tabell.
+Revisionens första CI-körning visade att 4NT efter 1♣–2NT–3♣ inte identifierades som RKC, eftersom trumfen inte kunde härledas från Stenbergsekvensen. `slamlogik.js` känner nu igen 1M–2NT–3x–4NT först efter öppnarens beskrivande 3-nivååterbud, och `budbeslut.js` klassificerar det aktuella 4NT-budet med hela den offentliga sekvensen. Stenberg- och RKC-testerna passerar. Ingen RKC-tabell har kopierats in i 1M-modulen.
 
-### C. Testkörningsstatus är inte fastställd av denna revision
+### C. Fokuserad verifiering – godkänd
 
-Repo-grenen har CI-workflow och riktade tester. Den här läsningen har verifierat filernas existens och kodstruktur, men inte exekverat Node-testsviten eller bekräftat aktuell GitHub Actions-status. Ingen ny täckningsprocent ska rapporteras förrän testkörningens faktiska resultat finns.
+Senaste fokuserade CI-körning har godkänt Stenberg 2NT, trumfstöd, högfärgs-RKC, 100-givarsprovet för 1♥/1♠ och 3M-invit. I 100-givarsprovet är 100/100 givar giltiga; 527 beslut gav 525 täckta och 2 ej täckta (99,6 %), utan undantag, olagliga rekommendationer, ogiltiga/ofärdiga auktioner eller kortintegritetsfel. 3M-invit: 4/4 tester godkända.
+
+De två källuckorna är öppnarens återbud efter `1♥–2NT` respektive `1♠–2NT`, där handen inte passar någon av de uttryckligen dokumenterade Stenbergprofilerna. Seeds 202612662 och 202613691 finns i `LOGG_BUDREGLER.md`; inga återbud har hittats på.
+
+### D. Full CI – separat befintlig avvikelse
+
+Den fullständiga workflowen passerar de fokuserade högfärgs-/Stenberg-/RKC-testerna men stannar senare i den breda ostörda korpusen vid `tests/ostord-100.test.js`. Testets förväntade lista över ej täckta 1NT-/2♣-positioner avviker från den faktiska listan. Detta ligger utanför de ändrade 1♥/1♠-vägarna. Baslinjen har inte ändrats för att få CI grönt; den separata korpusavvikelsen behöver egen granskning.
 
 ## 4. Rekommenderad integrationsplan
 
 1. Kör berörda Stenberg-/trumfstödtester efter splinterkorrigeringen och kontrollera att inga äldre tester fortfarande förutsätter aktiv splinter.
 2. Lägg till ett integrations-/kontrakttest som bevisar att 1♥ och 1♠ båda delegerar till samma gemensamma svar-/återbudsregler, utan duplicerade specialfall.
-3. Lägg till uttryckliga överlämningstester:
-   - 1M–1NT → gemensam `reb1()`-logik och befintliga 1NT-fortsättningar.
+3. Behåll de nu godkända överlämningstesterna:
+   - 1M–1NT → gemensam `reb1()`-logik och befintliga fortsättningar.
    - 1M–2M → befintlig trumfstöds-/invitlogik.
    - 1M–2NT → `stenberg.js`.
    - Fastställd trumf + 4NT → `slamlogik.js`.
