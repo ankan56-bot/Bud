@@ -431,21 +431,19 @@ var Rattning = (function(){
     if(call==='4N'){
       return {exp:call,alt:[],why:'4NT är essfråga med öppningsfärgen som trumf enligt lathundens sida 27.',means:means,conv:'Blackwood 5 ess',soft:true};
     }
+    if(isBid(call)&&s!==o&&s!=='N'&&call===jump(s,oc)){
+      if(stp>=19&&L[s]<=1)return {exp:call,alt:[],why:'Hopp i ny färg är Splinter och visar minst 19 stp.',means:means,conv:'Splinter',soft:true};
+      if(stp<19)return NC('Splinter efter svag tvåöppning kräver minst 19 stp; handen har '+stp+' stp.','', 'Splinter');
+      if(L[s]>1)return NC('Hopp i ny färg är Splinter, men den hoppade färgen är inte singel eller renons.','', 'Splinter');
+    }
     if(isGame(call)){
       return {exp:call,alt:[],why:'Direkt utgångsbud är slutbud enligt lathundens sida 27.',means:means,conv:'svag tvåa',soft:true};
     }
-    if(isBid(call)&&s!==o&&s!=='N'){
-      if(call===lowest(s,oc)){
-        if(hp<15)return NC('Ny färg efter svag tvåöppning kräver minst 15–16 hp enligt lathunden; handen har '+hp+' hp.','', 'svag tvåa');
-        if(L[s]>=6)return {exp:call,alt:[],why:'Ny färg med minst 15 hp och sexkortsfärg. Lathunden anger att ny färg ofta är sexkortig och är rondkrav.',means:means,conv:'svag tvåa',soft:true};
-        if(L[s]===5)return NC('Ny färg visar minst 15–16 hp och är rondkrav. Lathunden säger ofta sexkortsfärg men anger inte om femkortsfärg alltid är tillåten; femkortsfärgen sparas för expertbedömning.','', 'svag tvåa');
-        return NC('Ny färg efter svag tvåöppning är ofta sexkortig och kräver minst 15–16 hp; handen har färre än fem kort i färgen.','', 'svag tvåa');
-      }
-      if(call===jump(s,oc)){
-        if(stp>=19&&L[s]<=1)return {exp:call,alt:[],why:'Hopp i ny färg är Splinter och visar minst 19 stp.',means:means,conv:'Splinter',soft:true};
-        if(stp<19)return NC('Splinter efter svag tvåöppning kräver minst 19 stp; handen har '+stp+' stp.','', 'Splinter');
-        return NC('Hopp i ny färg är Splinter, men den hoppade färgen är inte singel eller renons.','', 'Splinter');
-      }
+    if(isBid(call)&&s!==o&&s!=='N'&&call===lowest(s,oc)){
+      if(hp<15)return NC('Ny färg efter svag tvåöppning kräver minst 15–16 hp enligt lathunden; handen har '+hp+' hp.','', 'svag tvåa');
+      if(L[s]>=6)return {exp:call,alt:[],why:'Ny färg med minst 15 hp och sexkortsfärg. Lathunden anger att ny färg ofta är sexkortig och är rondkrav.',means:means,conv:'svag tvåa',soft:true};
+      if(L[s]===5)return NC('Ny färg visar minst 15–16 hp och är rondkrav. Lathunden säger ofta sexkortsfärg men anger inte om femkortsfärg alltid är tillåten; femkortsfärgen sparas för expertbedömning.','', 'svag tvåa');
+      return NC('Ny färg efter svag tvåöppning är ofta sexkortig och kräver minst 15–16 hp; handen har färre än fem kort i färgen.','', 'svag tvåa');
     }
     return NC('Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.','', 'svag tvåa');
   }
@@ -1577,7 +1575,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.2'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.3'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
