@@ -2,6 +2,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const Rattning = require("../rattningsmotor.js");
+const analysisLibrary = require("../analysbibliotek.json");
 
 const RANKS = { A:14, K:13, Q:12, J:11, T:10 };
 function cards(suit, ranks) {
@@ -374,4 +375,20 @@ test("responses after a four-level preempt are uncovered unless explicitly docum
   ],2);
   assert.equal(result.exp,null);
   assert.match(result.why,/inte definierade/);
+});
+
+test("weak-two analysis trees are restricted to exactly six cards", () => {
+  const expected = {
+    T34_SVAG_TVA_D: "D",
+    T35_SVAG_TVA_H: "H",
+    T36_SVAG_TVA_S: "S"
+  };
+  for (const [id,suit] of Object.entries(expected)) {
+    const tree=analysisLibrary.trees.find(item=>item.id===id);
+    assert.ok(tree,id);
+    const root=tree.nodes.find(item=>item.id===tree.root);
+    assert.equal(root.handConditions.suitLengths[suit].min,6,id);
+    assert.equal(root.handConditions.suitLengths[suit].max,6,id);
+    assert.ok(root.handConditions.manual.some(item=>/färgkvaliteten/i.test(item)),id);
+  }
 });
