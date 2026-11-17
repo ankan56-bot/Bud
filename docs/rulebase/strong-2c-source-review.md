@@ -77,7 +77,7 @@ Lathunden visar även öppnarens tredje bud efter:
 - 2♣–2♦–3♣–3♦: 3♦/3♠ med minst 5-4-fördelning; 3♥ med minst 6-kortsfärg; dessutom 3NT naturligt, 4♣ trumfstöd och 4NT essfråga med klöver som trumf.
 - 2♣–2♦–3♥–3♠: 3♠ med minst 6-kortsfärg; 3NT naturligt, uttryckligen inte jämn hand; 4♣/4♦ med minst 5-4-fördelning; 4♥ med 3+ hjärter och minimum; 4NT essfråga med hjärter som trumf.
 
-Fördelningsbuden implementeras endast när en enda profil passar. När flera budprofiler överlappar returneras ej täckt. Villkoren för naturligt 3NT, trumfstöd och essfråga är inte fullt kvantifierade i tabellerna och ska inte fyllas i med antaganden.
+Efter 2NT-Stayman implementeras 5+♥/4+♠ respektive 5+♠/4+♥ som kravbud när endast en profil passar. Efter överföring implementeras 3NT som icke-krav med exakt femkortshögfärg när ingen 4+ lågfärg/slaminvit överlappar. Fördelningsbuden implementeras endast när en enda profil passar. När flera budprofiler överlappar returneras ej täckt. Villkoren för naturligt 3NT, trumfstöd och essfråga är inte fullt kvantifierade i tabellerna och ska inte fyllas i med antaganden.
 
 ### Tryckt sida 26
 Sidan innehåller svarshandens tredje bud efter stark 2♣, bland annat 2-kortsstöd, 3NT utan stöd, kontrollbud med hjärter-/spaderstöd och STP-intervall (5–7 eller 8+ stp). Dessa är mer detaljerade Plus-/Lathundstillägg än Nordisk Standards grundsvar. De har inte översatts till HP/HTP och implementeras inte utan separat systembeslut.
