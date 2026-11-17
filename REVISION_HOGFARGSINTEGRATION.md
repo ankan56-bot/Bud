@@ -4,7 +4,7 @@ Datum: 2026-11-17
 Arbetsgren: `work/undisturbed-architecture`  
 Granskad commit: `878e7ed8dbf5a0554daecfc6f7e728c98623fe87`  
 Bas: `main` (`cb7acefb9ca0a822b04a9bec859786437e0c23be`)  
-Status: endast revision; inga budregler eller runtime-filer ändrade.
+Status: implementation och fokuserad verifiering genomförd; fem källluckor är uttryckligen kvar som expertfrågor. `main` är orörd.
 
 ## Slutsats
 
@@ -66,17 +66,17 @@ De fem källuckorna är sparade med alla fyra händer i `testdata/one_major_200_
 
 Den fullständiga workflowen passerar de fokuserade högfärgs-/Stenberg-/RKC-testerna men stannar senare i den breda ostörda korpusen vid `tests/ostord-100.test.js`. Testets förväntade lista över ej täckta 1NT-/2♣-positioner avviker från den faktiska listan. Detta ligger utanför de ändrade 1♥/1♠-vägarna. Baslinjen har inte ändrats för att få CI grönt; den separata korpusavvikelsen behöver egen granskning.
 
-## 4. Rekommenderad integrationsplan
+## 4. Slutkontroll av integrationsvägar
 
-1. Kör berörda Stenberg-/trumfstödtester efter splinterkorrigeringen och kontrollera att inga äldre tester fortfarande förutsätter aktiv splinter.
-2. Lägg till ett integrations-/kontrakttest som bevisar att 1♥ och 1♠ båda delegerar till samma gemensamma svar-/återbudsregler, utan duplicerade specialfall.
-3. Behåll de nu godkända överlämningstesterna:
-   - 1M–1NT → gemensam `reb1()`-logik och befintliga fortsättningar.
-   - 1M–2M → befintlig trumfstöds-/invitlogik.
-   - 1M–2NT → `stenberg.js`.
-   - Fastställd trumf + 4NT → `slamlogik.js`.
-4. Kartlägg därefter varje återstående 1M-sekvens mot befintlig kod och test. Implementera endast verkliga luckor, med samma gemensamma funktion för H/S.
-5. Kör full CI, riktade tester och 100-givarsprovet. Alla källuckor ska finnas kvar i `EJ_TACKTA_LOGG.md`/runtime-loggen; inga antagna bud läggs till.
+Följande överlämningar är implementerade och har passerat riktade regressionstester:
+- 1M–1NT → gemensam `ettoppningssvar.js:reb1()`-logik.
+- 1M–2M → befintlig trumfstöds-/invitlogik.
+- 1M–2NT → separat `stenberg.js`.
+- Fastställd trumf + 4NT → gemensam `slamlogik.js`.
+- 1♥ och 1♠ använder samma gemensamma svar-/återbudsregler; `hogfargsbudgivning.js` är endast adapter.
+- Splinter är pausad enligt uttryckligt systembeslut och har ingen aktiv rekommendationsväg.
+
+200-givarsprovet och de fokuserade Stenberg-, trumfstöds-, 3M-invit- och RKC-testerna är godkända. Den fulla workflowen är däremot inte grön eftersom den separata breda ostörda korpusen (`tests/ostord-100.test.js`) har en avvikelse i sin lista över ej täckta 1NT-/2♣-positioner. Den baslinjen har inte ändrats.
 
 ## 5. Skyddsräcken
 
@@ -89,3 +89,13 @@ Den fullständiga workflowen passerar de fokuserade högfärgs-/Stenberg-/RKC-te
 ## Slutbedömning
 
 Arkitekturen är redan närmare målet än vad en ny 1♥/1♠-modul skulle antyda. Splinterkonflikten är nu synkroniserad med användarbeslutet. Nästa kodsteg är att verifiera integrationerna och därefter fylla endast de luckor som återstår i budkartan.
+
+## 6. Slutstatus – 1♥/1♠ från öppning till utgång/slam (2026-11-17)
+
+**Implementationens status: färdig för alla sekvenser som stöds av det granskade regelunderlaget.** Ingen separat högfärgsmotor behövs; gemensam kod används för hjärter och spader. 200 deterministiska givare har gett 1 033 täckta beslut av 1 038 (99,5 %), utan tekniska undantag, olagliga rekommendationer, ogiltiga/ofärdiga auktioner eller kortintegritetsfel.
+
+De fem ej täckta positionerna är avsiktliga källluckor och finns med fullständiga händer, seed och motivering i `testdata/one_major_200_uncovered_2026-11-17.json` samt i `LOGG_BUDREGLER.md`. De gäller två öppnarhänder utanför de dokumenterade Stenbergåterbuden, en renons efter Stenberg och två 20+ HTP-lägen med lågfärgsstöd där 3NT-/5-lågfärgssekvensen saknar fullständigt källstöd. De ska besvaras av expert eller genom ytterligare auktoritativt PDF-underlag; ingen regel har hittats på.
+
+**CI-status:** alla relevanta fokuserade steg passerar, inklusive 200-givarsprovet. Full workflow är fortsatt röd endast vid den separat identifierade breda ostörda regressionen i 1NT-/2♣-korpusen. Den avvikelsen har inte maskats eller skrivits om.
+
+**Branch-skydd:** ändringarna ligger kvar på `work/undisturbed-architecture`. `main` har inte ändrats eller mergats. Den här slutstatusen innebär alltså att 1M-modulen är färdig enligt tillgängligt källstöd, inte att de fem dokumenterade expertfrågorna har fått påhittade svar.
