@@ -129,15 +129,20 @@
     // 2NT shows exactly four spades; a new suit is natural and game-forcing
     // (5+ major or 4+ minor). The same natural GF principle applies after 2♠.
     if(reply==='2H'&&L.S===4){
-      // The 2NT/3NT route shows four spades. If a 4+ minor is also
-      // available as a natural game-forcing new suit, the source gives
-      // no priority between these distinct continuations.
+      // User-confirmed priority: the four-card major continuation takes
+      // priority over a competing 4+ club game-forcing new suit.
+      // After 2H, 2NT is the defined route showing exactly four spades.
+      if(L.C>=4 && L.H<5 && L.D<4){
+        return {exp:'2N',alt:[],why:'Exakt fyra spader efter Stayman 2♥: högfärgsvisningen har prioritet framför den konkurrerande 4+♣-fortsättningen. 2NT visar fyra spader.',means:means,conv:'Stayman',ruleStatus:'user_confirmed'};
+      }
+      // Other overlapping routes (notably a simultaneous diamond or
+      // heart continuation) remain uncovered until their priority is confirmed.
       if(L.H>=5||L.C>=4||L.D>=4){
         var overlapRoutes=[];
         if(L.H>=5)overlapRoutes.push('3H-invit');
         if(L.C>=4)overlapRoutes.push('3C-utgångskrav');
         if(L.D>=4)overlapRoutes.push('3D-utgångskrav');
-        return NC('Exakt fyra spader ger möjlighet till 2NT/3NT enligt Nordisk standard s. 4, men handen uppfyller också följande fortsättningsprofil(er): '+overlapRoutes.join(', ')+'. Källan anger ingen prioritet mellan dessa fortsättningar; lämnas EJ TÄCKT.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';if(c==='3N')return 'Visar också exakt fyra spader efter Stayman 2♥.';if(c==='3H'&&L.H>=5)return 'Invit i öppnarens visade hjärter.';if((c==='3C'&&L.C>=4)||(c==='3D'&&L.D>=4))return 'Naturlig lågfärg med 4+ kort och utgångskrav.';return null},'Stayman',true);
+        return NC('Exakt fyra spader ger möjlighet till 2NT/3NT enligt Nordisk standard s. 4, men handen uppfyller också följande fortsättningsprofil(er): '+overlapRoutes.join(', ')+'. Endast högfärg företräde framför klöver är fastställt; övrig prioritet saknas.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';if(c==='3N')return 'Visar också exakt fyra spader efter Stayman 2♥.';if(c==='3H'&&L.H>=5)return 'Invit i öppnarens visade hjärter.';if((c==='3C'&&L.C>=4)||(c==='3D'&&L.D>=4))return 'Naturlig lågfärg med 4+ kort och utgångskrav.';return null},'Stayman',true);
       }
       return NC('Exakt fyra spader efter Stayman 2♥ är visat. Både 2NT (invit) och 3NT visar fyra spader enligt Nordisk standard s. 4. Källan anger inte svarshandens numeriska styrkegräns för valet mellan dessa fortsättningar. Ingen numerisk HP-gräns eller egen HP-regel överförs hit.',function(c){if(c==='2N')return 'Invit med exakt fyra spader; öppnaren visar 4-4 i högfärgerna med 3♠/4♠ enligt styrka.';if(c==='3N')return 'Visar också exakt fyra spader efter Stayman 2♥.';return null},'Stayman',true);
     }
