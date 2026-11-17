@@ -54,3 +54,22 @@ Den deterministiska 100-givarskörningen omfattar 526 beslut: 504 täckta och 22
 ### Förtydligande – Stenberg och obligatorisk utgång
 
 En tidigare Stenbergposition (ostord-100-044) hade flera singeltoner och saknade fortfarande källstöd för prioriteringen mellan dem. Den råa Stenberggrenen är därför fortsatt EJ TÄCKT. När efterhandsanalysen samtidigt kan verifiera minst 8-korts hjärterfit och projektets 26-poängsgräns får den separata utgångskontrollen ändå rekommendera 4♥. Den ursprungliga Stenberg-källuckan flaggas och loggas fortfarande; ingen singeltonsprioritet har hittats på. Livebudgivningen använder inte denna efterhandsräddning.
+
+
+## Ostörd slumpmässig 500-givarsaudit – 2026-11-18
+
+En ny, reproducerbar körning med 500 unika givar genomfördes i ostörd budgivning. Båda Nord/Syd-platserna fattar beslut med budmotorn; Öst/Väst passar enligt träningslägets ostörda premiss. Facitlinjen stannar vid första ej täckta beslut och hittar inte på pass eller senare bud.
+
+- 2 617 beslutspunkter granskade.
+- 2 545 täckta beslut (97,2 %).
+- 72 ej täckta beslut kvarstår; de är grupperade efter källucka och innehåller fullständig giv, plats, auktion och motivering.
+- 0 tekniska undantag, 0 olagliga rekommendationer, 0 ogiltiga auktioner, 0 ofärdiga auktioner och 0 kortintegritetsfel.
+- Detaljerad JSON-rapport med alla 72 positioner finns som artefakten **ostord-random-500-audit** i [GitHub Actions-körning #44203487114](https://github.com/ankan56-bot/Bud/actions/runs/44203487114).
+
+### Fel som hittades och rättades i samband med körningen
+
+- Facitmotorn avslutade tidigare en kontraktsbudgivning först efter fyra pass. Den avslutar nu korrekt efter tre pass när ett kontrakt har bjudits; fyra pass gäller fortfarande när inget kontrakt har bjudits.
+- En 1NT-fortsättning med ny färg på 3-nivån (utgångskrav) kunde felaktigt hamna i en generell ej-täckt gren. Öppnarens fortsättning routas nu till regeln att visa extra längd eller bjuda sang.
+- Stayman-prioriteringen mellan exakt fyra spader och konkurrerande 4+ klöver är fastställd i motorn och har ett regressionstest.
+
+De 72 återstående positionerna har inte fyllts med gissade bud. De ligger kvar som ej täckta för källgranskning. Den separata fasta 36-givarskorpusen täcker nu 157 av 165 beslut (95,2 %).
