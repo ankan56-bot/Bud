@@ -159,7 +159,7 @@
      // responder has 13+ hp, is unbalanced, and has neither two-card
      // support nor a documented stopper profile. Preserve the gap.
      if(hand.hp>=13&&!hand.bal&&support<2&&
-        SU.some(function(s){return s!==o&&s!==r&&hand.L[s]>=6;}))
+        SU.some(function(s){return s!==o&&hand.L[s]>=6;}))
        return NC('13+ hp, obalanserad hand och lång sidofärg utan minst två korts stöd: 2NT saknar den dokumenterade balanserade/stödprofilen. Exakt naturlig fortsättning lämnas ej täckt.',function(){return null},'svarshandens 2:a bud',true);
      if(hand.bal&&hand.hp>=10&&hand.hp<=12&&(support<2||!controls))
        return NC('2NT efter öppnarens 6+ lågfärg kräver balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna. Handen uppfyller inte hela profilen.',function(){return null},'svarshandens 2:a bud',true);
