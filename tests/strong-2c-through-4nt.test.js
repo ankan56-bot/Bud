@@ -101,6 +101,21 @@ assert.equal(noNumericSlamThreshold.exp,null);
 assert.equal(noNumericSlamThreshold.sourceGap,true);
 
 
+
+const stayman54=twoClub.responderAfter2c2ntStayman({L:{C:2,D:2,H:5,S:4}},'3D');
+assert.equal(stayman54.exp,'3H','5 hearts and 4 spades after 3D Stayman answer is forcing 3H');
+const stayman55=twoClub.responderAfter2c2ntStayman({L:{C:1,D:2,H:5,S:5}},'3D');
+assert.equal(stayman55.exp,null,'5-5 in the majors fits both forcing routes');
+assert.equal(stayman55.sourceGap,true);
+const staymanSpadeInvite=twoClub.responderAfter2c2ntStayman({L:{C:2,D:3,H:2,S:4}},'3H');
+assert.equal(staymanSpadeInvite.exp,null,'3S slam invite and 3NT nonforcing share the same four-spade shape without a source strength threshold');
+assert.equal(staymanSpadeInvite.sourceGap,true);
+const transferFiveMajor=twoClub.responderAfter2c2ntTransfer({L:{C:3,D:2,H:5,S:3}},'H');
+assert.equal(transferFiveMajor.exp,'3N','five-card major after transfer can choose non-forcing 3NT when no minor slam shape applies');
+const transferSlamOverlap=twoClub.responderAfter2c2ntTransfer({L:{C:4,D:2,H:5,S:2}},'H');
+assert.equal(transferSlamOverlap.exp,null,'five-card major plus 4-card minor also qualifies for the Slam-referenced route');
+assert.equal(transferSlamOverlap.sourceGap,true);
+
 const R=require('../rattningsmotor.js');
 function makeDeal(north,south){
   const deck=[];for(const suit of ['S','H','D','C'])for(let rank=2;rank<=14;rank++)deck.push(suit+rank);
