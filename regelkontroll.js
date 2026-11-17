@@ -112,12 +112,9 @@
     var gameReached=(currentSuit==='N'&&currentLevel>=3)||
       (maj(currentSuit)&&currentLevel>=4)||
       (!maj(currentSuit)&&currentSuit!=='N'&&currentLevel>=5);
-    var slamTarget='6'+trump;
-
-    if(total>=33&&lv(currentContract)<6&&rk(slamTarget)>rk(currentContract)){
-      var basis=trump==='N'?'sang, endast honnörspoäng':'naturligt visad '+SYM[trump]+'-fit med fördelningspoäng';
-      return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt.'};
-    }
+    // Säkerhetskontrollen får hitta en missad utgång, men får aldrig
+    // hoppa direkt till slam. Slamundersökning går via den separata
+    // 4NT/RKC-modulen när sekvensen har etablerat rätt förutsättningar.
     if(total>=threshold&&!gameReached){
       var target=trump==='N'?'3N':(maj(trump)?'4'+trump:'5'+trump);
       if(rk(target)<=rk(currentContract)){
@@ -126,7 +123,7 @@
       }
       if(!target)return null;
       var thresholdText=trump==='N'?'numerisk sanggräns ej verifierad':(maj(trump)?'26+ spelpoäng med minst 8-korts naturligt visad högfärgsfit':'28+ spelpoäng med minst 8-korts naturligt visad lågfärgsfit');
-      return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'};
+      return {target:target,why:'Partnerskapets sammanlagda styrka är '+total+' poäng. '+thresholdText+' innebär att utgång ska undersökas; pass på ett kontrakt under utgång missar utgång.'+(total>=33?' 33+ poäng kan motivera senare slamundersökning via 4NT/RKC, men inte ett direkt hopp till slam.':'')};
     }
     return null;
   }
