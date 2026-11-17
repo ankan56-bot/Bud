@@ -237,3 +237,16 @@ Alla ovanstående luckor ska ligga kvar som ej bedömda och föras vidare i luck
 - Rättningsmotor 8.5 korrigerar 3-höjningen efter svag tvåa till spärrhöjning (3+ stöd, ej invit) och kräver 2+ stöd för 2NT-invit (9–10 hp).
 - Oklara styrkegränser och fortsättningar dokumenteras som ej täckta i auditrapporten i stället för att fyllas med antaganden.
 - Störd budgivning lämnas helt utanför arbetet.
+
+
+## Källkontroll svaga tvåöppningar – korrigering 2026-11-17
+
+PDF:en `nordisk_standard.pdf` (2012-08-22), sida 4, återfanns i ChatGPT-biblioteket efter den första kodpassningen. Denna PDF-text är auktoritativ och ersätter tidigare notering om att PDF inte fanns tillgänglig.
+
+- 2NT efter svag tvåa är invit med minst 2 stödkort. PDF:en anger ingen hp-gräns för svarshanden; den tidigare 9–10 hp-gränsen på svarshanden är borttagen.
+- 6–8 hp respektive 9–10 hp gäller öppnarens min/max-ombud efter 2NT.
+- Maximum efter 2NT är 3NT/4 högfärg. Efter lågfärgsöppning är återbudet 3NT, inte 4 i lågfärgen.
+- Ny färg med 5+ kort är krav till minst 3 i öppningsfärgen.
+- Hopp i ny färg visar renons och är slaminvit.
+- 3NT är slutbud; 3 i öppningsfärgen är spärrhöjning med 3+ stöd, ej invit.
+- Rättningsmotor 8.6 och utökade tester bygger nu på PDF sida 4. Återstående odefinierade fortsättningar finns i `testdata/weak-two-audit.md`.
