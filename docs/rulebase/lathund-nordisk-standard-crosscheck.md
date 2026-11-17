@@ -76,18 +76,21 @@ Nordisk Standard anger:
 - 3 lå invit med bra 6+ lågfärg; ÖH passar med xx eller xxx i stöd och söker topphonnör.
 - 3NT slutbud.
 
-Lathundens 1NT-tabell innehåller:
-- Pass som svagt svar, 0–5 hp och ingen 5+ högfärg.
-- 2♣ Stayman, 8+ hp.
-- 2♦/2♥ överföringar till 5-korts högfärg.
-- 2♠ lågfärgsfråga, 10+ hp (hänvisning till PRO).
-- 2NT invit, 8–9 hp, ingen högfärg.
-- 3♣/3♦ med lång lågfärg och invitstyrka.
-- Fortsättningar efter Stayman och överföring, bland annat invit, utgångskrav, kortfärg och kontrollbud.
+Lathundens 1NT-tabell på tryckt s. 20 anger:
+- Pass: svagt, ingen 5+ högfärg.
+- 2♣: Stayman, 8+ hp.
+- 2♦/2♥: överföring till minst fem hjärter/spader.
+- 2♠: lågfärgsfråga, 10+ hp, uttryckligen märkt PRO.
+- 2NT: invit, 8–9 hp, ingen högfärg.
+- 3♣/3♦: minst sexkortslågfärg, 7–9 hp.
+- 3♥/3♠: minst sexkortsfärg, ingen kortfärg, 15+ stödpoäng (märkt NYHET).
+- 3NT: 10–15 hp, ingen högfärg.
+
+Tryckt s. 21 visar Staymansvar: 2♦ förnekar fyrkortshögfärg; 2♥ visar minst fyrkortsfärg och kan vara 4–4 i högfärgerna; 2♠ visar minst fyrkorts spader och förnekar fyrkorts hjärter. Fortsättningstabellerna på s. 22–23 skiljer mellan svag hand, invit och utgångskrav och visar bland annat 4-korts sidofärg, kortfärg och slamintresse. Dessa detaljer måste hållas bundna till respektive sekvens och hänvisning.
 
 **Tydlig avvikelse att utreda:** Lathundens 2♠ anges som lågfärgsfråga med 10+ hp, medan Nordisk Standard anger 2♠ som svagt bud med minst 6-kortslågfärg. Detta är inte samma betydelse. Nordisk Standard gäller i grundrättningen tills användaren beslutar om annan konvention.
 
-**Övrigt:** Lathundens Stayman 8+ hp och 2NT 8–9 hp är mer specificerade än Nordisk Standard. De kan komplettera endast om de är förenliga med den befintliga systemdefinitionen. Hänvisningen till PRO för 2♠-lågfärgsfrågan är inte verifierad och är inte automatiskt en systemregel.
+**Övrigt:** Lathundens Stayman 8+ hp, 2NT 8–9 hp och 3-lå 7–9 hp är mer specificerade än Nordisk Standard. De kan komplettera endast om de är förenliga med den befintliga systemdefinitionen. Lathundens 3♥/3♠-svar med 15+ stödpoäng och hänvisningen till PRO för 2♠-lågfärgsfrågan är inte verifierade som grundsystemregler.
 
 ## 5. Starka 2♣
 Vårt valda schema är alltid 2♦ som svar på 2♣. 2♥ som svagt svar (0–4 hp, inget ess) från Lathundens Plus-variant används inte. Se `strong-2c-source-review.md` för den detaljerade jämförelsen av återbud och fortsättningar.
