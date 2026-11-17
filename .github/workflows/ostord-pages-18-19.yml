@@ -1,0 +1,22 @@
+name: Ostörd budgivning – sidor 18–19
+
+on:
+  push:
+    branches:
+      - work/theme-dataset-analysis
+    paths:
+      - 'rattningsmotor.js'
+      - 'tests/ostord-sidor-18-19.test.js'
+      - '.github/workflows/ostord-pages-18-19.yml'
+  workflow_dispatch:
+
+jobs:
+  ostord-pages-18-19:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Kör regressionstester
+        run: node --test tests/ostord-sidor-18-19.test.js
