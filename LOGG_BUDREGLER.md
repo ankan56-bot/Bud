@@ -208,3 +208,23 @@ Kört syntetiska gränsfall direkt mot `Rattning.nodeFor()`, med korrekt normali
 - 26 gemensamma honnörspoäng: 3NT (utgång).
 
 **Slutsats:** De isolerade gränstesterna följer de avsedda intervallen. Ingen ändring av poänggränserna behövs efter detta test. Fortsatt kontroll av budval och handtyper sker i regressionstestet.
+
+
+## 1-färgsöppning – 1NT-svar (arbetslogg 2026-11-17)
+
+Källgrund: **Nordisk standard 2012-08-22, sida 3**. Detta är en avgränsad fortsättning efter 1 i färg–1NT; den får inte blandas ihop med 1NT-öppningens Stayman/överföringar.
+
+### Implementerat enligt källan
+- Öppnarens balanserade hand: 12–14 hp passar på 1NT-svaret; 18–19 hp återbjuder 2NT.
+- Egen 6+ färg utan sidofärg: 12–16 htp på lägsta nivå; 17–19 htp med enkelhopp; 20+ htp till utgång i högfärg.
+- Tvåfärgshand med minst 9 kort: andra färgen på lägsta nivå med 12–17 hp vid 5-4; hopp i andra färgen med 18+ htp och minst 5-4; reverse med 18+ och minst 5-4.
+- Svarshandens undantag efter 1NT: 6–9 hp och egen 6+ färg får återbjudas på lägsta lagliga nivå utan krav. För öppningsfärgen är lägsta återbudsnivå 3; för en ny färg kan det vara 2.
+- Efter öppnarens 2NT (18–19 balanserad) accepteras inviten till utgång med 26+ gemensamma honnörspoäng i sang, eller med minst 8-korts högfärgsfit och 26+ gemensamma spelpoäng. Detta använder parets redan fastställda utgångsgränser. Modulen stannar vid utgång och innehåller inga slamförslag.
+
+### Expertfrågor / ej täckt
+1. Öppnarens tredje bud efter att svarshanden återbjudit egen 6+ färg med 6–9 hp är inte fullständigt beskrivet på sida 3. Fortsättningen ska därför förbli ej täckt tills ett uttryckligt svar finns.
+2. Svarshandens andra bud med 10 hp efter öppnarens färgåterbud saknar ett tydligt separat undantag i källtexten. Ingen ny regel har hittats på.
+3. För 20+ htp med egen 6+ lågfärg utan sidofärg anger den citerade tabellen inte ett lika tydligt slutbud som för högfärg. Lämnas för expertkontroll.
+4. Under nuvarande svarstabell går 1♣–1NT inte att nå naturligt: en 4+ färg kan visas på 1-nivån eller som klöverstöd. Detta bör bekräftas mot parets fullständiga svarssystem innan sekvensen avförs som omöjlig.
+
+Alla ovanstående luckor ska ligga kvar som ej bedömda och föras vidare i luckloggen; de får inte fyllas med antagna budregler.
