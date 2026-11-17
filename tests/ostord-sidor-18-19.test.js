@@ -101,7 +101,7 @@ test('page 19: responder can use 2♠ as fourth suit after third-suit sequence',
 
 
 test('page 18: 3NT after 2NT invite requires 15–17 hp', () => {
-  const hand = ['C14','C13','C9','D14','D13','D9','D8','D7','D6','H14','H13','H9','S12'];
+  const hand = ['C14','C13','C9','C8','C7','D14','D13','D9','D8','D7','H14','H13','S12'];
   const st = state(hand, [
     {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
     {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},
