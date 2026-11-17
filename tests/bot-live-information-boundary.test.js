@@ -38,7 +38,7 @@ assert.equal(liveA.informationBoundary, "own_hand_and_public_auction_only");
 const unsupported = R.decideLive({
   seat:"E",
   dealer:"W",
-  auction:[{s:"W",c:"1H"},{s:"N",c:"P"}],
+  auction:[{s:"W",c:"2C"},{s:"N",c:"P"}],
   ownHand
 });
 assert.equal(unsupported.exp, null);
