@@ -2,7 +2,7 @@
 
 **Branch:** work/undisturbed-architecture  
 **Fil:** `2kloveroppning.js`  
-**Status:** Kod uppdaterad för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Gränstester är tillagda och inkopplade i CI; körresultat är ännu inte verifierat här. Svarshandens senare fortsättningar är utanför denna modulomgång.  
+**Status:** Kod uppdaterad för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Gränstester är tillagda och inkopplade i CI; körresultat är ännu inte verifierat här. Svarshandens senare fortsättningar är delvis routade: 2NT-systemets första svar och öppnarsvar återanvänds; unika fördelningsgrenar från Lathunden s. 25 är implementerade, medan överlapp och externa Plus/PRO/Slam-grenar är ej täckta.  
 **Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.  
 **Systembeslut:** Svarshanden bjuder alltid 2♦ på 2♣. 2♥ som svagt svar används inte.
 
@@ -84,5 +84,11 @@ Risker:
 9. Alla färgval med 5–5 och 5–4 som positiva och negativa gränsfall.
 10. Verifiera att varje odefinierad sekvens hamnar i separat expertlogg.
 
+## 6. Fortsättningar efter öppnarens återbud
+- Efter 2♣–2♦–2NT återanvänds den befintliga 2NT-familjen för Stayman/överföringens första svar och öppnarens svar. Lathundens 3♠ lågfärgsfråga (PRO) och 4♣/4♦ slaminviter (Slam) hålls utanför grundprofilen.
+- Efter 2♣–2♦–2♠–2NT, 2♣–2♦–3♣–3♦ och 2♣–2♦–3♥–3♠ finns fördelningstabeller i Lathunden s. 25. Dessa är nu routade via `openerThirdAfter2c`. Endast entydiga 5-4-/6-kortsprofiler ger automatiskt bud; överlappande profiler lämnas ej täckta.
+- Lathunden s. 26 innehåller ytterligare svarshandsfortsättningar med STP, kortfärg, kontrollbud och stöd. De har inte översatts till HP/HTP och ska granskas separat.
+- 4NT i de senare färgsekvenserna anges som essfråga med viss trumf, men slamtröskeln och hela fortsättningen måste kopplas till den befintliga RKC-motorn innan automatisk rättning.
+
 ## Slutsats
-Modulen använder alltid 2♦ och öppnarens återbud är nu avgränsade och testade till 4NT. Nordisk Standards intervall 2NT 22–24 och 3NT 25–27 följs; Lathundens 4NT 28–29 är ett tydligt märkt tillägg. Senare svarshandsfortsättningar och obalanserade gränsfall utanför källornas tydliga stöd lämnas till nästa steg.
+Modulen använder alltid 2♦ och öppnarens återbud är avgränsade till 4NT. Nordisk Standards intervall 2NT 22–24 och 3NT 25–27 följs; Lathundens 4NT 28–29 är ett tydligt märkt tillägg. Den första 2NT-svarsrundan och vissa entydiga tredje-budsgrenar är nu integrerade. Alla osäkra överlapp och Plus/PRO/Slam-tillägg lämnas ej täckta.
