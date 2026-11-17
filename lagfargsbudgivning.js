@@ -173,7 +173,7 @@
    // En svag/invitativ preferens till öppnarens långa lågfärg:
    // acceptera endast när det finns minst åtta trumf och tillräcklig
    // gemensam styrka för lågfärgsutgång.
-   if(second===o&&lv(responderSecond)>=3&&hand.L[o]>=5&&partner.L[o]>=3){
+   if(second===o&&lv(responderSecond)>=3&&hand.L[o]>=4&&partner.L[o]>=3){
      var fit=hand.L[o]+partner.L[o],total=partnershipPoints(hand,partner,o);
      if(fit>=8&&total>=28)
        return {exp:'5'+o,alt:[],why:total+' gemensamma HTP/poäng och '+fit+' korts trumfstöd: lågfärgsutgång.',
