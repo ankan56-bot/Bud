@@ -258,7 +258,7 @@ function assessReverse(shape, honors) {
     { C: 1, D: 4, H: 3, S: 5 },
     { D: [14, 13], S: [14, 13], H: [13], C: [11] }
   );
-  assert.equal(item.bedomning, 'rätt', '2S is system-legal, but it is not classified as a reverse.');
+  assert.equal(item.bedomning, 'fel', 'The 2S jump is not allowed with only 4 cards in the opening suit.');
   assert.equal(item.htp, 18, 'The hand has 18 HTP; the 4-5 shape is shown naturally.');
   assert.equal(item.battre, '1♠', 'Show the second suit at the lowest level instead of a false reverse');
 }
