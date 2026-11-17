@@ -115,9 +115,12 @@
      return NC('Reversekandidat utan styrka som täcks av källans intervall.',function(){return null},'reverse',true);
    }
 
-   if(hps>=18&&secondJump)
-     return {exp:secondJump,alt:[],why:hps+' HTP och minst 5-4: hopp i den andra färgen.',
-       means:function(c){return c===secondJump?'18+ HTP och minst 5-4: hopp i andra färgen.':null},conv:'öppnarens 2:a bud'};
+   if(hps>=18&&secondJump&&L[o]>=5&&L[second]>=4)
+     return {exp:secondJump,alt:[],why:hps+' HTP och minst 5-4 i öppningsfärgen och sidofärgen: hopp i den andra färgen.',
+       means:function(c){return c===secondJump?'18+ HTP och minst 5-4 i båda visade färgerna: hopp i andra färgen.':null},conv:'öppnarens 2:a bud'};
+   if(hps>=18&&cheapest&&(L[o]<5||L[second]<4))
+     return {exp:cheapest,alt:[],why:hps+' HTP men färglängderna är '+L[o]+'-'+L[second]+', inte minst 5-4 med lång öppningsfärg. Hopp i andra färgen är därför inte täckt; visa färgen på lägsta nivå.',
+       means:function(c){return c===cheapest?'Visa den andra färgen på lägsta nivå; handen uppfyller inte 5-4-kravet för hopp.':null},conv:'öppnarens 2:a bud'};
    if(hand.hp>=12&&hand.hp<=17&&cheapest)
      return {exp:cheapest,alt:[],why:hand.hp+' hp och minst nio kort i två färger: andra färgen på lägsta nivå.',
        means:function(c){return c===cheapest?'12–17 hp: andra färgen på lägsta nivå.':null},conv:'öppnarens 2:a bud'};
