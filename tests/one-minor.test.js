@@ -109,7 +109,7 @@ test('1♣ with four-card major support shows the major before minor support',()
 });
 
 test('1♣–2♣: 6–9 htp with four-card support is a simple minor raise',()=>{
-  const responder=hand({C:'JT76',D:'AKJ',H:'456',S:'567'});
+  const responder=hand({C:'JT76',D:'AKJ',H:'567',S:'678'});
   const result=responderNode(c12,responder,'1C');
   assert.equal(result.exp,'2C');
 });
