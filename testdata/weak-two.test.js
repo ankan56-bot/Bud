@@ -171,7 +171,7 @@ test("after 2NT, a maximum major opener shows 4M with 3NT as the documented alte
   ];
   const result = node(completeDeal(opener,responder),[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"},
-    {s:"W",c:"P'},{s:"N",c:"4H"}
+    {s:"W",c:"P"},{s:"N",c:"4H"}
   ],4);
   assert.equal(result.exp,"4H");
   assert.ok(result.alt.includes("3N"));
