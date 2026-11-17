@@ -58,7 +58,7 @@ var Rattning = (function(){
         if(s!==trump){var n=h.L[s];total+=n===0?3:n===1?2:n===2?1:0;}
       });
     });
-    if(fit===9)total+=1;else if(fit>=10)total+=3;
+    if(fit===9)total+=1;else if(fit>=10)total+=2;
     return total;
   }
 
@@ -1487,6 +1487,39 @@ var Rattning = (function(){
     return null;
   }
 
+  // Gemensam styrkeprövning för slutkontrakt efter svag tvåöppning.
+  // Systembetydelsen (t.ex. direkt utgång = slutbud) bedöms separat från
+  // om paret faktiskt når våra vanliga poäng-, fit- och kontrollkrav.
+  function weakTwoContractIssue(st,bids,index){
+    var b=bids[index];
+    if(!b||side(b.s)!==0||!isBid(b.c))return null;
+    var own=bids.slice(0,index).filter(function(x){return x&&isBid(x.c)&&side(x.s)===0;});
+    if(own.length<1||!/^2[DHS]$/.test(own[0].c))return null;
+    var contract=b.c,level=lv(contract),suit=st_(contract),partnerSeat=partner(b.s);
+    if(level<3)return null;
+    var a=H(st.hands[b.s]),p=H(st.hands[partnerSeat]);
+    var fit=suit==='N'?0:a.L[suit]+p.L[suit];
+    var total=suit==='N'?a.hp+p.hp:partnershipPoints(a,p,suit);
+    if(level===3&&suit==='N'&&total<26)
+      return {why:'3NT kräver minst 26 gemensamma honnörspoäng. Paret har '+total+'. Budets betydelse som slutbud ändras inte, men styrkan räcker inte till utgång.'};
+    if(level===4&&maj(suit)&&(fit<8||total<26))
+      return {why:'4'+suit+' kräver minst 8-korts högfärgsfit och 26 gemensamma spelpoäng. Paret har '+fit+' trumfkort och '+total+' spelpoäng.'};
+    if(level===5&&(suit==='C'||suit==='D')&&(fit<8||total<28))
+      return {why:'5'+suit+' kräver minst 8-korts lågfärgsfit och 28 gemensamma spelpoäng. Paret har '+fit+' trumfkort och '+total+' spelpoäng.'};
+    if(level===6){
+      var aces=a.aces+p.aces;
+      if(total<33)return {why:'Lillslam kräver minst 33 gemensamma poäng enligt den gemensamma slamgränsen. Paret har '+total+'.'};
+      if(suit!=='N'&&fit<8)return {why:'Lillslam i färg kräver fastställd minst 8-korts trumffit. Paret har '+fit+' trumfkort.'};
+      if(aces<3)return {why:'Lillslam kräver att paret saknar högst ett ess. Paret har '+aces+' av fyra ess.'};
+    }
+    if(level===7){
+      var totalAces=a.aces+p.aces;
+      if(totalAces<4)return {why:'Storslam kräver alla fyra ess. Paret har '+totalAces+' av fyra ess.'};
+      if(suit!=='N'&&!a.has(suit,13)&&!p.has(suit,13))return {why:'Storslam i färg kräver även trumfkungen, som paret saknar.'};
+    }
+    return null;
+  }
+
   function judgeComplete(st){
     var structural=validateAuction(st), items=[],right=0,wrong=0,optional=0,uncovered=0;
     var bids=st.bids||[];
@@ -1528,6 +1561,12 @@ var Rattning = (function(){
             item.forklaring='Följdbudet ligger utanför den förväntade budvägen eftersom ett tidigare bud avvek. Detta betyder inte att handen saknas i systemet.';
             item.battre=firstDeviation.battre;
           }
+        }
+        var contractIssue=weakTwoContractIssue(st,bids,i);
+        if(contractIssue){
+          item.bedomning='fel';item.battre='';item.konvention='utgång/slam – styrkekrav';
+          item.motivering=contractIssue.why;
+          item.forklaring='Budet är systemmässigt ett slutbud, men kontraktets normala styrke- eller kontrollkrav är inte uppfyllda.';
         }
         var missed=missedGameOrSlam(st,bids,i,contractBefore,sideBefore);
         if(missed){
