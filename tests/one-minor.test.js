@@ -124,7 +124,7 @@ test('1♣–2NT is handed to the existing Stenberg module',()=>{
   const responder=hand({C:'T765',D:'AQJ',H:'KQ5',S:'A78'});
   const result=responderNode(c12,responder,'1C');
   assert.equal(result.exp,'2N');
-  assert.equal(result.conv,'Stenberg');
+  assert.equal(result.conv,'Stenberg 2NT');
 });
 
 test('1♣–1♦–2♦: opener with 12–16 htp and four-card diamond support raises to 2♦',()=>{
