@@ -3,7 +3,7 @@
 **Status:** Källinventering pågår – ingen regel är ännu godkänd för implementation enbart på grund av att den finns i Lathunden.  
 **Grundsystem:** Nordisk Standard är normerande. Lathunden är en kompletterande källa. Vid avvikelse dokumenteras skillnaden; ingen tyst harmonisering görs.  
 **Källor:**  
-- *Bridge Lathund bok(2).pdf* – 14 PDF-sidor, tryckta sidor 8–33.  
+- *Bridge Lathund bok(2).pdf* – 14 PDF-sidor, tryckta sidor 8–35. PDF-bild 14 (tryckt s. 34–35) är redan övergången till störd budgivning och överlappar den separata störda Lathunden.  
 - *Bridge Lathund störd budgivning.pdf* – 9 PDF-sidor, tryckta sidor 34–51.
 
 ## 1. Hur källan ska användas
@@ -58,15 +58,26 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Stöd, preferens, invit och krav behandlas i separata sekvenser.
 - Villkor för färglängd, styrka och fördelning måste kontrolleras ruta för ruta; otydliga eller exempelbundna villkor ska inte generaliseras.
 
-### Tryckta sidor 26–29: Övriga budgivningsfamiljer och slam
-- Fortsättningar efter konkurrens/ingripanden berörs i övergången till störd budgivning.
-- Slamavsnittet behandlar kontrollbud, essfråga och svar på essfråga.
-- Lathunden beskriver skillnaden mellan första kontroll (ess eller renons) och andra kontroll (kung eller singelton) i kontrollbudssammanhang.
-- När en trumffärg är bestämd och slamintresse finns används kontrollbud; närmaste kontroll bjuds först enligt texten.
+### Tryckta sidor 24–27: Starka 2♣-öppningar och fortsättningar
+- Svar på 2♣, öppnarens återbud efter 2♣–2♦ respektive 2♣–2♥.
+- 2NT-system, Stayman, överföringar och fortsättningar efter 2NT.
+- Öppnarens tredje bud efter olika 2♣-återbud.
+- Motståndarnas störning efter 2♣ behandlas på tryckt sida 27.
+- Lathundens Plus-variant 2♥ som svagt svar (0–4 hp, inget ess) avviker från Nordisk Standard och får inte användas som grundregel.
+
+### Tryckta sidor 28–33: Slam och splinter
+- Slamavsnittet behandlar kontrollbud, essfråga/RKC, svar på essfråga och trumfdamfråga.
+- Lathunden beskriver första kontroll (ess eller renons) och andra kontroll (kung eller singelton) i kontrollbudssammanhang.
+- När trumffärg är bestämd och slamintresse finns används kontrollbud; närmaste kontroll bjuds först enligt texten.
 - Att gå förbi en färg anges förneka kontroll i den färgen.
 - RKC/Blackwood-svar, trumfdamfråga, renonsvisning och fortsättning mot storslam tas upp.
 - Splinterbud beskrivs som bud som visar kortfärg och samtidigt stöd/trumfintresse; nivå och styrkeintervall varierar med sekvensen.
-- Exakta RKC-tabeller och alla splintervarianter ska verifieras mot den tryckta sidan innan implementation.
+- Exakta RKC-tabeller och alla splintervarianter ska verifieras mot originalsidan innan implementation.
+
+### Tryckt sida 34–35 (PDF-bild 14): Övergång till störd budgivning
+- Inleder avsnittet om störd budgivning.
+- Anger grundprinciper för poängstyrka, ny högfärg, 2NT och negativ dubbling.
+- Visar svar efter inkliv med 1♥ och relaterade sekvenser. Dessa ska räknas till den störda källinventeringen, inte ostörd budgivning.
 
 ## 3. Störd budgivning – ämnesregister
 
