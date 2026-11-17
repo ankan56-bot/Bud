@@ -29,7 +29,23 @@
     // 4NT-essfrågor även när partnerna inte har bjudit samma färg.
     // Sök bakåt efter 4NT och matcha sekvensen fram till själva frågebudet,
     // så att trumfen förblir identifierad även efter RKC-svaret.
-    var calls=(bids||[]).filter(function(x){return x&&isBid(x.c)}).map(function(x){return x.c});
+    var callEntries=(bids||[]).filter(function(x){return x&&isBid(x.c)});
+    var calls=callEntries.map(function(x){return x.c});
+    // Stenberg 2NT establishes the opening suit as trump. RKC is activated
+    // only after opener has made the descriptive 3-level rebid; a direct
+    // 4NT jump over that rebid is deliberately not treated as RKC.
+    for(var si=3;si<callEntries.length;si++){
+      var stenbergWindow=callEntries.slice(si-3,si+1);
+      if(stenbergWindow[0].c.match(/^1[CDHS]$/)&&
+         stenbergWindow[1].c==='2N'&&
+         stenbergWindow[2].c.match(/^3[CDHSN]$/)&&
+         stenbergWindow[3].c==='4N'&&
+         stenbergWindow.every(function(x){return side(x.s)===sideWanted;})&&
+         stenbergWindow[0].s===stenbergWindow[2].s&&
+         stenbergWindow[1].s===stenbergWindow[3].s&&
+         stenbergWindow[0].s!==stenbergWindow[1].s)
+        return stenbergWindow[0].c[1];
+    }
     function endsAt(seq,endIndex){
       if(endIndex+1<seq.length)return false;
       for(var z=0;z<seq.length;z++)if(calls[endIndex-seq.length+1+z]!==seq[z])return false;
