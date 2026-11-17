@@ -26,7 +26,7 @@ assert.equal(trumfstod.openerSecondBid({},'1D','2D').conv,'minor');
 assert.deepEqual(calls.pop(),['minor.rebid','1D','2D']);
 assert.equal(trumfstod.isSupportResponse({L:{H:4}},'1H','2H'),true);
 assert.equal(trumfstod.isSupportResponse({L:{H:4}},'1H','2N'),true);
-assert.equal(trumfstod.isSupportResponse({L:{H:3}},'1H','2H'),true);
+assert.equal(trumfstod.isSupportResponse({L:{H:3}},'1H','2H'),false);
 assert.equal(trumfstod.isSupportResponse({L:{H:4}},'1H','1N'),false);
 assert.equal(trumfstod.accepts('1H'),true);
 assert.equal(trumfstod.accepts('2H'),false);
