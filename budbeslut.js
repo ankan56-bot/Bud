@@ -406,16 +406,7 @@
         if(opening&&openerRebid)return respAfter1NT(h,opening.c,openerRebid.c,b.c);
       }
       if(!opener&&d===1)return ntResp(h,k,st.hands[pt]);
-      if(opener&&d===2){
-        var partnerCalls=prior.filter(function(x){return x.s===pt&&isBid(x.c);});
-        if(partnerCalls.length>=2&&/^3[CD]$/.test(partnerCalls[1].c)&&
-           ((partnerCalls[0].c==='2D'&&ours[1].c==='2H')||
-            (partnerCalls[0].c==='2H'&&ours[1].c==='2S')||
-            (partnerCalls[0].c==='2C'&&(ours[1].c==='2H'||ours[1].c==='2S')))){
-          return ntOpener3(h,partnerCalls[0].c,ours[1].c,partnerCalls[1].c,st.hands[pt]);
-        }
-        return ntOpener(h,k,ours[1].c,st.hands[pt]);
-      }
+      if(opener&&d===2)return ntOpener(h,k,ours[1].c,st.hands[pt]);
       if(!opener&&d===3&&!k){var m1=ours[1].c,rep=ours[2].c;
         if(m1==='2C')return stay2(h,rep,st.hands[pt]);
         if(m1==='2D'&&rep==='2H')return transfer2(h,'H');
@@ -433,6 +424,11 @@
       }
       if(opener&&d===4&&!k){
         var t1=ours[1].c,t2=ours[2].c;
+        // A responder's new suit on the 3-level is game-forcing. Route
+        // opener's next decision through the general extra-length/NT logic.
+        if((t1==='2D'&&t2==='2H'||t1==='2H'&&t2==='2S'||t1==='2C'&&(t2==='2H'||t2==='2S'))&&
+           /^3[CD]$/.test(ours[3].c))
+          return ntOpener3(h,t1,t2,ours[3].c,st.hands[pt]);
         // 3NT valde utgång efter överföring
         if((t1==='2D'&&t2==='2H'&&ours[3].c==='3N')||(t1==='2H'&&t2==='2S'&&ours[3].c==='3N')){
             return ntOpener3NTChoice(h, t1==='2D'?'H':'S');
