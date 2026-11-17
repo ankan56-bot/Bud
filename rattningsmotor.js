@@ -139,8 +139,7 @@ var Rattning = (function(){
     var isStenbergFamily=!!openingCall&&/^1[CDHS]$/.test(openingCall.c)&&
       side(openingCall.s)===side(seat)&&
       auction.every(function(x){return side(x.s)===side(seat)||x.c==='P';})&&
-      stenbergOwnCalls.length>=2&&
-      stenbergOwnCalls.some(function(x,i){return i>0&&x.c==='2N';})&&
+      stenbergOwnCalls.length>=1&&
       stenbergOwnCalls.every(function(x,i){
         if(i===0)return /^1[CDHS]$/.test(x.c);
         return /^(?:2N|3[CDHSN]|4[HSN]|5[CD])$/.test(x.c);
