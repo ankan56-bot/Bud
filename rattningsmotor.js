@@ -78,7 +78,7 @@ var Rattning = (function(){
       pick = cs.sort(function(a,b){ return order55.indexOf(a) - order55.indexOf(b); })[0];
       // 5-5 öppnas med högsta färgen, utom 5-5 i ♠/♣ där dåliga ♠ tillåter 1♣.
       if(cs.length>1 && cs.indexOf('S')>=0 && cs.indexOf('C')>=0 && !h.good('S'))pick='C';
-      if(cs.length>1) alt.push('1'+cs[1]);
+      if(cs.length>1) alt.push('1'+(pick===cs[0]?cs[1]:cs[0]));
     } else {
       // Två eller tre fyrkortsfärger: öppna med den lägsta.
       var f=SU.filter(function(s){return L[s]===4});
@@ -187,7 +187,7 @@ var Rattning = (function(){
     else if(oc==='1S'&&hp>=11&&L.H===4&&L.C===3&&L.D===3&&L.S===3){exp='2C';why='11+ hp, 4♥ och 3♣ i 4-3-3-3: 2♣ enligt specialfallet i Nordisk standard.'}
     else if(cand.length){var b=pickBest(cand);exp=lowest(b,oc);why='6+ hp och en 4+ färg på 1-nivå: 1 över 1.';
       cand.forEach(function(s){if(s!==b&&L[s]===L[b])alt.push(lowest(s,oc))})}
-    else if(hp<=10&&!(hp===10&&h.longest()>=6&&h.good(h.longest()))){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
+    else if(hp<=10){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
     else{
       var c2=SU.filter(function(s){return s!==o&&L[s]>=4});
       if(c2.length){var b2=pickBest(c2);exp=lowest(b2,oc);why=hp+' hp och 4+ färg: 2 över 1 (11+, rondkrav).'}
