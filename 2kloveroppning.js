@@ -146,9 +146,8 @@
     return NC('Öppnarens svar efter 2NT-Stayman är inte en av de granskade svarsrutorna på Lathunden s. 25.',null,'2NT-Stayman',true);
   }
   function responderAfter2c2ntTransfer(h,major){
-    var L=h.L;
+    var L=h.L,minorFit=['C','D'].filter(function(s){return L[s]>=4;});
     if(L[major]===5&&minorFit.length===0)return {exp:'3N',alt:[],why:'Femkortshögfärg efter överföring: 3NT är icke-krav enligt Lathunden s. 25.',means:function(b){return b==='3N'?'Femkortshögfärg, ej krav.':null;},conv:'2♣-system / 2NT-överföring',source:'lathunden_s25'};
-    var minorFit=['C','D'].filter(function(s){return L[s]>=4;});
     if(L[major]>=5&&minorFit.length)return NC('Efter 2NT-överföring har handen 5+ '+SYM[major]+' och 4+ lågfärg. Lathunden s. 25 visar 4♣/4♦ som slaminvit, men hänvisar till Slam och anger ingen prioritet om båda lågfärgerna passar.',function(b){if(b==='4C'||b==='4D')return 'Minst 4-kortslågfärg och 5-kortshögfärg, slaminvit (Slam).';if(b==='4N')return 'Essfråga med överföringsfärgen som trumf.';return null;},'2NT-överföring',true);
     return NC('Efter 2NT-överföring anger Lathunden s. 25 3NT med femkortshögfärg (ej krav), 4♣/4♦ med 4+ lågfärg och 5-kortshögfärg (Slam) samt 4NT som essfråga med överföringsfärgen som trumf. Handen passar inte entydigt i en automatiskt bedömbar gren.',function(b){if(b==='3N')return 'Femkortshögfärg, ej krav.';if(b==='4C'||b==='4D')return '4+ lågfärg, 5-kortshögfärg och slaminvit.';if(b==='4N')return 'Essfråga med överföringsfärgen som trumf.';return null;},'2NT-överföring',true);
   }
