@@ -36,6 +36,15 @@ function weakTwoHand(suit, ranks="AK9876") {
     ...cards(others[2],"2")
   ];
 }
+function elevenPointSixCardHand(suit) {
+  const others = ["S","H","D","C"].filter(s => s !== suit);
+  return [
+    ...cards(suit,"AKQJ98"),
+    ...cards(others[0],"J23"),
+    ...cards(others[1],"234"),
+    ...cards(others[2],"2")
+  ];
+}
 
 test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and a good suit", () => {
   for (const suit of ["D","H","S"]) {
@@ -53,6 +62,29 @@ test("a six-card club suit is not treated as a weak two opening", () => {
   const hands = completeDeal(opener,fillerHand(opener));
   const result = node(hands,[{s:"N",c:"P"}],0);
   assert.equal(result.exp,"P");
+});
+
+test("11 hp with a six-card major or minor opens at the one-level, not a weak two", () => {
+  for (const suit of ["D","H","S"]) {
+    const opener = elevenPointSixCardHand(suit);
+    const hands = completeDeal(opener,fillerHand(opener));
+    const result = node(hands,[{s:"N",c:"1"+suit}],0);
+    assert.equal(result.exp,"1"+suit,suit);
+  }
+});
+
+test("a five-card suit with 6-10 hp is not a weak two opening", () => {
+  const opener = weakTwoHand("H","AKQ98");
+  const hands = completeDeal(opener,fillerHand(opener));
+  const result = node(hands,[{s:"N",c:"P"}],0);
+  assert.equal(result.exp,"P");
+});
+
+test("a seven-card suit is outside the weak-two family and uses the 3-level preemptive opening", () => {
+  const opener = weakTwoHand("H","AK98765");
+  const hands = completeDeal(opener,fillerHand(opener));
+  const result = node(hands,[{s:"N",c:"3H"}],0);
+  assert.equal(result.exp,"3H");
 });
 
 test("3 in the opening suit is a preemptive raise with 3+ support, not an invit", () => {
@@ -99,7 +131,7 @@ test("2NT is an invit and requires 2+ support; no unsupported responder point ra
 test("a new suit with 5+ cards is forcing to at least 3 in opener's suit", () => {
   const opener = weakTwoHand("H");
   const responder = [
-    ...cards("H","2"), ...cards("S","AKQJ9"),
+    ...cards("H","2"), ...cards("S","KQJ98"),
     ...cards("D","567"), ...cards("C","6789")
   ];
   const hands = completeDeal(opener,responder);
