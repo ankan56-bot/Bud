@@ -1,6 +1,6 @@
 'use strict';
 
-// Deterministic 100-deal stress test focused on uncontested 1♥/1♠ openings.
+// Deterministic 200-deal stress test focused on uncontested 1♥/1♠ openings.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const R = require('../rattningsmotor.js');
@@ -12,7 +12,7 @@ function passOpponents(h){const e=hp(h.E),w=hp(h.W);return e<=9&&w<=9&&e+w<=17;}
 function opening(h){return R.nodeFor({hands:h,dealer:'N',bids:[{s:'N',c:'P'}]},0);}
 function generate(){
  const out=[],seen=new Set();
- for(let seed=202611150;out.length<100&&seed<202611150+3000000;seed++){
+ for(let seed=202611150;out.length<200&&seed<202611150+3000000;seed++){
   const rng=mulberry(seed),hands=shuffle(rng);
   if(!passOpponents(hands))continue;
   const first=opening(hands);
@@ -22,7 +22,7 @@ function generate(){
   if(seen.has(key))continue;seen.add(key);
   out.push({id:'one-major-'+String(out.length+1).padStart(3,'0'),seed,hands,opening:first.exp});
  }
- assert.equal(out.length,100,'Could not generate 100 unique 1♥/1♠ opening deals.');
+ assert.equal(out.length,200,'Could not generate 100 unique 1♥/1♠ opening deals.');
  return out;
 }
 const deals=generate();
@@ -39,7 +39,7 @@ for(const deal of deals){
    try{
     const node=R.nodeFor(st,index);
     if(node&&node.exp){call=node.exp;report.covered++;}
-    else report.uncovered.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),reason:node&&node.why?node.why:'No matching rule'});
+    else report.uncovered.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),hands:deal.hands,reason:node&&node.why?node.why:'No matching rule'});
    }catch(e){report.exceptions.push({dealId:deal.id,seat,message:String(e&&e.message||e)});}
    st.bids[index]={s:seat,c:call};
   }else st.bids.push({s:seat,c:'P'});
@@ -53,7 +53,7 @@ for(const deal of deals){
 }
 report.coveragePercent=report.turns?Math.round(report.covered/report.turns*1000)/10:0;
 fs.mkdirSync('testdata',{recursive:true});
-fs.writeFileSync('testdata/one_major_100_validation_latest.json',JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync('testdata/one_major_200_validation_latest.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({deals:report.deals,openings:report.openings,turns:report.turns,covered:report.covered,uncovered:report.uncovered.length,coveragePercent:report.coveragePercent,exceptions:report.exceptions.length,illegalRecommendations:report.illegalRecommendations.length,invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,cardIntegrityErrors:report.cardIntegrityErrors.length,uncoveredDetails:report.uncovered},null,2));
 assert.equal(report.cardIntegrityErrors.length,0);
 assert.equal(report.exceptions.length,0);
