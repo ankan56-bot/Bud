@@ -7,6 +7,8 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const R = require('../rattningsmotor.js');
+global.Rattning = R;
+const F = require('../facitmotor.js');
 
 const SEATS = ['N', 'E', 'S', 'W'];
 const NEXT = { N: 'E', E: 'S', S: 'W', W: 'N' };
@@ -58,8 +60,8 @@ const report = {
   branch: process.env.GITHUB_REF_NAME || 'local',
   engineVersion: R.version,
   mode: 'ostord',
-  seats: 'Four seats simulated; North/South use the engine, East/West pass',
-  generation: '500 independent Mulberry32 deals; East/West <=9 HCP each and <=17 combined',
+  seats: 'Four seats simulated; North/South use the engine, East/West pass; uncovered decisions stop the facit',
+  generation: '500 independent Mulberry32 deals; East/West <=9 HCP each and <=17 combined; facit stops at first uncovered decision',
   deals: deals.length, decisions: 0, covered: 0, uncovered: [],
   exceptions: [], illegalRecommendations: [], invalidAuctions: [],
   unfinishedAuctions: [], cardIntegrityErrors: []
@@ -72,46 +74,47 @@ for (const deal of deals) {
     report.cardIntegrityErrors.push(deal.id);
     continue;
   }
-  const st = { hands: deal.hands, dealer: deal.dealer, bids: [] };
-  let seat = deal.dealer, ended = false, guard = 0;
-  while (!ended && guard++ < 32) {
-    const index = st.bids.length;
-    let call = 'P';
-    if (seat === 'N' || seat === 'S') {
-      report.decisions++;
-      st.bids.push({s:seat,c:'P'});
-      try {
-        const node = R.nodeFor(st,index);
-        if (node && node.exp != null) {
-          call = node.exp;
-          report.covered++;
-        } else {
-          report.uncovered.push({
-            dealId:deal.id, seed:deal.seed, dealer:deal.dealer, seat,
-            hands:deal.hands,
-            auction:st.bids.map(b=>b.s+':'+b.c).join(' '),
-            reason:node && node.why ? node.why : 'Ingen regelmatchning.'
-          });
-        }
-      } catch (e) {
-        report.exceptions.push({dealId:deal.id,seat,message:String(e && e.stack || e)});
-      }
-      st.bids[index] = {s:seat,c:call};
-    } else {
-      st.bids.push({s:seat,c:'P'});
+  try {
+    // Use the same source-conservative facit path as the trainer. When a
+    // decision is uncovered, stop that deal there; never invent a pass and
+    // never create artificial downstream auctions.
+    const result = F.generateUndisturbedFacit({
+      hands: deal.hands, dealer: deal.dealer, trainingSide: 'NS'
+    });
+    const recommendations = result.steps.filter(x => x.kind === 'system_recommendation');
+    report.decisions += recommendations.length + (result.uncovered ? 1 : 0);
+    report.covered += recommendations.length;
+    if (result.uncovered) {
+      report.uncovered.push({
+        dealId: deal.id, seed: deal.seed, dealer: deal.dealer,
+        seat: result.uncovered.seat, hands: deal.hands,
+        auction: result.auction.map(b => b.s + ':' + b.c).join(' '),
+        reason: result.uncovered.reason
+      });
     }
-    const v = R.validateAuction(st);
-    for (const error of v.errors) if (error.index === index) {
-      report.illegalRecommendations.push({dealId:deal.id,seat,call,message:error.message});
+    if (result.status === 'engine_error' || result.status === 'safety_stop' ||
+        result.status === 'invalid_deal' || result.status === 'invalid_options') {
+      report.exceptions.push({dealId:deal.id,status:result.status,message:result.message});
     }
-    ended = v.ended;
-    seat = NEXT[seat];
+    const validation = R.validateAuction({
+      hands: deal.hands, dealer: deal.dealer,
+      bids: result.auction.map(b => ({s:b.s,c:b.c}))
+    });
+    if (!validation.valid) report.invalidAuctions.push({dealId:deal.id,errors:validation.errors});
+    if (result.complete && !validation.ended)
+      report.unfinishedAuctions.push({dealId:deal.id,status:result.status,calls:result.auction.length});
+    for (const step of recommendations) {
+      if (!isValidCall(step.call))
+        report.illegalRecommendations.push({dealId:deal.id,seat:step.seat,call:step.call});
+    }
+  } catch (e) {
+    report.exceptions.push({dealId:deal.id,message:String(e && e.stack || e)});
   }
-  const final = R.validateAuction(st);
-  if (!final.valid) report.invalidAuctions.push({dealId:deal.id,errors:final.errors});
-  if (!final.ended) report.unfinishedAuctions.push({dealId:deal.id,calls:st.bids.length});
 }
-report.coveragePercent = report.decisions ? Math.round(report.covered/report.decisions*1000)/10 : 0;
+
+function isValidCall(call) {
+  return call === 'P' || /^[1-7][CDHSN]$/.test(call);
+}
 const groups = new Map();
 for (const item of report.uncovered) {
   const key = item.reason.split(/[.!?]/)[0].slice(0,180);
