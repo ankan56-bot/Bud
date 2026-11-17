@@ -22,7 +22,7 @@ Källa: användarens PDF `nordisk_standard.pdf`, daterad 2012-08-22, sida 4. PDF
 - PDF:en anger ingen exakt hp-gräns för svarshandens 2NT-invit. Den tidigare kodade gränsen 9–10 hp på svarshanden var därför inte källstödd och har tagits bort.
 - Vid maximum efter 2NT är 3NT/4 högfärg alternativen. För lågfärgsöppning används 3NT; 4 i lågfärgen ska inte föreslås som maxbesked.
 
-## Implementerat i rättningsmotorn 8.6
+## Implementerat i rättningsmotorn 8.7
 
 - 2♦/2♥/2♠ öppningsvillkor testas: exakt sex kort och 6–10 hp. Ett tidigare krav på god färgkvalitet har tagits bort eftersom det inte står i PDF:en.
 - 2♣ förblir starköppning och blandas inte in i svaga tvåöppningar.
