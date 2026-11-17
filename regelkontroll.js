@@ -1,4 +1,4 @@
-/* Regelkontroll: budsekvensens struktur och missade utgångs-/slammöjligheter. */
+/* Regelkontroll: budsekvensens struktur och missad utgång; slam via RKC. */
 (function(root,factory){
   if(typeof module!=='undefined'&&module.exports) module.exports=factory;
   else root.RattningRegelkontrollFactory=factory;
