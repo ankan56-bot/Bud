@@ -8,8 +8,8 @@ assert.deepStrictEqual(result.errors, [], "No dangling IDs, duplicate IDs or mal
 assert.strictEqual(isCompetitiveTree({ id: "T29_INKLIV" }), true);
 assert.strictEqual(isCompetitiveTree({ id: "T28_OVERFORING" }), false);
 
-// Snapshot of the current baseline. Changing these numbers requires reviewing
-// the underlying data and updating this test deliberately; it is not a rule generator.
+// Snapshot of the current baseline. The T40 minor continuation additions were reviewed; these snapshot counts include them.
+// Changing these numbers requires reviewing the underlying data deliberately.
 const expected = {
   totalTrees: 52,
   competitiveTreesExcluded: 5,
@@ -23,8 +23,8 @@ const expected = {
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
   crossTreeLinks: 7,
-  duplicateSequenceGroups: 34,
-  duplicateSequenceExtraOccurrences: 37
+  duplicateSequenceGroups: 35,
+  duplicateSequenceExtraOccurrences: 38
 };
 for (const [key, value] of Object.entries(expected)) {
   assert.strictEqual(result.metrics[key], value, key + " baseline changed; inspect before accepting");
