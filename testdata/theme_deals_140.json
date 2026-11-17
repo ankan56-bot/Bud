@@ -31,7 +31,7 @@
     "failures": [],
     "gradeCounts": {
       "rätt": 580,
-      "ej_täckt": 41
+      "ej_täckt": 42
     },
     "themeStats": {
       "alla": {
@@ -106,8 +106,8 @@
       },
       "tvafarg": {
         "deals": 10,
-        "bids": 96,
-        "uncovered": 5,
+        "bids": 98,
+        "uncovered": 6,
         "optional": 0,
         "wrong": 0
       },
@@ -17042,7 +17042,7 @@
             "bid": "2♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Andra färgen på lägsta nivå: 12-17 hp med 5-4."
+            "reason": "Andra färgen på lägsta nivå: 12–17 hp med exakt 5–4. SH får passa med 6–7 hp och stöd."
           },
           {
             "nr": 7,
@@ -17358,7 +17358,7 @@
             "bid": "2♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Andra färgen på lägsta nivå: 12-17 hp med 5-4."
+            "reason": "Andra färgen på lägsta nivå: 12–17 hp med exakt 5–4. SH får passa med 6–7 hp och stöd."
           },
           {
             "nr": 7,
@@ -17464,7 +17464,7 @@
         },
         {
           "s": "S",
-          "c": "2C"
+          "c": "3C"
         },
         {
           "s": "W",
@@ -17472,7 +17472,7 @@
         },
         {
           "s": "N",
-          "c": "3C"
+          "c": "4C"
         },
         {
           "s": "E",
@@ -17498,7 +17498,7 @@
       },
       "correction": {
         "version": "9.6",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -17519,15 +17519,15 @@
           {
             "nr": 5,
             "seat": "Syd",
-            "bid": "2♣",
+            "bid": "3♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Andra färgen på lägsta nivå: 12-17 hp med 5-4."
+            "reason": "Hopp i andra färgen: 18+ htp och minst 5–4 i båda färgerna. HTP räknas enligt systemets villkor för 6+ färg eller 5–5."
           },
           {
             "nr": 7,
             "seat": "Norr",
-            "bid": "3♣",
+            "bid": "4♣",
             "grade": "rätt",
             "suggested": "",
             "reason": "9 hp: svag hand, preferens till bästa gemensamma färg."
@@ -17536,9 +17536,9 @@
             "nr": 9,
             "seat": "Syd",
             "bid": "Pass",
-            "grade": "rätt",
+            "grade": "ej_täckt",
             "suggested": "",
-            "reason": "Partnerns 3-nivåhöjning i lågfärg är invitativ. Pass med minimum; utgångskontrollen fångar 28+ spelpoäng."
+            "reason": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet."
           }
         ]
       }
@@ -17725,64 +17725,64 @@
       "dealer": "S",
       "hands": {
         "N": [
-          "H7",
-          "H13",
-          "S6",
-          "D3",
-          "H8",
-          "C7",
-          "S2",
-          "C9",
-          "C3",
-          "S14",
-          "D6",
-          "S9",
-          "H12"
-        ],
-        "E": [
-          "D4",
-          "S3",
-          "C6",
-          "D2",
-          "C10",
-          "S10",
-          "H3",
-          "S13",
+          "C4",
+          "D5",
+          "H11",
+          "C11",
+          "D7",
+          "D12",
+          "S12",
+          "D8",
           "H5",
-          "D13",
-          "S11",
-          "D11",
-          "D5"
-        ],
-        "S": [
-          "S8",
           "D14",
           "H14",
-          "S12",
-          "C4",
-          "H11",
-          "H10",
-          "C13",
+          "H2",
+          "S6"
+        ],
+        "E": [
+          "H9",
+          "S3",
           "D9",
+          "D3",
+          "D2",
+          "H4",
+          "S11",
+          "C3",
+          "S7",
+          "C10",
+          "D10",
+          "D13",
+          "D11"
+        ],
+        "S": [
+          "S13",
+          "C7",
+          "C6",
+          "S4",
+          "S5",
           "C12",
-          "C5",
-          "H6",
-          "C11"
+          "H13",
+          "H7",
+          "C14",
+          "C13",
+          "C9",
+          "S2",
+          "H6"
         ],
         "W": [
-          "D12",
-          "H2",
-          "H9",
-          "D7",
+          "D4",
+          "S10",
+          "H8",
+          "H10",
+          "C5",
           "C2",
-          "D10",
+          "H12",
           "C8",
-          "D8",
-          "H4",
-          "S4",
-          "S7",
-          "C14",
-          "S5"
+          "D6",
+          "S14",
+          "H3",
+          "S8",
+          "S9"
         ]
       },
       "bids": [
@@ -17796,7 +17796,7 @@
         },
         {
           "s": "N",
-          "c": "1H"
+          "c": "1D"
         },
         {
           "s": "E",
@@ -17804,7 +17804,7 @@
         },
         {
           "s": "S",
-          "c": "3H"
+          "c": "2S"
         },
         {
           "s": "W",
@@ -17812,7 +17812,7 @@
         },
         {
           "s": "N",
-          "c": "4H"
+          "c": "3H"
         },
         {
           "s": "E",
@@ -17820,10 +17820,18 @@
         },
         {
           "s": "S",
-          "c": "P"
+          "c": "6C"
         },
         {
           "s": "W",
+          "c": "P"
+        },
+        {
+          "s": "N",
+          "c": "P"
+        },
+        {
+          "s": "E",
           "c": "P"
         }
       ],
@@ -17838,7 +17846,7 @@
       },
       "correction": {
         "version": "9.6",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "summary": "Rätt 6 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -17846,12 +17854,12 @@
             "bid": "1♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "17 hp med längsta färgen ♣ (5 kort): 1 i färg (12-19 hp)."
+            "reason": "15 hp med längsta färgen ♣ (6 kort): 1 i färg (12-19 hp)."
           },
           {
             "nr": 3,
             "seat": "Norr",
-            "bid": "1♥",
+            "bid": "1♦",
             "grade": "rätt",
             "suggested": "",
             "reason": "6+ hp och en 4+ färg på 1-nivå: 1 över 1."
@@ -17859,22 +17867,30 @@
           {
             "nr": 5,
             "seat": "Syd",
-            "bid": "3♥",
+            "bid": "2♠",
             "grade": "rätt",
             "suggested": "",
-            "reason": "19 htp med stöd: enkelhopp (17-19)."
+            "reason": "Hopp i andra färgen: 18+ htp och minst 5–4 i båda färgerna. HTP räknas enligt systemets villkor för 6+ färg eller 5–5."
           },
           {
             "nr": 7,
             "seat": "Norr",
-            "bid": "4♥",
+            "bid": "3♥",
             "grade": "rätt",
             "suggested": "",
-            "reason": "8-korts fit i ♥ och 29 gemensamma spelpoäng: utgång enligt våra gränser (26+)."
+            "reason": "Fjärde färg enligt Nordisk Standard s. 19. Svarshanden kräver genom att bjuda en ny färg; fortsättningen ska därför bedömas som kravbud."
           },
           {
             "nr": 9,
             "seat": "Syd",
+            "bid": "6♣",
+            "grade": "rätt",
+            "suggested": "",
+            "reason": "Partnerskapets sammanlagda styrka är 33 poäng (naturligt visad ♣-fit med fördelningspoäng). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt."
+          },
+          {
+            "nr": 11,
+            "seat": "Norr",
             "bid": "Pass",
             "grade": "rätt",
             "suggested": "",
@@ -18582,7 +18598,7 @@
             "bid": "2♣",
             "grade": "rätt",
             "suggested": "",
-            "reason": "Andra färgen på lägsta nivå: 12-17 hp med 5-4."
+            "reason": "Andra färgen på lägsta nivå: 12–17 hp med exakt 5–4. SH får passa med 6–7 hp och stöd."
           },
           {
             "nr": 7,
