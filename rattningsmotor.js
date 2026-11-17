@@ -1271,7 +1271,8 @@ var Rattning = (function(){
     // Ett uttryckligen ej täckt RKC-fortsättningsläge får inte skrivas över
     // av den generella poängkontrollen för missad utgång/slam.
     var unresolvedRkc=!!(node&&!node.exp&&node.conv==='Blackwood 5 ess');
-    if(!unresolvedRkc&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
+    var unresolvedStenberg=!!(node&&!node.exp&&node.conv==='Stenberg');
+    if(!unresolvedRkc&&!unresolvedStenberg&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
