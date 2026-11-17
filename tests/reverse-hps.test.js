@@ -241,7 +241,7 @@ function assessReverse(shape, honors) {
   assert.equal(item.battre, '2♦');
 }
 
-// 17 HP, 6-4 shape: own 6+ suit permits STP; reverse reaches 18+ HPS.
+// 17 HP, 6-4 shape: own 6+ suit permits STP; reverse reaches 18+ HTP.
 {
   const item = assessReverse(
     { C: 1, D: 6, H: 2, S: 4 },
@@ -249,10 +249,10 @@ function assessReverse(shape, honors) {
   );
   assert.equal(item.bedomning, 'rätt');
   assert.equal(item.htp, 20, '6+ suit allows STP');
-  assert.match(item.motivering, /20 HPS/);
+  assert.match(item.motivering, /20 HTP/);
 }
 
-// A 4-5 distribution is not a 5-4 reverse, even with 18 HPS.
+// A 4-5 distribution is not a 5-4 reverse, even with 18 HTP.
 {
   const item = assessReverse(
     { C: 1, D: 4, H: 3, S: 5 },
@@ -271,7 +271,7 @@ function assessReverse(shape, honors) {
   );
   assert.equal(item.bedomning, 'rätt');
   assert.equal(item.htp, 20, '5-5 shape allows STP');
-  assert.match(item.motivering, /20 HPS/);
+  assert.match(item.motivering, /20 HTP/);
 }
 
 
