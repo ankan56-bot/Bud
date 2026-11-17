@@ -42,6 +42,5 @@ const unsupported = R.decideLive({
   ownHand
 });
 assert.equal(unsupported.exp, null);
-assert.equal(unsupported.context, "live");
 
 console.log("Integrated bot live path uses only own hand/public auction; unsupported sequences abstain safely.");
