@@ -446,3 +446,48 @@ test("weak-two analysis trees use Lathund page 27 response meanings", () => {
     assert.ok(tree.nodes.some(node=>node.sequence.join(",")===[opening,"Pass","4N"].join(",")));
   }
 });
+
+
+test("ten-card trump fit receives the agreed +2 trump-length bonus", () => {
+  const hand = [
+    ...cards("H","23456"), ...cards("S","23"),
+    ...cards("D","234"), ...cards("C","234")
+  ];
+  const a=Rattning.H(hand), b=Rattning.H(hand);
+  // Two points of shortness (one per hand) plus the agreed two-point
+  // bonus for a ten-card fit; no high-card points are present.
+  assert.equal(Rattning.partnershipPoints(a,b,"H")-(a.hp+b.hp),4);
+});
+
+test("a direct 4H final contract after a weak two is rejected below 26 playing points", () => {
+  const opener=weakTwoHand("H");
+  const responder=[
+    ...cards("H","Q2"), ...cards("S","234"),
+    ...cards("D","456"), ...cards("C","23456")
+  ];
+  const hands=completeDeal(opener,responder);
+  const result=Rattning.judge({hands,dealer:"N",bids:[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"4H"},
+    {s:"W",c:"P"},{s:"N",c:"P"},{s:"E",c:"P"}
+  ]});
+  const game=result.items.find(item=>item.bud==="4♥");
+  assert.equal(game.bedomning,"fel");
+  assert.equal(game.konvention,"utgång/slam – styrkekrav");
+  assert.match(game.motivering,/26 gemensamma spelpoäng/);
+});
+
+test("a direct 3NT final contract after a weak two is rejected below 26 HCP", () => {
+  const opener=weakTwoHand("H");
+  const responder=[
+    ...cards("H","Q2"), ...cards("S","234"),
+    ...cards("D","456"), ...cards("C","23456")
+  ];
+  const hands=completeDeal(opener,responder);
+  const result=Rattning.judge({hands,dealer:"N",bids:[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3N"},
+    {s:"W",c:"P"},{s:"N",c:"P"},{s:"E",c:"P"}
+  ]});
+  const game=result.items.find(item=>item.bud==="3NT");
+  assert.equal(game.bedomning,"fel");
+  assert.match(game.motivering,/26 gemensamma honnörspoäng/);
+});
