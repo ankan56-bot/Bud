@@ -77,7 +77,7 @@ test("1♥–1NT: 18 + 7 hp is below game and passes 2NT", () => {
 test("1♦ opener with 6 diamonds and 15 htp rebids at the 2-level, not 3-level", () => {
   const opener = [
     ...cards("D","AKJ234"), ...cards("H","A23"),
-    ...cards("S","K2"), ...cards("C","45")
+    ...cards("S","Q2"), ...cards("C","45")
   ];
   const responder = [
     ...cards("C","K236"), ...cards("D","567"),
@@ -87,7 +87,7 @@ test("1♦ opener with 6 diamonds and 15 htp rebids at the 2-level, not 3-level"
   const bids = auction("2D","1D");
   const result = node(hands,bids,4);
   assert.equal(result.exp,"2D");
-  assert.match(result.why,/15 htp, lägsta nivå/);
+  assert.match(result.why,/16 htp, lägsta nivå/);
 });
 
 test("1♥–1NT–2♣: responder may rebid a 6-card diamond suit at the lowest legal level 2♦", () => {
