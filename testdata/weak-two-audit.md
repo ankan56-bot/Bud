@@ -1,7 +1,7 @@
 # Svaga tvåöppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 8.7  
+Rättningsmotor: 8.8  
 Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
 
 ## Auktoritativ källa
@@ -10,7 +10,7 @@ Källa: användarens PDF `nordisk_standard.pdf`, daterad 2012-08-22, sida 4. PDF
 
 ## Regler från PDF sida 4
 
-- 2♦/2♥/2♠ visar 6–10 hp och exakt sex kort i öppningsfärgen. PDF:en anger inget separat krav på färgkvalitet.
+- 2♦/2♥/2♠ visar 6–10 hp, exakt sex kort och god färgkvalitet: minst 2 honnörer eller minst 1 honnör samt minst 2 av 10-9-8.
 - Med 11 hp och sexkortsfärg öppnas 1 i färgen.
 - Ny färg: minst 5 kort, krav till minst 3 i öppningsfärgen.
 - 3 i öppningsfärgen: spärrhöjning med minst 3 stödkort, inte invit.
@@ -22,9 +22,9 @@ Källa: användarens PDF `nordisk_standard.pdf`, daterad 2012-08-22, sida 4. PDF
 - PDF:en anger ingen exakt hp-gräns för svarshandens 2NT-invit. Den tidigare kodade gränsen 9–10 hp på svarshanden var därför inte källstödd och har tagits bort.
 - Vid maximum efter 2NT är 3NT/4 högfärg alternativen. För lågfärgsöppning används 3NT; 4 i lågfärgen ska inte föreslås som maxbesked.
 
-## Implementerat i rättningsmotorn 8.7
+## Implementerat i rättningsmotorn 8.8
 
-- 2♦/2♥/2♠ öppningsvillkor testas: exakt sex kort och 6–10 hp. Ett tidigare krav på god färgkvalitet har tagits bort eftersom det inte står i PDF:en.
+- 2♦/2♥/2♠ öppningsvillkor testas: exakt sex kort, 6–10 hp och god färgkvalitet enligt tidigare definition: minst 2 honnörer eller 1 honnör + minst 2 av 10-9-8.
 - 2♣ förblir starköppning och blandas inte in i svaga tvåöppningar.
 - 2NT accepteras som invit när svarshanden har minst två stödkort; inget eget hp-intervall har hittats på.
 - 3 i öppningsfärgen accepteras som spärrhöjning med minst tre stödkort och förklaras uttryckligen som ej invit.
@@ -48,4 +48,4 @@ Alla dessa sekvenser ska loggas som ej täckta tills de kan verifieras. Ingen st
 
 ## Regression
 
-`testdata/weak-two.test.js` innehåller 15 regressionstester för öppningsgränserna och de dokumenterade svaren: spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT, öppnarens svar efter ny färg samt min/max efter 2NT.
+`testdata/weak-two.test.js` innehåller 16 regressionstester för öppningsgränserna och de dokumenterade svaren: spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT, öppnarens svar efter ny färg samt min/max efter 2NT.
