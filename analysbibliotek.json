@@ -6111,6 +6111,72 @@
           "source": [
             "Bridge Lathund s. 16"
           ]
+        },
+        {
+          "id": "t40_minor_1d_own_suit_2nt",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har 6+ ruter och har återbjudit 2♦.",
+            "responder": "10–12 hp, balanserad hand, minst två ruter och håll i sidofärgerna."
+          },
+          "meaning": "Svarshandens sanginvit efter öppnarens långa ruter.",
+          "analysis": "2NT kräver balanserad 10–12 hp, minst två korts stöd i ruter och håll i sidofärgerna. Om profilen saknas får 2NT inte rekommenderas på enbart sammanlagda hp; ej täckta varianter loggas.",
+          "source": [
+            "Nordisk standard s. 3–4",
+            "Bridge Lathund s. 16–17"
+          ]
+        },
+        {
+          "id": "t40_minor_1d_1h_2s_3d_gap",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♦"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♦ och visat spader som andra färg.",
+            "responder": "Svarshanden har bjudit 3♦ som andra bud; styrka och ruterstöd varierar."
+          },
+          "meaning": "Öppnarens tredje bud efter 3♦-preferens eller stöd.",
+          "analysis": "Det granskade underlaget ger inte en entydig fortsättning för alla styrke- och stödkombinationer. Ingen automatisk pass, sang eller ruterutgång ska hittas på. Markera ej täckt och spara given.",
+          "sourceGap": true,
+          "source": [
+            "Bridge Lathund s. 15–17"
+          ]
+        },
+        {
+          "id": "t40_minor_1d_1s_3c_3d_gap",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "3♣",
+            "Pass",
+            "3♦"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♦ och visat en stark klöver-/rutertvåfärgshand.",
+            "responder": "Svarshanden har gjort en preferens till ruter med 3♦."
+          },
+          "meaning": "Öppnarens tredje bud efter 3♦.",
+          "analysis": "Fortsättningen efter svarshandens 3♦ är inte entydigt angiven för denna handprofil i de granskade källorna. Sekvensen lämnas ej täckt och sparas för expertgranskning.",
+          "sourceGap": true,
+          "source": [
+            "Bridge Lathund s. 15–17"
+          ]
         }
       ]
     },
