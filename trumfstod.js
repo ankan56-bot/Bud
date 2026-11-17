@@ -26,7 +26,7 @@
   function responder(hand,opening){
     if(!isOneLevelSuit(opening)) return NC('Trumfstöd kräver en öppning på 1-tricksnivån i färg.');
     var openingSuit=st_(opening), fit=hand&&hand.L?hand.L[openingSuit]:0;
-    var htp=typeof handHps==='function'?handHps(hand,openingSuit):0;
+    var htp=typeof handHps==='function'?handHps(hand,fit>=4?openingSuit:null):0;
     var voids=hand&&hand.L?SU.filter(function(s){return s!==openingSuit&&hand.L[s]===0;}):[];
 
     // PDF s. 2: dubbelhopp i ny färg visar renons, 4+ stöd och 13+ htp.
