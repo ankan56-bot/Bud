@@ -314,3 +314,17 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 - Rättningsmotor 9.1: sexkortig ♣ med bra färg lämnas ej täckt eftersom 2♣ är starköppning och alternativ nivå saknas i underlaget. Ingen pass-/3♣-regel hittas på. Manifest och regressionstester uppdaterade; 26 tester finns, körning/CI ej verifierad.
 
 - Lagt till `.github/workflows/preemptive-regression.yml` som kör de 26 testerna i `testdata/weak-two.test.js` vid push till arbetsgrenen och PR mot main. Körresultat är ännu inte verifierat.
+
+
+## Svaga tvåor – svarbud enligt lathund sida 27 (2026-11-17)
+
+- Användarbeslut: endast svarbuden efter svag tvåöppning ändras. Öppningsvillkoren 6–10 hp, exakt sex kort och tidigare definition av god färg ligger kvar.
+- Källa för svaren: `Bridge Lathund bok(2).pdf`, tryckt sida 27.
+- 3 i öppningsfärgen = invit cirka 14–16 stp.
+- 2NT = Stenberg 2NT, 13+ stp.
+- Ny färg = ofta sexkortsfärg, minst 15–16 hp, rondkrav. Femkortsfärg lämnas för expertbedömning då lathunden inte anger absolut minimiantal.
+- Direkt utgång = slutbud.
+- Hopp i ny färg = Splinter, 19+ stp.
+- 4NT = essfråga med öppningsfärgen som trumf; trumfdetektionen i RKC har utökats för svaga 2-öppningar.
+- Den tidigare min/max-stegen efter 2NT är avstängd. Öppnarens fortsättning efter Stenberg behöver egen verifiering och loggas ej täckt.
+- Rättningsmotor 9.4, analysbibliotek 0.5.17 och 30 regressionstester incheckade på arbetsgrenen. CI är ännu inte verifierad.
