@@ -267,3 +267,13 @@ PDF:en `nordisk_standard.pdf` (2012-08-22), sida 4, återfanns i ChatGPT-bibliot
 - Utökade svag-två-testpaketet till 14 tester. Det täcker nu även 11 hp med sexkortsfärg (öppna 1 i färgen), femkortsfärg som inte får bli svag tvåa samt sju kort som i stället hör till 3-öppningsfamiljen.
 - Samtliga 14 svag-två-tester passerade i körning `44097230489`; hela workflow-körningen avslutades med **success**.
 - Källreglerna på PDF sida 4 är därmed testade för alla uttryckligen beskrivna svarstyper. Fortsättningar som inte finns i PDF:en ligger kvar i expertloggen, inte som gissade regler.
+
+
+## Slutlig källkorrigering och analysnoder – svaga tvåöppningar 2026-11-17
+
+- PDF sida 2 har verifierat att 2♦/2♥/2♠ är 6–10 hp och exakt sex kort. PDF:en anger inget krav på bra färgkvalitet. Det tidigare motorvillkoret för färgkvalitet är borttaget.
+- 11 hp med sexkortsfärg i ♦/♥/♠ öppnas 1 i färgen enligt den uttryckliga noteringen i PDF:en. Detta testas nu även med en färg utan honnörer.
+- Motorversion 8.7; 15/15 svag-två-regressioner passerar.
+- Analysbiblioteket har tre pedagogiska träd tillagda: `T34_SVAG_TVA_D`, `T35_SVAG_TVA_H`, `T36_SVAG_TVA_S`. De täcker de tre öppningarna och de dokumenterade svarstyperna. Odefinierade fortsättningar är uttryckligen märkta, inte påhittade.
+- Full GitHub Actions-körning `44098066656`: **success**, inklusive analysbibliotekets matchning och handprofiltester.
+- 140-givarsbaslinjen för motor 8.7: 579 rätt, 40 ej täckta, 0 fel (1 181 budpositioner).
