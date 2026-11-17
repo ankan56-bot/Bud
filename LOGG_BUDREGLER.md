@@ -250,3 +250,13 @@ PDF:en `nordisk_standard.pdf` (2012-08-22), sida 4, återfanns i ChatGPT-bibliot
 - Hopp i ny färg visar renons och är slaminvit.
 - 3NT är slutbud; 3 i öppningsfärgen är spärrhöjning med 3+ stöd, ej invit.
 - Rättningsmotor 8.6 och utökade tester bygger nu på PDF sida 4. Återstående odefinierade fortsättningar finns i `testdata/weak-two-audit.md`.
+
+
+## Svaga tvåöppningar – PDF-baserad regression godkänd 2026-11-17
+
+- Rättningsmotor 8.6 är incheckad på arbetsgrenen.
+- `testdata/weak-two.test.js`: 11/11 tester passerar.
+- Hela GitHub Actions-körningen `44096901366` passerade samtliga steg, inklusive befintliga regressioner, analysbibliotek, handvillkor och DDS-runtime-kontroller.
+- 140-givarsbaslinjen uppdaterad för motor 8.6: 581 rätt, 39 ej täckta, 0 fel; 1 185 budpositioner. DDS är inte körd i själva budgivningsbaslinjen.
+- PDF sida 4 är källan. Inga poänggränser för svarshandens 2NT-invit har hittats; motorn kontrollerar endast minst 2 stödkort. Öppnarens 6–8/9–10 hp-min/max efter 2NT är implementerat.
+- Ej täckta fortsättningar är specificerade i `testdata/weak-two-audit.md`. De ska inte ersättas med antaganden.
