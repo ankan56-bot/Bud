@@ -31,7 +31,7 @@
 
     // Vid lågfärgsöppning ska en egen 4+ högfärg visas först,
     // även när handen också innehåller en eller flera renoncer.
-    var hasMajor= !maj(openingSuit)&&SU.some(function(s){return maj(s)&&hand.L[s]>=4;});
+    var hasMajor= !maj(openingSuit)&&!!(hand&&hand.L)&&SU.some(function(s){return maj(s)&&hand.L[s]>=4;});
     // PDF s. 2: dubbelhopp i ny färg visar renons, 4+ stöd och 13+ htp.
     // Om flera renoncer finns anger källan ingen prioritet; logga i stället.
     if(!hasMajor&&fit>=4&&htp>=13&&voids.length>1)
