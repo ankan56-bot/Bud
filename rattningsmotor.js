@@ -216,13 +216,17 @@ var Rattning = (function(){
       analysisBids[i]={s:st.bids[i].s,c:'P'};
       var missed=missedGameOrSlam(st,analysisBids,i,contractBefore,sideBefore);
       if(missed){
+        var rescuedSourceGap=!!(node&&node.sourceGap);
+        var rescuedGapWhy=rescuedSourceGap?(node.why||'Källlucka i den exakta fortsättningen.'):null;
         node={
           exp:missed.target,
           alt:[],
-          why:missed.why,
-          means:function(c){return c===missed.target?'Utgång eller slam enligt partnerskapets poänggränser.':null},
-          conv:'missad utgång/slam',
-          soft:false
+          why:missed.why+(rescuedSourceGap?' Kvarstående källucka: '+rescuedGapWhy:''),
+          means:function(c){return c===missed.target?'Utgång enligt partnerskapets poänggränser; eventuell slamundersökning går via 4NT/RKC.':null},
+          conv:'missad utgång',
+          soft:false,
+          sourceGap:rescuedSourceGap,
+          sourceGapReason:rescuedGapWhy
         };
       }
     }
@@ -269,7 +273,7 @@ var Rattning = (function(){
   // Loggen deduplicerar identiska auktioner/givare och kan exporteras som JSON.
   function nodeFor(st,i){
     var node=nodeForInternal(st,i);
-    if(!node||!node.exp){
+    if(!node||!node.exp||node.sourceGap){
       var bids=st&&Array.isArray(st.bids)?st.bids:[];
       var current=bids[i]||null;
       if(typeof window!=='undefined'&&window.EjTacktaLogg){
@@ -279,7 +283,7 @@ var Rattning = (function(){
           seat:current&&current.s,
           auction:bids.slice(0,i),
           attemptedCall:current&&current.c,
-          reason:node&&node.why||'Ingen verifierad fortsättning.',
+          reason:node&&(node.sourceGapReason||node.why)||'Ingen verifierad fortsättning.',
           sourceGap:!!(node&&node.sourceGap),
           hands:st&&st.hands||null
         });
