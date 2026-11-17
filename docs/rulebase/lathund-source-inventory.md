@@ -144,12 +144,6 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Offringar på högre nivå kan vara bra när båda sidor har många trumf; zonförhållandena styr hur många dubblade straffar man kan tåla.
 - Den högra sidan på tryckt s. 51 börjar utspels- och markeringskapitlet, vilket ligger utanför budrättningsmodulen.
 
-### Tryckta sidor 50–51: Alla bjuder; utspel och markeringar
-- Resonemang om att båda sidor ofta har trumfstöd när ena sidan har minst åtta kort i trumf.
-- Lagen: budnivå relateras till antal gemensamma trumf (åtta, nio respektive tio).
-- Offringar och zonförhållanden.
-- Efterföljande sidor behandlar utspel och markeringar. Detta ligger utanför den aktuella budrättningsmodulens kärna och ska inte implementeras som budregler.
-
 ## 4. Viktiga källgränser och risker
 
 1. Lathunden innehåller uttryckliga hänvisningar till **Bättre bud**, **PRO**, **Plus** och **Slam**. En hänvisning är inte samma sak som att hela den hänvisade regeln finns i Lathunden.
