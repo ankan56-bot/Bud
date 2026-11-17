@@ -7419,7 +7419,26 @@
               "next": "t34_n14",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
-          ]
+          ],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "opener",
+            "authority": "analysis_only",
+            "sourceText": "Öppningshand: 6–10 hp, exakt sex kort i öppningsfärgen och bra färg enligt de två kvalitetskriterierna.",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "suitLengths": {
+              "D": {
+                "min": 6,
+                "max": 6
+              }
+            },
+            "manual": [
+              "Färgkvalitet: minst 2 honnörer A/K/D/Kn, eller minst 1 honnör och minst 2 av 10/9/8."
+            ]
+          }
         },
         {
           "id": "t34_n1",
@@ -7757,7 +7776,26 @@
               "next": "t35_n14",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
-          ]
+          ],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "opener",
+            "authority": "analysis_only",
+            "sourceText": "Öppningshand: 6–10 hp, exakt sex kort i öppningsfärgen och bra färg enligt de två kvalitetskriterierna.",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "suitLengths": {
+              "H": {
+                "min": 6,
+                "max": 6
+              }
+            },
+            "manual": [
+              "Färgkvalitet: minst 2 honnörer A/K/D/Kn, eller minst 1 honnör och minst 2 av 10/9/8."
+            ]
+          }
         },
         {
           "id": "t35_n1",
@@ -8090,7 +8128,26 @@
               "next": "t36_n13",
               "label": "Essfråga – öppningsfärgen är trumf"
             }
-          ]
+          ],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "opener",
+            "authority": "analysis_only",
+            "sourceText": "Öppningshand: 6–10 hp, exakt sex kort i öppningsfärgen och bra färg enligt de två kvalitetskriterierna.",
+            "hcp": {
+              "min": 6,
+              "max": 10
+            },
+            "suitLengths": {
+              "S": {
+                "min": 6,
+                "max": 6
+              }
+            },
+            "manual": [
+              "Färgkvalitet: minst 2 honnörer A/K/D/Kn, eller minst 1 honnör och minst 2 av 10/9/8."
+            ]
+          }
         },
         {
           "id": "t36_n1",
