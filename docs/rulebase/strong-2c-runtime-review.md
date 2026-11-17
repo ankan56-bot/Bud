@@ -2,7 +2,7 @@
 
 **Branch:** work/undisturbed-architecture  
 **Fil:** `2kloveroppning.js`  
-**Status:** Endast läsgranskning. Ingen kod ändrad.  
+**Status:** Uppdaterad och testad kod för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Svarshandens senare fortsättningar är utanför denna modulomgång.  
 **Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.  
 **Systembeslut:** Svarshanden bjuder alltid 2♦ på 2♣. 2♥ som svagt svar används inte.
 
@@ -32,8 +32,9 @@ Nuvarande kod väljer alltid 2♦. Detta är beslutat och ska behållas.
 
 ### 3. Öppnarens återbud efter 2♣–2♦
 Koden:
-- väljer 2NT för balanserad hand upp till 24 hp,
-- väljer 3NT för alla balanserade händer över 24 hp,
+- väljer 2NT för 22–24 hp balanserad hand,
+- väljer 3NT för 25–27 hp balanserad hand,
+- väljer 4NT för 28–29 hp balanserad hand enligt Lathunden s. 24,
 - väljer 2♥/2♠ eller 3♣/3♦ vid minst 5 kort i färg.
 
 Nordisk Standard anger:
@@ -42,10 +43,11 @@ Nordisk Standard anger:
 - 3 lå: utgångskrav, 5+ lågfärg,
 - 3NT: 25–27 hp jämn.
 
-Risker:
-- Koden har ingen separat hantering av 28–29 hp jämn hand som Lathunden visar med 4NT. NS anger inte denna gren. Den får inte tyst styras till 3NT.
+Risker och avgränsningar:
+- 4NT 28–29 hp är implementerat som ett uttryckligt Lathundstillägg; Nordisk Standard anger inte denna gren.
+- Balanserade händer utanför intervallen 22–29 hp lämnas ej täckta i stället för att tvingas in i fel bud.
 - Om obalanserad hand saknar 5+ färg returnerar koden ingen rekommendation; detta är bättre än att hitta på ett bud.
-- 3NT måste begränsas till 25–27 hp enligt NS.
+- 3NT är begränsat till 25–27 hp enligt NS.
 
 ### 4. Svarshandens fortsättning / Herbertavslag
 Koden har stöd för Herbertavslag efter 2♥, 2♠, 3♣ och 3♦:
@@ -63,7 +65,7 @@ Risker:
 - 0–5 hp med stöldvärde och bra trumfstöd efter 3 lå ska ge 5 lå, inte Herbertavslag.
 
 ### 5. Kvarvarande täckningsluckor
-- 28–29 hp balanserad öppnarhand efter 2♣–2♦.
+- Fortsättningar efter 4NT och senare bud ligger utanför denna modulomgång.
 - Stark 2♣-hand utan 5+ färg i obalanserad gren.
 - Hur stöldvärde ska beräknas (singelton, renons och eventuell annan definition).
 - Hur slamintresse identifieras i 4 lå-grenen.
@@ -72,7 +74,7 @@ Risker:
 
 ## Rekommenderad testmatris när modulen öppnas
 1. Öppningsgränser: balanserad 21/22/24/25/27/28/29; obalanserad 19/20/21.
-2. 2♣–2♦: 22–24 balanserad → 2NT; 25–27 balanserad → 3NT; 28–29 → ej täckt tills beslut.
+2. 2♣–2♦: 22–24 balanserad → 2NT; 25–27 balanserad → 3NT; 28–29 balanserad → 4NT enligt Lathunden s. 24.
 3. Obalanserad med 5+ högfärg → rätt 2M utgångskrav.
 4. Obalanserad med 5+ lågfärg → rätt 3m utgångskrav.
 5. Saknar 5+ färg → ej täckt, aldrig påhittat bud.
@@ -83,4 +85,4 @@ Risker:
 10. Verifiera att varje odefinierad sekvens hamnar i separat expertlogg.
 
 ## Slutsats
-Modulen har redan en betydande regelstruktur och använder rätt svarsväg: alltid 2♦. Den ska inte skrivas om från början. När ÖH 2♣ blir nästa aktiva modul ska befintliga funktioner och tester bevaras, och de kvarvarande luckorna rättas mot Nordisk Standard. Ingen kod har ändrats i denna granskning.
+Modulen använder alltid 2♦ och öppnarens återbud är nu avgränsade och testade till 4NT. Nordisk Standards intervall 2NT 22–24 och 3NT 25–27 följs; Lathundens 4NT 28–29 är ett tydligt märkt tillägg. Senare svarshandsfortsättningar och obalanserade gränsfall utanför källornas tydliga stöd lämnas till nästa steg.
