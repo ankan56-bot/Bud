@@ -79,7 +79,7 @@ Senaste godkända CI-körning: `44092411308` (commit `1a8afadc`).
 
 ## 8. Regression och skydd
 
-- 200-givarsvalideringen för 1♣/1♦: 1 026 N/S-positioner, 970 täckta (94,5 %), 56 explicita source gaps. Alla 56 sparas i `one_minor_200_uncovered_latest.json`; 0 olagliga rekommendationer, 0 ogiltiga budgivningar, 0 exceptions och 0 ofrivilligt oavslutade givar.
+- 200-givarsvalideringen för 1♣/1♦: 981 N/S-positioner, 925 täckta (94,3 %), 56 explicita source gaps. Alla 56 sparas i `one_minor_200_uncovered_latest.json`; 0 olagliga rekommendationer, 0 ogiltiga budgivningar, 0 exceptions och 0 ofrivilligt oavslutade givar.
 
 - Högfärgsmodulen ändras inte.
 - 1NT-, trumfstöds-, Stenberg- och slammodulerna återanvänds.
