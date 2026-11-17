@@ -120,7 +120,7 @@ test('1♦–3♦: 10–12 htp with four-card support is a double raise',()=>{
 });
 
 test('1♣–2NT is handed to the existing Stenberg module',()=>{
-  const responder=hand({C:'AKQ2',D:'AK2',H:'23',S:'4567'});
+  const responder=hand({C:'AKQ2',D:'AK2',H:'234',S:'567'});
   const result=responderNode(c12,responder,'1C');
   assert.equal(result.exp,'2N');
   assert.equal(result.conv,'Stenberg');
