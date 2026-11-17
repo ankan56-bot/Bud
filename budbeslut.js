@@ -431,7 +431,17 @@
     if(c1==='2C'){
       if(!opener&&d===1)return resp2c(h);
       if(opener&&d===2)return reb2c(h,ours[1].c);
-      if(!opener&&d===3){var rb=ours[2].c;if(rb==='2N')return ntResp(h,1);return resp2c2(h,rb,ours[1].c)}
+      if(!opener&&d===3){
+        var rb=ours[2].c;
+        if(rb==='2N'){
+          if(h.L.H>=5&&h.L.S>=5)
+            return NC('Efter 2♣–2♦–2NT har svarshanden 5-5 i högfärgerna. Lathunden s. 25 anger överföringarna men ingen prioritet mellan två möjliga överföringsfärger; lämnas ej täckt.',null,'2NT-system',true);
+          if(h.L.C>=6||h.L.D>=6||(h.L.C>=5&&h.L.D>=5))
+            return NC('Efter 2♣–2♦–2NT har svarshanden lång eller tvåfärgad lågfärg. Lathunden s. 25 hänvisar lågfärgsfrågan till PRO och slaminviterna till Slam; dessa externa grenar är inte antagna.',null,'2NT-system',true);
+          return ntResp(h,1);
+        }
+        return resp2c2(h,rb,ours[1].c);
+      }
       if(opener&&d===4&&ours[1].c==='2D'){
         if(ours[2].c==='2N')
           return ntOpener(h,1,ours[3].c,st.hands[pt]);
