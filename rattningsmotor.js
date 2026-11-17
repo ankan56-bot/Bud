@@ -1230,7 +1230,7 @@ var Rattning = (function(){
         }
       }
 
-      // Sida 19, exakt exempel: 1♥–1♣; 2♣–2♦.
+      // Sida 19, exakt exempel: 1♣–1♥; 2♣–2♦.
       // Öppnarens tabellrader som kan avgöras direkt av färglängd.
       if(d===4 && opener && ours[0].c==='1C' && ours[1].c==='1H' &&
          ours[2].c==='2C' && ours[3].c==='2D'){
@@ -1364,7 +1364,8 @@ var Rattning = (function(){
     // av den generella poängkontrollen för missad utgång/slam.
     var unresolvedRkc=!!(node&&!node.exp&&node.conv==='Blackwood 5 ess');
     var unresolvedStenberg=!!(node&&!node.exp&&node.conv==='Stenberg');
-    if(!unresolvedRkc&&!unresolvedStenberg&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
+    var unresolvedSourceRule=!!(node&&!node.exp&&/^(Tredje färg|Fjärde färg|ÖH:s tredje bud|Splinter – konflikt)/.test(node.conv||''));
+    if(!unresolvedRkc&&!unresolvedStenberg&&!unresolvedSourceRule&&st&&st.bids&&st.bids[i]&&priorPartnershipCalls>=2&&
        (!node||!node.exp||node.exp==='P'||rawIllegal)){
       var contractBefore=null,sideBefore=null;
       for(var ci=0;ci<i;ci++){
