@@ -1139,8 +1139,8 @@ var Rattning = (function(){
     }
 
     // Sida 18: öppnarens tredje bud efter svarshandens 1NT-återbud.
-    // Exakt exempel i lathunden: 1♥–1♣; 1♠–1NT.
-    if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1C' &&
+    // Exakt exempel i lathunden: 1♣–1♥; 1♠–1NT.
+    if(d===4 && opener && ours[0].c==='1C' && ours[1].c==='1H' &&
        ours[2].c==='1S' && ours[3].c==='1N'){
       var lens18=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
       var shape54=lens18[0]===5&&lens18[1]===4;
