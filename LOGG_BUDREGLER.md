@@ -290,3 +290,14 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 - 16 regressionstester täcker både två honnörer, en honnör + två mellankort samt otillräcklig färgkvalitet.
 - GitHub Actions `44100697247`: hela testkedjan **success**.
 - Uppdaterad 140-givarsbaslinje: 581 rätt, 39 ej täckta, 0 fel; 1 185 budpositioner.
+
+
+## Spärröppningar – 2026-11-17
+
+- Beslut: samma två kriterier för bra färg används som för svaga tvåor: (1) minst två honnörer A/K/D/Kn, (2) minst en honnör samt minst två av 10/9/8.
+- 6 kort: ett eller båda kriterierna ger 2♦/2♥/2♠.
+- 7 kort: ett kriterium ger 2-nivån; båda ger 3-nivån.
+- 8 kort: ett kriterium ger 3-nivån; båda ger 4-nivån.
+- Noll kriterier ger ingen spärröppning i den definierade trappan. 9+ kort är ej täckt och ska loggas.
+- 2♣ förblir starköppning. Därför kan 7-korts ♣ inte öppnas på 2-nivån; 3♣ används vid minst ett kriterium. 8-korts ♣: 3♣ med ett kriterium, 4♣ med båda.
+- Implementerat i rättningsmotor 8.9 på `work/theme-dataset-analysis`. Se `testdata/preemptive-openings-audit.md`.
