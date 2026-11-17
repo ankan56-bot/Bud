@@ -5939,26 +5939,6 @@
           }
         },
         {
-          "id": "t40_minor_own_suit_continuation",
-          "sequence": [
-            "1♣",
-            "Pass",
-            "1♦",
-            "Pass",
-            "2♣"
-          ],
-          "handProfile": {
-            "opener": "Öppnaren har 6+ klöver och har återbjudit 2♣.",
-            "responder": "Svarshanden har normalt 10–12 hp balanserat med minst två klöver och håll i sidofärgerna för 2NT; 11–12 HTP och 3+ klöver för 3♣; 13–18 HTP och 4+ klöver för 4♣."
-          },
-          "meaning": "Svarshandens andra bud efter öppnarens egen 6+ lågfärg.",
-          "analysis": "2NT är en invit och kräver balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna. 3♣ visar 11–12 HTP och minst tre korts stöd; 4♣ visar 13–18 HTP och minst fyra korts stöd. 13+ hp balanserat med håll kan välja 3NT. Svaga händer utan stöd eller egen lång sidofärg kan passa. Nordisk standard har företräde; Lathunden används som kompletterande förtydligande.",
-          "source": [
-            "Nordisk standard s. 3–4",
-            "Bridge Lathund s. 16–17"
-          ]
-        },
-        {
           "id": "t40_minor_weak_preference_acceptance",
           "sequence": [
             "1♣",
@@ -5980,7 +5960,7 @@
           ]
         },
         {
-          "id": "t40_minor_own_suit_2nt_source_gap",
+          "id": "t40_minor_own_suit_2nt",
           "sequence": [
             "1♣",
             "Pass",
@@ -5991,12 +5971,11 @@
             "2NT"
           ],
           "handProfile": {
-            "opener": "Öppnaren har återbjudit 2♣ med 6+ klöver.",
-            "responder": "Handen är obalanserad med 13+ hp, lång sidofärg och mindre än två klöver; alternativt saknas föreskrivet håll."
+            "opener": "Öppnaren har 6+ klöver och har återbjudit 2♣.",
+            "responder": "10–12 hp, balanserad hand, minst två klöver och håll i de två sidofärgerna."
           },
-          "meaning": "2NT saknar stöd för den dokumenterade invitprofilen.",
-          "analysis": "2NT får inte väljas enbart därför att paret har tillräckligt många sammanlagda hp. Den dokumenterade profilen kräver balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna. Om profilen saknas ska sekvensen markeras ej täckt och sparas för expertgranskning.",
-          "sourceGap": true,
+          "meaning": "Svarshandens sanginvit efter öppnarens 6+ lågfärg.",
+          "analysis": "2NT är en invit och kräver balanserad 10–12 hp, minst två korts stöd i öppningslågfärgen och håll i sidofärgerna. Om handprofilen inte stämmer får 2NT inte rekommenderas enbart på grund av sammanlagda hp; ej täckta varianter loggas.",
           "source": [
             "Nordisk standard s. 3–4",
             "Bridge Lathund s. 16"
@@ -6047,6 +6026,90 @@
           "source": [
             "Nordisk standard s. 3–4",
             "Bridge Lathund s. 15–17"
+          ]
+        },
+        {
+          "id": "t40_minor_own_suit_3c",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣",
+            "Pass",
+            "3♣"
+          ],
+          "handProfile": {
+            "opener": "6+ klöver.",
+            "responder": "11–12 HTP och minst tre klöver."
+          },
+          "meaning": "Invitativt stöd i öppnarens klöver.",
+          "analysis": "3♣ visar 11–12 HTP och minst tre korts stöd. Öppnaren bedömer om 5♣ är möjligt; annars stannar paret i 3♣.",
+          "source": [
+            "Bridge Lathund s. 16–17"
+          ]
+        },
+        {
+          "id": "t40_minor_own_suit_4c",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣",
+            "Pass",
+            "4♣"
+          ],
+          "handProfile": {
+            "opener": "6+ klöver.",
+            "responder": "13–18 HTP och minst fyra klöver."
+          },
+          "meaning": "Starkt stöd/invit mot 5♣.",
+          "analysis": "4♣ visar 13–18 HTP och minst fyra korts stöd i öppnarens långfärg. Öppnaren accepterar med tillräcklig gemensam styrka; annars stannar paret.",
+          "source": [
+            "Bridge Lathund s. 16–17"
+          ]
+        },
+        {
+          "id": "t40_minor_own_suit_3nt",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣",
+            "Pass",
+            "3NT"
+          ],
+          "handProfile": {
+            "opener": "6+ klöver.",
+            "responder": "Minst 13 hp, balanserad hand och håll i sidofärgerna."
+          },
+          "meaning": "Naturlig sangutgång efter öppnarens långa klöver.",
+          "analysis": "3NT prioriteras när svarshanden har minst 13 hp, balanserad hand och håll i sidofärgerna. Fördelningspoäng ska inte räknas i sang.",
+          "source": [
+            "Nordisk standard s. 3–4"
+          ]
+        },
+        {
+          "id": "t40_minor_own_suit_pass",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣",
+            "Pass",
+            "Pass"
+          ],
+          "handProfile": {
+            "opener": "6+ klöver.",
+            "responder": "6–10 hp utan minst tre korts stöd eller egen lång sidofärg."
+          },
+          "meaning": "Svag svarshand passar efter öppnarens 6+ lågfärg.",
+          "analysis": "Pass är möjligt med svag hand utan passande stöd eller egen lång sidofärg. Stanna i lågfärgen; hitta inte på en invit.",
+          "source": [
+            "Bridge Lathund s. 16"
           ]
         }
       ]
