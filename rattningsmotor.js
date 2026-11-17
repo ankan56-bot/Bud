@@ -1256,6 +1256,32 @@ var Rattning = (function(){
       }
     }
 
+    // Sida 19: svarshandens fortsättning efter tredje färg.
+    // Exempelvägen 1♣–1♥; 2♣–2♦; 2♥–?.
+    if(d===5 && !opener && ours[0].c==='1C' && ours[1].c==='1H' &&
+       ours[2].c==='2C' && ours[3].c==='2D' && ours[4].c==='2H'){
+      if(b.c==='2S')return {exp:'2S',alt:[],why:'2♠ är fjärde färg och utgångskrav enligt fortsättningstabellen på sida 19.',means:function(c){return c==='2S'?'Fjärde färg, utgångskrav.':null},conv:'Fjärde färg',soft:false};
+      if((b.c==='2N'||b.c==='3C')&&h.hp>=11&&h.hp<=12)
+        return {exp:b.c,alt:[],why:txt(b.c)+' är invit med 11–12 hp enligt fortsättningstabellen efter tredje färg.',means:function(c){return c===b.c?'Invit, 11–12 hp.':null},conv:'Fortsättning efter tredje färg'};
+      var lens3=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
+      if(b.c==='3D'&&lens3[0]===5&&lens3[1]===5&&h.hp>=11&&h.hp<=12)
+        return {exp:'3D',alt:[],why:'3♦ visar 5–5-fördelning och 11–12 hp enligt sida 19.',means:function(c){return c==='3D'?'5–5-fördelning, 11–12 hp.':null},conv:'Fortsättning efter tredje färg'};
+      if(b.c==='3H'&&h.L.H===6&&h.hp>=11&&h.hp<=12)
+        return {exp:'3H',alt:[],why:'3♥ visar sexkortshjärter och 11–12 hp enligt sida 19.',means:function(c){return c==='3H'?'Sexkortshjärter, 11–12 hp.':null},conv:'Fortsättning efter tredje färg'};
+      return NC('Fortsättningen efter tredje färg ska följa tabellen på sida 19. Den aktuella handen uppfyller inte entydigt en av de angivna handbeskrivningarna.',null,'Fortsättning efter tredje färg');
+    }
+
+    // Sida 19: svarshandens fortsättning efter fjärde färg.
+    if(d===5 && !opener && ours[0].c==='1H' && ours[1].c==='1S' &&
+       ours[2].c==='2C' && ours[3].c==='2D'){
+      if(b.c==='2N'&&h.hp>=13&&h.stop('D'))
+        return {exp:'2N',alt:[],why:'2NT visar ruterhåll och minst 13 hp enligt fortsättningstabellen efter fjärde färg.',means:function(c){return c==='2N'?'Ruterhåll, 13+ hp.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='3N'&&h.stop('D'))
+        return {exp:'3N',alt:[],why:'3NT visar ruterhåll och är slutbud enligt sida 19.',means:function(c){return c==='3N'?'Ruterhåll, slutbud.':null},conv:'Fortsättning efter fjärde färg'};
+      if(b.c==='3C'||b.c==='3H'||b.c==='3S'||b.c==='4S')
+        return NC('Budet efter fjärde färg bedöms med stödpoäng (stp). Rättningsmotorn har ännu ingen källverifierad beräkning som motsvarar just dessa stp-gränser; sekvensen loggas för expertkontroll.',null,'Fortsättning efter fjärde färg');
+    }
+
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
       if(c1==='1N'&&!opener&&d===2){
         var opening=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&/^1[CDHS]$/.test(x.c)})[0];
