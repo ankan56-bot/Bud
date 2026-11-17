@@ -171,4 +171,7 @@ assert.equal(slam.rkcTrumpFromAuction(auction([
   ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','2N'],['E','P'],['S','3D'],['W','P'],['N','3H'],['E','P'],['S','4N']
 ]),1),'H','4NT after 2NT transfer to hearts is an ace ask with hearts as trump');
 
+assert.equal(slam.rkcTrumpFromAuction(auction([
+  ['N','2C'],['E','P'],['S','2D'],['W','P'],['N','3C'],['E','P'],['S','3D'],['W','P'],['N','4N'],['E','P'],['S','5C']
+]),0),'C','strong 2C trump agreement must remain available after the RKC reply');
 console.log('Strong 2C through 4NT and source-bound third-bid branches: all tests passed.');
