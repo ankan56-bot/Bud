@@ -104,8 +104,8 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
-assert.equal(report.turns, 159, 'The fixed corpus stops each deal at its first explicit source gap.');
-assert.equal(report.covered, 148, 'The source-verified rules cover 148 positions before the first source gap.');
+assert.equal(report.turns, 152, 'The fixed corpus stops at source gaps and may finish earlier when game-level safety rescue finds the mandatory game.');
+assert.equal(report.covered, 141, 'The source-verified rules cover 141 positions before source-gap stops.');
 const acceptedSourceGaps=[
   'invit-08','invit-09','invit-10','nt-08','nt-09','nt-10','rkc-08',
   'sang-09','slamnt-08','slamnt-10','alla-10'
@@ -119,4 +119,4 @@ assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
-assert.equal(report.coveragePercent, 93.1, 'Undisturbed coverage reflects the documented source gaps, including minor and Stenberg continuations.');
+assert.equal(report.coveragePercent, 92.8, 'Undisturbed coverage reflects documented source gaps and game-level safety rescues.');
