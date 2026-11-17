@@ -129,7 +129,7 @@
       var partnerHand=H(st.hands[partner(b.s)]);
       var agreed=null;
       // Stenberg 2NT visar uttryckligen stöd i öppnarens färg.
-      if(node&&node.conv==='Stenberg'){
+      if(node&&/^Stenberg/.test(node.conv||'')){
         for(var ai=0;ai<i;ai++){
           if(side(bids[ai].s)===side(b.s)&&/^1[CDHS]$/.test(bids[ai].c)){
             var candidate=bids[ai].c[1];
