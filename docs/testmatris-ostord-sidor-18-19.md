@@ -31,12 +31,13 @@ Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen 
 - 4♣: Splinter, 16–17 hp (nu aktiverat enligt användarens uttryckliga beslut)
 - 4♥: slutbud
 
-### SH inviterar med 2NT
+### SH inviterar med 2NT – 1♥–1♠; 2♦–2NT
+- 2NT är invit med 11–12 hp
 - 3♣: svagt, fjärde färg, utgångskrav
 - 3♦: 5–5-fördelning, minimum
 - 3♥: 6–4-fördelning, minimum
 - 3♠: 3-korts spader, maximum (annars 2♠ direkt)
-- 3NT: slutbud
+- 3NT: 15–17 hp
 
 ## Sida 19 – SH bjuder tredje eller fjärde färg
 
@@ -91,7 +92,7 @@ Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen 
 - Sida 18: tredje bud efter 1NT-återbud har implementerade kontroller för samtliga sju budrader i det avbildade exemplet.
 - Sida 18: preferensgrenen har implementerade kontroller för pass, 2♠, 2NT, 3♣ och 3♥. 4♥ lämnas ej täckt eftersom ”stark hand” saknar numerisk gräns.
 - Sida 18: ombud-grenen har kontroller för pass, 2NT, 3♦, 3♥, 3♠ och 4♥. 2♠/6–5 minimum lämnas ej täckt eftersom minimum inte är numeriskt definierat. 4♣ Splinter är implementerat med 16–17 hp enligt lathunden och användarens beslut.
-- Sida 18: 2NT-invitgrenen känner igen 3♣ som fjärde färg/utgångskrav och 3NT som slutbud. 3♦, 3♥ och 3♠ lämnas ej täckta eftersom minimum/maximum inte är numeriskt definierat.
+- Sida 18: 2NT-invitgrenen använder nu den korrekta exempelauktionen 1♥–1♠; 2♦–2NT. Svarshandens 2NT kontrolleras som invit med 11–12 hp. ÖH:s 3♣ känns igen som fjärde färg/utgångskrav; 3♦, 3♥ och 3♠ följer angivna fördelnings-/styrkekrav; 3NT visar 15–17 hp.
 - Sida 19: svarshandens tredje och fjärde färg identifieras efter antalet olika färger paret redan visat. Nya färgbud godtas som kravbud; inga generella hp-gränser har hittats på.
 - Sida 19: öppnarens tabell efter tredje färg har direkta kontroller för 2♥ med två hjärter, 2♠ som fjärde färg/utgångskrav, 3♣ med sex klöver, 3♦ med fyrkortsstöd och 3♥ med trekortsstöd. Sangvalen lämnas ej täckta eftersom minimum/maximum saknar numeriska gränser.
 - Sida 19: öppnarens tabell efter fjärde färg har direkta kontroller för 2♠ med två spader, 2NT med ruterhåll, 3♣ med 5–5 och 3♦ med fyrkortsfärg. 2♥ (”inget bättre bud”) samt 3♥/3♠ (maximum) lämnas ej täckta. Pass och 3NT anges som uttryckligt otillåtna och loggas som ej täckta med förklaring.
@@ -122,7 +123,7 @@ GitHub Actions körde `node --test tests/ostord-sidor-18-19.test.js` på commit 
 
 ### Kvarstående ej täckt / behöver källkontroll
 
-- Sida 18, 2NT-invitgrenen har i befintlig dispatch en hårdkodad exempelauktion `1♥–1♦; 2♥–2NT`. Den auktionen är inte budtekniskt giltig eftersom 1♦ ligger under 1♥. Jag har inte gissat vilken auktion som ska ersätta den; grenen behöver jämföras med originalfotot innan den kan godkännas som körbar.
+- Sida 18, 2NT-invitgrenen är nu korrigerad enligt användarens förtydligande: `1♥–1♠; 2♦–2NT`. 2NT är invit med 11–12 hp. Koden kontrollerar både sekvensen och svarshandens hp.
 - Sida 18, 4♣ Splinter är nu aktiverat vid 16–17 hp. Handkrav utöver den angivna styrkan har inte lagts till utan källstöd.
 - Sida 19, 2♥ efter fjärde färg (”inget bättre bud”) saknar fortfarande maskinellt verifierbar handdefinition.
 - Bud som inte uppfyller en fullständig tabellrad ska fortsätta returneras som ej täckta och sparas för expertgranskning. Testerna visar inte att samtliga sådana sekvenser redan skrivs till en separat beständig logg; den persistenta loggningen behöver verifieras separat.
@@ -138,3 +139,8 @@ GitHub Actions körde `node --test tests/ostord-sidor-18-19.test.js` på commit 
 - Utanför intervallet 16–17 hp lämnas budet ej täckt med förklaring.
 - Inga ytterligare krav på trumfstöd eller korthet har lagts till eftersom de inte är numeriskt angivna i den aktuella tabellraden.
 
+
+
+### Korrigering – 2NT-invit (2026-11-17)
+
+Användaren har bekräftat korrekt sekvens: **1♥–1♠; 2♦–2NT**, där svarshandens 2NT är en invit med **11–12 hp**. Den felaktiga hårdkodade sekvensen har ersatts i rattningmotor.js. Två regressionstester har lagts till: ett för 11 hp och ett som kontrollerar att 13 hp inte klassas som denna invit. Ändringen ligger endast på arbetsgrenen.
