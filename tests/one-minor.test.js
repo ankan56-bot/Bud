@@ -276,4 +276,18 @@ test('1♣–1♦–1♠–2♥–3♦: responder third bid is retained as an ex
   assert.equal(result.sourceGap,true);
 });
 
+
+test('1♦–1♥–2♦–2NT: balanced 10–12 hp, two-card diamond support and side-suit controls follow the T40 project branch',()=>{
+  const opener=hand({S:'J54',H:'K32',D:'AKQ987',C:'4'});
+  const responder=hand({S:'A32',H:'QJ6',D:'65',C:'AJT32'});
+  const hands=completeDeal(opener,responder);
+  const bids=[
+    {s:'N',c:'1D'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'2N'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},6);
+  assert.equal(result.exp,'2N');
+  assert.equal(result.ruleStatus,'project_extension');
+});
+
 console.log('1♣/1♦ targeted module tests: passed.');
