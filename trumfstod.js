@@ -21,8 +21,8 @@
   function ordinary(opening){return maj(st_(opening))?major:minor;}
   function isOneLevelSuit(opening){return typeof opening==='string'&&/^1[CDHS]$/.test(opening);}
 
-  // Hela svarshanden på 1 i färg passerar här. Dokumenterad splinter visas först,
-  // därefter prövas Stenberg; övriga bud går via befintlig svarsmotor.
+  // Hela svarshanden på 1 i färg passerar här. Stenberg prövas först;
+  // övriga bud går via befintlig svarsmotor. Splinter är pausad.
   function responder(hand,opening){
     if(!isOneLevelSuit(opening)) return NC('Trumfstöd kräver en öppning på 1-tricksnivån i färg.');
     // Splinter är pausad. Stenberg och den vanliga svarsmotorn är enda aktiva vägar.
