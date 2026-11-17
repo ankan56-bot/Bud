@@ -41,10 +41,13 @@
       if(c==='2N')return '22-24 hp, jämn hand.';
       if(c==='3C'||c==='3D')return 'Utgångskrav, 5+ '+SYM[c[1]]+'.';
       if(c==='3N')return '25-27 hp, jämn hand.';
+      if(c==='4N')return '28-29 hp, jämn hand (Lathunden s. 24; komplettering utöver NS).';
       return null};
     if(r!=='2D')return {exp:null,alt:[],why:'Endast 2♦-svar hanteras i detta system.',means:means,conv:'2♣-system'};
-    if(h.bal&&hp<=24){exp='2N';why=hp+' hp jämn: 2NT (22-24).'}
-    else if(h.bal){exp='3N';why=hp+' hp jämn: 3NT (25-27).'}
+    if(h.bal&&hp>=22&&hp<=24){exp='2N';why=hp+' hp jämn: 2NT (22-24).'}
+    else if(h.bal&&hp>=25&&hp<=27){exp='3N';why=hp+' hp jämn: 3NT (25-27).'}
+    else if(h.bal&&hp>=28&&hp<=29){exp='4N';why=hp+' hp jämn: 4NT (28-29 enligt Lathunden s. 24; tillägg som inte anges i Nordisk Standard).';}
+    else if(h.bal){return {exp:null,alt:[],why:hp+' hp balanserad hand efter 2♣–2♦ ligger utanför de källbelagda intervallen 22–29 hp. Sekvensen lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};}
     else{var mj=['H','S'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]||(b==='S'?1:-1)});
       var mn=['C','D'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]});
       if(mj.length){exp='2'+mj[0];why='5+ '+SYM[mj[0]]+': 2 i högfärgen (utgångskrav).'}
