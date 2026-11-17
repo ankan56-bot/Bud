@@ -71,7 +71,8 @@ assert.equal(ask.exp,'4N','4NT after 1♣–2NT–3♣ must hand off as RKC with
 const reply=R.nodeFor({hands:minorDeal,dealer:'N',bids:minorAuction.concat([{s:'W',c:'P'},{s:'N',c:'5D'}])},8);
 assert.equal(reply.exp,'5D','one keycard after minor Stenberg must use the existing RKC response table');
 
-// 100 deterministic valid responder hands: 4+ heart support and 13+ htp.
+// 100 deterministic Stenberg-eligible responder hands: 4+ heart support, 13+ htp and no side-suit void.
+// A side-suit void is correctly handled first as a splinter (double jump), not 2NT.
 let seed=20261116;
 function random(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
 let checked=0,attempts=0;
@@ -80,7 +81,7 @@ while(checked<100&&attempts<20000){
  const deck=[];for(const s of ['S','H','D','C'])for(let n=2;n<=14;n++)deck.push(s+n);
  for(let i=deck.length-1;i>0;i--){const j=Math.floor(random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
  const responderCards=deck.slice(0,13),responderHand=hand(responderCards);
- if(responderHand.L.H<4||scoring.handHps(responderHand,'H')<13)continue;
+ if(responderHand.L.H<4||scoring.handHps(responderHand,'H')<13||['S','D','C'].some(s=>responderHand.L[s]===0))continue;
  const rest=deck.slice(13),deal={N:rest.slice(0,13),E:rest.slice(13,26),S:responderCards,W:rest.slice(26,39)};
  const result=R.nodeFor({hands:deal,dealer:'N',bids:[{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2N'}]},2);
  assert.equal(result.exp,'2N','all eligible 1♥–2NT hands should be accepted');
