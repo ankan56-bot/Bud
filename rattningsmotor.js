@@ -83,7 +83,7 @@ var Rattning = (function(){
     : window.RattningBudbeslutFactory;
   var budbeslut=budbeslutFactory(sharedApi,{
     twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding,
-    stenberg:stenberg,trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord
+    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord
   });
   var nodeForRaw=budbeslut.nodeForRaw;
 
