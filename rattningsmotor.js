@@ -1513,6 +1513,7 @@ var Rattning = (function(){
       if(aces<3)return {why:'Lillslam kräver att paret saknar högst ett ess. Paret har '+aces+' av fyra ess.'};
     }
     if(level===7){
+      if(total<33)return {why:'Storslam kräver minst 33 gemensamma poäng. Paret har '+total+'.'};
       var totalAces=a.aces+p.aces;
       if(totalAces<4)return {why:'Storslam kräver alla fyra ess. Paret har '+totalAces+' av fyra ess.'};
       if(suit!=='N'&&!a.has(suit,13)&&!p.has(suit,13))return {why:'Storslam i färg kräver även trumfkungen, som paret saknar.'};
