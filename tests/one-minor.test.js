@@ -261,4 +261,19 @@ test('1♣–1♦–2♣–2NT: opener continuation without the required heart s
   assert.equal(result.sourceGap,true);
 });
 
+
+test('1♣–1♦–1♠–2♥–3♦: responder third bid is retained as an explicit source gap',()=>{
+  const opener=hand({S:'AQ42',H:'9',D:'AT6',C:'QT976'});
+  const responder=hand({S:'JT6',H:'AJT',D:'8543',C:'AK5'});
+  const hands=completeDeal(opener,responder);
+  const bids=[
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
+    {s:'N',c:'1S'},{s:'E',c:'P'},{s:'S',c:'2H'},{s:'W',c:'P'},
+    {s:'N',c:'3D'},{s:'E',c:'P'},{s:'S',c:'P'}
+  ];
+  const result=R.nodeFor({hands,dealer:'N',bids},10);
+  assert.equal(result.exp,null);
+  assert.equal(result.sourceGap,true);
+});
+
 console.log('1♣/1♦ targeted module tests: passed.');
