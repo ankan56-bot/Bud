@@ -12,7 +12,7 @@
   var T=api.T, ok=api.ok, NC=api.NC;
   var twoClub=deps.twoClub, weakTwo=deps.weakTwo, trumfstod=deps.trumfstod;
   var majorBidding=deps.majorBidding, minorBidding=deps.minorBidding;
-  var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2, openerThirdAfter2c=twoClub.openerThirdAfter2c;
+  var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2, openerThirdAfter2c=twoClub.openerThirdAfter2c, responderAfter2c2ntStayman=twoClub.responderAfter2c2ntStayman, responderAfter2c2ntTransfer=twoClub.responderAfter2c2ntTransfer;
   var resp2w=weakTwo.resp2w, open2w=weakTwo.open2w;
   var overcall=deps.overcalls.overcall, respOvercall=deps.overcalls.respOvercall;
   var respDouble=deps.doubles.respDouble;
@@ -437,8 +437,13 @@
           return ntOpener(h,1,ours[3].c,st.hands[pt]);
         return openerThirdAfter2c(h,ours[2].c,ours[3].c);
       }
+      if(!opener&&d===5&&ours[1].c==='2D'&&ours[2].c==='2N'){
+        if(ours[3].c==='3C')return responderAfter2c2ntStayman(h,ours[4].c);
+        if(ours[3].c==='3D'&&ours[4].c==='3H')return responderAfter2c2ntTransfer(h,'H');
+        if(ours[3].c==='3H'&&ours[4].c==='3S')return responderAfter2c2ntTransfer(h,'S');
+      }
       if(!opener&&d>=4&&ours[1].c==='2D'&&ours[2].c==='2N')
-        return NC('2♣–2♦–2NT använder samma 2NT-system enligt Lathunden s. 24–25. Första svaren Stayman/överföring återanvänds; fortsättningen efter öppnarens svar är ännu inte sekvensvis verifierad mot grundkällan och lämnas ej täckt.',null,'2♣-system / 2NT-system',true);
+        return NC('2♣–2♦–2NT använder samma 2NT-system enligt Lathunden s. 24–25. PRO-lågfärgsfrågan, Slam-fortsättningar och övriga sekvenser är inte automatiskt antagna; lämnas ej täckta.',null,'2♣-system / 2NT-system',true);
       return nc('Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.');
     }
     if(/^2[DHS]$/.test(c1)){
