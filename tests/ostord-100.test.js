@@ -66,6 +66,7 @@ const report = {
   illegalRecommendations: [],
   invalidAuctions: [],
   unfinishedAuctions: [],
+  sourceGapStops: [],
   cardIntegrityErrors: []
 };
 
@@ -78,7 +79,7 @@ for (const deal of deals) {
   }
 
   const st = { hands: deal.hands, dealer: deal.dealer, bids: [] };
-  let seat = deal.dealer, ended = false, guard = 0;
+  let seat = deal.dealer, ended = false, guard = 0, sourceGapStopped = false;
   while (!ended && guard++ < 32) {
     const index = st.bids.length;
     let call = 'P';
@@ -93,13 +94,17 @@ for (const deal of deals) {
         } else {
           report.uncovered.push({
             dealId: deal.id, seed: deal.seed, seat,
-            auction: st.bids.map(b => b.s + ':' + b.c).join(' '),
+            auction: st.bids.slice(0, -1).map(b => b.s + ':' + b.c).join(' '),
             sourceGap: !!(node && node.sourceGap),
             reason: node && node.why ? node.why : 'Ingen regelmatchning.'
           });
+          st.bids.pop();
+          sourceGapStopped = true;
+          break;
         }
       } catch (error) {
         report.exceptions.push({ dealId: deal.id, seat, message: String(error && error.message || error) });
+        st.bids.pop(); sourceGapStopped = true; break;
       }
       st.bids[index] = { s: seat, c: call };
     } else {
@@ -118,7 +123,8 @@ for (const deal of deals) {
 
   const finalValidation = Rattning.validateAuction(st);
   if (!finalValidation.valid) report.invalidAuctions.push({ dealId: deal.id, errors: finalValidation.errors });
-  if (!finalValidation.ended) report.unfinishedAuctions.push({ dealId: deal.id, calls: st.bids.length });
+  if (sourceGapStopped) report.sourceGapStops.push({ dealId: deal.id, calls: st.bids.length });
+  else if (!finalValidation.ended) report.unfinishedAuctions.push({ dealId: deal.id, calls: st.bids.length });
 }
 
 report.coveragePercent = report.turns ? Math.round(report.covered / report.turns * 1000) / 10 : 0;
@@ -128,7 +134,7 @@ console.log(JSON.stringify({
   deals: report.deals, turns: report.turns, covered: report.covered,
   uncovered: report.uncovered.length, coveragePercent: report.coveragePercent,
   exceptions: report.exceptions.length, illegalRecommendations: report.illegalRecommendations.length,
-  invalidAuctions: report.invalidAuctions.length, unfinishedAuctions: report.unfinishedAuctions.length,
+  invalidAuctions: report.invalidAuctions.length, unfinishedAuctions: report.unfinishedAuctions.length, sourceGapStops: report.sourceGapStops.length,
   cardIntegrityErrors: report.cardIntegrityErrors.length,
   uncoveredDetails: report.uncovered
 }, null, 2));
@@ -137,7 +143,8 @@ assert.equal(report.cardIntegrityErrors.length, 0, 'All generated deals must con
 assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
-assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
+assert.equal(report.unfinishedAuctions.length, 0, 'No auction may be unfinished except where it is deliberately stopped at a source gap.');
+assert.equal(report.sourceGapStops.length, report.uncovered.length, 'Each deal stops at its first uncovered sequence.');
 // Remaining uncovered cases are explicitly source gaps, not unexplained
 // engine failures: qualitative/numeric invite boundaries, the weak-relay
 // strength descriptor, and transfer hands outside the tabulated shapes.
