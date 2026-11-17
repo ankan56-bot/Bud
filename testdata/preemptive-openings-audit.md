@@ -63,6 +63,6 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 Ingen störd budgivning eller försvarsbudgivning har lagts till.
 
 
-Status: rättningsmotor 8.9 och 25 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
+Status: rättningsmotor 8.9 och 25 regressionstester är incheckade. Ett fokuserat GitHub Actions-flöde `.github/workflows/preemptive-regression.yml` har lagts till för att köra testfilen på push till arbetsgrenen och PR mot main. Körresultatet är ännu inte åtkomligt/verifierat i denna session; inga tester påstås vara godkända förrän körresultat finns.
 
 Regressionstestfilen innehåller nu 26 tester. Kvalificerande sexkortig klöver är uttryckligen ej täckt, inte automatiskt pass eller 3♣.
