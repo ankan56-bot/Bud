@@ -54,6 +54,7 @@ const voidJump=trumfstod.responder({L:{C:0,D:4,H:4,S:5},points:13},'1H');
 assert.equal(voidJump.exp,'4C','a single void is shown by a double jump with 4+ support and 13+ htp');
 assert.equal(voidJump.conv,'trumfstöd – renons');
 const searchMajor=trumfstod.responder({L:{C:4,D:2,H:4,S:3},points:13},'1C');
+assert.equal(searchMajor.exp,'1H','a 4+ major is shown before minor support');
 assert.equal(searchMajor.conv,'minor','a 4+ major is shown before minor support');
 const multipleVoids=trumfstod.responder({L:{C:0,D:0,H:4,S:5},points:13},'1H');
 assert.equal(multipleVoids.exp,null);
