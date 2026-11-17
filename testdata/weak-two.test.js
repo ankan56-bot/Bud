@@ -290,18 +290,18 @@ test("the former minimum/maximum rebid after 2NT is no longer applied", () => {
   assert.match(result.why,/tidigare 6-8.*9-10 hp-stegen används inte/);
 });
 
-test("after 2NT, a maximum minor opener rebids 3NT, never 4 in the minor", () => {
-  const opener = weakTwoHand("D","AKQ976");
-  const responder = [
+test("the old 3NT maximum rebid after 2NT is also disabled for a minor weak two", () => {
+  const opener=weakTwoHand("D","AKQ976");
+  const responder=[
     ...cards("D","T2"), ...cards("S","AK"),
     ...cards("H","Q5678"), ...cards("C","6789")
   ];
-  const result = node(completeDeal(opener,responder),[
+  const result=node(completeDeal(opener,responder),[
     {s:"N",c:"2D"},{s:"E",c:"P"},{s:"S",c:"2N"},
     {s:"W",c:"P"},{s:"N",c:"3N"}
   ],4);
-  assert.equal(result.exp,"3N");
-  assert.match(result.why,/inte 4 i lågfärgen/);
+  assert.equal(result.exp,null);
+  assert.match(result.why,/Stenberg.*fortsättning/i);
 });
 
 test("seven-card preempts use 2-level for one quality criterion and 3-level for both", () => {
