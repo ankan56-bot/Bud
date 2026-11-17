@@ -115,6 +115,7 @@ for (const deal of deals) {
 function isValidCall(call) {
   return call === 'P' || /^[1-7][CDHSN]$/.test(call);
 }
+report.coveragePercent = report.decisions ? Math.round(report.covered / report.decisions * 1000) / 10 : 0;
 const groups = new Map();
 for (const item of report.uncovered) {
   const key = item.reason.split(/[.!?]/)[0].slice(0,180);
@@ -122,7 +123,7 @@ for (const item of report.uncovered) {
 }
 report.uncoveredCategories = [...groups.entries()].sort((a,b)=>b[1]-a[1]).map(([reason,count])=>({count,reason}));
 fs.mkdirSync('testdata',{recursive:true});
-fs.writeFileSync('testdata/ostord_random_500_latest.json',JSON.stringify(report,null,2)+'\\n');
+fs.writeFileSync('testdata/ostord_random_500_latest.json',JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({
   deals:report.deals, decisions:report.decisions, covered:report.covered,
   uncovered:report.uncovered.length, coveragePercent:report.coveragePercent,
