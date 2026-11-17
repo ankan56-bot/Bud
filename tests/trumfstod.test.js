@@ -68,6 +68,24 @@ const minorGameExploration=commonResponses.reb1(openerMinor20,'1H','2C',partnerC
 assert.equal(minorGameExploration.exp,null,'20+ htp with a minor fit must not invent the 3NT investigation sequence');
 assert.equal(minorGameExploration.sourceGap,true,'the undocumented 3NT/5-minor route must be marked for expert review');
 
+// End-to-end route: the real correction engine must preserve the uncovered
+// 3NT/5-minor exploration as a source gap after 1H–2C.
+const R=require('../rattningsmotor.js');
+const minorGapNorth=['C2','C3','C4','C5','H14','H13','H12','H11','D14','D13','D12','S14','S2'];
+const minorGapSouth=['C14','C13','C12','C11','C10','H2','H3','H4','D2','D3','D4','S13','S3'];
+const used=new Set(minorGapNorth.concat(minorGapSouth));
+assert.equal(used.size,26,'integration test hands must not overlap');
+const rest=[];
+for(const suit of ['S','H','D','C'])for(let rank=2;rank<=14;rank++){
+  const card=suit+rank;if(!used.has(card))rest.push(card);
+}
+const minorGapDeal={N:minorGapNorth,S:minorGapSouth,E:rest.slice(0,13),W:rest.slice(13,26)};
+const minorGapNode=R.nodeFor({hands:minorGapDeal,dealer:'N',bids:[
+  {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'2C'},{s:'W',c:'P'},{s:'N',c:'P'}
+]},4);
+assert.equal(minorGapNode.exp,null);
+assert.equal(minorGapNode.sourceGap,true,'the real bidding router must preserve the source gap for expert logging');
+
 
 
 
