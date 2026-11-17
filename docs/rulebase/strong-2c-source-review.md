@@ -1,6 +1,6 @@
 # Stark 2♣ – källunderlag inför modul ÖH 2♣
 
-**Status:** Källutdrag och jämförelse dokumenterade. Svarsvarianten är beslutad: svarshanden bjuder alltid 2♦. Modulen är implementerad för öppning, alltid-2♦-svar och öppnarens återbud till och med 4NT. Fortsättningar efter öppnarens återbud ligger utanför denna avgränsning.  
+**Status:** Källutdrag och jämförelse dokumenterade. Svarsvarianten är beslutad: svarshanden bjuder alltid 2♦. Modulen är implementerad för öppning, alltid-2♦-svar och öppnarens återbud till och med 4NT. Fortsättningarna efter 2NT återanvänder den befintliga 2NT-familjen för första Stayman-/överföringsrundan. Utvalda tredje-budsrutor från Lathunden s. 25 är implementerade när endast en fördelningsprofil passar; överlappningar och externa Plus/PRO/Slam-grenar lämnas ej täckta.  
 **Normerande källa:** Nordisk Standard, s. 2–3 och 6.  
 **Kompletterande källa:** Lathunden, tryckta s. 24–27.  
 **Systembeslut från användaren:** Efter 2♣ svarar vi alltid 2♦. 2♥ som svagt svar används inte.  
@@ -60,6 +60,24 @@ Samma sida innehåller svarshandens fortsättningar efter 2♣–2♦–2♥. De
 
 ### Tryckt sida 25
 Lathunden visar 2NT-system med Stayman, överföringar, lågfärgsfråga och slam-inviter. Den visar också öppnarens tredje bud efter 2♣–2♦–2NT och 2♣–2♦–3♣/3♥. Alla sådana sekvenser ska kontrolleras mot den valda systemprofilen och hänvisade källor innan implementation.
+
+### Tryckt sida 25 – fortsättningar
+Lathunden anger att 2NT-systemet gäller även efter 2♣–2♦–2NT (22–24 hp). Första svarsrundan visar:
+- Pass: svagt, ingen 5+ högfärg.
+- 3♣: Stayman (hänvisning Bättre bud).
+- 3♦/3♥: överföringar (hänvisning Bättre bud).
+- 3♠: lågfärgsfråga (hänvisning PRO).
+- 3NT: slutbud.
+- 4♣/4♦: minst 6-kortsfärg och slaminvit (hänvisning Slam).
+
+Den befintliga 2NT-familjen återanvänds för Stayman/överföringsförsta bud. PRO- och Slam-hänvisningarna införs inte automatiskt.
+
+Lathunden visar även öppnarens tredje bud efter:
+- 2♣–2♦–2♠–2NT: 3♣/3♦/3♥ med minst 5-4-fördelning; 3♠ med minst 6-kortsfärg.
+- 2♣–2♦–3♣–3♦: 3♦/3♠ med minst 5-4-fördelning; 3♥ med minst 6-kortsfärg; dessutom 3NT naturligt, 4♣ trumfstöd och 4NT essfråga med klöver som trumf.
+- 2♣–2♦–3♥–3♠: 3♠ med minst 6-kortsfärg; 3NT naturligt, uttryckligen inte jämn hand; 4♣/4♦ med minst 5-4-fördelning; 4♥ med 3+ hjärter och minimum; 4NT essfråga med hjärter som trumf.
+
+Fördelningsbuden implementeras endast när en enda profil passar. När flera budprofiler överlappar returneras ej täckt. Villkoren för naturligt 3NT, trumfstöd och essfråga är inte fullt kvantifierade i tabellerna och ska inte fyllas i med antaganden.
 
 ### Tryckt sida 26
 Denna sida behandlar fortsättningar efter 2♣–2♥. Eftersom vi alltid svarar 2♦ är den grenen inte del av vår valda grundväg och ska inte implementeras i 2♣-modulen.
