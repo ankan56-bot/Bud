@@ -1,7 +1,7 @@
 # Svaga tvåöppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 9.4  
+Rättningsmotor: 9.5  
 Analysbibliotek: 0.5.17  
 Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
 
@@ -52,6 +52,21 @@ Alla ej täckta sekvenser ska sparas i expertloggen. Inga regler för störd bud
 
 ## Regression
 
-`testdata/weak-two.test.js` innehåller 30 regressionstester. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
+`testdata/weak-two.test.js` innehåller 34 regressionstester. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
 
 CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
+
+
+## Gemensamma utgångs- och slamkrav efter svag tvåa – motor 9.5
+
+- Direkt utgång fortsätter att betyda slutbud enligt Lathundens sida 27. Detta beskriver budets systembetydelse, inte att kontraktet automatiskt är styrkemässigt motiverat.
+- En separat gemensam kontraktskontroll prövar nu slutkontrakt efter svag tvåöppning mot samma krav som övriga budvägar:
+  - 3NT: minst 26 gemensamma hp.
+  - 4♥/4♠: minst 8-korts fit och 26 gemensamma spelpoäng.
+  - 5♣/5♦: minst 8-korts fit och 28 gemensamma spelpoäng.
+  - Lillslam: minst 33 gemensamma poäng; i färg krävs minst 8-korts fit och högst ett saknat ess.
+  - Storslam: alla fyra ess; i färg även trumfkungen.
+- Kontrollen är fristående från konventionsrättningen: ett bud kan vara korrekt tolkat som slutbud men ändå fel styrkemässigt.
+- Gemensam poängfunktion korrigerad till +1 vid 9 trumf och +2 vid 10+ trumf, enligt tidigare fastställd värdering.
+- Fyra nya regressionstester täcker 10-korts trumfbonus, otillräcklig styrka för 3NT, 4♥ och 6♥.
+- Motor 9.5 och 34 tester incheckade. Testkörning/CI är ännu inte verifierad.
