@@ -1,51 +1,51 @@
 # Svaga tvåöppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 8.5  
-Omfattning i denna etapp: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
+Rättningsmotor: 8.6  
+Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
 
-## Auktoritativt underlag som finns i projektet
+## Auktoritativ källa
 
-Den inbäddade Nordisk Standard-texten i `Budtraning.html` anger:
-- 2♦/2♥/2♠: 6–10 hp, exakt sexkortsfärg.
-- Med 11 hp och sexkortsfärg öppnas 1 i färgen i stället.
-- Öppningsfärgen ska ha god färgkvalitet enligt den befintliga regeln i motorn.
-- Ny färg med minst fem kort är krav till minst 3 i öppningsfärgen.
-- 3 i öppningsfärgen är spärrhöjning med minst tre stödkort, inte invit.
-- 3NT är slutbud.
-- Hopp med renons är slaminvit.
-- 2NT är invit med minst två stödkort.
-- 2NT-frågan: öppnaren visar minimum med 3 i öppningsfärgen; vid maximum anges 3NT/4 i högfärg.
-- Texten anger även ombudsbud på 3-nivån med 6–8 hp samt 3NT/4 högfärg med 9–10 hp. Exakt auktion/rollfördelning behöver knytas till respektive gren innan automatisk rättning.
+Källa: användarens PDF `nordisk_standard.pdf`, daterad 2012-08-22, sida 4. PDF:en har återfunnits i ChatGPT-biblioteket och har prioritet framför tidigare sammanfattningar eller den förkortade regeltexten i HTML-filen.
 
-## Ändrat i rättningsmotorn
+## Regler från PDF sida 4
 
-- Rättat en direkt konflikt: 3 i öppningsfärgen klassas nu som spärrhöjning med 3+ stöd, inte som invit med 14–16 spelpoäng.
-- 2NT-invit kräver nu både 9–10 hp och minst två stödkort.
-- En 2NT-budgivning utan minst två stödkort markeras som ej täckt/inte förenlig med den dokumenterade invitgrenen.
-- Höga svarshänder och fördelningar utan en uttryckligt definierad gren markeras som ej täckta i stället för att få ett påhittat pass eller invitbud.
-- Öppnarens min/max-svar efter 2NT är kvar enligt befintlig regelkod; de behöver fortsatt kontrolleras mot fullständig källa och fler givtyper.
+- 2♦/2♥/2♠ visar 6–10 hp och exakt sex kort i öppningsfärgen.
+- Med 11 hp och sexkortsfärg öppnas 1 i färgen.
+- Ny färg: minst 5 kort, krav till minst 3 i öppningsfärgen.
+- 3 i öppningsfärgen: spärrhöjning med minst 3 stödkort, inte invit.
+- 3NT: slutbud.
+- Hopp i ny färg: visar renons och är slaminvit.
+- 2NT: invitbud med minst 2 stödkort.
+- Efter 2NT visar öppnaren minimum med 3♦/3 i högfärgen och 6–8 hp.
+- Efter 2NT visar öppnaren maximum med 3NT/4 i högfärg och 9–10 hp.
+- PDF:en anger ingen exakt hp-gräns för svarshandens 2NT-invit. Den tidigare kodade gränsen 9–10 hp på svarshanden var därför inte källstödd och har tagits bort.
+- Vid maximum efter 2NT är 3NT/4 högfärg alternativen. För lågfärgsöppning används 3NT; 4 i lågfärgen ska inte föreslås som maxbesked.
 
-## Öppningsvillkor som ska vara oförändrade
+## Implementerat i rättningsmotorn 8.6
 
-- Endast ♦, ♥ och ♠ kan öppnas svagt på tvåläget; 2♣ är starköppning.
-- Exakt sex kort, 6–10 hp och god färgkvalitet.
-- 11 hp med sexkortsfärg går via 1 i färgen enligt projektets text.
-- 3- och 4-öppningar är spärröppningsmoduler senare och blandas inte in här.
+- 2♦/2♥/2♠ öppningsvillkor testas: exakt sex kort, 6–10 hp och god färgkvalitet.
+- 2♣ förblir starköppning och blandas inte in i svaga tvåöppningar.
+- 2NT accepteras som invit när svarshanden har minst två stödkort; inget eget hp-intervall har hittats på.
+- 3 i öppningsfärgen accepteras som spärrhöjning med minst tre stödkort och förklaras uttryckligen som ej invit.
+- Ny färg på lägsta lagliga nivå accepteras med minst fem kort och förklaras som krav till minst 3 i öppningsfärgen.
+- Hopp i ny färg accepteras när svarshanden är renons i den färgen och förklaras som slaminvit.
+- 3NT accepteras som slutbud.
+- Efter kravställande ny färg återbjuder öppnaren minst 3 i öppningsfärgen.
+- Efter 2NT visar öppnaren 6–8 hp med 3 i öppningsfärgen. Med 9–10 hp visas maximum med 3NT efter lågfärgsöppning eller 4 i öppningshögfärgen (3NT är också tillåtet alternativ efter högfärgsöppning).
 
-## Kvarvarande luckor – sparade för expertgranskning
+## Kvarvarande luckor – expertloggen
 
 Följande ska inte fyllas med antaganden:
-1. Exakt styrkegräns/prioritet för ny färg med 5+ kort kontra 2NT-invit.
-2. Fullständig fortsättning efter den kravställande nya färgen, inklusive öppnarens återbud och svarshandens fortsättning.
-3. Exakt val mellan 3NT och 4 i högfärg efter 2NT när öppnaren visar maximum.
-4. Exakt betydelse och budposition för uttrycket ”ombudsbud på 3-nivå 6–8 hp”.
-5. Direkta 3NT-svar: vilka handprofiler/stopp som krävs utöver att budet är slutbud.
-6. Hopp med renons som slaminvit: exakta bud, krav och fortsättningar.
-7. Slutbud/pass efter varje gren samt svarshandens återbud efter öppnarens min/max-besked.
+1. Exakt hp-intervall för svarshandens 2NT-invit – PDF:en anger endast invit och minst 2 stöd.
+2. Passkriterier när svarshanden saknar 5+ sidofärg, 2+ stöd eller ett definierat hopp.
+3. Öppnarens fortsättning efter partnerns direkta spärrhöjning till 3 i öppningsfärgen.
+4. Svarshandens fortsättning efter öppnarens 3 i öppningsfärgen som fullgör kravbudet i ny färg.
+5. Vilka handvillkor som avgör 3NT kontra 4 i öppningshögfärgen efter öppnarens maximum på 2NT. PDF:en anger båda alternativen men inte urvalskriteriet.
+6. Fortsättning efter hoppet som visar renons och slaminvit; de exakta kontrollbuden är inte beskrivna i detta avsnitt.
 
-Alla dessa luckor ska gå till expertloggen. Ingen konkurrensbudgivning, inkliv eller dubbling har implementerats i denna modul.
+Alla dessa sekvenser ska loggas som ej täckta tills de kan verifieras. Ingen störd budgivning, inkliv eller dubbling har implementerats i denna modul.
 
 ## Regression
 
-`testdata/weak-two.test.js` testar öppningsvillkoren, spärrhöjningen, 2NT-inviten och öppnarens min/max-besked. Testerna är avsedda att köras i GitHub Actions tillsammans med befintliga regressioner.
+`testdata/weak-two.test.js` testar öppningsvillkoren och de dokumenterade svaren: spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT, öppnarens svar efter ny färg samt min/max efter 2NT.
