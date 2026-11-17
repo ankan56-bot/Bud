@@ -1261,6 +1261,7 @@ var Rattning = (function(){
     // den generella tredje-/fjärde-färgslogiken. Annars kan t.ex.
     // 1♥–1NT–2♣–2♦ felklassas som tredje färg i stället för 6+ ♦.
     if(d===3&&!opener&&/^1[CDHS]$/.test(ours[0].c)&&ours[1].c==='1N'&&isBid(ours[2].c)){
+      if(ours[2].c==='2N')return responderAfterOneOneNT2NT(h,st.hands[pt]);
       return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
     }
 
