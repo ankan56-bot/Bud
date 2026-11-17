@@ -17,6 +17,8 @@ jobs:
           node --check stenberg.js
           node --check trumfstod.js
           node --check 2kloveroppning.js
+          node --check budbeslut.js
+          node --check 2kloveroppning.js
           node --check ettoppningssvar.js
           node --check budbeslut.js
           node --check sangbudgivning.js
