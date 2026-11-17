@@ -38,25 +38,20 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Svarshandens fortsättningar, bland annat fjärde färg, invitbud, utgångskrav och försenad Stayman.
 - Lathunden hänvisar på flera ställen vidare till Bättre bud, Plus och Slam. Dessa hänvisningar är inte i sig fullständiga regler.
 
-### Tryckta sidor 14–17: Budgivning efter 1NT
-- Svar på 1NT med Stayman, överföringsbud, lågfärgsfråga, invitbud och slutbud.
-- Öppnarens svar på Stayman och överföringsbud.
-- Svarshandens fortsättning efter öppnarens svar.
-- Särskilda exempel när SH bjuder 3NT efter överföring eller efter lågfärgsfråga.
-- Källan skiljer mellan svaga svar, invitstyrka och utgångskrav. De exakta intervallen ska kopplas till varje enskild sekvens vid detaljgranskning.
+### Tryckta sidor 8–19: Budgivning efter 1 i färg
+- Öppningsbud, handtyper och val av öppningsfärg.
+- Svar med och utan trumfstöd, inklusive hoppande svaga svar, en-över-en, två-över-en och 1NT-svar.
+- Öppnarens andra bud efter svarshandens färgbud: trumfstöd, egen färg, tvåfärgshand och balanserad hand.
+- Stenberg 2NT, kortfärgsvisning och fortsättningar.
+- Sekvenserna innehåller hänvisningar till Plus, Bättre bud och Slam; hänvisningarna är inte automatiskt en del av grundsystemet.
+- PDF-bild 6 (tryckt s. 18–19) är svårläst i den inskannade kopian. Den ska betraktas som delvis visuellt verifierad och inte användas för exakta intervall förrän bättre originalbild eller expertkontroll finns.
 
-### Tryckta sidor 18–21: Starka öppningsbud och fortsättningar
-- Svar på starkt 2♣-öppningsbud, inklusive svagt svar och positivt svar.
-- Öppnarens fortsättning efter svar.
-- 2NT-system och fortsättningar efter 2NT.
-- Färgöppningar på högre nivå och svar på tre i färg.
-- Varje sekvens behöver kontrolleras mot Nordisk Standards definitioner innan den blir rättningsregel.
-
-### Tryckta sidor 22–25: Svaga tvåöppningar och spärrbud
-- Svaga tvåöppningar, svar och öppnarens återbud.
-- Spärröppningar och svar på spärröppningar.
-- Stöd, preferens, invit och krav behandlas i separata sekvenser.
-- Villkor för färglängd, styrka och fördelning måste kontrolleras ruta för ruta; otydliga eller exempelbundna villkor ska inte generaliseras.
+### Tryckta sidor 20–23: Budgivning efter 1NT
+- Svar på 1NT: pass, Stayman 2♣, överföring 2♦/2♥, lågfärgsfråga 2♠, 2NT-invit, 3♣/3♦-invit och 3NT.
+- Stayman: 2♦ visar ingen fyrkortshögfärg; 2♥ visar minst fyrkorts högfärg och kan vara 4–4 i högfärgerna; 2♠ visar minst fyrkorts spader och inte fyrkorts hjärter.
+- Efter överföring till högfärg skiljer Lathunden mellan svag hand, invit och utgångskrav; flera svarshandfortsättningar visar 5-korts högfärg, 4-korts sidofärg, kortfärg eller slamintresse.
+- 2♠ som lågfärgsfråga är uttryckligen märkt PRO och avviker från Nordisk Standards svaga 2♠-bud. Den får inte införas i grundsystemet.
+- Särskilda exempel behandlar 3NT efter överföring, ny färg efter överföring och fortsättning efter lågfärgsfrågan.
 
 ### Tryckta sidor 24–27: Starka 2♣-öppningar och fortsättningar
 - Svar på 2♣, öppnarens återbud efter 2♣–2♦ respektive 2♣–2♥.
@@ -66,11 +61,13 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Lathundens Plus-variant 2♥ som svagt svar (0–4 hp, inget ess) avviker från Nordisk Standard och får inte användas som grundregel.
 
 ### Tryckta sidor 28–33: Slam och splinter
-- Slamavsnittet behandlar kontrollbud, essfråga/RKC, svar på essfråga och trumfdamfråga.
+- Tryckt s. 28 inleder slamkapitlet och innehåller även exempel/övergång från starka öppningsbud och störda sekvenser.
+- Sidorna 28–33 behandlar kontrollbud, essfråga/Blackwood/RKC, svar på essfråga och trumfdamfråga.
 - Lathunden beskriver första kontroll (ess eller renons) och andra kontroll (kung eller singelton) i kontrollbudssammanhang.
 - När trumffärg är bestämd och slamintresse finns används kontrollbud; närmaste kontroll bjuds först enligt texten.
 - Att gå förbi en färg anges förneka kontroll i den färgen.
-- RKC/Blackwood-svar, trumfdamfråga, renonsvisning och fortsättning mot storslam tas upp.
+- Lathunden visar Blackwood-svar i flera varianter: vanlig Blackwood, Blackwood med fem ess och Roman Key Card Blackwood. Dessa varianter får inte blandas ihop.
+- RKC-sidorna visar separat trumfdamfråga, renonsvisning och fortsättning mot storslam.
 - Splinterbud beskrivs som bud som visar kortfärg och samtidigt stöd/trumfintresse; nivå och styrkeintervall varierar med sekvensen.
 - Exakta RKC-tabeller och alla splintervarianter ska verifieras mot originalsidan innan implementation.
 
@@ -156,6 +153,21 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Skapa en separat lista med expertfrågor för odefinierade uttryck och källkonflikter.
 - Därefter kan nästa modul öppnas: **ÖH 2♣**. Ingen kodändring ska göras innan dess källunderlag och sekvensomfattning är fastställda.
 
-## 6. Kvalitetsnotering
+## 6. Uppdaterad sidkontroll – PDF-bilder 7–14 (tryckt s. 20–35)
+
+Den visuella kontrollen av dessa sidor har nu gjorts direkt mot de skannade originalsidorna efter rotation av sidbilderna. Följande är särskilt verifierat:
+
+- **Tryckt s. 20–21:** 1NT-svarsrutan anger pass som svagt utan 5+ högfärg; 2♣ Stayman 8+ hp; 2♦/2♥ överföring med 5+ högfärg; 2♠ lågfärgsfråga 10+ hp (PRO); 2NT invit 8–9 hp utan högfärg; 3♣/3♦ lång lågfärg, 7–9 hp; 3♥/3♠ visar 6+ färg och 15+ stödpoäng (NYHET); 3NT 10–15 hp utan högfärg. Staymansvar och fortsättningar är tabellerade separat.
+- **Tryckt s. 22–23:** fortsättningar efter överföring och lågfärgsfråga. Lathunden skiljer mellan 5-korts högfärg, 4-korts sidofärg, kortfärg och balanserad hand. Efter lågfärgsfrågan 2♠ (PRO) finns 3♣/3♦-svar med 6+ färg och 15+ stödpoäng; 3♥/3♠ kan visa kortfärg med minst 5–4 i lågfärgerna, 10+ hp och slamintresse; 3NT visar 16–17 hp med jämn hand. Dessa är Lathundens/PRO:s fortsättningar, inte automatiskt NS-regler.
+- **Tryckt s. 24:** 2♣-svarsrutan visar 2♦ som minst 5 hp eller ett ess, utgångskrav; 2♥ som 0–4 hp utan ess är uttryckligen Plus. Vårt beslut är alltid 2♦ och utesluter Plus-svaret. Efter 2♣–2♦ visas 2♥/2♠ med minst 5-kortsfärg och obalanserad hand; 2NT 22–24 hp jämn; 3♣/3♦ minst 5-kortsfärg och obalanserad; 3NT 25–27 hp jämn; 4NT 28–29 hp jämn (Lathundens tillägg som saknas i NS).
+- **Tryckt s. 25:** 2NT-systemet efter 2♣-återbud innehåller Stayman, överföringar, lågfärgsfråga, slutbud och slamvisande fortsättningar. Sidan visar även öppnarens tredje bud efter 2♣–2♦–2NT samt efter 2♣–2♦–3♣/3♥. Hänvisningar till Bättre bud, PRO och Slam måste hållas som hänvisningar.
+- **Tryckt s. 26:** fortsättningar efter 2♣–2♥. De är utanför vår valda svarsväg eftersom svarshanden alltid bjuder 2♦.
+- **Tryckt s. 27:** tredje bud efter 2♣ och störd 2♣. Innehållet med motståndarnas ingripande tillhör störd budgivning och ska inte blandas in i ostörd 2♣-modul.
+- **Tryckt s. 28–29:** slamintroduktion, kontrollbud och Blackwood-varianter. Lathunden anger att första kontroll är ess/renons och andra kontroll kung/singelton; närmaste kontroll bjuds först och förbi-bjuden färg förnekar kontroll. Vanlig Blackwood, fem-ess-Blackwood och Roman Key Card Blackwood har separata svarstabeller.
+- **Tryckt s. 30–31:** fortsättningar efter RKC, trumfdamfråga, renonsvisning efter 4NT och splinter efter öppningsbud. Lathunden visar också splinter efter Stenbergs 2NT med särskilda betydelser beroende på om öppningen var 1♣/1♦ eller 1♥/1♠.
+- **Tryckt s. 32–33:** splinter efter en-över-en, två-över-en och andra splinterbud; vissa är märkta Plus eller MeraBud. När trumfen redan är bestämd i 3♥/3♠ kan annan färg visa kortfärg; 3NT beskrivs då som slamintresse utan kortfärg i den beskrivna situationen.
+- **Tryckt s. 34–35 (PDF-bild 14):** övergång till störd budgivning. Den separata störda PDF:en börjar också vid s. 34; sidorna överlappar och ska inte räknas som ytterligare ostörd materia.
+
+## 7. Kvalitetsnotering
 
 PDF:erna är skannade bildsidor. Den här inventeringen är en ämnes- och källkarta, inte ännu en fullständig ordagrann transkription av varje budruta. OCR har använts som stöd och visuella sidor har kontrollerats, men varje exakt poängtal och varje enskild budruta måste verifieras mot originalbilden vid den sekvensvisa jämförelsen. Därför ska den här filen inte användas ensam som automatisk regelkälla.
