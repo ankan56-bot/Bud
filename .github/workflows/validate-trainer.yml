@@ -82,7 +82,6 @@ jobs:
         run: node tests/supplementary-logic.test.js
       - name: Run major-suit RKC tests
         run: node tests/rkc-nordisk-standard-major.test.js
-          node tests/stenberg-2nt.test.js
       - name: Run all-trumps RKC and no-trump four-ace tests
         run: node tests/slam-all-trumps.test.js
       - name: Run 1NT four-ace and RKC source tests
@@ -127,9 +126,6 @@ jobs:
       - name: Smoke test offline analysis engine
         run: |
           node - <<'NODE'
-
-      - name: Run correction-engine regression tests
-        run: node tests/reverse-hps.test.js
           const A = require('./analysmotor.js');
           const lib = require('./analysbibliotek.json');
           if (A.version !== '1.2.0') throw new Error('Unexpected analysis engine version');
@@ -143,3 +139,6 @@ jobs:
           if (!hit) throw new Error('Analysis library sequence matching failed');
           console.log('Offline analysis engine OK; matched ' + hit.tree.id);
           NODE
+
+      - name: Run correction-engine regression tests
+        run: node tests/reverse-hps.test.js
