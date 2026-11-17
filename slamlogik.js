@@ -25,6 +25,21 @@
   var lastBidCode=api.lastBidCode;
   function rkcTrumpFromAuction(bids,sideWanted){
     var ours=bids.filter(function(x){return side(x.s)===sideWanted&&isBid(x.c)});
+    // Strong 2♣: Lathunden s. 25 anger uttryckligen trumfen för vissa
+    // 4NT-essfrågor även när partnerna inte har bjudit samma färg.
+    // Matcha endast de dokumenterade kompletta sekvenserna; dra ingen
+    // slutsats från en ensam naturlig färgbjudning.
+    var calls=(bids||[]).filter(function(x){return x&&isBid(x.c)}).map(function(x){return x.c});
+    function endsWith(seq){
+      if(calls.length<seq.length)return false;
+      for(var z=0;z<seq.length;z++)if(calls[calls.length-seq.length+z]!==seq[z])return false;
+      return true;
+    }
+    if(endsWith(['2C','2D','3C','3D','4N']))return 'C';
+    if(endsWith(['2C','2D','3H','3S','4N']))return 'H';
+    if(endsWith(['2C','2D','2N','3C','3H','4N']))return 'H';
+    if(endsWith(['2C','2D','2N','3D','3H','4N']))return 'H';
+    if(endsWith(['2C','2D','2N','3H','3S','4N']))return 'S';
     for(var i=0;i<ours.length;i++){
       if(/^1[CDHS]$/.test(ours[i].c)){
         var opener=ours[i].s, suit=ours[i].c[1],stenbergIndex=-1;
