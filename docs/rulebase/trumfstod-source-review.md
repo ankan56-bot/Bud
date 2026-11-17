@@ -9,7 +9,7 @@
 
 Trumfstöd är den övergripande modulen för stödvisningar och öppningshandens återbud efter 1 i färg. Stenberg är en återanvänd specialmodul under trumfstödsmodulen.
 
-- `trumfstod.js` äger flödet för svarshandens stödvisning, splinterkontroll och routing.
+- `trumfstod.js` äger flödet för svarshandens stödvisning och routing. Splinter är pausad enligt användarens uttryckliga systembeslut och är inte en aktiv budgren.
 - `stenberg.js` äger Stenberg 2NT: kvalificering, öppnarens första svar och Stenbergfortsättningar.
 - `ettoppningssvar.js` fortsätter att äga de generella svaren och öppnarens vanliga återbud efter 1 i färg.
 - Hög-/lågfärgsmodulerna fortsätter hantera naturliga färgbud och vanliga återbud.
@@ -24,7 +24,7 @@ Detta är rätt modulgräns: trumfstöd är användarens tränings-/rättningsom
 - 3 lå: 10–12 htp, 4+ stöd.
 - 4 lå: spärrbud, max 9 htp, bra stöd och svitad hand.
 - 2NT: 13+ htp, 4+ stöd; Stenberg och utgångskrav.
-- Dubbelhopp i ny färg: renons i bjuden färg, 4+ stöd och 13+ htp.
+- Dubbelhopp i ny färg för renons finns beskrivet i källan men är pausat och ska inte rekommenderas i den aktiva motorn.
 
 ### 1 hö öppning
 - 2 hö: 6–9 htp, 4+ stöd.
@@ -101,7 +101,7 @@ Dessa fortsättningar avviker från Nordisk Standards exakta budbetydelser. Nord
 3. **3NT efter Stenberg:** NS anger 12–14 hp balanserad. Lathundens 12–15 stp/ej kortfärg är inte samma villkor.
 4. **3-stöd:** Lathunden nämner trestöd plus singelton i Plus-material. NS:s standardstöd kräver 4+ kort. Ingen generell 3-stödsregel.
 5. **Spärrhöjning:** NS:s 1 lå–4 lå och 1 hö–4 hö har olika maxstyrka (9 respektive 12 htp) och kräver bra stöd/svitad hand. Kvalitativa villkor får inte förenklas till enbart poänggräns.
-6. **Renons/splinter:** NS:s dubbelhopp i ny färg visar renons, 4+ stöd och 13+ htp. Om flera renoncer finns anges ingen prioritet. Lämna sådana lägen ej täckta och logga dem.
+6. **Renons/splinter:** NS beskriver dubbelhopp i ny färg för renons, 4+ stöd och 13+ htp. Användaren har dock beslutat att splinter ska tas bort ur den nuvarande budgivningen tills grundmotorn är stabil. Därför är splinter inaktiv i runtime och ska inte rekommenderas eller tolkas; Stenberg 2NT påverkas inte.
 7. **Sök högfärg:** med lågfärgsstöd och 4+ högfärg visas högfärgen först. Denna prioritet går före att välja en splinterrenons.
 
 ## 7. Kontroll av befintlig kod
@@ -120,7 +120,7 @@ Läsgranskningen visar att arkitekturens avsikt redan följer vald modulgräns: 
 - Säkerställ att Stenberg endast aktiveras med 4+ stöd och 13+ htp.
 - Säkerställ att 4+ högfärg visas före lågfärgsstöd.
 - Säkerställ att 4-läges spärrhöjning har separata maxgränser för hög- respektive lågfärg.
-- Säkerställ att dubbelhopp i ny färg endast godtas som renons med 4+ stöd och 13+ htp.
+- Säkerställ att pausad splinter inte aktiveras eller rekommenderas; 2NT Stenberg ska fortsatt prövas enligt sina egna villkor.
 - Alla sekvenser som saknar uttryckligt källstöd ska hamna i expertloggen.
 
 ## 8. Slutsats
