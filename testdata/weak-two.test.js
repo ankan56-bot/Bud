@@ -509,3 +509,20 @@ test("a direct six-level contract after a weak two requires the common 33-point 
   assert.equal(slam.konvention,"utgång/slam – styrkekrav");
   assert.match(slam.motivering,/33 gemensamma poäng/);
 });
+
+
+test("a direct grand-slam contract after a weak two also requires the common 33-point threshold", () => {
+  const opener=weakTwoHand("H");
+  const responder=[
+    ...cards("H","Q2"), ...cards("S","234"),
+    ...cards("D","456"), ...cards("C","23456")
+  ];
+  const hands=completeDeal(opener,responder);
+  const result=Rattning.judge({hands,dealer:"N",bids:[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"7N"},
+    {s:"W",c:"P"},{s:"N",c:"P"},{s:"E",c:"P"}
+  ]});
+  const slam=result.items.find(item=>item.bud==="7NT");
+  assert.equal(slam.bedomning,"fel");
+  assert.match(slam.motivering,/33 gemensamma poäng/);
+});
