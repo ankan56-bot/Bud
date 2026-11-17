@@ -99,7 +99,8 @@ var Rattning = (function(){
           :'11 hp med bra 5+ färg: öppna 1 i färgen; pass är också möjligt.';
     }
     else if(hp>=6&&hp<=10&&m>=6){
-      if(m===6&&pick!=='C'){exp='2'+pick;why='6-10 hp och exakt 6-korts '+SYM[pick]+': svag tvåa enligt Nordisk Standard.'}
+      if(m===6&&pick!=='C'&&h.goodForWeakTwo(pick)){exp='2'+pick;why='6-10 hp, exakt 6 kort och bra färg: minst 2 honnörer eller minst 1 honnör samt minst 2 av 10-9-8.'}
+      else if(m===6&&pick!=='C'){exp='P';why='6-10 hp och exakt 6 kort men färgen uppfyller inte kvalitetskravet för svag tvåa: minst 2 honnörer eller 1 honnör + 2 av 10-9-8.'}
       else if(m===6){exp='P';why='Med 6-korts ♣ finns ingen svag tvåa (2♣ är starkt). Pass.'}
       else if(m===7){exp='3'+pick;alt=['4'+pick];why='7-korts färg med 6-10 hp: spärrbud 3 i färg.'}
       else {exp='4'+pick;alt=['3'+pick];why='8-korts färg med 6-10 hp: spärrbud 4 i färg.'}
@@ -1528,7 +1529,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.7'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.8'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
