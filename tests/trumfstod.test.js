@@ -56,6 +56,11 @@ const opener17=scoring.H(['S14','S13','S12','S2','H14','H2','H3','H4','D13','D2'
 assert.equal(commonResponses.reb1(opener17,'1H','1S',partnerLow).exp,'3S','17-19 htp with four-card support in responder suit should jump');
 const opener20=scoring.H(['S14','S13','S12','S11','H14','H13','H2','H3','D13','D2','D3','C2','C3']);
 assert.equal(commonResponses.reb1(opener20,'1H','1S',partnerLow).exp,'4S','20+ htp with four-card support in responder suit should bid game');
+const partnerClub=['C2','C3','C4','C5','H2','H3','H4','H5','D2','D3','D4','S2','S3'];
+const openerMinor20=scoring.H(['C14','C13','C12','C11','H14','H13','H12','H11','D14','D13','D12','S2','S3']);
+const minorGameExploration=commonResponses.reb1(openerMinor20,'1H','2C',partnerClub);
+assert.equal(minorGameExploration.exp,null,'20+ htp with a minor fit must not invent the 3NT investigation sequence');
+assert.equal(minorGameExploration.sourceGap,true,'the undocumented 3NT/5-minor route must be marked for expert review');
 
 
 
