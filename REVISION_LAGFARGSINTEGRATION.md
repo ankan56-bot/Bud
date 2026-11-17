@@ -84,5 +84,5 @@ Senaste godkända CI-körning: `44092411308` (commit `1a8afadc`).
 - Högfärgsmodulen ändras inte.
 - 1NT-, trumfstöds-, Stenberg- och slammodulerna återanvänds.
 - Inga dolda händer används i livebeslut.
-- Alla källluckor förblir explicita; ett ej täckt läge får inte ersättas med ett sannolikt bud.
+- Alla källluckor förblir explicita; ett ej täckt läge får inte ersättas med ett sannolikt bud. En separat, verifierad utgångskontroll får bara rädda kontraktet när noden uttryckligen tillåter det; källuckan behålls och loggas. Säkerhetskontrollen hoppar aldrig direkt till slam – slam går via 4NT/RKC.
 - `main` är orörd.
