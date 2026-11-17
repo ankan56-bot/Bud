@@ -414,7 +414,7 @@ test("weak-two analysis trees are restricted to exactly six cards", () => {
     const root=tree.nodes.find(item=>item.id===tree.root);
     assert.equal(root.handConditions.suitLengths[suit].min,6,id);
     assert.equal(root.handConditions.suitLengths[suit].max,6,id);
-    assert.ok(root.handConditions.manual.some(item=>/färgkvaliteten/i.test(item)),id);
+    assert.ok(root.handConditions.manual.some(item=>/färgkvalitet/i.test(item)),id);
   }
 });
 
