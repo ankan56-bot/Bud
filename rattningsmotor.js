@@ -1163,6 +1163,55 @@ var Rattning = (function(){
       return NC('Fortsättningen efter 1♥–1♣; 1♠–1NT ska följa tabellen på sida 18. Den aktuella handen uppfyller inte entydigt någon av de angivna budraderna.',null,'ÖH:s tredje bud efter 1NT');
     }
 
+    // Sida 18: ÖH:s tredje bud efter att SH har prefererat till öppningsfärgen.
+    // Exempelraden i tabellen: 1♦–1♥; 2♦–2♦.
+    if(d===4 && opener && ours[0].c==='1D' && ours[1].c==='1H' &&
+       ours[2].c==='2D' && ours[3].c==='2D'){
+      var lensPref=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
+      var shape55Pref=lensPref[0]===5&&lensPref[1]===5;
+      var shape64Pref=lensPref[0]===6&&lensPref[1]===4;
+      if(b.c==='P'&&h.hp>=11&&h.hp<=15)
+        return {exp:'P',alt:[],why:'Pass med 11–15 hp efter svarshandens preferens enligt sida 18.',means:function(c){return c==='P'?'11–15 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
+      if(b.c==='2S'&&h.L.S===3&&h.hp>=15&&h.hp<=17)
+        return {exp:'2S',alt:[],why:'2♠ visar trekortsspader och 15–17 hp enligt sida 18.',means:function(c){return c==='2S'?'Trekortsspader, 15–17 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
+      if(b.c==='2N'&&h.hp>=15&&h.hp<=17)
+        return {exp:'2N',alt:[],why:'2NT är invit med (15) 16–17 hp enligt sida 18.',means:function(c){return c==='2N'?'Invit, (15) 16–17 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
+      if(b.c==='3C'&&shape55Pref&&h.hp>=15&&h.hp<=17)
+        return {exp:'3C',alt:[],why:'3♣ visar 5–5-fördelning och 15–17 hp enligt sida 18.',means:function(c){return c==='3C'?'5–5-fördelning, 15–17 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
+      if(b.c==='3H'&&shape64Pref&&h.hp>=15&&h.hp<=17)
+        return {exp:'3H',alt:[],why:'3♥ visar 6–4-fördelning och 15–17 hp enligt sida 18.',means:function(c){return c==='3H'?'6–4-fördelning, 15–17 hp.':null},conv:'ÖH:s tredje bud efter preferens'};
+      if(b.c==='4H')return NC('4♥ kräver minst 6–4-fördelning och stark hand. Tabellen anger ingen numerisk styrkegräns för ”stark hand”; expertbedömning krävs.',null,'ÖH:s tredje bud efter preferens');
+    }
+
+    // Sida 18: SH bjuder om sin färg. Exempel: 1♥–1♦; 2♥–2♦.
+    if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1D' &&
+       ours[2].c==='2H' && ours[3].c==='2D'){
+      var lensRebid=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
+      var shape65Rebid=lensRebid[0]===6&&lensRebid[1]===5;
+      if(b.c==='P'&&h.hp>=11&&h.hp<=15)
+        return {exp:'P',alt:[],why:'Pass med 11–15 hp enligt sida 18.',means:function(c){return c==='P'?'11–15 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
+      if(b.c==='2S'&&shape65Rebid)
+        return NC('2♠ visar 6–5-fördelning och minimum. Källtabellen anger inte numerisk gräns för minimum i denna fortsättning.',null,'ÖH:s tredje bud efter ombud');
+      if(b.c==='2N'&&h.hp>=15&&h.hp<=17)
+        return {exp:'2N',alt:[],why:'2NT är invit med (15) 16–17 hp enligt sida 18.',means:function(c){return c==='2N'?'Invit, (15) 16–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
+      if(b.c==='3D'&&h.L.D===6&&h.hp>=15&&h.hp<=17)
+        return {exp:'3D',alt:[],why:'3♦ visar sexkortsfärg och 15–17 hp enligt sida 18.',means:function(c){return c==='3D'?'Sexkortsfärg, 15–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
+      if(b.c==='3H'&&h.hp>=15&&h.hp<=17)
+        return {exp:'3H',alt:[],why:'3♥ är invit enligt sida 18; invitbuden visar cirka 15–17 hp.',means:function(c){return c==='3H'?'Invit, cirka 15–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
+      if(b.c==='3S'&&shape65Rebid&&h.hp>=14&&h.hp<=17)
+        return {exp:'3S',alt:[],why:'3♠ visar 6–5-fördelning och 14–17 hp enligt sida 18.',means:function(c){return c==='3S'?'6–5-fördelning, 14–17 hp.':null},conv:'ÖH:s tredje bud efter ombud'};
+      if(b.c==='4C')return NC('Lathunden anger 4♣ Splinter, 16–17 hp, men projektets tidigare beslut tog bort Splinter. Konflikten ska avgöras av expert innan budet aktiveras.',null,'Splinter – konflikt');
+      if(b.c==='4H')return {exp:'4H',alt:[],why:'4♥ är slutbud enligt tabellen på sida 18.',means:function(c){return c==='4H'?'Slutbud.':null},conv:'ÖH:s tredje bud efter ombud'};
+    }
+
+    // Sida 18: SH inviterar med 2NT. Exempel: 1♥–1♦; 2♥–2NT.
+    if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1D' &&
+       ours[2].c==='2H' && ours[3].c==='2N'){
+      if(b.c==='3C')return {exp:'3C',alt:[],why:'3♣ är svagt fjärde färgsbud men utgångskrav enligt sida 18.',means:function(c){return c==='3C'?'Svagt, fjärde färg, utgångskrav.':null},conv:'ÖH:s tredje bud efter 2NT-invit',soft:false};
+      if(b.c==='3N')return {exp:'3N',alt:[],why:'3NT är slutbud enligt tabellen på sida 18.',means:function(c){return c==='3N'?'Slutbud.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
+      if(b.c==='3D'||b.c==='3H'||b.c==='3S')return NC('Budet kräver 5–5/minimum (3♦), 6–4/minimum (3♥) eller trekortsspader/maximum (3♠). Tabellen anger inte numeriska gränser för minimum/maximum; expertbedömning krävs.',null,'ÖH:s tredje bud efter 2NT-invit');
+    }
+
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
       // Sida 19: klassificera svarshandens nya färg efter vilka färger
       // paret redan har visat. Både tredje och fjärde färg är kravbud.
