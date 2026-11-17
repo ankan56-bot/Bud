@@ -15,8 +15,7 @@
 ### A2. 2♣–2♦–4NT
 - Lathunden tryckt s. 24 anger 4NT som 28–29 hp, jämn hand.
 - Nordisk Standard anger 2NT för 22–24 hp och 3NT för 25–27 hp, men har inte denna fortsättning i den tillgängliga grundtexten.
-- **Fråga:** Ska 28–29 hp balanserad hand ha 4NT som naturligt återbud efter 2♣–2♦?
-- **Status:** Öppen systemkomplettering. Inte införd.
+- **Beslut/status:** Infört i 2♣-modulen som ett uttryckligt Lathundstillägg på användarens begäran att färdigställa modulen till 4NT. Det får inte beskrivas som en regel som står i Nordisk Standard.
 
 ### A3. Stark 2♣ – obalanserad öppningshand
 - Lathunden beskriver stark 2♣ som 20+ hp obalanserad eller 22+ hp balanserad i sin ingress.
