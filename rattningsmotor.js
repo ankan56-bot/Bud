@@ -1139,44 +1139,38 @@ var Rattning = (function(){
     }
 
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
-      var s1=ours[0].c[1], s2=ours[1].c[1];
-
-      // Sidorna 18–19: tredje respektive fjärde färg bestäms av
-      // hur många olika färger som redan visats – inte av poängstyrkan.
-      // Tredje färg = 10+ hp och rondkrav; fjärde färg = 13+ hp
-      // och utgångskrav. Den nya färgen får inte vara sang eller redan
-      // bjuden av någon i paret.
-      if(d===3 && !opener && isBid(b.c) && b.c[1]!=='N'){
-        var auctionSuits=[];
-        [ours[0].c,ours[1].c,ours[2].c].forEach(function(call){
-          if(isBid(call)&&SU.indexOf(st_(call))>=0&&auctionSuits.indexOf(st_(call))<0)
-            auctionSuits.push(st_(call));
+      // Sidorna 18–19 skiljer tredje och fjärde färg åt genom
+      // antalet olika färger paret redan har visat.
+      // Tabellen anger tvångskaraktären i vissa fortsättningar men
+      // specificerar inte ett generellt hp-intervall för själva budet.
+      // Därför får motorn inte hitta på gränser som 10 eller 13 hp.
+      if(d===3 && !opener && isBid(b.c) && st_(b.c)!=='N'){
+        var shownSuits=[];
+        ours.slice(0,3).forEach(function(call){
+          var suit=st_(call.c);
+          if(isBid(call.c)&&suit!=='N'&&shownSuits.indexOf(suit)<0)shownSuits.push(suit);
         });
-        var proposedSuit=st_(b.c);
-        if(auctionSuits.indexOf(proposedSuit)<0&&auctionSuits.length===2){
-          if(hp>=10) return {exp:b.c,alt:[],why:'Tredje färg enligt Nordisk Standard s. 19: 10+ hp, rondkrav. Budet visar inte nödvändigtvis egen färglängd.',means:function(c){return c===b.c?'Tredje färg: 10+ hp och rondkrav.':null},conv:'Tredje färg'};
-          return NC('Tredje färg kräver minst 10 hp enligt Nordisk Standard s. 19.',null,'Tredje färg');
+        var newSuit=st_(b.c);
+        if(shownSuits.indexOf(newSuit)<0&&shownSuits.length===2){
+          return NC('Tredje färg identifierad enligt Nordisk Standard s. 19. Källtabellen anger att svarshanden kräver, men ger ingen generell hp-gräns för själva tredje-färgsbudet. Sekvensen loggas för expertkontroll.',null,'Tredje färg');
         }
-        if(auctionSuits.indexOf(proposedSuit)<0&&auctionSuits.length===3){
-          if(hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg enligt Nordisk Standard s. 19: 13+ hp, utgångskrav. Budet visar inte egen färg.',means:function(c){return c===b.c?'Fjärde färg: 13+ hp och utgångskrav.':null},conv:'Fjärde färg'};
-          return NC('Fjärde färg kräver minst 13 hp enligt Nordisk Standard s. 19.',null,'Fjärde färg');
+        if(shownSuits.indexOf(newSuit)<0&&shownSuits.length===3){
+          return NC('Fjärde färg identifierad enligt Nordisk Standard s. 19. Exakt generell styrkegräns för själva fjärde-färgsbudet framgår inte av tabellen; sekvensen loggas för expertkontroll.',null,'Fjärde färg');
         }
       }
 
       var openerShowsTwoSuits = isBid(ours[2].c) &&
-        ours[2].c[1] !== s1 && ours[2].c[1] !== 'N' &&
-        h.L[s1] >= 4 && h.L[ours[2].c[1]] >= 4;
-      if(d===4 && opener && (ours[2].c === '2'+s1 || openerShowsTwoSuits) &&
-         isBid(ours[3].c) && ours[3].c[1]!==s1 &&
-         ours[3].c[1]!==s2 && ours[3].c[1]!=='N'){
-         var s3 = ours[3].c[1];
-         if (h.stop(s3)) {
-             if (h.hp <= 14) return {exp:'2N', alt:[], why:'Håll i fjärde färgen, minimum: 2NT.', conv:'Fjärde färg'};
-             return {exp:'3N', alt:[], why:'Håll i fjärde färgen, maximum: 3NT.', conv:'Fjärde färg'};
-         }
-         if (h.L[s2] >= 3) return {exp:lowest(s2, last), alt:[], why:'Trumfstöd i partnerns första färg.', conv:'Fjärde färg'};
-         if (h.L[s1] >= 5) return {exp:lowest(s1, last), alt:[], why:'Ingen lämplig preferens; bjuder om egen femkortsfärg.', conv:'Fjärde färg'};
-         return {exp:lowest(s2, last), alt:[], why:'Preferens till partnerns första färg.', conv:'Fjärde färg'};
+        ours[2].c[1] !== ours[0].c[1] && ours[2].c[1] !== 'N' &&
+        h.L[ours[0].c[1]] >= 4 && h.L[ours[2].c[1]] >= 4;
+      if(d===4 && opener && isBid(ours[3].c) && ours[3].c[1]!=='N'){
+        var shownByResponder=[];
+        [ours[0].c,ours[1].c,ours[2].c].forEach(function(call){
+          var suit=st_(call);
+          if(isBid(call)&&suit!=='N'&&shownByResponder.indexOf(suit)<0)shownByResponder.push(suit);
+        });
+        if(shownByResponder.length===3 && shownByResponder.indexOf(st_(ours[3].c))<0){
+          return NC('Öppnarens fortsättning efter svarshandens fjärde färg ska bedömas enligt tabellen på s. 19. Den exakta handvärderingen för denna giv kan inte härledas säkert ur tabellraden och loggas för expertkontroll.',null,'Fjärde färg');
+        }
       }
     }
 
