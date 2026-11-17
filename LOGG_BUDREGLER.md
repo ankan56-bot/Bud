@@ -301,3 +301,6 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 - Noll kriterier ger ingen spärröppning i den definierade trappan. 9+ kort är ej täckt och ska loggas.
 - 2♣ förblir starköppning. Därför kan 7-korts ♣ inte öppnas på 2-nivån; 3♣ används vid minst ett kriterium. 8-korts ♣: 3♣ med ett kriterium, 4♣ med båda.
 - Implementerat i rättningsmotor 8.9 på `work/theme-dataset-analysis`. Se `testdata/preemptive-openings-audit.md`.
+
+- Kvar att expertgranska: lika långa spärrfärger med olika färgkvalitet samt fortsättningar efter 3-/4-nivåns spärröppningar. 9+ kort med 6-10 hp är ej täckt.
+- 20 regressionstester finns i `testdata/weak-two.test.js`; testkörning/CI är ännu inte verifierad och ska inte beskrivas som godkänd.
