@@ -56,7 +56,7 @@ Efter 2♣–2♦ visar Lathunden:
 - 3NT: 25–27 hp, jämn hand.
 - 4NT: 28–29 hp, jämn hand.
 
-Samma sida innehåller svarshandens fortsättningar efter 2♣–2♦–2♥. Dessa ska endast användas om den sekvensen ingår i den valda grenen och ska granskas separat mot Nordisk Standard.
+Samma sida innehåller svarshandens fortsättningar efter 2♣–2♦–2♥. Nordisk Standards uttryckliga svarsvillkor ligger till grund för den ordinarie rättningen; Lathundens extra STP-/kortfärgsgrenar hålls utanför tills de har valts som del av systemprofilen.
 
 ### Tryckt sida 25
 Lathunden visar 2NT-system med Stayman, överföringar, lågfärgsfråga och slam-inviter. Den visar också öppnarens tredje bud efter 2♣–2♦–2NT och 2♣–2♦–3♣/3♥. Alla sådana sekvenser ska kontrolleras mot den valda systemprofilen och hänvisade källor innan implementation.
@@ -80,7 +80,9 @@ Lathunden visar även öppnarens tredje bud efter:
 Fördelningsbuden implementeras endast när en enda profil passar. När flera budprofiler överlappar returneras ej täckt. Villkoren för naturligt 3NT, trumfstöd och essfråga är inte fullt kvantifierade i tabellerna och ska inte fyllas i med antaganden.
 
 ### Tryckt sida 26
-Denna sida behandlar fortsättningar efter 2♣–2♥. Eftersom vi alltid svarar 2♦ är den grenen inte del av vår valda grundväg och ska inte implementeras i 2♣-modulen.
+Sidan innehåller svarshandens tredje bud efter stark 2♣, bland annat 2-kortsstöd, 3NT utan stöd, kontrollbud med hjärter-/spaderstöd och STP-intervall (5–7 eller 8+ stp). Dessa är mer detaljerade Plus-/Lathundstillägg än Nordisk Standards grundsvar. De har inte översatts till HP/HTP och implementeras inte utan separat systembeslut.
+
+Sidan innehåller också en separat sekvens efter motståndarnas störning av 2♣. Den tillhör störd budgivning och ligger utanför denna ostörda modul.
 
 ### Tryckt sida 27
 Motståndarnas störning efter 2♣ hör till störd budgivning och ska inte blandas in i ostörd ÖH 2♣-modul.
