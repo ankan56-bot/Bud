@@ -1,0 +1,59 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const Rattning = require('../rattningsmotor.js');
+
+function state(handN, bids) {
+  const empty = ['C2','C3','C4','C5','C6','D2','D3','D4','H2','H3','S2','S3','S4'];
+  return {
+    hands: { N: handN, S: empty, E: empty, W: empty },
+    bids
+  };
+}
+
+function expectBid(st, index, expected) {
+  const node = Rattning.nodeFor(st, index);
+  assert.equal(node && node.exp, expected, node && node.why);
+  return node;
+}
+
+test('page 18: 1♣–1♥; 1♠–1NT, 5–4 and 11 hp permits 2♣', () => {
+  const hand = ['C14','C13','C9','C8','C7','D14','D9','D8','D7','H9','H8','S9','S8'];
+  const st = state(hand, [
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'1S'},{s:'E',c:'P'},{s:'S',c:'1N'},{s:'W',c:'P'},
+    {s:'N',c:'2C'}
+  ]);
+  expectBid(st, 8, '2C');
+});
+
+test('page 19: third suit is recognized and forcing without an invented hp threshold', () => {
+  const hand = ['C14','C13','C12','C11','C10','C9','D14','D13','D12','D11','H14','H13','S14'];
+  const st = state(hand, [
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'}
+  ]);
+  const node = expectBid(st, 6, '2D');
+  assert.equal(node.conv, 'Tredje färg');
+  assert.equal(node.soft, false);
+});
+
+test('page 19: fourth suit is distinguished from third suit', () => {
+  const hand = ['C14','C13','C12','C11','C10','C9','D14','D13','D12','D11','H14','H13','S14'];
+  const st = state(hand, [
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'}
+  ]);
+  const node = expectBid(st, 6, '2D');
+  assert.equal(node.conv, 'Fjärde färg');
+  assert.equal(node.soft, false);
+});
+
+test('page 19: after 1♥–1♠; 2♣–2♦, 2NT shows a diamond stopper', () => {
+  const hand = ['C14','C13','C12','C11','C10','C9','D14','D9','D8','D7','H14','H13','S14'];
+  const st = state(hand, [
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+    {s:'N',c:'2N'}
+  ]);
+  expectBid(st, 8, '2N');
+});
