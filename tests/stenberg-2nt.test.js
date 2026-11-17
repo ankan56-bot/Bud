@@ -75,7 +75,7 @@ const reply=R.nodeFor({hands:minorDeal,dealer:'N',bids:minorAuction.concat([{s:'
 assert.equal(reply.exp,'5D','one keycard after minor Stenberg must use the existing RKC response table');
 
 // 100 deterministic Stenberg-eligible responder hands: 4+ heart support, 13+ htp and no side-suit void.
-// A side-suit void is correctly handled first as a splinter (double jump), not 2NT.
+// Void-specific Stenberg behavior is covered by the explicit case above.
 let seed=20261116;
 function random(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;}
 let checked=0,attempts=0;
