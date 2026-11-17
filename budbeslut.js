@@ -489,7 +489,7 @@
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
       if(!opener&&d===1)return maj(st_(c1))?majorBidding.respond(h,c1):minorBidding.respond(h,c1);
-      if(opener&&d===2)return maj(st_(c1))?majorBidding.rebid(h,c1,ours[1].c,st.hands[pt]):minorBidding.rebid(h,c1,ours[1].c,st.hands[pt]);
+      if(opener&&d===2)return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]);
       return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
     }
     return nc('Okänd budgivning.');
