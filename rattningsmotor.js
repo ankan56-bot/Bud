@@ -47,6 +47,8 @@ var Rattning = (function(){
   var majorBidding=majorFactory(sharedApi,oneResponse), minorBidding=minorFactory(sharedApi,oneResponse);
   var stenbergFactory=(typeof module!=='undefined'&&module.exports)?require('./stenberg.js'):window.RattningStenbergFactory;
   var stenberg=stenbergFactory(sharedApi);
+  var trumfstodFactory=(typeof module!=='undefined'&&module.exports)?require('./trumfstod.js'):window.RattningTrumfstodFactory;
+  var trumfstod=trumfstodFactory(sharedApi,{stenberg:stenberg,majorBidding:null,minorBidding:null});
 
   var twoClubFactory=(typeof module!=='undefined'&&module.exports)?require('./2kloveroppning.js'):window.Rattning2KloverFactory;
   var weakTwoFactory=(typeof module!=='undefined'&&module.exports)?require('./svaga2oppningar.js'):window.RattningSvagaTvaFactory;
