@@ -94,14 +94,14 @@
         auction.push({s:seat,c:call});
         passes=call==='P'?passes+1:0;
       }
-      if(passes>=4){
+      const contractMade=auction.some(x=>x.c!=='P');
+      if(passes >= (contractMade ? 3 : 4)){
         return {
           status:'complete',complete:true,trainingSide,dealer,auction,steps,
           contract:(function(){const last=auction.slice().reverse().find(x=>x.c!=='P');return last?{bid:last.c,bidText:root.Rattning.txt(last.c),declarer:last.s}:null;})(),
           message:auction.some(x=>x.c!=='P')?'Budgivningen är avslutad.':'Budgivningen är avslutad utan kontrakt.'
         };
       }
-      if(auction.length>=4&&passes>=4)break;
       seat=nextSeat(seat);
     }
     return {status:'safety_stop',complete:false,trainingSide,dealer,auction,steps,
