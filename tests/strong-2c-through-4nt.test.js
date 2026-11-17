@@ -100,4 +100,26 @@ const noNumericSlamThreshold=openerThird({L:{C:4,D:3,H:3,S:3},bal:true},'3C','3D
 assert.equal(noNumericSlamThreshold.exp,null);
 assert.equal(noNumericSlamThreshold.sourceGap,true);
 
+
+const R=require('../rattningsmotor.js');
+function makeDeal(north,south){
+  const deck=[];for(const suit of ['S','H','D','C'])for(let rank=2;rank<=14;rank++)deck.push(suit+rank);
+  const used=new Set(north.concat(south));
+  assert.equal(used.size,north.length+south.length,'2C/2NT integration hands must not overlap');
+  const rest=deck.filter(card=>!used.has(card));
+  return {N:north,E:rest.slice(0,13),S:south,W:rest.slice(13,26)};
+}
+const ntOpenerHand=['H14','H13','H12','H11','S14','S13','S12','D14','D13','D2','C14','C13','C2'];
+const ntResponderHand=['H10','H9','H8','H7','S2','S3','S4','D3','D4','D5','C3','C4','C5'];
+const ntDeal=makeDeal(ntOpenerHand,ntResponderHand);
+const ntStaymanAuction=[
+  {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+  {s:'N',c:'2N'},{s:'E',c:'P'},{s:'S',c:'3C'}
+];
+assert.equal(R.nodeFor({hands:ntDeal,dealer:'N',bids:ntStaymanAuction},6).exp,'3C',
+  '2C-2D-2NT uses the shared 2NT Stayman response family');
+const ntStaymanReply=ntStaymanAuction.concat([{s:'W',c:'P'},{s:'N',c:'3H'}]);
+assert.equal(R.nodeFor({hands:ntDeal,dealer:'N',bids:ntStaymanReply},8).exp,'3H',
+  'opener answers 3C Stayman after the strong 2C rebid using the shared 2NT system');
+
 console.log('Strong 2C through 4NT and source-bound third-bid branches: all tests passed.');
