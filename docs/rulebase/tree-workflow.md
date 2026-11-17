@@ -41,7 +41,7 @@ Hänvisningar till Bättre bud, PRO, Plus och Slam ska hållas åtskilda från i
 ## Ordning och nästa modul
 Det tidigare träd-för-träd-arbetet ska bevaras. T36/T37-dokumentationen är preliminär och får inte tolkas som att dessa träd är färdiggranskade.
 
-När källinventeringen och jämförelsen är klara är nästa avgränsade modul enligt användarens senaste prioritering **Trumfstöd**. Stenberg ska återanvändas som en befintlig delkomponent/undersekvens och inte dupliceras som ett separat parallellt system. Trumfstöd blir den övergripande modulen som anropar Stenberg där budsekvensen kräver det. ÖH 2♣ ligger kvar som en senare separat modul. Vi ändrar inte ordning eller skapar nya träd utan att bevara befintliga ID:n och länkar.
+När källinventeringen och jämförelsen är klara är nästa avgränsade modul enligt användarens senaste prioritering **Trumfstöd**. Stenberg ska återanvändas som en befintlig delkomponent/undersekvens och inte dupliceras som ett separat parallellt system. Trumfstöd blir den övergripande modulen som anropar Stenberg där budsekvensen kräver det. ÖH 2♣ har nu öppnats som nästa modul och är implementerad till och med öppnarens 4NT-återbud. Senare fortsättningar efter 2NT/4NT ligger utanför den här avgränsningen. Vi ändrar inte ordning eller skapar nya träd utan att bevara befintliga ID:n och länkar.
 
 ## Störd budgivning
 Den störda Lathunden inventeras nu som källa, men kodändringar i störd budgivning är fortsatt pausade medan ostörd budgivning prioriteras, om inte användaren ändrar detta.
@@ -65,5 +65,5 @@ Den störda Lathunden inventeras nu som källa, men kodändringar i störd budgi
 | Jämförelse mot Nordisk Standard | Pågår; första jämförelser finns i lathund-nordisk-standard-crosscheck.md och strong-2c-source-review.md |
 | Konflikt- och expertfrågelogg från jämförelsen | Påbörjad i lathund-expert-questions.md; varje olöst sekvens ska föras dit |
 | Trumfstöd | Nästa prioriterade modul; arkitekturprincip fastställd: övergripande trumfstödsmodul återanvänder befintlig Stenberg-komponent, utan duplicering. Källgranskning återstår. |
-| ÖH 2♣ | Källgranskning och första runtime-granskning dokumenterade; senare modul efter trumfstöd |
-| Kodändring | Inte påbörjad; endast dokumentation och läsgranskning |
+| ÖH 2♣ | Implementerad till och med öppnarens återbud 4NT; alltid 2♦ som svar. Nya gränstester tillagda och CI inkopplad. |
+| Kodändring | Pågår i avgränsade moduler; 2♣ är implementerad till 4NT. `main` är orörd. |
