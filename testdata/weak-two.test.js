@@ -29,11 +29,18 @@ function node(hands, bids, index) {
 }
 function weakTwoHand(suit, ranks="AK9876") {
   const others = ["S","H","D","C"].filter(s => s !== suit);
+  let remaining = 13 - ranks.length;
+  const counts = [Math.min(3,remaining)];
+  remaining -= counts[0];
+  counts.push(Math.min(3,remaining));
+  remaining -= counts[1];
+  counts.push(remaining);
+  const low = "23456789TJQKA";
   return [
     ...cards(suit,ranks),
-    ...cards(others[0],"234"),
-    ...cards(others[1],"234"),
-    ...cards(others[2],"2")
+    ...cards(others[0],low.slice(0,counts[0])),
+    ...cards(others[1],low.slice(0,counts[1])),
+    ...cards(others[2],low.slice(0,counts[2]))
   ];
 }
 function elevenPointSixCardHand(suit) {
