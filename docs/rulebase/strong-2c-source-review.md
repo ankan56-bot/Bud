@@ -1,6 +1,6 @@
 # Stark 2♣ – källunderlag inför modul ÖH 2♣
 
-**Status:** Källutdrag och jämförelse dokumenterade. Svarsvarianten är beslutad: svarshanden bjuder alltid 2♦. Modulen är ännu inte implementerad eller godkänd.  
+**Status:** Källutdrag och jämförelse dokumenterade. Svarsvarianten är beslutad: svarshanden bjuder alltid 2♦. Modulen är implementerad för öppning, alltid-2♦-svar och öppnarens återbud till och med 4NT. Fortsättningar efter öppnarens återbud ligger utanför denna avgränsning.  
 **Normerande källa:** Nordisk Standard, s. 2–3 och 6.  
 **Kompletterande källa:** Lathunden, tryckta s. 24–27.  
 **Systembeslut från användaren:** Efter 2♣ svarar vi alltid 2♦. 2♥ som svagt svar används inte.  
@@ -22,6 +22,7 @@
 - 2NT: 22–24 hp, jämn hand.
 - 3 lå: utgångskrav, 5+ lågfärg.
 - 3NT: 25–27 hp, jämn hand.
+- 4NT: 28–29 hp, jämn hand (Lathunden s. 24; uttryckligt tillägg eftersom Nordisk Standard inte anger denna nivå).
 
 **Efter 2♣–2♦–2♥**
 - Närmaste bud: 0–5 hp och ej trumfstöd (Herbertavslag).
@@ -74,14 +75,14 @@ Motståndarnas störning efter 2♣ hör till störd budgivning och ska inte bla
 | Svar | Alltid 2♦ är uttryckligen tillåten variant | 2♦ eller Plus-variant 2♥ svagt | Alltid 2♦. 2♥ används inte. |
 | 22–24 balanserad | 2NT efter 2♦ | 2NT efter 2♦ | Överens |
 | 25–27 balanserad | 3NT efter 2♦ | 3NT efter 2♦ | Överens |
-| 28–29 balanserad | Inte angivet | 4NT efter 2♦ | Komplettering som kräver separat beslut |
+| 28–29 balanserad | Inte angivet | 4NT efter 2♦ | Infört som uttryckligt Lathundstillägg inom användarens beställda modulomfattning; inte en NS-basregel |
 | Obalanserad hand | 2M/3m utgångskrav med 5+ färg | Minst 5-kortsfärg, obalanserad | Behåll kravstatus från NS |
 
 ## 4. Kvarvarande öppna frågor
 
 1. Vilka exakta handstyrkor gäller för obalanserade återbud efter 2♣–2♦? Rutorna anger färglängd och handtyp men inte fullständigt styrkeintervall.
 2. Vilka fortsättningar som hänvisar till Bättre bud, Plus och Slam ska ingå i obligatorisk rättning? Hänvisade källor måste granskas innan dessa regler implementeras.
-3. Ska 4NT efter 2♣–2♦ ingå som 28–29 hp jämn hand, trots att grenen inte anges i Nordisk Standard?
+3. 4NT efter 2♣–2♦ är infört som 28–29 hp jämn hand enligt Lathunden s. 24. Det ska märkas som Lathundstillägg, inte som NS-regel.
 4. Hur ska öppnarens starka 2♣-klassificering hantera utgångskrav som inte fångas av en ren hp-gräns?
 5. Vilka sekvenser efter 2♣–2♦ är helt definierade och vilka ska gå till expertloggen?
 
@@ -91,7 +92,8 @@ När källgranskningen är klar byggs ÖH 2♣ i befintligt träd:
 - öppningshandens klassificering,
 - alltid 2♦ som enda svar,
 - öppnarens återbud efter 2♣–2♦,
-- svarshandens fortsättningar,
+- öppnarens återbud upp till och med 4NT;
+- svarshandens fortsättningar efter dessa återbud hanteras i nästa modulsteg,
 - gränsfall runt 20/22/24/25/27/28/29 hp,
 - ej täckta sekvenser till separat expertlogg.
 
