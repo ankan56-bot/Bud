@@ -10,7 +10,7 @@ Inledning: ÖH passar ofta, men med fördelning eller styrka kan han bjuda igen.
 
 ### SH återbjuder 1NT
 
-Exempelsekvens: 1♥–1♣; 1♠–1NT; pass–pass–pass, ÖH:s tredje bud.
+Exempelsekvens: 1♣–1♥; 1♠–1NT; pass–pass–pass, ÖH:s tredje bud.
 
 | Bud | Betydelse |
 |---|---|
@@ -64,7 +64,7 @@ Inledning: Eftersom SH kräver genom att bjuda en ny färg måste ÖH fortsätta
 
 ### SH bjuder tredje färg
 
-Exempel: 1♥–1♣; 2♣–2♦; ÖH:s fortsättning.
+Exempel: 1♣–1♥; 2♣–2♦; ÖH:s fortsättning.
 
 | Bud | Betydelse |
 |---|---|
