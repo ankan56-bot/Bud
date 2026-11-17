@@ -74,14 +74,14 @@ test("1♥–1NT: 18 + 7 hp is below game and passes 2NT", () => {
   assert.match(result.why,/25 gemensamma honnörspoäng/);
 });
 
-test("1♦ opener with 6 diamonds and 15 htp rebids at the 2-level, not 3-level", () => {
+test("1♦ opener with 6 diamonds and 16 htp rebids at the 2-level, not 3-level", () => {
   const opener = [
     ...cards("D","AKJ234"), ...cards("H","A23"),
     ...cards("S","Q2"), ...cards("C","45")
   ];
   const responder = [
     ...cards("C","K236"), ...cards("D","567"),
-    ...cards("H","K89"), ...cards("S","Q89")
+    ...cards("H","K89"), ...cards("S","J89")
   ];
   const hands = completeDeal(opener,responder);
   const bids = auction("2D","1D");
