@@ -26,6 +26,7 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 - För 8-korts ♣ används 3♣ med ett kriterium och 4♣ med båda.
 - Noll kriterier: ingen spärröppning enligt denna modell.
 - 9+ kort ligger utanför den här definierade 6-8-kortstrappan och ska loggas som ej täckt, inte tilldelas en påhittad nivå.
+- Om flera färger delar längsta längd är färgvalets prioritering i spärrhanden inte uttryckligen definierad tillsammans med kvalitetskriterierna. Befintlig öppningsfärgsordning används tills expert har granskat gränsfallet.
 - Öppningsintervallet 6-10 hp gäller för denna spärrfamilj. Övriga öppningsregler, inklusive 11 hp-regeln och starköppningen 2♣, behålls.
 
 ## Implementation
@@ -47,7 +48,11 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 
 - 9+ kort med 6-10 hp: exakt spärrnivå är inte fastställd i det tillgängliga systemunderlaget.
 - Fortsättning efter 3- och 4-nivåns spärröppningar: saknas i det verifierade underlaget.
+- Val mellan två lika långa spärrfärger när bara den ena uppfyller kvalitetskriteriet: behöver expertbesked.
 - Svarshandens värdering och fortsättningsbud efter 3-/4-nivåns spärröppningar: ska inte härledas från svaga tvåor utan uttryckligt stöd.
 - Samtliga ej täckta sekvenser ska sparas i expertloggen.
 
 Ingen störd budgivning eller försvarsbudgivning har lagts till.
+
+
+Status: rättningsmotor 8.9 och 20 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
