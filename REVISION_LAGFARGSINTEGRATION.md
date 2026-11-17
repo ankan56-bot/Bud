@@ -47,12 +47,12 @@ Nordisk standard styr över Lathundens avvikande tillägg:
 
 ## 5. Svarshandens andra bud och öppnarens tredje bud
 
-- Nordisk Standard ger uttryckliga invitexempel efter högfärgsöppning, exempelvis 1♥–1♠–2♣–2NT/3♥. Dessa regler kopieras inte automatiskt till 1♣/1♦.
-- Efter 1♣/1♦–svar på 1-nivån–2♣/2♦ lämnas svarshandens andra bud som ej täckt om ingen separat, uttrycklig regel passar.
-- Efter preferens/höjning av öppnarens lågfärg lämnas öppnarens nästa bud som ej täckt när källan inte anger exakt fortsättning.
-- Kravet att undersöka 3NT före lågfärgsutgång vid lågfärgsstöd bevaras, men inget budval eller poängtröskel för den undersökningen hittas på.
-- 2NT direkt efter 1♣/1♦ med 13+ HTP och 4+ stöd tillhör Stenberg-modulen, inte denna andra-budslogik.
-- Alla sådana sekvenser sparas med budsekvens och fyra händer för expertgranskning.
+- Lågfärgsspecifika fortsättningar finns redan definierade i projektets analysbibliotek, träd T40. De implementeras som `project_extension`, inte som ordagranna regler ur PDF:en.
+- Efter öppnarens 6+ lågfärg täcker T40: 2NT med balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna; 3 i lågfärgen med 11–12 HTP och minst tre stöd; 4 i lågfärgen med 13–18 HTP och minst fyra stöd; 3NT med 13+ hp, balanserad hand och håll; pass med 6–10 hp utan stöd eller egen lång sidofärg.
+- Efter preferens/höjning till 3 i öppningslågfärgen täcker T40 minst åtta trumf: 28+ gemensamma poäng ger 5 i lågfärgen; under 28 stannar paret i 3-lågfärgen.
+- Dessa T40-regler hålls tydligt åtskilda från Nordisk Standards direkta stödregler och Stenberg 2NT. De ska inte generaliseras till andra sekvenser.
+- Öppnarens fortsättning efter 2NT-invit och andra senare fortsättningar utan uttrycklig T40-gren sparas som source gaps.
+- 3NT-undersökning före lågfärgsutgång med 20+ HTP och stöd måste fortsatt respekteras; exakta saknade fortsättningar får inte hittas på.
 
 ## 6. Källuckor – inga antaganden
 
