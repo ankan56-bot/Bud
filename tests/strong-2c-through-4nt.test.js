@@ -74,4 +74,28 @@ assert.match(noFiveCardSuit.why,/utan 5-korts färg/);
 const wrongResponse=twoClub.reb2c({hp:23,bal:true,L:{}},'2H');
 assert.equal(wrongResponse.exp,null);
 
-console.log('Strong 2C through 4NT: all tests passed.');
+
+const openerThird=twoClub.openerThirdAfter2c;
+const afterSpade2nt=openerThird({L:{C:5,D:4,H:2,S:2},bal:false},'2S','2N');
+assert.equal(afterSpade2nt.exp,'3C','5-4 club distribution after 2S-2NT shows 3C');
+assert.equal(afterSpade2nt.source,'lathunden_s25');
+const overlap54=openerThird({L:{C:5,D:5,H:1,S:2},bal:false},'2S','2N');
+assert.equal(overlap54.exp,null,'two competing 5-4 distributions must not get an invented priority');
+assert.equal(overlap54.sourceGap,true);
+const afterClubHerbert=openerThird({L:{C:5,D:2,H:6,S:0},bal:false},'3C','3D');
+assert.equal(afterClubHerbert.exp,null,'overlapping 5-4 diamond and six-card heart routes must be left uncovered');
+assert.equal(afterClubHerbert.sourceGap,true);
+const sixHearts=openerThird({L:{C:2,D:2,H:6,S:3},bal:false},'3C','3D');
+assert.equal(sixHearts.exp,'3H');
+const sixSpades=openerThird({L:{C:2,D:2,H:3,S:6},bal:false},'3H','3S');
+assert.equal(sixSpades.exp,'3S');
+const 54ClubAfterHeart=openerThird({L:{C:5,D:4,H:3,S:1},bal:false},'3H','3S');
+assert.equal(54ClubAfterHeart.exp,'4C');
+const natural3nt=openerThird({L:{C:2,D:2,H:3,S:6},bal:false},'3H','3S');
+assert.equal(natural3nt.exp,null,'6-card spades and natural 3NT both apply; the source gives no priority');
+assert.equal(natural3nt.sourceGap,true);
+const noNumericSlamThreshold=openerThird({L:{C:4,D:3,H:3,S:3},bal:true},'3C','3D');
+assert.equal(noNumericSlamThreshold.exp,null);
+assert.equal(noNumericSlamThreshold.sourceGap,true);
+
+console.log('Strong 2C through 4NT and source-bound third-bid branches: all tests passed.');
