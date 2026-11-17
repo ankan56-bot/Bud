@@ -55,7 +55,7 @@ test("a six-card club suit is not treated as a weak two opening", () => {
   assert.equal(result.exp,"P");
 });
 
-test("responder's 3-level raise with 3+ support is preemptive, not an invit", () => {
+test("3 in the opening suit is a preemptive raise with 3+ support, not an invit", () => {
   const opener = [
     ...cards("H","AK9876"), ...cards("S","234"),
     ...cards("D","234"), ...cards("C","2")
@@ -65,65 +65,129 @@ test("responder's 3-level raise with 3+ support is preemptive, not an invit", ()
     ...cards("D","K89"), ...cards("C","6789")
   ];
   const hands = completeDeal(opener,responder);
-  const bids = [{s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3H"}];
-  const result = node(hands,bids,2);
+  const result = node(hands,[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3H"}
+  ],2);
   assert.equal(result.exp,"3H");
   assert.match(result.why,/spärrhöjning/);
   assert.match(result.means("3H"),/ej invit/i);
 });
 
-test("2NT response is an invit only with 9-10 HCP and at least two-card support", () => {
+test("2NT is an invit and requires 2+ support; no unsupported responder point range is invented", () => {
   const opener = weakTwoHand("H");
   const supportedResponder = [
     ...cards("H","Q2"), ...cards("S","AK"),
-    ...cards("D","56789"), ...cards("C","6789")
+    ...cards("D","Q5678"), ...cards("C","6789")
   ];
-  const supportedHands = completeDeal(opener,supportedResponder);
-  const supported = node(supportedHands,[
+  const supported = node(completeDeal(opener,supportedResponder),[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"}
   ],2);
   assert.equal(supported.exp,"2N");
+  assert.match(supported.why,/ingen exakt hp-gräns/i);
 
   const unsupportedResponder = [
     ...cards("H","2"), ...cards("S","AK"),
     ...cards("D","Q56789"), ...cards("C","6789")
   ];
-  const unsupportedHands = completeDeal(opener,unsupportedResponder);
-  const unsupported = node(unsupportedHands,[
+  const unsupported = node(completeDeal(opener,unsupportedResponder),[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"}
   ],2);
   assert.equal(unsupported.exp,null);
   assert.match(unsupported.why,/minst 2 korts stöd/);
 });
 
-test("opener shows minimum after the 2NT inquiry with 3 in the opening suit", () => {
+test("a new suit with 5+ cards is forcing to at least 3 in opener's suit", () => {
+  const opener = weakTwoHand("H");
+  const responder = [
+    ...cards("H","2"), ...cards("S","AKQJ9"),
+    ...cards("D","567"), ...cards("C","6789")
+  ];
+  const hands = completeDeal(opener,responder);
+  const result = node(hands,[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2S"}
+  ],2);
+  assert.equal(result.exp,"2S");
+  assert.match(result.why,/krav till minst 3/);
+});
+
+test("a jump in a new suit with a void is a slam invitation", () => {
+  const opener = weakTwoHand("H");
+  const responder = [
+    ...cards("H","Q2"), ...cards("D","AKQJ98"),
+    ...cards("C","KQJ98")
+  ];
+  const hands = completeDeal(opener,responder);
+  const result = node(hands,[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3S"}
+  ],2);
+  assert.equal(result.exp,"3S");
+  assert.match(result.why,/renons och är slaminvit/);
+});
+
+test("3NT is treated as the documented final contract", () => {
+  const opener = weakTwoHand("H");
+  const hands = completeDeal(opener,fillerHand(opener));
+  const result = node(hands,[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3N"}
+  ],2);
+  assert.equal(result.exp,"3N");
+  assert.match(result.why,/slutbud/);
+});
+
+test("opener completes the forcing new-suit response with at least 3 in the opening suit", () => {
+  const opener = weakTwoHand("H");
+  const responder = [
+    ...cards("H","2"), ...cards("S","AKQJ9"),
+    ...cards("D","567"), ...cards("C","6789")
+  ];
+  const hands = completeDeal(opener,responder);
+  const result = node(hands,[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2S"},
+    {s:"W",c:"P"},{s:"N",c:"3H"}
+  ],4);
+  assert.equal(result.exp,"3H");
+  assert.match(result.why,/krav.*3 i öppningsfärgen/i);
+});
+
+test("after 2NT, opener shows minimum (6-8 hp) with 3 in the opening suit", () => {
   const opener = weakTwoHand("H","AK9876");
   const responder = [
     ...cards("H","T2"), ...cards("S","AK"),
     ...cards("D","Q5678"), ...cards("C","6789")
   ];
-  const hands = completeDeal(opener,responder);
-  const bids = [
+  const result = node(completeDeal(opener,responder),[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"},
     {s:"W",c:"P"},{s:"N",c:"3H"}
-  ];
-  const result = node(hands,bids,4);
+  ],4);
   assert.equal(result.exp,"3H");
-  assert.match(result.why,/minimum/);
+  assert.match(result.why,/6-8 hp/);
 });
 
-test("opener shows maximum after the 2NT inquiry with game in the major", () => {
+test("after 2NT, a maximum major opener shows 4M with 3NT as the documented alternative", () => {
   const opener = weakTwoHand("H","AKQ976");
   const responder = [
     ...cards("H","T2"), ...cards("S","AK"),
     ...cards("D","Q5678"), ...cards("C","6789")
   ];
-  const hands = completeDeal(opener,responder);
-  const bids = [
+  const result = node(completeDeal(opener,responder),[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"},
-    {s:"W",c:"P"},{s:"N",c:"4H"}
-  ];
-  const result = node(hands,bids,4);
+    {s:"W",c:"P'},{s:"N",c:"4H"}
+  ],4);
   assert.equal(result.exp,"4H");
-  assert.match(result.why,/maximum/);
+  assert.ok(result.alt.includes("3N"));
+  assert.match(result.why,/9-10 hp/);
+});
+
+test("after 2NT, a maximum minor opener rebids 3NT, never 4 in the minor", () => {
+  const opener = weakTwoHand("D","AKQ976");
+  const responder = [
+    ...cards("D","T2"), ...cards("S","AK"),
+    ...cards("H","Q5678"), ...cards("C","6789")
+  ];
+  const result = node(completeDeal(opener,responder),[
+    {s:"N",c:"2D"},{s:"E",c:"P"},{s:"S",c:"2N"},
+    {s:"W",c:"P"},{s:"N",c:"3N"}
+  ],4);
+  assert.equal(result.exp,"3N");
+  assert.match(result.why,/inte 4 i lågfärgen/);
 });
