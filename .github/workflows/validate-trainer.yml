@@ -16,6 +16,8 @@ jobs:
           node --check rattningsmotor.js
           node --check stenberg.js
           node --check trumfstod.js
+          node --check ettoppningssvar.js
+          node --check budbeslut.js
           node --check sangbudgivning.js
           node --check slamlogik.js
           node --check dds-integration.js
