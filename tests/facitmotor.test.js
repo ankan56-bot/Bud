@@ -111,6 +111,25 @@ assert.equal(noContract.status,'complete');
 assert.equal(noContract.contract,null);
 assert.deepEqual(noContract.auction.map(x=>x.c),['P','P','P','P']);
 
+// A contract auction ends after three consecutive passes, not four.
+{
+  const original=R.nodeFor;
+  let calls=0;
+  R.nodeFor=function(){
+    calls++;
+    return calls===1
+      ? {exp:'1N',alt:[],why:'Testöppning.',means:function(c){return c==='1N'?'Öppning 1NT.':null}}
+      : {exp:'P',alt:[],why:'Pass.',means:function(c){return c==='P'?'Pass.':null}};
+  };
+  const contractFacit=F.generateUndisturbedFacit({hands,dealer:'N',trainingSide:'NS'});
+  R.nodeFor=original;
+  assert.equal(contractFacit.status,'complete');
+  assert.equal(contractFacit.complete,true);
+  assert.deepEqual(contractFacit.auction.map(x=>x.c),['1N','P','P','P']);
+  assert.equal(contractFacit.auction.length,4,
+    'after a contract, the third consecutive pass must end the auction immediately');
+}
+
 // Invalid deals fail closed.
 const invalid=F.generateUndisturbedFacit({hands:{N:north,E:north,S:cleanSouth,W:cleanSouth},dealer:'N'});
 assert.equal(invalid.status,'invalid_deal');
