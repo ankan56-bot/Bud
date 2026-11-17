@@ -68,5 +68,5 @@ CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
   - Storslam: alla fyra ess; i färg även trumfkungen.
 - Kontrollen är fristående från konventionsrättningen: ett bud kan vara korrekt tolkat som slutbud men ändå fel styrkemässigt.
 - Gemensam poängfunktion korrigerad till +1 vid 9 trumf och +2 vid 10+ trumf, enligt tidigare fastställd värdering.
-- Fyra nya regressionstester täcker 10-korts trumfbonus, otillräcklig styrka för 3NT, 4♥ och 6♥.
+- Fem nya regressionstester täcker 10-korts trumfbonus, otillräcklig styrka för 3NT, 4♥ och 6♥.
 - Motor 9.5 och 34 tester incheckade. Testkörning/CI är ännu inte verifierad.
