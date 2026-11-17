@@ -1206,9 +1206,13 @@ var Rattning = (function(){
       if(b.c==='4H')return {exp:'4H',alt:[],why:'4♥ är slutbud enligt tabellen på sida 18.',means:function(c){return c==='4H'?'Slutbud.':null},conv:'ÖH:s tredje bud efter ombud'};
     }
 
-    // Sida 18: SH inviterar med 2NT. Exempel: 1♥–1♦; 2♥–2NT.
-    if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1D' &&
-       ours[2].c==='2H' && ours[3].c==='2N'){
+    // Sida 18: SH inviterar med 2NT efter 1♥–1♠; 2♦–2NT.
+    // Inviten visar 11–12 hp. ÖH:s tredje bud bedöms därefter enligt tabellen.
+    if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1S' &&
+       ours[2].c==='2D' && ours[3].c==='2N'){
+      var inviteHand18=H(st.hands[pt]);
+      if(inviteHand18.hp<11||inviteHand18.hp>12)
+        return NC('2NT i sekvensen 1♥–1♠; 2♦–2NT är invit med 11–12 hp. Svarshanden ligger utanför styrkeintervallet; sekvensen loggas för kontroll.','', 'ÖH:s tredje bud efter 2NT-invit');
       if(b.c==='3C')return {exp:'3C',alt:[],why:'3♣ är svagt fjärde färgsbud men utgångskrav enligt sida 18.',means:function(c){return c==='3C'?'Svagt, fjärde färg, utgångskrav.':null},conv:'ÖH:s tredje bud efter 2NT-invit',soft:false};
       if(b.c==='3N'&&h.hp>=15&&h.hp<=17)return {exp:'3N',alt:[],why:'3NT visar 15–17 hp enligt användarens precisering.',means:function(c){return c==='3N'?'15–17 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
       var lens65TwoNT=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
