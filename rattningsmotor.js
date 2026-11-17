@@ -1193,17 +1193,18 @@ var Rattning = (function(){
       return nc('Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.');
     }
     if(/^2[DHS]$/.test(c1)){
-      if(!opener&&d===1)return resp2w(h,c1,b.c);
-      if(opener&&d===2)return open2w(h,c1,ours[1].c);
+      if(!opener&&d===1){
+        if(H(st.hands[pt]).L[fs]===6)return resp2w(h,c1,b.c);
+        return nc('Öppningen på 2-nivån bygger här på en sjukortsfärg. Fortsättningsreglerna i PDF:en gäller uttryckligen svaga tvåor med exakt sex kort och får inte automatiskt överföras.');
+      }
+      if(opener&&d===2){
+        if(h.L[fs]===6)return open2w(h,c1,ours[1].c);
+        return nc('Öppnarens fortsättning efter en 2-nivåöppning med sjukkortsfärg är inte definierad i underlaget.');
+      }
       return nc('Fortsättningen efter svag tvåa beskrivs inte i dokumentet.');
     }
     if(/^[34][CDHS]$/.test(c1)){
-      if(!opener&&d===1){
-         if(b.c==='3N') return {exp:'3N', alt:[], why:'3NT med håll i sidofärgerna.', conv:'spärr'};
-         if(isBid(b.c) && b.c[1]!==c1[1] && b.c[1]!=='N') return {exp:b.c, alt:[], why:'Ny färg: rondkrav, 5+ kort.', conv:'spärr'};
-         if(isBid(b.c) && st_(b.c)===st_(c1)) return {exp:b.c, alt:[], why:'Höjning av spärren (spärrhöjning).', conv:'spärr'};
-      }
-      return nc('Fortsättningen efter spärrbud beskrivs inte i dokumentet.');
+      return nc('Svar och fortsättningar efter 3-/4-nivåns spärröppning är inte definierade i det verifierade systemunderlaget. Ingen generell regel om ny färg, 3NT eller spärrhöjning antas.');
     }
     if(/^1[CDHS]$/.test(c1)){
       // Separat 1-färg–1NT-gren. Lågfärg (1♦) och högfärg (1♥/1♠)
@@ -1556,7 +1557,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'8.9'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.0'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
