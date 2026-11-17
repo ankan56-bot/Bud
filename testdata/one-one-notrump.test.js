@@ -62,6 +62,22 @@ test("1♥–1NT: 8-card heart fit and 26+ playing points selects 4♥", () => {
   assert.match(result.why,/8-korts fit i ♥/);
 });
 
+test("1♠–1NT: 8-card spade fit and 26+ playing points selects 4♠", () => {
+  const opener = [
+    ...cards("S","AKQ23"), ...cards("H","AK2"),
+    ...cards("D","Q23"), ...cards("C","45")
+  ];
+  const responder = [
+    ...cards("S","456"), ...cards("H","J34"),
+    ...cards("D","A45"), ...cards("C","K678")
+  ];
+  const hands = completeDeal(opener,responder);
+  const bids = auction("2N","1S").concat([{s:"S",c:"4S"}]);
+  const result = node(hands,bids,6);
+  assert.equal(result.exp,"4S");
+  assert.match(result.why,/8-korts fit i ♠/);
+});
+
 test("1♥–1NT: 18 + 7 hp is below game and passes 2NT", () => {
   const responder7 = [
     ...cards("H","4"), ...cards("S","J345"),
