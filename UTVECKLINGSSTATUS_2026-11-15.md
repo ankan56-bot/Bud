@@ -368,3 +368,11 @@ Den fullständiga `nordisk_standard.pdf` (2012-08-22) återfanns i ChatGPT-bibli
 - 140-givarsbaslinjen: 581 rätt, 39 ej täckta, 0 fel (1 185 budpositioner). DDS är inte körd.
 - Källreglerna från PDF sida 4 är implementerade. Svarshandens 2NT har inget påhittat hp-intervall; 2+ stöd kontrolleras. Öppnarens min/max-besked efter 2NT använder 6–8 respektive 9–10 hp.
 - Modulen är fortfarande inte helt stängd: de kvarvarande sekvenserna i `testdata/weak-two-audit.md` ska lösas/testas innan 3- och 4-öppningar. Störd budgivning förblir pausad.
+
+
+## Slutlig gränskontroll svaga tvåöppningar – godkänd
+
+- Regressionerna utökades till 14 tester och passerade samtliga.
+- Täcker 6–10 hp/exakt sexkortsfärg, 11 hp med sexkortsfärg som 1-öppning, avgränsning mot femkortsfärg och 3-öppningsfamiljen, spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT samt öppnarens min/max-svar.
+- GitHub Actions `44097230489`: **success** för hela testkedjan.
+- Kvarvarande ej dokumenterade fortsättningar är sparade i `testdata/weak-two-audit.md` och expertloggen. Ingen störd budgivning har påbörjats.
