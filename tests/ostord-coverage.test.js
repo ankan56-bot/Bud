@@ -79,7 +79,8 @@ for (const deal of deals) {
   if (!finalValidation.valid) report.invalidAuctions.push({
     dealId: deal.id, errors: finalValidation.errors
   });
-  if (!finalValidation.ended) report.unfinishedAuctions.push({
+  if (sourceGapStopped) report.sourceGapStops.push({ dealId: deal.id, calls: st.bids.length });
+  else if (!finalValidation.ended) report.unfinishedAuctions.push({
     dealId: deal.id, calls: st.bids.length
   });
 }
