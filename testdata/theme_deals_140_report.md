@@ -6,7 +6,7 @@
 - Samtliga givare har 52 unika kort och 13 kort per hand.
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
-- Rättningsmotor: version 8.6.
+- Rättningsmotor: version 8.7.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Stenberg och trumfstöd är ostörda för att isolera respektive konvention; dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`.
@@ -15,10 +15,10 @@
 
 | Bedömning | Antal |
 |---|---:|
-| Rätt | 581 |
+| Rätt | 579 |
 | Fel | 0 |
 | Valfritt | 0 |
-| Ej täckt | 39 |
+| Ej täckt | 40 |
 
 De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grundsystemets nuvarande rättningsnyckel inte ger ett entydigt facit. De ska analyseras mot källsystemet innan kompletterande regler föreslås.
 
@@ -34,13 +34,13 @@ De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grun
 | Slambudgivning i färg | 10 | 89 | 2 | 0 |
 | Slambudgivning i sang | 10 | 100 | 0 | 0 |
 | Trumfstöd | 10 | 80 | 1 | 0 |
-| Sanghänder | 10 | 84 | 0 | 0 |
+| Sanghänder | 10 | 80 | 1 | 0 |
 | Inviter | 10 | 66 | 0 | 0 |
 | Tvåfärgshänder | 10 | 96 | 5 | 0 |
 | Svaga öppningar och spärrbud | 10 | 40 | 0 | 0 |
 | Upplysningsdubbling | 10 | 68 | 15 | 0 |
 | Inkliv och dubbling | 10 | 54 | 9 | 0 |
-| **Totalt** | **140** | **1 185** | **39** | **0** |
+| **Totalt** | **140** | **1 181** | **40** | **0** |
 
 ## Tolkning av temagivarna som stresstest
 
@@ -70,4 +70,4 @@ AI-analyser som senare läggs till i analysbiblioteket ska granskas mot källsys
 
 ## Senaste verifiering
 
-GitHub Actions workflow `Theme deal regression`, körning `44096901366`, för engine 8.6: **success**. Testjobbet `theme-deals` slutfördes utan fel, inklusive svag-två-regressionerna (6/6).
+GitHub Actions workflow `Theme deal regression`, körning `44097665339`, för engine 8.7: **success**. Testjobbet `theme-deals` slutfördes utan fel, inklusive svag-två-regressionerna (6/6).
