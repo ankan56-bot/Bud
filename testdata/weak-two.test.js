@@ -491,3 +491,21 @@ test("a direct 3NT final contract after a weak two is rejected below 26 HCP", ()
   assert.equal(game.bedomning,"fel");
   assert.match(game.motivering,/26 gemensamma honnörspoäng/);
 });
+
+
+test("a direct six-level contract after a weak two requires the common 33-point slam threshold", () => {
+  const opener=weakTwoHand("H");
+  const responder=[
+    ...cards("H","Q2"), ...cards("S","234"),
+    ...cards("D","456"), ...cards("C","23456")
+  ];
+  const hands=completeDeal(opener,responder);
+  const result=Rattning.judge({hands,dealer:"N",bids:[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"6H"},
+    {s:"W",c:"P"},{s:"N",c:"P"},{s:"E",c:"P"}
+  ]});
+  const slam=result.items.find(item=>item.bud==="6♥");
+  assert.equal(slam.bedomning,"fel");
+  assert.equal(slam.konvention,"utgång/slam – styrkekrav");
+  assert.match(slam.motivering,/33 gemensamma poäng/);
+});
