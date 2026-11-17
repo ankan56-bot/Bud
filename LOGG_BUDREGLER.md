@@ -312,3 +312,5 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 - Regressionstestfilen har nu 25 tester, inklusive analysbibliotekets exakta sexkortsvillkor. Testkörning/CI är fortfarande inte verifierad.
 
 - Rättningsmotor 9.1: sexkortig ♣ med bra färg lämnas ej täckt eftersom 2♣ är starköppning och alternativ nivå saknas i underlaget. Ingen pass-/3♣-regel hittas på. Manifest och regressionstester uppdaterade; 26 tester finns, körning/CI ej verifierad.
+
+- Lagt till `.github/workflows/preemptive-regression.yml` som kör de 26 testerna i `testdata/weak-two.test.js` vid push till arbetsgrenen och PR mot main. Körresultat är ännu inte verifierat.
