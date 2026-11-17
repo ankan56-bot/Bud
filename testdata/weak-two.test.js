@@ -62,7 +62,7 @@ function elevenPointSixCardHand(suit) {
   ];
 }
 
-test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and exactly six cards", () => {
+test("2♦, 2♥ and 2♠ openings require 6-10 HCP, exactly six cards and defined suit quality", () => {
   for (const suit of ["D","H","S"]) {
     const opener = weakTwoHand(suit);
     const hands = completeDeal(opener, fillerHand(opener));
@@ -73,9 +73,25 @@ test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and exact
   }
 });
 
-test("6-10 hp with exactly six cards opens 2♦/2♥/2♠ even without suit honors", () => {
+test("6-10 hp with exactly six cards but no qualifying suit honors does not open a weak two", () => {
   for (const suit of ["D","H","S"]) {
     const opener = poorQualityWeakTwoHand(suit);
+    const result = node(completeDeal(opener,fillerHand(opener)),[
+      {s:"N",c:"2"+suit}
+    ],0);
+    assert.equal(result.exp,"P",suit);
+  }
+});
+
+test("one honor plus two of 10-9-8 qualifies as a good weak-two suit", () => {
+  for (const suit of ["D","H","S"]) {
+    const others = ["S","H","D","C"].filter(s => s !== suit);
+    const opener = [
+      ...cards(suit,"AT9876"),
+      ...cards(others[0],"KQ"),
+      ...cards(others[1],"J2"),
+      ...cards(others[2],"345")
+    ];
     const result = node(completeDeal(opener,fillerHand(opener)),[
       {s:"N",c:"2"+suit}
     ],0);
