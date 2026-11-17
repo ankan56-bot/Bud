@@ -69,6 +69,11 @@ const minorAuction=[
  {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},
  {s:'N',c:'3C'},{s:'E',c:'P'},{s:'S',c:'4N'}
 ];
+const directStenbergFourNT=R.nodeFor({hands:minorDeal,dealer:'N',bids:[
+ {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'2N'},{s:'W',c:'P'},{s:'N',c:'4N'}
+]},4);
+assert.equal(directStenbergFourNT.exp,null,'4NT directly after Stenberg, without opener descriptive 3-level rebid, is not automatically RKC');
+assert.equal(directStenbergFourNT.sourceGap,true,'an unverified direct 4NT must remain an expert-review gap, not be replaced by generic slam rescue');
 const ask=R.nodeFor({hands:minorDeal,dealer:'N',bids:minorAuction},6);
 assert.equal(ask.exp,'4N','4NT after 1♣–2NT–3♣ must hand off as RKC with clubs agreed');
 const reply=R.nodeFor({hands:minorDeal,dealer:'N',bids:minorAuction.concat([{s:'W',c:'P'},{s:'N',c:'5D'}])},8);
