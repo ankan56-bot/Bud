@@ -5,12 +5,47 @@
 **Kompletterande källa:** Lathunden, tryckta s. 24–25 (PDF-bild 9) och 26–27 (PDF-bild 10).  
 **Viktig avgränsning:** Detta dokument återger vad källorna visar. Det fastställer inte automatiskt vilka Lathundens Plus-/Bättre bud-/Slam-hänvisningar som ska ingå i obligatorisk systemrättning.
 
-## 1. Nordisk Standard – grundregel
+## 1. Nordisk Standard – full grundregel för 2♣
 
-Nordisk Standard anger under öppningsbud:
-- **2♣: utgångskrav eller 22–24 hp balanserad.**
+Nordisk Standard, tryckt sida 2 och sida 6, anger:
 
-Det är grunddefinitionen. Den ska styra klassificeringen av öppningshanden och får inte ersättas av en annan styrkedefinition från Lathunden.
+**Öppning**
+- 2♣: utgångskrav eller minst 22 hp och balanserad hand.
+
+**Svar på 2♣ – huvudväg**
+- 2♦ om handen inte passar för 2♥ eller 3 lå.
+- En variant är att alltid svara 2♦.
+- 2♥: 6+ hp och bra 5+ högfärg.
+- 3 lå: 6+ hp och bra 6+ lågfärg.
+
+**Efter 2♣–2♦**
+- 2♥: utgångskrav, 5+ hjärter.
+- 2♠: utgångskrav, 5+ spader.
+- 2NT: 22–24 hp, jämn hand.
+- 3 lå: utgångskrav, 5+ lågfärg.
+- 3NT: 25–27 hp, jämn hand.
+
+**Efter 2♣–2♦–2♥**
+- Närmaste bud: 0–5 hp och ej trumfstöd (Herbertavslag).
+- 3♥: 6+ hp och 3+ stöd.
+- 4♥: 0–5 hp med stöldvärde och 4+ stöd.
+- Ny färg: 6+ hp, 5+ färg.
+- 3NT: 6+ hp, jämn hand.
+
+**Efter 2♣–2♦–3 lå**
+- Närmaste bud: 0–5 hp och ej trumfstöd (Herbertavslag).
+- 3 hö: 6+ hp och 4+ färg.
+- 3NT: 6+ hp, jämn hand.
+- 4 lå: 6+ hp, 3+ stöd och slamintresse.
+- 5 lå: 0–5 hp med stöldvärde och bra trumfstöd.
+
+Nordisk Standard anger även exempel på Herbertavslag, där svarshanden använder närmaste bud för att visa 0–5 hp utan att lova färglängd i den bjudna färgen. Exempel:
+- 2♣–2♦–2♥–2♠: 0–5 hp och säger inget om spaderfärgen.
+- 2♣–2♦–2♠–2NT: 0–5 hp och säger inget om fördelning.
+- 2♣–2♦–3♣–3♦: 0–5 hp och säger inget om ruterfärgen.
+- 2♣–2♦–3♦–3♥: 0–5 hp och säger inget om hjärterfärgen.
+
+Detta är normerande för rättningsmotorn. Lathundens sekvenser ska jämföras mot dessa definitioner, inte tvärtom.
 
 ## 2. Lathunden – vad som uttryckligen står
 
@@ -123,22 +158,23 @@ Lathunden anger:
 | Fråga | Nordisk Standard | Lathunden | Bedömning |
 |---|---|---|---|
 | Öppning 2♣ | Utgångskrav eller 22–24 hp balanserad | Beskriver 2♣ som stark öppning; visar 22–24 balanserad via 2NT efter 2♦/2♥-svar | I huvudsak förenligt, men varje gren måste behålla grunddefinitionen |
-| Svar 2♦ | Inte specificerat i NS-utdraget | Minst 5 hp eller ett ess, utgångskrav | Komplettering från Lathunden; inte konflikt med uttrycklig NS-regel |
-| Svar 2♥ | Inte specificerat i NS-utdraget | 0–4 hp, inget ess; uttryckligen Plus-hänvisning | Ej automatiskt grundsystem; expert-/systembesked krävs om Plus ingår |
+| Svar 2♦ | Standardväg när handen inte passar för 2♥/3 lå; även variant med alltid 2♦ | Minst 5 hp eller ett ess, utgångskrav | Inte identiskt beskrivet. Lathunden anger en tröskel; NS anger valprincip och alternativa svar. NS styr. |
+| Svar 2♥ | 6+ hp och bra 5+ högfärg | 0–4 hp, inget ess (Plus-hänvisning) | Direkt konflikt. Lathundens 2♥-svagvariant får inte implementeras som standard utan uttryckligt systembesked. |
 | 22–24 balanserad | Ingår i definitionen av 2♣ | 2NT rebid visar 22–24 jämn hand | Överensstämmer |
-| 25–27 / 28–29 balanserad | Inte specificerat i NS-utdraget | 3NT / 4NT efter 2♣–2♦ visar dessa intervall | Komplettering som måste verifieras mot övrig systemdokumentation |
-| Obalanserad hand | 2♣ är utgångskrav | 2♥/2♠ eller 3♣/3♦ visar minst 5-kortsfärg och obalanserad hand | Förenligt med stark 2♣-ram, men exakta styrkeintervall saknas i rutorna |
+| 25–27 balanserad | 3NT efter 2♣–2♦ visar 25–27 hp jämn hand | 3NT visar 25–27 hp jämn hand | Överensstämmer. |
+| 28–29 balanserad | Inte angivet i NS | 4NT efter 2♣–2♦ visar 28–29 hp jämn hand | Lathundskomplettering; kräver beslut om den ingår i grundsystemet. |
+| Obalanserad hand | 2♥/2♠ och 3 lå är uttryckliga utgångskrav med 5+ färg efter 2♣–2♦ | 2♥/2♠ eller 3 lå visar minst 5-kortsfärg och obalanserad hand | I huvudsak överens, men NS:s kravstatus är uttrycklig och måste bevaras. |
 | Fortsättningar efter svar | Ej specificerade i NS-utdraget | Många specifika sekvenser och hänvisningar till Bättre bud/Plus/Slam | Måste delas upp; hänvisade källor är inte verifierade här |
 | Störd 2♣ | Ej specificerat i NS-utdraget | Naturliga bud; pass svagt; färgbud 5+; 2NT jämn med håll; D övriga händer | Tillhör störd modul, inte ostörd ÖH 2♣-implementation |
 
 ## 4. Öppna frågor som inte får lösas genom antaganden
 
-1. Är 2♥-svaret 0–4 hp utan ess en fast del av det system som ska rättas, eller ska det behandlas som Plus-variant?
+1. Lathundens 2♥-svar 0–4 hp utan ess står i direkt konflikt med Nordisk Standards 2♥-svar 6+ hp och bra 5+ högfärg. Ska Plus-varianten helt uteslutas ur grundrättningen, eller finns ett uttryckligt systembeslut om den?
 2. Vilka exakta handstyrkor gäller för de obalanserade öppnaråterbuden efter 2♣–2♦ respektive 2♣–2♥? Rutorna anger färglängd/handtyp men inte fullständigt styrkeintervall.
 3. Vilka fortsättningar som hänvisar till Bättre bud, Plus och Slam ska ingå i den obligatoriska rättningsmotorn? Innehållet i dessa hänvisade avsnitt/källor måste finnas tillgängligt innan reglerna implementeras.
 4. Ska 2NT-systemet efter 2♣–2♦–2NT användas exakt som tabellen visar, inklusive 3♠-lågfärgsfråga och överföringsfortsättningar? Verifiera mot användarens systemdefinition och övrig källa innan implementation.
 5. Hur ska 2♣ behandlas när motståndarna kliver in? Lathunden beskriver ett naturligt schema, men detta hör till störd budgivning och ska inte blandas in i ostörd modul.
-6. Hur ska 25–27 och 28–29 hp balanserade händer hanteras i den befintliga motorn, och finns motsvarande stöd i den fullständiga systemkällan?
+6. Lathunden anger 4NT efter 2♣–2♦ som 28–29 hp jämn hand, medan Nordisk Standard inte anger denna gren. Ska den behandlas som kompletterande konvention eller lämnas utanför grundsystemet?
 
 ## 5. Implementationens avgränsning när modulen öppnas
 
