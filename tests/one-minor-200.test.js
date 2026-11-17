@@ -84,6 +84,22 @@ report.coveragePercent=report.turns?Math.round(report.covered/report.turns*1000)
 report.sourceGapCount=report.uncovered.filter(x=>x.sourceGap).length;
 fs.mkdirSync('testdata',{recursive:true});
 fs.writeFileSync('testdata/one_minor_200_validation_latest.json',JSON.stringify(report,null,2)+'\n');
+function compactHand(cards){
+ const bySuit={S:[],H:[],D:[],C:[]};
+ const ranks={14:'A',13:'K',12:'Q',11:'J',10:'T'};
+ for(const card of cards)bySuit[card[0]].push(Number(card.slice(1)));
+ return ['S','H','D','C'].map(s=>s+bySuit[s].sort((a,b)=>b-a).map(n=>ranks[n]||String(n)).join('')).join(' ');
+}
+const uncoveredLog={
+ generatedAt:report.generatedAt,
+ source:'200-deal ostörd budgivning; 4-4-4-1-händer exkluderade',
+ coveragePercent:report.coveragePercent,
+ uncovered:report.uncovered.map(x=>({
+  dealId:x.dealId,seat:x.seat,auction:x.auction,sourceGap:x.sourceGap,reason:x.reason,
+  hands:Object.fromEntries(SEATS.map(s=>[s,compactHand(x.hands[s])]))
+ }))
+};
+fs.writeFileSync('testdata/one_minor_200_uncovered_latest.json',JSON.stringify(uncoveredLog,null,2)+'\n');
 console.log(JSON.stringify({
  deals:report.deals,openings:report.openings,turns:report.turns,
  covered:report.covered,uncovered:report.uncovered.length,
