@@ -3,7 +3,7 @@
 Datum: 2026-11-17  
 Arbetsgren: `work/minor-openings-1c-1d`  
 Bas: `work/undisturbed-architecture`  
-Status: första implementationen och riktade tester inlagda; deterministisk 200-givarsverifiering körs i CI.
+Status: implementerad och integrerad på arbetsgrenen; riktade tester, 200-givars stresstest och full CI godkända. Källluckor är avsiktligt kvar och loggas med fyra händer.
 
 ## 1. Modulgräns och ägarskap
 
@@ -65,7 +65,19 @@ Följande ska fortsatt sparas med budsekvens och alla fyra händer i ej-täckta-
 5. Numerisk definition av ”bra 5+ färg” vid 11 hp.
 6. Undantaget 5–5 i spader–klöver där 1♣ kan väljas om spaderfärgen är dålig. Öppningsvalets kvalitetskriterium är inte definierat och den centrala öppningsväljaren ändras inte här.
 
-## 7. Regression och skydd
+## 7. Verifieringsresultat
+
+Senaste godkända CI-körning: `44092411308` (commit `1a8afadc`).
+
+- 200 deterministiska lågfärgsgivare.
+- 1 026 bedömda budpositioner.
+- 970 täckta positioner; 56 uttryckliga källuckor.
+- 94,5 % täckningsgrad.
+- 0 undantag, 0 olagliga rekommendationer, 0 ogiltiga auktioner, 0 ofärdiga auktioner och 0 kortintegritetsfel.
+- Samtliga 56 ej täckta positioner sparas separat med budsekvens och alla fyra händer.
+- Riktade 1♣/1♦-tester och den breda ostörda regressionskorpusen är godkända.
+
+## 8. Regression och skydd
 
 - 200-givarsvalideringen för 1♣/1♦: 1 026 N/S-positioner, 970 täckta (94,5 %), 56 explicita source gaps. Alla 56 sparas i `one_minor_200_uncovered_latest.json`; 0 olagliga rekommendationer, 0 ogiltiga budgivningar, 0 exceptions och 0 ofrivilligt oavslutade givar.
 
