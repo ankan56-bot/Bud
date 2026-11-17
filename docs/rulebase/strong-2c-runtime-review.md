@@ -2,7 +2,7 @@
 
 **Branch:** work/undisturbed-architecture  
 **Fil:** `2kloveroppning.js`  
-**Status:** Kod uppdaterad för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Gränstester är tillagda och inkopplade i CI; körresultat är ännu inte verifierat här. Svarshandens senare fortsättningar är delvis routade: 2NT-systemets första svar och öppnarsvar återanvänds; unika fördelningsgrenar från Lathunden s. 25 är implementerade, medan överlapp och externa Plus/PRO/Slam-grenar är ej täckta.  
+**Status:** Kod uppdaterad för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Gränstester är tillagda och inkopplade i CI. JavaScript-syntax är kontrollerad och sju direkta regelkontroller för de nya fortsättningarna passerade; full CI-körning är ännu inte verifierad här. Svarshandens senare fortsättningar är delvis routade: 2NT-systemets första svar och öppnarsvar återanvänds; unika fördelningsgrenar från Lathunden s. 25 är implementerade, medan överlapp och externa Plus/PRO/Slam-grenar är ej täckta.  
 **Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.  
 **Systembeslut:** Svarshanden bjuder alltid 2♦ på 2♣. 2♥ som svagt svar används inte.
 
