@@ -2,7 +2,7 @@
 
 **Branch:** work/undisturbed-architecture  
 **Fil:** `2kloveroppning.js`  
-**Status:** Uppdaterad och testad kod för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Svarshandens senare fortsättningar är utanför denna modulomgång.  
+**Status:** Kod uppdaterad för öppning, alltid 2♦ och öppnarens återbud till och med 4NT. Gränstester är tillagda och inkopplade i CI; körresultat är ännu inte verifierat här. Svarshandens senare fortsättningar är utanför denna modulomgång.  
 **Källor:** Nordisk Standard s. 2 och 6; Lathunden tryckt s. 24–27.  
 **Systembeslut:** Svarshanden bjuder alltid 2♦ på 2♣. 2♥ som svagt svar används inte.
 
