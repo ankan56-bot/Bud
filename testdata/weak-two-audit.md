@@ -48,4 +48,4 @@ Alla dessa sekvenser ska loggas som ej täckta tills de kan verifieras. Ingen st
 
 ## Regression
 
-`testdata/weak-two.test.js` testar öppningsvillkoren och de dokumenterade svaren: spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT, öppnarens svar efter ny färg samt min/max efter 2NT.
+`testdata/weak-two.test.js` innehåller 14 regressionstester för öppningsgränserna och de dokumenterade svaren: spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT, öppnarens svar efter ny färg samt min/max efter 2NT.
