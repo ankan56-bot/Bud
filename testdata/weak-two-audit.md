@@ -1,8 +1,8 @@
 # Svaga tvåöppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 9.6  
-Analysbibliotek: 0.5.17  
+Rättningsmotor: 9.8  
+Analysbibliotek: 0.5.18  
 Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
 
 ## Källor och ansvarsfördelning
@@ -27,7 +27,7 @@ Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ing�
 | 2NT | Stenberg 2NT, 13+ stp |
 | Ny färg | Ofta sexkortsfärg, minst 15–16 hp, rondkrav |
 | Direkt utgång | Slutbud |
-| Hopp i ny färg | Splinter, 19+ stp |
+| Hopp i ny färg | Borttaget ur det aktiva systemet; ej täckt |
 | 4NT | Essfråga med öppningsfärgen som trumf |
 
 ### Maskinell tolkning och försiktighetsgränser
@@ -36,7 +36,7 @@ Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ing�
 - 2NT rättas som Stenberg med minst 13 stp. Den tidigare regeln om enkel invit och minst två stödkort är borttagen.
 - Ny färg kräver minst 15 hp och rondkrav. Sexkortsfärg godtas direkt. Lathunden säger ”ofta” sex kort och anger inte en absolut minimilängd; femkortsfärg lämnas därför för expertbedömning i stället för att godkännas eller underkännas med en påhittad gräns.
 - Direkt utgång behandlas som slutbud.
-- Hopp i ny färg behandlas som Splinter med minst 19 stp när färgen är singel eller renons. Om budnivån samtidigt kan vara ett naturligt utgångsbud avgör handens färglängd tolkningen.
+- Hopp i ny färg är borttaget ur det aktiva systemet. Sådana sekvenser ska lämnas ej täckta och får inte rekommenderas eller rättas som Splinter.
 - 4NT behandlas som RKC/essfråga med öppningsfärgen som trumf. Rättningsmotorns trumfdetektion är utökad för 2♦/2♥/2♠ följt av 4NT.
 - Öppnarens fortsättning efter Stenberg 2NT är inte beskriven på sida 27. Den tidigare 6–8 / 9–10 hp-min/max-stegen är därför avstängd och sekvensen lämnas ej täckt tills fortsättningen är verifierad.
 
@@ -52,7 +52,7 @@ Alla ej täckta sekvenser ska sparas i expertloggen. Inga regler för störd bud
 
 ## Regression
 
-`testdata/weak-two.test.js` innehåller 34 regressionstester. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
+`testdata/weak-two.test.js` innehåller regressionstester för öppningsvillkoren, lathundens svarfamiljer, RKC-trumfidentifiering och att borttagna konventioner lämnas ej täckta. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
 
 CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
 
@@ -84,3 +84,10 @@ CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
 ## Beslut efter expert-/användarstyrd avgränsning (2026-11-17)
 
 Den historiska lathundsraden om hoppande ny färg/Splinter återges ovan som källtext, men den är **inte aktiv systemregel**. Splinter är borttaget ur tränaren enligt användarens senare beslut. Dessa sekvenser ska därför markeras ej täckta och får inte rekommenderas eller rättas som Splinter.
+
+
+## Slutstatus 2026-11-17
+
+- Rättningsmotor 9.8 och analysbibliotek 0.5.18.
+- Splinter är borttaget ur aktiva budnoder, grenetiketter, motorrekommendationer och denna aktiva sammanfattning. Historisk källrad bevaras endast som bakgrund och uttryckligt avstängt beslut.
+- Alla ej täckta svag-två-sekvenser ska fortsatt gå till expertloggen; öppningsvillkoren och lathundens övriga svar får inte utvidgas genom gissning.

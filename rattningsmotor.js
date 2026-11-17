@@ -78,7 +78,7 @@ var Rattning = (function(){
       pick = cs.sort(function(a,b){ return order55.indexOf(a) - order55.indexOf(b); })[0];
       // 5-5 öppnas med högsta färgen, utom 5-5 i ♠/♣ där dåliga ♠ tillåter 1♣.
       if(cs.length>1 && cs.indexOf('S')>=0 && cs.indexOf('C')>=0 && !h.good('S'))pick='C';
-      if(cs.length>1) alt.push('1'+cs.filter(function(s){return s!==pick})[0]);
+      if(cs.length>1) alt.push('1'+cs[1]);
     } else {
       // Två eller tre fyrkortsfärger: öppna med den lägsta.
       var f=SU.filter(function(s){return L[s]===4});
@@ -160,8 +160,8 @@ var Rattning = (function(){
       if(c==='1N')return '6-10 hp, förnekar 4-korts stöd och färg på 1-nivå. Lovar ej jämn hand.';
       if(c==='2N')return 'Stenberg: 13+ htp, 4+ stöd, utgångskrav.';
       if(isBid(c)&&st_(c)===o){var l=lv(c);
-        if(l===2)return '6-9 htp, 4+ stöd.';
-        if(l===3)return '10-12 htp, 4+ stöd.';
+        if(l===2)return '6-10 htp, 4+ stöd.';
+        if(l===3)return '11-12 htp, 4+ stöd.';
         if(l===4)return M?'Spärrbud, max 12 htp, bra stöd och svitad hand.':'Spärrbud, max 9 htp, bra stöd och svitad hand.'}
       if(oc==='1S'&&c==='2H')return '11+ hp och minst 5 kort i ♥; det oekonomiska budet är rondkrav.';
       if(oc==='1S'&&c==='2C'&&L.H===4&&L.C===3&&L.D===3&&L.S===3)return '11+ hp, 4-korts ♥ och 3-korts ♣ i 4-3-3-3; 2♣ enligt specialfallet.';
@@ -187,7 +187,7 @@ var Rattning = (function(){
     else if(oc==='1S'&&hp>=11&&L.H===4&&L.C===3&&L.D===3&&L.S===3){exp='2C';why='11+ hp, 4♥ och 3♣ i 4-3-3-3: 2♣ enligt specialfallet i Nordisk standard.'}
     else if(cand.length){var b=pickBest(cand);exp=lowest(b,oc);why='6+ hp och en 4+ färg på 1-nivå: 1 över 1.';
       cand.forEach(function(s){if(s!==b&&L[s]===L[b])alt.push(lowest(s,oc))})}
-    else if(hp<=10){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
+    else if(hp<=10&&!(hp===10&&h.longest()>=6&&h.good(h.longest()))){exp='1N';why=hp+' hp utan 4-korts stöd eller färg på 1-nivå: 1NT (6-10).'}
     else{
       var c2=SU.filter(function(s){return s!==o&&L[s]>=4});
       if(c2.length){var b2=pickBest(c2);exp=lowest(b2,oc);why=hp+' hp och 4+ färg: 2 över 1 (11+, rondkrav).'}
@@ -1421,9 +1421,8 @@ var Rattning = (function(){
         if(ours[2].c==='2N')return responderAfterOneOneNT2NT(h,st.hands[pt]);
         return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
       }
-      if(!opener&&d===3){
-        // Exakta fortsättningar från Nordisk standard s. 3 och användarens 2NT-invit.
-        if(ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2D'){
+      if(!opener&&d===3&&c1==='1H'&&ours[1].c==='1S'&&ours[2].c&&lastCall){
+        if(lastCall.c==='2D'&&ours[2].c==='2D'){
           if(b.c==='2N'){
             if(h.hp>=11&&h.hp<=12)return {exp:'2N',alt:[],why:'2NT är invit med 11–12 hp efter 1♥–1♠–2♦ enligt användarens precisering.',means:function(c){return c==='2N'?'Invit, 11–12 hp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♦',soft:false};
             return NC('2NT efter 1♥–1♠–2♦ är invit med 11–12 hp. Handen ligger utanför intervallet; sekvensen lämnas ej täckt.','', 'SH:s andra bud efter 1♥–1♠–2♦');
@@ -1434,7 +1433,7 @@ var Rattning = (function(){
             return NC('3♠ efter 1♥–1♠–2♦ kräver 6+ ♠ och 10–12 htp enligt sida 3. Handen uppfyller inte hela beskrivningen.','', 'SH:s andra bud efter 1♥–1♠–2♦');
           }
         }
-        if(ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2C'){
+        if(lastCall.c==='2C'&&ours[2].c==='2C'){
           if(b.c==='2N'){
             if(h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&h.hp>=10&&h.hp<=12)return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
             return NC('2NT efter 1♥–1♠–2♣ kräver 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt sida 3.','', 'SH:s andra bud efter 1♥–1♠–2♣');
@@ -1442,9 +1441,11 @@ var Rattning = (function(){
           if(b.c==='3H'){
             var heartHtp=h.htp('H');
             if(h.L.H===3&&heartHtp>=10&&heartHtp<=12)return {exp:'3H',alt:[],why:'3♥ visar 3-korts ♥-stöd och 10–12 htp enligt Nordisk standard s. 3.',means:function(c){return c==='3H'?'3-korts ♥-stöd, 10–12 htp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
-            return NC('3♥ efter 1♥–1♠–2♣ kräver 3-korts ♥-stöd och 10–12 htp enligt sida 3.','', 'SH:s andra bud efter 1♥–1♠–2♣');
+            return NC('3♥ efter 1♥–1♠–2♣ kräver 3-korts ♥-stöd och 10–12 htp enligt sida 3. Handen uppfyller inte hela beskrivningen.','', 'SH:s andra bud efter 1♥–1♠–2♣');
           }
         }
+      }
+      if(!opener&&d===3){
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }

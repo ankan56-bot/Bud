@@ -26,7 +26,7 @@
     "modeDistribution": "5 stord + 5 ostord where supported; dubbling and inkliv are stord only",
     "caseClassification": "NT theme: all 10 deals are typical valid 1NT openings. The 1NT rule is strict; hands outside 15-17 HCP balanced are invalid 1NT openings, not borderline cases. Other themes remain unclassified pending rule-specific evidence.",
     "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
-    "rulesEngineBlobSha": "6988a1f7690b4e825f1191feec50726ca7ce93ec",
+    "rulesEngineBlobSha": "ae2db7c29072074a7856760fd282d264a038750c",
     "rulesEngineVersion": "9.8",
     "datasetPath": "testdata/theme_deals_140.json",
     "generatorScript": "testdata/generate-theme-deals.js",
@@ -407,5 +407,5 @@
   "rulesEngineBlobSha": "17992284b12a87b0f799b2f07620c17319ed8a0b",
   "notes": "Rättningsmotor 8.9: spärröppningar 6-8 kort styrs av samma två färgkvalitetskriterier som svaga tvåor; se testdata/preemptive-openings-audit.md.\nRättningsmotor 9.0: spärrtrappans fortsättningar begränsas till verifierade regler; se testdata/preemptive-openings-audit.md.\nRättningsmotor 9.1: sexkortig klöver med bra färg men utan tillåten svag 2♣ lämnas ej täckt i stället för att anta pass eller 3♣.",
   "analysisLibraryVersion": "0.5.18",
-  "analysisLibraryBlobSha": "f44e1c622f7aca69aa7ae2091d6554aad5906595"
+  "analysisLibraryBlobSha": "587b72006950e2d270e728f89df0c14915d5b897"
 }

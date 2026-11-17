@@ -360,9 +360,14 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 
 - Rättningsmotor uppdaterad till 9.7 efter tvåfärgsgrenens styrke- och dispatchkorrigering. Negativt test tillagt: 2♣ på lägsta nivå avvisas när handen kräver 3♣ med 18+ htp.
 
-- Analysbibliotek 0.5.18: Splinter-grenar borttagna ur T34–T36; aktiva trädsnoder visar i stället ej täckt.
 
+## Ostörd budgivning – slutkontroll och Splinter avstängt (2026-11-17)
 
-## Modulstatus (2026-11-17)
-
-Ostörd budgivning är stängd för den verifierade omfattningen. CI: 31/31 ostörda tester, 34/34 svag-två-tester och samtliga temagivar-/reproducerbarhetstester godkända. Kvarvarande ospecificerade bud lämnas ej täckta; se avsnittet om spärrhöjningar 4m/4M ovan.
+- Rättningsmotor 9.8: öppningsfärgsval för 4–4 följer Nordisk standard (lägsta färg); 5–5 följer högsta färg med dokumenterat undantag 5–5 i ♠/♣ när spaderfärgen är dålig.
+- Svar på 1♠: 2♥ kräver 11+ hp och minst fem hjärter. Specialfallet 4♥–3♣–3♦–3♠ med 11+ hp kan svara 2♣.
+- 2 över 1 kräver strikt 11+ hp; den tidigare generella 10 hp/sexkortsfärgsgenvägen är borttagen.
+- Stödssvar: 6–9 htp visar lägsta stöd, 10–12 htp visar höjning på 3-nivån, 13+ htp visar Stenberg 2NT.
+- Svarshandens andra bud efter 1♥–1♠–2♣ är särskilt kontrollerat: 2NT = 10–12 hp, balanserad hand, tvåkorts ♥ och håll i ♠/♦; 3♥ = 3-korts ♥-stöd och 10–12 htp.
+- Efter 1♥–1♠–2♦: 2NT är användarens invit 11–12 hp; 3♠ visar 6+ ♠ och 10–12 htp enligt sida 3.
+- Splinter är borttaget ur den aktiva budmodellen. Hopp i ny färg efter svag tvåöppning och den tidigare 4♣-specialsekvensen lämnas ej täckta.
+- Kvar som uttryckligt ej täckt: spärrande stödshöjningar 4m/4M kräver "bra stöd och svitad hand" utan numeriskt definierad gräns; ingen automatisk regel hittas på.

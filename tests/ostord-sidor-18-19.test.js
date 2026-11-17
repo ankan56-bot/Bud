@@ -197,3 +197,30 @@ test('1♥–1♠–2♣ is rejected when the hand has 18+ htp and the jump is r
   assert.equal(node.exp,'3C',node.why);
   assert.match(node.means('2C'),/12–17 hp/);
 });
+test('1♥–1♠–2♦: responder 2NT is an 11–12 hp invite on the actual second turn', () => {
+  const opener = ['H14','H13','H12','H5','H4','D14','D13','D12','D11','C9','C8','S9','S8'];
+  const responder = ['S14','S13','S12','S11','H10','C11','C7','C6','D9','D8','D7','D6','D5'];
+  const st = state(opener, [
+    {s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'2N'}
+  ], responder);
+  const node = expectBid(st, 6, '2N');
+  assert.equal(node.conv, 'SH:s andra bud efter 1♥–1♠–2♦');
+  assert.match(node.why,/11–12 hp/);
+});
+
+test('1♠–2♥: 11+ hp and at least five hearts is a forcing two-over-one response', () => {
+  const opener = ['S14','S13','S12','S11','S10','H9','H8','H7','H6','D14','D8','C9','C8'];
+  const responder = ['H14','H13','H12','H11','H10','H5','C11','C10','C7','D9','D7','S9','S7'];
+  const st = state(opener, [{s:'N',c:'1S'},{s:'E',c:'P'},{s:'S',c:'2H'}], responder);
+  const node = expectBid(st, 2, '2H');
+  assert.match(node.why,/11\+ hp.*5\+ ♥/);
+});
+
+test('1♠–2♣: the 4-3-3-3 special case is available with 11+ hp', () => {
+  const opener = ['S14','S13','S12','S11','S10','H9','H8','H7','H6','D14','D8','C9','C8'];
+  const responder = ['H14','H13','H12','H11','C11','C10','C7','D9','D7','D6','S9','S8','S7'];
+  const st = state(opener, [{s:'N',c:'1S'},{s:'E',c:'P'},{s:'S',c:'2C'}], responder);
+  const node = expectBid(st, 2, '2C');
+  assert.match(node.why,/4♥ och 3♣ i 4-3-3-3/);
+});
