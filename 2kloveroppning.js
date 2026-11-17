@@ -93,7 +93,43 @@
     return {exp:exp,alt:alt,why:why,means:means,conv:'Herbert'};
   }
 
+
+  // Öppnarens tredje bud efter svarshandens andra bud.
+  // Dessa kompletterande fördelningsrutor kommer från Lathunden s. 25.
+  // De får inte skriva över Nordisk Standards grundgrenar eller externa
+  // hänvisningar till Slam/Plus/PRO.
+  function openerThirdAfter2c(h,openerRebid,responderRebid){
+    var L=h.L,candidates=[],meansMap={};
+    function has54(s){return L[s]>=5&&SU.some(function(t){return t!==s&&L[t]>=4;});}
+    function add(b,meaning){candidates.push(b);meansMap[b]=meaning;}
+    if(openerRebid==='2S'&&responderRebid==='2N'){
+      ['C','D','H'].forEach(function(s){if(has54(s))add('3'+s,'Minst 5-4-fördelning enligt Lathunden s. 25.');});
+      if(L.S>=6)add('3S','Minst sexkortsspader enligt Lathunden s. 25.');
+      if(candidates.length===1){var only=candidates[0];return {exp:only,alt:[],why:meansMap[only],means:function(b){return meansMap[b]||null;},conv:'2♣-system / Lathunden s. 25',source:'lathunden_s25'};}
+      if(candidates.length>1)return NC('Handen uppfyller flera möjliga fördelningsåterbud efter 2♣–2♦–2♠–2NT ('+candidates.join(', ')+'). Lathunden s. 25 anger ingen prioritet; sekvensen lämnas ej täckt.',function(b){return meansMap[b]||null;},'2♣-system / Lathunden s. 25',true);
+      return NC('Lathunden s. 25 anger 3♣/3♦/3♥ med minst 5-4-fördelning eller 3♠ med minst sexkortsspader efter 2♣–2♦–2♠–2NT. Handen matchar ingen av dessa profiler.',function(b){return meansMap[b]||null;},'2♣-system / Lathunden s. 25',true);
+    }
+    if(openerRebid==='3C'&&responderRebid==='3D'){
+      if(has54('D'))add('3D','Minst 5-4-fördelning enligt Lathunden s. 25.');
+      if(L.H>=6)add('3H','Minst sexkortshjärter enligt Lathunden s. 25.');
+      if(has54('S'))add('3S','Minst 5-4-fördelning enligt Lathunden s. 25.');
+      if(candidates.length===1){var one=candidates[0];return {exp:one,alt:[],why:meansMap[one],means:function(b){return meansMap[b]||null;},conv:'2♣-system / Lathunden s. 25',source:'lathunden_s25'};}
+      if(candidates.length>1)return NC('Handen uppfyller flera möjliga fördelningsåterbud efter 2♣–2♦–3♣–3♦ ('+candidates.join(', ')+'). Lathunden s. 25 anger ingen prioritet; sekvensen lämnas ej täckt.',function(b){return meansMap[b]||null;},'2♣-system / Lathunden s. 25',true);
+      return NC('Efter 2♣–2♦–3♣–3♦ visar Lathunden s. 25 även 3NT naturligt, 4♣ trumfstöd och 4NT essfråga med klöver som trumf. De exakta hand-/styrkevillkoren för val mellan dessa bud är inte angivna här; lämnas ej täckt.',function(b){if(b==='3N')return 'Naturligt sangbud.';if(b==='4C')return 'Trumfstöd i klöver; exakt stöd-/styrkegräns anges inte.';if(b==='4N')return 'Essfråga med klöver som trumf; exakt slamtröskel anges inte.';return meansMap[b]||null;},'2♣-system / Lathunden s. 25',true);
+    }
+    if(openerRebid==='3H'&&responderRebid==='3S'){
+      if(L.S>=6)add('3S','Minst sexkortsspader enligt Lathunden s. 25.');
+      if(!h.bal)add('3N','Naturligt sangbud med obalanserad hand enligt Lathunden s. 25.');
+      if(has54('C'))add('4C','Minst 5-4-fördelning enligt Lathunden s. 25.');
+      if(has54('D'))add('4D','Minst 5-4-fördelning enligt Lathunden s. 25.');
+      if(candidates.length===1){var chosen=candidates[0];return {exp:chosen,alt:[],why:meansMap[chosen],means:function(b){return meansMap[b]||null;},conv:'2♣-system / Lathunden s. 25',source:'lathunden_s25'};}
+      if(candidates.length>1)return NC('Handen uppfyller flera möjliga fortsättningar efter 2♣–2♦–3♥–3♠ ('+candidates.join(', ')+'). Lathunden s. 25 anger ingen prioritet; sekvensen lämnas ej täckt.',function(b){return meansMap[b]||null;},'2♣-system / Lathunden s. 25',true);
+      return NC('Efter 2♣–2♦–3♥–3♠ visar Lathunden s. 25 även 4♥ med 3+ hjärter och minimum samt 4NT essfråga med hjärter som trumf. Minimum och slamtröskel är inte numeriskt definierade; lämnas ej täckt.',function(b){if(b==='4H')return '3+ hjärter och minimum; minimum är inte kvantifierat.';if(b==='4N')return 'Essfråga med hjärter som trumf; exakt slamtröskel anges inte.';return meansMap[b]||null;},'2♣-system / Lathunden s. 25',true);
+    }
+    return NC('Denna tredje-budssekvens efter 2♣ finns inte specificerad i den granskade rutan.',null,'2♣-system',true);
+  }
+
   /* ––––– SVAG TVÅA (Plus) ––––– */
 
-  return {opening,resp2c,reb2c,resp2c2};
+  return {opening,resp2c,reb2c,resp2c2,openerThirdAfter2c};
 });
