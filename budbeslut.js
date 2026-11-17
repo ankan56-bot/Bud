@@ -12,7 +12,7 @@
   var T=api.T, ok=api.ok, NC=api.NC;
   var twoClub=deps.twoClub, weakTwo=deps.weakTwo, trumfstod=deps.trumfstod;
   var majorBidding=deps.majorBidding, minorBidding=deps.minorBidding;
-  var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2;
+  var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2, openerThirdAfter2c=twoClub.openerThirdAfter2c;
   var resp2w=weakTwo.resp2w, open2w=weakTwo.open2w;
   var overcall=deps.overcalls.overcall, respOvercall=deps.overcalls.respOvercall;
   var respDouble=deps.doubles.respDouble;
@@ -432,19 +432,13 @@
       if(!opener&&d===1)return resp2c(h);
       if(opener&&d===2)return reb2c(h,ours[1].c);
       if(!opener&&d===3){var rb=ours[2].c;if(rb==='2N')return ntResp(h,1);return resp2c2(h,rb,ours[1].c)}
-      // Efter 2♣–2♦–3♣–3♦ är 3♦ Herbertavslag.
-      // Öppningshanden ska då välja sin bästa sidofärg, inte passa.
-      if(opener&&d===4&&ours[1].c==='2D'&&ours[2].c==='3C'&&ours[3].c==='3D'){
-        var sideSuits=['H','S','D'].filter(function(s){return h.L[s]>=4;});
-        sideSuits.sort(function(a,b){
-          if(h.L[b]!==h.L[a])return h.L[b]-h.L[a];
-          if(h.good(b)!==h.good(a))return h.good(b)?1:-1;
-          return ['H','S','D'].indexOf(a)-['H','S','D'].indexOf(b);
-        });
-        var best=sideSuits[0]||'C';
-        var rebid=sideSuits.length?'3'+best:'4C';
-        return {exp:rebid,alt:[],why:'3♦ är Herbertavslag efter 3♣. Öppningshanden väljer sin bästa sidofärg ('+(sideSuits.length?SYM[best]:'ingen sidofärg med 4+ kort; återbud i ♣')+') och får inte passa.',means:function(c){return c===rebid?'Öppningshandens färgval efter Herbertavslag.':null},conv:'2♣-system / Herbert'};
+      if(opener&&d===4&&ours[1].c==='2D'){
+        if(ours[2].c==='2N')
+          return ntOpener(h,1,ours[3].c,st.hands[pt]);
+        return openerThirdAfter2c(h,ours[2].c,ours[3].c);
       }
+      if(!opener&&d>=4&&ours[1].c==='2D'&&ours[2].c==='2N')
+        return NC('2♣–2♦–2NT använder samma 2NT-system enligt Lathunden s. 24–25. Första svaren Stayman/överföring återanvänds; fortsättningen efter öppnarens svar är ännu inte sekvensvis verifierad mot grundkällan och lämnas ej täckt.',null,'2♣-system / 2NT-system',true);
       return nc('Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.');
     }
     if(/^2[DHS]$/.test(c1)){
