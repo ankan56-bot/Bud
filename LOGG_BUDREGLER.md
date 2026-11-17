@@ -884,3 +884,7 @@ Testet har utökats från 100 till 200 deterministiska givare. En ny testkörnin
 
 Inga av dessa luckor har fyllts med antagna regler. Fullständiga händer och motiveringar finns i JSON-filen ovan.
 
+### Direkt 4NT efter Stenberg utan öppnarens 3-nivååterbud – 2026-11-17
+
+En separat regression verifierar att 4NT direkt efter `1♣–2NT`, innan öppnaren har gjort sitt beskrivande 3-nivååterbud, **inte** automatiskt klassas som RKC. Eftersom trumf-/essfrågekontexten inte är fastställd i den sekvensen lämnas den ej täckt och skyddas från den generella missad-slam-reserven. 4NT efter `1M–2NT–3x` routas däremot till befintlig RKC-modul. Stenberg-/slamtester passerar.
+
