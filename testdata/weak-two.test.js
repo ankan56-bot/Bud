@@ -475,10 +475,7 @@ test("a direct 4H final contract after a weak two is rejected below 26 playing p
 
 test("a direct 3NT final contract after a weak two is rejected below 26 HCP", () => {
   const opener=weakTwoHand("H");
-  const responder=[
-    ...cards("H","Q2"), ...cards("S","234"),
-    ...cards("D","456"), ...cards("C","23456")
-  ];
+  const responder=fillerHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"3N"},
@@ -492,10 +489,7 @@ test("a direct 3NT final contract after a weak two is rejected below 26 HCP", ()
 
 test("a direct six-level contract after a weak two requires the common 33-point slam threshold", () => {
   const opener=weakTwoHand("H");
-  const responder=[
-    ...cards("H","Q2"), ...cards("S","234"),
-    ...cards("D","456"), ...cards("C","23456")
-  ];
+  const responder=fillerHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"6H"},
@@ -510,10 +504,7 @@ test("a direct six-level contract after a weak two requires the common 33-point 
 
 test("a direct grand-slam contract after a weak two also requires the common 33-point threshold", () => {
   const opener=weakTwoHand("H");
-  const responder=[
-    ...cards("H","Q2"), ...cards("S","234"),
-    ...cards("D","456"), ...cards("C","23456")
-  ];
+  const responder=fillerHand(opener);
   const hands=completeDeal(opener,responder);
   const result=Rattning.judge({hands,dealer:"N",bids:[
     {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"7N"},
