@@ -36,7 +36,7 @@ const report={
  generatedAt:new Date().toISOString(),engineVersion:R.version,deals:deals.length,
  openings:{'1C':0,'1D':0},turns:0,covered:0,uncovered:[],
  exceptions:[],illegalRecommendations:[],invalidAuctions:[],
- unfinishedAuctions:[],cardIntegrityErrors:[]
+ unfinishedAuctions:[],sourceGapStops:[],cardIntegrityErrors:[]
 };
 
 for(const deal of deals){
@@ -47,7 +47,7 @@ for(const deal of deals){
   report.cardIntegrityErrors.push(deal.id);continue;
  }
  const st={hands:deal.hands,dealer:'N',bids:[]};
- let seat='N',ended=false,guard=0;
+ let seat='N',ended=false,guard=0,sourceGapStopped=false;
  while(!ended&&guard++<32){
   const index=st.bids.length;let call='P';
   if(seat==='N'||seat==='S'){
@@ -56,18 +56,24 @@ for(const deal of deals){
    try{
     const node=R.nodeFor(st,index);
     if(node&&node.exp){call=node.exp;report.covered++;}
-    else report.uncovered.push({
-      dealId:deal.id,seed:deal.seed,seat,
-      auction:st.bids.map(x=>x.s+':'+x.c).join(' '),
-      hands:deal.hands,sourceGap:!!(node&&node.sourceGap),
-      reason:node&&node.why?node.why:'No matching rule'
-    });
+    else{
+      report.uncovered.push({
+        dealId:deal.id,seed:deal.seed,seat,
+        auction:st.bids.slice(0,-1).map(x=>x.s+':'+x.c).join(' '),
+        hands:deal.hands,sourceGap:!!(node&&node.sourceGap),
+        reason:node&&node.why?node.why:'No matching rule'
+      });
+      st.bids.pop();
+      sourceGapStopped=true;
+      break;
+    }
    }catch(e){
     report.exceptions.push({
       dealId:deal.id,seed:deal.seed,seat,
       auction:st.bids.map(x=>x.s+':'+x.c).join(' '),
       hands:deal.hands,message:String(e&&e.message||e),stack:String(e&&e.stack||'')
     });
+    st.bids.pop();sourceGapStopped=true;break;
    }
    st.bids[index]={s:seat,c:call};
   }else st.bids.push({s:seat,c:'P'});
@@ -78,7 +84,8 @@ for(const deal of deals){
  }
  const final=R.validateAuction(st);
  if(!final.valid)report.invalidAuctions.push({dealId:deal.id,errors:final.errors});
- if(!final.ended)report.unfinishedAuctions.push({dealId:deal.id,calls:st.bids.length});
+ if(sourceGapStopped)report.sourceGapStops.push({dealId:deal.id,seat,calls:st.bids.length});
+ else if(!final.ended)report.unfinishedAuctions.push({dealId:deal.id,calls:st.bids.length});
 }
 report.coveragePercent=report.turns?Math.round(report.covered/report.turns*1000)/10:0;
 report.sourceGapCount=report.uncovered.filter(x=>x.sourceGap).length;
@@ -105,7 +112,7 @@ console.log(JSON.stringify({
  covered:report.covered,uncovered:report.uncovered.length,
  sourceGaps:report.sourceGapCount,coveragePercent:report.coveragePercent,
  exceptions:report.exceptions.length,illegalRecommendations:report.illegalRecommendations.length,
- invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,
+ invalidAuctions:report.invalidAuctions.length,unfinishedAuctions:report.unfinishedAuctions.length,sourceGapStops:report.sourceGapStops.length,
  cardIntegrityErrors:report.cardIntegrityErrors.length,uncoveredDetails:report.uncovered
 },null,2));
 
@@ -115,5 +122,6 @@ assert.equal(report.exceptions.length,0);
 assert.equal(report.illegalRecommendations.length,0);
 assert.equal(report.invalidAuctions.length,0);
 assert.equal(report.unfinishedAuctions.length,0);
+assert.equal(report.sourceGapStops.length,report.uncovered.length,'Each deal stops at its first uncovered sequence.');
 assert.equal(report.sourceGapCount,report.uncovered.length,'Every uncovered minor sequence must be explicitly marked and saved as a source gap.');
 assert.ok(report.coveragePercent>=93,'The 200-deal minor-opening test must retain at least 93% coverage while preserving explicit source gaps.');
