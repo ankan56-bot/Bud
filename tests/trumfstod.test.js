@@ -13,6 +13,26 @@ function family(name){return {
  rebid:(h,o,r,p)=>{calls.push([name+'.rebid',o,r]);return {exp:'2N',conv:name};}
 };}
 const trumfstod=factory(api,{stenberg,majorBidding:family('major'),minorBidding:family('minor')});
+const scoring=require('../poangberakning.js');
+const SU=['C','D','H','S'];
+const responseApi={
+ SU:SU,SYM:{C:'♣',D:'♦',H:'♥',S:'♠',N:'NT'},NAME:{},
+ side:s=>s==='N'||s==='S'?0:1,partner:s=>({N:'S',S:'N',E:'W',W:'E'}[s]),
+ isBid:c=>/^[1-7][CDHSN]$/.test(c),lv:c=>Number(c[0]),st_:c=>c[1],
+ rk:c=>Number(c[0])*5+'CDHSN'.indexOf(c[1]),txt:c=>c,
+ maj:s=>s==='H'||s==='S',
+ lowest:(s,above)=>{for(let l=1;l<=7;l++){const b=l+s;if(!above||Number(b[0])*5+'CDHSN'.indexOf(b[1])>Number(above[0])*5+'CDHSN'.indexOf(above[1]))return b;}return null;},
+ jump:(s,above)=>{const b=responseApi.lowest(s,above);return b&&Number(b[0])<7?(Number(b[0])+1)+s:null;},
+ H:scoring.H,handHps:scoring.handHps,partnershipPoints:scoring.partnershipPoints,
+ T:m=>c=>m[c]||null,ok:(c,last)=>c==='P'||c==='X'||c==='XX',
+ NC:(why,means,conv,sourceGap)=>({exp:null,alt:[],why,means:means||(()=>null),conv:conv||'test',sourceGap:!!sourceGap})
+};
+const commonResponses=require('../ettoppningssvar.js')(responseApi);
+const majorPreempt=commonResponses.resp1(scoring.H(['H13','H12','H11','H10','H9','S13','S2','S3','S4','S5','D2','C2','C3']),'1H');
+assert.equal(majorPreempt.exp,'4H','4+ good heart support, 12 or fewer htp and a distributional hand should preempt to 4H');
+const minorPreempt=commonResponses.resp1(scoring.H(['C13','C12','C11','C10','C9','D2','D3','D4','D5','D6','H2','S2','S3']),'1C');
+assert.equal(minorPreempt.exp,'4C','4+ good club support, at most 9 htp and a distributional hand should preempt to 4C');
+
 
 assert.deepEqual(trumfstod.responder({special:true},'1H'),{exp:'2N',conv:'Stenberg'});
 assert.deepEqual(calls.pop(),['stenberg.responder','1H']);
