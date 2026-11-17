@@ -61,9 +61,9 @@ Den störda Lathunden inventeras nu som källa, men kodändringar i störd budgi
 |---|---|
 | Identifiera och läsa in båda Lathundarna | Genomfört; båda PDF:erna är visuellt öppnade och sidindelade |
 | Skapa ämnes- och källkarta | Genomförd på ämnesnivå; sidgränser och flera tabeller rättade efter visuell kontroll |
-| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Pågår; öppnings-/svarsfamiljer, 1NT, stark 2♣, slam och delar av störd budgivning visuellt kontrollerade. Tryckt s. 18–19 i ostörd PDF är svårläst. |
+| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Pågår; s. 24–26 i stark 2♣ är nu visuellt kontrollerade. Plus/STP-fortsättningar på s. 26 och externa Bättre bud/PRO/Slam-hänvisningar är dokumenterade som ej antagna. Tryckt s. 18–19 i ostörd PDF är svårläst. |
 | Jämförelse mot Nordisk Standard | Pågår; första jämförelser finns i lathund-nordisk-standard-crosscheck.md och strong-2c-source-review.md |
 | Konflikt- och expertfrågelogg från jämförelsen | Påbörjad i lathund-expert-questions.md; varje olöst sekvens ska föras dit |
 | Trumfstöd | Nästa prioriterade modul; arkitekturprincip fastställd: övergripande trumfstödsmodul återanvänder befintlig Stenberg-komponent, utan duplicering. Källgranskning återstår. |
-| ÖH 2♣ | Implementerad till och med öppnarens återbud 4NT; alltid 2♦ som svar. Nya gränstester tillagda och CI inkopplad. |
+| ÖH 2♣ | Alltid 2♦; öppnarens återbud till 4NT; 2NT-familjens första svar/öppnarsvar återanvänds; entydiga fördelningsgrenar från Lathunden s. 25 implementerade. Överlapp, STP/Plus och PRO/Slam lämnas ej täckta. Tester inkopplade i CI; körresultat ej verifierat. |
 | Kodändring | Pågår i avgränsade moduler; 2♣ är implementerad till 4NT. `main` är orörd. |
