@@ -833,3 +833,34 @@ Första aktiverade området är öppning efter pass (inklusive fjärde hand efte
 CI-smoketestet kräver nu `decideLive`. Manuella tester och befintliga regressionssviter har körts mot version 8.0: öppnings-/live-API-test, bred ostörd testkorpus, reverse-HPS, RKC 1430, 1M-invit och karaktärisering av tidigare dold-handsläcka passerar. I den fasta 36-givarskorpusen täcks 167 av 168 beslut (99,4 %), med noll undantag, olagliga rekommendationer eller ogiltiga auktioner. Den enda ej täckta positionen är den redan dokumenterade Stayman-fortsättningen efter `1NT–2♣–2♦–2♥`.
 
 Detta är en avgränsad första etapp, inte en fullständig livebot. Nästa familj att migrera är 1NT-svar, med intervallbaserad kunskap om öppnarens 15–17 HP och utan att använda öppnarens faktiska kort.
+
+## Integrationsrevision 1♥/1♠ – 2026-11-17
+
+- Den gemensamma högfärgsstrukturen har verifierats: `hogfargsbudgivning.js` är en tunn adapter; svar och vanliga återbud ägs av `ettoppningssvar.js`; stöd/Stenberg routas via `trumfstod.js`; slam/RKC ägs av `slamlogik.js`.
+- Splinter är borttagen ur aktiv routing enligt beslutet 2026-11-16. En hand med 4+ stöd och 13+ htp går därför genom Stenberg om Stenbergvillkoren uppfylls, även om handen har void. Splinter har inte ersatts med någon ny konvention.
+- En integrationslucka hittades och rättades: RKC-trumfen efter Stenberg 1M–2NT–3x–4NT identifieras nu från hela den offentliga budsekvensen. Ett direkt 4NT som hoppar över öppnarens beskrivande 3-nivååterbud klassas inte automatiskt som RKC.
+- RKC-överlämningen är verifierad i Stenberg- och högfärgs-RKC-testerna.
+
+### Fokuserade testresultat
+
+Senaste fokuserade CI-körningen:
+- Stenberg 2NT-regression: godkänd.
+- Trumfstödmodultest: godkänt.
+- Nordisk Standard RKC efter högfärgsöppning: godkänt.
+- 100 deterministiska ostörda 1♥/1♠-givare: 100/100 giltiga; 43 öppningar 1♥ och 57 öppningar 1♠.
+- 527 beslut: 525 täckta, 2 ej täckta (**99,6 %**).
+- 0 undantag, 0 olagliga rekommendationer, 0 ogiltiga/ofärdiga auktioner och 0 kortintegritetsfel.
+- 3M-invit efter 1♥/1♠: 4/4 riktade tester godkända.
+
+### Nya ej täckta Stenbergpositioner i 100-givarsprovet
+
+Dessa ska inte fyllas med antagna återbud. De gäller öppnarens hand efter svarshandens Stenberg 2NT; handen passar inte någon av de uttryckligen dokumenterade återbudstyperna:
+- Seed **202612662**: `1♥–Pass–2NT–Pass–?` (givare `one-major-014`).
+- Seed **202613691**: `1♠–Pass–2NT–Pass–?` (givare `one-major-026`).
+
+Testgeneratorn i `tests/one-major-100.test.js` är deterministisk och kan återskapa båda givarna från seed. Luckorna är källluckor och ska granskas av expert; de är inte tekniska fel.
+
+### Full CI-status
+
+De fokuserade högfärgs-/trumfstöds-/Stenberg-/RKC-testerna passerar. Den fullständiga workflowen stannar senare i den breda, separata ostörda regressionskorpusen vid `tests/ostord-100.test.js`: den faktiska listan över ej täckta 1NT-/2♣-positioner avviker från testets förväntade baslinjelista. De sekvenserna ligger utanför 1♥/1♠-ändringarna och ska utredas separat; ingen testbaslinje har ändrats för att dölja avvikelsen.
+
