@@ -126,3 +126,15 @@ GitHub Actions körde `node --test tests/ostord-sidor-18-19.test.js` på commit 
 - Sida 18, 4♣ Splinter kvarstår som uttrycklig konflikt mellan lathunden och tidigare projektbeslut. Den aktiveras inte.
 - Sida 19, 2♥ efter fjärde färg (”inget bättre bud”) saknar fortfarande maskinellt verifierbar handdefinition.
 - Bud som inte uppfyller en fullständig tabellrad ska fortsätta returneras som ej täckta och sparas för expertgranskning. Testerna visar inte att samtliga sådana sekvenser redan skrivs till en separat beständig logg; den persistenta loggningen behöver verifieras separat.
+
+
+### Expertlogg – konflikt om 4♣ Splinter (sida 18)
+
+**Status: Öppen – kräver expertbeslut.**
+
+- **Källan:** Lathunden anger 4♣ som Splinter, 16–17 hp, i ÖH:s tredje bud efter att SH bjudit om sin färg.
+- **Projektbeslut:** Ett tidigare beslut i projektet tog bort Splinter från denna gren.
+- **Konflikt:** Källans uttryckliga buddefinition står alltså i konflikt med det tidigare systembeslutet.
+- **Nuvarande motorbeteende:** 4♣ aktiveras inte som giltigt systembud i denna gren. Motorn lämnar sekvensen ej täckt med hänvisning till konflikten.
+- **Fråga till expert/användaren:** Ska 4♣ Splinter återinföras enligt lathunden (16–17 hp), eller ska det tidigare projektbeslutet att ta bort Splinter gälla?
+- **Skyddsprincip:** Ingen automatisk ändring av systemregeln innan konflikten är avgjord.
