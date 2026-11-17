@@ -1,5 +1,5 @@
 {
-  "version": "0.5.13",
+  "version": "0.5.14",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7371,10 +7371,7 @@
               "next": "t34_n5",
               "label": "Hopp i ny färg med renons – slaminvit"
             }
-          ],
-          "handProfile": {
-            "opener": "6–10 hp, exakt sex kort i öppningsfärgen"
-          }
+          ]
         },
         {
           "id": "t34_n1",
@@ -7407,10 +7404,7 @@
           ],
           "meaning": "3D är en spärrhöjning med minst tre stödkort, inte en invit.",
           "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
-          "branches": [],
-          "handProfile": {
-            "responder": "Minst tre stödkort; spärrhöjning, ej invit"
-          }
+          "branches": []
         },
         {
           "id": "t34_n3",
@@ -7449,10 +7443,7 @@
           ],
           "meaning": "3♥ visar renons i den bjudna färgen och är slaminvit.",
           "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
-          "branches": [],
-          "handProfile": {
-            "responder": "Renons i hjärter; slaminvit"
-          }
+          "branches": []
         },
         {
           "id": "t34_n6",
@@ -7546,10 +7537,7 @@
               "next": "t35_n5",
               "label": "Hopp i ny färg med renons – slaminvit"
             }
-          ],
-          "handProfile": {
-            "opener": "6–10 hp, exakt sex kort i öppningsfärgen"
-          }
+          ]
         },
         {
           "id": "t35_n1",
@@ -7587,10 +7575,7 @@
           ],
           "meaning": "3H är en spärrhöjning med minst tre stödkort, inte en invit.",
           "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
-          "branches": [],
-          "handProfile": {
-            "responder": "Minst tre stödkort; spärrhöjning, ej invit"
-          }
+          "branches": []
         },
         {
           "id": "t35_n3",
@@ -7629,10 +7614,7 @@
           ],
           "meaning": "3♠ visar renons i den bjudna färgen och är slaminvit.",
           "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
-          "branches": [],
-          "handProfile": {
-            "responder": "Renons i spader; slaminvit"
-          }
+          "branches": []
         },
         {
           "id": "t35_n6",
@@ -7739,10 +7721,7 @@
               "next": "t36_n5",
               "label": "Hopp i ny färg med renons – slaminvit"
             }
-          ],
-          "handProfile": {
-            "opener": "6–10 hp, exakt sex kort i öppningsfärgen"
-          }
+          ]
         },
         {
           "id": "t36_n1",
@@ -7780,10 +7759,7 @@
           ],
           "meaning": "3S är en spärrhöjning med minst tre stödkort, inte en invit.",
           "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
-          "branches": [],
-          "handProfile": {
-            "responder": "Minst tre stödkort; spärrhöjning, ej invit"
-          }
+          "branches": []
         },
         {
           "id": "t36_n3",
@@ -7822,10 +7798,7 @@
           ],
           "meaning": "4♣ visar renons i den bjudna färgen och är slaminvit.",
           "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
-          "branches": [],
-          "handProfile": {
-            "responder": "Renons i klöver; slaminvit"
-          }
+          "branches": []
         },
         {
           "id": "t36_n6",
