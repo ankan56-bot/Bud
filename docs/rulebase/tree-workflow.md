@@ -1,63 +1,68 @@
 # Arbetsmetod – träd-för-träd
 
-## Bindande arbetssätt
-Den nya Lathunden får inte ersätta eller bryta upp det tidigare systematiska arbetet med budträden. Vi fortsätter att använda den befintliga trädkartan, nodinventeringen, runtime-korsreferensen och testerna som arbetsstruktur.
+## Bindande grundprincip
+**Nordisk Standard är grundsystemet och har alltid företräde.** Lathundarna är kompletterande källor. De får förtydliga eller komplettera, men får aldrig tyst skriva över Nordisk Standard.
 
-**Arbetsenheten är ett befintligt budträd eller en tydligt avgränsad gren i ett träd – inte ett allmänt ämnesområde.**
+Vi behåller befintliga träd-ID:n, trädkartan, nodinventeringen, runtime-korsreferensen och testerna. Vi skapar inget parallellt budsystem.
 
-Lathundens två PDF:er är ytterligare källor som kopplas in i respektive befintligt träd. Vi skapar inte ett parallellt budsystem och bygger inte om allt från början.
+## Förarbete – Lathundarna
+Innan nästa budmodul öppnas ska båda Lathundarna inventeras:
+- Ostörd budgivning: *Bridge Lathund bok(2).pdf*.
+- Störd budgivning: *Bridge Lathund störd budgivning.pdf*.
 
-## Arbetscykel för varje träd
-1. **Välj ett träd** från den befintliga kartan och lås dess omfattning.
-2. **Läs hela trädet**: root, samtliga noder, grenar, terminaler, handprofiler och länkar.
-3. **Följ budsekvensen uppifrån och ned**. Kontrollera varje gren och varje alternativt bud, inte bara slutkontraktet.
-4. **Koppla källorna**: Nordisk Standard först, därefter rätt sida i Lathunden för ostörd eller störd budgivning. Registrera externa hänvisningar (Bättre bud, PRO, Slam, Plus) separat.
-5. **Jämför mot runtime**: vilken funktion/modul bedömer sekvensen i dag? Finns nodmatchning? Finns överlapp med andra träd?
-6. **Klassificera varje gren**:
-   - verifierad grundregel
-   - förtydligande
-   - undantag
-   - komplettering
-   - strategisk/PRO-vägledning
-   - källkonflikt
-   - ej täckt / behöver expertbesked
-7. **Bygg testfall** för positiva, negativa och gränsfall innan kodändring.
-8. **Implementera endast när källan och villkoren är tillräckligt tydliga**. Ändra en modul i taget och kör relevanta regressionstester.
-9. **Stäm av trädets täckning** och uppdatera nodinventering, runtime-korsreferens och ej-täckta-logg.
-10. Gå vidare till nästa träd.
+Ämnes- och källkartan finns i [Lathundens källinventering](lathund-source-inventory.md).
 
-## Ordning
-Vi följer den redan dokumenterade ordningen i `KARTA_OSTORD_BUDGIVNING.md` och behåller kontraktsmålen som täckningsvyer, inte separata budsystem.
+Källinventeringen är en karta, inte en färdig regeltranskription. Varje budruta som ska påverka rättningen måste därefter verifieras mot originalsidan och jämföras med Nordisk Standard. OCR får endast vara läshjälp, aldrig ensam regelkälla.
 
-Startordning:
-1. Gemensamma öppnings- och handprofiler: T36.
-2. Svarshandens profiler och svar efter 1 i färg: T37.
-3. Öppnarens återbud efter 1 över 1: T39.
-4. Svarshandens andra bud: T40.
-5. Därefter 1NT-familjen, Stenberg/trumfstöd, stark 2♣, 2NT, svaga tvåor/spärröppningar och slam – i den ordning och med de beroenden som redan står i kartan.
+För varje regel registreras:
+1. Exakt budsekvens och position.
+2. Vad budet visar.
+3. HP/HTP/STP, färglängd, stöd och handtyp.
+4. Fortsättningar och alternativa bud.
+5. Källa och sidnummer.
+6. Klassificering: grundregel, förtydligande, komplettering, strategiskt råd, hänvisning, konflikt eller expertfråga.
 
-Om ett träd visar sig innehålla flera separata logiska familjer delar vi upp arbetet i grenar, men bevarar ursprungligt träd-ID och länkar så att inget tappas bort.
+Hänvisningar till Bättre bud, PRO, Plus och Slam ska hållas åtskilda från innehåll som faktiskt står i Lathunden. Oklara uttryck som inte är kvantifierade får inte bli påhittade villkor.
+
+**Ingen kodändring görs under detta förarbete.**
+
+## Arbetscykel för varje befintligt träd
+1. Lås trädets omfattning.
+2. Läs hela trädet: root, noder, grenar, terminaler, handprofiler och länkar.
+3. Följ varje budsekvens uppifrån och ned.
+4. Jämför först med Nordisk Standard, därefter med relevant Lathundssida.
+5. Jämför med runtime: funktioner, moduler och eventuell överlappning.
+6. Klassificera varje gren.
+7. Bygg positiva, negativa och gränsfall som test.
+8. Implementera först när källan och villkoren är tydliga.
+9. Uppdatera nodinventering, runtime-korsreferens och expertloggen över ej täckta sekvenser.
+10. Kör relevanta regressionstester innan nästa träd.
+
+## Ordning och nästa modul
+Det tidigare träd-för-träd-arbetet ska bevaras. T36/T37-dokumentationen är preliminär och får inte tolkas som att dessa träd är färdiggranskade.
+
+När källinventeringen och jämförelsen är klara är nästa avgränsade modul enligt användarens prioritering **ÖH 2♣**. Då fastställs först exakt omfattning och beroenden i det befintliga trädet. Vi ändrar inte ordning eller skapar nya träd utan att bevara befintliga ID:n och länkar.
 
 ## Störd budgivning
-Störd budgivning får sin egen trädkarta och egna träd-ID:n. Den hålls fortsatt pausad för kodändringar tills ostörd fas är färdig, om inte användaren uttryckligen ändrar prioriteringen. Under tiden kan Lathundens störda PDF inventeras och kopplas till de befintliga konkurrensträden utan att ändra dem.
+Den störda Lathunden inventeras nu som källa, men kodändringar i störd budgivning är fortsatt pausade medan ostörd budgivning prioriteras, om inte användaren ändrar detta.
 
 ## Regler som inte får brytas
 - Nordisk Standard är grundsystemet.
-- Lathunden förtydligar och kompletterar, men får inte tyst skriva över grundregler.
-- PRO/Plus och strategiska råd hålls åtskilda från obligatorisk systemrättning.
-- Ingen regel skapas från DDS, genererade händer eller antaganden.
-- Partnerns dolda hand får inte användas i livebeslut; efterhandsanalys hålls separat.
-- Varje ej täckt sekvens sparas i expertloggen.
+- Lathunden kompletterar; den ersätter inte grundsystemet.
+- PRO/Plus och strategiska råd hålls isär från obligatorisk systemrättning.
+- DDS är efterhandskontroll, inte ensam sanningskälla.
+- Ingen regel skapas från genererade händer eller antaganden.
+- Partnerns dolda hand används inte i livebeslut.
+- Alla ej täckta sekvenser sparas i separat expertlogg.
 - `main` lämnas orörd; arbete sker på `work/undisturbed-architecture`.
 
-## Statuslogg
-| Träd | Källa jämförd | Runtime jämförd | Testfall | Kod ändrad | Status |
-|---|---|---|---|---|---|
-| T36 | Källor identifierade; exakt sida 8-jämförelse återstår | Runtime-funktion identifierad; detaljgranskning återstår | Ej påbörjat | Nej | Påbörjat – se tree-review-01-T36-T37.md |
-| T37 | Lathund sida 10 och NS sida 2 identifierade; sekvensvis jämförelse återstår | resp1() i ettoppningssvar.js identifierad | Ej påbörjat | Nej | Påbörjat parallellt med T36-kartläggningen |
-| T39 | Ej påbörjad | Ej påbörjad | Ej påbörjat | Nej | Väntar |
-| T40 | Ej påbörjad | Ej påbörjad | Ej påbörjat | Nej | Väntar |
-
-Detaljgranskningen för T36/T37 finns i [Trädgranskning 01 – T36 och T37](tree-review-01-T36-T37.md). Den är en start på käll- och runtime-kopplingen, inte ett godkännande av reglerna eller ett färdigtestat träd.
-
-Denna status är avsiktligt konservativ. Den nya inventeringen av Lathundens sidor räknas inte som att ett träd är färdiggranskat.
+## Status
+| Arbetsdel | Status |
+|---|---|
+| Identifiera och läsa in båda Lathundarna | Genomfört på källnivå |
+| Skapa ämnes- och källkarta | Påbörjad, dokumenterad i lathund-source-inventory.md |
+| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Återstår |
+| Jämförelse mot Nordisk Standard | Återstår |
+| Konflikt- och expertfrågelogg från jämförelsen | Återstår |
+| ÖH 2♣ | Nästa modul efter avslutat förarbete |
+| Kodändring | Inte påbörjad i detta förarbete |
