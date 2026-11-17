@@ -260,3 +260,10 @@ PDF:en `nordisk_standard.pdf` (2012-08-22), sida 4, återfanns i ChatGPT-bibliot
 - 140-givarsbaslinjen uppdaterad för motor 8.6: 581 rätt, 39 ej täckta, 0 fel; 1 185 budpositioner. DDS är inte körd i själva budgivningsbaslinjen.
 - PDF sida 4 är källan. Inga poänggränser för svarshandens 2NT-invit har hittats; motorn kontrollerar endast minst 2 stödkort. Öppnarens 6–8/9–10 hp-min/max efter 2NT är implementerat.
 - Ej täckta fortsättningar är specificerade i `testdata/weak-two-audit.md`. De ska inte ersättas med antaganden.
+
+
+## Slutlig gränskontroll svaga tvåöppningar – 2026-11-17
+
+- Utökade svag-två-testpaketet till 14 tester. Det täcker nu även 11 hp med sexkortsfärg (öppna 1 i färgen), femkortsfärg som inte får bli svag tvåa samt sju kort som i stället hör till 3-öppningsfamiljen.
+- Samtliga 14 svag-två-tester passerade i körning `44097230489`; hela workflow-körningen avslutades med **success**.
+- Källreglerna på PDF sida 4 är därmed testade för alla uttryckligen beskrivna svarstyper. Fortsättningar som inte finns i PDF:en ligger kvar i expertloggen, inte som gissade regler.
