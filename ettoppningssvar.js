@@ -139,7 +139,7 @@
       if(tp<=16){exp=low(rs);why='4+ stöd i '+SYM[rs]+' och '+tp+' htp: lägsta höjning (12-16).'}
       else if(tp<=19){exp=jump(rs,r);why=tp+' htp med stöd: enkelhopp (17-19).'}
       else if(maj(rs)){exp='4'+rs;why=tp+' htp: hopp till utgång (20+).'}
-      else return {exp:null,alt:[],why:'Med 20+ htp och lågfärgsstöd ska man först undersöka 3NT; dokumentet anger inte budet.',means:means,conv:'öppnarens 2:a bud'};
+      else return {exp:null,alt:[],why:'Med 20+ htp och 4+ lågfärgsstöd ska 3NT undersökas först. Nordisk standard anger inte den exakta fortsättningssekvensen eller när 5 i lågfärgen väljs; läget lämnas EJ TÄCKT.',means:means,conv:'öppnarens 2:a bud',sourceGap:true};
       soft=false;
     }else if(L[o]>=6&&!SU.some(function(s){return s!==o&&L[s]>=4})){
       if(hp<=14){exp=low(o);why='Egen 6+ färg utan sidofärg: lägsta nivå (12-14).'}
