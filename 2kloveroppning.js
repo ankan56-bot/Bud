@@ -129,7 +129,31 @@
     return NC('Denna tredje-budssekvens efter 2♣ finns inte specificerad i den granskade rutan.',null,'2♣-system',true);
   }
 
+
+  function responderAfter2c2ntStayman(h,openerReply){
+    var L=h.L,choices=[],meansMap={};
+    if(openerReply==='3D'){
+      if(L.H>=5&&L.S>=4){choices.push('3H');meansMap['3H']='5+ hjärter och 4+ spader, utgångskrav enligt Lathunden s. 25.';}
+      if(L.S>=5&&L.H>=4){choices.push('3S');meansMap['3S']='5+ spader och 4+ hjärter, utgångskrav enligt Lathunden s. 25.';}
+      if(choices.length===1){var one=choices[0];return {exp:one,alt:[],why:meansMap[one],means:function(b){return meansMap[b]||null;},conv:'2♣-system / 2NT-Stayman',source:'lathunden_s25'};}
+      if(choices.length>1)return NC('Efter 2♣–2♦–2NT–3♣–3♦ har handen både 5+♥/4+♠ och 5+♠/4+♥. Lathunden s. 25 anger ingen prioritet; lämnas ej täckt.',function(b){return meansMap[b]|| (b==='3N'?'Slutbud i sang.':null);},'2NT-Stayman',true);
+      return NC('Efter 2♣–2♦–2NT–3♣–3♦ anger Lathunden s. 25 3NT som slutbud och 4♣/4♦ som minst 5-kortsfärg med slaminvit. Ingen numerisk styrkegräns för val av dessa bud anges; lämnas ej täckt.',function(b){if(b==='3N')return 'Slutbud i sang.';if(b==='4C'||b==='4D')return 'Minst 5-kortsfärg och slaminvit (hänvisning Slam).';return null;},'2NT-Stayman',true);
+    }
+    if(openerReply==='3H'){
+      if(L.S===4)return NC('Efter 2♣–2♦–2NT–3♣–3♥ visar Lathunden s. 25 både 3♠ med fyrkortsspader och slaminvit samt 3NT med fyrkortsspader utan krav. Numerisk styrkegräns för valet saknas; lämnas ej täckt.',function(b){if(b==='3S')return 'Fyrkortsspader, slaminvit (nyhet i Lathunden).';if(b==='3N')return 'Fyrkortsspader, ej krav.';if(b==='4N')return 'Essfråga med hjärter som trumf.';return null;},'2NT-Stayman',true);
+      return NC('Efter 2♣–2♦–2NT–3♣–3♥ anger Lathunden s. 25 4♣/4♦ med minst 5-kortsfärg, fyrkortsspader och slaminvit samt 4NT som essfråga med hjärter som trumf. Slamintresse och trumf-/essfrågegräns är inte kvantifierade; lämnas ej täckt.',function(b){if(b==='4C'||b==='4D')return 'Minst 5-kortsfärg, fyrkortsspader och slaminvit (Slam).';if(b==='4N')return 'Essfråga med hjärter som trumf.';return null;},'2NT-Stayman',true);
+    }
+    return NC('Öppnarens svar efter 2NT-Stayman är inte en av de granskade svarsrutorna på Lathunden s. 25.',null,'2NT-Stayman',true);
+  }
+  function responderAfter2c2ntTransfer(h,major){
+    var L=h.L;
+    if(L[major]===5)return {exp:'3N',alt:[],why:'Femkortshögfärg efter överföring: 3NT är icke-krav enligt Lathunden s. 25.',means:function(b){return b==='3N'?'Femkortshögfärg, ej krav.':null;},conv:'2♣-system / 2NT-överföring',source:'lathunden_s25'};
+    var minorFit=['C','D'].filter(function(s){return L[s]>=4;});
+    if(L[major]>=5&&minorFit.length)return NC('Efter 2NT-överföring har handen 5+ '+SYM[major]+' och 4+ lågfärg. Lathunden s. 25 visar 4♣/4♦ som slaminvit, men hänvisar till Slam och anger ingen prioritet om båda lågfärgerna passar.',function(b){if(b==='4C'||b==='4D')return 'Minst 4-kortslågfärg och 5-kortshögfärg, slaminvit (Slam).';if(b==='4N')return 'Essfråga med överföringsfärgen som trumf.';return null;},'2NT-överföring',true);
+    return NC('Efter 2NT-överföring anger Lathunden s. 25 3NT med femkortshögfärg (ej krav), 4♣/4♦ med 4+ lågfärg och 5-kortshögfärg (Slam) samt 4NT som essfråga med överföringsfärgen som trumf. Handen passar inte entydigt i en automatiskt bedömbar gren.',function(b){if(b==='3N')return 'Femkortshögfärg, ej krav.';if(b==='4C'||b==='4D')return '4+ lågfärg, 5-kortshögfärg och slaminvit.';if(b==='4N')return 'Essfråga med överföringsfärgen som trumf.';return null;},'2NT-överföring',true);
+  }
+
   /* ––––– SVAG TVÅA (Plus) ––––– */
 
-  return {opening,resp2c,reb2c,resp2c2,openerThirdAfter2c};
+  return {opening,resp2c,reb2c,resp2c2,openerThirdAfter2c,responderAfter2c2ntStayman,responderAfter2c2ntTransfer};
 });
