@@ -1,5 +1,5 @@
 {
-  "version": "0.5.16",
+  "version": "0.5.17",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7322,7 +7322,7 @@
     },
     {
       "id": "T34_SVAG_TVA_D",
-      "title": "Svag tvåöppning 2♦ – ostörd budgivning",
+      "title": "Svar efter svag tvåöppning ♦ – lathund sida 27",
       "tags": [
         "svag tvåa",
         "2♦",
@@ -7331,183 +7331,336 @@
         "2NT-invit"
       ],
       "conditions": [
-        "♦: 6–10 hp, exakt sex kort och bra färg: minst 2 honnörer eller minst 1 honnör + minst 2 av 10-9-8.",
-        "Färgkvalitet räknas med honnörerna A/K/Q/J samt mellankorten 10/9/8.",
-        "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
+        "Öppningen är oförändrad: 6–10 hp, exakt sex kort och bra färg enligt projektets öppningsdefinition.",
+        "Svarbuden följer Bridge Lathund bok, sida 27.",
+        "3 i öppningsfärgen: invit cirka 14–16 stp.",
+        "2NT: Stenberg 2NT, 13+ stp.",
+        "Ny färg: ofta sexkortsfärg, minst 15–16 hp, rondkrav.",
+        "Direkt utgång är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
       "root": "t34_n0",
       "nodes": [
         {
-          "id": "t34_n0",
+          "id": "t34_dn0",
           "sequence": [
-            "2♦"
+            "2D"
           ],
-          "meaning": "2♦ visar 6–10 hp, exakt sex kort och bra färgkvalitet i ruter.",
-          "analysis": "Färgen ska innehålla minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10-9-8. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "meaning": "2D visar 6–10 hp, exakt sex kort och bra färg enligt öppningsregeln.",
+          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
           "branches": [
             {
-              "call": "2NT",
-              "next": "t34_n1",
-              "label": "Invit med minst två stödkort"
+              "call": "2N",
+              "next": "t34_dn1",
+              "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3D",
-              "next": "t34_n2",
-              "label": "Spärrhöjning med minst tre stödkort"
+              "next": "t34_dn2",
+              "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
-              "call": "3NT",
-              "next": "t34_n3",
-              "label": "Slutbud"
+              "call": "3C",
+              "next": "t34_dn3",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
-              "call": "2♥",
-              "next": "t34_n4",
-              "label": "Ny färg med minst fem kort – krav"
+              "call": "2H",
+              "next": "t34_dn4",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
-              "call": "3♥",
-              "next": "t34_n5",
-              "label": "Hopp i ny färg med renons – slaminvit"
+              "call": "2S",
+              "next": "t34_dn5",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
+            },
+            {
+              "call": "3N",
+              "next": "t34_dn6",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4H",
+              "next": "t34_dn7",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4S",
+              "next": "t34_dn8",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "5C",
+              "next": "t34_dn9",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "5D",
+              "next": "t34_dn10",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4C",
+              "next": "t34_dn11",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "3H",
+              "next": "t34_dn12",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "3S",
+              "next": "t34_dn13",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "4N",
+              "next": "t34_dn14",
+              "label": "Essfråga – öppningsfärgen är trumf"
             }
+          ]
+        },
+        {
+          "id": "t34_dn1",
+          "sequence": [
+            "2D",
+            "Pass",
+            "2N"
           ],
+          "meaning": "Stenberg 2NT – 13+ stp",
+          "analysis": "Stenberg 2NT – 13+ stp.",
+          "branches": [],
           "handConditions": {
             "schemaVersion": 1,
-            "seat": "opener",
+            "seat": "responder",
             "authority": "analysis_only",
-            "sourceText": "Öppningshand: 6-10 hp, exakt sex kort i öppningsfärgen och bra färg enligt de två kvalitetskriterierna.",
-            "hcp": {
-              "min": 6,
-              "max": 10
-            },
-            "suitLengths": {
-              "D": {
-                "min": 6,
-                "max": 6
-              }
-            },
+            "sourceText": "13+ stp, Stenberg 2NT.",
             "manual": [
-              "Kontrollera färgkvaliteten: minst 2 honnörer A/K/D/Kn, eller minst 1 honnör och minst 2 av 10/9/8."
+              "Stenberg 2NT visar 13+ stp. Lathundens sida 27 anger inte svarshandens exakta stödlängd."
             ]
           }
         },
         {
-          "id": "t34_n1",
+          "id": "t34_dn2",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "2NT"
+            "3D"
           ],
-          "meaning": "2NT är invitbud med minst två stödkort.",
-          "analysis": "PDF:en anger ingen exakt hp-gräns för svarshandens invit. Rättningen ska därför kontrollera stödlängden men inte lägga till ett eget poängintervall.",
-          "branches": [
-            {
-              "call": "3D",
-              "next": "t34_n6",
-              "label": "Öppnaren visar minimum, 6–8 hp"
+          "meaning": "Invit i öppningsfärgen – cirka 14–16 stp",
+          "analysis": "Invit i öppningsfärgen – cirka 14–16 stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Cirka 14–16 stp.",
+            "manual": [
+              "Spelpoäng 14–16 enligt lathunden; maskinell stp-värdering och exakt stödlängd är inte specificerade här."
+            ]
+          }
+        },
+        {
+          "id": "t34_dn3",
+          "sequence": [
+            "2D",
+            "Pass",
+            "3C"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
             },
-            {
-              "call": "3NT",
-              "next": "t34_n8",
-              "label": "Öppnaren visar maximum, 9–10 hp"
-            }
-          ]
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
         },
         {
-          "id": "t34_n2",
+          "id": "t34_dn4",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "3D"
+            "2H"
           ],
-          "meaning": "3D är en spärrhöjning med minst tre stödkort, inte en invit.",
-          "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t34_dn5",
+          "sequence": [
+            "2D",
+            "Pass",
+            "2S"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t34_dn6",
+          "sequence": [
+            "2D",
+            "Pass",
+            "3N"
+          ],
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t34_n3",
+          "id": "t34_dn7",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "3NT"
+            "4H"
           ],
-          "meaning": "3NT är slutbud.",
-          "analysis": "Svarshanden väljer sangutgång direkt. Enligt PDF-avsnittet är 3NT slutbud; ytterligare budgivning ska inte fortsätta.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t34_n4",
+          "id": "t34_dn8",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "2♥"
+            "4S"
           ],
-          "meaning": "2♥ visar minst fem kort i ny färg och är krav till minst 3 i öppningsfärgen.",
-          "analysis": "Svarshanden har minst fem kort i hjärter. Budet är krav. Öppnaren fullgör minimikravet med 3D. Fortsättningen efter detta återbud är inte specificerad i PDF-avsnittet.",
-          "branches": [
-            {
-              "call": "3D",
-              "next": "t34_n9",
-              "label": "Öppnaren fullgör kravet med 3D"
-            }
-          ]
-        },
-        {
-          "id": "t34_n5",
-          "sequence": [
-            "2♦",
-            "Pass",
-            "3♥"
-          ],
-          "meaning": "3♥ visar renons i den bjudna färgen och är slaminvit.",
-          "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t34_n6",
+          "id": "t34_dn9",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "2NT",
-            "Pass",
-            "3D"
+            "5C"
           ],
-          "meaning": "Öppnaren visar minimum med 3D och 6–8 hp.",
-          "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t34_n8",
+          "id": "t34_dn10",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "2NT",
-            "Pass",
-            "3NT"
+            "5D"
           ],
-          "meaning": "Öppnaren visar maximum med 9–10 hp via 3NT.",
-          "analysis": "Efter lågfärgsöppning är 3NT maxbeskedet. 4 i lågfärgen ska inte användas som maxbesked.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t34_n9",
+          "id": "t34_dn11",
           "sequence": [
-            "2♦",
+            "2D",
             "Pass",
-            "2♥",
-            "Pass",
-            "3D"
+            "4C"
           ],
-          "meaning": "Öppnaren fullgör färgkravet med minst 3 i öppningsfärgen.",
-          "analysis": "Den nya färgen är krav till minst tre i öppningsfärgen. Fortsättningen efter att öppnaren fullgjort kravet är inte närmare beskriven i PDF-avsnittet.",
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t34_dn12",
+          "sequence": [
+            "2D",
+            "Pass",
+            "3H"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t34_dn13",
+          "sequence": [
+            "2D",
+            "Pass",
+            "3S"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t34_dn14",
+          "sequence": [
+            "2D",
+            "Pass",
+            "4N"
+          ],
+          "meaning": "Essfråga – öppningsfärgen är trumf",
+          "analysis": "Essfråga med ♦ som trumf. Rättningsmotorn använder befintlig RKC/Blackwood 5-ess-logik.",
           "branches": []
         }
       ]
     },
     {
       "id": "T35_SVAG_TVA_H",
-      "title": "Svag tvåöppning 2♥ – ostörd budgivning",
+      "title": "Svar efter svag tvåöppning ♥ – lathund sida 27",
       "tags": [
         "svag tvåa",
         "2♥",
@@ -7516,201 +7669,336 @@
         "2NT-invit"
       ],
       "conditions": [
-        "♥: 6–10 hp, exakt sex kort och bra färg: minst 2 honnörer eller minst 1 honnör + minst 2 av 10-9-8.",
-        "Färgkvalitet räknas med honnörerna A/K/Q/J samt mellankorten 10/9/8.",
-        "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
+        "Öppningen är oförändrad: 6–10 hp, exakt sex kort och bra färg enligt projektets öppningsdefinition.",
+        "Svarbuden följer Bridge Lathund bok, sida 27.",
+        "3 i öppningsfärgen: invit cirka 14–16 stp.",
+        "2NT: Stenberg 2NT, 13+ stp.",
+        "Ny färg: ofta sexkortsfärg, minst 15–16 hp, rondkrav.",
+        "Direkt utgång är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
       "root": "t35_n0",
       "nodes": [
         {
-          "id": "t35_n0",
+          "id": "t35_hn0",
           "sequence": [
-            "2♥"
+            "2H"
           ],
-          "meaning": "2♥ visar 6–10 hp, exakt sex kort och bra färgkvalitet i hjärter.",
-          "analysis": "Färgen ska innehålla minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10-9-8. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "meaning": "2H visar 6–10 hp, exakt sex kort och bra färg enligt öppningsregeln.",
+          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
           "branches": [
             {
-              "call": "2NT",
-              "next": "t35_n1",
-              "label": "Invit med minst två stödkort"
+              "call": "2N",
+              "next": "t35_hn1",
+              "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3H",
-              "next": "t35_n2",
-              "label": "Spärrhöjning med minst tre stödkort"
+              "next": "t35_hn2",
+              "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
-              "call": "3NT",
-              "next": "t35_n3",
-              "label": "Slutbud"
+              "call": "3C",
+              "next": "t35_hn3",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
-              "call": "2♠",
-              "next": "t35_n4",
-              "label": "Ny färg med minst fem kort – krav"
+              "call": "3D",
+              "next": "t35_hn4",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
-              "call": "3♠",
-              "next": "t35_n5",
-              "label": "Hopp i ny färg med renons – slaminvit"
+              "call": "2S",
+              "next": "t35_hn5",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
+            },
+            {
+              "call": "3N",
+              "next": "t35_hn6",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4H",
+              "next": "t35_hn7",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4S",
+              "next": "t35_hn8",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "5C",
+              "next": "t35_hn9",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "5D",
+              "next": "t35_hn10",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4C",
+              "next": "t35_hn11",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "4D",
+              "next": "t35_hn12",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "3S",
+              "next": "t35_hn13",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "4N",
+              "next": "t35_hn14",
+              "label": "Essfråga – öppningsfärgen är trumf"
             }
+          ]
+        },
+        {
+          "id": "t35_hn1",
+          "sequence": [
+            "2H",
+            "Pass",
+            "2N"
           ],
+          "meaning": "Stenberg 2NT – 13+ stp",
+          "analysis": "Stenberg 2NT – 13+ stp.",
+          "branches": [],
           "handConditions": {
             "schemaVersion": 1,
-            "seat": "opener",
+            "seat": "responder",
             "authority": "analysis_only",
-            "sourceText": "Öppningshand: 6-10 hp, exakt sex kort i öppningsfärgen och bra färg enligt de två kvalitetskriterierna.",
-            "hcp": {
-              "min": 6,
-              "max": 10
-            },
-            "suitLengths": {
-              "H": {
-                "min": 6,
-                "max": 6
-              }
-            },
+            "sourceText": "13+ stp, Stenberg 2NT.",
             "manual": [
-              "Kontrollera färgkvaliteten: minst 2 honnörer A/K/D/Kn, eller minst 1 honnör och minst 2 av 10/9/8."
+              "Stenberg 2NT visar 13+ stp. Lathundens sida 27 anger inte svarshandens exakta stödlängd."
             ]
           }
         },
         {
-          "id": "t35_n1",
+          "id": "t35_hn2",
           "sequence": [
-            "2♥",
-            "Pass",
-            "2NT"
-          ],
-          "meaning": "2NT är invitbud med minst två stödkort.",
-          "analysis": "PDF:en anger ingen exakt hp-gräns för svarshandens invit. Rättningen ska därför kontrollera stödlängden men inte lägga till ett eget poängintervall.",
-          "branches": [
-            {
-              "call": "3H",
-              "next": "t35_n6",
-              "label": "Öppnaren visar minimum, 6–8 hp"
-            },
-            {
-              "call": "4H",
-              "next": "t35_n7",
-              "label": "Öppnaren visar maximum, 9–10 hp"
-            },
-            {
-              "call": "3NT",
-              "next": "t35_n8",
-              "label": "Alternativt maxbesked i sang"
-            }
-          ]
-        },
-        {
-          "id": "t35_n2",
-          "sequence": [
-            "2♥",
+            "2H",
             "Pass",
             "3H"
           ],
-          "meaning": "3H är en spärrhöjning med minst tre stödkort, inte en invit.",
-          "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
+          "meaning": "Invit i öppningsfärgen – cirka 14–16 stp",
+          "analysis": "Invit i öppningsfärgen – cirka 14–16 stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Cirka 14–16 stp.",
+            "manual": [
+              "Spelpoäng 14–16 enligt lathunden; maskinell stp-värdering och exakt stödlängd är inte specificerade här."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn3",
+          "sequence": [
+            "2H",
+            "Pass",
+            "3C"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn4",
+          "sequence": [
+            "2H",
+            "Pass",
+            "3D"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn5",
+          "sequence": [
+            "2H",
+            "Pass",
+            "2S"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn6",
+          "sequence": [
+            "2H",
+            "Pass",
+            "3N"
+          ],
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t35_n3",
+          "id": "t35_hn7",
           "sequence": [
-            "2♥",
-            "Pass",
-            "3NT"
-          ],
-          "meaning": "3NT är slutbud.",
-          "analysis": "Svarshanden väljer sangutgång direkt. Enligt PDF-avsnittet är 3NT slutbud; ytterligare budgivning ska inte fortsätta.",
-          "branches": []
-        },
-        {
-          "id": "t35_n4",
-          "sequence": [
-            "2♥",
-            "Pass",
-            "2♠"
-          ],
-          "meaning": "2♠ visar minst fem kort i ny färg och är krav till minst 3 i öppningsfärgen.",
-          "analysis": "Svarshanden har minst fem kort i spader. Budet är krav. Öppnaren fullgör minimikravet med 3H. Fortsättningen efter detta återbud är inte specificerad i PDF-avsnittet.",
-          "branches": [
-            {
-              "call": "3H",
-              "next": "t35_n9",
-              "label": "Öppnaren fullgör kravet med 3H"
-            }
-          ]
-        },
-        {
-          "id": "t35_n5",
-          "sequence": [
-            "2♥",
-            "Pass",
-            "3♠"
-          ],
-          "meaning": "3♠ visar renons i den bjudna färgen och är slaminvit.",
-          "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
-          "branches": []
-        },
-        {
-          "id": "t35_n6",
-          "sequence": [
-            "2♥",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3H"
-          ],
-          "meaning": "Öppnaren visar minimum med 3H och 6–8 hp.",
-          "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
-          "branches": []
-        },
-        {
-          "id": "t35_n7",
-          "sequence": [
-            "2♥",
-            "Pass",
-            "2NT",
+            "2H",
             "Pass",
             "4H"
           ],
-          "meaning": "Öppnaren visar maximum med 9–10 hp och 4H.",
-          "analysis": "Efter högfärgsöppning är 4 i öppningshögfärgen ett av de angivna maxbeskeden. PDF:en anger även 3NT som alternativ men inte vilket handvillkor som väljer mellan dem.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t35_n8",
+          "id": "t35_hn8",
           "sequence": [
-            "2♥",
+            "2H",
             "Pass",
-            "2NT",
-            "Pass",
-            "3NT"
+            "4S"
           ],
-          "meaning": "Öppnaren visar maximum med 9–10 hp via 3NT.",
-          "analysis": "Efter högfärgsöppning är 3NT ett angivet alternativ till 4 i öppningsfärgen; urvalskriteriet saknas i PDF:en.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t35_n9",
+          "id": "t35_hn9",
           "sequence": [
-            "2♥",
+            "2H",
             "Pass",
-            "2♠",
-            "Pass",
-            "3H"
+            "5C"
           ],
-          "meaning": "Öppnaren fullgör färgkravet med minst 3 i öppningsfärgen.",
-          "analysis": "Den nya färgen är krav till minst tre i öppningsfärgen. Fortsättningen efter att öppnaren fullgjort kravet är inte närmare beskriven i PDF-avsnittet.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
+          "branches": []
+        },
+        {
+          "id": "t35_hn10",
+          "sequence": [
+            "2H",
+            "Pass",
+            "5D"
+          ],
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
+          "branches": []
+        },
+        {
+          "id": "t35_hn11",
+          "sequence": [
+            "2H",
+            "Pass",
+            "4C"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn12",
+          "sequence": [
+            "2H",
+            "Pass",
+            "4D"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn13",
+          "sequence": [
+            "2H",
+            "Pass",
+            "3S"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t35_hn14",
+          "sequence": [
+            "2H",
+            "Pass",
+            "4N"
+          ],
+          "meaning": "Essfråga – öppningsfärgen är trumf",
+          "analysis": "Essfråga med ♥ som trumf. Rättningsmotorn använder befintlig RKC/Blackwood 5-ess-logik.",
           "branches": []
         }
       ]
     },
     {
       "id": "T36_SVAG_TVA_S",
-      "title": "Svag tvåöppning 2♠ – ostörd budgivning",
+      "title": "Svar efter svag tvåöppning ♠ – lathund sida 27",
       "tags": [
         "svag tvåa",
         "2♠",
@@ -7719,194 +8007,304 @@
         "2NT-invit"
       ],
       "conditions": [
-        "♠: 6–10 hp, exakt sex kort och bra färg: minst 2 honnörer eller minst 1 honnör + minst 2 av 10-9-8.",
-        "Färgkvalitet räknas med honnörerna A/K/Q/J samt mellankorten 10/9/8.",
-        "Med 11 hp och sexkortsfärg öppnas 1 i färgen.",
+        "Öppningen är oförändrad: 6–10 hp, exakt sex kort och bra färg enligt projektets öppningsdefinition.",
+        "Svarbuden följer Bridge Lathund bok, sida 27.",
+        "3 i öppningsfärgen: invit cirka 14–16 stp.",
+        "2NT: Stenberg 2NT, 13+ stp.",
+        "Ny färg: ofta sexkortsfärg, minst 15–16 hp, rondkrav.",
+        "Direkt utgång är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
         "Endast ostörd budgivning; störda sekvenser ingår inte."
       ],
       "root": "t36_n0",
       "nodes": [
         {
-          "id": "t36_n0",
+          "id": "t36_sn0",
           "sequence": [
-            "2♠"
+            "2S"
           ],
-          "meaning": "2♠ visar 6–10 hp, exakt sex kort och bra färgkvalitet i spader.",
-          "analysis": "Färgen ska innehålla minst 2 honnörer (A/K/Q/J), eller minst 1 honnör samt minst 2 av 10-9-8. Med 11 hp och sexkortsfärg öppnas i stället 1 i färgen. Alla exempel här gäller ostörd budgivning.",
+          "meaning": "2S visar 6–10 hp, exakt sex kort och bra färg enligt öppningsregeln.",
+          "analysis": "Öppningsvillkoren är oförändrade. Svaren efter öppningen följer lathundens sida 27: 3 i öppningsfärgen är invit ca 14–16 stp; 2NT är Stenberg 2NT med 13+ stp; ny färg visar minst 15–16 hp och är rondkrav, ofta med sex kort; utgång direkt är slutbud; hopp i ny färg är Splinter med 19+ stp; 4NT är essfråga med öppningsfärgen som trumf.",
           "branches": [
             {
-              "call": "2NT",
-              "next": "t36_n1",
-              "label": "Invit med minst två stödkort"
+              "call": "2N",
+              "next": "t36_sn1",
+              "label": "Stenberg 2NT – 13+ stp"
             },
             {
               "call": "3S",
-              "next": "t36_n2",
-              "label": "Spärrhöjning med minst tre stödkort"
+              "next": "t36_sn2",
+              "label": "Invit i öppningsfärgen – cirka 14–16 stp"
             },
             {
-              "call": "3NT",
-              "next": "t36_n3",
-              "label": "Slutbud"
+              "call": "3C",
+              "next": "t36_sn3",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
-              "call": "3♣",
-              "next": "t36_n4",
-              "label": "Ny färg med minst fem kort – krav"
+              "call": "3D",
+              "next": "t36_sn4",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
             },
             {
-              "call": "4♣",
-              "next": "t36_n5",
-              "label": "Hopp i ny färg med renons – slaminvit"
+              "call": "3H",
+              "next": "t36_sn5",
+              "label": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav"
+            },
+            {
+              "call": "3N",
+              "next": "t36_sn6",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4H",
+              "next": "t36_sn7",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4S",
+              "next": "t36_sn8",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "5C",
+              "next": "t36_sn9",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "5D",
+              "next": "t36_sn10",
+              "label": "Utgångsbud – slutbud"
+            },
+            {
+              "call": "4C",
+              "next": "t36_sn11",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "4D",
+              "next": "t36_sn12",
+              "label": "Hopp i ny färg – Splinter, 19+ stp"
+            },
+            {
+              "call": "4N",
+              "next": "t36_sn13",
+              "label": "Essfråga – öppningsfärgen är trumf"
             }
+          ]
+        },
+        {
+          "id": "t36_sn1",
+          "sequence": [
+            "2S",
+            "Pass",
+            "2N"
           ],
+          "meaning": "Stenberg 2NT – 13+ stp",
+          "analysis": "Stenberg 2NT – 13+ stp.",
+          "branches": [],
           "handConditions": {
             "schemaVersion": 1,
-            "seat": "opener",
+            "seat": "responder",
             "authority": "analysis_only",
-            "sourceText": "Öppningshand: 6-10 hp, exakt sex kort i öppningsfärgen och bra färg enligt de två kvalitetskriterierna.",
-            "hcp": {
-              "min": 6,
-              "max": 10
-            },
-            "suitLengths": {
-              "S": {
-                "min": 6,
-                "max": 6
-              }
-            },
+            "sourceText": "13+ stp, Stenberg 2NT.",
             "manual": [
-              "Kontrollera färgkvaliteten: minst 2 honnörer A/K/D/Kn, eller minst 1 honnör och minst 2 av 10/9/8."
+              "Stenberg 2NT visar 13+ stp. Lathundens sida 27 anger inte svarshandens exakta stödlängd."
             ]
           }
         },
         {
-          "id": "t36_n1",
+          "id": "t36_sn2",
           "sequence": [
-            "2♠",
-            "Pass",
-            "2NT"
-          ],
-          "meaning": "2NT är invitbud med minst två stödkort.",
-          "analysis": "PDF:en anger ingen exakt hp-gräns för svarshandens invit. Rättningen ska därför kontrollera stödlängden men inte lägga till ett eget poängintervall.",
-          "branches": [
-            {
-              "call": "3S",
-              "next": "t36_n6",
-              "label": "Öppnaren visar minimum, 6–8 hp"
-            },
-            {
-              "call": "4S",
-              "next": "t36_n7",
-              "label": "Öppnaren visar maximum, 9–10 hp"
-            },
-            {
-              "call": "3NT",
-              "next": "t36_n8",
-              "label": "Alternativt maxbesked i sang"
-            }
-          ]
-        },
-        {
-          "id": "t36_n2",
-          "sequence": [
-            "2♠",
+            "2S",
             "Pass",
             "3S"
           ],
-          "meaning": "3S är en spärrhöjning med minst tre stödkort, inte en invit.",
-          "analysis": "Svarshanden visar trumfstöd och spärrar budgivningen. PDF:en anger inte öppnarens fortsättning efter denna direkta spärrhöjning; den grenen är därför sparad som ej täckt.",
+          "meaning": "Invit i öppningsfärgen – cirka 14–16 stp",
+          "analysis": "Invit i öppningsfärgen – cirka 14–16 stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Cirka 14–16 stp.",
+            "manual": [
+              "Spelpoäng 14–16 enligt lathunden; maskinell stp-värdering och exakt stödlängd är inte specificerade här."
+            ]
+          }
+        },
+        {
+          "id": "t36_sn3",
+          "sequence": [
+            "2S",
+            "Pass",
+            "3C"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t36_sn4",
+          "sequence": [
+            "2S",
+            "Pass",
+            "3D"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t36_sn5",
+          "sequence": [
+            "2S",
+            "Pass",
+            "3H"
+          ],
+          "meaning": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav",
+          "analysis": "Ny färg – ofta sexkortsfärg, 15–16+ hp, rondkrav.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Minst 15–16 hp; ofta sexkortsfärg.",
+            "hcp": {
+              "min": 15
+            },
+            "manual": [
+              "Lathunden säger ofta sexkortsfärg men anger inget absolut minimiantal kort; femkortsfärg ska bedömas manuellt."
+            ]
+          }
+        },
+        {
+          "id": "t36_sn6",
+          "sequence": [
+            "2S",
+            "Pass",
+            "3N"
+          ],
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t36_n3",
+          "id": "t36_sn7",
           "sequence": [
-            "2♠",
+            "2S",
             "Pass",
-            "3NT"
+            "4H"
           ],
-          "meaning": "3NT är slutbud.",
-          "analysis": "Svarshanden väljer sangutgång direkt. Enligt PDF-avsnittet är 3NT slutbud; ytterligare budgivning ska inte fortsätta.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t36_n4",
+          "id": "t36_sn8",
           "sequence": [
-            "2♠",
-            "Pass",
-            "3♣"
-          ],
-          "meaning": "3♣ visar minst fem kort i ny färg och är krav till minst 3 i öppningsfärgen.",
-          "analysis": "Svarshanden har minst fem kort i klöver. Budet är krav. Öppnaren fullgör minimikravet med 3S. Fortsättningen efter detta återbud är inte specificerad i PDF-avsnittet.",
-          "branches": [
-            {
-              "call": "3S",
-              "next": "t36_n9",
-              "label": "Öppnaren fullgör kravet med 3S"
-            }
-          ]
-        },
-        {
-          "id": "t36_n5",
-          "sequence": [
-            "2♠",
-            "Pass",
-            "4♣"
-          ],
-          "meaning": "4♣ visar renons i den bjudna färgen och är slaminvit.",
-          "analysis": "Hoppet visar void och slamintresse. PDF-avsnittet beskriver inte fortsatta kontrollbud eller hur öppnaren ska värdera sin hand; fortsättningen är därför en expertfråga.",
-          "branches": []
-        },
-        {
-          "id": "t36_n6",
-          "sequence": [
-            "2♠",
-            "Pass",
-            "2NT",
-            "Pass",
-            "3S"
-          ],
-          "meaning": "Öppnaren visar minimum med 3S och 6–8 hp.",
-          "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
-          "branches": []
-        },
-        {
-          "id": "t36_n7",
-          "sequence": [
-            "2♠",
-            "Pass",
-            "2NT",
+            "2S",
             "Pass",
             "4S"
           ],
-          "meaning": "Öppnaren visar maximum med 9–10 hp och 4S.",
-          "analysis": "Efter högfärgsöppning är 4 i öppningshögfärgen ett av de angivna maxbeskeden. PDF:en anger även 3NT som alternativ men inte vilket handvillkor som väljer mellan dem.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t36_n8",
+          "id": "t36_sn9",
           "sequence": [
-            "2♠",
+            "2S",
             "Pass",
-            "2NT",
-            "Pass",
-            "3NT"
+            "5C"
           ],
-          "meaning": "Öppnaren visar maximum med 9–10 hp via 3NT.",
-          "analysis": "Efter högfärgsöppning är 3NT ett angivet alternativ till 4 i öppningsfärgen; urvalskriteriet saknas i PDF:en.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
           "branches": []
         },
         {
-          "id": "t36_n9",
+          "id": "t36_sn10",
           "sequence": [
-            "2♠",
+            "2S",
             "Pass",
-            "3♣",
-            "Pass",
-            "3S"
+            "5D"
           ],
-          "meaning": "Öppnaren fullgör färgkravet med minst 3 i öppningsfärgen.",
-          "analysis": "Den nya färgen är krav till minst tre i öppningsfärgen. Fortsättningen efter att öppnaren fullgjort kravet är inte närmare beskriven i PDF-avsnittet.",
+          "meaning": "Utgångsbud – slutbud",
+          "analysis": "Direkt utgångsbud är slutbud enligt lathundens sida 27.",
+          "branches": []
+        },
+        {
+          "id": "t36_sn11",
+          "sequence": [
+            "2S",
+            "Pass",
+            "4C"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t36_sn12",
+          "sequence": [
+            "2S",
+            "Pass",
+            "4D"
+          ],
+          "meaning": "Hopp i ny färg – Splinter, 19+ stp",
+          "analysis": "Hopp i ny färg – Splinter, 19+ stp.",
+          "branches": [],
+          "handConditions": {
+            "schemaVersion": 1,
+            "seat": "responder",
+            "authority": "analysis_only",
+            "sourceText": "Splinter, 19+ stp.",
+            "manual": [
+              "19+ stp. Splinterförutsättningen singleton/renons är konventionell tolkning; lathundsraden anger inte separat kortgräns."
+            ]
+          }
+        },
+        {
+          "id": "t36_sn13",
+          "sequence": [
+            "2S",
+            "Pass",
+            "4N"
+          ],
+          "meaning": "Essfråga – öppningsfärgen är trumf",
+          "analysis": "Essfråga med ♠ som trumf. Rättningsmotorn använder befintlig RKC/Blackwood 5-ess-logik.",
           "branches": []
         }
       ]
