@@ -1,6 +1,8 @@
 name: Deploy playable bridge trainer
 
 on:
+  push:
+    branches: [work/undisturbed-architecture]
   workflow_dispatch:
 
 permissions:
