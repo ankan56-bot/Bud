@@ -6,7 +6,8 @@ const api={maj:s=>s==='H'||s==='S',st_:c=>c[1],isBid:c=>/^[1-7][CDHSN]$/.test(c)
 const calls=[];
 const stenberg={
  responder:(h,o)=>{calls.push(['stenberg.responder',o]);return o==='1H'&&h.special?{exp:'2N',conv:'Stenberg'}:null;},
- openerRebid:(h,o,p)=>{calls.push(['stenberg.openerRebid',o]);return {exp:'3'+o,conv:'Stenberg'};}
+ openerRebid:(h,o,p)=>{calls.push(['stenberg.openerRebid',o]);return {exp:'3'+o,conv:'Stenberg'};},
+ responderContinuation:(h,o,call,p,prior,rkc,side,seat)=>{calls.push(['stenberg.responderContinuation',o,call]);return {exp:'P',conv:'Stenberg continuation'};}
 };
 function family(name){return {
  respond:(h,o)=>{calls.push([name+'.respond',o]);return {exp:'1N',conv:name};},
@@ -63,6 +64,8 @@ assert.equal(trumfstod.responder({},'1C').conv,'minor');
 assert.deepEqual(calls.pop(),['minor.respond','1C']);
 assert.equal(trumfstod.openerSecondBid({},'1S','2N').conv,'Stenberg');
 assert.deepEqual(calls.pop(),['stenberg.openerRebid','1S']);
+assert.equal(trumfstod.responderContinuation({},'1H','3H').conv,'Stenberg continuation');
+assert.deepEqual(calls.pop(),['stenberg.responderContinuation','1H','3H']);
 assert.equal(trumfstod.openerSecondBid({},'1D','2D').conv,'minor');
 assert.deepEqual(calls.pop(),['minor.rebid','1D','2D']);
 assert.equal(trumfstod.isSupportResponse({L:{H:4}},'1H','2H'),true);
