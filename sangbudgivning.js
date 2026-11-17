@@ -304,6 +304,23 @@
       var means2=function(c){return c==='P'?'Passar på utgångsbudet.':null};
       return {exp:'P', alt:[], why:'Slutbud: pass.', means:means2, conv:'Stayman'};
     }
+    // Nordisk standard s. 4: a new suit by responder on the 3-level is
+    // game-forcing and natural. Opener tries to show extra length or bid NT.
+    // The responder's 3C/3D is a new minor after Stayman or a transfer.
+    if(/^3[CD]$/.test(k3) &&
+       ((k1==='2D'&&k2==='2H')||(k1==='2H'&&k2==='2S')||
+        (k1==='2C'&&(k2==='2H'||k2==='2S')))){
+      var extraSuits=SU.filter(function(s){return L[s]>=5;});
+      if(extraSuits.length===1){
+        var extra=extraSuits[0], continuation=maj(extra)?'3'+extra:'4'+extra;
+        return {exp:continuation,alt:[],why:'Svarshandens nya färg på 3-nivån är utgångskrav. Öppnaren visar sin enda 5+-färg ('+SYM[extra]+') enligt fortsättningsregeln att visa extra längd eller bjuda sang.',means:function(c){if(c===continuation)return 'Visar extra längd (5+) i '+SYM[extra]+' efter svarshandens utgångskrav.';return null},conv:'1NT-fortsättning'};
+      }
+      if(extraSuits.length>1)
+        return NC('Svarshandens nya färg på 3-nivån är utgångskrav. Öppnaren har flera 5+-färger ('+extraSuits.map(function(s){return SYM[s];}).join(', ')+') och källan anger ingen prioritet mellan dem.',function(c){return null},'1NT-fortsättning',true);
+      if(h.bal)
+        return {exp:'3N',alt:[],why:'Svarshandens nya färg på 3-nivån är utgångskrav. Öppnaren har ingen extra 5+-färg och visar balanserad hand med 3NT.',means:function(c){return c==='3N'?'Balanserad hand utan extra 5+-färg; visar sang efter utgångskrav.':null},conv:'1NT-fortsättning'};
+      return NC('Svarshandens nya färg på 3-nivån är utgångskrav. Öppnarhanden är obalanserad och har ingen entydig extra längd att visa; källan ger inget säkert val.',null,'1NT-fortsättning',true);
+    }
     return NC('Fortsättningen beskrivs inte i dokumentet; lämnas ej täckt.',null,'1NT-system',true);
   }
   function ntOpener3NTChoice(h,M){
