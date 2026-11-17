@@ -1138,6 +1138,31 @@ var Rattning = (function(){
       return nc('Motståndarna lade sig i: fortsättningen beskrivs inte i dokumentet.');
     }
 
+    // Sida 18: öppnarens tredje bud efter svarshandens 1NT-återbud.
+    // Exakt exempel i lathunden: 1♥–1♣; 1♠–1NT.
+    if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1C' &&
+       ours[2].c==='1S' && ours[3].c==='1N'){
+      var lens18=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
+      var shape54=lens18[0]===5&&lens18[1]===4;
+      var shape4441=lens18[0]===4&&lens18[1]===4&&lens18[2]===4&&lens18[3]===1;
+      var shape65=lens18[0]===6&&lens18[1]===5;
+      if(b.c==='2C'&&(shape54||shape4441)&&h.hp>=11&&h.hp<=15)
+        return {exp:'2C',alt:[],why:'2♣ visar 5–4 eller 4441 och 11–15 hp enligt sida 18.',means:function(c){return c==='2C'?'5–4 eller 4441, 11–15 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      if(b.c==='2D'&&h.L.D===6&&h.hp>=11&&h.hp<=14)
+        return {exp:'2D',alt:[],why:'2♦ visar sexkortsfärg och 11–14 hp enligt sida 18.',means:function(c){return c==='2D'?'Sexkortsfärg, 11–14 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      if(b.c==='2H'&&h.L.H===4&&h.hp>=15&&h.hp<=17)
+        return {exp:'2H',alt:[],why:'2♥ visar fyrkortshjärter och 15–17 hp enligt sida 18.',means:function(c){return c==='2H'?'Fyrkortshjärter, 15–17 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      if(b.c==='2S'&&h.L.S===3&&h.hp>=15&&h.hp<=17)
+        return {exp:'2S',alt:[],why:'2♠ visar trekortsstöd i spader och 15–17 hp enligt sida 18.',means:function(c){return c==='2S'?'Trekortsspader, 15–17 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      if(b.c==='2N'&&h.hp>=15&&h.hp<=17)
+        return {exp:'2N',alt:[],why:'2NT är invit med (15) 16–17 hp enligt sida 18.',means:function(c){return c==='2N'?'Invit, (15) 16–17 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      if(b.c==='3C'&&h.L.C===6&&h.hp>=15&&h.hp<=17)
+        return {exp:'3C',alt:[],why:'3♣ visar sexkortsklöver och 15–17 hp enligt sida 18.',means:function(c){return c==='3C'?'Sexkortsklöver, 15–17 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      if(b.c==='3S'&&shape65&&h.hp>=14&&h.hp<=17)
+        return {exp:'3S',alt:[],why:'3♠ visar 6–5-fördelning och 14–17 hp enligt sida 18.',means:function(c){return c==='3S'?'6–5-fördelning, 14–17 hp.':null},conv:'ÖH:s tredje bud efter 1NT'};
+      return NC('Fortsättningen efter 1♥–1♣; 1♠–1NT ska följa tabellen på sida 18. Den aktuella handen uppfyller inte entydigt någon av de angivna budraderna.',null,'ÖH:s tredje bud efter 1NT');
+    }
+
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
       // Sida 19: klassificera svarshandens nya färg efter vilka färger
       // paret redan har visat. Både tredje och fjärde färg är kravbud.
