@@ -40,7 +40,7 @@ for(const deal of deals){
     const node=R.nodeFor(st,index);
     if(node&&node.exp){call=node.exp;report.covered++;}
     else report.uncovered.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),hands:deal.hands,reason:node&&node.why?node.why:'No matching rule'});
-   }catch(e){report.exceptions.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),hands:deal.hands,message:String(e&&e.message||e)});}
+   }catch(e){report.exceptions.push({dealId:deal.id,seed:deal.seed,seat,auction:st.bids.map(x=>x.s+':'+x.c).join(' '),hands:deal.hands,message:String(e&&e.message||e),stack:String(e&&e.stack||'')});}
    st.bids[index]={s:seat,c:call};
   }else st.bids.push({s:seat,c:'P'});
   const v=R.validateAuction(st);
