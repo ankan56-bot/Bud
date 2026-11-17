@@ -1,7 +1,7 @@
 # Spärröppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 8.9  
+Rättningsmotor: 9.0  
 Omfattning: ostörd budgivning vid spärröppning. Störd budgivning ingår inte.
 
 ## Gemensam definition av bra färg
@@ -36,6 +36,12 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 - 2♣ förblir starköppning.
 - Samtliga beslut avser ostörd budgivning. Inkliv, dubbling och konkurrenssekvenser ingår inte.
 
+## Fortsättningar och avgränsning
+
+- En 7-kortsfärg som öppnas på 2-nivån genom det nya användarbeslutet får inte automatiskt använda fortsättningsreglerna för svag tvåa i PDF:en, eftersom PDF:ens 2♦/2♥/2♠-struktur avser exakt sex kort.
+- Efter 3-/4-nivåns öppningar är svar/fortsättning ej täckt tills det finns verifierat systemunderlag. Generiska antaganden om ny färg som krav, 3NT eller spärrhöjning har tagits bort.
+- Pass efter en 3-nivåöppning hanteras fortsatt av befintlig enkel slutbudslogik; övriga svar kräver uttryckligt underlag.
+
 ## Regressionstester
 
 `testdata/weak-two.test.js` utökas med tester för:
@@ -55,4 +61,4 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 Ingen störd budgivning eller försvarsbudgivning har lagts till.
 
 
-Status: rättningsmotor 8.9 och 20 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
+Status: rättningsmotor 8.9 och 23 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
