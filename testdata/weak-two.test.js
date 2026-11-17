@@ -52,6 +52,29 @@ function poorQualityWeakTwoHand(suit) {
     ...cards(others[2],"23")
   ];
 }
+
+function preemptHand(suit, ranks) {
+  const others = ["S","H","D","C"].filter(s => s !== suit);
+  const rankValue = { A:4, K:3, Q:2, J:1, T:0 };
+  const suitHp = [...ranks].reduce((sum,r) => sum + (rankValue[r] || 0),0);
+  let sideRanks = [];
+  let sideHp = 0;
+  for (const rank of ["Q","J","K"]) {
+    if (suitHp + sideHp >= 8) break;
+    sideRanks.push(rank);
+    sideHp += rankValue[rank];
+  }
+  const remaining = 13 - ranks.length - sideRanks.length;
+  const low = "23456789T";
+  const firstCount = Math.min(3,remaining);
+  return [
+    ...cards(suit,ranks),
+    ...cards(others[0],sideRanks),
+    ...cards(others[1],low.slice(0,firstCount)),
+    ...cards(others[2],low.slice(0,remaining-firstCount))
+  ];
+}
+
 function elevenPointSixCardHand(suit) {
   const others = ["S","H","D","C"].filter(s => s !== suit);
   return [
@@ -264,4 +287,52 @@ test("after 2NT, a maximum minor opener rebids 3NT, never 4 in the minor", () =>
   ],4);
   assert.equal(result.exp,"3N");
   assert.match(result.why,/inte 4 i lågfärgen/);
+});
+
+test("seven-card preempts use 2-level for one quality criterion and 3-level for both", () => {
+  for (const suit of ["D","H","S"]) {
+    const cases = [
+      ["AK76543","2"+suit], // two honors only
+      ["A987654","2"+suit], // one honor plus two intermediates
+      ["AKT9876","3"+suit], // both criteria
+      ["8765432","P"]       // neither criterion
+    ];
+    for (const [ranks,expected] of cases) {
+      const opener=preemptHand(suit,ranks);
+      const result=node(completeDeal(opener,fillerHand(opener)),[{s:"N",c:expected}],0);
+      assert.equal(result.exp,expected,suit+" "+ranks);
+    }
+  }
+});
+
+test("eight-card preempts use 3-level for one quality criterion and 4-level for both", () => {
+  for (const suit of ["D","H","S"]) {
+    const cases = [
+      ["AK765432","3"+suit], // two honors only
+      ["A9876543","3"+suit], // one honor plus two intermediates
+      ["AKT98765","4"+suit], // both criteria
+      ["8765432T","P"]       // neither criterion
+    ];
+    for (const [ranks,expected] of cases) {
+      const opener=preemptHand(suit,ranks);
+      const result=node(completeDeal(opener,fillerHand(opener)),[{s:"N",c:expected}],0);
+      assert.equal(result.exp,expected,suit+" "+ranks);
+    }
+  }
+});
+
+test("clubs never use 2C as a weak opening; 7-card one-criterion hands start at 3C", () => {
+  for (const ranks of ["AK76543","A987654"]) {
+    const opener=preemptHand("C",ranks);
+    const result=node(completeDeal(opener,fillerHand(opener)),[{s:"N",c:"3C"}],0);
+    assert.equal(result.exp,"3C",ranks);
+  }
+});
+
+test("eight-card club preempts use 3C with one criterion and 4C with both", () => {
+  for (const [ranks,expected] of [["AK765432","3C"],["A9876543","3C"],["AKT98765","4C"]]) {
+    const opener=preemptHand("C",ranks);
+    const result=node(completeDeal(opener,fillerHand(opener)),[{s:"N",c:expected}],0);
+    assert.equal(result.exp,expected,ranks);
+  }
 });
