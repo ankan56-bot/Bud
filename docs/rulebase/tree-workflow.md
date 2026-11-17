@@ -53,9 +53,11 @@ Störd budgivning får sin egen trädkarta och egna träd-ID:n. Den hålls forts
 ## Statuslogg
 | Träd | Källa jämförd | Runtime jämförd | Testfall | Kod ändrad | Status |
 |---|---|---|---|---|---|
-| T36 | Påbörjas efter att sidkartan verifierats | Ej påbörjad i denna arbetscykel | Ej påbörjat | Nej | Näst på tur |
-| T37 | Ej påbörjad | Ej påbörjad | Ej påbörjat | Nej | Väntar på T36 |
+| T36 | Källor identifierade; exakt sida 8-jämförelse återstår | Runtime-funktion identifierad; detaljgranskning återstår | Ej påbörjat | Nej | Påbörjat – se tree-review-01-T36-T37.md |
+| T37 | Lathund sida 10 och NS sida 2 identifierade; sekvensvis jämförelse återstår | resp1() i ettoppningssvar.js identifierad | Ej påbörjat | Nej | Påbörjat parallellt med T36-kartläggningen |
 | T39 | Ej påbörjad | Ej påbörjad | Ej påbörjat | Nej | Väntar |
 | T40 | Ej påbörjad | Ej påbörjad | Ej påbörjat | Nej | Väntar |
+
+Detaljgranskningen för T36/T37 finns i [Trädgranskning 01 – T36 och T37](tree-review-01-T36-T37.md). Den är en start på käll- och runtime-kopplingen, inte ett godkännande av reglerna eller ett färdigtestat träd.
 
 Denna status är avsiktligt konservativ. Den nya inventeringen av Lathundens sidor räknas inte som att ett träd är färdiggranskat.
