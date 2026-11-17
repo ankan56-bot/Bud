@@ -86,7 +86,7 @@ test("2NT response is an invit only with 9-10 HCP and at least two-card support"
 
   const unsupportedResponder = [
     ...cards("H","2"), ...cards("S","AK"),
-    ...cards("D","Q56789T"), ...cards("C","6789")
+    ...cards("D","Q56789"), ...cards("C","6789")
   ];
   const unsupportedHands = completeDeal(opener,unsupportedResponder);
   const unsupported = node(unsupportedHands,[
@@ -99,8 +99,8 @@ test("2NT response is an invit only with 9-10 HCP and at least two-card support"
 test("opener shows minimum after the 2NT inquiry with 3 in the opening suit", () => {
   const opener = weakTwoHand("H","AK9876");
   const responder = [
-    ...cards("H","Q2"), ...cards("S","AK"),
-    ...cards("D","Q345"), ...cards("C","678")
+    ...cards("H","T2"), ...cards("S","AK"),
+    ...cards("D","Q3456"), ...cards("C","6789")
   ];
   const hands = completeDeal(opener,responder);
   const bids = [
