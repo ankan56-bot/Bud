@@ -376,3 +376,14 @@ Den fullständiga `nordisk_standard.pdf` (2012-08-22) återfanns i ChatGPT-bibli
 - Täcker 6–10 hp/exakt sexkortsfärg, 11 hp med sexkortsfärg som 1-öppning, avgränsning mot femkortsfärg och 3-öppningsfamiljen, spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT samt öppnarens min/max-svar.
 - GitHub Actions `44097230489`: **success** för hela testkedjan.
 - Kvarvarande ej dokumenterade fortsättningar är sparade i `testdata/weak-two-audit.md` och expertloggen. Ingen störd budgivning har påbörjats.
+
+
+## Svaga tvåöppningar – PDF-korrigering och analysbibliotek färdiga
+
+- PDF sida 2 verifierar 2♦/2♥/2♠: 6–10 hp och exakt sex kort. Inget krav på bra färgkvalitet anges; detta tidigare motorvillkor är borttaget.
+- 11 hp med sexkortsfärg i ♦/♥/♠ öppnas 1 i färgen, även om färgen saknar honnörer. Gränsfallet testas.
+- Rättningsmotor 8.7; svag-två-paketet har 15/15 godkända tester.
+- Tre pedagogiska analysbiblioteksträd tillagda för 2♦, 2♥ och 2♠: `T34_SVAG_TVA_D`, `T35_SVAG_TVA_H`, `T36_SVAG_TVA_S`.
+- Hela GitHub Actions-körningen `44098066656`: **success**, inklusive analysis-library-matchning och strukturerade handprofiltester.
+- 140-givarsbaslinje: 579 rätt, 40 ej täckta, 0 fel (1 181 budpositioner).
+- Endast de sekvenser som PDF:en inte definierar återstår i expertloggen. Störd budgivning är fortfarande inte påbörjad.
