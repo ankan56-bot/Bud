@@ -1,62 +1,57 @@
 # Svaga tvåöppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 8.8  
+Rättningsmotor: 9.4  
+Analysbibliotek: 0.5.17  
 Omfattning: ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning ingår inte.
 
-## Auktoritativ källa
+## Källor och ansvarsfördelning
 
-Källa: användarens PDF `nordisk_standard.pdf`, daterad 2012-08-22, sida 4. PDF:en har återfunnits i ChatGPT-biblioteket och har prioritet framför tidigare sammanfattningar eller den förkortade regeltexten i HTML-filen.
+- **Öppningsvillkoren** behålls från `nordisk_standard.pdf`, sida 4, kompletterat med användarens uttryckliga beslut om god färg.
+- **Svarbuden** är nu ändrade för att följa `Bridge Lathund bok(2).pdf`, tryckt sida 27 (PDF-filens bild/spread 10).
+- Lathundens sida 27 ersätter de tidigare svarreglerna i den här modulen. Den ändrar inte öppningsvillkoren.
 
-## Regler från PDF sida 4
+## Öppningsvillkor – oförändrade
 
-- 2♦/2♥/2♠ visar 6–10 hp, exakt sex kort och god färgkvalitet: minst 2 honnörer eller minst 1 honnör samt minst 2 av 10-9-8.
+- 2♦/2♥/2♠: 6–10 hp, exakt sex kort och god färg.
+- God färg: minst 2 honnörer (A/K/D/Kn), eller minst 1 honnör samt minst 2 av 10/9/8.
 - Med 11 hp och sexkortsfärg öppnas 1 i färgen.
-- Ny färg: minst 5 kort, krav till minst 3 i öppningsfärgen.
-- 3 i öppningsfärgen: spärrhöjning med minst 3 stödkort, inte invit.
-- 3NT: slutbud.
-- Hopp i ny färg: visar renons och är slaminvit.
-- 2NT: invitbud med minst 2 stödkort.
-- Efter 2NT visar öppnaren minimum med 3♦/3 i högfärgen och 6–8 hp.
-- Efter 2NT visar öppnaren maximum med 3NT/4 i högfärg och 9–10 hp.
-- PDF:en anger ingen exakt hp-gräns för svarshandens 2NT-invit. Den tidigare kodade gränsen 9–10 hp på svarshanden var därför inte källstödd och har tagits bort.
-- Vid maximum efter 2NT är 3NT/4 högfärg alternativen. För lågfärgsöppning används 3NT; 4 i lågfärgen ska inte föreslås som maxbesked.
+- 2♣ förblir starköppning och ingår inte i svaga tvåöppningar.
+- 7- och 8-kortiga spärröppningar följer den separat beslutade spärrtrappan; de får inte automatiskt använda svarsträdet för exakt sexkortig svag tvåa.
 
-## Implementerat i rättningsmotorn 8.8
+## Svar efter svag tvåöppning – lathundens sida 27
 
-- 2♦/2♥/2♠ öppningsvillkor testas: exakt sex kort, 6–10 hp och god färgkvalitet enligt tidigare definition: minst 2 honnörer eller 1 honnör + minst 2 av 10-9-8.
-- 2♣ förblir starköppning och blandas inte in i svaga tvåöppningar.
-- 2NT accepteras som invit när svarshanden har minst två stödkort; inget eget hp-intervall har hittats på.
-- 3 i öppningsfärgen accepteras som spärrhöjning med minst tre stödkort och förklaras uttryckligen som ej invit.
-- Ny färg på lägsta lagliga nivå accepteras med minst fem kort och förklaras som krav till minst 3 i öppningsfärgen.
-- Hopp i ny färg accepteras när svarshanden är renons i den färgen och förklaras som slaminvit.
-- 3NT accepteras som slutbud.
-- Efter kravställande ny färg återbjuder öppnaren minst 3 i öppningsfärgen.
-- Efter 2NT visar öppnaren 6–8 hp med 3 i öppningsfärgen. Med 9–10 hp visas maximum med 3NT efter lågfärgsöppning eller 4 i öppningshögfärgen (3NT är också tillåtet alternativ efter högfärgsöppning).
+| Svar | Betydelse |
+|---|---|
+| 3 i öppningsfärgen | Invit, cirka 14–16 stp |
+| 2NT | Stenberg 2NT, 13+ stp |
+| Ny färg | Ofta sexkortsfärg, minst 15–16 hp, rondkrav |
+| Direkt utgång | Slutbud |
+| Hopp i ny färg | Splinter, 19+ stp |
+| 4NT | Essfråga med öppningsfärgen som trumf |
 
-## Kvarvarande luckor – expertloggen
+### Maskinell tolkning och försiktighetsgränser
 
-Följande ska inte fyllas med antaganden:
-1. Exakt hp-intervall för svarshandens 2NT-invit – PDF:en anger endast invit och minst 2 stöd.
-2. Passkriterier när svarshanden saknar 5+ sidofärg, 2+ stöd eller ett definierat hopp.
-3. Öppnarens fortsättning efter partnerns direkta spärrhöjning till 3 i öppningsfärgen.
-4. Svarshandens fortsättning efter öppnarens 3 i öppningsfärgen som fullgör kravbudet i ny färg.
-5. Vilka handvillkor som avgör 3NT kontra 4 i öppningshögfärgen efter öppnarens maximum på 2NT. PDF:en anger båda alternativen men inte urvalskriteriet.
-6. Fortsättning efter hoppet som visar renons och slaminvit; de exakta kontrollbuden är inte beskrivna i detta avsnitt.
+- 3 i öppningsfärgen rättas mot cirka 14–16 stp.
+- 2NT rättas som Stenberg med minst 13 stp. Den tidigare regeln om enkel invit och minst två stödkort är borttagen.
+- Ny färg kräver minst 15 hp och rondkrav. Sexkortsfärg godtas direkt. Lathunden säger ”ofta” sex kort och anger inte en absolut minimilängd; femkortsfärg lämnas därför för expertbedömning i stället för att godkännas eller underkännas med en påhittad gräns.
+- Direkt utgång behandlas som slutbud.
+- Hopp i ny färg behandlas som Splinter med minst 19 stp när färgen är singel eller renons. Om budnivån samtidigt kan vara ett naturligt utgångsbud avgör handens färglängd tolkningen.
+- 4NT behandlas som RKC/essfråga med öppningsfärgen som trumf. Rättningsmotorns trumfdetektion är utökad för 2♦/2♥/2♠ följt av 4NT.
+- Öppnarens fortsättning efter Stenberg 2NT är inte beskriven på sida 27. Den tidigare 6–8 / 9–10 hp-min/max-stegen är därför avstängd och sekvensen lämnas ej täckt tills fortsättningen är verifierad.
 
-Alla dessa sekvenser ska loggas som ej täckta tills de kan verifieras. Ingen störd budgivning, inkliv eller dubbling har implementerats i denna modul.
+## Kvarvarande expertfrågor
+
+1. Exakt minimiantal kort i ny färg: lathunden säger ”ofta sexkortsfärg”, inte en absolut gräns.
+2. Exakt värdering av stp i gränsfall kring 14–16, 13+ och 19+.
+3. Öppnarens fortsättning efter Stenberg 2NT efter svag tvåöppning.
+4. Öppnarens fortsättning efter invitbudet 3 i öppningsfärgen.
+5. Eventuella särskilda handvillkor för val mellan naturlig utgång och Splinter när budkoden ligger på utgångsnivå.
+
+Alla ej täckta sekvenser ska sparas i expertloggen. Inga regler för störd budgivning har ändrats.
 
 ## Regression
 
-`testdata/weak-two.test.js` innehåller 16 regressionstester för öppningsgränserna och de dokumenterade svaren: spärrhöjning, 2NT, ny färg, renons-/slaminvit, 3NT, öppnarens svar efter ny färg samt min/max efter 2NT.
+`testdata/weak-two.test.js` innehåller 30 regressionstester. De täcker öppningsvillkoren, lathundens sex svarfamiljer, RKC-trumfidentifiering, femkortig ny färg som expertfråga, Stenberggränsen och att gamla min/max-svar efter 2NT inte längre används.
 
-
-## Användarbeslut – utökad spärrtrappa 2026-11-17
-
-Den tidigare PDF-regeln för svag tvåa gäller fortsatt exakt sex kort. Utöver den har användaren beslutat att samma två färgkvalitetskriterier ska styra spärrnivån för 7- och 8-kortsfärger. En 7-kortsfärg med ett kriterium öppnas på 2-nivån; med båda på 3-nivån. En 8-kortsfärg med ett kriterium öppnas på 3-nivån; med båda på 4-nivån. Noll kriterier ger ingen spärröppning. Detta är ett uttryckligt användartillägg, inte en regel som tillskrivs PDF:en.
-
-Fortsättningsreglerna för exakt sexkortiga svaga tvåor får inte automatiskt överföras till en sjukkortsfärg som öppnats på 2-nivån. Svar efter 3-/4-nivåns spärröppningar är ej täckta tills systemunderlag finns. Se `testdata/preemptive-openings-audit.md`.
-
-Analysbiblioteket är uppdaterat till 0.5.16: T34–T36 har handvillkor som kräver exakt sex kort i öppningsfärgen och markerar färgkvaliteten för manuell kontroll. De ska därmed inte användas som pedagogisk beskrivning av 7-kortsöppningen på 2-nivån.
-
-Sexkortig klöver med bra färg men 6–10 hp är ej täckt: 2♣ är starköppning och dokumentet fastställer ingen alternativ spärrnivå. Motorn ska inte anta pass eller 3♣.
+CI/testkörning ska verifieras separat innan testerna rapporteras som godkända.
