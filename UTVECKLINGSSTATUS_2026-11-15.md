@@ -397,3 +397,22 @@ Användaren bad uttryckligen att återinföra det tidigare kravet på bra färg 
 - 16 regressionstester passerar, inklusive gränsen med en honnör + två mellankort.
 - Hela GitHub Actions `44100697247`: **success**.
 - 140 givare: 581 rätt, 39 ej täckta, 0 fel; 1 185 budpositioner.
+
+
+## Modulavslut – ostörd budgivning (2026-11-17)
+
+**Status: KLAR OCH STÄNGD för den verifierade omfattningen.**
+
+Omfattning: ostörda 1-färgsöppningar, svar, öppnarens andra bud, svarshandens andra bud, de dokumenterade fortsättningarna på sidorna 18–19 samt den avgränsade 1-färg–1NT-grenen fram till utgång. Störda sekvenser ingår inte i denna modul.
+
+- Rättningsmotor: version 9.8.
+- Analysbibliotek: version 0.5.18.
+- 31/31 tester för ostörd kärna och sidorna 18–19 godkända.
+- 34/34 svag-två-regressioner godkända.
+- Temagivarregression, reproducerbarhet, öppningsregression och övriga kopplade CI-kontroller godkända.
+- Positiv och negativ budbetydelse används; hp och htp hålls åtskilda.
+- Splinter är avstängt i aktiv rättningsmotor och analysbibliotek. Berörda sekvenser lämnas ej täckta.
+- Ej numeriskt definierade spärrhöjningar 4m/4M (”bra stöd och svitad hand”) ligger kvar i ej täckt-loggen; ingen egen gräns har hittats på.
+- Övriga sekvenser som saknar tillräckligt stöd i Nordisk standard eller uttryckligt projektbeslut fortsätter att loggas som ej täckta.
+
+Arbetet är sparat på `work/theme-dataset-analysis`. `main` är orörd.

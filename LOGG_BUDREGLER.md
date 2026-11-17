@@ -361,3 +361,8 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 - Rättningsmotor uppdaterad till 9.7 efter tvåfärgsgrenens styrke- och dispatchkorrigering. Negativt test tillagt: 2♣ på lägsta nivå avvisas när handen kräver 3♣ med 18+ htp.
 
 - Analysbibliotek 0.5.18: Splinter-grenar borttagna ur T34–T36; aktiva trädsnoder visar i stället ej täckt.
+
+
+## Modulstatus (2026-11-17)
+
+Ostörd budgivning är stängd för den verifierade omfattningen. CI: 31/31 ostörda tester, 34/34 svag-två-tester och samtliga temagivar-/reproducerbarhetstester godkända. Kvarvarande ospecificerade bud lämnas ej täckta; se avsnittet om spärrhöjningar 4m/4M ovan.
