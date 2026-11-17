@@ -48,8 +48,13 @@
      return result(call,'Öppningshanden visar singelton i '+({C:'♣',D:'♦',H:'♥',S:'♠'}[singletons[0]])+' efter Stenberg 2NT.','Stenberg 2NT',
        function(c){return c===call?'Visar singelton i den bjudna färgen.':null;});
    }
-   if(singletons.length>1)
-     return NC('Nordisk standard anger inte prioritet mellan två eller fler singeltoner efter Stenberg 2NT.',null,'Stenberg 2NT',true);
+   if(singletons.length>1){
+     var multipleSingletonGap=NC('Nordisk standard anger inte prioritet mellan två eller fler singeltoner efter Stenberg 2NT.',null,'Stenberg 2NT',true);
+     // Keep the sequence logged as uncovered, but allow the independent
+     // partnership game-point safety check to find a proven 8-card major fit.
+     multipleSingletonGap.allowSafetyRescue=true;
+     return multipleSingletonGap;
+   }
    if(hand.bal&&hand.hp>=12&&hand.hp<=14)
      return result('3N','12–14 hp och balanserad hand: 3NT efter Stenberg 2NT.','Stenberg 2NT',
        function(c){return c==='3N'?'12–14 hp, balanserad hand.':null;});
