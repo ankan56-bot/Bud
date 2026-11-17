@@ -5937,6 +5937,117 @@
             "opener": "Har öppnat 1♥ och gjort ett naturligt återbud, här 2♥.",
             "responder": "6–9 hp + minst 6 kort i egen färg: motorn tillåter ett 3-bud när 3 är lägsta lagliga nivå, eller 3 i öppningsfärgen; budet är ej krav. Högst 9 hp utan sådan färg: pass. 10+ hp och nya färger som kan bjudas på 2-nivån: ej täckt/regel behöver förtydligas."
           }
+        },
+        {
+          "id": "t40_minor_own_suit_continuation",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har 6+ klöver och har återbjudit 2♣.",
+            "responder": "Svarshanden har normalt 10–12 hp balanserat med minst två klöver och håll i sidofärgerna för 2NT; 11–12 HTP och 3+ klöver för 3♣; 13–18 HTP och 4+ klöver för 4♣."
+          },
+          "meaning": "Svarshandens andra bud efter öppnarens egen 6+ lågfärg.",
+          "analysis": "2NT är en invit och kräver balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna. 3♣ visar 11–12 HTP och minst tre korts stöd; 4♣ visar 13–18 HTP och minst fyra korts stöd. 13+ hp balanserat med håll kan välja 3NT. Svaga händer utan stöd eller egen lång sidofärg kan passa. Nordisk standard har företräde; Lathunden används som kompletterande förtydligande.",
+          "source": [
+            "Nordisk standard s. 3–4",
+            "Bridge Lathund s. 16–17"
+          ]
+        },
+        {
+          "id": "t40_minor_weak_preference_acceptance",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♣"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har minst 4–5 klöver och visar en tvåfärgshand med spader.",
+            "responder": "Svarshanden har minst tre klöver och har gjort en svag preferens till öppningsfärgen."
+          },
+          "meaning": "Öppnarens tredje bud efter svag preferens till öppningslågfärgen.",
+          "analysis": "Med minst åtta gemensamma trumf och mindre än 28 gemensamma poäng stannar öppnaren i 3♣. Med minst 28 gemensamma poäng kan öppnaren gå till 5♣. Andra tredje-budsprofiler kräver separat källstöd.",
+          "source": [
+            "Bridge Lathund s. 15"
+          ]
+        },
+        {
+          "id": "t40_minor_own_suit_2nt_source_gap",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2NT"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har återbjudit 2♣ med 6+ klöver.",
+            "responder": "Handen är obalanserad med 13+ hp, lång sidofärg och mindre än två klöver; alternativt saknas föreskrivet håll."
+          },
+          "meaning": "2NT saknar stöd för den dokumenterade invitprofilen.",
+          "analysis": "2NT får inte väljas enbart därför att paret har tillräckligt många sammanlagda hp. Den dokumenterade profilen kräver balanserad 10–12 hp, minst två korts stöd och håll i sidofärgerna. Om profilen saknas ska sekvensen markeras ej täckt och sparas för expertgranskning.",
+          "sourceGap": true,
+          "source": [
+            "Nordisk standard s. 3–4",
+            "Bridge Lathund s. 16"
+          ]
+        },
+        {
+          "id": "t40_minor_opener_third_after_3d_gap",
+          "sequence": [
+            "1♣",
+            "Pass",
+            "1♦",
+            "Pass",
+            "1♠",
+            "Pass",
+            "3♦"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♣ och visat en andra färg med 1♠.",
+            "responder": "Svarshanden har bjudit 3♦ som sitt andra bud; handens exakta styrka och fördelning avgör fortsättningen."
+          },
+          "meaning": "Öppnarens tredje bud efter svarshandens 3♦.",
+          "analysis": "Det tillgängliga underlaget ger inte en entydig fortsättning för alla handtyper i denna sekvens. Ingen pass, sang eller lågfärgsutgång ska hittas på. Markera ej täckt och spara hela given och budsekvensen.",
+          "sourceGap": true,
+          "source": [
+            "Bridge Lathund s. 15–17"
+          ]
+        },
+        {
+          "id": "t40_minor_later_continuation_gap",
+          "sequence": [
+            "1♦",
+            "Pass",
+            "1♥",
+            "Pass",
+            "2♣",
+            "Pass",
+            "2♠",
+            "Pass",
+            "3♦"
+          ],
+          "handProfile": {
+            "opener": "Öppnaren har öppnat 1♦ och återbjudit 2♣.",
+            "responder": "Svarshanden har gjort sitt andra bud och öppnaren har bjudit sitt tredje."
+          },
+          "meaning": "Svarshandens fortsättning efter öppnarens tredje bud.",
+          "analysis": "Denna senare fortsättning är inte fullständigt specificerad i de granskade källrutorna. Den ska därför lämnas ej täckt och sparas för expertgranskning.",
+          "sourceGap": true,
+          "source": [
+            "Nordisk standard s. 3–4",
+            "Bridge Lathund s. 15–17"
+          ]
         }
       ]
     },
