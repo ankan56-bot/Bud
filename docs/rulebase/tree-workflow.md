@@ -61,8 +61,8 @@ Den störda Lathunden inventeras nu som källa, men kodändringar i störd budgi
 |---|---|
 | Identifiera och läsa in båda Lathundarna | Genomfört på källnivå |
 | Skapa ämnes- och källkarta | Påbörjad, dokumenterad i lathund-source-inventory.md |
-| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Återstår |
-| Jämförelse mot Nordisk Standard | Återstår |
-| Konflikt- och expertfrågelogg från jämförelsen | Återstår |
+| Sekvensvis avläsning av varje ruta och exakt poängvillkor | Pågår; öppningsbud, svar efter 1 i färg, 1NT och stark 2♣ har börjat verifieras |
+| Jämförelse mot Nordisk Standard | Pågår; första jämförelsen dokumenterad i lathund-nordisk-standard-crosscheck.md och strong-2c-source-review.md |
+| Konflikt- och expertfrågelogg från jämförelsen | Pågår; identifierade konflikter dokumenterade i crosscheck- och 2♣-granskningen |
 | ÖH 2♣ | Nästa modul efter avslutat förarbete |
 | Kodändring | Inte påbörjad i detta förarbete |
