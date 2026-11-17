@@ -2,6 +2,7 @@
 
 Branch: `work/theme-dataset-analysis`  
 Rättningsmotor: 9.0  
+Analysbibliotek: 0.5.16  
 Omfattning: ostörd budgivning vid spärröppning. Störd budgivning ingår inte.
 
 ## Gemensam definition av bra färg
@@ -25,6 +26,7 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 - För 7-korts ♣ med ett eller båda kvalitetskriterierna används 3♣, eftersom 2♣ inte kan användas som svag öppning.
 - För 8-korts ♣ används 3♣ med ett kriterium och 4♣ med båda.
 - Noll kriterier: ingen spärröppning enligt denna modell.
+- Analysnoderna T34–T36 för svaga tvåor är nu maskinellt begränsade till exakt sex kort; deras färgkvalitet markeras för manuell kontroll. Därmed ska de inte beskriva en 7-kortig öppning på 2-nivån som en PDF-definierad svag tvåa.
 - 9+ kort ligger utanför den här definierade 6-8-kortstrappan och ska loggas som ej täckt, inte tilldelas en påhittad nivå.
 - Om flera färger delar längsta längd är färgvalets prioritering i spärrhanden inte uttryckligen definierad tillsammans med kvalitetskriterierna. Befintlig öppningsfärgsordning används tills expert har granskat gränsfallet.
 - Öppningsintervallet 6-10 hp gäller för denna spärrfamilj. Övriga öppningsregler, inklusive 11 hp-regeln och starköppningen 2♣, behålls.
@@ -61,4 +63,4 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 Ingen störd budgivning eller försvarsbudgivning har lagts till.
 
 
-Status: rättningsmotor 8.9 och 23 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
+Status: rättningsmotor 8.9 och 25 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
