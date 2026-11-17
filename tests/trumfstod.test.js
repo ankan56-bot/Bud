@@ -44,6 +44,14 @@ const minorInvite=commonResponses.resp1(scoring.H(['C13','C12','C2','C3','D13','
 assert.equal(minorInvite.exp,'3C','10-12 htp with four-card minor support and no four-card major should raise to three');
 const minorStenberg=commonResponses.resp1(scoring.H(['C13','C12','C2','C3','D14','D2','D3','H13','H2','H3','S11','S2','S3']),'1C');
 assert.equal(minorStenberg.exp,'2N','13+ htp with four-card minor support and no four-card major should use Stenberg');
+const partnerLow=['S2','S3','S4','S5','H2','H3','H4','H5','D2','D3','D4','C2','C3'];
+const opener12=scoring.H(['S13','S12','S2','S3','H14','H2','H3','H4','D12','D2','D3','C2','C3']);
+assert.equal(commonResponses.reb1(opener12,'1H','1S',partnerLow).exp,'2S','12-16 htp with four-card support in responder suit should make the cheapest raise');
+const opener17=scoring.H(['S14','S13','S12','S2','H14','H2','H3','H4','D13','D2','D3','C2','C3']);
+assert.equal(commonResponses.reb1(opener17,'1H','1S',partnerLow).exp,'3S','17-19 htp with four-card support in responder suit should jump');
+const opener20=scoring.H(['S14','S13','S12','S11','H14','H13','H2','H3','D13','D2','D3','C2','C3']);
+assert.equal(commonResponses.reb1(opener20,'1H','1S',partnerLow).exp,'4S','20+ htp with four-card support in responder suit should bid game');
+
 
 
 
