@@ -300,3 +300,37 @@ GitHub Actions körning `43665028981` godkände samtliga steg: deterministisk ge
 - Den långsiktiga arkitekturen människa i Nord, AI i Syd och separata AI i Öst/Väst är fortsatt ett krav; den fullständiga spelande AI:n är inte färdig.
 
 main är fortsatt orörd. Allt arbete ligger på work/theme-dataset-analysis.
+
+
+## 1-färgsöppning – 1NT-svar till utgång (engine 8.4, 2026-11-17)
+
+### Källgranskning och omfattning
+- Källan är **Nordisk standard 2012-08-22, sida 3**. Ingen webbsökning har använts.
+- Arbetet omfattar sekvensen 1 i färg–1NT och fortsättningen fram till delkontrakt eller utgång. Slamsekvenser ingår inte.
+- Högfärgsöppningarna 1♥/1♠ och lågfärgsöppningen 1♦ har separata regressionsfall. 1♣–1NT verkar inte kunna uppstå naturligt med nuvarande svarstabell: en fyrkortsfärg kan visas på 1-nivån eller som klöverstöd. Detta ligger kvar som kontrollfråga i loggen, inte som en ny fastslagen systemregel.
+
+### Implementerat / korrigerat
+- Balanserad öppningshand 12–14 hp passar efter svarshandens 1NT.
+- Balanserad öppningshand 18–19 hp återbjuder 2NT.
+- Efter 2NT-inviten går svarshanden till 3NT vid minst 26 gemensamma honnörspoäng. Med minst 8-korts högfärgsfit och 26+ gemensamma spelpoäng väljs 4♥/4♠. Under gränsen passas. Detta använder våra redan fastställda utgångsgränser och stannar vid utgång.
+- Öppnarens egen 6+ färg utan sidofärg räknas nu med HTP, inte enbart hp: 12–16 HTP på lägsta nivå, 17–19 HTP med enkelhopp. Detta rättar en tidigare avvikelse mellan källtabellen och kodens poängmått.
+- Svarshandens undantag efter 1NT är korrigerat: 6–9 hp och 6+ egen färg får återbjudas på lägsta lagliga nivå utan krav. Det kan vara 2-nivån för en ny färg; öppningsfärgen återbjuds på 3-nivån.
+- Befintliga regler för tvåfärgshand, andra färgen och reverse ligger kvar. Inga nya systemregler har lagts till för sekvenser där PDF:en inte ger stöd.
+
+### Test och verifiering
+- Ny testfil: `testdata/one-one-notrump.test.js` med 6 regressionsfall.
+- Testar 1♦–1NT–2NT–3NT, högfärgsfit till 4♥, avslag på invit under 26, 6+ lågfärg med HTP-gräns, samt 6–9 hp/6+ färg på lägsta lagliga nivå.
+- Särskild kontroll säkerställer att grenen inte rekommenderar slam.
+- GitHub Actions `Theme deal regression`, körning `44075222891`: **success**. Dataset/reproducerbarhet, auktion-dispatch, den nya 1–1NT-sviten, inklivssvar, luckskydd, analysbibliotek, handvillkor, handprofiler, AI-seat-isolering, spelarroller, RKC och DDS-paketering passerade.
+- Rättningsmotor: version 8.4. Baslinjen är regenererad och committad av CI som `f8d314e`.
+- Uppdaterad baslinje: 140 givare, 591 rätt, 0 fel, 0 valfria och 38 ej täckta. Rapporten finns i `testdata/theme_deals_140_report.md`.
+
+### Kvarstående frågor – inte påhittade regler
+- Öppnarens tredje bud efter svarshandens 6–9 hp/6+ färgåterbud är inte fullständigt beskrivet i källan.
+- Svarshandens andra bud med 10 hp efter öppnarens färgåterbud saknar tydlig separat regel.
+- 20+ HTP med egen 6+ lågfärg utan sidofärg behöver expertkontroll innan ett bestämt slutbud väljs.
+- 1♣–1NT-sekvensens eventuella möjlighet behöver bekräftas mot hela svarssystemet.
+
+Frågorna är sparade i `LOGG_BUDREGLER.md`. Luckorna ska fortsätta markeras som ej täckta och får inte automatiskt ersättas med AI-antaganden.
+
+main är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
