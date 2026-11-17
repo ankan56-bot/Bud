@@ -1,45 +1,89 @@
-# Testmatris – Nordisk Standard s. 18–19 (ostörd budgivning)
+# Testmatris – ostörd budgivning, Nordisk Standard s. 18–19
 
-Källa: uppladdat foto av tryckta sidor 18–19 i *Lathund – Nya Bridgeskolan*.
+Källa: användarens uppladdade `bilaga 1.pdf`, tryckta sidor 18–19. Matrisen återger budraderna direkt från fotografiet.
 
-Status gäller implementationen i `rattningsmotor.js` på `work/theme-dataset-analysis`.
+## Sida 18 – ÖH:s tredje bud
 
-## Implementerat i denna ändring
+### SH återbjuder 1NT
+- 2♣: 5–4 eller 4441, 11–15 hp
+- 2♦: 6-kortsfärg, 11–14 hp
+- 2♥: 4-korts hjärter, 15–17 hp
+- 2♠: 3-korts spader, 15–17 hp
+- 2NT: invit, (15) 16–17 hp
+- 3♣: 6-kortsfärg, 15–17 hp
+- 3♠: 6–5-fördelning, 14–17 hp
 
-- Tredje respektive fjärde färg klassificeras efter antalet olika färger som redan visats i parets budgivning, inte efter hp.
-- Tredje färg: minst 10 hp, rondkrav.
-- Fjärde färg: minst 13 hp, utgångskrav.
-- Om styrkan inte når källans gräns returneras ej täckt/för svagt med förklaring i stället för att budet godkänns.
-- Budet måste vara en ny färg; sang och redan bjudna färger klassificeras inte som tredje/fjärde färg.
+### SH prefererar
+- Pass: 11–15 hp
+- 2♠: 3-korts spader, 15–17 hp
+- 2NT: invit, (15) 16–17 hp
+- 3♣: 5–5-fördelning, 15–17 hp
+- 3♥: 6–4-fördelning, 15–17 hp
+- 4♥: minst 6–4-fördelning, stark hand
 
-## Obligatoriska sekvenstester
+### SH bjuder om sin färg
+- Pass: 11–15 hp
+- 2♠: 6–5-fördelning, minimum
+- 2NT: invit, (15) 16–17 hp
+- 3♦: 6-kortsfärg, 15–17 hp
+- 3♥: invit
+- 3♠: 6–5-fördelning, 14–17 hp
+- 4♣: Splinter, 16–17 hp (konflikt med projektbeslutet att ta bort Splinter; får inte återinföras automatiskt)
+- 4♥: slutbud
 
-| Test | Sekvens/regel | Förväntat |
-|---|---|---|
-| T3-01 | 1♥–1♠–2♥–3♣ med 10+ hp | 3♣ godtas som tredje färg, rondkrav |
-| T3-02 | Samma sekvens med under 10 hp | Ej täckt/för svagt |
-| T3-03 | 1♥–1♠–2♣–2♦ med 9 hp | Ej täckt/för svagt som fjärde färg |
-| T4-01 | 1♥–1♠–2♣–2♦ med 13+ hp | 2♦ godtas som fjärde färg, utgångskrav |
-| T4-02 | Sekvens där endast två färger visats före ny färg | Ska inte felklassas som fjärde färg |
-| T4-03 | Sekvens där tre färger redan visats före ny färg | Ska inte felklassas som tredje färg |
-| T4-04 | Försök att återbjuda redan visad färg | Ska inte klassificeras som tredje/fjärde färg |
+### SH inviterar med 2NT
+- 3♣: svagt, fjärde färg, utgångskrav
+- 3♦: 5–5-fördelning, minimum
+- 3♥: 6–4-fördelning, minimum
+- 3♠: 3-korts spader, maximum (annars 2♠ direkt)
+- 3NT: slutbud
 
-## Källtabeller som ännu kräver separat implementering och handtester
+## Sida 19 – SH bjuder tredje eller fjärde färg
 
-### Sida 18
-- Öppningshandens återbud efter svarshandens 1NT.
-- Öppningshandens återbud efter preferens.
-- Öppningshandens återbud när svarshanden bjuder om sin färg.
-- Öppningshandens svar på 2NT-invit.
-- Exakta minimum-/maximumgränser och fördelningskrav i respektive tabell.
+### SH bjuder tredje färg
+- Pass: inte tillåtet
+- 2♥: 2-korts hjärter, minimum
+- 2♠: fjärde färg, utgångskrav
+- 2NT: spaderhåll, minimum
+- 3♣: 6-kortsfärg, minimum
+- 3♦: 4-kortsstöd
+- 3♥: 3-korts hjärter
+- 3NT: spaderhåll, maximum
 
-### Sida 19
-- Öppningshandens exakta val efter svarshandens tredje färg: förbjudna bud, preferens, stöd, längdvisning och hållvisning.
-- Öppningshandens exakta val efter svarshandens fjärde färg.
-- Svarshandens fortsättningar efter tredje färg: invit 11–12 hp, fjärde färg som utgångskrav, 5–5, 6-korts hjärter.
-- Svarshandens fortsättningar efter fjärde färg: ruterhåll, stödpoäng, 6-kortsfärg och slutbud.
-- Verifiera skillnaden mellan hp och stp i alla dessa grenar.
+### Fortsättning efter tredje färg
+- 2♠: fjärde färg, utgångskrav
+- 2NT: invit, 11–12 hp
+- 3♣: invit, 11–12 hp
+- 3♦: 5–5-fördelning, 11–12 hp
+- 3♥: 6-korts hjärter, 11–12 hp
 
-## Viktig avgränsning
+### SH bjuder fjärde färg
+- Pass: inte tillåtet
+- 2♥: inget bättre bud
+- 2♠: 2-korts spader
+- 2NT: ruterhåll
+- 3♣: 5–5-fördelning
+- 3♦: 4-kortsfärg
+- 3♥: 6–4-fördelning, maximum (annars 2♠ direkt)
+- 3♠: 3-korts spader, maximum (annars 2♠ direkt)
+- 3NT: inte tillåtet
 
-Denna ändring korrigerar klassificeringen av tredje/fjärde färg. Den implementerar inte automatiskt samtliga svarstabeller på sidorna 18–19. Dessa ska inte markeras som färdiga förrän varje rad har en sekvenstest med representativa händer. Inga luckor får fyllas med antagna systemregler.
+### Fortsättning efter fjärde färg
+- 2NT: ruterhåll, 13+ hp
+- 3♣: minst 4-stöd, 13+ stp
+- 3♥: 3-stöd, 16+ stp
+- 3♠: minst 6-korts, 16+ stp
+- 3NT: ruterhåll, slutbud
+- 4♠: minst 6-korts, maximum 15 stp
+
+## Testkrav och status
+
+1. Testa varje tabellgren separat med korrekta exempelbudgivningar.
+2. Tredje respektive fjärde färg identifieras av antalet olika färger paret redan visat, inte av hp.
+3. Tabellens inledning säger att ny färg är krav, men tabellen ger ingen generell hp-gräns för själva tredje-/fjärde-färgsbudet. Motorn får därför inte använda påhittade generella gränser på 10 respektive 13 hp.
+4. Testa uttryckliga förbud: pass efter tredje färg, pass efter fjärde färg och 3NT efter fjärde färg.
+5. Testa hp och stp separat; de får inte blandas.
+6. 4♣ Splinter är en uttrycklig konflikt mellan lathunden och projektets tidigare beslut att ta bort Splinter. Logga för expertbeslut.
+7. Otydliga eller ej specificerade handvärderingar ska hamna i ej-täckt-loggen.
+
+**Status:** Källavskriften är korrigerad. Klassificeringen av tredje/fjärde färg är korrigerad i motorn. Fullständig handbaserad regressionstestning av samtliga rader återstår; dokumentet ska inte tolkas som att alla rader är godkända.
