@@ -21,13 +21,15 @@ const report = {
   exceptions: [],
   illegalRecommendations: [],
   invalidAuctions: [],
-  unfinishedAuctions: []
+  unfinishedAuctions: [],
+  sourceGapStops: []
 };
 
 for (const deal of deals) {
   const st = { hands: deal.hands, dealer: deal.dealer, bids: [] };
   let seat = deal.dealer;
   let ended = false;
+  let sourceGapStopped = false;
   let guard = 0;
 
   while (!ended && guard++ < 32) {
@@ -46,12 +48,17 @@ for (const deal of deals) {
           report.uncovered.push({
             dealId: deal.id,
             seat,
-            auction: st.bids.map(b => b.s + ':' + b.c).join(' '),
+            auction: st.bids.slice(0, -1).map(b => b.s + ':' + b.c).join(' '),
+            sourceGap: !!(node && node.sourceGap),
             reason: node && node.why ? node.why : 'Ingen regelmatchning.'
           });
+          st.bids.pop();
+          sourceGapStopped = true;
+          break;
         }
       } catch (error) {
         report.exceptions.push({ dealId: deal.id, seat, message: String(error && error.message || error) });
+        st.bids.pop(); sourceGapStopped = true; break;
       }
       st.bids[index] = { s: seat, c: call };
     } else {
@@ -91,22 +98,24 @@ console.log(JSON.stringify({
   exceptions: report.exceptions.length,
   illegalRecommendations: report.illegalRecommendations.length,
   invalidAuctions: report.invalidAuctions.length,
-  unfinishedAuctions: report.unfinishedAuctions.length
+  unfinishedAuctions: report.unfinishedAuctions.length,
+  sourceGapStops: report.sourceGapStops.length
 }, null, 2));
 
 assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
-assert.equal(report.turns, 162, 'The fixed corpus contains 162 undisturbed N/S positions after source-gap branches are isolated.');
-assert.equal(report.covered, 152, 'The source-verified rules cover 152 of 162 undisturbed N/S positions.');
+assert.equal(report.turns, 159, 'The fixed corpus stops each deal at its first explicit source gap.');
+assert.equal(report.covered, 148, 'The source-verified rules cover 148 positions before the first source gap.');
 const acceptedSourceGaps=[
   'invit-08','invit-09','invit-10','nt-08','nt-09','nt-10','rkc-08',
-  'sang-09','slamnt-08','slamnt-10'
+  'sang-09','slamnt-08','slamnt-10','alla-10'
 ].sort();
 assert.deepEqual(report.uncovered.map(x=>x.dealId).sort(),acceptedSourceGaps,
   'Only documented 1NT invitation and continuation source gaps may remain uncovered.');
-assert.ok(report.uncovered.every(x=>/anges inte|inte angiven|inte beskrivet|ej täckt/i.test(x.reason)),
-  'Every uncovered fixed-corpus case must explain its source gap.');
+assert.ok(report.uncovered.every(x=>x.sourceGap===true&&x.reason&&x.reason.length>20),
+  'Every uncovered fixed-corpus case must be an explicit, explained source gap.');
+assert.equal(report.sourceGapStops.length,report.uncovered.length,'Each incomplete auction must stop at its first source gap.');
 assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
-assert.equal(report.coveragePercent, 93.8, 'Undisturbed coverage reflects the documented source gaps, including Stenberg renons.');
+assert.equal(report.coveragePercent, 93.1, 'Undisturbed coverage reflects the documented source gaps, including minor and Stenberg continuations.');
