@@ -57,3 +57,23 @@ test('page 19: after 1♥–1♠; 2♣–2♦, 2NT shows a diamond stopper', () 
   ]);
   expectBid(st, 8, '2N');
 });
+
+test('page 18: preference branch accepts 2NT invite at 15-17 hp', () => {
+  const hand = ['C14','C13','C9','C8','D14','D9','D8','H13','H9','H8','S12','S9','S8'];
+  const st = state(hand, [
+    {s:'N',c:'1D'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+    {s:'N',c:'2N'}
+  ]);
+  expectBid(st, 8, '2N');
+});
+
+test('page 19: opener shows four-card diamond support after third suit', () => {
+  const hand = ['C14','C13','C12','C11','C10','C9','D14','D13','D12','D9','H14','H13','S14'];
+  const st = state(hand, [
+    {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1H'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'2D'},{s:'W',c:'P'},
+    {s:'N',c:'3D'}
+  ]);
+  expectBid(st, 8, '3D');
+});
