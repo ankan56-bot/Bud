@@ -403,35 +403,51 @@ var Rattning = (function(){
 
   /* ––––– SVAG TVÅA (Nordisk Standard) ––––– */
   function resp2w(h,oc,call){
-    var o=st_(oc),L=h.L,s=isBid(call)?st_(call):null;
+    var o=st_(oc),L=h.L,s=isBid(call)?st_(call):null,stp=h.htp(o),hp=h.hp;
+    var isGame=function(c){
+      if(!isBid(c))return false;
+      var level=lv(c),suit=st_(c);
+      return (suit==='N'&&level>=3)||(maj(suit)&&level>=4)||(suit!=='N'&&!maj(suit)&&level>=5);
+    };
     var means=function(c){
-      if(c==='3'+o)return 'Spärrhöjning med minst 3 korts stöd; ej invit.';
-      if(c==='3N')return 'Slutbud i sang.';
-      if(c==='2N')return 'Invitbud med minst 2 korts stöd. PDF:en anger ingen exakt hp-gräns för svarshanden.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===lowest(st_(c),oc))return 'Ny färg med minst 5 kort: krav till minst 3 i öppningsfärgen.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===jump(st_(c),oc))return 'Hopp i ny färg visar renons och är slaminvit.';
+      if(c==='3'+o)return 'Invit i öppningsfärgen, cirka 14–16 stp.';
+      if(c==='2N')return 'Stenberg 2NT, 13+ stp.';
+      if(c==='4N')return 'Essfråga med öppningsfärgen som trumf.';
+      if(isGame(c))return 'Utgångsbud – slutbud.';
+      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===lowest(st_(c),oc))return 'Ny färg, ofta sexkortsfärg, minst 15–16 hp och rondkrav.';
+      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===jump(st_(c),oc))return 'Splinter i den hoppade färgen, 19+ stp.';
       return null;
     };
+
     if(call==='2N'){
-      if(L[o]>=2)return {exp:call,alt:[],why:'2NT är invitbud och kräver minst 2 korts stöd. Källdokumentet anger ingen exakt hp-gräns för svarshanden.',means:means,conv:'svag tvåa',soft:true};
-      return NC('2NT-inviten efter svag tvåa kräver minst 2 korts stöd; handen saknar sådant stöd.','', 'svag tvåa');
-    }
-    if(call==='3N'){
-      return {exp:call,alt:[],why:'3NT anges som slutbud efter svag tvåöppning.',means:means,conv:'svag tvåa',soft:true};
+      if(stp>=13)return {exp:call,alt:[],why:'2NT är Stenberg 2NT och visar minst 13 stp. Det är inte den tidigare enkla invitfrågan.',means:means,conv:'Stenberg',soft:true};
+      return NC('2NT som Stenberg kräver minst 13 stp; handen når inte styrkegränsen.','', 'Stenberg');
     }
     if(call==='3'+o){
-      if(L[o]>=3)return {exp:call,alt:[],why:'3 i öppningsfärgen är en spärrhöjning med minst 3 korts stöd; det är inte en invit.',means:means,conv:'svag tvåa',soft:true};
-      return NC('Spärrhöjning till 3 i öppningsfärgen kräver minst 3 korts stöd.','', 'svag tvåa');
+      if(stp>=14&&stp<=16)return {exp:call,alt:[],why:'3 i öppningsfärgen är invit och visar cirka 14–16 stp enligt lathundens sida 27.',means:means,conv:'svag tvåa',soft:true};
+      if(stp<14)return NC('Invitbudet 3 i öppningsfärgen visar cirka 14–16 stp; handen har '+stp+' stp.','', 'svag tvåa');
+      return NC('3 i öppningsfärgen är ett invitbud på cirka 14–16 stp; handen ligger över det angivna invitintervallet.','', 'svag tvåa');
+    }
+    if(call==='4N'){
+      return {exp:call,alt:[],why:'4NT är essfråga med öppningsfärgen som trumf enligt lathundens sida 27.',means:means,conv:'Blackwood 5 ess',soft:true};
+    }
+    if(isGame(call)){
+      return {exp:call,alt:[],why:'Direkt utgångsbud är slutbud enligt lathundens sida 27.',means:means,conv:'svag tvåa',soft:true};
     }
     if(isBid(call)&&s!==o&&s!=='N'){
-      if(call===lowest(s,oc)&&L[s]>=5){
-        return {exp:call,alt:[],why:'Ny färg med minst 5 kort är krav till minst 3 i öppningsfärgen.',means:means,conv:'svag tvåa',soft:true};
+      if(call===lowest(s,oc)){
+        if(hp<15)return NC('Ny färg efter svag tvåöppning kräver minst 15–16 hp enligt lathunden; handen har '+hp+' hp.','', 'svag tvåa');
+        if(L[s]>=6)return {exp:call,alt:[],why:'Ny färg med minst 15 hp och sexkortsfärg. Lathunden anger att ny färg ofta är sexkortig och är rondkrav.',means:means,conv:'svag tvåa',soft:true};
+        if(L[s]===5)return NC('Ny färg visar minst 15–16 hp och är rondkrav. Lathunden säger ofta sexkortsfärg men anger inte om femkortsfärg alltid är tillåten; femkortsfärgen sparas för expertbedömning.','', 'svag tvåa');
+        return NC('Ny färg efter svag tvåöppning är ofta sexkortig och kräver minst 15–16 hp; handen har färre än fem kort i färgen.','', 'svag tvåa');
       }
-      if(call===jump(s,oc)&&L[s]===0){
-        return {exp:call,alt:[],why:'Hopp i ny färg visar renons och är slaminvit.',means:means,conv:'svag tvåa',soft:true};
+      if(call===jump(s,oc)){
+        if(stp>=19&&L[s]<=1)return {exp:call,alt:[],why:'Hopp i ny färg är Splinter och visar minst 19 stp.',means:means,conv:'Splinter',soft:true};
+        if(stp<19)return NC('Splinter efter svag tvåöppning kräver minst 19 stp; handen har '+stp+' stp.','', 'Splinter');
+        return NC('Hopp i ny färg är Splinter, men den hoppade färgen är inte singel eller renons.','', 'Splinter');
       }
     }
-    return NC('Svar efter svag tvåa är inte täckt för detta bud eller denna hand.','', 'svag tvåa');
+    return NC('Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.','', 'svag tvåa');
   }
   function open2w(h,oc,r){
     var o=st_(oc),hp=h.hp,exp,why,alt=[];
@@ -445,12 +461,7 @@ var Rattning = (function(){
       return null;
     };
     if(r==='2N'){
-      if(hp>=6&&hp<=8){exp='3'+o;why='6-8 hp: minimum visas med 3 i öppningsfärgen.';}
-      else if(hp>=9&&hp<=10){
-        if(maj(o)){exp='4'+o;alt=['3N'];why='9-10 hp: maximum visas med 4 i öppningshögfärgen; 3NT är också angivet som maxalternativ.';}
-        else{exp='3N';why='9-10 hp: maximum visas med 3NT (inte 4 i lågfärgen).';}
-      } else return NC('Öppnarens min/max-svar efter 2NT gäller 6-10 hp; handen ligger utanför intervallet.','', 'svag tvåa');
-      return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:true};
+      return NC('2NT är nu Stenberg 2NT med 13+ stp enligt lathundens sida 27. Öppnarens fortsättning efter denna Stenberg-fråga behöver rättas separat; den tidigare 6-8 / 9-10 hp-stegen används inte.','', 'Stenberg');
     }
     if(isBid(r)&&st_(r)!==o&&st_(r)!=='N'&&r===lowest(st_(r),oc)){
       return {exp:'3'+o,alt:[],why:'Svarshandens nya färg är krav till minst 3 i öppningsfärgen; öppnaren fullgör kravet med 3 i egen färg.',means:means,conv:'svag tvåa',soft:true};
@@ -536,6 +547,12 @@ var Rattning = (function(){
         var opener=ours[i].s, suit=ours[i].c[1];
         for(var j=i+1;j<ours.length;j++){
           if(ours[j].s!==opener&&ours[j].c==='2N')return suit;
+        }
+      }
+      if(/^2[DHS]$/.test(ours[i].c)){
+        var weakTwoOpener=ours[i].s, weakTwoSuit=ours[i].c[1];
+        for(var wj=i+1;wj<ours.length;wj++){
+          if(ours[wj].s!==weakTwoOpener&&ours[wj].c==='4N')return weakTwoSuit;
         }
       }
     }
@@ -1560,7 +1577,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.1'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.2'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
