@@ -1425,7 +1425,7 @@ var Rattning = (function(){
         // Exakta fortsättningar från Nordisk standard s. 3 och användarens 2NT-invit.
         if(ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2D'){
           if(b.c==='2N'){
-            if(hp>=11&&hp<=12)return {exp:'2N',alt:[],why:'2NT är invit med 11–12 hp efter 1♥–1♠–2♦ enligt användarens precisering.',means:function(c){return c==='2N'?'Invit, 11–12 hp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♦',soft:false};
+            if(h.hp>=11&&h.hp<=12)return {exp:'2N',alt:[],why:'2NT är invit med 11–12 hp efter 1♥–1♠–2♦ enligt användarens precisering.',means:function(c){return c==='2N'?'Invit, 11–12 hp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♦',soft:false};
             return NC('2NT efter 1♥–1♠–2♦ är invit med 11–12 hp. Handen ligger utanför intervallet; sekvensen lämnas ej täckt.','', 'SH:s andra bud efter 1♥–1♠–2♦');
           }
           if(b.c==='3S'){
@@ -1436,7 +1436,7 @@ var Rattning = (function(){
         }
         if(ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2C'){
           if(b.c==='2N'){
-            if(h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&hp>=10&&hp<=12)return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
+            if(h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&h.hp>=10&&h.hp<=12)return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
             return NC('2NT efter 1♥–1♠–2♣ kräver 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt sida 3.','', 'SH:s andra bud efter 1♥–1♠–2♣');
           }
           if(b.c==='3H'){
