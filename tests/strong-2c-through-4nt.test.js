@@ -137,4 +137,18 @@ const ntStaymanReply=ntStaymanAuction.concat([{s:'W',c:'P'},{s:'N',c:'3H'}]);
 assert.equal(R.nodeFor({hands:ntDeal,dealer:'N',bids:ntStaymanReply},8).exp,'3H',
   'opener answers 3C Stayman after the strong 2C rebid using the shared 2NT system');
 
+
+const fiveFiveMajorHand=['S9','S8','S7','S6','S5','H10','H9','H8','H7','H6','D4','D5','C4'];
+const fiveFiveDeal=makeDeal(ntOpenerHand,fiveFiveMajorHand);
+const fiveFiveAuction=ntStaymanAuction.slice(0,6).concat([{s:'S',c:'3D'}]);
+const fiveFiveNode=R.nodeFor({hands:fiveFiveDeal,dealer:'N',bids:fiveFiveAuction},6);
+assert.equal(fiveFiveNode.exp,null,'5-5 majors after the strong 2NT rebid must not inherit an unverified transfer priority');
+assert.equal(fiveFiveNode.sourceGap,true);
+const sixClubHand=['C14','C12','C11','C10','C9','C8','D4','D5','D6','H2','H3','S4','S5'];
+const sixClubDeal=makeDeal(ntOpenerHand,sixClubHand);
+const sixClubAuction=ntStaymanAuction.slice(0,6).concat([{s:'S',c:'3C'}]);
+const sixClubNode=R.nodeFor({hands:sixClubDeal,dealer:'N',bids:sixClubAuction},6);
+assert.equal(sixClubNode.exp,null,'PRO/Slam low-suit continuations must remain uncovered');
+assert.equal(sixClubNode.sourceGap,true);
+
 console.log('Strong 2C through 4NT and source-bound third-bid branches: all tests passed.');
