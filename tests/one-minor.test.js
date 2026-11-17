@@ -197,7 +197,7 @@ test('1♦–1♥–1♠ is a natural one-level second suit, not a reverse',()=>
 
 test('equally long side suits with no source priority are left uncovered',()=>{
   const opener=hand({C:'AKQ98',H:'KQJ2',S:'QJ98'});
-  const responder=hand({D:'JT98',H:'AK5',S:'KQ6',C:'456'});
+  const responder=hand({D:'KQJ9',C:'456',H:'567',S:'234'});
   const result=openerNode(opener,responder,'1C','1D');
   assert.equal(result.exp,null);
   assert.equal(result.sourceGap,true);
