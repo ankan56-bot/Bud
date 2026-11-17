@@ -958,6 +958,8 @@ function assessReverse(shape, honors) {
   assert.match(raw.why, /två eller fler singeltoner/i);
   const node = Rattning.nodeFor(state, 4);
   assert.equal(node.exp, '4H', 'The separate game-point safety check still finds the mandatory major game after Stenberg.');
+  assert.equal(node.sourceGap, true, 'The unresolved singleton priority must remain visible and logged even when the game-level safety check rescues the contract.');
+  assert.match(node.sourceGapReason, /singeltoner/i);
 }
 
 // A new suit over a weak two is forcing, but the opener's exact rebid is unspecified.
