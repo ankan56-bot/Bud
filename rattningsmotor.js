@@ -1210,7 +1210,7 @@ var Rattning = (function(){
     if(d===4 && opener && ours[0].c==='1H' && ours[1].c==='1D' &&
        ours[2].c==='2H' && ours[3].c==='2N'){
       if(b.c==='3C')return {exp:'3C',alt:[],why:'3♣ är svagt fjärde färgsbud men utgångskrav enligt sida 18.',means:function(c){return c==='3C'?'Svagt, fjärde färg, utgångskrav.':null},conv:'ÖH:s tredje bud efter 2NT-invit',soft:false};
-      if(b.c==='3N')return {exp:'3N',alt:[],why:'3NT är slutbud enligt tabellen på sida 18.',means:function(c){return c==='3N'?'Slutbud.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
+      if(b.c==='3N'&&h.hp>=15&&h.hp<=17)return {exp:'3N',alt:[],why:'3NT visar 15–17 hp enligt användarens precisering.',means:function(c){return c==='3N'?'15–17 hp.':null},conv:'ÖH:s tredje bud efter 2NT-invit'};
       var lens65TwoNT=[h.L.C,h.L.D,h.L.H,h.L.S].sort(function(a,b){return b-a});
       var shape55TwoNT=lens65TwoNT[0]===5&&lens65TwoNT[1]===5;
       var shape64TwoNT=lens65TwoNT[0]===6&&lens65TwoNT[1]===4;
