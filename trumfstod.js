@@ -57,6 +57,11 @@
     return ordinary(opening).rebid(hand,opening,response,partnerCards);
   }
 
+  function responderContinuation(hand,opening,call,partnerHand,prior,rkcTrumpFromAuction,sideWanted,askSeat){
+    return stenberg.responderContinuation(hand,opening,call,partnerHand,prior,
+      rkcTrumpFromAuction,sideWanted,askSeat);
+  }
+
   function isSupportResponse(hand,opening,bid){
     if(!isOneLevelSuit(opening)||!isBid(bid)) return false;
     var suit=st_(opening);
@@ -64,6 +69,6 @@
     return bid==='2N'&&hand&&hand.L&&hand.L[suit]>=4;
   }
 
-  return {responder:responder,openerSecondBid:openerSecondBid,
+  return {responder:responder,openerSecondBid:openerSecondBid,responderContinuation:responderContinuation,
     isSupportResponse:isSupportResponse,accepts:isOneLevelSuit};
 });
