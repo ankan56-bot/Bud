@@ -10,7 +10,7 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(api,common){
  var SU=api.SU,maj=api.maj,st_=api.st_,NC=api.NC;
  var lowest=api.lowest,jump=api.jump,handHps=api.handHps;
- var isBid=api.isBid,lv=api.lv;
+ var isBid=api.isBid,lv=api.lv,H=api.H,partnershipPoints=api.partnershipPoints;
 
  function accepts(opening){
    return !!opening&&/^[1][CDHS]$/.test(opening)&&!maj(st_(opening));
@@ -131,5 +131,57 @@
    return common.reb1(hand,opening,response,partnerHand);
  }
 
- return {accepts:accepts,open:open,respond:respond,rebid:rebid};
+
+ function responderSecondBid(hand,opening,response,rebid,openerHandCards){
+   if(!accepts(opening))return NC('Fel modul för öppningsfärgen.');
+   var o=st_(opening),r=st_(response),rb=st_(rebid),oh=H(openerHandCards);
+   // Efter öppnarens återbud i egen lågfärg (6+ kort) används
+   // de dokumenterade fortsättningarna konservativt. Generisk
+   // poängsummering får inte skapa 2NT utan stöd för budets handprofil.
+   if(rb===o&&oh.L[o]>=5){
+     var support=hand.L[o],htp=handHps(hand,o);
+     var side=SU.filter(function(s){return s!==o&&s!==r;});
+     var controls=side.every(function(s){return hand.stop(s);});
+     if(hand.bal&&hand.hp>=10&&hand.hp<=12&&support>=2&&controls)
+       return {exp:'2N',alt:[],why:'10–12 hp, balanserad hand, minst två korts stöd i öppningslågfärgen och håll i sidofärgerna: invit till sang.',
+         means:function(b){return b==='2N'?'10–12 hp, balanserad, minst två korts stöd och håll i sidofärgerna.':null},conv:'svarshandens 2:a bud'};
+     if(support>=3&&htp>=11&&htp<=12)
+       return {exp:'3'+o,alt:[],why:'11–12 HTP och minst tre korts stöd i öppnarens långfärg: invitativt stöd.',
+         means:function(b){return b==='3'+o?'11–12 HTP och minst tre korts stöd i öppningsfärgen.':null},conv:'svarshandens 2:a bud'};
+     if(support>=4&&htp>=13&&htp<=18)
+       return {exp:'4'+o,alt:[],why:'13–18 HTP och minst fyra korts stöd i öppnarens långfärg: starkt stöd/invit.',
+         means:function(b){return b==='4'+o?'13–18 HTP och minst fyra korts stöd i öppningsfärgen.':null},conv:'svarshandens 2:a bud'};
+     if(hand.hp>=13&&hand.bal&&controls)
+       return {exp:'3N',alt:[],why:'13+ hp, balanserad hand och håll i sidofärgerna: naturlig sangutgång.',
+         means:function(b){return b==='3N'?'13+ hp, balanserad hand med håll i sidofärgerna.':null},conv:'svarshandens 2:a bud'};
+     if(hand.hp>=6&&hand.hp<=10&&support<=1&&
+        !SU.some(function(s){return s!==o&&s!==r&&hand.L[s]>=6;}))
+       return {exp:'P',alt:[],why:'6–10 hp utan stöd för öppnarens långfärg eller egen lång sidofärg: pass efter öppnarens 6+ lågfärg.',
+         means:function(b){return b==='P'?'6–10 hp utan passande stöd eller egen lång sidofärg.':null},conv:'svarshandens 2:a bud'};
+     return NC('Svarshandens andra bud efter öppnarens 6+ lågfärg passar inte någon av de tydligt angivna profilerna. Sekvensen sparas för expertgranskning.',function(){return null},'svarshandens 2:a bud',true);
+   }
+   return common.responderSecondBid(hand,opening,response,rebid,openerHandCards);
+ }
+
+ function openerThirdBid(hand,opening,response,rebid,responderSecond,partnerHandCards){
+   if(!accepts(opening))return NC('Fel modul för öppningsfärgen.');
+   var o=st_(opening),rb=st_(rebid),second=st_(responderSecond),partner=H(partnerHandCards);
+   // En svag/invitativ preferens till öppnarens långa lågfärg:
+   // acceptera endast när det finns minst åtta trumf och tillräcklig
+   // gemensam styrka för lågfärgsutgång.
+   if(second===o&&lv(responderSecond)>=3&&hand.L[o]>=5&&partner.L[o]>=3){
+     var fit=hand.L[o]+partner.L[o],total=partnershipPoints(hand,partner,o);
+     if(fit>=8&&total>=28)
+       return {exp:'5'+o,alt:[],why:total+' gemensamma HTP/poäng och '+fit+' korts trumfstöd: lågfärgsutgång.',
+         means:function(b){return b==='5'+o?'Minst åtta trumf och tillräcklig gemensam styrka för lågfärgsutgång.':null},conv:'öppnarens 3:e bud'};
+     if(fit>=8)
+       return {exp:'P',alt:[],why:total+' gemensamma HTP/poäng och '+fit+' korts trumfstöd: utgångskraven för 5-lågfärg är inte uppfyllda; stanna i 3-lågfärg.',
+         means:function(b){return b==='P'?'Ingen tillräcklig gemensam styrka för 5-lågfärgsutgång.':null},conv:'öppnarens 3:e bud'};
+   }
+   if(rb===o&&responderSecond==='2N')
+     return NC('2NT efter öppnarens återbud i egen lågfärg: handen saknar den dokumenterade håll-/stödprofilen för en säker fortsättning. Pass, 3NT eller lågfärgsfortsättning avgörs inte här; sekvensen sparas.',function(){return null},'öppnarens 3:e bud',true);
+   return NC('Öppnarens tredje bud efter svarshandens andra bud i 1♣/1♦-sekvensen saknar en entydig fortsättningsregel i det tillgängliga underlaget. Sekvensen sparas för expertgranskning.',function(){return null},'öppnarens 3:e bud',true);
+ }
+
+ return {accepts:accepts,open:open,respond:respond,rebid:rebid,responderSecondBid:responderSecondBid,openerThirdBid:openerThirdBid};
 });
