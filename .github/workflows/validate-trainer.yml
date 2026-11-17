@@ -16,6 +16,7 @@ jobs:
           node --check rattningsmotor.js
           node --check stenberg.js
           node --check trumfstod.js
+          node --check lagfargsbudgivning.js
           node --check 2kloveroppning.js
           node --check budbeslut.js
           node --check 2kloveroppning.js
@@ -115,6 +116,17 @@ jobs:
         run: node tests/one-major-100.test.js
       - name: Run 1♥/1♠ invit acceptance tests
         run: node tests/one-major-invit.test.js
+      - name: Run 1♣/1♦ targeted module tests
+        run: node tests/one-minor.test.js
+      - name: Run 200-deal 1♣/1♦ validation
+        run: node tests/one-minor-200.test.js
+      - name: Upload minor-opening validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minor-opening-validation
+          path: testdata/one_minor_200_validation_latest.json
+          if-no-files-found: ignore
       - name: Run broad undisturbed regression corpus
         run: |
           node tests/ostord-100.test.js
