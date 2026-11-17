@@ -337,3 +337,6 @@ Användarens uttryckliga instruktion återställer den tidigare definitionen av 
 - Gemensam kontraktskontroll: 3NT 26 hp; 4♥/4♠ 26 spelpoäng + minst 8-korts fit; 5♣/5♦ 28 spelpoäng + minst 8-korts fit; lillslam 33 poäng + högst ett saknat ess (och fit i färg); storslam alla fyra ess samt trumfkungen i färg.
 - Korrigerad gemensam trumflängdsbonus: 9 trumf +1, 10+ trumf +2.
 - Fyra regressionstester tillagda. Testkörning/CI inväntar verifiering.
+
+
+- Motor 9.6: generell missad-utgång-kontroll får inte överskriva ej täckta fortsättningar efter Stenberg 2NT. Slutkontraktets separata poängkontroll gäller fortsatt. Testfixturer och +2-trumfbonusregression rättade.
