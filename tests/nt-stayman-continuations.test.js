@@ -128,10 +128,10 @@ assert.match(exactlyFourSpadesAfter2H.means('2N'),/exakt fyra spader/i);
 assert.match(exactlyFourSpadesAfter2H.means('3N'),/också exakt fyra spader/i);
 const overlappingFourSpadesAndFourClubs=responderAfterStayman(
   ['S14','S13','S12','S11','C14','C13','C12','C11','H2','H3','H4','D2','D3'],'2H');
-assert.equal(overlappingFourSpadesAndFourClubs.exp,null,
-  'the 4-spade Stayman route and a 4-card minor game-force both apply; no priority is invented');
-assert.match(overlappingFourSpadesAndFourClubs.why,/ingen prioritet/i);
-assert.match(overlappingFourSpadesAndFourClubs.means('3C'),/utgångskrav/i);
+assert.equal(overlappingFourSpadesAndFourClubs.exp,'2N',
+  'the four-card major continuation takes priority over a competing 4-card club game-force');
+assert.match(overlappingFourSpadesAndFourClubs.why,/högfärgsvisningen har prioritet/i);
+assert.match(overlappingFourSpadesAndFourClubs.means('2N'),/exakt fyra spader/i);
 const overlappingFourSpadesAndHeartInvite=responderAfterStayman(
   ['S14','S13','S12','S11','H14','H13','H12','H11','H10','D14','D13','D12','D11'],'2H');
 assert.equal(overlappingFourSpadesAndHeartInvite.exp,null,
