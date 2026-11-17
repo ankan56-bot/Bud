@@ -218,7 +218,7 @@ function assessReverse(shape, honors) {
   return Rattning.judge({ hands, dealer: 'N', bids }).items.at(-1);
 }
 
-// 18 HTP, 5-4 shape: reverse is allowed without an agreed trump suit.
+// 18 HTP, 5-4 shape: a jump in the second suit is allowed.
 {
   const item = assessReverse(
     { C: 1, D: 5, H: 3, S: 4 },
@@ -230,7 +230,7 @@ function assessReverse(shape, honors) {
 }
 
 // 17 HP, 5-4 shape: singleton/doubleton elsewhere must not create STP.
-// The 2S reverse is therefore too strong; the engine recommends 2D.
+// The 2S jump is too strong; the engine recommends the cheapest second suit, 1S.
 {
   const item = assessReverse(
     { C: 1, D: 5, H: 3, S: 4 },
@@ -238,7 +238,7 @@ function assessReverse(shape, honors) {
   );
   assert.equal(item.bedomning, 'fel');
   assert.equal(item.htp, 17, '5-4 shortness must not be counted as STP');
-  assert.equal(item.battre, '2♦');
+  assert.equal(item.battre, '1♠');
 }
 
 // 17 HP, 6-4 shape: own 6+ suit permits STP; reverse reaches 18+ HTP.
