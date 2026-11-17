@@ -1,7 +1,7 @@
 # Spärröppningar – implementation och täckningsaudit
 
 Branch: `work/theme-dataset-analysis`  
-Rättningsmotor: 9.0  
+Rättningsmotor: 9.1  
 Analysbibliotek: 0.5.16  
 Omfattning: ostörd budgivning vid spärröppning. Störd budgivning ingår inte.
 
@@ -22,7 +22,7 @@ Ett kriterium ger färgkvalitet nivå 1. Båda kriterierna ger färgkvalitet niv
 | 7 kort | 2♦/2♥/2♠ | 3 i färgen |
 | 8 kort | 3 i färgen | 4 i färgen |
 
-- Sexkortig ♣ öppnas inte svagt på 2♣ eftersom 2♣ är reserverat för starköppning; sexkortig ♣ räcker inte heller till spärr på 3-nivån.
+- Sexkortig ♣ med minst ett kvalitetskriterium lämnas ej täckt: 2♣ är reserverat för starköppning, och källan fastställer ingen alternativ nivå. Sexkortig ♣ utan kvalitetskriterium blir pass.
 - För 7-korts ♣ med ett eller båda kvalitetskriterierna används 3♣, eftersom 2♣ inte kan användas som svag öppning.
 - För 8-korts ♣ används 3♣ med ett kriterium och 4♣ med båda.
 - Noll kriterier: ingen spärröppning enligt denna modell.
@@ -64,3 +64,5 @@ Ingen störd budgivning eller försvarsbudgivning har lagts till.
 
 
 Status: rättningsmotor 8.9 och 25 regressionstester är incheckade. Testkörning/CI-status är ännu inte verifierad i denna session; inga tester påstås vara godkända förrän körresultat finns.
+
+Regressionstestfilen innehåller nu 26 tester. Kvalificerande sexkortig klöver är uttryckligen ej täckt, inte automatiskt pass eller 3♣.
