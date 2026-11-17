@@ -43,17 +43,26 @@ function weakTwoHand(suit, ranks="AK9876") {
     ...cards(others[2],low.slice(0,counts[2]))
   ];
 }
+function poorQualityWeakTwoHand(suit) {
+  const others = ["S","H","D","C"].filter(s => s !== suit);
+  return [
+    ...cards(suit,"234567"),
+    ...cards(others[0],"AK"),
+    ...cards(others[1],"234"),
+    ...cards(others[2],"23")
+  ];
+}
 function elevenPointSixCardHand(suit) {
   const others = ["S","H","D","C"].filter(s => s !== suit);
   return [
-    ...cards(suit,"AKQJ98"),
-    ...cards(others[0],"J23"),
-    ...cards(others[1],"234"),
-    ...cards(others[2],"2")
+    ...cards(suit,"234567"),
+    ...cards(others[0],"AK"),
+    ...cards(others[1],"QJ"),
+    ...cards(others[2],"J23")
   ];
 }
 
-test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and a good suit", () => {
+test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and exactly six cards", () => {
   for (const suit of ["D","H","S"]) {
     const opener = weakTwoHand(suit);
     const hands = completeDeal(opener, fillerHand(opener));
@@ -64,6 +73,16 @@ test("2♦, 2♥ and 2♠ openings require exactly six cards, 6-10 HCP and a goo
   }
 });
 
+test("6-10 hp with exactly six cards opens 2♦/2♥/2♠ even without suit honors", () => {
+  for (const suit of ["D","H","S"]) {
+    const opener = poorQualityWeakTwoHand(suit);
+    const result = node(completeDeal(opener,fillerHand(opener)),[
+      {s:"N",c:"2"+suit}
+    ],0);
+    assert.equal(result.exp,"2"+suit,suit);
+  }
+});
+
 test("a six-card club suit is not treated as a weak two opening", () => {
   const opener = weakTwoHand("C");
   const hands = completeDeal(opener,fillerHand(opener));
@@ -71,7 +90,7 @@ test("a six-card club suit is not treated as a weak two opening", () => {
   assert.equal(result.exp,"P");
 });
 
-test("11 hp with a six-card major or minor opens at the one-level, not a weak two", () => {
+test("11 hp with a six-card ♦/♥/♠ suit opens at the one-level, even without suit honors", () => {
   for (const suit of ["D","H","S"]) {
     const opener = elevenPointSixCardHand(suit);
     const hands = completeDeal(opener,fillerHand(opener));
