@@ -11,6 +11,9 @@ function fill(a,b){const deck=[];for(const s of ['S','H','D','C'])for(let n=2;n<
 
 const strongHeartSupport=hand(['H14','H13','H12','H11','S14','S13','S2','D14','D2','D3','C14','C2','C3']);
 assert.equal(St.responder(strongHeartSupport,'1H').exp,'2N');
+// Splinter is paused by user decision; a qualifying hand with a side-suit void still uses Stenberg.
+const voidWithFit=hand(['D14','D13','D12','D11','H14','H13','H12','H11','S14','S13','S12','S11','S10']);
+assert.equal(St.responder(voidWithFit,'1H').exp,'2N','a side-suit void does not divert a qualifying hand into the paused splinter convention');
 const noFit=hand(['H14','H13','H12','S14','S13','S12','D14','D13','D12','C14','C13','C12','C11']);
 assert.equal(St.responder(noFit,'1H').exp,null);
 const weakSupport=hand(['H2','H3','H4','H5','S2','S3','S4','D2','D3','D4','C2','C3','C4']);
