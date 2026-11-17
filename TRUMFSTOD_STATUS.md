@@ -41,7 +41,7 @@ Hög- och lågfärgsvarianterna finns kvar i `stenberg.js`. Huvudmodulen skickar
 
 ## Kvalitativa spärrhöjningar
 
-4 i öppningsfärgen är nu implementerat som spärrhöjning enligt PDF:ens maxgränser: 12 htp i högfärg och 9 htp i lågfärg. För att göra orden 'bra stöd' och 'svitad hand' körbara används projektets befintliga `good()`-kontroll för öppningsfärgen och en obalanserad hand. Detta är dokumenterat som en preliminär operationalisering och finns som expertfråga i loggen; det är inte en ny numerisk systemregel.
+4 i öppningsfärgen är nu implementerat som spärrhöjning enligt PDF:ens maxgränser: 12 htp i högfärg och 9 htp i lågfärg. För att göra orden 'bra stöd' och 'svitad hand' körbara används projektets befintliga `good()`-kontroll för öppningsfärgen och en obalanserad hand. Detta är dokumenterat som en preliminär operationalisering och finns som expertfråga i loggen; det är inte en ny numerisk systemregel. Rättningsresultatet märks `ruleStatus: source_interpretation` så att den tolkningen kan skiljas från en uttrycklig numerisk systemregel.
 
 ## Källluckor och expertlogg
 
