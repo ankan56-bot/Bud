@@ -95,11 +95,11 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
-assert.equal(report.turns, 162, 'The fixed corpus contains 162 undisturbed N/S positions after source-gap branches are isolated.');
-assert.equal(report.covered, 152, 'The source-verified rules cover 152 of 162 undisturbed N/S positions.');
+assert.equal(report.turns, 165, 'The fixed corpus contains 165 undisturbed N/S positions after source-gap branches are isolated.');
+assert.equal(report.covered, 157, 'The source-verified rules cover 157 of 165 undisturbed N/S positions.');
 const acceptedSourceGaps=[
-  'alla-10','invit-08','invit-09','invit-10','nt-08','nt-09','nt-10',
-  'sang-09','slamnt-08','slamnt-10'
+  'alla-10','invit-08','invit-09','invit-10','nt-08','nt-09',
+  'sang-09','slamnt-10'
 ].sort();
 assert.deepEqual(report.uncovered.map(x=>x.dealId).sort(),acceptedSourceGaps,
   'Only documented 1NT invitation and continuation source gaps may remain uncovered.');
@@ -109,4 +109,4 @@ assert.equal(report.exceptions.length, 0, 'No runtime exceptions are allowed.');
 assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendations are allowed.');
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
-assert.equal(report.coveragePercent, 93.8, 'Undisturbed coverage reflects the documented source gaps, including Stenberg renons and the strong-2C continuation gap.');
+assert.equal(report.coveragePercent, 95.2, 'Undisturbed coverage reflects the documented source gaps, including Stenberg renons and the strong-2C continuation gap.');
