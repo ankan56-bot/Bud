@@ -269,4 +269,50 @@ assert.equal(R.decideLive({seat:'S',dealer:'N',auction:gameFourSpadesAuction,own
   assert.equal(result.exp,'4S','8-card spade fit and 26 combined game points selects 4S');
 }
 
+// A new suit by responder on the 3-level is game-forcing (Nordisk standard
+// p. 4). Opener must continue by showing an extra 5+ suit or bidding NT.
+// This also verifies that the live route reaches the opener's second-rebid
+// handler without inspecting partner's hidden hand.
+function liveOpenerAfterThreeLevelForce(auction,ownHand){
+  return R.decideLive({seat:'N',dealer:'N',auction,ownHand});
+}
+const balancedOpener15=[
+  'S14','S13','S2','S3','H14','H2','H3',
+  'D13','D2','D3','C11','C2','C3'
+];
+const fiveClubOpener=[
+  'S14','S2','S3','H13','H2','H3',
+  'D2','D3','C14','C13','C12','C2','C3'
+];
+const fiveDiamondOpener=[
+  'S14','S2','S3','H13','H2','H3',
+  'D14','D13','D12','D2','D3','C2','C3'
+];
+const afterTransferHeartAndThreeDiamond=[
+  {s:'N',c:'1N'},{s:'E',c:'P'},
+  {s:'S',c:'2D'},{s:'W',c:'P'},
+  {s:'N',c:'2H'},{s:'E',c:'P'},
+  {s:'S',c:'3D'},{s:'W',c:'P'}
+];
+const afterTransferSpadeAndThreeClub=[
+  {s:'N',c:'1N'},{s:'E',c:'P'},
+  {s:'S',c:'2H'},{s:'W',c:'P'},
+  {s:'N',c:'2S'},{s:'E',c:'P'},
+  {s:'S',c:'3C'},{s:'W',c:'P'}
+];
+const afterStaymanHeartAndThreeClub=[
+  {s:'N',c:'1N'},{s:'E',c:'P'},
+  {s:'S',c:'2C'},{s:'W',c:'P'},
+  {s:'N',c:'2H'},{s:'E',c:'P'},
+  {s:'S',c:'3C'},{s:'W',c:'P'}
+];
+assert.equal(liveOpenerAfterThreeLevelForce(afterTransferHeartAndThreeDiamond,balancedOpener15).exp,'3N',
+  'balanced opener without extra 5+ suit bids 3NT over game-forcing 3D');
+assert.equal(liveOpenerAfterThreeLevelForce(afterTransferHeartAndThreeDiamond,fiveClubOpener).exp,'4C',
+  'opener shows its only extra 5+ minor after game-forcing 3D');
+assert.equal(liveOpenerAfterThreeLevelForce(afterTransferSpadeAndThreeClub,fiveDiamondOpener).exp,'4D',
+  'opener shows its only extra 5+ minor after game-forcing 3C');
+assert.equal(liveOpenerAfterThreeLevelForce(afterStaymanHeartAndThreeClub,balancedOpener15).exp,'3N',
+  'same general game-force continuation applies after Stayman');
+
 console.log('1NT Stayman continuation tests: passed.');
