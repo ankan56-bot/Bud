@@ -8,16 +8,27 @@ const RANKS = { A:14, K:13, Q:12, J:11, T:10 };
 function cards(suit, ranks) {
   return [...ranks].map(rank => suit + (RANKS[rank] || Number(rank)));
 }
-function completeDeal(north, south) {
-  const used = [...north, ...south];
-  assert.equal(north.length, 13);
-  assert.equal(south.length, 13);
-  assert.equal(new Set(used).size, 26);
-  const deck = ["S","H","D","C"].flatMap(suit =>
-    Array.from({length:13}, (_,i) => suit + (14-i))
+function completeDeal(north, southCandidate) {
+  assert.equal(north.length,13);
+  const usedNorth=new Set(north);
+  const seen=new Set();
+  const south=[];
+  for(const card of southCandidate){
+    if(!usedNorth.has(card)&&!seen.has(card)&&south.length<13){
+      south.push(card);seen.add(card);
+    }
+  }
+  const deck=["S","H","D","C"].flatMap(suit=>
+    Array.from({length:13},(_,i)=>suit+(14-i))
   );
-  const rest = deck.filter(card => !used.includes(card));
-  return { N:north, E:rest.slice(0,13), S:south, W:rest.slice(13,26) };
+  const lowFirst=deck.sort((a,b)=>Number(a.slice(1))-Number(b.slice(1)));
+  for(const card of lowFirst){
+    if(south.length===13)break;
+    if(!usedNorth.has(card)&&!seen.has(card)){south.push(card);seen.add(card);}
+  }
+  assert.equal(south.length,13);
+  return {N:north,E:lowFirst.filter(card=>!usedNorth.has(card)&&!seen.has(card)).slice(0,13),
+    S:south,W:lowFirst.filter(card=>!usedNorth.has(card)&&!seen.has(card)).slice(13,26)};
 }
 function fillerHand(usedHand) {
   const deck = ["S","H","D","C"].flatMap(suit =>
