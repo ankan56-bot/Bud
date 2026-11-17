@@ -113,6 +113,8 @@ jobs:
         run: node tests/nt-stayman-analysis-tree.test.js
       - name: Run 100-deal 1♥/1♠ validation
         run: node tests/one-major-100.test.js
+      - name: Run 1♥/1♠ invit acceptance tests
+        run: node tests/one-major-invit.test.js
       - name: Run broad undisturbed regression corpus
         run: |
           node tests/ostord-100.test.js
@@ -120,8 +122,6 @@ jobs:
           node tests/ostord-400.test.js
           node tests/ostord-coverage.test.js
           node tests/ostord-manual-rules.test.js
-      - name: Run 1♥/1♠ invit acceptance tests
-        run: node tests/one-major-invit.test.js
       - name: Check application wiring
         run: |
           grep -q 'Rattning.nodeFor' Budtraning.html
