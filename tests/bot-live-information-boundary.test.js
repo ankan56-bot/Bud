@@ -9,6 +9,7 @@ const match = html.match(/function botCall\(st,botSeat\)\{([\s\S]*?)\n\}/);
 assert.ok(match, "The trainer must expose its integrated botCall implementation for source-level verification.");
 assert.match(match[1], /Rattning\.decideLive/, "Live bots must use the information-safe live API.");
 assert.doesNotMatch(match[1], /Rattning\.nodeFor|strategicBotFallback/, "Live bots must not use full-deal after-the-fact logic or an unapproved fallback.");
+assert.doesNotMatch(match[1], /st\.hands\[(?!botSeat\])/, "The bot must never read another seat's hidden hand.");
 
 const ownHand = [
   "D14","D13","D12","D5","D4","S11","S7","S6","H8","H6","H3","C9","C2"
