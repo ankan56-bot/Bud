@@ -358,3 +358,13 @@ Den fullständiga `nordisk_standard.pdf` (2012-08-22) återfanns i ChatGPT-bibli
 - Ny färg 5+ är krav till minst 3 i öppningsfärgen. Hopp i ny färg visar renons och är slaminvit. 3NT är slutbud. 3 i öppningsfärgen är spärrhöjning med 3+ stöd, ej invit.
 - Rättningsmotor 8.6 implementerar dessa källregler. Regressionerna har utökats; resultat inväntas i GitHub Actions.
 - Fortsättningar som PDF:en inte definierar är kvar i expertloggen. Störd budgivning är fortfarande pausad.
+
+
+## Svaga tvåöppningar – första PDF-baserade regressionspaketet godkänt
+
+- Rättningsmotor 8.6.
+- `testdata/weak-two.test.js`: 11/11 tester passerade.
+- Hela GitHub Actions-körningen `44096901366`: **success**.
+- 140-givarsbaslinjen: 581 rätt, 39 ej täckta, 0 fel (1 185 budpositioner). DDS är inte körd.
+- Källreglerna från PDF sida 4 är implementerade. Svarshandens 2NT har inget påhittat hp-intervall; 2+ stöd kontrolleras. Öppnarens min/max-besked efter 2NT använder 6–8 respektive 9–10 hp.
+- Modulen är fortfarande inte helt stängd: de kvarvarande sekvenserna i `testdata/weak-two-audit.md` ska lösas/testas innan 3- och 4-öppningar. Störd budgivning förblir pausad.
