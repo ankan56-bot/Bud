@@ -334,3 +334,15 @@ main är fortsatt orörd. Allt arbete ligger på work/theme-dataset-analysis.
 Frågorna är sparade i `LOGG_BUDREGLER.md`. Luckorna ska fortsätta markeras som ej täckta och får inte automatiskt ersättas med AI-antaganden.
 
 main är fortsatt orörd. Allt arbete ligger på `work/theme-dataset-analysis`.
+
+
+## Svaga tvåöppningar – första implementationen 2026-11-17
+
+- Arbetet är avgränsat till ostörd budgivning efter 2♦, 2♥ och 2♠. Störd budgivning, inkliv och dubbling har inte påbörjats.
+- Underlaget som fanns i arbetsgrenen var den inbäddade Nordisk Standard-texten i `Budtraning.html`. Ingen Nordisk Standard-PDF fanns i den aktuella grenen; inga externa webbkällor har använts.
+- Rättningsmotor 8.5 korrigerar svarshandens 3-höjning till spärrhöjning med minst 3 stödkort (inte invit), och kräver minst 2 stödkort för 2NT-invit med 9–10 hp.
+- Svaga öppningar 2♦/2♥/2♠ testas för 6–10 hp, exakt sex kort och god färgkvalitet. 2♣ är fortsatt starköppning.
+- Regressionstest `testdata/weak-two.test.js`: 6/6 tester passerade. Hela GitHub Actions-körningen `44096230036` passerade samtliga teststeg.
+- Den reproducerbara baslinjen med motor 8.5 uppdaterades: 140 givare, 592 rätt, 38 ej täckta, 0 fel. DDS har inte körts.
+- Kvarvarande svag-två-grenar finns i `testdata/weak-two-audit.md` och ska förbli ej täckta tills exakt budbetydelse och handvillkor har verifierats. Särskilt gäller det ny färg, direkta 3NT-svar, renons-/slaminvit och fortsättningar efter öppnarens min/max-besked.
+- Modulen är därför inte färdigförklarad ännu. Nästa steg är att slutföra och testa de återstående ostörda grenarna innan 3- och 4-öppningar eller störd budgivning tas upp.
