@@ -224,7 +224,7 @@ var Rattning = (function(){
         node={
           exp:missed.target,
           alt:[],
-          why:missed.why,
+          why:missed.why+(node&&node.sourceGap?' Källucka kvarstår: '+node.why:''),
           means:function(c){return c===missed.target?'Utgång eller slam enligt partnerskapets poänggränser.':null},
           conv:'missad utgång/slam',
           soft:false,
@@ -286,7 +286,7 @@ var Rattning = (function(){
           seat:current&&current.s,
           auction:bids.slice(0,i),
           attemptedCall:current&&current.c,
-          reason:node&&node.why||'Ingen verifierad fortsättning.',
+          reason:node&&node.sourceGapWhy?(node.why||'')+' Källucka kvarstår: '+node.sourceGapWhy:(node&&node.why||'Ingen verifierad fortsättning.'),
           sourceGap:!!(node&&node.sourceGap),
           hands:st&&st.hands||null
         });
