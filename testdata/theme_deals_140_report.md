@@ -6,7 +6,7 @@
 - Samtliga givare har 52 unika kort och 13 kort per hand.
 - Samtliga uppfyller generatorns temavillkor.
 - Samtliga referensauktioner passerar `Rattning.validateAuction` utan strukturella fel.
-- Rättningsmotor: version 7.3.
+- Rättningsmotor: version 8.4.
 - DDS har inte körts; detta är en budgivnings-/täckningsbaslinje.
 - 5 störda + 5 ostörda givare per tema där båda lägena är möjliga. Stenberg och trumfstöd är ostörda för att isolera respektive konvention; dubbling och inkliv genereras som störda.
 - Givarna är reproducerbara via fasta seeds och `testdata/generate-theme-deals.js`.
@@ -15,10 +15,10 @@
 
 | Bedömning | Antal |
 |---|---:|
-| Rätt | 594 |
+| Rätt | 591 |
 | Fel | 0 |
 | Valfritt | 0 |
-| Ej täckt | 37 |
+| Ej täckt | 38 |
 
 De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grundsystemets nuvarande rättningsnyckel inte ger ett entydigt facit. De ska analyseras mot källsystemet innan kompletterande regler föreslås.
 
@@ -28,19 +28,19 @@ De ej täckta buden är inte automatiskt felaktiga. De markerar lägen där grun
 |---|---:|---:|---:|---:|
 | Alla slags givar | 10 | 92 | 6 | 0 |
 | 1NT, Stayman och överföringar | 10 | 100 | 0 | 0 |
-| Stenberg 2NT | 10 | 94 | 0 | 0 |
+| Stenberg 2NT | 10 | 92 | 0 | 0 |
 | 2♣-öppning | 10 | 112 | 0 | 0 |
 | Essfråga (RKC) | 10 | 118 | 0 | 0 |
-| Slambudgivning i färg | 10 | 87 | 2 | 0 |
+| Slambudgivning i färg | 10 | 89 | 2 | 0 |
 | Slambudgivning i sang | 10 | 100 | 0 | 0 |
-| Trumfstöd | 10 | 78 | 1 | 0 |
+| Trumfstöd | 10 | 80 | 1 | 0 |
 | Sanghänder | 10 | 84 | 0 | 0 |
 | Inviter | 10 | 66 | 0 | 0 |
-| Tvåfärgshänder | 10 | 98 | 4 | 0 |
+| Tvåfärgshänder | 10 | 96 | 5 | 0 |
 | Svaga öppningar och spärrbud | 10 | 58 | 0 | 0 |
 | Upplysningsdubbling | 10 | 68 | 15 | 0 |
 | Inkliv och dubbling | 10 | 54 | 9 | 0 |
-| **Totalt** | **140** | **1 151** | **37** | **0** |
+| **Totalt** | **140** | **1 203** | **38** | **0** |
 
 ## Tolkning av temagivarna som stresstest
 
@@ -56,7 +56,7 @@ I den aktuella versionen är endast 1NT-temats öppningsvillkor klassificerade m
 
 ## Analys av ej täckta budpositioner
 
-Samtliga 37 ej täckta bedömningar ska behandlas som granskningspunkter, inte automatiskt som fel. Referensgeneratorn väljer pass när rättningsmotorn saknar ett säkert budförslag. Därför behöver dessa positioner granskas separat innan de kan användas som facit för en AI-modell.
+Samtliga 38 ej täckta bedömningar ska behandlas som granskningspunkter, inte automatiskt som fel. Referensgeneratorn väljer pass när rättningsmotorn saknar ett säkert budförslag. Därför behöver dessa positioner granskas separat innan de kan användas som facit för en AI-modell.
 
 ## Viktig metodbegränsning
 
@@ -70,4 +70,4 @@ AI-analyser som senare läggs till i analysbiblioteket ska granskas mot källsys
 
 ## Senaste verifiering
 
-GitHub Actions workflow `Theme deal regression`, körning `43694533178`, för commit `d98765e49905d5c99cf0874581001fe15160be72`: **success**. Testjobbet `theme-deals` slutfördes utan fel.
+GitHub Actions workflow `Theme deal regression`, körning `44075222891`, för engine 8.4: **success**. Testjobbet `theme-deals` slutfördes utan fel.
