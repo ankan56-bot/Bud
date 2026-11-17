@@ -307,8 +307,7 @@ const afterStaymanHeartAndThreeClub=[
   {s:'S',c:'3C'},{s:'W',c:'P'}
 ];
 const debugBalancedForce=liveOpenerAfterThreeLevelForce(afterTransferHeartAndThreeDiamond,balancedOpener15);
-assert.equal(debugBalancedForce.exp,'3N',JSON.stringify(debugBalancedForce)+'; 
-  'balanced opener without extra 5+ suit bids 3NT over game-forcing 3D');
+assert.equal(debugBalancedForce.exp,'3N',JSON.stringify(debugBalancedForce));
 assert.equal(liveOpenerAfterThreeLevelForce(afterTransferHeartAndThreeDiamond,fiveClubOpener).exp,'4C',
   'opener shows its only extra 5+ minor after game-forcing 3D');
 assert.equal(liveOpenerAfterThreeLevelForce(afterTransferSpadeAndThreeClub,fiveDiamondOpener).exp,'4D',
