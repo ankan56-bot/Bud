@@ -1,5 +1,5 @@
 {
-  "version": "0.5.12",
+  "version": "0.5.13",
   "description": "Utökat fristående bibliotek med budträd, handprofiler, korta sammanhängande analyser och explicita värderingsregler. Systemberoende sekvenser anges i respektive förutsättningar.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -7465,19 +7465,6 @@
           ],
           "meaning": "Öppnaren visar minimum med 3D och 6–8 hp.",
           "analysis": "Detta är öppnarens minimumsvar på invitbudet 2NT. Svarshandens exakta fortsättning efter minimum är inte utvecklad i PDF-avsnittet.",
-          "branches": []
-        },
-        {
-          "id": "t34_n7",
-          "sequence": [
-            "2♦",
-            "Pass",
-            "2NT",
-            "Pass",
-            "4D"
-          ],
-          "meaning": "Öppnaren visar maximum med 9–10 hp och 4D.",
-          "analysis": "Efter högfärgsöppning är 4 i öppningshögfärgen ett av de angivna maxbeskeden. PDF:en anger även 3NT som alternativ men inte vilket handvillkor som väljer mellan dem.",
           "branches": []
         },
         {
