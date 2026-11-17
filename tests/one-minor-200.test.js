@@ -115,3 +115,5 @@ assert.equal(report.exceptions.length,0);
 assert.equal(report.illegalRecommendations.length,0);
 assert.equal(report.invalidAuctions.length,0);
 assert.equal(report.unfinishedAuctions.length,0);
+assert.equal(report.sourceGapCount,report.uncovered.length,'Every uncovered minor sequence must be explicitly marked and saved as a source gap.');
+assert.ok(report.coveragePercent>=93,'The 200-deal minor-opening test must retain at least 93% coverage while preserving explicit source gaps.');
