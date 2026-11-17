@@ -52,7 +52,7 @@ Detta synkroniserar runtime med ett redan fattat användarbeslut; det inför ing
 
 ### B. RKC-överlämning efter Stenberg – korrigerad och testad
 
-Revisionens första CI-körning visade att 4NT efter 1♣–2NT–3♣ inte identifierades som RKC, eftersom trumfen inte kunde härledas från Stenbergsekvensen. `slamlogik.js` känner nu igen 1M–2NT–3x–4NT först efter öppnarens beskrivande 3-nivååterbud, och `budbeslut.js` klassificerar det aktuella 4NT-budet med hela den offentliga sekvensen. Stenberg- och RKC-testerna passerar. Ingen RKC-tabell har kopierats in i 1M-modulen.
+Revisionens första CI-körning visade att 4NT efter 1♣–2NT–3♣ inte identifierades som RKC, eftersom trumfen inte kunde härledas från Stenbergsekvensen. `slamlogik.js` känner nu igen 1M–2NT–3x–4NT först efter öppnarens beskrivande 3-nivååterbud, och `budbeslut.js` klassificerar det aktuella 4NT-budet med hela den offentliga sekvensen. Stenberg- och RKC-testerna passerar. Ett negativt regressionstest säkerställer också att direkt 4NT efter 1M–2NT utan öppnarens beskrivande 3-nivååterbud förblir ej täckt och inte skrivs över av generisk slamlogik. Ingen RKC-tabell har kopierats in i 1M-modulen.
 
 ### C. Fokuserad verifiering – godkänd
 
