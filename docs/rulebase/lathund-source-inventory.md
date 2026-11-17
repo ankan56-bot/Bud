@@ -147,7 +147,7 @@ Poängbegreppen HP och STP/HTP hålls isär och återges så som respektive käl
 - Slutföra sekvensvis avläsning av varje ruta, inklusive poängintervall och budalternativ.
 - Jämföra de relevanta delarna mot Nordisk Standard och markera: överensstämmer / förtydligar / kompletterar / avviker / saknas i grundsystemet.
 - Skapa en separat lista med expertfrågor för odefinierade uttryck och källkonflikter.
-- Därefter kan nästa modul öppnas: **ÖH 2♣**. Ingen kodändring ska göras innan dess källunderlag och sekvensomfattning är fastställda.
+- Därefter öppnas nästa prioriterade modul: **Trumfstöd**. Stenberg återanvänds som befintlig delkomponent; trumfstödsmodulen ska inte duplicera Stenberg-reglerna. ÖH 2♣ ligger kvar som senare modul. Ingen kodändring ska göras innan trumfstödets källunderlag och sekvensomfattning är fastställda.
 
 ## 6. Uppdaterad sidkontroll – PDF-bilder 7–14 (tryckt s. 20–35)
 
