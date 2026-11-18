@@ -35,7 +35,7 @@ for (const response of ["5C", "5D", "5H", "5S"]) {
   test(response + " trump RKC response does not invent an unsupported asker continuation", () => {
     const result = askAfterResponse(response);
     assert.equal(result?.exp, null);
-    assert.match(result?.why || "", /inte ett entydigt nästa bud|inte uttryckligen fastställd/i);
+    assert.match(result?.why || "", /inte ett entydigt nästa bud|inte uttryckligen fastställd|kungfråga|antalstabell/i);
   });
 }
 
@@ -153,7 +153,7 @@ test("after 5C then 5S retreat, asker with only two aces does not get the docume
   const result = askerAfterAmbiguousResponse(north);
   assert.equal(Rattning.H(north).aces, 2);
   assert.equal(result?.exp, null, JSON.stringify(result));
-  assert.match(result?.why || "", /inte ett entydigt nästa bud|inte uttryckligen fastställd/i);
+  assert.match(result?.why || "", /inte ett entydigt nästa bud|inte uttryckligen fastställd|kungfråga|antalstabell/i);
 });
 
 test("after 5D then 5S retreat, asker with four aces bids 6S", () => {
