@@ -242,26 +242,6 @@
       }
     }
 
-    // 2NT response to partner's 1-level overcall after opener's response.
-    // Exact confirmed sequence: 1H–1S–2D–2NT. This is NOT Stenberg.
-    // User-confirmed local range is 11–12 HP; the PDF describes the
-    // general overcall response as 11–13 HP, so 13 is deliberately kept
-    // outside this exact user-confirmed branch pending expert reconciliation.
-    var directTwoNTOvercallResponse =
-      b.c==='2N' && !opener && d===1 && ours.length===1 &&
-      ours[0].s===pt && /^1[CDHS]$/.test(ours[0].c) &&
-      firstCall && /^1[CDHS]$/.test(firstCall.c) &&
-      side(firstCall.s)!==side(me) &&
-      oppBefore.length===1 && oppBefore[0].s===firstCall.s &&
-      oppAfter.length===1 && side(oppAfter[0].s)===side(firstCall.s) &&
-      /^2[CDHS]$/.test(oppAfter[0].c);
-    if(directTwoNTOvercallResponse){
-      var overcallOpeningSuit=st_(firstCall.c);
-      if(h.bal&&h.hp>=11&&h.hp<=12&&h.stop(overcallOpeningSuit))
-        return {exp:'2N',alt:[],why:'11–12 hp, balanserad hand och bra håll i öppningsfärgen efter partnerns 1-nivåinkliv. 2NT är invitativt; detta är inte Stenberg.',means:function(c){return c==='2N'?'11–12 hp, balanserad hand med bra håll i öppningsfärgen efter partnerns inkliv.':null},conv:'svar på inkliv',ruleStatus:'user_confirmed'};
-      return NC('2NT efter partnerns 1-nivåinkliv kräver enligt den användarbekräftade sekvensregeln 11–12 hp, balanserad hand och bra håll i öppningsfärgen. Handen uppfyller inte hela profilen.',null,'svar på inkliv',false);
-    }
-
     if(oppBefore.length){
       if(d===1&&!oppAfter.length&&oppBefore.length===1){
         if(f==='X')return respDouble(h,oppBefore[0].c,last);
