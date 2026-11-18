@@ -1065,10 +1065,15 @@ var Rattning = (function(){
     var partnerAskIndex=-1;
     for(var pai=prior.length-1;pai>=0;pai--)if(prior[pai].s===pt&&prior[pai].c==='4N'){partnerAskIndex=pai;break;}
     if(partnerAskIndex>=0){
-      var afterPartnerAsk=prior.slice(partnerAskIndex+1).filter(function(x){return x.s===me&&isBid(x.c)});
-      if(!afterPartnerAsk.length){var askHistory=prior.slice(partnerAskIndex+1);var askerKingAsk=askHistory.some(function(x){return x.s===pt&&x.c==='5N';});var trumpAsk=rkcTrumpFromAuction(prior,side(me));return askerKingAsk?(trumpAsk?NC('Trumfens 5NT-kungfråga är identifierad, men får inte använda sangens antalstabell. Den färgvisa fortsättningen lämnas ej täckt tills den separata budstegen är inkopplad.','', 'Blackwood 5 ess'):rkcKingReply(h)):rkcReply(h,trumpAsk);}
-      // Svarshanden har redan svarat; efter frågeställarens sangslutbud ska den passa.
-      if(b.c==='P')return {exp:'P',alt:[],why:'Pass efter att frågeställaren har fastställt sangslutbudet.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
+      var partnerAskHistory=prior.slice(partnerAskIndex+1);
+      var afterPartnerAsk=partnerAskHistory.filter(function(x){return x.s===me&&isBid(x.c)});
+      var partnerKingAsk=partnerAskHistory.some(function(x){return x.s===pt&&x.c==='5N';});
+      var partnerTrumpAsk=rkcTrumpFromAuction(prior,side(me));
+      if(partnerKingAsk&&afterPartnerAsk.length){
+        return partnerTrumpAsk?NC('Trumfens 5NT-kungfråga är identifierad, men får inte använda sangens antalstabell. Den färgvisa fortsättningen lämnas ej täckt tills den separata budstegen är inkopplad.','', 'Blackwood 5 ess'):rkcKingReply(h);
+      }
+      if(!afterPartnerAsk.length)return rkcReply(h,partnerTrumpAsk);
+      if(b.c==='P')return {exp:'P',alt:[],why:'Pass efter fastställt slutbud.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
     }
     var myAskIndex=-1;
     for(var mai=prior.length-1;mai>=0;mai--)if(prior[mai].s===me&&prior[mai].c==='4N'){myAskIndex=mai;break;}
