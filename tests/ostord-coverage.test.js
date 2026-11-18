@@ -111,7 +111,7 @@ const acceptedSourceGaps=[
   'sang-09','slamnt-08','slamnt-10','alla-10','svag-08'
 ].sort();
 assert.deepEqual(report.uncovered.map(x=>x.dealId).sort(),acceptedSourceGaps,
-  'Only documented 1NT invitation and continuation source gaps may remain uncovered.');
+  'Only documented Nordisk Standard source gaps may remain uncovered.');
 assert.ok(report.uncovered.every(x=>x.sourceGap===true&&x.reason&&x.reason.length>20),
   'Every uncovered fixed-corpus case must be an explicit, explained source gap.');
 assert.equal(report.sourceGapStops.length,report.uncovered.length,'Each incomplete auction must stop at its first source gap.');
