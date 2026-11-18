@@ -154,7 +154,36 @@
     return NC('Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas.',means,'svar efter öppnarens återbud');
   }
 
+  /* ––––– ÖPPNARENS TREDJE BUD EFTER 1♥–1♠–2♦–2NT ––––– */
+  function openerThirdAfterTwoSuitInvite(h,opening,response,rebid,invite){
+    if(opening!=='1H'||response!=='1S'||rebid!=='2D'||invite!=='2N')
+      return NC('Fel sekvens för den sekvensspecifika 2NT-invitgrenen.');
+    var hp=h.hp,L=h.L;
+    var minimum=hp>=12&&hp<=14,maximum=hp>=15&&hp<=17;
+    if(!minimum&&!maximum)
+      return NC('Öppnarens hand ligger utanför den verifierade 12–17 hp-ramen efter 1♥–1♠–2♦.','', '2NT-invit',true);
+
+    // Lathundens tryckta sida 18: 3♦ = 5-5 min; 3♥ = 6-4 min;
+    // 3♠ = trekortsstöd max; 3♣ = fjärde färg, utgångskrav.
+    // "Min/max" mappas här till 12–14 respektive 15–17 hp; detta är
+    // en tydligt markerad källtolkning, inte en ny grundsystemregel.
+    if(minimum&&L.H===5&&L.D===5)
+      return {exp:'3D',alt:[],why:'5-5 i hjärter och ruter med minimum (12–14 hp): 3♦ enligt Lathundens fortsättning efter 2NT-inviten.',
+        means:function(c){return c==='3D'?'5-5-fördelning, minimum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+    if(minimum&&L.H===6&&L.D===4)
+      return {exp:'3H',alt:[],why:'6-4 i hjärter och ruter med minimum (12–14 hp): 3♥ enligt Lathundens fortsättning efter 2NT-inviten.',
+        means:function(c){return c==='3H'?'6-4-fördelning, minimum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+    if(maximum&&L.S===3)
+      return {exp:'3S',alt:[],why:'Tre spader och maximum (15–17 hp): 3♠ visar trekortsstöd; annars skulle 2♠ ha bjudits direkt.',
+        means:function(c){return c==='3S'?'3-korts spaderstöd, maximum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+    if(maximum)
+      return {exp:'3C',alt:[],why:'Maximum (15–17 hp) utan den särskilda trekortsspadergrenen: 3♣ är fjärde färg och utgångskrav.',
+        means:function(c){return c==='3C'?'Fjärde färg, utgångskrav.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+    return {exp:'P',alt:[],why:'Minimum (12–14 hp) utan 5-5- eller 6-4-fördelningen: pass. 3NT är märkt Plus i Lathunden och ingår inte i grundprofilen.',
+      means:function(c){return c==='P'?'Pass med minimum utan den beskrivna fördelningsgrenen.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+  }
+
   /* ––––– DISPATCH ––––– */
 
-  return {respAfter1NT,responderSecondBid};
+  return {respAfter1NT,responderSecondBid,openerThirdAfterTwoSuitInvite};
 });
