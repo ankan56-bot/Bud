@@ -910,8 +910,8 @@ En separat regression verifierar att 4NT direkt efter `1♣–2NT`, innan öppna
 Lathundens separata ruta anger:
 - Pass: svagt.
 - 3♣: fjärde färg, utgångskrav.
-- 3♦: 5-5-fördelning, minimum.
-- 3♥: 6-4-fördelning, minimum.
+- 3♦: 6-4-fördelning, minimum.
+- 3♥: 5-5-fördelning, minimum.
 - 3♠: trekortsstöd i spader, maximum (annars skulle 2♠ ha bjudits direkt).
 - 3NT är uttryckligen märkt Plus och har därför inte lagts in som Nordisk Standard-gren.
 
