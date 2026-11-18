@@ -62,6 +62,29 @@ for (const c of cases) {
     assert.match(node.why, /11–12 hp/);
   }
   if (c.expected === null) assert.equal(node.sourceGap, true);
+
+  // The same exact branch is available to the live robot without partner cards.
+  const liveAuction = [
+    {s:'N',c:'1H'}, {s:'E',c:'P'},
+    {s:'S',c:'1S'}, {s:'W',c:'P'},
+    {s:'N',c:'2D'}, {s:'E',c:'P'}
+  ];
+  const live = R.decideLive({seat:'S',dealer:'N',auction:liveAuction,ownHand:c.hand});
+  assert.equal(live.exp, c.expected, c.name + ': live decision must match the after-deal rule');
+  if (c.expected === '2N') {
+    assert.equal(live.informationBoundary,'own_hand_and_public_auction_only');
+    assert.equal(live.context,'live');
+  }
 }
 
-console.log('1H-1S-2D-2NT invitation boundaries: passed (10, 11, 12 and 13 HCP).');
+// A superficially similar 1♥–1♠–2♣ sequence must not inherit the 2NT rule.
+const otherAuction = [
+  {s:'N',c:'1H'}, {s:'E',c:'P'},
+  {s:'S',c:'1S'}, {s:'W',c:'P'},
+  {s:'N',c:'2C'}, {s:'E',c:'P'}
+];
+const other = R.decideLive({seat:'S',dealer:'N',auction:otherAuction,ownHand:cases[1].hand});
+assert.equal(other.exp,null,'the 2♦ rule must not leak into 2♣');
+assert.equal(other.sourceGap,true);
+
+console.log('1H-1S-2D-2NT invitation boundaries: passed (after-deal and live, 10/11/12/13 HCP).');
