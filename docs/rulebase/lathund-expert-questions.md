@@ -175,3 +175,12 @@
 2. Nordisk Standard är grundsystemet. Lathunden får inte tyst ersätta NS.
 3. Hänvisningar till Plus, PRO, Bättre bud, MeraBud och Slam är inte automatiskt obligatoriska.
 4. Alla sekvenser som inte kan bedömas säkert ska sparas separat för expertgranskning.
+
+### A16. 2NT efter partnerns inkliv – lokal precisering
+
+- Exakt sekvens: 1♥–1♠–2♦–2NT.
+- Användaren har fastställt att 2NT är invit och visar 11–12 hp.
+- Nordisk Standard s. 7 anger generellt 11–13 hp, balanserad hand och bra håll i öppningsfärgen efter inkliv med 1♥/♦.
+- **Status:** Implementera den uttryckligen bekräftade 11–12-gränsen i denna sekvens. 13 hp och eventuell utvidgning till andra inklivsfärger ska hållas separat för expertavstämning; ändra inte användarens exakta sekvens genom generell färgsubstitution.
+- Detta 2NT är ett konkurrenssvar på inkliv och får aldrig klassas som Stenberg.
+
