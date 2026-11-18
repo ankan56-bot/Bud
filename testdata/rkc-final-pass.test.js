@@ -174,7 +174,7 @@ test("sang 4NT: missing an ace stops at 6NT",()=>{const southMissing=["H14","D14
 test("sang king ask: all four kings leads to 7NT",()=>{const st=ntAskState(northNT,southAllAces,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"7N"});assert.equal(R.H(st.hands.S).kings,3);assert.equal(R.nodeFor(st,10).exp,"7N");});
 test("sang king ask: a missing king stops at 6NT",()=>{const southTwo=["H14","D14","C14","H13","D13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southTwo,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"6N"});assert.equal(R.H(st.hands.S).kings,2);assert.equal(R.nodeFor(st,10).exp,"6N");});
 
-test("trump 5NT king ask is recognized as an ask, not as an RKC answer", () => {
+test("trump 5NT king ask: responder shows the first eligible side king/shortness", () => {
   const hand = ["S14", "S10", "S9", "H14", "H13", "H12", "H11", "D10", "D13", "D12", "D11", "D9", "D8"];
   const hands = dealWithSouth(hand);
   const bids = [
@@ -182,9 +182,10 @@ test("trump 5NT king ask is recognized as an ask, not as an RKC answer", () => {
     { s: "S", c: "2S" }, { s: "W", c: "P" },
     { s: "N", c: "4N" }, { s: "E", c: "P" },
     { s: "S", c: "5D" }, { s: "W", c: "P" },
-    { s: "N", c: "5N" }, { s: "E", c: "P" }
+    { s: "N", c: "5N" }, { s: "E", c: "P" },
+    { s: "S", c: "6C" }
   ];
-  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 9);
-  assert.equal(result?.exp, null);
-  assert.match(result?.why || "", /5NT-kungfråga är identifierad/i);
+  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 10);
+  assert.equal(result?.exp, "6C", JSON.stringify(result));
+  assert.match(result?.why || "", /första sidokungen/i);
 });
