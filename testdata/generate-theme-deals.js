@@ -23,7 +23,7 @@ const GIT_BLOB_HEADER = Buffer.from("blob " + Buffer.byteLength(RULES_CONTENT) +
 const RULES_BLOB_SHA = crypto.createHash("sha1").update(GIT_BLOB_HEADER).update(RULES_CONTENT).digest("hex");
 const SOURCE = {
   generator: "Budtraning.html existing newDeal/biasedDeal generator",
-  generatorBlobSha: "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
+  generatorBlobSha: "ccb91889ebb02026c53af196980f92a023f7c6bf",
   rulesEngine: "rattningsmotor.js",
   rulesEngineVersion: RULES_VERSION,
   rulesEngineBlobSha: RULES_BLOB_SHA,
