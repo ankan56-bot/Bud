@@ -30,7 +30,7 @@ const ten=decide(['H14','H13','H2','S13','S2','S3','S4','D2','D3','D4','C2','C3'
 assert.equal(ten.exp,null);
 assert.equal(ten.sourceGap,false);
 // 13 hp is deliberately not silently included in the exact 11–12 sequence.
-const thirteen=decide(['H14','H13','H2','S13','S12','S3','S4','D12','D2','D3','C2','C3','C4']);
+const thirteen=decide(['H14','H13','H2','S13','S2','S3','S4','D12','D2','D3','C11','C2','C3']);
 assert.equal(thirteen.exp,null);
 assert.equal(thirteen.sourceGap,false);
 // 11 hp but unbalanced: reject 2NT.
