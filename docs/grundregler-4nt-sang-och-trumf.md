@@ -37,3 +37,8 @@ Efter nyckelkortssvaret används 5NT som kungfråga. Lägsta relevanta kung visa
 - Sangens 5NT-kungfråga och trumfens 5NT-kungfråga är skilda konventioner.
 - Oklara fortsättningar ska markeras ej täckta, inte fyllas med gissningar.
 - DDS är efterhandskontroll, inte budfacit.
+
+
+## Tillägg – trumfens 5NT-kungfråga, korrigering 2026-11-18
+
+Efter ett RKC-svar är 5NT kungfråga enligt parets senare uttryckliga överenskommelse. Den äldre källtextens betydelse 5NT = 3 nyckelkort och renons används därför inte längre i denna regelprofil. Trumfens svar på kungfrågan ska vara färgvis, lägsta relevanta kung först; singelton/renons räknas som kung i färgen och trumffärgen får inte hoppas över. Eftersom exakt budstege för färgvisningen inte är fullständigt fastställd markeras svaren ej täckta i stället för att motorn hittar på bud. Tre nyckelkort och renons saknar därmed ett automatiskt svar tills ett uttryckligt ersättningsbud har fastställts.
