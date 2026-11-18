@@ -36,7 +36,7 @@ function dealWest(north,west){
   const east=rest.filter(c=>c[0]==='S').slice(-5);
   const fillers=rest.filter(c=>c[0]!=='S');
   east.push(...fillers.slice(0,8));
-  const south=fillers.slice(8,21);
+  const south=rest.filter(c=>!east.includes(c));
   return {N:north,E:east,S:south,W:west};
 }
 const overcallResponder=['H14','H13','H2','S2','S3','D13','D2','D3','D4','C13','C2','C3','C4'];
