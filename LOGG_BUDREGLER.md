@@ -489,3 +489,12 @@ Användarens förtydligande av den aktiva budstegen:
 - Storslam kräver dessutom minst 37 gemensamma HP. Detta gäller både 7NT och 7 i färg.
 
 Trumfkungen räknas som känd från 4NT-svaret. Singelton/renons räknas som kung i den färgen enligt tidigare beslut. Äldre formuleringar om generisk färgvisning som inte tar hänsyn till budutrymmet är ersatta.
+
+
+## Korrigering av HP-krav för storslam – 2026-11-18
+
+Användarens senaste beslut ersätter den tidigare gemensamma 37 HP-gränsen:
+- 7NT: minst 37 gemensamma honnörspoäng (HP), samt alla fyra ess och alla fyra kungar bekräftade.
+- 7 i trumf: minst 35 gemensamma honnörspoäng (HP), samt alla fyra kungar kända. Trumfkungen räknas som känd via 4NT-svaret.
+- Övriga regler för essfråga, kungfråga och budvisning ändras inte.
+- Tidigare notering om 37 HP för både sang och trumf är ersatt och ska inte användas aktivt.
