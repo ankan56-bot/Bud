@@ -42,3 +42,13 @@ Efter nyckelkortssvaret används 5NT som kungfråga. **5NT betyder aldrig längr
 - Storslam i trumf kräver minst 35 gemensamma HP, alla fyra ess kända och alla fyra kungar kända; trumfkungen räknas som känd genom 4NT-svaret.
 - Oklara budval som inte följer av dessa regler markeras ej täckta; inga ytterligare konventioner får hittas på.
 - DDS är efterhandskontroll, inte budfacit.
+
+## Trumfens kungfråga efter 5NT – aktiv budstege
+
+Efter RKC-svaret frågar 5NT alltid efter kungar. Svarshanden visar den första relevanta sidokungen i ordningen klöver, ruter, hjärter. En saknad kung hoppas över. En sidokung visas endast om 6-budet i färgen ligger under trumffärgens 6-bud. Singelton eller renons räknas som kung i den färgen. Trumfkungen är redan känd via RKC och visas inte igen.
+
+- ♣ som trumf: inga sidokungar kan visas; avsluta i 6♣ eller 7♣.
+- ♦ som trumf: 6♣ kan visa klöverkung; annars avslut i 6♦.
+- ♥ som trumf: visa 6♣ om klöverkung finns, annars 6♦ om ruterkung finns; annars avslut i 6♥.
+- ♠ som trumf: visa första relevanta kung i 6♣, 6♦, 6♥-ordning; saknade kungar hoppas över.
+- Avslut i 7 i trumf kräver minst 35 gemensamma HP, alla fyra ess och alla fyra kungar kända. Annars avslut i 6 i trumf.
