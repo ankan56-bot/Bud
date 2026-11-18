@@ -506,7 +506,14 @@ function strategicBotFallback(st,botSeat,node){
   if(partnerBids.length>=2){
     var shown=[];
     partnerBids.forEach(function(b){
-      if(/^[1-4][CDHS]$/.test(b.c)){
+      var bi=st.bids.indexOf(b),seen={};
+      for(var j=0;j<bi;j++){
+        var prior=st.bids[j];
+        if(side(prior.s)===side(botSeat)&&/^[1-7][CDHS]$/.test(prior.c))seen[prior.c[1]]=true;
+      }
+      // Fjärde färg är kravbud och får inte tolkas som naturligt färgvisande.
+      var isFourthSuit=/^[1-7][CDHS]$/.test(b.c)&&!seen[b.c[1]]&&Object.keys(seen).length>=3;
+      if(/^[1-7][CDHS]$/.test(b.c)&&!isFourthSuit){
         var s=b.c[1];
         if(shown.indexOf(s)<0)shown.push(s);
       }
