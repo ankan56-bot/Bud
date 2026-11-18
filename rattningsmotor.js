@@ -1699,7 +1699,11 @@ var Rattning = (function(){
     // Med fastställd färgtrumf är nästa systembud 4NT (RKC); essvaret
     // avgör därefter om 6-nivån är säker. Utan fastställd trumf lämnas
     // slamfrågan öppen om ingen särskilt avtalad sangsekvens finns.
-    if(total>=33&&lv(currentContract)<6&&trump!=='N'&&
+    var establishedStenberg=priorNS.some(function(x,index){
+      if(!/^1[CDHS]$/.test(x.c))return false;
+      return priorNS.slice(index+1).some(function(y){return y.s!==x.s&&y.c==='2N'});
+    });
+    if(total>=33&&currentContract==='3N'&&establishedStenberg&&trump!=='N'&&
        rkcTrumpFromAuction(bids.slice(0,i),side(b.s))===trump&&
        rk('4N')>rk(currentContract)){
       var basis='naturligt visad '+SYM[trump]+'-fit med fördelningspoäng';
