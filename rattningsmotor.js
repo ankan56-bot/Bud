@@ -1463,7 +1463,7 @@ var Rattning = (function(){
   // det högsta kontraktsbud som redan har lagts i auktionen.
   // Om partnern redan har nått den föreslagna nivån ska svaret vara pass,
   // inte ett olagligt återbud eller ett upprepat kontraktsbud.
-  function nodeFor(st,i){
+  function nodeFor(st,i,skipConsistency){
     var node=nodeForRaw(st,i);
 
     // Samma poänggränser ska styra både rekommendationen och rättningen.
@@ -1501,16 +1501,14 @@ var Rattning = (function(){
         };
       }
     }
-    // Självkonsistenskontroll: ett förslag som uppstår när spelaren passar
-    // måste också kännas igen om samma förslag läggs som faktiskt bud.
-    // Annars är motorn motsägelsefull och ska lämna läget ej täckt, inte rätta
-    // spelaren mot ett bud som motorn själv underkänner.
-    if(node&&node.exp&&node.exp!=='P'&&st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'){
+    // Kontrollera att ett rekommenderat bud också godtas när det prövas som
+    // faktiskt bud. Den rekursiva kontrollen hoppar över just denna kontroll.
+    if(!skipConsistency&&node&&node.exp&&node.exp!=='P'&&st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'){
       var proposed=node.exp,checkBids=st.bids.slice(),checkNode=null;
       checkBids[i]={s:st.bids[i].s,c:proposed};
-      try{checkNode=nodeForRaw({hands:st.hands,dealer:st.dealer,bids:checkBids},i)}catch(e){checkNode=null}
-      if(!checkNode||checkNode.exp!==proposed){
-        return NC('Motorn gav förslaget '+txt(proposed)+' när spelaren passar, men underkänner samma bud när det prövas i auktionen ('+(checkNode&&checkNode.exp?txt(checkNode.exp):'ej täckt')+'). Intern konflikt: sekvensen lämnas för AI-/expertanalys.','', 'motorintern konflikt');
+      try{checkNode=nodeFor({hands:st.hands,dealer:st.dealer,bids:checkBids},i,true)}catch(e){checkNode=null}
+      if(!checkNode||!(checkNode.exp===proposed||(checkNode.alt||[]).includes(proposed))){
+        return NC('Motorn gav förslaget '+txt(proposed)+' när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud ('+(checkNode&&checkNode.exp?txt(checkNode.exp):'ej täckt')+'). Intern konflikt: sekvensen lämnas för AI-/expertanalys.','', 'motorintern konflikt');
       }
     }
     if(!node||!node.exp||!isBid(node.exp))return node;
