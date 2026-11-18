@@ -9191,7 +9191,7 @@
       "conditions": [
         "Exakt sekvens: 1♥–Pass–1♠–Pass–2♦–Pass–2NT–Pass.",
         "Svarshandens 2NT är en naturlig invit med 11–12 hp; detta intervall är användarbekräftat.",
-        "Lathundens tryckta sida 18 anger: pass svagt; 3♣ fjärde färg/utgångskrav; 3♦ 6-4 minimum; 3♥ 5-5 minimum; 3♠ tre spader maximum.",
+        "Lathundens tryckta sida 18 anger: pass svagt; 3♣ fjärde färg/utgångskrav (13+ hp enligt den etablerade fjärde-färgsregeln); 3♦ 6-4 minimum; 3♥ 5-5 minimum; 3♠ tre spader maximum.",
         "För körbar logik tolkas minimum som 12–14 hp och maximum som 15–17 hp. Den numeriska uppdelningen är en mjuk källtolkning och inte en separat fastställd grundregel.",
         "3NT är märkt Plus i lathunden och ingår inte i Nordisk Standard-grenarna."
       ],
@@ -9215,7 +9215,7 @@
             {
               "call": "3♣",
               "next": "t42_invite_3c",
-              "label": "15–17 hp, fjärde färg – utgångskrav"
+              "label": "13+ hp, fjärde färg – utgångskrav"
             },
             {
               "call": "3♦",
@@ -9258,11 +9258,11 @@
             "Pass",
             "3♣"
           ],
-          "meaning": "Fjärde färg – utgångskrav",
-          "analysis": "3♣ är fjärde färg och utgångskrav enligt lathundens ruta. I runtime kopplas detta till maximum 15–17 hp när ingen särskild 3♠-gren gäller; styrkeöversättningen är soft.",
+          "meaning": "Fjärde färg, 13+ hp – utgångskrav",
+          "analysis": "3♣ är fjärde färg och utgångskrav enligt lathundens ruta. Den etablerade 13+-gränsen för fjärde färg används. Särskilda 5-5-/6-4-minimumsgrenar och 3-spaders maxgren prövas före denna gren.",
           "branches": [],
           "handProfile": {
-            "opener": "15–17 hp, maximum; fjärde färg 3♣ som utgångskrav.",
+            "opener": "13–17 hp i den aktuella 1♥–1♠–2♦-sekvensen; fjärde färg 3♣, utgångskrav.",
             "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
           },
           "soft": true,
