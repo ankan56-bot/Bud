@@ -119,7 +119,7 @@ jobs:
         run: node tests/one-major-100.test.js
       - name: Run 1♥/1♠ invit acceptance tests
         run: node tests/one-major-invit.test.js
-      - name: Run 1♥–1♠–2♦–2NT invitation boundary tests
+      - name: Run two-suit rebid 2NT invitation boundary tests
         run: node tests/one-major-second-bid-2nt-invite.test.js
       - name: Run broad undisturbed regression corpus
         run: |
