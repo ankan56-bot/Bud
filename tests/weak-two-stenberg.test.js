@@ -39,6 +39,7 @@ assert.equal(response(twelveStp).sourceGap,false);
 // the Lathund does not give priority between that and 2NT Stenberg.
 const invitOverlap=['H2','H3','H4','H5','H6','H7','S14','D14','D2','C12','C11','C10','C2'];
 const invitOverlapResult=response(invitOverlap);
+console.log('invitOverlapResult',JSON.stringify(invitOverlapResult));
 assert.equal(invitOverlapResult.exp,null);
 assert.equal(invitOverlapResult.sourceGap,true);
 
