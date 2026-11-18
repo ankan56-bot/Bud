@@ -215,6 +215,29 @@ test("2NT is Stenberg 2NT and requires at least 13 stp", () => {
   assert.match(rejected.why,/minst 13 stp/);
 });
 
+test("weak-two Stenberg requires at least two-card support, not four", () => {
+  const opener=weakTwoHand("H");
+  const responder=[
+    ...cards("H","Q2"), ...cards("S","AKQ"),
+    ...cards("D","KJ"), ...cards("C","34567")
+  ];
+  const accepted=node(completeDeal(opener,responder),[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"}
+  ],2);
+  assert.equal(accepted.exp,"2N");
+  assert.match(accepted.why,/minst 2-korts stöd/);
+
+  const oneCardResponder=[
+    ...cards("H","2"), ...cards("S","AKQJ"),
+    ...cards("D","AKQ"), ...cards("C","34567")
+  ];
+  const rejected=node(completeDeal(opener,oneCardResponder),[
+    {s:"N",c:"2H"},{s:"E",c:"P"},{s:"S",c:"2N"}
+  ],2);
+  assert.equal(rejected.exp,null);
+  assert.match(rejected.why,/minst 2-korts stöd/);
+});
+
 test("a new six-card suit with at least 15 HCP is forcing", () => {
   const opener=weakTwoHand("H");
   const responder=[
