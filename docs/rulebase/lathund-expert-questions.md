@@ -193,3 +193,15 @@
 - Prioritet när handen samtidigt har 13+ STP och en lång sidofärg behöver verifieras.
 - **Status:** Svarshandens 13+ STP-krav implementerat; öppnarens fortsättning och överlapp sparas som källuckor.
 
+
+### A18. Svag tvåa – överlapp mellan Stenberg och invitativ höjning
+
+- Lathund s. 27: 2NT Stenberg 13+ STP; 3 i öppningsfärgen invit cirka 14–16 STP.
+- Intervallen överlappar. Lathunden anger inte stödlängd eller prioritet mellan 2NT och 3 i öppningsfärgen.
+- **Status:** 13 STP utan överlapp rekommenderar 2NT. 14–16 STP med stöd lämnas EJ TÄCKT tills prioriteten är källbelagd. Svaga spärrhöjningar till 3-nivån är inte automatiskt antagna.
+
+### A19. 4NT efter svag tvåöppning
+
+- Lathund s. 27 anger 4NT som essfråga med öppningsfärgen som trumf.
+- **Status:** Direkt, ostörd 4NT efter 2♦/2♥/2♠ routas till befintlig RKC-modul med öppningsfärgen som trumf. Övriga konkurrenssekvenser är inte automatiskt antagna.
+
