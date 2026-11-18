@@ -26,7 +26,8 @@
     // 1♥–1♠–1NT–2♠. Källan anger frågans betydelse/styrka men inte öppnarens svar.
     if(opening==='1H'&&response==='1S'&&rebid==='1N'&&act==='2S'){
       if(hp>=11)return {exp:'2S',alt:[],why:'Försenad Stayman (Pro): 2♠ är högfärgsfråga efter 1♥–1♠–1NT och lovar minst 11 hp.',means:function(c){return c==='2S'?'Försenad Stayman (Pro), högfärgsfråga, minst 11 hp.':null},conv:'Försenad Stayman',ruleStatus:'pro'};
-      return NC('Försenad Stayman enligt Pro-rutan kräver minst 11 hp. Den svaga 6–10 hp-grenen måste bedömas som naturligt färgbud och är inte denna Pro-konvention.',null,'Försenad Stayman');
+      if(hp>=6&&hp<=10&&L.S>=6)return {exp:'2S',alt:[],why:'6–10 hp och minst sex spader: naturligt svagt färgbud. Försenad Stayman (Pro) används först med 11+ hp.',means:function(c){return c==='2S'?'Naturligt svagt bud, 6–10 hp och 6+ spader.':null},conv:'svagt färgbud'};
+      return NC('Efter 1♥–1♠–1NT saknas stöd för 2♠: Pro-försenad Stayman kräver 11+ hp; den naturliga svaga grenen kräver 6–10 hp och 6+ spader.',null,'Försenad Stayman');
     }
     var isOpeningSuit=suit&&suit===st_(opening);
     var lowestNewSuit=suit&&lowest(suit,rebid)===act;
