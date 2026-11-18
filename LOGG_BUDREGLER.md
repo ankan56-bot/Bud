@@ -474,3 +474,18 @@ Budnivån för färgbuden beräknas efter den faktiska auktionen, så fjärde f�
 ## Övergripande regelöverskrivning – 2026-11-18
 
 Användarens uttryckliga beslut: den nya kungfrågan gäller överallt och ersätter samtliga äldre kungfrågeregler. 5NT efter RKC är alltid kungfråga, aldrig 3 nyckelkort och renons. Kungar visas färgvis i stigande färgordning, lägsta relevanta kung först och därefter nästa; singelton/renons räknas som kung i färgen; trumffärgen får inte hoppas över. Om minst två kungar saknas eller är osäkra: 6 i trumf och pass. Äldre regler i aktiv kod, exporter, HTML-regeltext och analysbibliotek ska inte längre användas.
+
+
+## Fastställd kungvisning efter 5NT med trumf – 2026-11-18
+
+Användarens förtydligande av den aktiva budstegen:
+- Sidokungar visas i fast ordning klöver → ruter → hjärter. Saknad kung hoppas över.
+- En sidokung visas bara om dess 6-bud ligger under trumffärgen. Trumfkungen är redan känd från 4NT och visas inte igen.
+- När klöver är trumf finns ingen sidokungsvisning: 6♣ betyder att alla fyra kungar inte kan räknas in; 7♣ betyder att alla fyra kungar är kända tillsammans.
+- När ruter är trumf kan 6♣ visa klöverkungen. Om klöverkungen saknas används 6♦ som avslut; 6♥ används inte.
+- När hjärter är trumf visas 6♣ om klöverkungen finns; annars 6♦ om ruterkungen finns. Om båda saknas används 6♥ som avslut.
+- När spader är trumf visas sidokungarna med 6♣, 6♦ och 6♥ i den ordningen. Saknade kungar hoppas över; om exempelvis första visningen är 6♥ betyder det att klöver- och ruterkungen saknas och hjärterkungen finns.
+- Om alla fyra kungar kan räknas in avslutas med 7 i trumf. Om inte, avslutas med 6 i trumf.
+- Storslam kräver dessutom minst 37 gemensamma HP. Detta gäller både 7NT och 7 i färg.
+
+Trumfkungen räknas som känd från 4NT-svaret. Singelton/renons räknas som kung i den färgen enligt tidigare beslut. Äldre formuleringar om generisk färgvisning som inte tar hänsyn till budutrymmet är ersatta.

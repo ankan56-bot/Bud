@@ -32,11 +32,12 @@ Saknas minst en kung stannar paret i 6NT. Endast alla fyra ess plus alla fyra ku
 | 5♥ | 2 nyckelkort utan trumfdam |
 | 5♠ | 2 nyckelkort med trumfdam |
 
-Efter nyckelkortssvaret används 5NT som kungfråga. **5NT betyder aldrig längre 3 nyckelkort och renons.** Kungarna visas färgvis i stigande färgordning, lägsta relevanta kung först och därefter nästa enligt samma ordning. Singelton eller renons räknas som kung i den färgen. Trumffärgen får inte hoppas över i visningen. Om minst två kungar saknas eller inte kan säkerställas är stoppbudet 6 i trumf, därefter pass.
+Efter nyckelkortssvaret används 5NT som kungfråga. **5NT betyder aldrig längre 3 nyckelkort och renons.** Kungvisningen följer alltid ordningen klöver → ruter → hjärter. En sidokung visas med 6 i sin färg om det budet ligger under trumffärgen; saknade kungar hoppas över. Trumfkungen är redan känd genom 4NT och visas inte igen. Bud i trumffärgen används som avslut: 6 i trumf när alla fyra kungar inte kan räknas in, 7 i trumf när alla fyra kungar är kända tillsammans. När klöver är trumf finns ingen sidokungsvisning: svaret är 6♣ om alla kungar inte kan räknas in, annars 7♣. Singelton eller renons räknas som kung i den färgen. Storslam kräver dessutom minst 37 gemensamma honnörspoäng (HP).
 
 ## Gemensamma regler
 - 4NT utan fastställd trumf är inte automatiskt essfråga; endast uttryckligen avtalade sekvenser omfattas.
 - Sangens och trumfens 5NT-kungfrågor är separata: sang använder antalstabellen ovan, trumf använder färgvisning.
 - Dessa regler ersätter äldre betydelser i samtliga aktiva regler, kodkopior, analysnoder och träningsmaterial.
+- Storslam i sang eller färg kräver minst 37 gemensamma HP utöver att alla fyra kungar är kända; i färg ingår trumfkungen som redan bekräftats via 4NT.
 - Oklara budval som inte följer av dessa regler markeras ej täckta; inga ytterligare konventioner får hittas på.
 - DDS är efterhandskontroll, inte budfacit.
