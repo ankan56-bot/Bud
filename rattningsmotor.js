@@ -423,9 +423,9 @@ var Rattning = (function(){
     };
 
     if(call==='2N'){
-      if(L[o]<4)return NC('Stenberg 2NT efter svag tvåa kräver minst 4-korts stöd i öppningsfärgen; handen har '+L[o]+'.','', 'Stenberg');
-      if(stp>=13)return {exp:call,alt:[],why:'Stenberg 2NT visar minst 13 stp och minst 4-korts stöd i öppningsfärgen.',means:means,conv:'Stenberg',soft:true};
-      return NC('Stenberg 2NT kräver minst 13 stp och minst 4-korts stöd; handen når inte styrkegränsen.','', 'Stenberg');
+      if(L[o]<2)return NC('Stenberg 2NT efter svag tvåa kräver minst 2-korts stöd i öppningsfärgen; handen har '+L[o]+'.','', 'Stenberg');
+      if(stp>=13)return {exp:call,alt:[],why:'Stenberg 2NT visar minst 13 stp och minst 2-korts stöd i öppningsfärgen.',means:means,conv:'Stenberg',soft:true};
+      return NC('Stenberg 2NT kräver minst 13 stp och minst 2-korts stöd; handen når inte styrkegränsen.','', 'Stenberg');
     }
     if(call==='3'+o){
       if(stp>=14&&stp<=16)return {exp:call,alt:[],why:'3 i öppningsfärgen är invit och visar cirka 14–16 stp enligt lathundens sida 27.',means:means,conv:'svag tvåa',soft:true};
