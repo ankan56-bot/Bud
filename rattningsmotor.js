@@ -415,7 +415,7 @@ var Rattning = (function(){
     };
     var means=function(c){
       if(c==='3'+o)return 'Invit i öppningsfärgen, cirka 14–16 stp.';
-      if(c==='2N')return 'Stenberg 2NT, 13+ stp.';
+      if(c==='2N')return 'Stenberg efter svag tvåa: 13+ stp och minst 2-korts stöd.';
       if(c==='4N')return 'Essfråga med öppningsfärgen som trumf.';
       if(isGame(c))return 'Utgångsbud – slutbud.';
       if(isBid(c)&&st_(c)!==o&&st_(c)!=='N'&&c===lowest(st_(c),oc))return 'Ny färg, ofta sexkortsfärg, minst 15–16 hp och rondkrav.';
@@ -1563,7 +1563,9 @@ var Rattning = (function(){
       'spärr':'Spärrbudet visar en lång färg och begränsad styrka. Ny färg är krav. 3NT kan vara rätt slutbud om partnern har en lång lågfärg.',
       'överbud':'Överbud (Cuebid) i motståndarens färg visar 10+ hp och 3+ trumfstöd. Det är ett kravbud.'
     };
-    var detail=extra[conv]||'Budets betydelse ska läsas tillsammans med den föregående budgivningen.';
+    var detail=(conv==='Stenberg'&&/efter svag tvåa/i.test(short))
+      ?'Efter svag tvåöppning visar 2NT minst 13 stp och minst 2-korts stöd. Detta är den särskilda fortsättningen efter svag tvåa; den vanliga Stenbergregeln efter 1 i färg har ett annat stödkriterium.'
+      :(extra[conv]||'Budets betydelse ska läsas tillsammans med den föregående budgivningen.');
     return short ? short+'\n\n'+detail : detail;
   }
 
