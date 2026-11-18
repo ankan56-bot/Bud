@@ -62,6 +62,17 @@ var Rattning = (function(){
     return total;
   }
 
+  // En öppnare som fått öppna på 11 hp med bra 5+ färg ska i
+  // fortsättningen behandlas som minimum 12 hp. Normaliseringen används
+  // bara för öppnarens styrkeklassificering – aldrig för parets faktiska
+  // hp-/htp-summa, utgångs- eller slambedömning.
+  function openerStrengthHp(h){
+    return Math.max(12,h.hp);
+  }
+  function openerStrengthHtp(h,trump){
+    return Math.max(12,h.htp(trump));
+  }
+
   function T(m){return function(c){return m[c]||null}}
   function ok(c,last){return c==='P'||c==='X'||c==='XX'||(isBid(c)&&(!last||rk(c)>rk(last)))}
   function NC(why,means,conv){return {exp:null,alt:[],why:why||'Situationen beskrivs inte i dokumentet.',means:means||function(){return null},conv:conv||'övrigt'}}
@@ -471,7 +482,7 @@ var Rattning = (function(){
 
   /* ––––– ÖPPNARENS ANDRA BUD (Plus) ––––– */
   function reb1(h,oc,r){
-    var o=st_(oc),hp=h.hp,L=h.L,rs=st_(r),exp,why,alt=[],soft=false;
+    var o=st_(oc),hp=openerStrengthHp(h),L=h.L,rs=st_(r),exp,why,alt=[],soft=false;
 
     var means=function(c){
       if(r==='2N'){var Ma=maj(o);
