@@ -155,17 +155,18 @@
   }
 
   /* ––––– ÖPPNARENS TREDJE BUD EFTER 1♥–1♠–2♦–2NT ––––– */
-  function openerThirdAfterTwoSuitInvite(h,opening,response,rebid,invite){
+  function openerThirdAfterTwoSuitInvite(h,opening,response,rebid,invite,fourthHandAfterThreePasses){
     if(opening!=='1H'||response!=='1S'||rebid!=='2D'||invite!=='2N')
       return NC('Fel sekvens för den sekvensspecifika 2NT-invitgrenen.');
     var hp=h.hp,L=h.L;
-    var minimum=hp>=12&&hp<=14,maximum=hp>=15&&hp<=17;
+    var minimum=(hp>=12&&hp<=14)||(hp===11&&fourthHandAfterThreePasses===true),maximum=hp>=15&&hp<=17;
     if(!minimum&&!maximum)
       return NC('Öppnarens hand ligger utanför den verifierade 12–17 hp-ramen efter 1♥–1♠–2♦.','', '2NT-invit',true);
 
     // Lathundens tryckta sida 18: 3♦ = 5-5 min; 3♥ = 6-4 min;
     // 3♠ = trekortsstöd max; 3♣ = fjärde färg, utgångskrav.
-    // "Min/max" mappas här till 12–14 respektive 15–17 hp; detta är
+    // "Min/max" mappas här till 12–14 respektive 15–17 hp; 11 hp räknas
+    // som minimum endast efter tre pass enligt fjärdehandsregeln. Detta är
     // en tydligt markerad källtolkning, inte en ny grundsystemregel.
     if(minimum&&L.H===6&&L.D===4)
       return {exp:'3D',alt:[],why:'6-4 i hjärter och ruter med minimum (12–14 hp): 3♦ enligt Lathundens fortsättning efter 2NT-inviten.',
@@ -179,7 +180,7 @@
     if(hp>=13&&hp<=17)
       return {exp:'3C',alt:[],why:hp+' hp: fjärde färg 3♣ är utgångskrav enligt den etablerade 13+-regeln; särskilda 5-5/6-4- och 3-spadersgrenar har prövats först.',
         means:function(c){return c==='3C'?'Fjärde färg, 13+ hp, utgångskrav.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
-    return {exp:'P',alt:[],why:'12 hp och ingen 5-5- eller 6-4-fördelning: pass med svag/minimum hand. 3NT är märkt Plus i Lathunden och ingår inte i grundprofilen.',
+    return {exp:'P',alt:[],why:hp+' hp och ingen 5-5- eller 6-4-fördelning: pass med svag/minimum hand. 3NT är märkt Plus i Lathunden och ingår inte i grundprofilen.',
       means:function(c){return c==='P'?'Pass med minimum utan den beskrivna fördelningsgrenen.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
   }
 
