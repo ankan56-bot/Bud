@@ -27,7 +27,7 @@
     if(!Array.isArray(auction)) return false;
     var calls=auction.filter(function(x){return x&&x.c!=='P';});
     if(calls.length<2||!isOneLevelSuit(calls[0].c)||calls[1].c!=='2N') return false;
-    if(sideOf(calls[0].s)===sideOf(calls[1].s)) return false;
+    if(sideOf(calls[0].s)!==sideOf(calls[1].s)) return false;
     // No opponent intervention may occur after the direct response.
     return calls.slice(2).every(function(x){return sideOf(x.s)===sideOf(calls[0].s);});
   }
