@@ -20,8 +20,14 @@
   var T=api.T;
   var ok=api.ok;
   var NC=api.NC;
-  function respAfter1NT(h,opening,rebid,act){
+  function respAfter1NT(h,opening,rebid,act,response){
     var hp=h.hp,L=h.L, suit=isBid(act)?st_(act):null;
+    // Försenad Stayman (PRO), tryckt s. 16: den verifierade exempelauktionen
+    // 1♥–1♠–1NT–2♠. Källan anger frågans betydelse/styrka men inte öppnarens svar.
+    if(opening==='1H'&&response==='1S'&&rebid==='1N'&&act==='2S'){
+      if(hp>=11)return {exp:'2S',alt:[],why:'Försenad Stayman (Pro): 2♠ är högfärgsfråga efter 1♥–1♠–1NT och lovar minst 11 hp.',means:function(c){return c==='2S'?'Försenad Stayman (Pro), högfärgsfråga, minst 11 hp.':null},conv:'Försenad Stayman',ruleStatus:'pro'};
+      return NC('Försenad Stayman enligt Pro-rutan kräver minst 11 hp. Den svaga 6–10 hp-grenen måste bedömas som naturligt färgbud och är inte denna Pro-konvention.',null,'Försenad Stayman');
+    }
     var isOpeningSuit=suit&&suit===st_(opening);
     var lowestNewSuit=suit&&lowest(suit,rebid)===act;
     var means=function(c){
