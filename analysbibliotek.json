@@ -9235,7 +9235,7 @@
             {
               "call": "Pass",
               "next": "t42_invite_pass",
-              "label": "Svagt/minimum utan de angivna fördelningsgrenarna"
+              "label": "12 hp, svag/minimum utan 5-5- eller 6-4-fördelning"
             }
           ],
           "handProfile": {
@@ -9351,10 +9351,10 @@
             "Pass"
           ],
           "meaning": "Svagt/minimum – pass",
-          "analysis": "Lathunden anger pass med svag hand. Runtime använder pass med 12–14 hp när handen inte uppfyller 5-5- eller 6-4-grenen. 3NT Plus är uttryckligen uteslutet.",
+          "analysis": "Lathunden anger pass med svag hand. Runtime använder pass vid 12 hp när handen inte uppfyller 6-4- eller 5-5-grenen. 13+ hp hanteras av fjärde färg 3♣. 3NT Plus är uttryckligen uteslutet.",
           "branches": [],
           "handProfile": {
-            "opener": "12–14 hp, utan exakt 5-5 hjärter/ruter eller 6-4 hjärter/ruter.",
+            "opener": "12 hp, utan exakt 6-4 hjärter/ruter eller 5-5 hjärter/ruter.",
             "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
           },
           "soft": true,
