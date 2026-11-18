@@ -508,3 +508,13 @@ Användarens förtydligande:
 - Alla fyra kungar måste vara kända; trumfkungen räknas som känd genom 4NT-svaret.
 - Regeln är kumulativ: 35 HP räcker inte om något ess eller någon kung saknas/är osäker.
 - Detta villkor gäller endast storslam i trumf och ändrar inte 7NT-regeln (37 HP samt alla fyra ess och kungar).
+
+## Trumfens 5NT-kungfråga – budstege implementerad 2026-11-18
+
+- Rättningsmotor och exportmotor har nu den fastställda budstegen efter 5NT med trumf.
+- Svarshanden visar första relevanta sidokung i ordningen klöver–ruter–hjärter; saknade kungar hoppas över och bara bud som ligger under trumffärgen används.
+- Singelton/renons räknas som kung. Trumfkungen räknas redan via RKC.
+- När ingen sidokung kan visas avslutas i 6 i trumf, eller 7 i trumf endast om alla fyra ess och kungar är kända samt paret har minst 35 gemensamma HP.
+- Efter visningen rekommenderar frågeställaren slutbudet 6/7 i trumf enligt samma kumulativa villkor.
+- Regressionstestet för trumfens 5NT-kungfråga uppdaterat.
+- Testkörning/CI är ännu inte verifierad; ändringen är implementerad men ska inte betraktas som testgodkänd.
