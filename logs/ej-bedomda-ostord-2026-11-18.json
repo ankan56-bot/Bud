@@ -3,9 +3,9 @@
   "repository": "ankan56-bot/Bud",
   "branch": "work/theme-dataset-analysis",
   "mode": "ostord",
-  "note": "Only uncovered N/S decisions are logged. E/W forced passes are not system-coverage gaps.",
-  "uniqueUncoveredSequences": 32,
-  "uncoveredDecisionCount": 39,
+  "note": "Only uncovered N/S decisions are logged. E/W forced passes are not system-coverage gaps. Unsupported bids are not guessed; the bot passes and the gap is recorded.",
+  "uniqueUncoveredSequences": 30,
+  "uncoveredDecisionCount": 37,
   "entries": [
     {
       "theme": "alla",
@@ -151,47 +151,8 @@
             "D": 6,
             "C": 2
           },
-          "chosen": "3S",
-          "explanation": "17 hp · 3 kort i ♠ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♠."
-        }
-      ]
-    },
-    {
-      "theme": "alla",
-      "seat": "S",
-      "auction": [
-        "N:1N",
-        "E:P",
-        "S:2S",
-        "W:P",
-        "N:3C",
-        "E:P",
-        "S:3D",
-        "W:P",
-        "N:3S",
-        "E:P"
-      ],
-      "count": 1,
-      "why": "Fortsättningen i 1NT/2NT-systemet beskrivs inte i dokumentet.",
-      "examples": [
-        {
-          "deal": 49,
-          "hpN": 17,
-          "hpS": 6,
-          "shapeN": {
-            "S": 3,
-            "H": 5,
-            "D": 2,
-            "C": 3
-          },
-          "shapeS": {
-            "S": 2,
-            "H": 3,
-            "D": 6,
-            "C": 2
-          },
-          "chosen": "4S",
-          "explanation": "6 hp · 2 kort i ♠ · Partnerns två visade färger: visar preferens för ♠."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen beskrivs inte i dokumentet."
         }
       ]
     },
@@ -399,8 +360,8 @@
             "D": 2,
             "C": 4
           },
-          "chosen": "4H",
-          "explanation": "15 hp · 4 kort i ♥ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♥."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen beskrivs inte i dokumentet."
         }
       ]
     },
@@ -535,8 +496,8 @@
             "D": 4,
             "C": 3
           },
-          "chosen": "3N",
-          "explanation": "23 hp · fördelning 3-3-4-3 · 20+ htp med lågfärgsstöd: balanserad hand och håll i sidofärgerna, väljer 3NT."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen i 2♣-systemet beskrivs inte i dokumentet."
         },
         {
           "deal": 16,
@@ -554,8 +515,8 @@
             "D": 3,
             "C": 2
           },
-          "chosen": "4D",
-          "explanation": "23 hp · 3 kort i ♦ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♦."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen i 2♣-systemet beskrivs inte i dokumentet."
         }
       ]
     },
@@ -587,8 +548,8 @@
             "D": 3,
             "C": 4
           },
-          "chosen": "5D",
-          "explanation": "22 hp · 4 kort i ♦ · 20+ htp med minst 4-korts lågfärgsstöd: väljer lågfärgsutgång när 3NT inte bedöms lämpligt."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Obalanserad hand utan 5-korts färg: dokumentet anger inte budet."
         },
         {
           "deal": 20,
@@ -606,47 +567,8 @@
             "D": 3,
             "C": 3
           },
-          "chosen": "5D",
-          "explanation": "23 hp · 4 kort i ♦ · 20+ htp med minst 4-korts lågfärgsstöd: väljer lågfärgsutgång när 3NT inte bedöms lämpligt."
-        }
-      ]
-    },
-    {
-      "theme": "tva",
-      "seat": "N",
-      "auction": [
-        "S:2C",
-        "W:P",
-        "N:2D",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3H",
-        "E:P",
-        "S:4D",
-        "W:P"
-      ],
-      "count": 1,
-      "why": "Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.",
-      "examples": [
-        {
-          "deal": 16,
-          "hpN": 2,
-          "hpS": 23,
-          "shapeN": {
-            "S": 5,
-            "H": 1,
-            "D": 3,
-            "C": 4
-          },
-          "shapeS": {
-            "S": 5,
-            "H": 3,
-            "D": 3,
-            "C": 2
-          },
-          "chosen": "5C",
-          "explanation": "2 hp · 4 kort i ♣ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♣."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Obalanserad hand utan 5-korts färg: dokumentet anger inte budet."
         }
       ]
     },
@@ -721,8 +643,8 @@
             "D": 6,
             "C": 1
           },
-          "chosen": "4S",
-          "explanation": "2 hp · 2 kort i ♠ · Partnerns två visade färger: visar preferens för ♠."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen i 2♣-systemet beskrivs inte i dokumentet."
         }
       ]
     },
@@ -1144,8 +1066,8 @@
             "D": 3,
             "C": 5
           },
-          "chosen": "3H",
-          "explanation": "10 hp · 4 kort i ♥ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♥."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet."
         }
       ]
     },
@@ -1179,8 +1101,8 @@
             "D": 3,
             "C": 3
           },
-          "chosen": "2S",
-          "explanation": "10 hp · 2 kort i ♠ · Partnerns två visade färger: visar preferens för ♠."
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet."
         }
       ]
     },
