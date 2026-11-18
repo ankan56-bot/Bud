@@ -39,7 +39,6 @@ assert.equal(response(twelveStp).sourceGap,false);
 // the Lathund does not give priority between that and 2NT Stenberg.
 const invitOverlap=['H2','H3','H4','H5','H6','H7','S14','D14','D2','C12','C11','C10','C2'];
 const invitOverlapResult=response(invitOverlap);
-console.log('invitOverlapResult',JSON.stringify(invitOverlapResult));
 assert.equal(invitOverlapResult.exp,null);
 assert.equal(invitOverlapResult.sourceGap,true);
 
@@ -64,9 +63,9 @@ const ask=R.nodeFor({hands,dealer:'N',bids:[
 ]},2);
 assert.equal(ask.exp,'4N');
 assert.equal(ask.conv,'Blackwood 5 ess');
-// The existing RKC response table is reused; opener has no aces, so 5C is correct.
+// The existing RKC response table is reused; opener has the trump king, so one keycard = 5D.
 const reply=R.nodeFor({hands,dealer:'N',bids:[
  {s:'N',c:'2H'},{s:'E',c:'P'},{s:'S',c:'4N'},{s:'W',c:'P'},{s:'N',c:'5C'}
 ]},4);
-assert.equal(reply.exp,'5C');
+assert.equal(reply.exp,'5D');
 console.log('Weak-two 2NT Stenberg: 13+ STP, threshold, overlap and opener source-gap tests passed.');
