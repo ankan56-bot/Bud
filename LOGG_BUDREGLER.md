@@ -530,3 +530,11 @@ Användarens beslut: specialfallet ska inte längre behandlas som ej täckt. Den
 - Rättningsmotor och exportmotor uppdaterade så frågeställarens och svarshandens faktiska HP räknas tillsammans.
 - Regressionstest ändrat så en hand med alla fyra ess och kungar men under 37 gemensamma HP ska stanna i 6NT.
 - Full testkörning är ännu inte verifierad i denna miljö.
+
+
+## Ändrad storslamsgräns i sang – 2026-11-18
+
+- Användarens beslut: sänk gränsen från 37 till 36 gemensamma HP.
+- 7NT kräver minst 36 gemensamma HP samt alla fyra ess och alla fyra kungar bekräftade.
+- Om något av kortkraven saknas, eller paret har under 36 HP, stannar paret i 6NT.
+- Regeln gäller endast sang. Storslam i fastställd trumf ligger kvar på 35 gemensamma HP samt alla fyra ess och kungar.
