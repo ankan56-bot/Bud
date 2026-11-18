@@ -504,16 +504,25 @@ function botCall(st,botSeat){
   var node;
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
   var call=node&&node.exp,why=node&&node.why||'Rättningsnyckeln saknar ett täckt bud här; sekvensen ska loggas.';
-  if(call&&legal(st,call,botSeat))return R(call,bidHandFacts(st.hands[botSeat],call)+' · '+why);
+  if(call==='P'&&legal(st,'P',botSeat))return R('P',why);
+  if(call&&call!=='P'&&legal(st,call,botSeat)){
+    // En rekommendation måste också klara rättning när själva budet ligger i auktionen.
+    var verifyBase=st.bids.concat([{s:botSeat,c:call}]),baseCheck=null;
+    try{baseCheck=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:verifyBase},verifyBase.length-1)}catch(e){baseCheck=null}
+    if(baseCheck&&(baseCheck.exp===call||(baseCheck.alt||[]).includes(call))){
+      return R(call,bidHandFacts(st.hands[botSeat],call)+' · '+why+' Budet verifierades även som faktiskt bud.');
+    }
+    why='Motorns första förslag '+call+' klarade inte kontrollen som faktiskt bud ('+(baseCheck&&baseCheck.exp?baseCheck.exp:'ej täckt')+'). Förslaget spärrades och sekvensen lämnas för analys.';
+  }
   var candidate=reasonedWeakTwoCandidate(st,botSeat);
   if(candidate&&legal(st,candidate.call,botSeat)){
     var verifyAuction=st.bids.concat([{s:botSeat,c:candidate.call}]),verified=null;
     try{verified=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:verifyAuction},verifyAuction.length-1)}catch(e){verified=null}
-    if(verified&&verified.exp===candidate.call){
+    if(verified&&(verified.exp===candidate.call||(verified.alt||[]).includes(candidate.call))){
       return R(candidate.call,bidHandFacts(st.hands[botSeat],candidate.call)+' · '+candidate.why+' Bekräftat av rättningsmotorn: '+verified.why);
     }
   }
-  return R('P',node&&node.why?'Rättningsnyckeln saknar ett säkert bud här: '+node.why:'Pass enligt rättningsnyckeln v4.9');
+  return R('P','Rättningsmotorn saknar ett verifierat bud här. '+why);
 }
 function advance(st){
   var g=0;
