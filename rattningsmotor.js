@@ -1415,60 +1415,78 @@ var Rattning = (function(){
     if(/^[34][CDHS]$/.test(c1)){
       return nc('Svar och fortsättningar efter 3-/4-nivåns spärröppning är inte definierade i det verifierade systemunderlaget. Ingen generell regel om ny färg, 3NT eller spärrhöjning antas.');
     }
-    if(!opener&&d===2&&c1==='1D'&&ours[1]&&ours[1].c==='2C'){
-      // Lathund Nya Bridgeskolan s. 15: SH:s andra bud efter
-      // 1♦–1♥; 2♣. Bedöm varje alternativ mot den exakta tabellraden.
-      var opener15=H(st.hands[pt]),diamonds15=h.L.D,clubs15=h.L.C,
-          hearts15=h.L.H,spadeStop15=h.stop('S'),
-          htpC15=h.htp('C'),htpD15=h.htp('D');
-      var row15=function(c,why,meaning){
-        return {exp:c,alt:[],why:why,means:function(x){return x===c?meaning:null},
-          conv:'SH:s andra bud efter 1♦–1♥–2♣ (lathund s. 15)',soft:false};
-      };
-      if(b.c==='P'){
-        if(diamonds15<=1&&clubs15>=3&&clubs15<=4&&h.hp>=6&&h.hp<=9)
-          return row15('P','0–1 ♦, 3–4 ♣ och 6–9 hp: svagt pass enligt sida 15.','0–1 ♦, 3–4 ♣, 6–9 hp.');
-        return NC('Pass enligt sida 15 kräver 0–1 ♦, 3–4 ♣ och 6–9 hp.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='2D'){
-        if(diamonds15>=2&&h.hp>=6&&h.hp<=10)
-          return row15('2D','Preferens med minst två ♦ och 6–10 hp/stp enligt sida 15.','Preferens, minst två ♦, 6–10 hp/stp.');
-        return NC('2♦ är preferens och kräver minst två ♦ samt 6–10 hp/stp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='2H'){
-        if(hearts15>=6&&h.hp>=6&&h.hp<=10)
-          return row15('2H','6+ ♥ och 6–10 hp: svagt bud enligt sida 15.','6+ ♥, 6–10 hp.');
-        return NC('2♥ kräver 6+ ♥ och 6–10 hp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='2N'){
-        if(spadeStop15&&h.hp>=11&&h.hp<=12)
-          return row15('2N','Spaderhåll och 11–12 hp: invit enligt sida 15.','Spaderhåll, 11–12 hp.');
-        return NC('2NT kräver spaderhåll och 11–12 hp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='3C'){
-        if(clubs15>=4&&htpC15>=10&&htpC15<=12)
-          return row15('3C','Minst fyrkortsstöd i ♣ och 10–12 stp enligt sida 15.','Minst 4-kortsstöd, 10–12 stp.');
-        return NC('3♣ kräver minst fyrkortsstöd och 10–12 stp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='3D'){
-        if(diamonds15>=3&&htpD15>=11&&htpD15<=12)
-          return row15('3D','Minst trekortsstöd i ♦ och 11–12 stp enligt sida 15.','Minst 3-kortsstöd, 11–12 stp.');
-        return NC('3♦ kräver minst trekortsstöd och 11–12 stp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='3H'){
-        if(hearts15>=6&&h.hp>=11&&h.hp<=12)
-          return row15('3H','6+ ♥ och 11–12 hp: invit enligt sida 15.','6+ ♥, 11–12 hp.');
-        return NC('3♥ kräver 6+ ♥ och 11–12 hp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='3N'){
-        if(spadeStop15&&h.hp>=13&&h.hp<=15)
-          return row15('3N','Spaderhåll och 13–15 hp: utgångsbud enligt sida 15.','Spaderhåll, 13–15 hp.');
-        return NC('3NT kräver spaderhåll och 13–15 hp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
-      }
-      if(b.c==='2S'){
-        if(h.hp>=13)
-          return row15('2S','Fjärde färg med 13+ hp: utgångskrav enligt sida 15.','Fjärde färg, 13+ hp, utgångskrav.');
-        return NC('2♠ är fjärde färg och utgångskrav; kräver 13+ hp enligt sida 15.','', 'SH:s andra bud efter 1♦–1♥–2♣');
+    if(!opener&&d===2&&/^1[CDHS]$/.test(c1)&&ours.length>=2){
+      // Lathund s. 15 generaliserad: svarshandens andra bud efter
+      // 1-i-färg, 1-över-1 och öppnarens icke-reverserande nya färg på 2-läget.
+      var openSuit15=st_(ours[0].c),respSuit15=st_(ours[1].c),
+          rebidSuit15=st_(ours[2].c),rank15={C:0,D:1,H:2,S:3},
+          isOneOverOne15=/^1[CDHS]$/.test(ours[1].c),
+          isTwoLevelNewSuit15=/^2[CDHS]$/.test(ours[2].c),
+          nonReverse15=rank15[rebidSuit15]<rank15[openSuit15]&&rebidSuit15!==openSuit15;
+      if(isOneOverOne15&&isTwoLevelNewSuit15&&nonReverse15&&
+         openSuit15!==respSuit15&&respSuit15!==rebidSuit15){
+        var fourth15=['C','D','H','S'].filter(function(s){
+          return s!==openSuit15&&s!==respSuit15&&s!==rebidSuit15;
+        })[0];
+        var openLen15=h.L[openSuit15],respLen15=h.L[respSuit15],
+            rebidLen15=h.L[rebidSuit15],stopFourth15=h.stop(fourth15),
+            htpOpen15=h.htp(openSuit15),htpRebid15=h.htp(rebidSuit15);
+        var minOpen15=lowest(openSuit15,ours[2].c),
+            minResp15=lowest(respSuit15,ours[2].c),
+            minFourth15=lowest(fourth15,ours[2].c),
+            minRebid3_15='3'+rebidSuit15,
+            minOpen3_15='3'+openSuit15,
+            minResp3_15=lv(minResp15)===2?'3'+respSuit15:minResp15;
+        var conv15='SH:s andra bud efter 1-över-1 och icke-reverserande tvåfärgsåterbud (lathund s. 15)';
+        var row15=function(code,why,meaning){
+          return {exp:code,alt:[],why:why,means:function(x){return x===code?meaning:null},conv:conv15,soft:false};
+        };
+        var bad15=function(message){return NC(message,'',conv15)};
+        if(b.c==='P'){
+          if(openLen15<=1&&rebidLen15>=3&&rebidLen15<=4&&h.hp>=6&&h.hp<=9)
+            return row15('P','0–1 kort i öppningsfärgen, 3–4 i återbudsfärgen och 6–9 hp: svagt pass enligt sida 15.','0–1 i öppningsfärgen, 3–4 i återbudsfärgen, 6–9 hp.');
+          return bad15('Pass kräver 0–1 kort i öppningsfärgen, 3–4 i återbudsfärgen och 6–9 hp enligt lathundens tabell.');
+        }
+        if(b.c===minOpen15){
+          if(openLen15>=2&&h.hp>=6&&h.hp<=10)
+            return row15(minOpen15,'Preferens till öppningsfärgen, minst två kort och 6–10 hp/stp enligt sida 15.','Preferens, minst två kort i öppningsfärgen, 6–10 hp/stp.');
+          return bad15('Preferensbudet kräver minst två kort i öppningsfärgen och 6–10 hp/stp.');
+        }
+        if(b.c===minResp15){
+          if(respLen15>=6&&h.hp>=6&&h.hp<=10)
+            return row15(minResp15,'6+ kort i svarsfärgen och 6–10 hp enligt sida 15.','6+ kort i svarsfärgen, 6–10 hp.');
+          return bad15('Bud i svarsfärgen på lägsta nivå kräver 6+ kort och 6–10 hp.');
+        }
+        if(b.c==='2N'){
+          if(stopFourth15&&h.hp>=11&&h.hp<=12)
+            return row15('2N','Håll i fjärde färgen och 11–12 hp: invit enligt sida 15.','Håll i fjärde färgen, 11–12 hp.');
+          return bad15('2NT kräver håll i fjärde färgen och 11–12 hp.');
+        }
+        if(b.c===minRebid3_15){
+          if(rebidLen15>=4&&htpRebid15>=10&&htpRebid15<=12)
+            return row15(minRebid3_15,'Minst fyrkortsstöd i öppnarens återbudsfärg och 10–12 stp enligt sida 15.','Minst 4-kortsstöd, 10–12 stp.');
+          return bad15('Stödjning av öppnarens återbudsfärg kräver minst fyrkortsstöd och 10–12 stp.');
+        }
+        if(b.c===minOpen3_15){
+          if(openLen15>=3&&htpOpen15>=11&&htpOpen15<=12)
+            return row15(minOpen3_15,'Minst trekortsstöd i öppningsfärgen och 11–12 stp enligt sida 15.','Minst 3-kortsstöd, 11–12 stp.');
+          return bad15('Stödjning av öppningsfärgen kräver minst trekortsstöd och 11–12 stp.');
+        }
+        if(b.c===minResp3_15&&minResp3_15!==minResp15){
+          if(respLen15>=6&&h.hp>=11&&h.hp<=12)
+            return row15(minResp3_15,'6+ kort i svarsfärgen och 11–12 hp: invit enligt sida 15.','6+ kort i svarsfärgen, 11–12 hp.');
+          return bad15('Invit i svarsfärgen kräver 6+ kort och 11–12 hp.');
+        }
+        if(b.c==='3N'){
+          if(stopFourth15&&h.hp>=13&&h.hp<=15)
+            return row15('3N','Håll i fjärde färgen och 13–15 hp: utgång enligt sida 15.','Håll i fjärde färgen, 13–15 hp.');
+          return bad15('3NT kräver håll i fjärde färgen och 13–15 hp.');
+        }
+        if(b.c===minFourth15){
+          if(h.hp>=13)
+            return row15(minFourth15,'Fjärde färg med 13+ hp: utgångskrav enligt sida 15.','Fjärde färg, 13+ hp, utgångskrav.');
+          return bad15('Fjärde färg är utgångskrav och kräver 13+ hp enligt sida 15.');
+        }
       }
     }
 
