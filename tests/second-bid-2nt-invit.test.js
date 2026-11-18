@@ -58,7 +58,7 @@ const sourceProfile=['S14','S13','S2','S3','H2','H3','D13','D12','D2','D3','C2',
 const sourceResult=response(sourceProfile,'2C');
 assert.equal(sourceResult.exp,'2N');
 assert.equal(sourceResult.ruleStatus,'source_confirmed');
-const noDiamondStop=['S13','S12','S2','S3','H13','H2','D11','D2','D3','D4','C13','C2','C3'];
+const noDiamondStop=['S13','S12','S2','S3','H13','H2','D10','D9','D8','D7','C12','C2','C3'];
 const rejectedSourceProfile=response(noDiamondStop,'2C');
 assert.equal(rejectedSourceProfile.exp,null);
 assert.equal(rejectedSourceProfile.sourceGap,false);
