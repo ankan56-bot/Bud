@@ -72,11 +72,12 @@ test("two keycards and a club void are shown by 6C when clubs are below trumps",
   assert.equal(result?.exp, "6C", JSON.stringify(result));
 });
 
-test("three keycards and a void are shown by 5NT", () => {
+test("three keycards and a void do not reuse the superseded 5NT response", () => {
   const hand = ["S14", "S13", "S10", "S9", "D14", "D10", "D9", "D8", "H10", "H9", "H8", "H7", "H6"];
   const result = responseFromSouthHand(hand);
   assert.deepEqual(Rattning.H(hand).L, { C: 0, D: 4, H: 5, S: 4 });
-  assert.equal(result?.exp, "5N", JSON.stringify(result));
+  assert.equal(result?.exp, null);
+  assert.match(result?.why || "", /5NT-renonsvisningen är ersatt/i);
 });
 
 test("two keycards and a heart void below spade trumps are shown by 6H", () => {
@@ -172,3 +173,18 @@ test("sang 4NT: all four partnership aces leads to 5NT king ask",()=>{const st=n
 test("sang 4NT: missing an ace stops at 6NT",()=>{const southMissing=["H14","D14","H13","D13","C13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southMissing,"5D");st.bids.push({s:"S",c:"6N"});assert.notEqual(R.H(st.hands.S).aces,3);assert.equal(R.nodeFor(st,6).exp,"6N");});
 test("sang king ask: all four kings leads to 7NT",()=>{const st=ntAskState(northNT,southAllAces,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"7N"});assert.equal(R.H(st.hands.S).kings,3);assert.equal(R.nodeFor(st,10).exp,"7N");});
 test("sang king ask: a missing king stops at 6NT",()=>{const southTwo=["H14","D14","C14","H13","D13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southTwo,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"6N"});assert.equal(R.H(st.hands.S).kings,2);assert.equal(R.nodeFor(st,10).exp,"6N");});
+
+test("trump 5NT king ask is recognized as an ask, not as an RKC answer", () => {
+  const hand = ["S14", "S10", "S9", "H14", "H13", "H12", "H11", "D10", "D13", "D12", "D11", "D9", "D8"];
+  const hands = dealWithSouth(hand);
+  const bids = [
+    { s: "N", c: "1S" }, { s: "E", c: "P" },
+    { s: "S", c: "2S" }, { s: "W", c: "P" },
+    { s: "N", c: "4N" }, { s: "E", c: "P" },
+    { s: "S", c: "5D" }, { s: "W", c: "P" },
+    { s: "N", c: "5N" }, { s: "E", c: "P" }
+  ];
+  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 9);
+  assert.equal(result?.exp, null);
+  assert.match(result?.why || "", /5NT-kungfråga är identifierad/i);
+});
