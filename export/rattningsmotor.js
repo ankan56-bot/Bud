@@ -683,9 +683,9 @@ var Rattning = (function(){
     }
     return rkcTrumpKingClose(h,p,trump);
   }
-  function rkcNextStep(h,T_,r,stage){
+  function rkcNextStep(h,T_,r,stage,p){
     var exp,why;var means=function(c){if(c==='5N')return T_?'Kungfråga efter RKC-svaret.':'Kungfråga efter att alla fyra ess har bekräftats.';if(c==='6N')return 'Lillslam i sang.';if(c==='7N')return 'Storslam i sang.';if(T_&&c==='6'+T_)return 'Lillslam i trumffärgen.';if(T_&&c==='7'+T_)return 'Storslam i trumffärgen.';if(c==='P')return 'Pass.';return null;};
-    if(!T_){if(stage==='kings'){var allKings=(r==='6C'&&h.kings===4)||(r==='6D'&&h.kings===3)||(r==='6H'&&h.kings===2)||(r==='6S'&&h.kings===1);exp=allKings?'7N':'6N';why=allKings?'Alla fyra ess och alla fyra kungar är bekräftade: 7NT.':'Minst en kung saknas: stanna i 6NT.';}else{var allAces=(r==='5C'&&h.aces===4)||(r==='5D'&&h.aces===3)||(r==='5H'&&h.aces===2)||(r==='5S'&&h.aces===1);exp=allAces?'5N':'6N';why=allAces?'Alla fyra ess är bekräftade: 5NT frågar efter kungarna.':'Minst ett ess saknas: stanna i 6NT.';}return {exp:exp,alt:[],why:why,means:means,conv:stage==='kings'?'Kungfråga i sang':'Fyr-essfråga utan trumf'};}
+    if(!T_){if(stage==='kings'){var allKings=(r==='6C'&&h.kings===4)||(r==='6D'&&h.kings===3)||(r==='6H'&&h.kings===2)||(r==='6S'&&h.kings===1);var partnershipHp=h.hp+(p?p.hp:0);var grand=allKings&&partnershipHp>=37;exp=grand?'7N':'6N';why=grand?'Alla fyra ess och kungar är bekräftade och paret har '+partnershipHp+' HP (minst 37): 7NT.':allKings?'Alla fyra ess och kungar är bekräftade men paret har bara '+partnershipHp+' HP; kravet för 7NT är 37, så stanna i 6NT.':'Minst en kung saknas: stanna i 6NT.';}else{var allAces=(r==='5C'&&h.aces===4)||(r==='5D'&&h.aces===3)||(r==='5H'&&h.aces===2)||(r==='5S'&&h.aces===1);exp=allAces?'5N':'6N';why=allAces?'Alla fyra ess är bekräftade: 5NT frågar efter kungarna.':'Minst ett ess saknas: stanna i 6NT.';}return {exp:exp,alt:[],why:why,means:means,conv:stage==='kings'?'Kungfråga i sang':'Fyr-essfråga utan trumf'};}
     if(T_){if(/^5[CDHS]$/.test(r))return NC('Efter RKC-svaret används 5NT som kungfråga enligt parets överenskommelse. Den färgvisa kungvisningen hanteras separat och får inte använda sangens antalstabell.','', 'Blackwood 5 ess');if(r==='6'+T_||r==='7'+T_){exp='P';why='Slutbud.';}else return NC('Fortsättningen efter detta RKC-svar är inte uttryckligen fastställd.','', 'Blackwood 5 ess');}
     return {exp:exp,alt:[],why:why,means:means,conv:'Blackwood 5 ess'};
   }
@@ -1122,7 +1122,7 @@ var Rattning = (function(){
             means:function(c){return c==='6'+agreedTrump?'6 i fastställd trumf efter 5C/5D-svar och partnerns återgång till 5 i trumf.':null},
             conv:'Blackwood 5 ess'};
         }
-        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return agreedTrump?rkcTrumpKingClose(h,H(st.hands[pt]),agreedTrump):rkcNextStep(h,null,kingResponse.c,'kings');}return rkcNextStep(h,agreedTrump,response);}
+        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return agreedTrump?rkcTrumpKingClose(h,H(st.hands[pt]),agreedTrump):rkcNextStep(h,null,kingResponse.c,'kings',H(st.hands[pt]));}return rkcNextStep(h,agreedTrump,response);}
       }
     }
 
