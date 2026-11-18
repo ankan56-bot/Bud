@@ -498,3 +498,13 @@ Användarens senaste beslut ersätter den tidigare gemensamma 37 HP-gränsen:
 - 7 i trumf: minst 35 gemensamma honnörspoäng (HP), samt alla fyra kungar kända. Trumfkungen räknas som känd via 4NT-svaret.
 - Övriga regler för essfråga, kungfråga och budvisning ändras inte.
 - Tidigare notering om 37 HP för både sang och trumf är ersatt och ska inte användas aktivt.
+
+
+## Ytterligare villkor för storslam i trumf – 2026-11-18
+
+Användarens förtydligande:
+- 7 i trumf kräver minst 35 gemensamma HP.
+- Alla fyra ess måste vara kända.
+- Alla fyra kungar måste vara kända; trumfkungen räknas som känd genom 4NT-svaret.
+- Regeln är kumulativ: 35 HP räcker inte om något ess eller någon kung saknas/är osäker.
+- Detta villkor gäller endast storslam i trumf och ändrar inte 7NT-regeln (37 HP samt alla fyra ess och kungar).
