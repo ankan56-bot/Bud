@@ -400,3 +400,14 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 - SKROT:s övriga förslag får endast användas som komplettering där det saknas en befintlig regel och efter kontroll att de passar ihop med systemet.
 - Historiska testposter raderas inte ur ursprungsrapporten. Endast poster som faktiskt täcks av de nya villkoren får tas bort ur den aktiva listan över öppna luckor. De befintliga råposterna efter 1M–2NT gäller huvudsakligen 11–12 hp obalanserade händer eller efterföljande RKC-svar; de kan därför inte avföras enbart med dessa nya regler.
 
+## 11 hp vid stark färgöppning – normalisering i öppnarens fortsättning (2026-11-18)
+
+**Status:** Implementerat i rättningsmotorn på arbetsgrenen.
+
+- En öppnare som enligt undantaget får öppna 1 i färg med 11 faktiska hp och bra 5+ färg ska i öppnarens senare styrkeklassificering behandlas som minst 12 hp.
+- Normaliseringen är centraliserad i `openerStrengthHp` och `openerStrengthHtp`, och används i öppnarens andra bud (`reb1`), inklusive Stenbergfortsättningen efter 1M–2NT.
+- Om den aktuella styrkemätningen annars skulle bli 11 räknas den som 12 vid klassificering av öppnarens fortsättningsbud. Högre faktiska HP/HTP påverkas inte.
+- Detta är en klassificeringsregel för öppnarens fortsättning, inte en ändring av handens faktiska honnörspoäng.
+- Faktiska hp/htp i partnerskapssummor, trumf-/fördelningspoäng, utgångskontroller och slamkontroller lämnas oförändrade. Ingen fiktiv poäng läggs till i parets sammanlagda styrka.
+- Regeln ändrar inte vem som får öppna på 11 hp; öppningsundantaget och kravet på bra 5+ färg är oförändrade.
+- Svarshandens styrka, motståndarnas bud, 1NT-/2NT-öppningar och stark 2♣-öppning påverkas inte.
