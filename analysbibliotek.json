@@ -9178,7 +9178,7 @@
       ]
     },
     {
-      "id": "T41_OPPNARENS_TREDJE_BUD_EFTER_2NT_INVIT",
+      "id": "T42_OPPNARENS_TREDJE_BUD_EFTER_2NT_INVIT",
       "title": "Ostörd budgivning – öppnarens tredje bud efter 2NT-invit",
       "tags": [
         "ostörd",
@@ -9195,10 +9195,10 @@
         "För körbar logik tolkas minimum som 12–14 hp och maximum som 15–17 hp. Den numeriska uppdelningen är en mjuk källtolkning och inte en separat fastställd grundregel.",
         "3NT är märkt Plus i lathunden och ingår inte i Nordisk Standard-grenarna."
       ],
-      "root": "t41_start",
+      "root": "t42_invite_start",
       "nodes": [
         {
-          "id": "t41_start",
+          "id": "t42_invite_start",
           "sequence": [
             "1♥",
             "Pass",
@@ -9214,27 +9214,27 @@
           "branches": [
             {
               "call": "3♣",
-              "next": "t41_3c",
+              "next": "t42_invite_3c",
               "label": "15–17 hp, fjärde färg – utgångskrav"
             },
             {
               "call": "3♦",
-              "next": "t41_3d",
+              "next": "t42_invite_3d",
               "label": "5-5 i hjärter/ruter, minimum 12–14 hp"
             },
             {
               "call": "3♥",
-              "next": "t41_3h",
+              "next": "t42_invite_3h",
               "label": "6-4 i hjärter/ruter, minimum 12–14 hp"
             },
             {
               "call": "3♠",
-              "next": "t41_3s",
+              "next": "t42_invite_3s",
               "label": "Exakt tre spader, maximum 15–17 hp"
             },
             {
               "call": "Pass",
-              "next": "t41_pass",
+              "next": "t42_invite_pass",
               "label": "Svagt/minimum utan de angivna fördelningsgrenarna"
             }
           ],
@@ -9246,7 +9246,7 @@
           "ruleStatus": "source_interpretation"
         },
         {
-          "id": "t41_3c",
+          "id": "t42_invite_3c",
           "sequence": [
             "1♥",
             "Pass",
@@ -9269,7 +9269,7 @@
           "ruleStatus": "source_interpretation"
         },
         {
-          "id": "t41_3d",
+          "id": "t42_invite_3d",
           "sequence": [
             "1♥",
             "Pass",
@@ -9292,7 +9292,7 @@
           "ruleStatus": "source_interpretation"
         },
         {
-          "id": "t41_3h",
+          "id": "t42_invite_3h",
           "sequence": [
             "1♥",
             "Pass",
@@ -9315,7 +9315,7 @@
           "ruleStatus": "source_interpretation"
         },
         {
-          "id": "t41_3s",
+          "id": "t42_invite_3s",
           "sequence": [
             "1♥",
             "Pass",
@@ -9338,7 +9338,7 @@
           "ruleStatus": "source_interpretation"
         },
         {
-          "id": "t41_pass",
+          "id": "t42_invite_pass",
           "sequence": [
             "1♥",
             "Pass",
