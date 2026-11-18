@@ -18,9 +18,9 @@ function openerFor(responder,secondSuit){
         selected.push(card);
     }
   }
-  take('H',5);take(secondSuit,4);
+  take('H',secondSuit==='D'?4:5);take(secondSuit,4);
   const other=secondSuit==='D'?'C':'D';
-  take('S',2);take(other,2);
+  take('S',2);take(other,secondSuit==='D'?3:2);
   for(const card of deck){if(selected.length<13&&!unavailable.has(card)&&!selected.includes(card))selected.push(card);}
   assert.equal(selected.length,13);
   return selected;
