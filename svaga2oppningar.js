@@ -110,10 +110,10 @@
       return NC('2NT efter svag tvåöppning är Stenberg med 13+ STP enligt Lathunden s. 27. Öppnarens exakta fortsättning efter Stenberg är inte tillräckligt specificerad i källunderlaget. Den äldre 6–8/9–10 hp-stegen används inte.',means,'svag tvåa / Stenberg',true);
     }
     if(r==='3'+o){
-      return NC('3 i öppningsfärgen är invit med cirka 14–16 STP enligt Lathunden s. 27. Öppnarens fortsättning efter denna invit specificeras inte tillräckligt.',means,'svag tvåa');
+      return NC('3 i öppningsfärgen är invit med cirka 14–16 STP enligt Lathunden s. 27. Öppnarens fortsättning efter denna invit specificeras inte tillräckligt.',means,'svag tvåa',true);
     }
     if(isBid(r)&&r[1]!==o&&r[1]!=='N'){
-      return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa'};
+      return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa',sourceGap:true};
     }
     return {exp:null,alt:[],why:'Fortsättningen beskrivs inte i dokumentet.',means:means,conv:'svag tvåa'};
   }
