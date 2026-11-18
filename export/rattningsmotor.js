@@ -1093,9 +1093,7 @@ var Rattning = (function(){
       var afterPartnerAsk=partnerAskHistory.filter(function(x){return x.s===me&&isBid(x.c)});
       var partnerKingAsk=partnerAskHistory.some(function(x){return x.s===pt&&x.c==='5N';});
       var partnerTrumpAsk=rkcTrumpFromAuction(prior,side(me));
-      // 5NT från frågeställaren är alltid kungfråga enligt den
-      // senare överenskommelsen. Den äldre RKC-betydelsen 3 nyckelkort
-      // och renons får inte återanvändas här.
+      // 5NT från frågeställaren är alltid kungfråga efter RKC.
       if(partnerKingAsk){
         return partnerTrumpAsk
           ? rkcTrumpKingReply(h,H(st.hands[pt]),partnerTrumpAsk)
