@@ -98,8 +98,8 @@
 
     // Sekvensspecifik regel: 1♥–1♠–2♦–2NT.
     // Användarbekräftad 2026-11-18: 2NT är en invit med 11–12 HP.
-    // Denna gräns gäller bara denna exakta sekvens; den får inte spridas
-    // till andra 2NT-bud eller till 1♥–1♠–2♣.
+    // Denna gräns gäller bara denna exakta sekvens; 1♥–1♠–2♣ har en
+    // separat gren med egna krav och får inte blandas ihop med denna invit.
     if(first==='H'&&resp==='S'&&rb==='D'){
       if(h.bal&&hp>=11&&hp<=12){
         return {exp:'2N',alt:[],why:hp+' hp och balanserad hand efter 1♥–1♠–2♦: 2NT är invit (11–12 hp).',
