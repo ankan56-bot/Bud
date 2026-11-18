@@ -915,7 +915,7 @@ Lathundens separata ruta anger:
 - 3♠: trekortsstöd i spader, maximum (annars skulle 2♠ ha bjudits direkt).
 - 3NT är uttryckligen märkt Plus och har därför inte lagts in som Nordisk Standard-gren.
 
-För körbar logik har "minimum" tolkats som 12–14 hp och "maximum" som 15–17 hp, i linje med öppnings-/återbudsintervallet och lathundens notering om ca 15–17 hp för invitstyrka. Den numeriska uppdelningen är markerad `source_interpretation`/soft och får inte behandlas som en separat fastställd grundregel.
+För körbar logik har "minimum" tolkats som 12–14 hp (11 hp endast efter tre pass i fjärde hand) och "maximum" som 15–17 hp, i linje med öppnings-/återbudsintervallet och lathundens notering om ca 15–17 hp för invitstyrka. Den numeriska uppdelningen är markerad `source_interpretation`/soft och får inte behandlas som en separat fastställd grundregel.
 - `stordbudgivning.js`: ny funktion `openerThirdAfterTwoSuitInvite`.
 - `analysbibliotek.json`: nytt träd T42 med rot, samtliga fem beskrivna fortsättningar och markerad soft-tolkning.
 - `budbeslut.js`: exakt sekvensroutning för öppnarens tredje bud.
