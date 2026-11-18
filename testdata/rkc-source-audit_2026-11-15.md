@@ -53,3 +53,8 @@ Källtexten i Nordisk standard och parets uttryckliga senare överenskommelse h�
 ## Tillägg – senare regelbeslut 2026-11-18
 
 Den senare överenskommelsen om trumfens 5NT kungfråga går före källtextens äldre 5NT = 3 nyckelkort och renons. 5NT efter RKC ska därför identifieras som kungfråga. Exakt färgvis svarssteg är inte tillräckligt specificerad för automatisk budgivning och lämnas ej täckt. Tre nyckelkort och renons har inget automatiskt svar i den uppdaterade profilen.
+
+
+## Regelstatus efter uttryckligt beslut – 2026-11-18
+
+Den tidigare källbeskrivningen av 5NT som 3 nyckelkort och renons är historisk och gäller inte längre i tränaren. Den aktiva regeln är att 5NT efter RKC-svaret är kungfråga. Kungarna visas färgvis i stigande färgordning, lägsta relevanta kung först; singelton/renons räknas som kung i färgen; trumffärgen får inte hoppas över. Om minst två kungar saknas eller är osäkra stoppas budgivningen i 6 i trumf och pass. Alla äldre aktiva regler och kommentarer ska skrivas över med denna regelprofil.
