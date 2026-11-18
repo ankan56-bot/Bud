@@ -35,6 +35,11 @@ const cases = [
     expected:'P'
   },
   {
+    name:'11 HCP 6-4 opening hand is not fourth hand',
+    hand:['H14','H13','H11','H9','H7','H6','D13','D9','D7','D6','S4','S5','C2'],
+    expected:null
+  },
+  {
     name:'18 HCP lies outside the 1H-1S-2D rebid range',
     hand:['H14','H13','H12','H9','H7','D14','D13','D9','D7','S12','S9','C2','C3'],
     expected:null
@@ -63,5 +68,28 @@ for (const c of cases) {
     assert.equal(live.soft,true);
   }
 }
+
+// The 11 HCP opening exception is available only in fourth hand after three passes.
+const fourthHand11=[
+  'H14','H13','H11','H9','H7','H6',
+  'D13','D9','D7','D6',
+  'S4','S5','C2'
+];
+const fourthHandAuction=[
+  {s:'N',c:'P'},{s:'E',c:'P'},{s:'S',c:'P'},
+  {s:'W',c:'1H'},{s:'N',c:'P'},{s:'E',c:'1S'},
+  {s:'S',c:'P'},{s:'W',c:'2D'},{s:'N',c:'P'},
+  {s:'E',c:'2N'},{s:'S',c:'P'}
+];
+assert.equal(R.H(fourthHand11).hp,11);
+assert.equal(R.H(fourthHand11).L.H,6);
+const fourthHandRaw=R.nodeForRaw({
+  hands:{W:fourthHand11},dealer:'N',
+  bids:fourthHandAuction.concat([{s:'W',c:'P'}])
+},11);
+assert.equal(fourthHandRaw.exp,'3D','11 HCP 6-4 minimum is allowed in fourth hand');
+const fourthHandLive=R.decideLive({seat:'W',dealer:'N',auction:fourthHandAuction,ownHand:fourthHand11});
+assert.equal(fourthHandLive.exp,'3D','live fourth-hand opener must use the 11 HCP exception');
+assert.equal(fourthHandLive.informationBoundary,'own_hand_and_public_auction_only');
 
 console.log('Opener third bid after 1H-1S-2D-2NT: source-bound branches passed.');
