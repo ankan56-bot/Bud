@@ -147,12 +147,12 @@ var Rattning = (function(){
     // The exact 1♥–1♠–2♦ continuation is information-safe:
     // 11–12 balanced HCP invites 2NT; 13+ uses fourth-suit forcing.
     var isOneMajorSecondBidFamily=nonPass.length===3&&
-      nonPass[0].c==='1H'&&nonPass[1].c==='1S'&&nonPass[2].c==='2D'&&
+      nonPass[0].c==='1H'&&nonPass[1].c==='1S'&&['2C','2D'].indexOf(nonPass[2].c)>=0&&
       nonPass[0].s===partner(seat)&&nonPass[1].s===seat&&nonPass[2].s===partner(seat)&&
       auction.every(function(x){return side(x.s)===side(seat)||x.c==='P';})&&
       auction.every(function(x){return x.c!=='X'&&x.c!=='XX';});
     if(!isOpeningDecision&&!isOneNTFamily&&!isStenbergFamily&&!isOneMajorSecondBidFamily){
-      var unsupportedReason='Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass samt verifierade 1NT-/2NT-, Stenberg- och 1♥–1♠–2♦-grenar är aktiverade; andra sekvenser lämnas ej täckta.';
+      var unsupportedReason='Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass samt verifierade 1NT-/2NT-, Stenberg- och 1♥–1♠–2♣/2♦-grenar är aktiverade; andra sekvenser lämnas ej täckta.';
       if(typeof window!=='undefined'&&window.EjTacktaLogg){
         var liveOwnHands={};liveOwnHands[seat]=ownHand.slice();
         window.EjTacktaLogg.record({
