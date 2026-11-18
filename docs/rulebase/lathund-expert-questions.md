@@ -205,3 +205,10 @@
 - Lathund s. 27 anger 4NT som essfråga med öppningsfärgen som trumf.
 - **Status:** Direkt, ostörd 4NT efter 2♦/2♥/2♠ routas till befintlig RKC-modul med öppningsfärgen som trumf. Övriga konkurrenssekvenser är inte automatiskt antagna.
 
+
+### A20. Konkurrensbud – två olika 2NT-intervall
+
+- Efter motståndarnas inkliv över vår öppning: 2NT visar 11–12 hp, balanserad hand och håll i inklivsfärgen enligt Lathunden s. 35. 13+ STP med 3+ stöd hanteras som överbud.
+- Efter partnerns inkliv på 1-nivån: 2NT visar 11–13 hp, balanserad hand och bra håll enligt Nordisk standard s. 7.
+- **Status:** Separata källkontexter implementerade och regressionstestade. De två intervallen får inte sammanblandas.
+
