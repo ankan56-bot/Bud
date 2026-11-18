@@ -371,3 +371,32 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 - Efter 1♥–1♠–2♦: 2NT är användarens invit 11–12 hp; 3♠ visar 6+ ♠ och 10–12 htp enligt sida 3.
 - Splinter är borttaget ur den aktiva budmodellen. Hopp i ny färg efter svag tvåöppning och den tidigare 4♣-specialsekvensen lämnas ej täckta.
 - Kvar som uttryckligt ej täckt: spärrande stödshöjningar 4m/4M kräver "bra stöd och svitad hand" utan numeriskt definierad gräns; ingen automatisk regel hittas på.
+
+
+
+## Stenberg 2NT – förtydliganden från användaren (2026-11-18)
+
+**Status:** Regelbeslut för grundsystemets Stenberggren efter 1♥/1♠–2NT. Detta är ett förtydligande av befintliga betydelser; SKROT-texten används endast som kompletterande tolkningsunderlag där den inte motsäger besluten. Inga andra Stenberg- eller Nordisk Standard-regler skrivs över.
+
+### Öppnarens återbud efter 1♥/1♠–2NT
+
+- 3♥ och 3♠ visar minst 15 HTP. Budens redan etablerade färg-/kortfärgsbetydelse ska behållas.
+- 3♣ och 3♦ visar också minst 15 HTP. Deras befintliga andra betydelse ska behållas.
+- 3NT visar en balanserad hand med 12–19 poäng. Detta är inte en slamvisande gren.
+- Efter 3NT är normalhanteringen pass. Det finns ingen automatisk slamfortsättning i denna gren.
+
+### Ogiltig invitsekvens 4♣/4♦ efter 3NT – separat analysbedömning
+
+- 4♣ och 4♦ är **inte giltiga systembud** i denna sekvens. Rättningsmotorn ska markera dem som fel.
+- Analysmotorn ska ändå känna igen att handen som bjöd 4♣/4♦ kan vara en invit-hand med lång lågfärg.
+- I den kompletterande analysen: öppningshanden passar med 12–14 HTP; med mer än 14 HTP föreslås 5 i den lågfärg som inviterats.
+- Detta analysalternativ gör inte 4♣/4♦ till tillåtna systembud och får inte ändra rättningsmotorns felmarkering.
+
+### Avgränsning
+
+- Dessa förtydliganden gäller endast den beskrivna Stenbergsekvensen efter högfärgsöppning.
+- De skapar inte automatiskt en motsvarande regel efter 1♣/1♦ eller efter svag tvåöppning.
+- RKC-fortsättningar efter 4NT och svar på essfråga förblir separata grenar.
+- SKROT:s övriga förslag får endast användas som komplettering där det saknas en befintlig regel och efter kontroll att de passar ihop med systemet.
+- Historiska testposter raderas inte ur ursprungsrapporten. Endast poster som faktiskt täcks av de nya villkoren får tas bort ur den aktiva listan över öppna luckor. De befintliga råposterna efter 1M–2NT gäller huvudsakligen 11–12 hp obalanserade händer eller efterföljande RKC-svar; de kan därför inte avföras enbart med dessa nya regler.
+
