@@ -182,5 +182,5 @@
 - **Källa:** Lathunden tryckt s. 18 visar exakt sekvensen 1♥–1♠–2♦–2NT och öppnarens möjliga tredje bud.
 - **Öppnarens tredje bud enligt rutan:** pass = svagt; 3♣ = fjärde färg, utgångskrav (13+ hp enligt etablerad fjärde-färgsregel); 3♦ = 6-4-fördelning, minimum; 3♥ = 5-5-fördelning, minimum; 3♠ = trekortsstöd i spader, maximum. 3NT är märkt Plus och ingår inte i grundsystemet.
 - **Runtime:** `stordbudgivning.js` och `budbeslut.js` hanterar både efterhandsrättning och informationssäker livebedömning.
-- **Tolkning:** Lathunden skriver minimum/maximum utan att ange exakta hp-tal i rutan. Runtime använder 12–14 respektive 15–17 hp som en mjuk tolkning; dessa intervall är inte fastställda grundregler och är markerade `soft/source_interpretation`.
+- **Tolkning:** Lathunden skriver minimum/maximum utan att ange exakta hp-tal i rutan. Runtime använder 12–14 hp som minimum (11 hp endast efter tre pass i fjärde hand) och 15–17 hp som maximum som en mjuk tolkning; dessa intervall är inte fastställda grundregler och är markerade `soft/source_interpretation`.
 - **Regression:** `tests/one-major-second-bid-2nt-invite.test.js` och `tests/one-major-opener-third-after-2nt.test.js`.
