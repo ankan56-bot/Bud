@@ -179,6 +179,7 @@
 ### A15. 1♥–1♠–2♦–2NT och öppnarens tredje bud
 
 - **Svarshandens bud:** Användaren har bekräftat att 2NT är en naturlig invit med 11–12 hp. Detta är inte Stenberg.
+- **Fördelning:** Runtime kräver för närvarande balanserad hand som en soft/naturlig-NT-tolkning. Lathundsrutan anger inte svarshandens exakta fördelning, så detta villkor är inte fastställt och ska kunna ändras.
 - **Källa:** Lathunden tryckt s. 18 visar exakt sekvensen 1♥–1♠–2♦–2NT och öppnarens möjliga tredje bud.
 - **Öppnarens tredje bud enligt rutan:** pass = svagt; 3♣ = fjärde färg, utgångskrav (13+ hp enligt etablerad fjärde-färgsregel); 3♦ = 6-4-fördelning, minimum; 3♥ = 5-5-fördelning, minimum; 3♠ = trekortsstöd i spader, maximum. 3NT är märkt Plus och ingår inte i grundsystemet.
 - **Runtime:** `stordbudgivning.js` och `budbeslut.js` hanterar både efterhandsrättning och informationssäker livebedömning.
