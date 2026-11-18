@@ -98,6 +98,7 @@
 
     // Sekvensspecifik regel: 1♥–1♠–2♦–2NT.
     // Användarbekräftad 2026-11-18: 2NT är en invit med 11–12 HP.
+    // Balanserad hand är tills vidare en soft/naturlig-NT-tolkning; källrutan anger inte fördelningskravet.
     // Denna gräns gäller bara denna exakta sekvens; 1♥–1♠–2♣ har en
     // separat gren med egna krav och får inte blandas ihop med denna invit.
     if(first==='H'&&resp==='S'&&rb==='D'){
