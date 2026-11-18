@@ -895,3 +895,12 @@ En separat regression verifierar att 4NT direkt efter `1♣–2NT`, innan öppna
 - Runtime: `stordbudgivning.js`. 11–12 HP och balanserad hand ger 2NT. 10 HP balanserad lämnas ej täckt; 13+ HP går vidare enligt befintlig stark fortsättning (fjärde färg), inte som invit.
 - Regression: `tests/one-major-second-bid-2nt-invite.test.js` kontrollerar 10, 11, 12 och 13 HP genom den riktiga buddirigeringen.
 - Ingen accept-/avslagsregel för öppnarens nästa bud har lagts till; den måste granskas separat mot källan.
+
+### Separata 2NT-grenar efter tvåfärgsåterbud – 2026-11-18
+
+- `1♥–1♠–2♦–2NT`: användarbekräftad naturlig invit, 11–12 HP, balanserad hand. 13+ HP går via 3♣ som fjärde färg/utgångskrav. 10 HP balanserad är ej täckt.
+- `1♥–1♠–2♣–2NT`: separat gren. 2NT är endast täckt med 10–12 HP, balanserad hand, exakt två hjärter samt håll i både spader och ruter. Om något villkor saknas markeras läget ej täckt.
+- `1♣–1♦–1♥–2NT`: T40:s konkreta exempel behåller 10–12 HP balanserad invit. Detta får inte färgsubstitueras till andra sekvenser.
+- Övriga tvåfärgssekvenser med 10–12 HP lämnas ej täckta tills respektive färgkombination har verifierats. Ingen generell 2NT-regel får spridas mellan sekvenser.
+- Livebeslut är aktiverat endast för de två exakta 1♥–1♠–2♣/2♦-sekvenserna där beslutet kan tas från egen hand och offentlig budgivning. Partnerns dolda hand används inte.
+- Regressionen `tests/one-major-second-bid-2nt-invite.test.js` täcker styrkegränserna, håll, tvåhjärtersvillkoret, T40-exemplet, efterhandsrättning och livebeslut.
