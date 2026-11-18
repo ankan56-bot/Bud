@@ -21,7 +21,7 @@ Saknas minst ett ess stannar paret i 6NT. När alla fyra ess är bekräftade fr�
 | 6♥ | 2 kungar |
 | 6♠ | 3 kungar |
 
-Saknas minst en kung stannar paret i 6NT. 7NT kräver alla fyra ess, alla fyra kungar och minst 37 gemensamma HP. Dubbeltydiga 0/4-svar får inte tolkas som fyra utan stöd i frågeställarens egna kort; kvarstående tvetydighet ger inte storslam.
+Saknas minst en kung stannar paret i 6NT. 7NT kräver alla fyra ess, alla fyra kungar och minst 36 gemensamma HP. Dubbeltydiga 0/4-svar får inte tolkas som fyra utan stöd i frågeställarens egna kort; kvarstående tvetydighet ger inte storslam.
 
 ## Fastställd trumf – fem nyckelkort
 4NT frågar efter de fyra essen plus trumfkungen.
@@ -38,7 +38,7 @@ Efter nyckelkortssvaret används 5NT som kungfråga. **5NT betyder aldrig längr
 - 4NT utan fastställd trumf är inte automatiskt essfråga; endast uttryckligen avtalade sekvenser omfattas.
 - Sangens och trumfens 5NT-kungfrågor är separata: sang använder antalstabellen ovan, trumf använder färgvisning.
 - Dessa regler ersätter äldre betydelser i samtliga aktiva regler, kodkopior, analysnoder och träningsmaterial.
-- Storslam i sang kräver minst 37 gemensamma HP och alla fyra ess samt kungar bekräftade.
+- Storslam i sang kräver minst 36 gemensamma HP och alla fyra ess samt kungar bekräftade.
 - Storslam i trumf kräver minst 35 gemensamma HP, alla fyra ess kända och alla fyra kungar kända; trumfkungen räknas som känd genom 4NT-svaret.
 - Oklara budval som inte följer av dessa regler markeras ej täckta; inga ytterligare konventioner får hittas på.
 - DDS är efterhandskontroll, inte budfacit.
