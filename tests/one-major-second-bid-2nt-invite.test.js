@@ -102,7 +102,7 @@ const twoClubCases = [
   },
   {
     name:'10 HCP but no diamond stop',
-    hand:['S14','S8','S7','S2','H12','H8','D12','D8','D7','D2','C12','C8','C3'],
+    hand:['S14','S8','S7','S2','H12','H8','D10','D8','D7','D2','C13','C11','C8'],
     expected:null
   }
 ];
