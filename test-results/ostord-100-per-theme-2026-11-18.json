@@ -1,0 +1,306 @@
+{
+  "runDate": "2026-11-18",
+  "repository": "ankan56-bot/Bud",
+  "branch": "work/theme-dataset-analysis",
+  "htmlBlobSha": "a960d4dc67bceaaf2744b4d3315e66645072e384",
+  "motorBlobSha": "ece10056190e255084093b3c700fabfde3eb1298",
+  "mode": "ostord",
+  "themesTested": 12,
+  "dealsPerTheme": 100,
+  "total": {
+    "deals": 1200,
+    "nsTurns": 5535,
+    "covered": 5496,
+    "uncovered": 39,
+    "fallback": 12,
+    "invalid": 0
+  },
+  "excludedThemes": [
+    {
+      "theme": "dubbling",
+      "reason": "Requires opponents to bid; incompatible with ostört."
+    },
+    {
+      "theme": "inkliv",
+      "reason": "Requires opponents to bid; incompatible with ostört."
+    }
+  ],
+  "method": "100 deterministic seeds per theme. N/S decisions generated through Rattning.nodeFor and botCall; E/W forced to pass by ostört mode and excluded from coverage counts. Every auction checked for legal calls and termination.",
+  "results": [
+    {
+      "theme": "alla",
+      "label": "Alla slags givar",
+      "deals": 100,
+      "nsTurns": 518,
+      "covered": 508,
+      "uncovered": 10,
+      "fallback": 2,
+      "invalid": 0,
+      "contracts": {
+        "6H": 6,
+        "3N": 33,
+        "2N": 5,
+        "2D": 3,
+        "4S": 14,
+        "4H": 12,
+        "2S": 3,
+        "6C": 3,
+        "5C": 6,
+        "6D": 1,
+        "6S": 5,
+        "5D": 5,
+        "4C": 1,
+        "1C": 1,
+        "2H": 1,
+        "1N": 1
+      },
+      "uncoveredPct": 1.9,
+      "uniqueSequences": 9
+    },
+    {
+      "theme": "nt",
+      "label": "1NT, Stayman och överföringar",
+      "deals": 100,
+      "nsTurns": 518,
+      "covered": 516,
+      "uncovered": 2,
+      "fallback": 1,
+      "invalid": 0,
+      "contracts": {
+        "6N": 4,
+        "4H": 19,
+        "3N": 38,
+        "4S": 21,
+        "6D": 1,
+        "6S": 5,
+        "5D": 1,
+        "2N": 5,
+        "2H": 3,
+        "6H": 3
+      },
+      "uncoveredPct": 0.4,
+      "uniqueSequences": 2
+    },
+    {
+      "theme": "stenberg",
+      "label": "Stenberg 2NT (stöd i hög- och lågfärg)",
+      "deals": 100,
+      "nsTurns": 490,
+      "covered": 487,
+      "uncovered": 3,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "3N": 24,
+        "6H": 17,
+        "6S": 14,
+        "5C": 8,
+        "2N": 3,
+        "6C": 11,
+        "4H": 6,
+        "4S": 9,
+        "6D": 5,
+        "5D": 3
+      },
+      "uncoveredPct": 0.6,
+      "uniqueSequences": 3
+    },
+    {
+      "theme": "tva",
+      "label": "2♣-öppning (starka givar)",
+      "deals": 100,
+      "nsTurns": 567,
+      "covered": 559,
+      "uncovered": 8,
+      "fallback": 7,
+      "invalid": 0,
+      "contracts": {
+        "5D": 7,
+        "6S": 4,
+        "6C": 13,
+        "6H": 10,
+        "2N": 1,
+        "5C": 9,
+        "3N": 46,
+        "3D": 1,
+        "4S": 3,
+        "6N": 4,
+        "4H": 1,
+        "6D": 1
+      },
+      "uncoveredPct": 1.4,
+      "uniqueSequences": 5
+    },
+    {
+      "theme": "rkc",
+      "label": "Essfråga (RKC) – alla färger",
+      "deals": 100,
+      "nsTurns": 524,
+      "covered": 521,
+      "uncovered": 3,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "6D": 12,
+        "6H": 36,
+        "6S": 27,
+        "6C": 22,
+        "2N": 3
+      },
+      "uncoveredPct": 0.6,
+      "uniqueSequences": 3
+    },
+    {
+      "theme": "slam",
+      "label": "Slambudgivning i färg (kontrollbud och RKC)",
+      "deals": 100,
+      "nsTurns": 492,
+      "covered": 489,
+      "uncovered": 3,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "6C": 14,
+        "6D": 17,
+        "5D": 2,
+        "6H": 24,
+        "6S": 20,
+        "4S": 5,
+        "3N": 7,
+        "5C": 4,
+        "2N": 3,
+        "4H": 4
+      },
+      "uncoveredPct": 0.6,
+      "uniqueSequences": 2
+    },
+    {
+      "theme": "slamnt",
+      "label": "Slambudgivning i sang",
+      "deals": 100,
+      "nsTurns": 501,
+      "covered": 501,
+      "uncovered": 0,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "6N": 76,
+        "6H": 5,
+        "6D": 3,
+        "6S": 16
+      },
+      "uncoveredPct": 0,
+      "uniqueSequences": 0
+    },
+    {
+      "theme": "trumf",
+      "label": "Trumfstöd (stödbud i färg)",
+      "deals": 100,
+      "nsTurns": 401,
+      "covered": 400,
+      "uncovered": 1,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "4S": 29,
+        "6H": 4,
+        "5D": 16,
+        "6S": 3,
+        "5C": 14,
+        "4H": 27,
+        "3D": 2,
+        "3S": 1,
+        "3C": 2,
+        "6C": 1,
+        "6D": 1
+      },
+      "uncoveredPct": 0.2,
+      "uniqueSequences": 1
+    },
+    {
+      "theme": "sang",
+      "label": "Sanghänder (1NT/2NT och svar)",
+      "deals": 100,
+      "nsTurns": 403,
+      "covered": 400,
+      "uncovered": 3,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "3N": 72,
+        "2N": 22,
+        "5D": 3,
+        "5C": 1,
+        "2D": 1,
+        "4S": 1
+      },
+      "uncoveredPct": 0.7,
+      "uniqueSequences": 2
+    },
+    {
+      "theme": "invit",
+      "label": "Inviter (invit eller utgång)",
+      "deals": 100,
+      "nsTurns": 367,
+      "covered": 367,
+      "uncovered": 0,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "3N": 67,
+        "2N": 33
+      },
+      "uncoveredPct": 0,
+      "uniqueSequences": 0
+    },
+    {
+      "theme": "tvafarg",
+      "label": "Tvåfärgshänder (andra bud)",
+      "deals": 100,
+      "nsTurns": 554,
+      "covered": 548,
+      "uncovered": 6,
+      "fallback": 2,
+      "invalid": 0,
+      "contracts": {
+        "4S": 25,
+        "5C": 7,
+        "2S": 2,
+        "2C": 1,
+        "6S": 7,
+        "3N": 5,
+        "6D": 6,
+        "4H": 20,
+        "6H": 7,
+        "6C": 3,
+        "2D": 2,
+        "4C": 1,
+        "5D": 12,
+        "6N": 1,
+        "2N": 1
+      },
+      "uncoveredPct": 1.1,
+      "uniqueSequences": 5
+    },
+    {
+      "theme": "svag",
+      "label": "Svaga öppningar och spärrbud",
+      "deals": 100,
+      "nsTurns": 200,
+      "covered": 200,
+      "uncovered": 0,
+      "fallback": 0,
+      "invalid": 0,
+      "contracts": {
+        "3D": 16,
+        "3H": 22,
+        "3C": 38,
+        "3S": 21,
+        "4S": 2,
+        "4H": 1
+      },
+      "uncoveredPct": 0,
+      "uniqueSequences": 0
+    }
+  ]
+}
