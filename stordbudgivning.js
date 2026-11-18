@@ -104,7 +104,7 @@
       if(h.bal&&hp>=11&&hp<=12){
         return {exp:'2N',alt:[],why:hp+' hp och balanserad hand efter 1♥–1♠–2♦: 2NT är invit (11–12 hp).',
           means:function(c){return c==='2N'?'Naturlig invit i sang, 11–12 hp, balanserad hand.':null},
-          conv:'invit i sang'};
+          conv:'invit i sang',soft:true,ruleStatus:'source_interpretation'};
       }
       if(hp>=13){
         return {exp:'3C',alt:[],why:hp+' hp efter 1♥–1♠–2♦: fjärde färg 3♣ är utgångskrav; 2NT är inte längre invitintervallet.',
@@ -124,7 +124,7 @@
       if(h.bal&&L.H===2&&h.stop('S')&&h.stop('D')){
         return {exp:'2N',alt:[],why:hp+' hp, balanserad hand, två hjärter samt håll i spader och ruter efter 1♥–1♠–2♣: 2NT-invit.',
           means:function(c){return c==='2N'?'Balanserad invit, 10–12 hp, exakt två hjärter och håll i både spader och ruter.':null},
-          conv:'invit i sang'};
+          conv:'invit i sang',soft:true,ruleStatus:'source_interpretation'};
       }
       return NC('Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, exakt två hjärter samt håll i spader och ruter. Handen uppfyller inte samtliga villkor; lämnas ej täckt.',means,'svar efter öppnarens återbud',true);
     }
