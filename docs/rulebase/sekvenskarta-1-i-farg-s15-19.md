@@ -13,6 +13,14 @@
 
 
 
+## Tillämpning av exempel inom varje avsnitt – gäller hela lathunden
+
+Användarens förtydligande gäller samtliga sidor, inte bara s. 12–27: när lathunden skriver **”T ex”** och visar en budsekvens som exempel inom ett regelavsnitt ska sekvensen läsas som ett exempel på avsnittets budprincip. Den får inte automatiskt hårdkodas till de bokstavliga färgerna i exemplet. Färgrollerna ska bytas ut enligt avsnittets räckvidd, samtidigt som budnivå, budordning och betydelse bevaras.
+
+Särskilt utpekat exempel: tryckt s. 13, övre högra delen, sekvensen **1♥–2♣–3♣**. Där ska öppningsfärgen kunna vara **ruter, hjärter eller spader** enligt segmentets regel. Det betyder inte att alla färger får bytas fritt: varje variant måste fortfarande vara en laglig 2-över-1-auktion och 3-budet måste behålla samma systemroll (trumfstöd/återbud enligt just den tabellrutan).
+
+Denna räckviddsregel gäller också andra ”T ex”-rutor i lathunden. Den upphäver inte tydliga avgränsningar mellan separata kolumner, nivåer eller konventionsrutor. Om en färgvariant ändrar 1-över-1 till 1-över-2, gör ett återbud till hopp/revers eller byter vilken färg som är objuden, måste den kontrolleras som en ny variant – inte kopieras mekaniskt.
+
 ## 0. Generella principer och färgroller – tryckt s. 12–14
 
 Dessa sidor innehåller övergripande handtyper och systemprinciper. De ska inte reduceras till de bokstavliga färgerna i exemplen.
