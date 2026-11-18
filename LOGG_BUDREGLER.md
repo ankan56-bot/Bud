@@ -469,3 +469,8 @@ Budnivån för färgbuden beräknas efter den faktiska auktionen, så fjärde f�
 - Den färgvisa kungvisningen är fortfarande ej täckt eftersom exakt budstege inte är fastställd. Lägsta relevanta kung först; singelton/renons räknas som kung; trumffärgen får inte hoppas över.
 - Den äldre betydelsen 5NT = 3 nyckelkort och renons har tagits bort från den aktiva svarsvägen. Tre nyckelkort och renons loggas ej täckt tills ersättningsbudet är fastställt.
 - main är orörd.
+
+
+## Övergripande regelöverskrivning – 2026-11-18
+
+Användarens uttryckliga beslut: den nya kungfrågan gäller överallt och ersätter samtliga äldre kungfrågeregler. 5NT efter RKC är alltid kungfråga, aldrig 3 nyckelkort och renons. Kungar visas färgvis i stigande färgordning, lägsta relevanta kung först och därefter nästa; singelton/renons räknas som kung i färgen; trumffärgen får inte hoppas över. Om minst två kungar saknas eller är osäkra: 6 i trumf och pass. Äldre regler i aktiv kod, exporter, HTML-regeltext och analysbibliotek ska inte längre användas.
