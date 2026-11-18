@@ -246,7 +246,7 @@
       if(d===1&&!oppAfter.length&&oppBefore.length===1){
         if(f==='X')return respDouble(h,oppBefore[0].c,last);
         if(f==='1N')return ntResp(h,0);
-        if(isBid(f))return respOvercall(h,f,last,oppBefore[0].c);
+        if(isBid(f))return respOvercall(h,f,last,oppBefore[0].c,!!(firstCall&&side(firstCall.s)===side(me)));
       }
       // Dubblerarens återbud efter partnerns svar på upplysningsdubbling.
       if(d===2&&ours.length===2&&ours[0].c==='X'&&ours[0].s===me&&ours[1].s===pt&&!oppAfter.length){
