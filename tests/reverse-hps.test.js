@@ -1053,7 +1053,7 @@ function assessReverse(shape, honors) {
   assert.match(node.why, /flera egna 5\+ färger.*ingen prioritet/i);
 }
 
-// 2NT after a weak two is invitational with 9-10 hp and at least 2-card support.
+// 2NT after a weak two is not the old 9-10 hp invit; it requires 13+ STP.
 {
   const node = assessWeakTwoResponse(
     '2H',
@@ -1061,7 +1061,8 @@ function assessReverse(shape, honors) {
     { H: [14], S: [14], C: [11] },
     '2N'
   );
-  assert.equal(node.exp, '2N');
+  assert.equal(node.exp, null);
+  assert.equal(node.sourceGap, false);
 }
 
 // 9-10 hp without the required 2-card support is not automatically 2NT.
@@ -1075,7 +1076,7 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, null);
 }
 
-// A weak hand with 3+ support makes the preemptive 3-level raise, not an invit.
+// A weak hand with 3+ support does not meet the documented 14-16 STP invit for 3-level raise.
 {
   const node = assessWeakTwoResponse(
     '2H',
@@ -1083,8 +1084,8 @@ function assessReverse(shape, honors) {
     { H: [12], D: [11], S: [11], C: [11] },
     '3H'
   );
-  assert.equal(node.exp, '3H');
-  assert.match(node.why, /spärrande.*ej invit/i);
+  assert.equal(node.exp, null);
+  assert.equal(node.sourceGap, true);
 }
 
 // A weak hand without 3+ support or a 5+ side suit passes.
@@ -1098,7 +1099,7 @@ function assessReverse(shape, honors) {
   assert.equal(node.exp, 'P');
 }
 
-// After 2D-2NT, a 9-10 hp opener rebids 3NT, not the illegal 4D.
+// Opener continuation after weak-two Stenberg is not specified by the verified source.
 {
   const node = assessWeakTwoOpenerRebid(
     '2D',
@@ -1107,10 +1108,11 @@ function assessReverse(shape, honors) {
     '2N',
     '3N'
   );
-  assert.equal(node.exp, '3N');
+  assert.equal(node.exp, null);
+  assert.equal(node.sourceGap, true);
 }
 
-// After 2H-2NT, a 9-10 hp opener rebids 4H.
+// The obsolete 6-8 / 9-10 hp opener ladder must not return after weak-two Stenberg.
 {
   const node = assessWeakTwoOpenerRebid(
     '2H',
@@ -1119,7 +1121,8 @@ function assessReverse(shape, honors) {
     '2N',
     '4H'
   );
-  assert.equal(node.exp, '4H');
+  assert.equal(node.exp, null);
+  assert.equal(node.sourceGap, true);
 }
 
 // Doubler with no support and under 18 hp passes after partner's 2NT response.
