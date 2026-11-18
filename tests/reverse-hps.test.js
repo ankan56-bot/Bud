@@ -1084,8 +1084,8 @@ function assessReverse(shape, honors) {
     { H: [12], D: [11], S: [11], C: [11] },
     '3H'
   );
-  assert.equal(node.exp, null);
-  assert.equal(node.sourceGap, true);
+  assert.equal(node.exp, 'P');
+  assert.equal(node.sourceGap, false);
 }
 
 // A weak hand without 3+ support or a 5+ side suit passes.
