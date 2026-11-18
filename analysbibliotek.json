@@ -4,7 +4,7 @@
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
     "quantitative4NT": "Efter 2NT-öppning är 4NT kvantitativ invit till 6NT",
-    "rkc": "RKC 1430 med 5 nyckelkort; 5♣=1/4, 5♦=0/3, 5♥=2 utan trumfdam, 5♠=2 med trumfdam",
+    "rkc": "Nordisk Standard 5 nyckelkort: 5♣=0/3, 5♦=1/4, 5♥=2 utan trumfdam, 5♠=2 med trumfdam; därefter 5NT kungfråga. Kungar visas färgvis i stigande färgordning; singelton/renons räknas som kung. Minst två saknade/osäkra kungar: stopp 6 i trumf. Trumffärgen får inte hoppas över.",
     "jacoby": "2NT efter 1 i högfärg är Jacoby 2NT; öppnarens 3♣ visar singel/renons i klöver enligt denna prototyps överenskommelse"
   },
   "trees": [
@@ -19,7 +19,7 @@
       ],
       "conditions": [
         "Hjärter är överenskommen trumf",
-        "Paret spelar RKC 1430",
+        "Paret spelar Nordisk Standards 5-nyckelkortsfråga och 5NT kungfråga",
         "1♥–2NT är Jacoby 2NT; 3♣ visar singel/renons i klöver"
       ],
       "root": "t01_n0",
@@ -93,7 +93,7 @@
             "Pass",
             "5♣"
           ],
-          "meaning": "Svar 5♣ visar 1 eller 4 nyckelkort enligt RKC 1430.",
+          "meaning": "Svar 5♣ visar 0 eller 3 nyckelkort enligt Nordisk Standards 5-nyckelkortstabell.",
           "analysis": "Svarshanden visar 1 eller 4 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt utifrån egna nyckelkort. Om ett nyckelkort saknas bör paret normalt stanna i 5♥; om alla finns kan 6♥ vara aktuellt.",
           "branches": [
             {
@@ -121,7 +121,7 @@
             "Pass",
             "5♦"
           ],
-          "meaning": "Svar 5♦ visar 0 eller 3 nyckelkort enligt RKC 1430.",
+          "meaning": "Svar 5♦ visar 1 eller 4 nyckelkort enligt Nordisk Standards 5-nyckelkortstabell.",
           "analysis": "Svarshanden visar 0 eller 3 nyckelkort. Frågeställaren måste avgöra vilket antal som är möjligt. Om svaret innebär noll nyckelkort finns normalt inget slam; med tre kan slam vara möjligt beroende på egna nyckelkort.",
           "branches": [
             {
