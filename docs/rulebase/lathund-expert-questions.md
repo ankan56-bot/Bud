@@ -184,3 +184,12 @@
 - Nordisk standard s. 3 beskriver separat 1♥–1♠–2♣–2NT med 10–12 hp, balanserad hand, exakt två hjärter och håll i spader/ruter. Den grenen får inte mekaniskt kopieras till 2♦.
 - **Status:** 2♦-grenen är implementerad med användarens 11–12 hp och balanserad hand. Eventuella ytterligare fördelnings-/hållkrav är inte tillagda utan uttryckligt stöd.
 
+
+### A17. Svag tvåöppning – Stenberg 2NT
+
+- Tryckt lathundssida 27 anger 2NT som Stenberg efter svag 2♦, 2♥ eller 2♠ med 13+ STP.
+- Den gamla 9–10 hp-inviten i 2NT är fel och ska inte användas.
+- Öppnarens fortsättning efter 2NT är inte definierad i det verifierade materialet. Ingen 6–8/9–10 hp-stege får återinföras.
+- Prioritet när handen samtidigt har 13+ STP och en lång sidofärg behöver verifieras.
+- **Status:** Svarshandens 13+ STP-krav implementerat; öppnarens fortsättning och överlapp sparas som källuckor.
+
