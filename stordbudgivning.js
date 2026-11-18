@@ -96,6 +96,21 @@
       return {exp:'P',alt:[],why:'Ingen tillräcklig fit och under invitstyrka: pass.',means:means,conv:'svar efter öppnarens återbud'};
     }
 
+    // Sekvensspecifik regel: 1♥–1♠–2♦–2NT.
+    // Användarbekräftad 2026-11-18: 2NT är en invit med 11–12 HP.
+    // Denna gräns gäller bara denna exakta sekvens; den får inte spridas
+    // till andra 2NT-bud eller till 1♥–1♠–2♣.
+    if(first==='H'&&resp==='S'&&rb==='D'){
+      if(h.bal&&hp>=11&&hp<=12){
+        return {exp:'2N',alt:[],why:hp+' hp och balanserad hand efter 1♥–1♠–2♦: 2NT är invit (11–12 hp).',
+          means:function(c){return c==='2N'?'Naturlig invit i sang, 11–12 hp, balanserad hand.':null},
+          conv:'invit i sang'};
+      }
+      if(h.bal&&hp<=10){
+        return NC(hp+' hp efter 1♥–1♠–2♦: 2NT-inviten är fastställd till 11–12 hp. Denna hand ligger under intervallet; inget annat återbud är verifierat här.',means,'svar efter öppnarens återbud',true);
+      }
+    }
+
     // D. Öppnaren har visat två färger; styrkan är ännu inte begränsad.
     if(rb&&rb!==first&&rb!=='N'&&oh.L[first]>=4&&oh.L[rb]>=4){
       var pref=[first,rb].filter(function(s){return L[s]>=2;}).sort(function(a,b){return (L[b]+oh.L[b])-(L[a]+oh.L[a]);})[0];
