@@ -64,7 +64,7 @@
     var invite=false; // 2NT is no longer a 9–10 HP invit; it is Stenberg 13+ STP.
     var means=function(c){
       if(c==='3'+o)return 'Spärrande höjning: minst 3 korts stöd, ej invit.';
-      if(c==='2N')return 'Invit: 9-10 hp och minst 2 korts stöd.';
+      if(c==='2N')return 'Stenberg: minst 13 STP med öppningsfärgen som trumf.';
       if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
       if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
       if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
