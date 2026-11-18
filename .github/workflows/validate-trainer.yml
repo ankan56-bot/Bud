@@ -64,6 +64,8 @@ jobs:
         run: node tests/stenberg-2nt.test.js
       - name: Run second-bid 2NT invitation regression tests
         run: node tests/second-bid-2nt-invit.test.js
+      - name: Run weak-two Stenberg regression tests
+        run: node tests/weak-two-stenberg.test.js
       - name: Run trump-support module tests
         run: node tests/trumfstod.test.js
       - name: Run strong 2C module tests through 4NT
