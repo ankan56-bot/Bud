@@ -52,8 +52,16 @@
     var jointPoints=opener&&fit>=8?partnershipPoints(h,opener,o):0;
     var newSuits=SU.filter(function(s){return s!==o&&L[s]>=5;})
       .sort(function(a,b){if(L[b]!==L[a])return L[b]-L[a];return SU.indexOf(b)-SU.indexOf(a);});
+    var stp=handHps(h,o);
+    // Lathund s. 27: 2NT after a weak two-opening is Stenberg, 13+ STP.
+    // It is a separate convention from the old 9–10 HP invit, which is removed.
+    if(stp>=13){
+      if(newSuits.length)
+        return NC('Efter svag tvåöppning uppfyller handen både 13+ STP för Stenberg 2NT och kravet på en lång sidofärg. Lathunden s. 27 anger ingen prioritet; lämnas EJ TÄCKT.',null,'svag tvåa / Stenberg',true);
+      return {exp:'2N',alt:[],why:stp+' STP med öppningsfärgen som trumf: 2NT är Stenberg enligt Lathunden s. 27. Öppnarens fortsättning bedöms separat.',means:function(c){return c==='2N'?'13+ STP: Stenberg 2NT efter svag tvåöppning.':null},conv:'svag tvåa / Stenberg',ruleStatus:'source_confirmed'};
+    }
     var preempt=hp<=8&&L[o]>=3;
-    var invite=hp>=9&&hp<=10&&L[o]>=2;
+    var invite=false; // 2NT is no longer a 9–10 HP invit; it is Stenberg 13+ STP.
     var means=function(c){
       if(c==='3'+o)return 'Spärrande höjning: minst 3 korts stöd, ej invit.';
       if(c==='2N')return 'Invit: 9-10 hp och minst 2 korts stöd.';
@@ -104,20 +112,10 @@
   function open2w(h,oc,r){
     var o=st_(oc),hp=h.hp,exp,why,alt=[];
     var means=function(c){
-      if(r==='2N'){
-        if(c==='3'+o)return 'Öppnarens minimum: 6-8 hp, 3 i öppningsfärgen.';
-        if((maj(o)&&c==='4'+o)||(!maj(o)&&c==='3N'))return 'Öppnarens maximum: 9-10 hp, 4M eller 3NT efter lågfärg.';
-        if(c==='P')return 'Pass efter 2NT-invit när öppnarens hand inte passar minimum-/maximumåterbudet.';
-      }
+      if(r==='2N')return null;
       return null};
     if(r==='2N'){
-      if(hp>=6&&hp<=8){exp='3'+o;why=hp+' hp: minimum, 3 i öppningsfärgen.';return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};}
-      if(hp>=9&&hp<=10){
-        exp=maj(o)?'4'+o:'3N';
-        why=hp+' hp: maximum efter 2NT-invit; '+(maj(o)?'4 i högfärgen.':'3NT efter lågfärgsöppning.');
-        return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};
-      }
-      return NC('Öppnarens styrka efter 2NT-invit ligger utanför de uttryckligen angivna 6-8/9-10 hp-intervallen.',means,'svag tvåa');
+      return NC('2NT efter svag tvåöppning är Stenberg med 13+ STP enligt Lathunden s. 27. Öppnarens exakta fortsättning efter Stenberg är inte tillräckligt specificerad i källunderlaget. Den äldre 6–8/9–10 hp-stegen används inte.',means,'svag tvåa / Stenberg',true);
     }
     if(r==='3'+o){
       return NC('Svarshandens 3-bud är spärrande och ej invit. Öppnarens fortsättning efter spärrhöjningen specificeras inte i REF.',means,'svag tvåa');
