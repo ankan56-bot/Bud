@@ -507,8 +507,10 @@
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
-      if(opener&&d===4&&ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2D'&&ours[3].c==='2N')
-        return openerThirdAfterTwoSuitInvite(h,ours[0].c,ours[1].c,ours[2].c,ours[3].c);
+      if(opener&&d===4&&ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2D'&&ours[3].c==='2N'){
+        var fourthHandAfterThreePasses=prior.length>=3&&prior.slice(0,3).every(function(x){return x.c==='P';});
+        return openerThirdAfterTwoSuitInvite(h,ours[0].c,ours[1].c,ours[2].c,ours[3].c,fourthHandAfterThreePasses);
+      }
       if(opener&&d===2)return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]);
       return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
     }
