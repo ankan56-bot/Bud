@@ -53,28 +53,6 @@
     var newSuits=SU.filter(function(s){return s!==o&&L[s]>=5;})
       .sort(function(a,b){if(L[b]!==L[a])return L[b]-L[a];return SU.indexOf(b)-SU.indexOf(a);});
     var stp=handHps(h,o);
-    // Lathund s. 27: 2NT after a weak two-opening is Stenberg, 13+ STP.
-    // It is a separate convention from the old 9–10 HP invit, which is removed.
-    if(stp>=13){
-      if(newSuits.length)
-        return NC('Efter svag tvåöppning uppfyller handen både 13+ STP för Stenberg 2NT och kravet på en lång sidofärg. Lathunden s. 27 anger ingen prioritet; lämnas EJ TÄCKT.',null,'svag tvåa / Stenberg',true);
-      if(stp>=14&&stp<=16&&L[o]>=2)
-        return NC('Handen uppfyller både Stenberg 2NT (13+ STP) och 3 i öppningsfärgen som invit (ca 14–16 STP). Lathunden s. 27 anger ingen prioritet eller stödlängd som skiljer buden åt; lämnas EJ TÄCKT.',null,'svag tvåa / Stenberg',true);
-      return {exp:'2N',alt:[],why:stp+' STP med öppningsfärgen som trumf: 2NT är Stenberg enligt Lathunden s. 27. Öppnarens fortsättning bedöms separat.',means:function(c){return c==='2N'?'13+ STP: Stenberg 2NT efter svag tvåöppning.':null},conv:'svag tvåa / Stenberg',ruleStatus:'source_confirmed'};
-    }
-    // A weak 3-level raise is not stated on Lathunden s. 27; the 3-level
-    // raise there is invitational (about 14–16 STP), not preemptive.
-    var preempt=false;
-    var invite=false;
-    var means=function(c){
-      if(c==='3'+o)return 'Invitativ höjning: cirka 14–16 STP; exakt prioritet mot Stenberg behöver källstöd.';
-      if(c==='2N')return 'Stenberg: minst 13 STP med öppningsfärgen som trumf.';
-      if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
-      if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
-      if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, 15+ hp, rondkrav till minst 3 i öppningsfärgen.';
-      return null;
-    };
     // Med etablerad fit väger gemensam spelstyrka före svaga svarsalternativ.
     // 33+ spelpoäng och minst 10 trumf motiverar lillslam; annars gäller
     // 26+ i högfärg respektive 28+ i lågfärg för utgång.
@@ -91,6 +69,24 @@
         return {exp:exp,alt:[],why:why,means:means,conv:'svag tvåa',soft:false};
       }
     }
+    // Lathund s. 27: 2NT after a weak two-opening is Stenberg, 13+ STP.
+    // It is a separate convention from the old 9–10 HP invit, which is removed.
+    if(stp>=13){
+      if(newSuits.length)
+        return NC('Efter svag tvåöppning uppfyller handen både 13+ STP för Stenberg 2NT och kravet på en lång sidofärg. Lathunden s. 27 anger ingen prioritet; lämnas EJ TÄCKT.',null,'svag tvåa / Stenberg',true);
+      if(stp>=14&&stp<=16&&L[o]>=2)
+        return NC('Handen uppfyller både Stenberg 2NT (13+ STP) och 3 i öppningsfärgen som invit (ca 14–16 STP). Lathunden s. 27 anger ingen prioritet eller stödlängd som skiljer buden åt; lämnas EJ TÄCKT.',null,'svag tvåa / Stenberg',true);
+      return {exp:'2N',alt:[],why:stp+' STP med öppningsfärgen som trumf: 2NT är Stenberg enligt Lathunden s. 27. Öppnarens fortsättning bedöms separat.',means:function(c){return c==='2N'?'13+ STP: Stenberg 2NT efter svag tvåöppning.':null},conv:'svag tvåa / Stenberg',ruleStatus:'source_confirmed'};
+    }
+    var means=function(c){
+      if(c==='3'+o)return 'Invitativ höjning: cirka 14–16 STP; exakt prioritet mot Stenberg behöver källstöd.';
+      if(c==='2N')return 'Stenberg: minst 13 STP med öppningsfärgen som trumf.';
+      if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
+      if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
+      if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
+      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, 15+ hp, rondkrav till minst 3 i öppningsfärgen.';
+      return null;
+    };
     if(newSuits.length>1){
       return NC('Handen har flera egna 5+ färger efter svag tvåa. REF anger ingen prioritet mellan färgerna; välj inte en färg enbart utifrån intern sorteringsordning.');
     }
@@ -98,10 +94,6 @@
       if(hp<15)return NC('Ny färg efter svag tvåa kräver enligt Lathunden s. 27 minst 15–16 hp och rondkrav. Handen når inte styrkegränsen.',null,'svag tvåa',false);
       exp=lowest(newSuits[0],oc);
       why='5+ kort i '+SYM[newSuits[0]]+' och minst 15 hp: ny färg, rondkrav till minst 3 i öppningsfärgen.';
-    }else if(preempt){
-      return NC('En svag spärrhöjning till 3 i öppningsfärgen anges inte i Lathunden s. 27. 3-nivåhöjningen är invitativ med cirka 14–16 STP.',null,'svag tvåa',true);
-    }else if(invite){
-      return NC('2NT är Stenberg 13+ STP; 9–10 hp-inviten är borttagen.',null,'svag tvåa',false);
     }else if(hp<=8){
       exp='P';why=hp+' hp utan 3+ stöd eller egen 5+ färg: pass.';
     }else{
@@ -118,7 +110,7 @@
       return NC('2NT efter svag tvåöppning är Stenberg med 13+ STP enligt Lathunden s. 27. Öppnarens exakta fortsättning efter Stenberg är inte tillräckligt specificerad i källunderlaget. Den äldre 6–8/9–10 hp-stegen används inte.',means,'svag tvåa / Stenberg',true);
     }
     if(r==='3'+o){
-      return NC('Svarshandens 3-bud är spärrande och ej invit. Öppnarens fortsättning efter spärrhöjningen specificeras inte i REF.',means,'svag tvåa');
+      return NC('3 i öppningsfärgen är invit med cirka 14–16 STP enligt Lathunden s. 27. Öppnarens fortsättning efter denna invit specificeras inte tillräckligt.',means,'svag tvåa');
     }
     if(isBid(r)&&r[1]!==o&&r[1]!=='N'){
       return {exp:null,alt:[],why:'Svarshandens nya färg efter svag tvåa är 5+ kort och forcing till minst 3 i öppningsfärgen. Öppnarens återbud efter detta krav specificeras inte i REF; pass kan därför inte godkännas men inget exakt återbud kan rekommenderas.',means:means,conv:'svag tvåa'};
