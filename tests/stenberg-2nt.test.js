@@ -6,6 +6,17 @@ const api={SU:['C','D','H','S'],maj:s=>s==='H'||s==='S',st_:c=>c[1],side:s=>s===
  partnershipPoints:scoring.partnershipPoints,
  NC:(why,means,conv,sourceGap)=>({exp:null,alt:[],why,means:means||(()=>null),conv:conv||'test',sourceGap:!!sourceGap})};
 const St=require('../stenberg.js')(api);
+const Trumf=require('../trumfstod.js')(api,{stenberg:St,
+ majorBidding:{respond:()=>({exp:'1S'}),rebid:()=>({exp:'P'})},
+ minorBidding:{respond:()=>({exp:'1D'}),rebid:()=>({exp:'P'})}});
+assert.equal(Trumf.isStenbergSequence([{s:'N',c:'1H'},{s:'S',c:'2N'}]),true,
+ 'direct 1-suit opening – 2NT response is Stenberg');
+assert.equal(Trumf.isStenbergSequence([{s:'N',c:'1H'},{s:'S',c:'1S'},{s:'N',c:'2D'},{s:'S',c:'2N'}]),false,
+ '2NT after 1H–1S–2D is not Stenberg');
+assert.equal(Trumf.isStenbergSequence([{s:'N',c:'1C'},{s:'E',c:'1S'},{s:'S',c:'2N'}]),false,
+ '2NT after opponent intervention is not the direct Stenberg response');
+assert.equal(Trumf.isStenbergSequence([{s:'N',c:'1D'},{s:'S',c:'2N'},{s:'N',c:'3D'},{s:'S',c:'4D'}]),true,
+ 'continuations remain in the direct Stenberg family');
 function hand(cards){return require('../poangberakning.js').H(cards);}
 function fill(a,b){const deck=[];for(const s of ['S','H','D','C'])for(let n=2;n<=14;n++)deck.push(s+n);const used=new Set([...a,...b]);assert.equal(used.size,a.length+b.length);const rest=deck.filter(c=>!used.has(c));return {N:a,E:rest.slice(0,13),S:b,W:rest.slice(13,26)};}
 
