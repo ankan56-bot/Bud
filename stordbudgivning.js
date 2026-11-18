@@ -119,6 +119,18 @@
     }
     if(!oh)return NC('Denna fortsättning kräver öppnarens hand för att avgöra preferens eller färgval.','', 'svar efter öppnarens återbud',true);
 
+    // Separat, källbunden gren: 1♥–1♠–2♣–2NT.
+    // Denna 2NT-invit är bara täckt med 10–12 HP, balanserad hand,
+    // exakt två hjärter samt håll i både spader och ruter.
+    if(first==='H'&&resp==='S'&&rb==='C'&&hp>=10&&hp<=12){
+      if(h.bal&&L.H===2&&h.stop('S')&&h.stop('D')){
+        return {exp:'2N',alt:[],why:hp+' hp, balanserad hand, två hjärter samt håll i spader och ruter efter 1♥–1♠–2♣: 2NT-invit.',
+          means:function(c){return c==='2N'?'Balanserad invit, 10–12 hp, exakt två hjärter och håll i både spader och ruter.':null},
+          conv:'invit i sang'};
+      }
+      return NC('Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, exakt två hjärter samt håll i spader och ruter. Handen uppfyller inte samtliga villkor; lämnas ej täckt.',means,'svar efter öppnarens återbud',true);
+    }
+
     // D. Öppnaren har visat två färger; styrkan är ännu inte begränsad.
     if(rb&&rb!==first&&rb!=='N'&&oh.L[first]>=4&&oh.L[rb]>=4){
       var pref=[first,rb].filter(function(s){return L[s]>=2;}).sort(function(a,b){return (L[b]+oh.L[b])-(L[a]+oh.L[a]);})[0];
@@ -130,8 +142,13 @@
         return {exp:'3N',alt:[],why:hp+' hp: stark balanserad hand, utgångskrav i sang.',means:means,conv:'svar efter öppnarens återbud'};
       }
       if(hp>=10&&hp<=12){
-        if(h.bal)return {exp:'2N',alt:[],why:hp+' hp: invit med balanserad hand efter öppnarens tvåfärgshand.',means:means,conv:'svar efter öppnarens återbud'};
-        if(pref)return {exp:lowest(pref,rebid),alt:[],why:hp+' hp: invitnivå, preferens till bästa gemensamma färg.',means:means,conv:'svar efter öppnarens återbud'};
+        // T40:s generella tvåfärgsgren är konkretiserad med exemplet
+        // 1♣–1♦–1♥. Övriga färgkombinationer får inte skapas genom färgbyte.
+        if(first==='C'&&resp==='D'&&rb==='H'){
+          if(h.bal)return {exp:'2N',alt:[],why:hp+' hp: balanserad invit efter 1♣–1♦–1♥.',means:means,conv:'svar efter öppnarens återbud'};
+          if(pref)return {exp:lowest(pref,rebid),alt:[],why:hp+' hp: obalanserad invitnivå, preferens efter 1♣–1♦–1♥.',means:means,conv:'svar efter öppnarens återbud'};
+        }
+        return NC('10–12 hp efter denna tvåfärgssekvens är inte verifierat för just denna färgkombination. Ingen generell 2NT-invit eller preferensregel överförs från ett annat exempel.',means,'svar efter öppnarens återbud',true);
       }
     }
     return NC('Denna handtyp eller fortsättning kan inte avgöras säkert med de uppgifter som visas.',means,'svar efter öppnarens återbud');
