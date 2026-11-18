@@ -67,7 +67,9 @@ Detta är alltså inte en ovillkorlig grundregel i Nordisk Standard. Implementat
 
 ### 0D. Tredje och fjärde färg – källstatus
 
-Sidorna 15–19 innehåller flera rutor med tredje färg och fjärde färg, men de är markerade Plus i de aktuella tabellerna. Tredje/fjärde färg som konventionella kravbud ska därför inte aktiveras automatiskt i grundprofilen. En naturlig färgbjudning i samma färg får inte misstas för Plus-konventionen.
+Plus-markeringen gäller bara de enskilda tabellrader där Plus-symbolen faktiskt står. På s. 15–17 är vissa rader för tredje/fjärde färg uttryckligen Plus-märkta och ska inte aktiveras i grundprofilen. S. 19 beskriver däremot fortsättningar efter att tredje eller fjärde färg redan har bjudits; de fortsättningarna får inte automatiskt avfärdas som Plus. De ska bedömas utifrån den fullständiga exempelauktionen och den exakta tabellraden.
+
+En naturlig färgbjudning i samma färg får inte misstas för en Plus-konvention, och en Plus-markering på en rad får inte spridas till alla senare bud i auktionen.
 
 ### 0D. Färgvariantgenerator – bindande kontrollordning
 
