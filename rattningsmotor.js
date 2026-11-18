@@ -1435,10 +1435,10 @@ var Rattning = (function(){
           }
         }
         if(lastCall.c==='2C'&&ours[2].c==='2C'){
-          if(b.c==='2N'){
-            if(h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&h.hp>=10&&h.hp<=12)return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
-            return NC('2NT efter 1♥–1♠–2♣ kräver 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt sida 3.','', 'SH:s andra bud efter 1♥–1♠–2♣');
-          }
+          if(b.c==='2N'&&h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&h.hp>=10&&h.hp<=12)
+            return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
+          if(b.c==='2N'||b.c==='P')
+            return NC('Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i både ♠ och ♦. Handen uppfyller inte hela beskrivningen; annat återbud är inte tillräckligt definierat i tabellen.','', 'SH:s andra bud efter 1♥–1♠–2♣');
           if(b.c==='3H'){
             var heartHtp=h.htp('H');
             if(h.L.H===3&&heartHtp>=10&&heartHtp<=12)return {exp:'3H',alt:[],why:'3♥ visar 3-korts ♥-stöd och 10–12 htp enligt Nordisk standard s. 3.',means:function(c){return c==='3H'?'3-korts ♥-stöd, 10–12 htp.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
