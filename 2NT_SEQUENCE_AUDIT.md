@@ -12,13 +12,13 @@ Syfte: varje 2NT ska bedömas utifrån hela den faktiska budsekvensen. Ett 2NT-b
 | 1♥–1♠–2♦–2NT | Invit, 11–12 hp, balanserad | Användarbekräftad sekvensregel; `stordbudgivning.js` |
 | 2♦/2♥/2♠–2NT | Stenberg, 13+ STP | Lathunden, tryckt s. 27; `svaga2oppningar.js` |
 | 2♦/2♥/2♠–4NT | Essfråga med öppningsfärgen som trumf | Lathunden, tryckt s. 27; `slamlogik.js` → befintlig RKC |
-| 1NT–2NT | Naturlig invit: balanserad hand utan 4-korts högfärg | Nordisk standard s. 4; numerisk HP-gräns saknas i källan |
+| 1NT–2NT | Naturlig invit: balanserad hand utan 4-korts högfärg; öppnaren accepterar 3NT vid minst 25 gemensamma hp | Nordisk standard s. 4; 25 hp acceptgräns användarbekräftad; svarshandens exakta invitintervall saknas |
 | 1NT–2♠–2NT | Öppnarens relä: längre ruter eller lika långa lågfärger | Nordisk standard s. 4–5; sangmodulen |
 | 1NT–2♣–2♥–2NT | Svarshanden visar 4 spader | Nordisk standard s. 4; Stayman-grenen |
 | 1NT–2♦–2♥–2NT | Invit efter överföring, balanserad med exakt 5 hjärter | Nordisk standard s. 5; transfergrenen |
 | 1NT–2♥–2♠–2NT | Invit efter överföring, balanserad med exakt 5 spader | Nordisk standard s. 5; transfergrenen |
 | 2♣–2♦–2NT | Öppnarens balanserade 22–24 hp | Nordisk standard s. 6; stark-2♣-grenen |
-| 2♣–2♦–2♠–2NT | Svarshanden visar 0–5 hp utan fördelningskrav | Nordisk standard s. 6; stark-2♣-grenen |
+| 2♣–2♦–2♠–2NT | Herbertavslag: 0–5 hp utan trumfstöd i spader; vid 4+ stöd och stöldvärde finns separat 4♠-alternativ | Nordisk standard s. 6; stark-2♣-grenen |
 | Partnern har klivit in på 1-nivån – 2NT | 11–13 hp, balanserad och bra håll i motståndarnas öppningsfärg | Nordisk standard s. 7; `inkliv.js` |
 | Motståndarna har klivit in över vår 1-färgsöppning – 2NT | 11–12 hp, balanserad och håll i inklivsfärgen | Lathunden, tryckt s. 35; `inkliv.js` med källkontext |
 | Efter upplysningsdubbling – 2NT | 10–12 hp och håll i öppningsfärgen | Nordisk standard s. 8; dubblingsmodulen |
@@ -38,7 +38,7 @@ Syfte: varje 2NT ska bedömas utifrån hela den faktiska budsekvensen. Ett 2NT-b
 
 1. Lathunden s. 27 anger både 2NT Stenberg 13+ STP och höjning till 3 i öppningsfärgen som invit med cirka 14–16 STP. Prioritet och stödlängd som skiljer buden åt saknas. Överlappet lämnas EJ TÄCKT.
 2. Öppnarens fortsättning efter 2NT Stenberg på en svag tvåöppning är inte tillräckligt beskriven i det verifierade underlaget. Ingen äldre 6–8/9–10 hp-stege får användas.
-3. Lathunden anger inte en numerisk HP-gräns för den naturliga 1NT–2NT-inviten. Den ska inte fyllas med ett antaget tal.
+3. Lathunden anger inte ett numeriskt HP-intervall för svarshandens naturliga 1NT–2NT-invit. Öppnarens acceptgräns är däremot användarbekräftad: minst 25 gemensamma hp för 3NT.
 4. 1♥–1♠–2♦–2NT har användarens 11–12 hp-invit och balanserad hand; ytterligare krav på håll eller stöd är inte tillagda utan källa.
 
 ## Regressionstester
