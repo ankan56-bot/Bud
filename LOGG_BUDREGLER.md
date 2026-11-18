@@ -888,3 +888,10 @@ Inga av dessa luckor har fyllts med antagna regler. Fullständiga händer och mo
 
 En separat regression verifierar att 4NT direkt efter `1♣–2NT`, innan öppnaren har gjort sitt beskrivande 3-nivååterbud, **inte** automatiskt klassas som RKC. Eftersom trumf-/essfrågekontexten inte är fastställd i den sekvensen lämnas den ej täckt och skyddas från den generella missad-slam-reserven. 4NT efter `1M–2NT–3x` routas däremot till befintlig RKC-modul. Stenberg-/slamtester passerar.
 
+## 2NT-invit efter 1♥–1♠–2♦ – 2026-11-18
+
+- Användarbekräftad regel: svarshandens 2NT efter exakt sekvensen 1♥–1♠–2♦ är en naturlig sanginvit med 11–12 HP.
+- Regeln är sekvensspecifik. Den får inte återanvändas för 1♥–1♠–2♣, efter andra öppningsfärger eller för Stenberg 2NT.
+- Runtime: `stordbudgivning.js`. 11–12 HP och balanserad hand ger 2NT. 10 HP balanserad lämnas ej täckt; 13+ HP går vidare enligt befintlig stark fortsättning (fjärde färg), inte som invit.
+- Regression: `tests/one-major-second-bid-2nt-invite.test.js` kontrollerar 10, 11, 12 och 13 HP genom den riktiga buddirigeringen.
+- Ingen accept-/avslagsregel för öppnarens nästa bud har lagts till; den måste granskas separat mot källan.
