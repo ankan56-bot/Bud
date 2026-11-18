@@ -48,3 +48,8 @@ Ingen RKC-fortsättning ska härledas enbart från allmän bridgepraxis och mär
 - Sekvenser där 4NT inte uttryckligen är avtalad fråga förblir ej täckta/kvantitativa enligt sammanhanget; motorn får inte anta essfråga.
 
 Källtexten i Nordisk standard och parets uttryckliga senare överenskommelse hålls åtskilda. Där fortsättningen inte är entydigt specificerad i regelprofilen ska den fortfarande loggas som ej täckt.
+
+
+## Tillägg – senare regelbeslut 2026-11-18
+
+Den senare överenskommelsen om trumfens 5NT kungfråga går före källtextens äldre 5NT = 3 nyckelkort och renons. 5NT efter RKC ska därför identifieras som kungfråga. Exakt färgvis svarssteg är inte tillräckligt specificerad för automatisk budgivning och lämnas ej täckt. Tre nyckelkort och renons har inget automatiskt svar i den uppdaterade profilen.
