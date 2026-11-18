@@ -53,6 +53,15 @@
     var newSuits=SU.filter(function(s){return s!==o&&L[s]>=5;})
       .sort(function(a,b){if(L[b]!==L[a])return L[b]-L[a];return SU.indexOf(b)-SU.indexOf(a);});
     var stp=handHps(h,o);
+    var means=function(c){
+      if(c==='3'+o)return 'Invitativ höjning: cirka 14–16 STP; exakt prioritet mot Stenberg behöver källstöd.';
+      if(c==='2N')return 'Stenberg: minst 13 STP med öppningsfärgen som trumf.';
+      if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
+      if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
+      if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
+      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, 15+ hp, rondkrav till minst 3 i öppningsfärgen.';
+      return null;
+    };
     // Med etablerad fit väger gemensam spelstyrka före svaga svarsalternativ.
     // 33+ spelpoäng och minst 10 trumf motiverar lillslam; annars gäller
     // 26+ i högfärg respektive 28+ i lågfärg för utgång.
@@ -78,15 +87,6 @@
         return NC('Handen uppfyller både Stenberg 2NT (13+ STP) och 3 i öppningsfärgen som invit (ca 14–16 STP). Lathunden s. 27 anger ingen prioritet eller stödlängd som skiljer buden åt; lämnas EJ TÄCKT.',null,'svag tvåa / Stenberg',true);
       return {exp:'2N',alt:[],why:stp+' STP med öppningsfärgen som trumf: 2NT är Stenberg enligt Lathunden s. 27. Öppnarens fortsättning bedöms separat.',means:function(c){return c==='2N'?'13+ STP: Stenberg 2NT efter svag tvåöppning.':null},conv:'svag tvåa / Stenberg',ruleStatus:'source_confirmed'};
     }
-    var means=function(c){
-      if(c==='3'+o)return 'Invitativ höjning: cirka 14–16 STP; exakt prioritet mot Stenberg behöver källstöd.';
-      if(c==='2N')return 'Stenberg: minst 13 STP med öppningsfärgen som trumf.';
-      if(c==='6'+o)return 'Lillslam: minst 10-korts fit och 33+ gemensamma spelpoäng.';
-      if(c===(maj(o)?'4':'5')+o)return 'Utgång: gemensamma spelpoäng når systemets gräns med etablerad fit.';
-      if(c==='P')return 'Pass med svag hand utan stöd eller egen 5+ färg.';
-      if(isBid(c)&&st_(c)!==o&&st_(c)!=='N')return 'Ny färg: minst 5 kort, 15+ hp, rondkrav till minst 3 i öppningsfärgen.';
-      return null;
-    };
     if(newSuits.length>1){
       return NC('Handen har flera egna 5+ färger efter svag tvåa. REF anger ingen prioritet mellan färgerna; välj inte en färg enbart utifrån intern sorteringsordning.');
     }
@@ -95,9 +95,9 @@
       exp=lowest(newSuits[0],oc);
       why='5+ kort i '+SYM[newSuits[0]]+' och minst 15 hp: ny färg, rondkrav till minst 3 i öppningsfärgen.';
     }else if(hp<=8){
-      exp='P';why=hp+' hp utan 3+ stöd eller egen 5+ färg: pass.';
+      exp='P';why=hp+' hp utan en uttryckligen definierad invit eller forcing-fortsättning: pass.';
     }else{
-      return NC('Svar efter svag tvåa: handen passar inte de uttryckligen angivna villkoren för 5+ färg, spärrhöjning eller 2NT-invit.');
+      return NC('Svar efter svag tvåa: handen passar inte de uttryckligen angivna villkoren för 5+ färg eller Stenberg 2NT.');
     }
     return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};
   }
