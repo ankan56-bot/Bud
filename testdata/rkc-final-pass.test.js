@@ -171,6 +171,10 @@ const southAllAces=["H14","D14","C14","H13","D13","C13","S8","S7","S6","H4","D4"
 test("sang 4NT: all four partnership aces leads to 5NT king ask",()=>{const st=ntAskState(northNT,southAllAces,"5D");st.bids.push({s:"S",c:"5N"});assert.equal(Rattning.H(st.hands.S).aces,3);assert.equal(Rattning.nodeFor(st,6).exp,"5N");});
 test("sang 4NT: missing an ace stops at 6NT",()=>{const southMissing=["H14","D14","H13","D13","C13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southMissing,"5D");st.bids.push({s:"S",c:"6N"});assert.notEqual(Rattning.H(st.hands.S).aces,3);assert.equal(Rattning.nodeFor(st,6).exp,"6N");});
 test("sang king ask: all four kings but fewer than 37 partnership HP stops at 6NT",()=>{const st=ntAskState(northNT,southAllAces,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"6N"});assert.equal(Rattning.H(st.hands.S).kings,3);assert.ok(Rattning.H(st.hands.S).hp+Rattning.H(st.hands.N).hp<37);assert.equal(Rattning.nodeFor(st,10).exp,"6N");assert.match(Rattning.nodeFor(st,10).why,/kravet för 7NT är 37/i);});
+const northNTGrand=["S14","S13","H12","D12","S2","S3","S4","S5","S6","S7","S8","S9","S10"];
+const southNTGrand=["H14","D14","C14","H13","D13","C13","S12","C12","H11","H2","H3","D2","D3"];
+test("sang king ask: all four aces and kings plus exactly 37 partnership HP permits 7NT",()=>{const st=ntAskState(northNTGrand,southNTGrand,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"7N"});assert.equal(Rattning.H(st.hands.S).aces,3);assert.equal(Rattning.H(st.hands.S).kings,3);assert.equal(Rattning.H(st.hands.S).hp+Rattning.H(st.hands.N).hp,37);assert.equal(Rattning.nodeFor(st,10).exp,"7N");});
+
 test("sang king ask: a missing king stops at 6NT",()=>{const southTwo=["H14","D14","C14","H13","D13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southTwo,"5D","6D");st.bids.push({s:"E",c:"P"},{s:"S",c:"6N"});assert.equal(Rattning.H(st.hands.S).kings,2);assert.equal(Rattning.nodeFor(st,10).exp,"6N");});
 
 test("trump 5NT king ask: responder shows the first eligible side king/shortness", () => {
