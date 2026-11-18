@@ -521,3 +521,12 @@ Användarens förtydligande:
 
 ## Förtydligande – tre nyckelkort och renons, 2026-11-18
 Användarens beslut: specialfallet ska inte längre behandlas som ej täckt. Den gamla specialgrenen är borttagen ur både huvudmotor och exportmotor. Tre nyckelkort ger ordinarie 5♣-svar även när handen har renons. 5NT är fortsatt reserverat för kungfrågan efter RKC-svaret.
+
+
+## Sangens storslamsgräns efter kungfråga – korrigering 2026-11-18
+
+- Efter 5NT-kungfrågan räcker det inte att alla fyra ess och kungar är bekräftade.
+- 7NT kräver dessutom minst 37 gemensamma honnörspoäng (HP). Om honnörspoängen är lägre stannar paret i 6NT.
+- Rättningsmotor och exportmotor uppdaterade så frågeställarens och svarshandens faktiska HP räknas tillsammans.
+- Regressionstest ändrat så en hand med alla fyra ess och kungar men under 37 gemensamma HP ska stanna i 6NT.
+- Full testkörning är ännu inte verifierad i denna miljö.
