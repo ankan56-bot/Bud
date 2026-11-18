@@ -92,4 +92,20 @@ const fourthHandLive=R.decideLive({seat:'W',dealer:'N',auction:fourthHandAuction
 assert.equal(fourthHandLive.exp,'3D','live fourth-hand opener must use the 11 HCP exception');
 assert.equal(fourthHandLive.informationBoundary,'own_hand_and_public_auction_only');
 
+const fourthHand11_55=[
+  'H14','H13','H11','H9','H7',
+  'D13','D9','D7','D6','D5',
+  'S4','C2','C3'
+];
+assert.equal(R.H(fourthHand11_55).hp,11);
+assert.equal(R.H(fourthHand11_55).L.H,5);
+assert.equal(R.H(fourthHand11_55).L.D,5);
+const fourthHand55Raw=R.nodeForRaw({
+  hands:{W:fourthHand11_55},dealer:'N',
+  bids:fourthHandAuction.concat([{s:'W',c:'P'}])
+},11);
+assert.equal(fourthHand55Raw.exp,'3H','11 HCP 5-5 minimum is allowed in fourth hand');
+const fourthHand55Live=R.decideLive({seat:'W',dealer:'N',auction:fourthHandAuction,ownHand:fourthHand11_55});
+assert.equal(fourthHand55Live.exp,'3H','live fourth-hand 5-5 minimum must use the 11 HCP exception');
+
 console.log('Opener third bid after 1H-1S-2D-2NT: source-bound branches passed.');
