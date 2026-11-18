@@ -1501,6 +1501,18 @@ var Rattning = (function(){
         };
       }
     }
+    // Självkonsistenskontroll: ett förslag som uppstår när spelaren passar
+    // måste också kännas igen om samma förslag läggs som faktiskt bud.
+    // Annars är motorn motsägelsefull och ska lämna läget ej täckt, inte rätta
+    // spelaren mot ett bud som motorn själv underkänner.
+    if(node&&node.exp&&node.exp!=='P'&&st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'){
+      var proposed=node.exp,checkBids=st.bids.slice(),checkNode=null;
+      checkBids[i]={s:st.bids[i].s,c:proposed};
+      try{checkNode=nodeForRaw({hands:st.hands,dealer:st.dealer,bids:checkBids},i)}catch(e){checkNode=null}
+      if(!checkNode||checkNode.exp!==proposed){
+        return NC('Motorn gav förslaget '+txt(proposed)+' när spelaren passar, men underkänner samma bud när det prövas i auktionen ('+(checkNode&&checkNode.exp?txt(checkNode.exp):'ej täckt')+'). Intern konflikt: sekvensen lämnas för AI-/expertanalys.','', 'motorintern konflikt');
+      }
+    }
     if(!node||!node.exp||!isBid(node.exp))return node;
     var highest=null;
     (st.bids||[]).slice(0,i).forEach(function(x){
