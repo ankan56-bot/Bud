@@ -34,7 +34,7 @@ function dealWest(north,west){
   assert.equal(new Set([...north,...west]).size,26);
   const rest=deck.filter(c=>!north.includes(c)&&!west.includes(c));
   const east=rest.filter(c=>c[0]==='S').slice(-5);
-  const fillers=rest.filter(c=>!east.includes(c));
+  const fillers=rest.filter(c=>c[0]!=='S');
   east.push(...fillers.slice(0,8));
   const south=fillers.slice(8,21);
   return {N:north,E:east,S:south,W:west};
