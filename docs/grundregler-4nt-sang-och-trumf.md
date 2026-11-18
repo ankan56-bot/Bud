@@ -21,7 +21,7 @@ Saknas minst ett ess stannar paret i 6NT. När alla fyra ess är bekräftade fr�
 | 6♥ | 2 kungar |
 | 6♠ | 3 kungar |
 
-Saknas minst en kung stannar paret i 6NT. Endast alla fyra ess plus alla fyra kungar ger 7NT. Dubbeltydiga 0/4-svar får inte tolkas som fyra utan stöd i frågeställarens egna kort; kvarstående tvetydighet ger inte storslam.
+Saknas minst en kung stannar paret i 6NT. 7NT kräver alla fyra ess, alla fyra kungar och minst 37 gemensamma HP. Dubbeltydiga 0/4-svar får inte tolkas som fyra utan stöd i frågeställarens egna kort; kvarstående tvetydighet ger inte storslam.
 
 ## Fastställd trumf – fem nyckelkort
 4NT frågar efter de fyra essen plus trumfkungen.
