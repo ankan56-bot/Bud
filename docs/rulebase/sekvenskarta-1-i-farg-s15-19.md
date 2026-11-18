@@ -7,7 +7,7 @@
 
 1. En exempelauktion är inte automatiskt en exakt-sekvensregel. När källan anger en handtyp, en generell princip eller en familj av färgkombinationer ska färgerna tolkas efter sina roller (öppningsfärg, svarsfärg, andra visade färgen, trumffärg, objuden färg, tredje/fjärde färg). Alla varianter måste ändå vara lagliga i budordning och nivå.
 2. Tabellen på s. 15 skiljer uttryckligen mellan öppnarens återbud på entricksnivån och tvåtricksnivån. Dessa får inte blandas.
-3. Hänvisningar märkta Plus, PRO, MeraBud eller Slam är inte automatiskt del av grundprofilen.
+3. På tryckt s. 15–19 ska även alla rader och fortsättningar märkta **Pro** och **Plus** tas med i kartläggning och implementation. **Plus ska alltid ingå**; Plus-rader får inte filtreras bort. Pro-rader ska också finnas med och märkas tydligt som Pro. Märkningen beskriver regelns kategori, inte att den får utelämnas ur arbetet.
 4. När källan uttryckligen beskriver en generell handtyp eller säger att övriga bud följer en naturlig princip ska den generaliseras till alla lagliga färgroller som uppfyller villkoren. Enbart färgsymbolerna i exempelraden begränsar då inte regeln. Om källan däremot bara ger en specifik auktion och inte anger en generaliserbar roll ska den hållas exempelbunden.
 5. Om budordning, nivå eller budbetydelse inte kan härledas säkert ska läget lämnas EJ TÄCKT, inte fyllas med en analogi.
 
@@ -43,7 +43,7 @@ Källan visar även styrkeintervall för återbuden. Dessa är handtypsbeskrivni
 - Enfärgshand visas med minst sex kort i öppningsfärgen; styrkan beror på återbudet.
 - Balanserad hand utan trumfstöd: 1NT 12–14 hp och 2NT 18–19 hp i exemplen.
 
-Splinterrutorna på sidan är märkta Plus och ska inte aktiveras i projektets grundprofil.
+Splinterrutorna på sidan är märkta Plus och ska tas med som Plus-regler.
 
 ### 0B. Öppnarens återbud efter 2-över-1 – tryckt s. 13
 
@@ -53,7 +53,7 @@ Sidan ger separata rollfamiljer efter 2-över-1:
 - **Enfärgshand:** återbud i öppningsfärgen visar fortsatt längd där; källan visar minst fem kort i öppningsfärgen för vissa återbud och särskilda styrkeintervall.
 - **Balanserad hand:** 2NT visas som 12–14 hp och 3NT som 18–19 hp i de angivna exemplen.
 
-Fortsättningar som är markerade Plus, inklusive splinter, hålls utanför grundprofilen. De får inte bli aktiva bara för att en färgvariant är möjlig.
+Fortsättningar som är markerade Plus, inklusive splinter, ska tas med. Behåll Plus-märkningen och kontrollera varje färgvariant mot den fullständiga auktionen.
 
 ### 0C. Stigande budgivning efter 2-över-1 – tryckt s. 17
 
@@ -67,7 +67,7 @@ Detta är alltså inte en ovillkorlig grundregel i Nordisk Standard. Implementat
 
 ### 0D. Tredje och fjärde färg – källstatus
 
-Plus-markeringen gäller bara de enskilda tabellrader där Plus-symbolen faktiskt står. På s. 15–17 är vissa rader för tredje/fjärde färg uttryckligen Plus-märkta och ska inte aktiveras i grundprofilen. S. 19 beskriver däremot fortsättningar efter att tredje eller fjärde färg redan har bjudits; de fortsättningarna får inte automatiskt avfärdas som Plus. De ska bedömas utifrån den fullständiga exempelauktionen och den exakta tabellraden.
+Plus-markeringen gäller bara de enskilda tabellrader där Plus-symbolen faktiskt står. På s. 15–17 ska dessa Plus-rader tas med och alltid finnas tillgängliga. S. 19 beskriver däremot fortsättningar efter att tredje eller fjärde färg redan har bjudits; de fortsättningarna får inte automatiskt avfärdas som Plus. De ska bedömas utifrån den fullständiga exempelauktionen och den exakta tabellraden.
 
 En naturlig färgbjudning i samma färg får inte misstas för en Plus-konvention, och en Plus-markering på en rad får inte spridas till alla senare bud i auktionen.
 
@@ -108,7 +108,7 @@ Tabellens bud är grupperade efter svarshandens styrka och ska tolkas inom den v
 
 **Färgroller och variantkontroll:** Tabellen visar både stöd i öppnarens/svarshandens färger, en lång egen färg, sang med håll och fjärde färg. När en annan färgkombination prövas måste systemet först identifiera vilken färg som är svarsfärg, vilken som är öppnarens återbjudna färg och vilka färger som ännu inte är bjudna. Exempelvis får etiketten ”hjärterhåll” inte bytas till en annan färg utan att den nya auktionen faktiskt lämnar den färgen objuden och att tabellens rollmönster fortfarande stämmer.
 
-**Plus-avgränsning:** Fjärde färg är uttryckligen Plus-märkt och är därför inte en aktiv grundsystemsregel i denna modul utan separat beslut.
+**Plus-avgränsning:** Fjärde färg är uttryckligen Plus-märkt och ska ingå som Plus-regel i denna modul.
 
 ### 1B. Öppnaren återbjuder ny färg på tvåtricksnivån
 
@@ -128,7 +128,7 @@ Detta är en separat kolumn med annan budnivå och delvis andra svar:
 
 **Användarbekräftad sekvens:** I **1♥–1♠–2♦–2NT** har tre färger visats. 2NT visar håll i den enda objudna färgen, **klöver**, och är en **invit med 11–12 hp**, inte krav. Denna exakta tolkning är fastlagd.
 
-**Viktigt vid generalisering:** Tabellen ger stöd för rollbaserad tolkning av ”enda objudna färgen”, men varje annan färgvariant måste byggas från sin faktiska auktion. Den får inte ärva klöverhåll eller 11–12-intervallet om färgrollerna, nivån eller tabellraden inte motsvarar samma fall. Fjärde färg 2♠ är Plus-märkt och ska hållas utanför grundprofilen.
+**Viktigt vid generalisering:** Tabellen ger stöd för rollbaserad tolkning av ”enda objudna färgen”, men varje annan färgvariant måste byggas från sin faktiska auktion. Den får inte ärva klöverhåll eller 11–12-intervallet om färgrollerna, nivån eller tabellraden inte motsvarar samma fall. Fjärde färg 2♠ är Plus-märkt och ska ingå.
 
 ## 2. Öppnarens 1NT-återbud eller enfärgshand – tryckt s. 16
 
@@ -149,7 +149,7 @@ Sidan har två olika tabeller. Den vänstra gäller efter öppnarens 1NT-återbu
 
 Tabellens färgbud med längd/stöd är knutna till den visade exempelauktionen. Vid generalisering ska färgrollerna och svarshandens redan visade färg följas; man får inte anta att exempelvis 3♠ alltid betyder sexkortsspader i varje 1NT-återbud.
 
-**Försenad Stayman (PRO):** Sidan anger att 2♠ kan användas som högfärgsfråga även efter öppnarens 1NT-återbud. Budet lovar minst 11 hp och ber öppnaren visa sina högfärgslängder. Övriga färgbud anges som svaga med 6–10 hp. PRO-märkningen innebär att detta inte aktiveras i grundprofilen.
+**Försenad Stayman (PRO):** Sidan anger att 2♠ kan användas som högfärgsfråga även efter öppnarens 1NT-återbud. Budet lovar minst 11 hp och ber öppnaren visa sina högfärgslängder. Övriga färgbud anges som svaga med 6–10 hp. PRO-märkningen ska bevaras, och försenad Stayman ska tas med som Pro-regel.
 
 ### 2B. Efter att öppnaren visar enfärgshand
 
@@ -162,7 +162,7 @@ Den högra tabellen är en separat sekvensfamilj. Den visar bland annat:
 - Tredje färg: 10+ hp och 3+ kort i färgen (Plus).
 - Andra färgbud i tabellen visar bland annat 3+ kort i en färg eller 6+ kort i svarshandens egen färg.
 
-**Färgvariantkontroll:** Håll i 2NT/3NT ska här knytas till just de två sidofärger som är objudna i respektive exempelauktion. Denna tabell får inte blandas ihop med 2A:s 1NT-återbud. Tredje färg är Plus-märkt.
+**Färgvariantkontroll:** Håll i 2NT/3NT ska här knytas till just de två sidofärger som är objudna i respektive exempelauktion. Denna tabell får inte blandas ihop med 2A:s 1NT-återbud. Tredje färg är Plus-märkt och ska ingå.
 
 ## 3. Trumfstöd efter en-över-en och efter två-över-en – tryckt s. 17
 
@@ -197,7 +197,7 @@ Exempelrutan visar en separat fortsättning efter 2-över-1. Följande betydelse
 
 Ett annat exempel visar bland annat singelhjärter med exakt 11 hp, tredje färg (Plus), 10–12 hp med 6+ ruter, 16+ stp med kortfärg och splinter (Plus/Pro).
 
-**Viktigt:** 2♠ tvåkortsstöd, 2NT ruterhåll och 3♠ trekortsstöd är betydelser i den visade auktionen, inte universella buddefinitioner. Andra färgkombinationer kräver att rollmönstret, budnivån och den objudna färgen stämmer. Fjärde färg, tredje färg och splinter som är Plus/Pro-märkta ska inte aktiveras i grundprofilen.
+**Viktigt:** 2♠ tvåkortsstöd, 2NT ruterhåll och 3♠ trekortsstöd är betydelser i den visade auktionen, inte universella buddefinitioner. Andra färgkombinationer kräver att rollmönstret, budnivån och den objudna färgen stämmer. Fjärde färg, tredje färg och splinter som är Plus/Pro-märkta ska tas med, med korrekt Plus- respektive Pro-märkning.
 
 ### 3C. Stigande budgivning efter 2-över-1
 
@@ -224,7 +224,7 @@ Tabellen visar öppnarens återbud med följande handtyper/styrkor:
 - 4♦: splinter, 16–17 hp.
 - 4♥: slutbud.
 
-**Kontrollpunkt:** Flera rader i den skannade tabellen är svåra att koppla till färgroller utan att först följa hela exempelauktionen. De ska därför behållas som exempelbundna tills sekvensnyckeln är verifierad. Splinterraden är avstängd i projektprofilen.
+**Kontrollpunkt:** Flera rader i den skannade tabellen är svåra att koppla till färgroller utan att först följa hela exempelauktionen. De ska därför behållas som exempelbundna tills sekvensnyckeln är verifierad. Splinterraden ska tas med med sin källmärkning.
 
 ### 4B. Svarshanden prefererar
 
@@ -248,7 +248,7 @@ Den högra tabellen visar:
 - 3♠: 3-kortsstöd, maximum (annars 2♠ direkt).
 - 3NT: Plus-märkt slutbud.
 
-**Färgroll:** Dessa är öppnarens tredje bud efter en 2NT-invit. De får inte blandas ihop med svarshandens 2NT efter öppnarens återbud på s. 15–17. Plus-budet är inte aktivt i grundprofilen.
+**Färgroll:** Dessa är öppnarens tredje bud efter en 2NT-invit. De får inte blandas ihop med svarshandens 2NT efter öppnarens återbud på s. 15–17. Plus-budet ska ingå.
 
 ## 5. Öppnarens tredje bud efter tredje eller fjärde färg – tryckt s. 19
 
@@ -331,3 +331,13 @@ Användarbekräftad systemprincip:
 - Ny färg är krav; den egenskapen får inte överföras till sangbud.
 - Denna princip ersätter tidigare felaktig notering om att sangbudet skulle vara krav.
 - Exakt styrkeintervall och budnivå ska fortfarande kontrolleras mot respektive tabell/sekvens. Den verifierade sekvensen 1♥–1♠–2♦–2NT visar 11–12 hp.
+
+
+## 9. Omfattning för sidorna 15–19 – användarbeslut
+
+För dessa sidor gäller ett uttryckligt tillägg till tidigare avgränsningar:
+- **Alla Plus-märkta bud och fortsättningar ska alltid tas med.** De får inte sorteras bort som ”utanför grundprofilen”.
+- **Alla Pro-märkta bud och fortsättningar ska också tas med**, med Pro-statusen bevarad så att de går att identifiera och använda enligt Pro-regelprofilen.
+- Detta omfattar bland annat försenad Stayman, stigande budgivning/reverse, fjärde färg, tredje färg, kortfärg/slaminvit och splinter där dessa faktiskt är märkta Plus eller Pro på källsidorna.
+- Märkningen ska följa den exakta källraden. En Pro- eller Plus-märkning får inte spridas till intilliggande rader, och en omärkt rad får inte uppgraderas utan källstöd.
+- Att ta med en regel betyder inte att färgvarianter får skapas mekaniskt. Samma kontroller av färgroller, budordning, nivå, hopp/revers, kravstatus och styrka gäller fortfarande.
