@@ -1,18 +1,17 @@
 {
   "date": "2026-11-18",
   "mode": "ostord",
-  "method": "100 generated deals per eligible theme. East/West are forced to pass. Only North/South decisions are scored. Every suggested non-pass bid is replayed as the actual bid and must be accepted by the correction engine; otherwise it is suppressed and the sequence is left uncovered.",
+  "method": "100 generated deals per eligible theme; East/West forced to pass; only North/South decisions scored. Candidate bids are replayed as actual bids and must be accepted by the correction engine.",
   "summary": {
     "deals": 1200,
     "themes": 12,
     "dealsPerTheme": 100,
-    "nsDecisions": 5513,
-    "covered": 5482,
-    "uncovered": 31,
-    "verifiedCoveragePct": 99.44,
-    "uniqueUncovered": 28,
-    "motorConflicts": 11,
-    "verifiedAiSuggestions": 1,
+    "nsDecisions": 5383,
+    "covered": 5343,
+    "uncovered": 40,
+    "coveragePct": 99.26,
+    "uniqueUncovered": 36,
+    "internalConflicts": 0,
     "unsupportedNonPass": 0,
     "structuralErrors": 0
   },
@@ -20,110 +19,106 @@
     {
       "theme": "alla",
       "deals": 100,
-      "turns": 518,
-      "covered": 513,
-      "uncovered": 5,
-      "aiSuggestions": 1,
-      "motorConflicts": 1
+      "turns": 510,
+      "covered": 505,
+      "uncovered": 5
     },
     {
       "theme": "nt",
       "deals": 100,
-      "turns": 513,
-      "covered": 513,
-      "uncovered": 0,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "turns": 507,
+      "covered": 507,
+      "uncovered": 0
     },
     {
       "theme": "stenberg",
       "deals": 100,
-      "turns": 477,
-      "covered": 474,
-      "uncovered": 3,
-      "aiSuggestions": 0,
-      "motorConflicts": 1
+      "turns": 470,
+      "covered": 467,
+      "uncovered": 3
     },
     {
       "theme": "tva",
       "deals": 100,
-      "turns": 566,
-      "covered": 566,
-      "uncovered": 0,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "turns": 560,
+      "covered": 560,
+      "uncovered": 0
     },
     {
       "theme": "rkc",
       "deals": 100,
-      "turns": 524,
-      "covered": 514,
-      "uncovered": 10,
-      "aiSuggestions": 0,
-      "motorConflicts": 5
+      "turns": 499,
+      "covered": 485,
+      "uncovered": 14
     },
     {
       "theme": "slam",
       "deals": 100,
-      "turns": 504,
-      "covered": 500,
-      "uncovered": 4,
-      "aiSuggestions": 0,
-      "motorConflicts": 2
+      "turns": 484,
+      "covered": 475,
+      "uncovered": 9
     },
     {
       "theme": "slamnt",
       "deals": 100,
-      "turns": 497,
-      "covered": 497,
-      "uncovered": 0,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "turns": 448,
+      "covered": 448,
+      "uncovered": 0
     },
     {
       "theme": "trumf",
       "deals": 100,
       "turns": 401,
       "covered": 400,
-      "uncovered": 1,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "uncovered": 1
     },
     {
       "theme": "sang",
       "deals": 100,
       "turns": 395,
       "covered": 395,
-      "uncovered": 0,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "uncovered": 0
     },
     {
       "theme": "invit",
       "deals": 100,
       "turns": 365,
       "covered": 365,
-      "uncovered": 0,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "uncovered": 0
     },
     {
       "theme": "tvafarg",
       "deals": 100,
-      "turns": 553,
-      "covered": 545,
-      "uncovered": 8,
-      "aiSuggestions": 0,
-      "motorConflicts": 2
+      "turns": 544,
+      "covered": 536,
+      "uncovered": 8
     },
     {
       "theme": "svag",
       "deals": 100,
       "turns": 200,
       "covered": 200,
-      "uncovered": 0,
-      "aiSuggestions": 0,
-      "motorConflicts": 0
+      "uncovered": 0
+    }
+  ],
+  "resolutionOfPrevious11Contradictions": [
+    {
+      "count": 9,
+      "issue": "1M–2NT–3NT; responder had 33+ partnership points and a natural major fit. Previous logic jumped directly to 6M.",
+      "fix": "The engine now recommends 4NT/RKC as the next step, only in this established Stenberg + 3NT context. It does not select 6M before the ace/key-card response.",
+      "status": "resolved; subsequent RKC responses remain individually subject to coverage."
+    },
+    {
+      "count": 1,
+      "issue": "1C–1D–3D; responder's pass analysis repeated 3D even though 3D was already the current contract.",
+      "fix": "Legality filtering now runs before self-consistency verification. The correct recommendation is pass.",
+      "status": "resolved."
+    },
+    {
+      "count": 1,
+      "issue": "1H–1S–2C; 2NT was suggested through a generic fallback despite the hand lacking a diamond stopper.",
+      "fix": "The exact sequence now returns uncovered unless the full documented 2NT criteria (10–12 HCP, balanced, 2 hearts, stoppers in spades and diamonds) are met.",
+      "status": "resolved as safe uncovered case; no unsupported bid is taught."
     }
   ],
   "uncovered": [
@@ -179,6 +174,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5D",
         "E:P"
       ],
       "actualCall": "P",
@@ -204,8 +203,8 @@
         "D": 4,
         "C": 3
       },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "alla",
@@ -368,6 +367,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5C",
         "E:P"
       ],
       "actualCall": "P",
@@ -393,8 +396,8 @@
         "D": 2,
         "C": 3
       },
-      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "stenberg",
@@ -444,6 +447,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5C",
         "E:P"
       ],
       "actualCall": "P",
@@ -469,8 +476,8 @@
         "D": 4,
         "C": 1
       },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "rkc",
@@ -520,6 +527,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5H",
         "E:P"
       ],
       "actualCall": "P",
@@ -545,8 +556,8 @@
         "D": 2,
         "C": 4
       },
-      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "rkc",
@@ -596,6 +607,10 @@
         "N:2N",
         "E:P",
         "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5D",
         "W:P"
       ],
       "actualCall": "P",
@@ -621,8 +636,51 @@
         "D": 2,
         "C": 2
       },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
+      "theme": "rkc",
+      "deal": 38,
+      "seed": 2026151837,
+      "seat": "N",
+      "auction": [
+        "S:1D",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5S",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S13",
+        "D6",
+        "D10",
+        "H12",
+        "D14",
+        "S8",
+        "S5",
+        "D9",
+        "H13",
+        "C10",
+        "H10",
+        "C13",
+        "D13"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 3,
+        "H": 3,
+        "D": 5,
+        "C": 2
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "rkc",
@@ -635,6 +693,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5H",
         "E:P"
       ],
       "actualCall": "P",
@@ -660,8 +722,8 @@
         "D": 3,
         "C": 3
       },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "rkc",
@@ -699,6 +761,49 @@
       },
       "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
       "convention": "Stenberg"
+    },
+    {
+      "theme": "rkc",
+      "deal": 57,
+      "seed": 2026151856,
+      "seat": "S",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5D",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D13",
+        "D4",
+        "D3",
+        "H6",
+        "C12",
+        "D14",
+        "C13",
+        "D7",
+        "H14",
+        "D12",
+        "S5",
+        "S14",
+        "S6"
+      ],
+      "hcp": 22,
+      "shape": {
+        "S": 3,
+        "H": 2,
+        "D": 6,
+        "C": 2
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "rkc",
@@ -748,6 +853,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5D",
         "E:P"
       ],
       "actualCall": "P",
@@ -773,8 +882,51 @@
         "D": 3,
         "C": 2
       },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
+      "theme": "rkc",
+      "deal": 72,
+      "seed": 2026151871,
+      "seat": "N",
+      "auction": [
+        "S:1D",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D13",
+        "C11",
+        "H11",
+        "H3",
+        "D9",
+        "D2",
+        "S10",
+        "D12",
+        "C3",
+        "C14",
+        "D4",
+        "S14",
+        "D14"
+      ],
+      "hcp": 19,
+      "shape": {
+        "S": 2,
+        "H": 2,
+        "D": 6,
+        "C": 3
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "rkc",
@@ -814,6 +966,92 @@
       "convention": "Stenberg"
     },
     {
+      "theme": "rkc",
+      "deal": 79,
+      "seed": 2026151878,
+      "seat": "N",
+      "auction": [
+        "S:1D",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S14",
+        "D7",
+        "H14",
+        "D4",
+        "C8",
+        "D14",
+        "H11",
+        "C14",
+        "D9",
+        "S7",
+        "C13",
+        "C9",
+        "S4"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 3,
+        "H": 2,
+        "D": 4,
+        "C": 4
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
+      "theme": "slam",
+      "deal": 3,
+      "seed": 2026161802,
+      "seat": "N",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D13",
+        "H4",
+        "D10",
+        "D14",
+        "H9",
+        "C13",
+        "S11",
+        "C12",
+        "C5",
+        "S2",
+        "H14",
+        "C14",
+        "S5"
+      ],
+      "hcp": 21,
+      "shape": {
+        "S": 3,
+        "H": 3,
+        "D": 3,
+        "C": 4
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
       "theme": "slam",
       "deal": 21,
       "seed": 2026161820,
@@ -824,6 +1062,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5C",
         "E:P"
       ],
       "actualCall": "P",
@@ -849,8 +1091,51 @@
         "D": 2,
         "C": 4
       },
-      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
+      "theme": "slam",
+      "deal": 23,
+      "seed": 2026161822,
+      "seat": "N",
+      "auction": [
+        "S:1D",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D6",
+        "D3",
+        "D13",
+        "C11",
+        "D14",
+        "D9",
+        "S12",
+        "S2",
+        "H12",
+        "S4",
+        "H7",
+        "C14",
+        "D10"
+      ],
+      "hcp": 16,
+      "shape": {
+        "S": 3,
+        "H": 2,
+        "D": 6,
+        "C": 2
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "slam",
@@ -863,6 +1148,10 @@
         "S:2N",
         "W:P",
         "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5D",
         "E:P"
       ],
       "actualCall": "P",
@@ -888,8 +1177,8 @@
         "D": 4,
         "C": 3
       },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "slam",
@@ -930,6 +1219,49 @@
     },
     {
       "theme": "slam",
+      "deal": 62,
+      "seed": 2026161861,
+      "seat": "S",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5C",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C3",
+        "D14",
+        "C14",
+        "S9",
+        "S11",
+        "H13",
+        "S14",
+        "C7",
+        "D10",
+        "H9",
+        "D6",
+        "D13",
+        "C11"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 3,
+        "H": 2,
+        "D": 4,
+        "C": 4
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
+      "theme": "slam",
       "deal": 70,
       "seed": 2026161869,
       "seat": "S",
@@ -964,6 +1296,92 @@
       },
       "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
       "convention": "Stenberg"
+    },
+    {
+      "theme": "slam",
+      "deal": 89,
+      "seed": 2026161888,
+      "seat": "S",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P",
+        "S:4N",
+        "W:P",
+        "N:5D",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C8",
+        "D14",
+        "D6",
+        "H14",
+        "S2",
+        "C14",
+        "S5",
+        "C11",
+        "H3",
+        "D13",
+        "H9",
+        "D3",
+        "C12"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 2,
+        "H": 3,
+        "D": 4,
+        "C": 4
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
+    },
+    {
+      "theme": "slam",
+      "deal": 94,
+      "seed": 2026161893,
+      "seat": "N",
+      "auction": [
+        "S:1D",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P",
+        "N:4N",
+        "E:P",
+        "S:5H",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D12",
+        "H11",
+        "D13",
+        "C11",
+        "C13",
+        "D11",
+        "S14",
+        "S8",
+        "S4",
+        "C7",
+        "D14",
+        "H7",
+        "H3"
+      ],
+      "hcp": 19,
+      "shape": {
+        "S": 3,
+        "H": 3,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.",
+      "convention": "Blackwood 5 ess"
     },
     {
       "theme": "trumf",
@@ -1088,42 +1506,40 @@
       "theme": "tvafarg",
       "deal": 20,
       "seed": 2026211819,
-      "seat": "S",
+      "seat": "N",
       "auction": [
         "S:1H",
         "W:P",
         "N:1S",
         "E:P",
         "S:2C",
-        "W:P",
-        "N:2D",
-        "E:P"
+        "W:P"
       ],
       "actualCall": "P",
       "hand": [
-        "H7",
-        "C9",
-        "H14",
-        "H9",
-        "S6",
-        "D13",
-        "S12",
-        "S14",
-        "C10",
-        "H5",
-        "C6",
-        "H6",
-        "C12"
+        "D6",
+        "C11",
+        "C8",
+        "H13",
+        "S8",
+        "S5",
+        "D8",
+        "D2",
+        "S13",
+        "S11",
+        "C14",
+        "H12",
+        "D12"
       ],
-      "hcp": 15,
+      "hcp": 16,
       "shape": {
-        "S": 3,
-        "H": 5,
-        "D": 1,
-        "C": 4
+        "S": 4,
+        "H": 2,
+        "D": 4,
+        "C": 3
       },
-      "why": "Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19.",
-      "convention": "Fjärde färg"
+      "why": "Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i både ♠ och ♦. Handen uppfyller inte hela beskrivningen; annat återbud är inte tillräckligt definierat i tabellen.",
+      "convention": "SH:s andra bud efter 1♥–1♠–2♣"
     },
     {
       "theme": "tvafarg",
@@ -1165,45 +1581,6 @@
       },
       "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
       "convention": "övrigt"
-    },
-    {
-      "theme": "tvafarg",
-      "deal": 57,
-      "seed": 2026211856,
-      "seat": "S",
-      "auction": [
-        "N:1C",
-        "E:P",
-        "S:1D",
-        "W:P",
-        "N:3D",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "C4",
-        "D6",
-        "D7",
-        "S9",
-        "S11",
-        "D2",
-        "C10",
-        "S8",
-        "C5",
-        "H4",
-        "H14",
-        "S10",
-        "D12"
-      ],
-      "hcp": 7,
-      "shape": {
-        "S": 4,
-        "H": 2,
-        "D": 4,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 3♦ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (Pass). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
     },
     {
       "theme": "tvafarg",
@@ -1250,473 +1627,40 @@
       "theme": "tvafarg",
       "deal": 60,
       "seed": 2026211859,
-      "seat": "N",
+      "seat": "S",
       "auction": [
         "N:1H",
         "E:P",
         "S:1S",
         "W:P",
         "N:2C",
-        "E:P",
-        "S:2D",
-        "W:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "D14",
-        "C14",
-        "H4",
-        "H8",
-        "S13",
-        "C3",
-        "H2",
-        "C10",
-        "S9",
-        "H10",
-        "S3",
-        "C11",
-        "H7"
-      ],
-      "hcp": 12,
-      "shape": {
-        "S": 3,
-        "H": 5,
-        "D": 1,
-        "C": 4
-      },
-      "why": "Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19.",
-      "convention": "Fjärde färg"
-    },
-    {
-      "theme": "tvafarg",
-      "deal": 83,
-      "seed": 2026211882,
-      "seat": "N",
-      "auction": [
-        "S:1H",
-        "W:P",
-        "N:1S",
-        "E:P",
-        "S:2C",
-        "W:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "D3",
-        "C6",
-        "D8",
-        "S11",
-        "C14",
-        "S14",
-        "H3",
-        "S12",
-        "S9",
-        "H9",
-        "C5",
-        "D5",
-        "S4"
-      ],
-      "hcp": 11,
-      "shape": {
-        "S": 5,
-        "H": 2,
-        "D": 3,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 2NT när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (ej täckt). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    }
-  ],
-  "motorConflicts": [
-    {
-      "theme": "alla",
-      "deal": 65,
-      "seed": 2026111864,
-      "seat": "S",
-      "auction": [
-        "N:1H",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
         "E:P"
       ],
       "actualCall": "P",
       "hand": [
-        "C12",
-        "S14",
-        "H3",
-        "D10",
-        "H7",
-        "H12",
-        "D6",
-        "D14",
-        "C2",
-        "H13",
-        "H14",
-        "C7",
-        "D11"
-      ],
-      "hcp": 20,
-      "shape": {
-        "S": 1,
-        "H": 5,
-        "D": 4,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "stenberg",
-      "deal": 85,
-      "seed": 2026131884,
-      "seat": "S",
-      "auction": [
-        "N:1S",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "C2",
-        "H12",
-        "D13",
-        "D6",
-        "H11",
-        "C7",
-        "S14",
-        "H13",
         "S6",
-        "S5",
-        "S11",
-        "C11",
-        "S13"
-      ],
-      "hcp": 18,
-      "shape": {
-        "S": 5,
-        "H": 3,
-        "D": 2,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "rkc",
-      "deal": 3,
-      "seed": 2026151802,
-      "seat": "S",
-      "auction": [
-        "N:1H",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "S4",
-        "H8",
-        "S6",
-        "H11",
-        "H3",
-        "H14",
-        "D11",
-        "D13",
-        "D12",
-        "H6",
-        "S13",
-        "D3",
-        "C14"
-      ],
-      "hcp": 18,
-      "shape": {
-        "S": 3,
-        "H": 5,
-        "D": 4,
-        "C": 1
-      },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "rkc",
-      "deal": 19,
-      "seed": 2026151818,
-      "seat": "S",
-      "auction": [
-        "N:1S",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "H4",
-        "C8",
-        "H7",
-        "S3",
-        "C14",
-        "C10",
-        "D13",
-        "S2",
-        "S12",
-        "D12",
-        "H13",
         "C13",
-        "S13"
-      ],
-      "hcp": 20,
-      "shape": {
-        "S": 4,
-        "H": 3,
-        "D": 2,
-        "C": 4
-      },
-      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "rkc",
-      "deal": 37,
-      "seed": 2026151836,
-      "seat": "N",
-      "auction": [
-        "S:1H",
-        "W:P",
-        "N:2N",
-        "E:P",
-        "S:3N",
-        "W:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "C10",
-        "H6",
-        "C14",
-        "H11",
-        "S8",
+        "S14",
+        "H14",
+        "D2",
+        "C6",
+        "H9",
         "S5",
-        "S10",
-        "S14",
-        "D14",
-        "D10",
-        "H12",
-        "S11",
-        "H14"
-      ],
-      "hcp": 20,
-      "shape": {
-        "S": 5,
-        "H": 4,
-        "D": 2,
-        "C": 2
-      },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "rkc",
-      "deal": 49,
-      "seed": 2026151848,
-      "seat": "S",
-      "auction": [
-        "N:1H",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "C9",
-        "D13",
-        "S13",
+        "S8",
+        "C7",
         "C12",
-        "S11",
-        "S14",
-        "D14",
-        "H5",
-        "H8",
-        "H12",
-        "C10",
-        "H10",
+        "H11",
         "D9"
       ],
-      "hcp": 19,
+      "hcp": 14,
       "shape": {
-        "S": 3,
-        "H": 4,
-        "D": 3,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "rkc",
-      "deal": 64,
-      "seed": 2026151863,
-      "seat": "S",
-      "auction": [
-        "N:1H",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "D14",
-        "H6",
-        "D13",
-        "S2",
-        "S14",
-        "C9",
-        "H14",
-        "H8",
-        "H3",
-        "C7",
-        "H13",
-        "D12",
-        "S12"
-      ],
-      "hcp": 22,
-      "shape": {
-        "S": 3,
-        "H": 5,
-        "D": 3,
-        "C": 2
-      },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "slam",
-      "deal": 21,
-      "seed": 2026161820,
-      "seat": "S",
-      "auction": [
-        "N:1S",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "D5",
-        "S6",
-        "C13",
-        "H12",
-        "C8",
-        "C12",
-        "S12",
-        "D13",
-        "S2",
-        "S10",
-        "C10",
-        "S13",
-        "S14"
-      ],
-      "hcp": 19,
-      "shape": {
-        "S": 6,
-        "H": 1,
+        "S": 4,
+        "H": 3,
         "D": 2,
         "C": 4
       },
-      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "slam",
-      "deal": 46,
-      "seed": 2026161845,
-      "seat": "S",
-      "auction": [
-        "N:1H",
-        "E:P",
-        "S:2N",
-        "W:P",
-        "N:3N",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "C7",
-        "H8",
-        "H14",
-        "D7",
-        "D11",
-        "H13",
-        "C8",
-        "D14",
-        "H6",
-        "H11",
-        "S3",
-        "D13",
-        "C12"
-      ],
-      "hcp": 18,
-      "shape": {
-        "S": 1,
-        "H": 5,
-        "D": 4,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    },
-    {
-      "theme": "tvafarg",
-      "deal": 57,
-      "seed": 2026211856,
-      "seat": "S",
-      "auction": [
-        "N:1C",
-        "E:P",
-        "S:1D",
-        "W:P",
-        "N:3D",
-        "E:P"
-      ],
-      "actualCall": "P",
-      "hand": [
-        "C4",
-        "D6",
-        "D7",
-        "S9",
-        "S11",
-        "D2",
-        "C10",
-        "S8",
-        "C5",
-        "H4",
-        "H14",
-        "S10",
-        "D12"
-      ],
-      "hcp": 7,
-      "shape": {
-        "S": 4,
-        "H": 2,
-        "D": 4,
-        "C": 3
-      },
-      "why": "Motorn gav förslaget 3♦ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (Pass). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
+      "why": "Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i både ♠ och ♦. Handen uppfyller inte hela beskrivningen; annat återbud är inte tillräckligt definierat i tabellen.",
+      "convention": "SH:s andra bud efter 1♥–1♠–2♣"
     },
     {
       "theme": "tvafarg",
@@ -1754,49 +1698,52 @@
         "D": 3,
         "C": 3
       },
-      "why": "Motorn gav förslaget 2NT när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (ej täckt). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
-      "convention": "motorintern konflikt"
-    }
-  ],
-  "verifiedAiSuggestions": [
+      "why": "Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i både ♠ och ♦. Handen uppfyller inte hela beskrivningen; annat återbud är inte tillräckligt definierat i tabellen.",
+      "convention": "SH:s andra bud efter 1♥–1♠–2♣"
+    },
     {
-      "theme": "alla",
-      "deal": 81,
-      "seed": 2026111880,
+      "theme": "tvafarg",
+      "deal": 85,
+      "seed": 2026211884,
       "seat": "S",
       "auction": [
-        "N:2D",
+        "N:1H",
+        "E:P",
+        "S:1S",
+        "W:P",
+        "N:2C",
         "E:P"
       ],
-      "call": "2N",
-      "explanation": "13 hp · fördelning 6-1-2-4 · Resonerande analys: 13+ stp och minst 2-korts stöd gör 2NT till Stenberg. Bekräftat av rättningsmotorn: Stenberg 2NT visar minst 13 stp och minst 2-korts stöd i öppningsfärgen.",
+      "actualCall": "P",
       "hand": [
-        "D6",
-        "S5",
-        "C13",
-        "S9",
-        "S11",
-        "H13",
-        "D8",
         "S2",
         "C12",
-        "C6",
+        "S8",
+        "H5",
+        "C5",
+        "D14",
+        "S9",
         "S4",
-        "S14",
-        "C3"
+        "C8",
+        "C9",
+        "H6",
+        "S3",
+        "D2"
       ],
-      "hcp": 13,
+      "hcp": 6,
       "shape": {
-        "S": 6,
-        "H": 1,
+        "S": 5,
+        "H": 2,
         "D": 2,
         "C": 4
-      }
+      },
+      "why": "Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i både ♠ och ♦. Handen uppfyller inte hela beskrivningen; annat återbud är inte tillräckligt definierat i tabellen.",
+      "convention": "SH:s andra bud efter 1♥–1♠–2♣"
     }
   ],
   "source": {
     "htmlBlobSha": "ccb91889ebb02026c53af196980f92a023f7c6bf",
-    "motorBlobSha": "7a1bcc367a93b36c6a7de449d5a23fe2a1a0d389",
+    "motorBlobSha": "8c7bdc6f73db64ce1538f008515c6ef8b5c0f5a6",
     "rulesVersion": "9.8",
     "seedBase": 2026111800
   }
