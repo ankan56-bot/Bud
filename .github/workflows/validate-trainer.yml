@@ -62,6 +62,8 @@ jobs:
           NODE
       - name: Run Stenberg 2NT regression tests
         run: node tests/stenberg-2nt.test.js
+      - name: Run competitive 2NT after overcall regression tests
+        run: node tests/competitive-2nt-after-overcall.test.js
       - name: Run trump-support module tests
         run: node tests/trumfstod.test.js
       - name: Run strong 2C module tests through 4NT
