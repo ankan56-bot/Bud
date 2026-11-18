@@ -65,3 +65,15 @@ tests/stenberg-2nt.test.js täcker hög- och lågfärg, 13 htp-gränsen, 4+ stö
 - 1♥–1♠–2♦–2NT: användaren har uttryckligen fastställt 11–12 hp och invit. Implementationen kräver balanserad hand och håller denna exakta sekvens separat från 2♣-grenen.
 - Båda sekvenserna är svarshandens andra bud efter öppnarens andra färg. De får aldrig ärva Stenbergs utgångskrav eller 4-kortsstödskrav.
 
+
+## Stenberg 2NT efter svag tvåöppning – separat konvention
+
+Källa: Bridge Lathund bok, tryckt sida 27.
+
+- Efter svag 2♦, 2♥ eller 2♠ visar 2NT Stenberg med minst 13 STP.
+- Detta är en egen Stenberggren och får inte blandas ihop med 1♥/1♠–2NT eller 1♣/1♦–2NT.
+- Rättningsmotorn räknar STP med öppningsfärgen som trumf enligt projektets handpoängsmodell.
+- Den äldre regeln 2NT = 9–10 hp och 2+ stöd är borttagen.
+- Öppnarens fortsättning efter svag tvåa–2NT är inte tillräckligt specificerad i källunderlaget. Den lämnas EJ TÄCKT; den gamla 6–8/9–10 hp-stegen får inte användas.
+- Överlapp mellan 13+ STP och en lång sidofärg lämnas EJ TÄCKT tills lathundens prioritet är fastställd.
+
