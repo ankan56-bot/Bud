@@ -121,6 +121,8 @@ jobs:
         run: node tests/one-major-invit.test.js
       - name: Run two-suit rebid 2NT invitation boundary tests
         run: node tests/one-major-second-bid-2nt-invite.test.js
+      - name: Run opener third-bid tests after 2NT invitation
+        run: node tests/one-major-opener-third-after-2nt.test.js
       - name: Run broad undisturbed regression corpus
         run: |
           node tests/ostord-100.test.js
