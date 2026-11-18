@@ -226,6 +226,7 @@ test("weak-two Stenberg requires at least two-card support, not four", () => {
   ],2);
   assert.equal(accepted.exp,"2N");
   assert.match(accepted.why,/minst 2-korts stöd/);
+  assert.match(accepted.means("2N"),/minst 2-korts stöd/);
 
   const oneCardResponder=[
     ...cards("H","2"), ...cards("S","AKQJ"),
