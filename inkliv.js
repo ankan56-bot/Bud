@@ -154,10 +154,13 @@
       }
     }
 
-    // 10+ hp och 3+ stöd: överbud i öppningsfärgen.
-    if(!exp&&L[s]>=3&&hp>=10&&os){
+    // Cue-bid strength differs by context. After our own opening and
+    // opponent interference, Lathunden s. 35 requires 13+ STP with support.
+    // After partner's overcall, the Nordisk Standard 10+ hp rule remains.
+    var cueStrength=sourcePageRules?handHps(h,s)>=13:hp>=10;
+    if(!exp&&L[s]>=3&&cueStrength&&os){
       var cue=lowest(os,last);
-      if(ok(cue,last)){exp=cue;why='10+ hp och '+L[s]+'-korts stöd: överbud i motståndarnas färg.';}
+      if(ok(cue,last)){exp=cue;why=(sourcePageRules?handHps(h,s)+' STP':'10+ hp')+' och '+L[s]+'-korts stöd: överbud i motståndarnas färg.';}
     }
 
     if(!sourcePageRules&&!exp&&h.bal&&hp>=8&&hp<=10&&h.stop(os)&&ok('1N',last)){
