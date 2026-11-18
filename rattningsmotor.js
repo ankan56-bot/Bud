@@ -1795,7 +1795,7 @@ var Rattning = (function(){
     var b=bids[index];
     if(!b||side(b.s)!==0||!isBid(b.c))return null;
     var own=bids.slice(0,index).filter(function(x){return x&&isBid(x.c)&&side(x.s)===0;});
-    if(own.length<1||!/^2[DHS]$/.test(own[0].c))return null;
+    if(own.length<1)return null;
     var contract=b.c,level=lv(contract),suit=st_(contract),partnerSeat=partner(b.s);
     if(level<3)return null;
     var a=H(st.hands[b.s]),p=H(st.hands[partnerSeat]);
