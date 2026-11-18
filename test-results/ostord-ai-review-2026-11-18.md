@@ -1,43 +1,37 @@
-# AI-granskning av ostörd budgivning – 2026-11-18
+# Granskning av de 11 interna motsägelserna – 2026-11-18
 
-## Resultat
-- Givar: **1200** (100 per tema, 12 teman)
-- Bedömda N/S-beslut: **5513**
-- Verifierade beslut: **5482 (99.44 %)**
-- Ej täckta eller motstridiga beslut: **31** i **28** unika sekvenser
-- Interna motor-konflikter: **11**
-- AI-förslag som först verifierats av rättningsmotorn: **1**
-- Otillåtna/overifierade icke-passbud: **0**
+## Åtgärder
+| Antal | Feltyp | Åtgärd | Status |
+|---:|---|---|---|
+| 9 | 1M–2NT–3NT: poängkontrollen hoppade direkt till 6M utan esskontroll | Nästa steg blir 4NT/RKC i den specifika Stenbergsekvensen. Lillslam väljs först efter ess-/trumfkungssvar. | Lösta; fortsatta RKC-svar bedöms separat |
+| 1 | 1♣–1♦–3♦: motorn föreslog att upprepa 3♦ | Laglighetskontrollen körs före självkonsistenskontrollen; pass är korrekt. | Löst |
+| 1 | 1♥–1♠–2♣: generiskt återbud 2NT trots saknat ruterkontroll | Den exakta sekvensen kräver alla dokumenterade kriterier. Om de inte uppfylls lämnas läget ej täckt. | Löst säkert; inget obelagt bud |
+
+## Ny simulering
+- Givar: **1200**, 100 per tema
+- N/S-beslut: **5383**
+- Täckta beslut: **5343 (99.26 %)**
+- Ej täckta beslut: **40** i **36** unika sekvenser
+- Kvarvarande interna motsägelser: **0**
+- Overifierade icke-passbud: **0**
 - Ogiltiga auktioner: **0**
 
-Öst/Väst passade i samtliga givar. Dubbling och inkliv ingår inte eftersom de kräver störd budgivning.
-
-## Metod
-AI-resonemanget använder den egna handen och den offentliga budgivningen. Det får inte ändra Nordisk Standard eller hitta på saknade konventioner. Ett kandidatbud måste sedan godkännas när det prövas som faktiskt bud av rättningsmotorn. Om motorn inte bekräftar det blir det pass och en loggad lucka.
-
-## Viktigaste fynd
-1. **Stenberg efter 1-färgsöppning:** flera händer hamnar mellan de uttryckliga svaren (15+ htp utan singel, singelvisning eller 12–14 hp balanserad). De lämnas ej täckta.
-2. **Intern konflikt i slamkontrollen:** motorn kan föreslå 6♥/6♠ när spelaren passar, men när samma slam prövas som faktiskt bud föreslår motorn i stället 4♥/4♠. Dessa fall markeras nu som intern konflikt och rättas inte automatiskt.
-3. **Öppnarens tredje bud efter 1-färgsöppning:** flera fortsättningar saknar en uttrycklig regel i underlaget.
-4. **Svag tvåa:** den kompletterande AI-funktionen gav ett Stenberg-förslag med 13+ stp och minst tvåkorts stöd; rättningsmotorn bekräftade budet. Stödkravet är särskilt för svag tvåa och blandas inte ihop med vanlig Stenberg efter 1 i färg.
-5. **Ingen gissningsbudgivning:** alla icke-passbud som inte verifieras spärras. Alla auktioner var strukturellt giltiga.
-
 ## Per tema
-| Tema | Givar | N/S-beslut | Verifierade | Ej täckta | Motor-konflikter |
-|---|---:|---:|---:|---:|---:|
-| alla | 100 | 518 | 513 | 5 | 1 |
-| nt | 100 | 513 | 513 | 0 | 0 |
-| stenberg | 100 | 477 | 474 | 3 | 1 |
-| tva | 100 | 566 | 566 | 0 | 0 |
-| rkc | 100 | 524 | 514 | 10 | 5 |
-| slam | 100 | 504 | 500 | 4 | 2 |
-| slamnt | 100 | 497 | 497 | 0 | 0 |
-| trumf | 100 | 401 | 400 | 1 | 0 |
-| sang | 100 | 395 | 395 | 0 | 0 |
-| invit | 100 | 365 | 365 | 0 | 0 |
-| tvafarg | 100 | 553 | 545 | 8 | 2 |
-| svag | 100 | 200 | 200 | 0 | 0 |
+| Tema | Givar | N/S-beslut | Täckta | Ej täckta |
+|---|---:|---:|---:|---:|
+| alla | 100 | 510 | 505 | 5 |
+| nt | 100 | 507 | 507 | 0 |
+| stenberg | 100 | 470 | 467 | 3 |
+| tva | 100 | 560 | 560 | 0 |
+| rkc | 100 | 499 | 485 | 14 |
+| slam | 100 | 484 | 475 | 9 |
+| slamnt | 100 | 448 | 448 | 0 |
+| trumf | 100 | 401 | 400 | 1 |
+| sang | 100 | 395 | 395 | 0 |
+| invit | 100 | 365 | 365 | 0 |
+| tvafarg | 100 | 544 | 536 | 8 |
+| svag | 100 | 200 | 200 | 0 |
 
-## Källkod
-- Rättningsmotor: `7a1bcc367a93b36c6a7de449d5a23fe2a1a0d389`
-- Tränare: `ccb91889ebb02026c53af196980f92a023f7c6bf`
+De nio slamfallen leder nu till 4NT/RKC. I några av dessa givare blir det efterföljande 5♣/5♦-svaret fortfarande ej täckt eftersom nästa bud inte är entydigt fastställt i den aktuella regelgrenen. De lämnas därför i loggen för separat granskning.
+
+Alla ej täckta sekvenser och handuppgifter finns i JSON-loggen. Inga Nordisk Standard-regler har hittats på för att höja täckningsgraden.
