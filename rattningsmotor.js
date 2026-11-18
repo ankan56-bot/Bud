@@ -1450,6 +1450,13 @@ var Rattning = (function(){
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
+      if(!opener&&d===1&&c1==='1S'&&
+         prior.some(function(x){return x.s===pt&&x.c==='1H'})&&
+         prior.some(function(x){return x.s===pt&&x.c==='2C'})){
+        if(b.c==='2N'&&h.bal&&h.L.H===2&&h.stop('S')&&h.stop('D')&&h.hp>=10&&h.hp<=12)
+          return {exp:'2N',alt:[],why:'2NT visar 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i ♠ och ♦ enligt Nordisk standard s. 3.',means:function(c){return c==='2N'?'10–12 hp, balanserad, 2 ♥ samt håll i ♠ och ♦.':null},conv:'SH:s andra bud efter 1♥–1♠–2♣',soft:false};
+        return NC('Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, tvåkorts ♥ samt håll i både ♠ och ♦. Denna hand uppfyller inte hela beskrivningen; alternativ fortsättning är inte tillräckligt definierad och lämnas ej täckt.','', 'SH:s andra bud efter 1♥–1♠–2♣');
+      }
       if(!opener&&d===1)return resp1(h,c1);
       if(opener&&d===2)return reb1(h,c1,ours[1].c);
       if(opener&&d===4)return nc('Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.');
@@ -1501,16 +1508,6 @@ var Rattning = (function(){
         };
       }
     }
-    // Kontrollera att ett rekommenderat bud också godtas när det prövas som
-    // faktiskt bud. Den rekursiva kontrollen hoppar över just denna kontroll.
-    if(!skipConsistency&&node&&node.exp&&node.exp!=='P'&&st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'){
-      var proposed=node.exp,checkBids=st.bids.slice(),checkNode=null;
-      checkBids[i]={s:st.bids[i].s,c:proposed};
-      try{checkNode=nodeFor({hands:st.hands,dealer:st.dealer,bids:checkBids},i,true)}catch(e){checkNode=null}
-      if(!checkNode||!(checkNode.exp===proposed||(checkNode.alt||[]).includes(proposed))){
-        return NC('Motorn gav förslaget '+txt(proposed)+' när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud ('+(checkNode&&checkNode.exp?txt(checkNode.exp):'ej täckt')+'). Intern konflikt: sekvensen lämnas för AI-/expertanalys.','', 'motorintern konflikt');
-      }
-    }
     if(!node||!node.exp||!isBid(node.exp))return node;
     var highest=null;
     (st.bids||[]).slice(0,i).forEach(function(x){
@@ -1530,6 +1527,16 @@ var Rattning = (function(){
         conv:node.conv||'budordning',
         soft:false
       };
+    }
+    // Kontrollera att ett rekommenderat bud också godtas när det prövas som
+    // faktiskt bud. Den rekursiva kontrollen hoppar över just denna kontroll.
+    if(!skipConsistency&&node&&node.exp&&node.exp!=='P'&&st&&st.bids&&st.bids[i]&&st.bids[i].c==='P'){
+      var proposed=node.exp,checkBids=st.bids.slice(),checkNode=null;
+      checkBids[i]={s:st.bids[i].s,c:proposed};
+      try{checkNode=nodeFor({hands:st.hands,dealer:st.dealer,bids:checkBids},i,true)}catch(e){checkNode=null}
+      if(!checkNode||!(checkNode.exp===proposed||(checkNode.alt||[]).includes(proposed))){
+        return NC('Motorn gav förslaget '+txt(proposed)+' när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud ('+(checkNode&&checkNode.exp?txt(checkNode.exp):'ej täckt')+'). Intern konflikt: sekvensen lämnas för AI-/expertanalys.','', 'motorintern konflikt');
+      }
     }
     if(node.alt&&node.alt.length){
       node.alt=node.alt.filter(function(c){
@@ -1688,11 +1695,15 @@ var Rattning = (function(){
     var gameReached=(currentSuit==='N'&&currentLevel>=3)||
       (maj(currentSuit)&&currentLevel>=4)||
       (!maj(currentSuit)&&currentSuit!=='N'&&currentLevel>=5);
-    var slamTarget='6'+trump;
-
-    if(total>=33&&lv(currentContract)<6&&rk(slamTarget)>rk(currentContract)){
-      var basis=trump==='N'?'sang, endast honnörspoäng':'naturligt visad '+SYM[trump]+'-fit med fördelningspoäng';
-      return {target:slamTarget,why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas. Pass under lillslam avslutar för tidigt.'};
+    // En poängsumma ensam får aldrig hoppa direkt till 6-nivån.
+    // Med fastställd färgtrumf är nästa systembud 4NT (RKC); essvaret
+    // avgör därefter om 6-nivån är säker. Utan fastställd trumf lämnas
+    // slamfrågan öppen om ingen särskilt avtalad sangsekvens finns.
+    if(total>=33&&lv(currentContract)<6&&trump!=='N'&&
+       rkcTrumpFromAuction(bids.slice(0,i),side(b.s))===trump&&
+       rk('4N')>rk(currentContract)){
+      var basis='naturligt visad '+SYM[trump]+'-fit med fördelningspoäng';
+      return {target:'4N',why:'Partnerskapets sammanlagda styrka är '+total+' poäng ('+basis+'). Med 33+ poäng ska slam undersökas via 4NT/RKC; 4NT frågar efter ess och trumfkungen innan lillslam väljs.'};
     }
     if(total>=threshold&&!gameReached){
       var target=trump==='N'?'3N':(maj(trump)?'4'+trump:'5'+trump);
