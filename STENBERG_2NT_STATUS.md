@@ -77,3 +77,11 @@ Källa: Bridge Lathund bok, tryckt sida 27.
 - Öppnarens fortsättning efter svag tvåa–2NT är inte tillräckligt specificerad i källunderlaget. Den lämnas EJ TÄCKT; den gamla 6–8/9–10 hp-stegen får inte användas.
 - Överlapp mellan 13+ STP och en lång sidofärg lämnas EJ TÄCKT tills lathundens prioritet är fastställd.
 
+
+### Svag tvåa – kompletterande 2NT-regler från lathundens sida 27
+
+- 4NT direkt efter svag 2♦/2♥/2♠ är essfråga med öppningsfärgen som trumf. Den är nu kopplad till befintlig RKC-modul.
+- 3 i öppningsfärgen är invit med cirka 14–16 STP. Detta överlappar numeriskt med 2NT Stenberg 13+ STP; lathunden anger inte prioritet eller stödlängd som skiljer buden åt. Överlappet lämnas EJ TÄCKT i stället för att hitta på en prioritet.
+- Ny färg är normalt 5+/ofta 6 kort, minst 15–16 hp och rondkrav. Den automatiska rekommendationen kräver minst 15 hp.
+- Splinter är fortsatt avstängt enligt användarens tidigare beslut.
+
