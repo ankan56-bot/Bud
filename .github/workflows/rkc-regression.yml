@@ -1,0 +1,27 @@
+name: RKC slam regression
+on:
+  push:
+    branches:
+      - work/theme-dataset-analysis
+    paths:
+      - "rattningsmotor.js"
+      - "export/rattningsmotor.js"
+      - "testdata/rkc-final-pass.test.js"
+      - ".github/workflows/rkc-regression.yml"
+  workflow_dispatch:
+jobs:
+  rkc-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Syntax-check both correction engines
+        run: |
+          node --check rattningsmotor.js
+          node --check export/rattningsmotor.js
+      - name: Run RKC and slam regression suite
+        run: node --test testdata/rkc-final-pass.test.js
