@@ -525,7 +525,7 @@ var Rattning = (function(){
         else if(t>=16){exp='3'+o;why=t+' htp: 3 i färgen (naturlig invit).'}
         else{exp='P';why=t+' htp: högst 15, pass.'}
         return {exp:exp,alt:alt,why:why,means:means,conv:'trumfstöd',soft:true};}
-      if(!maj(o)&&lv(r)>=2&&h.hp<=14){
+      if(!maj(o)&&lv(r)>=2&&hp<=14){
         return {exp:'P',alt:[],why:'Öppnaren har minimum eller normal styrka efter partnerns lågfärgshöjning. Pass tills vidare; starkare fortsättning kräver ytterligare stöd eller styrka.',means:means,conv:'trumfstöd'};
       }
       return {exp:null,alt:[],why:'Fortsättningen efter denna höjning beskrivs inte i dokumentet.',means:means,conv:'trumfstöd'};
