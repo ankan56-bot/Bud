@@ -1029,7 +1029,7 @@ function assessReverse(shape, honors) {
   assert.equal(item.hp, 15);
 }
 
-// A new suit after a weak two is forcing with 5+ cards; no 15 hp threshold is stated.
+// A new suit after a weak two requires 5+ cards and at least 15 hp per Lathund s. 27.
 {
   const node = assessWeakTwoResponse(
     '2D',
@@ -1037,8 +1037,8 @@ function assessReverse(shape, honors) {
     { S: [11], H: [11], C: [11] },
     '2S'
   );
-  assert.equal(node.exp, '2S');
-  assert.match(node.why, /5\+ kort.*forcing|5\+ kort.*krav/i);
+  assert.equal(node.exp, null);
+  assert.match(node.why, /minst 15|15–16 hp/i);
 }
 
 // Two own 5-card suits after a weak two have no documented priority.
