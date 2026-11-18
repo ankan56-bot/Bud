@@ -151,8 +151,14 @@ var Rattning = (function(){
       nonPass[0].s===partner(seat)&&nonPass[1].s===seat&&nonPass[2].s===partner(seat)&&
       auction.every(function(x){return side(x.s)===side(seat)||x.c==='P';})&&
       auction.every(function(x){return x.c!=='X'&&x.c!=='XX';});
-    if(!isOpeningDecision&&!isOneNTFamily&&!isStenbergFamily&&!isOneMajorSecondBidFamily){
-      var unsupportedReason='Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass samt verifierade 1NT-/2NT-, Stenberg- och 1♥–1♠–2♣/2♦-grenar är aktiverade; andra sekvenser lämnas ej täckta.';
+    // Opener's third bid after the responder's exact 2NT invitation.
+    var isOneMajorOpenerThirdBidFamily=nonPass.length===4&&
+      nonPass[0].c==='1H'&&nonPass[1].c==='1S'&&nonPass[2].c==='2D'&&nonPass[3].c==='2N'&&
+      nonPass[0].s===seat&&nonPass[1].s===partner(seat)&&nonPass[2].s===seat&&nonPass[3].s===partner(seat)&&
+      auction.every(function(x){return side(x.s)===side(seat)||x.c==='P';})&&
+      auction.every(function(x){return x.c!=='X'&&x.c!=='XX';});
+    if(!isOpeningDecision&&!isOneNTFamily&&!isStenbergFamily&&!isOneMajorSecondBidFamily&&!isOneMajorOpenerThirdBidFamily){
+      var unsupportedReason='Den här budsekvensen ingår ännu inte i den informationssäkra livebedömningen. Öppning efter pass samt verifierade 1NT-/2NT-, Stenberg- och 1♥–1♠–2♣/2♦-grenar, inklusive öppnarens tredje bud efter 2NT-inviten, är aktiverade; andra sekvenser lämnas ej täckta.';
       if(typeof window!=='undefined'&&window.EjTacktaLogg){
         var liveOwnHands={};liveOwnHands[seat]=ownHand.slice();
         window.EjTacktaLogg.record({
