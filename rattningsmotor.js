@@ -1102,7 +1102,7 @@ var Rattning = (function(){
             means:function(c){return c==='6'+agreedTrump?'6 i fastställd trumf efter 5C/5D-svar och partnerns återgång till 5 i trumf.':null},
             conv:'Blackwood 5 ess'};
         }
-        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return rkcNextStep(h,null,kingResponse.c,'kings');}return rkcNextStep(h,agreedTrump,response);}
+        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return rkcNextStep(h,agreedTrump,kingResponse.c,'kings');}return rkcNextStep(h,agreedTrump,response);}
       }
     }
 
