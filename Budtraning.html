@@ -477,6 +477,27 @@ function bidHandFacts(hand,call){
 // ett uttryckligt beslut; ändrar inte Rattning eller spelarens rättning.
 // Inga heuristiska bud när rättningsmotorn saknar täckning.
 // Saknade sekvenser ska passas och loggas, inte fyllas med påhittade systemregler.
+function reasonedWeakTwoCandidate(st,botSeat){
+  // AI-analysen använder bara egen hand och den offentliga auktionen.
+  // Den får endast föreslå bud som därefter bekräftas av rättningsmotorn.
+  if(st.mode!=='ostord')return null;
+  var own=st.bids.filter(function(x){return side(x.s)===side(botSeat)&&x.c!=='P';});
+  if(own.length!==1||own[0].s!==partner(botSeat)||!/^2[DHS]$/.test(own[0].c))return null;
+  if(st.bids.some(function(x){return side(x.s)!==side(botSeat)&&x.c!=='P';}))return null;
+  var suit=own[0].c[1],hand=st.hands[botSeat],L=shapeOf(hand),hp=hpOf(hand),stp=htpWith(hand,suit);
+  if(L[suit]>=4&&stp>=13)return {call:'2N',why:'Resonerande analys: 13+ stp och minst 4-korts stöd gör 2NT till Stenberg.'};
+  if(stp>=14&&stp<=16)return {call:'3'+suit,why:'Resonerande analys: 14–16 stp ger invit i öppningsfärgen.'};
+  if(hp>=15){
+    var suits=['H','S','D','C'].filter(function(x){return x!==suit&&L[x]>=6;});
+    suits.sort(function(a,b){return L[b]-L[a]||['H','S','D','C'].indexOf(a)-['H','S','D','C'].indexOf(b);});
+    if(suits.length){
+      var target=suits[0],rank=function(c){return (+c[0])*5+'CDHSN'.indexOf(c[1]);},bid=null;
+      for(var level=1;level<=7;level++){var candidate=level+target;if(rank(candidate)>rank(own[0].c)){bid=candidate;break;}}
+      if(bid)return {call:bid,why:'Resonerande analys: minst 15 hp och 6+ kort i '+({H:'♥',S:'♠',D:'♦',C:'♣'}[target])+'. Ny färg är rondkrav; 5-kortsfärg används inte automatiskt.'};
+    }
+  }
+  return null;
+}
 function botCall(st,botSeat){
   if(st.mode==='ostord'&&(seat==='X'||(seat!=='N'&&seat!=='S')||side(botSeat)!==side(seat)))return R('P');
   var trial=st.bids.concat([{s:botSeat,c:'P'}]);
@@ -484,6 +505,14 @@ function botCall(st,botSeat){
   try{node=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:trial},trial.length-1)}catch(e){node=null}
   var call=node&&node.exp,why=node&&node.why||'Rättningsnyckeln saknar ett täckt bud här; sekvensen ska loggas.';
   if(call&&legal(st,call,botSeat))return R(call,bidHandFacts(st.hands[botSeat],call)+' · '+why);
+  var candidate=reasonedWeakTwoCandidate(st,botSeat);
+  if(candidate&&legal(st,candidate.call,botSeat)){
+    var verifyAuction=st.bids.concat([{s:botSeat,c:candidate.call}]),verified=null;
+    try{verified=Rattning.nodeFor({hands:st.hands,dealer:st.dealer,bids:verifyAuction},verifyAuction.length-1)}catch(e){verified=null}
+    if(verified&&verified.exp===candidate.call){
+      return R(candidate.call,bidHandFacts(st.hands[botSeat],candidate.call)+' · '+candidate.why+' Bekräftat av rättningsmotorn: '+verified.why);
+    }
+  }
   return R('P',node&&node.why?'Rättningsnyckeln saknar ett säkert bud här: '+node.why:'Pass enligt rättningsnyckeln v4.9');
 }
 function advance(st){
