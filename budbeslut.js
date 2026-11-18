@@ -326,7 +326,14 @@
       var openerHandAfter1NT=H(st.hands[pt]);
       if(openerHandAfter1NT.shape==='4441')
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,st.hands[pt]);
-      return respAfter1NT(h,ours[0].c,ours[2].c,b.c);
+      return respAfter1NT(h,ours[0].c,ours[2].c,b.c,ours[1].c);
+    }
+    // Öppnarens svar på försenad Stayman (Pro) saknar svarstabell på s. 16.
+    // Registrera därför källuckan i stället för att hitta på ett svar.
+    if(opener&&d===2&&ours[1].c==='1N'&&prior.length>=6&&
+       prior[prior.length-1].c==='2S'&&ours[0].c==='1H'&&ours[1].c==='1N'&&
+       prior.some(function(x){return x.s===pt&&x.c==='1S';})){
+      return NC('Försenad Stayman (Pro) är identifierad efter 1♥–1♠–1NT–2♠, men lathundens s. 16 anger inte öppnarens svar. Fortsättningen lämnas EJ TÄCKT och ska loggas för expertgranskning.',null,'Försenad Stayman',true);
     }
 
     if(d>=3 && /^1[CDHS]$/.test(ours[0].c)){
