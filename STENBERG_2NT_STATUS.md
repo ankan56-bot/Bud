@@ -9,6 +9,15 @@ Ingen extern webbsökning används.
 - 1♣–2NT och 1♦–2NT: samma krav.
 - Efter lågfärgsöppning ska svarshanden visa 4-korts högfärg före lågfärgsstödet. Därför ska 2NT i lågfärg inte användas om svarshanden har en 4-korts högfärg.
 
+## Absolut avgränsning av Stenberg 2NT
+
+- Stenberg gäller endast när 2NT är svarshandens direkta svar på partnerns öppning 1♣, 1♦, 1♥ eller 1♠.
+- I dessa fyra sekvenser är 2NT alltid Stenberg och alltid utgångskrav.
+- Öppnaren får inte passa på Stenberg 2NT; öppnaren måste lämna ett systemenligt återbud.
+- 2NT i varje annan budsekvens är **inte Stenberg**. Det ska bedömas enligt den specifika sekvensens egen regel, exempelvis invit, hållvisning, återbud eller annan överenskommelse.
+- Stenberg får inte aktiveras enbart för att auktionen innehåller en öppning på 1-tricksnivån och ett 2NT-bud senare. Det måste vara det direkta svaret utan föregående bud från svarshanden eller motståndarna.
+- Denna avgränsning gäller både budrekommendation, rättning och live-läge.
+
 ## Öppningshandens första återbud efter Stenberg
 
 | Öppning | Återbud | Betydelse |
