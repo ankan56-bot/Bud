@@ -55,20 +55,19 @@ Sidan ger separata rollfamiljer efter 2-över-1:
 
 Fortsättningar som är markerade Plus, inklusive splinter, hålls utanför grundprofilen. De får inte bli aktiva bara för att en färgvariant är möjlig.
 
-### 0C. Generellt efter 2-över-1 – tryckt s. 14
+### 0C. Stigande budgivning efter 2-över-1 – tryckt s. 17
 
-Detta avsnitt är uttryckligen generellt och ska implementeras som rollbaserade principer, inte som en enda bokstavlig exempelauktion:
+Källans formulering är villkorad: **”Om man spelar med stigande budgivning (reverse)”** råder utgångskrav när öppnaren bjuder stigande. Avsnittet är märkt **Pro**.
 
-- Om paret hittar en gemensam trumffärg efter att budgivningen inletts med 2-över-1 ska paret komma till minst utgång.
-- Öppnarens stigande återbud (revers) – återbud i en färg på tvåtricksnivån som ligger högre än öppningsfärgen – lovar extra styrka: minst 16 hp och minst 5–4-fördelning. Detta är en roll-/budordningsregel; den får inte reduceras till ett specifikt färgpar.
-- Efter ett sådant stigande återbud gäller svarshandens tre styrkeintervall: svag 6–10 hp/stp, invit 11–12 hp/stp, utgång 13+ hp/stp.
-- Med svag hand kan svarshanden passa, återbjuda egen färg, bjuda sang eller preferera till öppnarens första färg.
-- Med invitstyrka kan svarshanden bjuda 2NT eller en tidigare bjuden färg på 3-nivån.
-- Med utgångsstyrka bjuder svarshanden utgång eller ett kravbud.
-- Om två färger är bjudna och svarshanden introducerar den tredje färgen är det tredje färg. Om tre färger är bjudna (öppnaren har visat tvåfärgshand) är motsvarande bud fjärde färg.
-- Tredje färg anges som kravbud med 10+ hp och naturlig färgvisning i Plus-rutan. Fjärde färg anges som utgångskrav med 13+ hp i Plus-rutan. Plus-markeringarna innebär att konventionsdelen inte automatiskt ingår i grundprofilen.
+Detta är alltså inte en ovillkorlig grundregel i Nordisk Standard. Implementation:
+- Regeln får endast aktiveras om projektets valda systemprofil uttryckligen använder Pro-konventionen.
+- Utan den profilen ska en stigande återbudssituation inte automatiskt bli utgångskrav på grundval av denna ruta.
+- Exempel och svarshandens styrkeintervall i Pro-rutan får inte föras över till grundsystemet.
+- Själva budordningen kan fortfarande analyseras för att identifiera att ett bud är stigande/reverse, men det räcker inte för att aktivera den konventionella kravbetydelsen.
 
-**Viktig skillnad:** Den generella principen om stigande budgivning och styrkeintervall gäller som beskriven systemprincip. De specifika fortsättningsbuden i exempelrutan (t.ex. klöverhåll, fjärde färg, preferens och längdkrav) ska bara flyttas till andra färgkombinationer när samma roll, nivå och budordning finns och källans princip täcker den rollen.
+### 0D. Tredje och fjärde färg – källstatus
+
+Sidorna 15–19 innehåller flera rutor med tredje färg och fjärde färg, men de är markerade Plus i de aktuella tabellerna. Tredje/fjärde färg som konventionella kravbud ska därför inte aktiveras automatiskt i grundprofilen. En naturlig färgbjudning i samma färg får inte misstas för Plus-konventionen.
 
 ### 0D. Färgvariantgenerator – bindande kontrollordning
 
