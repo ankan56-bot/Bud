@@ -633,13 +633,15 @@ var Rattning = (function(){
       if(c==='5D')return '1 eller 4 ess (av 5).';
       if(c==='5H')return '2 ess utan trumfdam.';
       if(c==='5S')return '2 ess med trumfdam.';
-      if(c==='5N')return '3 ess och renons.';
+      if(c==='5N')return '5NT är kungfråga efter RKC-svaret, inte ett nyckelkortssvar.';
       if(/^6[CDHS]$/.test(c))return '2 ess och renons i den bjudna färgen.';
       return null;
     };
 
     if (T_) {
-        if (kc === 0 || kc === 3) exp = (kc === 3 && vd) ? '5N' : '5C';
+        if (kc === 0) exp = '5C';
+        else if (kc === 3 && vd) return NC('Tre nyckelkort och renons: den äldre 5NT-renonsvisningen är ersatt av parets överenskommelse att 5NT är kungfråga. Något entydigt ersättningsbud är inte fastställt; loggas ej täckt.', means, 'Blackwood 5 ess');
+        else if (kc === 3) exp = '5C';
         else if (kc === 1 || kc === 4) exp = '5D';
         else if (voids.length===1) {
           var voidSuit=voids[0];
@@ -1069,8 +1071,13 @@ var Rattning = (function(){
       var afterPartnerAsk=partnerAskHistory.filter(function(x){return x.s===me&&isBid(x.c)});
       var partnerKingAsk=partnerAskHistory.some(function(x){return x.s===pt&&x.c==='5N';});
       var partnerTrumpAsk=rkcTrumpFromAuction(prior,side(me));
-      if(partnerKingAsk&&afterPartnerAsk.length){
-        return partnerTrumpAsk?NC('Trumfens 5NT-kungfråga är identifierad, men får inte använda sangens antalstabell. Den färgvisa fortsättningen lämnas ej täckt tills den separata budstegen är inkopplad.','', 'Blackwood 5 ess'):rkcKingReply(h);
+      // 5NT från frågeställaren är alltid kungfråga enligt den
+      // senare överenskommelsen. Den äldre RKC-betydelsen 3 nyckelkort
+      // och renons får inte återanvändas här.
+      if(partnerKingAsk){
+        return partnerTrumpAsk
+          ? NC('Trumfens 5NT-kungfråga är identifierad. Kungarna ska visas färgvis med lägsta relevanta kung först; singelton/renons räknas som kung och trumffärgen får inte hoppas över. Den exakta budstegen är inte entydigt fastställd och loggas ej täckt.','', 'Blackwood 5 ess')
+          : rkcKingReply(h);
       }
       if(!afterPartnerAsk.length)return rkcReply(h,partnerTrumpAsk);
       if(b.c==='P')return {exp:'P',alt:[],why:'Pass efter fastställt slutbud.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
