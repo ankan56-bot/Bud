@@ -117,8 +117,6 @@
         return NC('Efter 1♥–1♠–2♦ är endast 2NT med 11–12 balanserade HP eller fjärde färg med 13+ HP säkert avgörbart utan partnerns dolda hand.','', 'live',true);
       }
     }
-    if(!oh)return NC('Denna fortsättning kräver öppnarens hand för att avgöra preferens eller färgval.','', 'svar efter öppnarens återbud',true);
-
     // Separat, källbunden gren: 1♥–1♠–2♣–2NT.
     // Denna 2NT-invit är bara täckt med 10–12 HP, balanserad hand,
     // exakt två hjärter samt håll i både spader och ruter.
@@ -130,6 +128,8 @@
       }
       return NC('Efter 1♥–1♠–2♣ är 2NT endast täckt med 10–12 hp, balanserad hand, exakt två hjärter samt håll i spader och ruter. Handen uppfyller inte samtliga villkor; lämnas ej täckt.',means,'svar efter öppnarens återbud',true);
     }
+
+    if(!oh)return NC('Denna fortsättning kräver öppnarens hand för att avgöra preferens eller färgval.','', 'svar efter öppnarens återbud',true);
 
     // D. Öppnaren har visat två färger; styrkan är ännu inte begränsad.
     if(rb&&rb!==first&&rb!=='N'&&oh.L[first]>=4&&oh.L[rb]>=4){
