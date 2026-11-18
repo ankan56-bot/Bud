@@ -3,10 +3,10 @@
   "title": "140 reproducerbara temagivare",
   "source": {
     "generator": "Budtraning.html existing newDeal/biasedDeal generator",
-    "generatorBlobSha": "00cb45b5e1cb97798a8a3600a60aa55f652252d5",
+    "generatorBlobSha": "ccb91889ebb02026c53af196980f92a023f7c6bf",
     "rulesEngine": "rattningsmotor.js",
     "rulesEngineVersion": "9.8",
-    "rulesEngineBlobSha": "ece10056190e255084093b3c700fabfde3eb1298",
+    "rulesEngineBlobSha": "7a1bcc367a93b36c6a7de449d5a23fe2a1a0d389",
     "branchBase": "f338ee7debc13023fc5e5fc35c4ca27619d2b9d6"
   },
   "generation": {
@@ -30,14 +30,14 @@
     "dealCount": 140,
     "failures": [],
     "gradeCounts": {
-      "rätt": 585,
-      "ej_täckt": 40
+      "rätt": 584,
+      "ej_täckt": 41
     },
     "themeStats": {
       "alla": {
         "deals": 10,
         "bids": 92,
-        "uncovered": 8,
+        "uncovered": 9,
         "optional": 0,
         "wrong": 0
       },
@@ -1802,7 +1802,7 @@
       },
       "correction": {
         "version": "9.8",
-        "summary": "Rätt 5 · Fel 0 · Valfritt 0 · Ej täckt 0 (Norr och Syd).",
+        "summary": "Rätt 4 · Fel 0 · Valfritt 0 · Ej täckt 1 (Norr och Syd).",
         "items": [
           {
             "nr": 1,
@@ -1840,9 +1840,9 @@
             "nr": 9,
             "seat": "Syd",
             "bid": "Pass",
-            "grade": "rätt",
+            "grade": "ej_täckt",
             "suggested": "",
-            "reason": "Det ursprungliga förslaget 2NT är inte längre lagligt eftersom kontraktsbudet 2NT redan har lagts. Passas i stället; budmotorn får inte rekommendera ett lägre eller upprepat kontraktsbud."
+            "reason": "Motorn gav förslaget 2NT när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (Pass). Intern konflikt: sekvensen lämnas för AI-/expertanalys."
           }
         ]
       }
