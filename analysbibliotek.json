@@ -1,5 +1,5 @@
 {
-  "version": "0.6.43",
+  "version": "0.6.44",
   "description": "Analysbibliotek med 46 budträd. Källkvalitativa överföringsbetydelser hålls isär från numeriska gränser; användarens 25-hp-regel för sang och 26-poängsgräns för högfärgsutgång är markerade som överenskomna projektregler.",
   "conventions": {
     "ntOpening": "1NT = 15–17 hp, balanserad hand",
@@ -9174,6 +9174,191 @@
             "opener": "12–14 hp, balanserad hand.",
             "responder": "13+ htp, minst fyra korts stöd i ruter och ingen 4-korts högfärg."
           }
+        }
+      ]
+    },
+    {
+      "id": "T41_OPPNARENS_TREDJE_BUD_EFTER_2NT_INVIT",
+      "title": "Ostörd budgivning – öppnarens tredje bud efter 2NT-invit",
+      "tags": [
+        "ostörd",
+        "öppnarens tredje bud",
+        "2NT-invit",
+        "1 över 1",
+        "tvåfärgshand",
+        "fjärde färg"
+      ],
+      "conditions": [
+        "Exakt sekvens: 1♥–Pass–1♠–Pass–2♦–Pass–2NT–Pass.",
+        "Svarshandens 2NT är en naturlig invit med 11–12 hp; detta intervall är användarbekräftat.",
+        "Lathundens tryckta sida 18 anger: pass svagt; 3♣ fjärde färg/utgångskrav; 3♦ 5-5 minimum; 3♥ 6-4 minimum; 3♠ tre spader maximum.",
+        "För körbar logik tolkas minimum som 12–14 hp och maximum som 15–17 hp. Den numeriska uppdelningen är en mjuk källtolkning och inte en separat fastställd grundregel.",
+        "3NT är märkt Plus i lathunden och ingår inte i Nordisk Standard-grenarna."
+      ],
+      "root": "t41_start",
+      "nodes": [
+        {
+          "id": "t41_start",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass"
+          ],
+          "meaning": "Öppnaren väljer tredje bud efter svarshandens 2NT-invit.",
+          "analysis": "Svarshanden har visat 11–12 hp och inviterat naturligt i sang. Öppnaren beskriver nu sin hand enligt den separata rutan på lathundens tryckta sida 18. Min/max-intervallet är en dokumenterad tolkning och markeras därför soft.",
+          "branches": [
+            {
+              "call": "3♣",
+              "next": "t41_3c",
+              "label": "15–17 hp, fjärde färg – utgångskrav"
+            },
+            {
+              "call": "3♦",
+              "next": "t41_3d",
+              "label": "5-5 i hjärter/ruter, minimum 12–14 hp"
+            },
+            {
+              "call": "3♥",
+              "next": "t41_3h",
+              "label": "6-4 i hjärter/ruter, minimum 12–14 hp"
+            },
+            {
+              "call": "3♠",
+              "next": "t41_3s",
+              "label": "Exakt tre spader, maximum 15–17 hp"
+            },
+            {
+              "call": "Pass",
+              "next": "t41_pass",
+              "label": "Svagt/minimum utan de angivna fördelningsgrenarna"
+            }
+          ],
+          "handProfile": {
+            "opener": "Har öppnat 1♥ och återbjudit 2♦; handens längd och styrka avgör tredje bud.",
+            "responder": "11–12 hp, naturlig sanginvit efter 1♥–1♠–2♦."
+          },
+          "soft": true,
+          "ruleStatus": "source_interpretation"
+        },
+        {
+          "id": "t41_3c",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♣"
+          ],
+          "meaning": "Fjärde färg – utgångskrav",
+          "analysis": "3♣ är fjärde färg och utgångskrav enligt lathundens ruta. I runtime kopplas detta till maximum 15–17 hp när ingen särskild 3♠-gren gäller; styrkeöversättningen är soft.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, maximum; fjärde färg 3♣ som utgångskrav.",
+            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+          },
+          "soft": true,
+          "ruleStatus": "source_interpretation"
+        },
+        {
+          "id": "t41_3d",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♦"
+          ],
+          "meaning": "5-5-fördelning, minimum",
+          "analysis": "Öppnaren visar 5-5 i hjärter och ruter med minimum. Runtime tolkar minimum som 12–14 hp; tolkningen är soft.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, minimum, exakt 5 hjärter och 5 ruter.",
+            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+          },
+          "soft": true,
+          "ruleStatus": "source_interpretation"
+        },
+        {
+          "id": "t41_3h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "6-4-fördelning, minimum",
+          "analysis": "Öppnaren visar 6-4 i hjärter och ruter med minimum. Runtime tolkar minimum som 12–14 hp; tolkningen är soft.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, minimum, exakt 6 hjärter och 4 ruter.",
+            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+          },
+          "soft": true,
+          "ruleStatus": "source_interpretation"
+        },
+        {
+          "id": "t41_3s",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "Tre-korts spaderstöd, maximum",
+          "analysis": "Öppnaren visar exakt tre spader och maximum. Om öppnaren haft fyra spader skulle 2♠ ha bjudits direkt. Runtime tolkar maximum som 15–17 hp; tolkningen är soft.",
+          "branches": [],
+          "handProfile": {
+            "opener": "15–17 hp, maximum, exakt 3 spader.",
+            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+          },
+          "soft": true,
+          "ruleStatus": "source_interpretation"
+        },
+        {
+          "id": "t41_pass",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "2NT",
+            "Pass",
+            "Pass"
+          ],
+          "meaning": "Svagt/minimum – pass",
+          "analysis": "Lathunden anger pass med svag hand. Runtime använder pass med 12–14 hp när handen inte uppfyller 5-5- eller 6-4-grenen. 3NT Plus är uttryckligen uteslutet.",
+          "branches": [],
+          "handProfile": {
+            "opener": "12–14 hp, utan exakt 5-5 hjärter/ruter eller 6-4 hjärter/ruter.",
+            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+          },
+          "soft": true,
+          "ruleStatus": "source_interpretation"
         }
       ]
     }
