@@ -450,3 +450,13 @@ Tabellens betydelser följer med färgernas roller:
 - Fjärde färg på lägsta lagliga nivå: 13+ hp, utgångskrav.
 
 Budnivån för färgbuden beräknas efter den faktiska auktionen, så fjärde färg och preferens kan hamna på olika nivåer beroende på vilka färger som öppnats och återbjudits. Regeln omfattar inte 1NT-svar, 2-över-1-svar eller reverser. Den ändrar inte andra budsekvenser.
+
+## 4NT-frågor i sang och med fastställd trumf – regeluppdatering 2026-11-18
+
+**Sang:** 4NT frågar efter fyra ess. 5♣ = 0 eller 4, 5♦ = 1, 5♥ = 2, 5♠ = 3. Om inte alla fyra ess är bekräftade är slutbudet 6NT. När alla fyra ess är bekräftade frågar 5NT efter kungarna. Kungssvar: 6♣ = 0 eller 4, 6♦ = 1, 6♥ = 2, 6♠ = 3. Om inte alla fyra kungar är bekräftade stannar paret i 6NT; alla fyra ess och kungar ger 7NT.
+
+**Fastställd trumf:** 4NT frågar efter fem nyckelkort (fyra ess plus trumfkungen). 5♣ = 0 eller 3, 5♦ = 1 eller 4, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam. Därefter används 5NT som kungfråga. Lägsta relevanta kung visas först och därefter nästa enligt färgordningen. Singelton/renons räknas som kung i den färgen. Minst två saknade eller osäkra kungar innebär stopp på 6 i trumf och pass. Trumffärgen får inte hoppas över i 6-lägets visning.
+
+4NT får bara klassas som ess-/nyckelkortsfråga i dokumenterade/avtalade sekvenser med rätt kontext. Ett godtyckligt 4NT utan fastställd trumf eller avtalad sangsekvens får inte automatiskt tolkas som essfråga.
+
+**Implementeringsstatus:** Sangens fyra-ess- och kungfråga har egen svarsväg och regressionstester. Trumfens fem-nyckelkortsfråga behåller egna svarskoder. Trumfens 5NT-kungfråga hålls separat från sangens antalstabell; där färgvis fortsättning ännu inte kan avgöras entydigt markeras ej täckt i stället för att gissa. Äldre kommentarer där 5NT efter fyra ess behandlades som slutbud är ersatta.

@@ -38,3 +38,13 @@ Källan anger också att efter dubbeltydiga 5♣-/5♦-svar kan svarshanden gå 
 ## Kvalitetsprincip
 
 Ingen RKC-fortsättning ska härledas enbart från allmän bridgepraxis och märkas som Nordisk standard. Där källan inte ger ett entydigt val ska motorn redovisa luckan.
+
+
+## Tillägg – uppdaterad överenskommelse 2026-11-18
+
+- **Sang:** 4NT frågar efter fyra ess: 5♣ = 0/4, 5♦ = 1, 5♥ = 2, 5♠ = 3. Saknas minst ett ess blir slutbudet 6NT. Alla fyra ess leder till 5NT som kungfråga. Kungssvar: 6♣ = 0/4, 6♦ = 1, 6♥ = 2, 6♠ = 3. Saknas minst en kung blir slutbudet 6NT; alla fyra kungar tillsammans med alla fyra ess ger 7NT.
+- **Trumf:** 4NT frågar efter fem nyckelkort: 5♣ = 0/3, 5♦ = 1/4, 5♥ = 2 utan trumfdam, 5♠ = 2 med trumfdam. 5NT används därefter som kungfråga. Lägsta relevanta kung visas först, därefter nästa enligt färgordningen. Singelton/renons räknas som kung i färgen. Minst två saknade eller osäkra kungar innebär stopp på 6 i trumf och pass. Trumffärgen får inte hoppas över.
+- Sangens 5NT-kungfråga får inte blandas ihop med äldre RKC-kod där 5NT kunde visa 3 nyckelkort och renons.
+- Sekvenser där 4NT inte uttryckligen är avtalad fråga förblir ej täckta/kvantitativa enligt sammanhanget; motorn får inte anta essfråga.
+
+Källtexten i Nordisk standard och parets uttryckliga senare överenskommelse hålls åtskilda. Där fortsättningen inte är entydigt specificerad i regelprofilen ska den fortfarande loggas som ej täckt.

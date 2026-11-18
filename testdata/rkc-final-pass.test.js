@@ -92,7 +92,7 @@ test("two keycards and a spade void above heart trumps are shown by 6H", () => {
   assert.equal(result?.exp, "6H", JSON.stringify(result));
 });
 
-test("a documented no-trump four-ace ask uses 5NT as the final contract after fewer than four aces", () => {
+test("a documented no-trump four-ace ask stops at 6NT when an ace is missing", () => {
   const hands = deal();
   const bids = [
     { s: "N", c: "1N" },
@@ -104,27 +104,11 @@ test("a documented no-trump four-ace ask uses 5NT as the final contract after fe
     { s: "S", c: "P" }
   ];
   const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 6);
-  assert.equal(result?.exp, "5N");
-  assert.match(result?.why || "", /sangslutbud/i);
+  assert.equal(result?.exp, "6N");
+  assert.match(result?.why || "", /stanna i 6NT/i);
 });
 
-test("responder passes after the asker fixes the no-trump final contract at 5NT", () => {
-  const hands = deal();
-  const bids = [
-    { s: "N", c: "1N" },
-    { s: "E", c: "P" },
-    { s: "S", c: "4N" },
-    { s: "W", c: "P" },
-    { s: "N", c: "5C" },
-    { s: "E", c: "P" },
-    { s: "S", c: "5N" },
-    { s: "W", c: "P" },
-    { s: "N", c: "P" }
-  ];
-  const result = Rattning.nodeFor({ hands, dealer: "N", bids }, 8);
-  assert.equal(result?.exp, "P");
-  assert.match(result?.why || "", /Pass efter att frågeställaren har fastställt sangslutbudet/);
-});
+
 
 
 function dealWithNorth(north) {
@@ -178,3 +162,13 @@ test("after 5D then 5S retreat, asker with four aces bids 6S", () => {
   assert.equal(Rattning.H(north).aces, 4);
   assert.equal(result?.exp, "6S", JSON.stringify(result));
 });
+
+
+function dealWithNorthSouth(north,south){const d=[];for(const s of ["S","H","D","C"])for(let n=14;n>=2;n--)d.push(s+n);const used=new Set([...north,...south]);const r=d.filter(c=>!used.has(c));return {N:north,E:r.slice(0,13),S:south,W:r.slice(13,26)};}
+function ntAskState(north,south,aceReply,kingReply){const bids=[{s:"N",c:"1N"},{s:"E",c:"P"},{s:"S",c:"4N"},{s:"W",c:"P"},{s:"N",c:aceReply},{s:"E",c:"P"}];if(kingReply)bids.push({s:"S",c:"5N"},{s:"W",c:"P"},{s:"N",c:kingReply});return {hands:dealWithNorthSouth(north,south),dealer:"N",bids};}
+const northNT=["S14","S13","S12","S11","S10","S9","H2","H3","D2","D3","C2","C3","C4"];
+const southAllAces=["H14","D14","C14","H13","D13","C13","S8","S7","S6","H4","D4","C5","C6"];
+test("sang 4NT: all four partnership aces leads to 5NT king ask",()=>{const st=ntAskState(northNT,southAllAces,"5D");assert.equal(R.H(st.hands.S).aces,3);assert.equal(R.nodeFor(st,6).exp,"5N");});
+test("sang 4NT: missing an ace stops at 6NT",()=>{const southMissing=["H14","D14","H13","D13","C13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southMissing,"5D");assert.notEqual(R.H(st.hands.S).aces,3);assert.equal(R.nodeFor(st,6).exp,"6N");});
+test("sang king ask: all four kings leads to 7NT",()=>{const st=ntAskState(northNT,southAllAces,"5D","6D");assert.equal(R.H(st.hands.S).kings,3);assert.equal(R.nodeFor(st,8).exp,"7N");});
+test("sang king ask: a missing king stops at 6NT",()=>{const southTwo=["H14","D14","C14","H13","D13","S8","S7","S6","H4","D4","C5","C6","C7"];const st=ntAskState(northNT,southTwo,"5D","6D");assert.equal(R.H(st.hands.S).kings,2);assert.equal(R.nodeFor(st,8).exp,"6N");});

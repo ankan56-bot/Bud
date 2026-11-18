@@ -622,7 +622,7 @@ var Rattning = (function(){
     var exp,why;
     var means=function(c){
       if(!T_){
-        if(c==='5C')return '0 ess av 4.';
+        if(c==='5C')return '0 eller 4 ess av 4.';
         if(c==='5D')return '1 ess av 4.';
         if(c==='5H')return '2 ess av 4.';
         if(c==='5S')return '3 ess av 4.';
@@ -655,47 +655,15 @@ var Rattning = (function(){
         else exp = '5N';
     }
 
-    why = T_ ? (kc + ' ess inklusive trumfkungen. Svar enligt 0314.') : (h.aces + ' av de fyra essen. Svar enligt fyr-essfråga utan trumf.');
+    why = T_ ? (kc + ' nyckelkort inklusive trumfkungen. Svar enligt RKC-tabellen.') : (h.aces + ' ess enligt den avtalade fyr-essfrågan.');
     return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
   }
-  function rkcNextStep(h,T_,r){
-    var exp,why;
-    var means=function(c){
-      if(c==='5N')return 'Frågar efter trumfdamen (eller antal kungar i sang).';
-      if(c==='6'+T_)return 'Lillslam i trumffärgen.';
-      if(c==='7'+T_)return 'Storslam i trumffärgen.';
-      if(c==='6N')return 'Lillslam i sang.';
-      if(c==='7N')return 'Storslam i sang.';
-      if(c==='P')return 'Pass.';
-      return null;
-    };
-    if (T_) {
-        // Nordisk standard s. 7 beskriver svarskoderna och vissa
-        // renonsvisningar, men ger inte en fullständig fortsättningsstege
-        // för frågeställaren efter samtliga 5-lägessvar. Gissa därför inte.
-        if (/^5[CDHSN]$/.test(r)) {
-            return NC('Nordisk standard s. 7 anger svarens ess-/trumfdamsbetydelse, men inte ett entydigt nästa bud för denna fortsättning. Budet lämnas ej täckt i stället för att hitta på en slamstege.', means, 'Blackwood 5 ess');
-        } else if (r === '6'+T_ || r === '7'+T_) {
-            exp = 'P'; why = 'Slutbud.';
-        } else {
-            return NC('Fortsättningen efter detta RKC-svar är inte uttryckligen fastställd i Nordisk standard s. 7.', means, 'Blackwood 5 ess');
-        }
-    } else {
-        // I fyr-essvarianten är 5NT svaret som visar alla fyra ess.
-        // Det går därför inte att använda 5NT som kungfråga efter det svaret.
-        if (r === '5N') {
-            exp = '6N'; why = 'Alla fyra ess finns. Bjud 6NT och avsluta budgivningen; ingen kungfråga används.';
-        } else if (/^5[CDHS]$/.test(r)) {
-            exp = '5N'; why = 'Svaret visar färre än fyra ess. 5NT används som sangslutbud, inte som kungfråga.';
-        } else if (r === '6N' || r === '7N') {
-            exp = 'P'; why = 'Slutbud.';
-        } else if (r === 'P') {
-            exp = 'P'; why = 'Pass efter fastställt sangslutbud.';
-        } else {
-            exp = '6N'; why = 'Lillslam i sang.';
-        }
-    }
-    return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
+  function rkcKingReply(h){var kings=h.kings,exp;if(kings===0||kings===4)exp='6C';else if(kings===1)exp='6D';else if(kings===2)exp='6H';else exp='6S';return {exp:exp,alt:[],why:kings+' kungar. Svar på 5NT-kungfrågan i sang.',means:function(c){if(c==='6C')return '0 eller 4 kungar.';if(c==='6D')return '1 kung.';if(c==='6H')return '2 kungar.';if(c==='6S')return '3 kungar.';return null;},conv:'Kungfråga i sang'};}
+  function rkcNextStep(h,T_,r,stage){
+    var exp,why;var means=function(c){if(c==='5N')return T_?'Kungfråga efter RKC-svaret.':'Kungfråga efter att alla fyra ess har bekräftats.';if(c==='6N')return 'Lillslam i sang.';if(c==='7N')return 'Storslam i sang.';if(T_&&c==='6'+T_)return 'Lillslam i trumffärgen.';if(T_&&c==='7'+T_)return 'Storslam i trumffärgen.';if(c==='P')return 'Pass.';return null;};
+    if(!T_){if(stage==='kings'){var allKings=(r==='6C'&&h.kings===4)||(r==='6D'&&h.kings===3)||(r==='6H'&&h.kings===2)||(r==='6S'&&h.kings===1);exp=allKings?'7N':'6N';why=allKings?'Alla fyra ess och alla fyra kungar är bekräftade: 7NT.':'Minst en kung saknas: stanna i 6NT.';}else{var allAces=(r==='5C'&&h.aces===4)||(r==='5D'&&h.aces===3)||(r==='5H'&&h.aces===2)||(r==='5S'&&h.aces===1);exp=allAces?'5N':'6N';why=allAces?'Alla fyra ess är bekräftade: 5NT frågar efter kungarna.':'Minst ett ess saknas: stanna i 6NT.';}return {exp:exp,alt:[],why:why,means:means,conv:stage==='kings'?'Kungfråga i sang':'Fyr-essfråga utan trumf'};}
+    if(T_){if(/^5[CDHS]$/.test(r))return NC('Efter RKC-svaret används 5NT som kungfråga enligt parets överenskommelse. Den färgvisa kungvisningen hanteras separat och får inte använda sangens antalstabell.','', 'Blackwood 5 ess');if(r==='6'+T_||r==='7'+T_){exp='P';why='Slutbud.';}else return NC('Fortsättningen efter detta RKC-svar är inte uttryckligen fastställd.','', 'Blackwood 5 ess');}
+    return {exp:exp,alt:[],why:why,means:means,conv:'Blackwood 5 ess'};
   }
 
   /* ––––– INKLIV / DUBBLING / STÖDDUBBLING ––––– */
@@ -1098,7 +1066,7 @@ var Rattning = (function(){
     for(var pai=prior.length-1;pai>=0;pai--)if(prior[pai].s===pt&&prior[pai].c==='4N'){partnerAskIndex=pai;break;}
     if(partnerAskIndex>=0){
       var afterPartnerAsk=prior.slice(partnerAskIndex+1).filter(function(x){return x.s===me&&isBid(x.c)});
-      if(!afterPartnerAsk.length)return rkcReply(h,rkcTrumpFromAuction(prior,side(me)));
+      if(!afterPartnerAsk.length){var askHistory=prior.slice(partnerAskIndex+1);var askerKingAsk=askHistory.some(function(x){return x.s===pt&&x.c==='5N';});var trumpAsk=rkcTrumpFromAuction(prior,side(me));return askerKingAsk?(trumpAsk?NC('Trumfens 5NT-kungfråga är identifierad, men får inte använda sangens antalstabell. Den färgvisa fortsättningen lämnas ej täckt tills den separata budstegen är inkopplad.','', 'Blackwood 5 ess'):rkcKingReply(h)):rkcReply(h,trumpAsk);}
       // Svarshanden har redan svarat; efter frågeställarens sangslutbud ska den passa.
       if(b.c==='P')return {exp:'P',alt:[],why:'Pass efter att frågeställaren har fastställt sangslutbudet.',means:function(c){return c==='P'?'Pass.':null},conv:'Fyr-essfråga utan trumf'};
     }
@@ -1122,7 +1090,7 @@ var Rattning = (function(){
             means:function(c){return c==='6'+agreedTrump?'6 i fastställd trumf efter 5C/5D-svar och partnerns återgång till 5 i trumf.':null},
             conv:'Blackwood 5 ess'};
         }
-        if(isBid(b.c)||b.c==='P')return rkcNextStep(h,agreedTrump,response);
+        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return rkcNextStep(h,null,kingResponse.c,'kings');}return rkcNextStep(h,agreedTrump,response);}
       }
     }
 
@@ -1935,7 +1903,7 @@ var Rattning = (function(){
     return {items:items,summary:'Rätt '+right+' · Fel '+wrong+' · Valfritt '+optional+' · Ej täckt '+uncovered+' (Norr och Syd).',auction:{valid:structural.valid,ended:structural.ended,dealer:structural.dealer,contract:structural.contractText,status:status,errors:structural.errors.map(function(e){return 'Bud '+(e.index+1)+': '+e.message})}};
   }
 
-  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.8'};
+  return {judge:judgeComplete,H:H,partnershipPoints:partnershipPoints,nodeFor:nodeFor,txt:txt,validateAuction:validateAuction,version:'9.9'};
 })();
 if(typeof module!=='undefined'&&module.exports)module.exports=Rattning;
 if(typeof window!=='undefined')window.Rattning=Rattning;
