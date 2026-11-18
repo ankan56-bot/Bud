@@ -106,7 +106,7 @@
 
     // User-confirmed exact branch 1♥–1♠–2♦–2NT: invit, 11–12 hp.
     // This is distinct from Stenberg and from the 2♣ branch above.
-    if(opening==='1H'&&response==='1S'&&rebid==='2D'&&oh.L.H>=5&&oh.L.D>=4){
+    if(opening==='1H'&&response==='1S'&&rebid==='2D'&&oh.L.H>=4&&oh.L.D>=4){
       if(h.bal&&hp>=11&&hp<=12)
         return {exp:'2N',alt:[],why:hp+' hp och balanserad hand: 2NT är invit efter 1♥–1♠–2♦ enligt användarens uttryckliga systemprecisering.',means:function(c){return c==='2N'?'11–12 hp, balanserad hand; naturlig 2NT-invit efter 1♥–1♠–2♦.':null},conv:'svar efter tvåfärgshand',ruleStatus:'user_confirmed'};
       return NC('Efter 1♥–1♠–2♦ visar 2NT enligt den användarbekräftade regeln en balanserad invit med 11–12 hp. Handen uppfyller inte hela profilen.',means,'svar efter tvåfärgshand',false);
