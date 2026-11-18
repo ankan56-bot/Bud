@@ -26,6 +26,7 @@
   var transfer2=deps.sang.transfer2, ntOpenerInvit=deps.sang.ntOpenerInvit;
   var ntOpener3=deps.sang.ntOpener3, ntOpener3NTChoice=deps.sang.ntOpener3NTChoice;
   var respAfter1NT=deps.stord.respAfter1NT, responderSecondBid=deps.stord.responderSecondBid;
+  var openerThirdAfterTwoSuitInvite=deps.stord.openerThirdAfterTwoSuitInvite;
   /* ––––– ÖPPNING ––––– */
   function openingNode(h, fourthHandAfterThreePasses){
     var hp=h.hp,L=h.L,m=h.longest(),exp,alt=[],why;
@@ -506,6 +507,8 @@
         var openerHand=st.hands[pt];
         return responderSecondBid(h,ours[0].c,ours[1].c,ours[2].c,openerHand);
       }
+      if(opener&&d===4&&ours[0].c==='1H'&&ours[1].c==='1S'&&ours[2].c==='2D'&&ours[3].c==='2N')
+        return openerThirdAfterTwoSuitInvite(h,ours[0].c,ours[1].c,ours[2].c,ours[3].c);
       if(opener&&d===2)return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]);
       return nc('Svarshandens andra bud efter 1 i färg beskrivs bara med enstaka exempel i dokumentet.');
     }
