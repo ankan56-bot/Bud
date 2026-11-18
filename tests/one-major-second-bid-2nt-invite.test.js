@@ -122,6 +122,15 @@ for (const c of twoClubCases) {
   assert.equal(node.exp,c.expected,c.name+': '+node.why);
   if(c.expected==='2N')assert.equal(node.conv,'invit i sang');
   else assert.equal(node.sourceGap,true);
+
+  const liveAuction=[
+    {s:'N',c:'1H'},{s:'E',c:'P'},
+    {s:'S',c:'1S'},{s:'W',c:'P'},
+    {s:'N',c:'2C'},{s:'E',c:'P'}
+  ];
+  const live=R.decideLive({seat:'S',dealer:'N',auction:liveAuction,ownHand:c.hand});
+  assert.equal(live.exp,c.expected,c.name+': live decision must use the same source-bound 2C rule');
+  if(c.expected==='2N')assert.equal(live.informationBoundary,'own_hand_and_public_auction_only');
 }
 const missingDiamondStop=R.H(twoClubCases[3].hand);
 assert.equal(missingDiamondStop.stop('D'),false,'the negative case must lack a diamond stop');
