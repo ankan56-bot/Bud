@@ -124,7 +124,14 @@
         return {exp:'3N',alt:[],why:hp+' hp: stark balanserad hand, utgångskrav i sang.',means:means,conv:'svar efter öppnarens återbud'};
       }
       if(hp>=10&&hp<=12){
-        if(h.bal)return {exp:'2N',alt:[],why:hp+' hp: invit med balanserad hand efter öppnarens tvåfärgshand.',means:means,conv:'svar efter öppnarens återbud'};
+        // När öppning, svar och återbud har visat tre olika färger är sang
+        // hållvisande i den enda objudna färgen. Den generella regeln får
+        // inte bli en automatisk 2NT-invit utan kontroll av just den färgen.
+        if(h.bal&&resp&&first!==resp&&rb!==resp&&rb!==first){
+          var unbid=SU.filter(function(s){return s!==first&&s!==resp&&s!==rb;})[0];
+          if(hp>=11&&hp<=12&&unbid&&h.stop(unbid))
+            return {exp:'2N',alt:[],why:hp+' hp och håll i den enda objudna färgen ('+SYM[unbid]+'): 2NT är invit efter att tre färger visats.',means:function(c){return c==='2N'?'11–12 hp och håll i den enda objudna färgen; 2NT är invit, inte krav.':null},conv:'svar efter tvåfärgshand',ruleStatus:'role_generalized'};
+        }
         if(pref)return {exp:lowest(pref,rebid),alt:[],why:hp+' hp: invitnivå, preferens till bästa gemensamma färg.',means:means,conv:'svar efter öppnarens återbud'};
       }
     }
