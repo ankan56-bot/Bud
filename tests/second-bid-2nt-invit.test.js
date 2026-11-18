@@ -55,7 +55,7 @@ assert.equal(response(openerDiamonds,ten,'2D').sourceGap,false);
 const thirteen=['S14','S13','S2','S3','H13','H2','H3','D12','D2','D3','C11','C2','C3'];
 assert.equal(response(thirteen,'2D').exp,null);
 assert.equal(response(openerDiamonds,thirteen,'2D').sourceGap,false);
-const unbalanced=['S14','S13','S2','S3','H13','H2','H3','D11','D2','D3','D4','C2','C3'];
+const unbalanced=['S14','S13','S2','S3','S4','H13','H2','H3','D11','D2','D3','C2','C3'];
 assert.equal(response(unbalanced,'2D').exp,null);
 assert.equal(response(openerDiamonds,unbalanced,'2D').sourceGap,false);
 
