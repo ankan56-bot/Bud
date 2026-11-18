@@ -917,6 +917,7 @@ Lathundens separata ruta anger:
 
 För körbar logik har "minimum" tolkats som 12–14 hp och "maximum" som 15–17 hp, i linje med öppnings-/återbudsintervallet och lathundens notering om ca 15–17 hp för invitstyrka. Den numeriska uppdelningen är markerad `source_interpretation`/soft och får inte behandlas som en separat fastställd grundregel.
 - `stordbudgivning.js`: ny funktion `openerThirdAfterTwoSuitInvite`.
+- `analysbibliotek.json`: nytt träd T42 med rot, samtliga fem beskrivna fortsättningar och markerad soft-tolkning.
 - `budbeslut.js`: exakt sekvensroutning för öppnarens tredje bud.
 - `rattningsmotor.js`: livebeslut utan partnerns dolda hand, eftersom grenarna bygger på öppnarens egen hand och offentlig budgivning.
 - Regression: `tests/one-major-opener-third-after-2nt.test.js` täcker 5-5 min, 6-4 min, 3-spader max, fjärde färg, svag passgren och styrka utanför sekvensens intervall.
