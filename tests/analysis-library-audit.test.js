@@ -7,18 +7,21 @@ const result = auditLibrary(library);
 assert.deepStrictEqual(result.errors, [], "No dangling IDs, duplicate IDs or malformed branch data");
 assert.strictEqual(isCompetitiveTree({ id: "T29_INKLIV" }), true);
 assert.strictEqual(isCompetitiveTree({ id: "T28_OVERFORING" }), false);
+const inviteTree = library.trees.find(tree => tree.id === "T42_OPPNARENS_TREDJE_BUD_EFTER_2NT_INVIT");
+assert.ok(inviteTree, "T42 opener third-bid tree must be present");
+assert.strictEqual(inviteTree.nodes.length, 6);
 
 // Snapshot of the current baseline. Changing these numbers requires reviewing
 // the underlying data and updating this test deliberately; it is not a rule generator.
 const expected = {
-  totalTrees: 52,
+  totalTrees: 53,
   competitiveTreesExcluded: 5,
-  undisturbedTrees: 47,
-  undisturbedNodes: 321,
-  branchEntries: 333,
-  linkedBranches: 208,
+  undisturbedTrees: 48,
+  undisturbedNodes: 327,
+  branchEntries: 338,
+  linkedBranches: 213,
   unlinkedBranches: 125,
-  nodesWithoutOutgoing: 206,
+  nodesWithoutOutgoing: 211,
   nodesWithoutHandProfile: 27,
   invalidRootTrees: 1,
   invalidBranchTargets: 0,
