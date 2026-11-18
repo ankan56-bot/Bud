@@ -333,7 +333,9 @@
       var s1=ours[0].c[1], s2=ours[1].c[1];
 
       if(d===3 && !opener && ours[2].c === '2'+s1 && isBid(b.c) && b.c[1]!==s1 && b.c[1]!==s2 && b.c[1]!=='N'){
-        if(h.hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg (konstgjort): 13+ hp, utgångskrav. Berättar inget om färgen.',means:function(c){return c===b.c?'Fjärde färg (utgångskrav).':null},conv:'Fjärde färg'};
+        // Plus-markeringen på lathundens fjärde-färgsrad följer med som
+        // metadata. Regeln är fortsatt aktiv: Plus ska alltid ingå i tränaren.
+        if(h.hp>=13) return {exp:b.c,alt:[],why:'Fjärde färg (Plus): 13+ hp, utgångskrav. Berättar inget om färgen.',means:function(c){return c===b.c?'Fjärde färg (Plus, utgångskrav).':null},conv:'Fjärde färg',ruleStatus:'plus'};
         if(h.hp>=10) return {exp:b.c,alt:[],why:'Tredje färg: 10+ hp, rondkrav. Kan bjudas med 3 kort om det är ett håll.',means:function(c){return c===b.c?'Tredje färg (rondkrav).':null},conv:'Tredje färg'};
         return NC('Tredje färg kräver minst 10 hp.', null, 'Tredje färg');
       }
