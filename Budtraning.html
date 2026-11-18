@@ -485,7 +485,7 @@ function reasonedWeakTwoCandidate(st,botSeat){
   if(own.length!==1||own[0].s!==partner(botSeat)||!/^2[DHS]$/.test(own[0].c))return null;
   if(st.bids.some(function(x){return side(x.s)!==side(botSeat)&&x.c!=='P';}))return null;
   var suit=own[0].c[1],hand=st.hands[botSeat],L=shapeOf(hand),hp=hpOf(hand),stp=htpWith(hand,suit);
-  if(L[suit]>=4&&stp>=13)return {call:'2N',why:'Resonerande analys: 13+ stp och minst 4-korts stöd gör 2NT till Stenberg.'};
+  if(L[suit]>=2&&stp>=13)return {call:'2N',why:'Resonerande analys: 13+ stp och minst 2-korts stöd gör 2NT till Stenberg.'};
   if(stp>=14&&stp<=16)return {call:'3'+suit,why:'Resonerande analys: 14–16 stp ger invit i öppningsfärgen.'};
   if(hp>=15){
     var suits=['H','S','D','C'].filter(function(x){return x!==suit&&L[x]>=6;});
