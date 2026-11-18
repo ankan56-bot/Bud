@@ -9193,7 +9193,8 @@
         "Svarshandens 2NT är en naturlig invit med 11–12 hp; detta intervall är användarbekräftat.",
         "Lathundens tryckta sida 18 anger: pass svagt; 3♣ fjärde färg/utgångskrav (13+ hp enligt den etablerade fjärde-färgsregeln); 3♦ 6-4 minimum; 3♥ 5-5 minimum; 3♠ tre spader maximum.",
         "För körbar logik tolkas minimum som 12–14 hp (11 hp endast efter tre pass i fjärde hand) och maximum som 15–17 hp. Den numeriska uppdelningen är en mjuk källtolkning och inte en separat fastställd grundregel.",
-        "3NT är märkt Plus i lathunden och ingår inte i Nordisk Standard-grenarna."
+        "3NT är märkt Plus i lathunden och ingår inte i Nordisk Standard-grenarna.",
+        "Runtime kräver för närvarande balanserad svarshand för 2NT; detta är en soft/naturlig-NT-tolkning eftersom lathundsrutan inte anger svarshandens exakta fördelning."
       ],
       "root": "t42_invite_start",
       "nodes": [
@@ -9210,7 +9211,7 @@
             "Pass"
           ],
           "meaning": "Öppnaren väljer tredje bud efter svarshandens 2NT-invit.",
-          "analysis": "Svarshanden har visat 11–12 hp och inviterat naturligt i sang. Öppnaren beskriver nu sin hand enligt den separata rutan på lathundens tryckta sida 18. Min/max-intervallet är en dokumenterad tolkning och markeras därför soft.",
+          "analysis": "Svarshanden har visat 11–12 hp och inviterat naturligt i sang. Öppnaren beskriver nu sin hand enligt den separata rutan på lathundens tryckta sida 18. Min/max-intervallet är en dokumenterad tolkning och markeras därför soft. Svarshandens 11–12 hp är användarbekräftat; balanserad hand är ett provisoriskt runtime-villkor eftersom källrutan inte anger fördelningen.",
           "branches": [
             {
               "call": "3♣",
@@ -9240,7 +9241,7 @@
           ],
           "handProfile": {
             "opener": "Har öppnat 1♥ och återbjudit 2♦; handens längd och styrka avgör tredje bud.",
-            "responder": "11–12 hp, naturlig sanginvit efter 1♥–1♠–2♦."
+            "responder": "11–12 hp, naturlig 2NT-invit; balanserad hand är ett provisoriskt runtime-villkor."
           },
           "soft": true,
           "ruleStatus": "source_interpretation"
@@ -9263,7 +9264,7 @@
           "branches": [],
           "handProfile": {
             "opener": "13–17 hp i den aktuella 1♥–1♠–2♦-sekvensen; fjärde färg 3♣, utgångskrav.",
-            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+            "responder": "11–12 hp, naturlig 2NT-invit; balanserad hand är ett provisoriskt runtime-villkor."
           },
           "soft": true,
           "ruleStatus": "source_interpretation"
@@ -9286,7 +9287,7 @@
           "branches": [],
           "handProfile": {
             "opener": "12–14 hp, eller 11 hp efter tre pass i fjärde hand, minimum, exakt 6 hjärter och 4 ruter.",
-            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+            "responder": "11–12 hp, naturlig 2NT-invit; balanserad hand är ett provisoriskt runtime-villkor."
           },
           "soft": true,
           "ruleStatus": "source_interpretation"
@@ -9309,7 +9310,7 @@
           "branches": [],
           "handProfile": {
             "opener": "12–14 hp, eller 11 hp efter tre pass i fjärde hand, minimum, exakt 5 hjärter och 5 ruter.",
-            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+            "responder": "11–12 hp, naturlig 2NT-invit; balanserad hand är ett provisoriskt runtime-villkor."
           },
           "soft": true,
           "ruleStatus": "source_interpretation"
@@ -9332,7 +9333,7 @@
           "branches": [],
           "handProfile": {
             "opener": "15–17 hp, maximum, exakt 3 spader.",
-            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+            "responder": "11–12 hp, naturlig 2NT-invit; balanserad hand är ett provisoriskt runtime-villkor."
           },
           "soft": true,
           "ruleStatus": "source_interpretation"
@@ -9355,7 +9356,7 @@
           "branches": [],
           "handProfile": {
             "opener": "12 hp, eller 11 hp efter tre pass i fjärde hand, utan exakt 6-4 hjärter/ruter eller 5-5 hjärter/ruter.",
-            "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
+            "responder": "11–12 hp, naturlig 2NT-invit; balanserad hand är ett provisoriskt runtime-villkor."
           },
           "soft": true,
           "ruleStatus": "source_interpretation"
