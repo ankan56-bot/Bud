@@ -1,0 +1,1225 @@
+{
+  "runDate": "2026-11-18",
+  "repository": "ankan56-bot/Bud",
+  "branch": "work/theme-dataset-analysis",
+  "mode": "ostord",
+  "note": "Only uncovered N/S decisions are logged. E/W forced passes are not system-coverage gaps.",
+  "uniqueUncoveredSequences": 32,
+  "uncoveredDecisionCount": 39,
+  "entries": [
+    {
+      "theme": "alla",
+      "seat": "S",
+      "auction": [
+        "N:2S",
+        "E:P"
+      ],
+      "count": 2,
+      "why": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.",
+      "examples": [
+        {
+          "deal": 9,
+          "hpN": 10,
+          "hpS": 21,
+          "shapeN": {
+            "S": 6,
+            "H": 3,
+            "D": 1,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 2,
+            "D": 6,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27."
+        },
+        {
+          "deal": 38,
+          "hpN": 8,
+          "hpS": 17,
+          "shapeN": {
+            "S": 6,
+            "H": 1,
+            "D": 3,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 3,
+            "D": 3,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "N",
+      "auction": [
+        "S:2D",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.",
+      "examples": [
+        {
+          "deal": 5,
+          "hpN": 14,
+          "hpS": 9,
+          "shapeN": {
+            "S": 4,
+            "H": 2,
+            "D": 4,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 1,
+            "H": 3,
+            "D": 6,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "N",
+      "auction": [
+        "S:2S",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.",
+      "examples": [
+        {
+          "deal": 34,
+          "hpN": 17,
+          "hpS": 7,
+          "shapeN": {
+            "S": 2,
+            "H": 4,
+            "D": 3,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 6,
+            "H": 2,
+            "D": 2,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "N",
+      "auction": [
+        "N:1N",
+        "E:P",
+        "S:2S",
+        "W:P",
+        "N:3C",
+        "E:P",
+        "S:3D",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 49,
+          "hpN": 17,
+          "hpS": 6,
+          "shapeN": {
+            "S": 3,
+            "H": 5,
+            "D": 2,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 3,
+            "D": 6,
+            "C": 2
+          },
+          "chosen": "3S",
+          "explanation": "17 hp · 3 kort i ♠ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♠."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "S",
+      "auction": [
+        "N:1N",
+        "E:P",
+        "S:2S",
+        "W:P",
+        "N:3C",
+        "E:P",
+        "S:3D",
+        "W:P",
+        "N:3S",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen i 1NT/2NT-systemet beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 49,
+          "hpN": 17,
+          "hpS": 6,
+          "shapeN": {
+            "S": 3,
+            "H": 5,
+            "D": 2,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 3,
+            "D": 6,
+            "C": 2
+          },
+          "chosen": "4S",
+          "explanation": "6 hp · 2 kort i ♠ · Partnerns två visade färger: visar preferens för ♠."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "S",
+      "auction": [],
+      "count": 1,
+      "why": "6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt.",
+      "examples": [
+        {
+          "deal": 50,
+          "hpN": 18,
+          "hpS": 8,
+          "shapeN": {
+            "S": 3,
+            "H": 7,
+            "D": 1,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 1,
+            "D": 2,
+            "C": 6
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: 6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:1S",
+        "W:P",
+        "N:3D",
+        "E:P",
+        "S:4C",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 52,
+          "hpN": 18,
+          "hpS": 13,
+          "shapeN": {
+            "S": 2,
+            "H": 5,
+            "D": 5,
+            "C": 1
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 2,
+            "D": 2,
+            "C": 5
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "S",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:1D",
+        "E:P",
+        "S:2C",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 88,
+          "hpN": 11,
+          "hpS": 12,
+          "shapeN": {
+            "S": 4,
+            "H": 4,
+            "D": 4,
+            "C": 1
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 1,
+            "D": 3,
+            "C": 6
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet."
+        }
+      ]
+    },
+    {
+      "theme": "alla",
+      "seat": "S",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:1N",
+        "W:P",
+        "N:2D",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet.",
+      "examples": [
+        {
+          "deal": 98,
+          "hpN": 14,
+          "hpS": 10,
+          "shapeN": {
+            "S": 4,
+            "H": 3,
+            "D": 5,
+            "C": 1
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 3,
+            "D": 1,
+            "C": 6
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet."
+        }
+      ]
+    },
+    {
+      "theme": "nt",
+      "seat": "N",
+      "auction": [
+        "S:1N",
+        "W:P",
+        "N:2D",
+        "E:P",
+        "S:2H",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "3NT kräver jämn hand och exakt 5-korts högfärg. Med obalanserad hand, överväg 4H.",
+      "examples": [
+        {
+          "deal": 33,
+          "hpN": 10,
+          "hpS": 15,
+          "shapeN": {
+            "S": 3,
+            "H": 5,
+            "D": 4,
+            "C": 1
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 2,
+            "D": 4,
+            "C": 4
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: 3NT kräver jämn hand och exakt 5-korts högfärg. Med obalanserad hand, överväg 4H."
+        }
+      ]
+    },
+    {
+      "theme": "nt",
+      "seat": "N",
+      "auction": [
+        "N:1N",
+        "E:P",
+        "S:2C",
+        "W:P",
+        "N:2H",
+        "E:P",
+        "S:3H",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 44,
+          "hpN": 15,
+          "hpS": 8,
+          "shapeN": {
+            "S": 3,
+            "H": 4,
+            "D": 4,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 4,
+            "D": 2,
+            "C": 4
+          },
+          "chosen": "4H",
+          "explanation": "15 hp · 4 kort i ♥ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♥."
+        }
+      ]
+    },
+    {
+      "theme": "stenberg",
+      "seat": "S",
+      "auction": [
+        "S:1S",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 8,
+          "hpN": 14,
+          "hpS": 12,
+          "shapeN": {
+            "S": 4,
+            "H": 2,
+            "D": 4,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 6,
+            "H": 2,
+            "D": 3,
+            "C": 2
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "stenberg",
+      "seat": "S",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 13,
+          "hpN": 15,
+          "hpS": 12,
+          "shapeN": {
+            "S": 3,
+            "H": 1,
+            "D": 5,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 4,
+            "D": 2,
+            "C": 5
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "stenberg",
+      "seat": "N",
+      "auction": [
+        "N:1C",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 89,
+          "hpN": 12,
+          "hpS": 16,
+          "shapeN": {
+            "S": 4,
+            "H": 2,
+            "D": 2,
+            "C": 5
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 3,
+            "D": 4,
+            "C": 4
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "tva",
+      "seat": "S",
+      "auction": [
+        "S:2C",
+        "W:P",
+        "N:2D",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3H",
+        "E:P"
+      ],
+      "count": 3,
+      "why": "Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 14,
+          "hpN": 1,
+          "hpS": 23,
+          "shapeN": {
+            "S": 5,
+            "H": 2,
+            "D": 3,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 3,
+            "D": 4,
+            "C": 3
+          },
+          "chosen": "3N",
+          "explanation": "23 hp · fördelning 3-3-4-3 · 20+ htp med lågfärgsstöd: balanserad hand och håll i sidofärgerna, väljer 3NT."
+        },
+        {
+          "deal": 16,
+          "hpN": 2,
+          "hpS": 23,
+          "shapeN": {
+            "S": 5,
+            "H": 1,
+            "D": 3,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 5,
+            "H": 3,
+            "D": 3,
+            "C": 2
+          },
+          "chosen": "4D",
+          "explanation": "23 hp · 3 kort i ♦ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♦."
+        }
+      ]
+    },
+    {
+      "theme": "tva",
+      "seat": "N",
+      "auction": [
+        "N:2C",
+        "E:P",
+        "S:2D",
+        "W:P"
+      ],
+      "count": 2,
+      "why": "Obalanserad hand utan 5-korts färg: dokumentet anger inte budet.",
+      "examples": [
+        {
+          "deal": 1,
+          "hpN": 22,
+          "hpS": 1,
+          "shapeN": {
+            "S": 4,
+            "H": 4,
+            "D": 4,
+            "C": 1
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 3,
+            "D": 3,
+            "C": 4
+          },
+          "chosen": "5D",
+          "explanation": "22 hp · 4 kort i ♦ · 20+ htp med minst 4-korts lågfärgsstöd: väljer lågfärgsutgång när 3NT inte bedöms lämpligt."
+        },
+        {
+          "deal": 20,
+          "hpN": 23,
+          "hpS": 2,
+          "shapeN": {
+            "S": 4,
+            "H": 1,
+            "D": 4,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 5,
+            "D": 3,
+            "C": 3
+          },
+          "chosen": "5D",
+          "explanation": "23 hp · 4 kort i ♦ · 20+ htp med minst 4-korts lågfärgsstöd: väljer lågfärgsutgång när 3NT inte bedöms lämpligt."
+        }
+      ]
+    },
+    {
+      "theme": "tva",
+      "seat": "N",
+      "auction": [
+        "S:2C",
+        "W:P",
+        "N:2D",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3H",
+        "E:P",
+        "S:4D",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 16,
+          "hpN": 2,
+          "hpS": 23,
+          "shapeN": {
+            "S": 5,
+            "H": 1,
+            "D": 3,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 5,
+            "H": 3,
+            "D": 3,
+            "C": 2
+          },
+          "chosen": "5C",
+          "explanation": "2 hp · 4 kort i ♣ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♣."
+        }
+      ]
+    },
+    {
+      "theme": "tva",
+      "seat": "S",
+      "auction": [
+        "S:2C",
+        "W:P",
+        "N:2D",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3D",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 36,
+          "hpN": 2,
+          "hpS": 23,
+          "shapeN": {
+            "S": 4,
+            "H": 5,
+            "D": 3,
+            "C": 1
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 3,
+            "D": 2,
+            "C": 5
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen i 2♣-systemet beskrivs inte i dokumentet."
+        }
+      ]
+    },
+    {
+      "theme": "tva",
+      "seat": "S",
+      "auction": [
+        "N:2C",
+        "E:P",
+        "S:2D",
+        "W:P",
+        "N:3C",
+        "E:P",
+        "S:3D",
+        "W:P",
+        "N:3S",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen i 2♣-systemet beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 39,
+          "hpN": 22,
+          "hpS": 2,
+          "shapeN": {
+            "S": 4,
+            "H": 3,
+            "D": 1,
+            "C": 5
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 4,
+            "D": 6,
+            "C": 1
+          },
+          "chosen": "4S",
+          "explanation": "2 hp · 2 kort i ♠ · Partnerns två visade färger: visar preferens för ♠."
+        }
+      ]
+    },
+    {
+      "theme": "rkc",
+      "seat": "N",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 17,
+          "hpN": 12,
+          "hpS": 22,
+          "shapeN": {
+            "S": 5,
+            "H": 2,
+            "D": 2,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 2,
+            "D": 5,
+            "C": 2
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "rkc",
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 63,
+          "hpN": 12,
+          "hpS": 21,
+          "shapeN": {
+            "S": 2,
+            "H": 5,
+            "D": 4,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 5,
+            "H": 4,
+            "D": 2,
+            "C": 2
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "rkc",
+      "seat": "S",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 82,
+          "hpN": 21,
+          "hpS": 12,
+          "shapeN": {
+            "S": 3,
+            "H": 3,
+            "D": 2,
+            "C": 5
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 3,
+            "D": 2,
+            "C": 6
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "slam",
+      "seat": "S",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "count": 2,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 70,
+          "hpN": 17,
+          "hpS": 12,
+          "shapeN": {
+            "S": 3,
+            "H": 2,
+            "D": 4,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 4,
+            "D": 2,
+            "C": 5
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        },
+        {
+          "deal": 74,
+          "hpN": 22,
+          "hpS": 12,
+          "shapeN": {
+            "S": 3,
+            "H": 2,
+            "D": 4,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 2,
+            "D": 2,
+            "C": 5
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "slam",
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "examples": [
+        {
+          "deal": 26,
+          "hpN": 12,
+          "hpS": 18,
+          "shapeN": {
+            "S": 2,
+            "H": 5,
+            "D": 4,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 4,
+            "D": 1,
+            "C": 4
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt."
+        }
+      ]
+    },
+    {
+      "theme": "trumf",
+      "seat": "N",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:3S",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Fortsättningen efter denna höjning beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 46,
+          "hpN": 12,
+          "hpS": 11,
+          "shapeN": {
+            "S": 5,
+            "H": 2,
+            "D": 3,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 4,
+            "H": 3,
+            "D": 3,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Fortsättningen efter denna höjning beskrivs inte i dokumentet."
+        }
+      ]
+    },
+    {
+      "theme": "sang",
+      "seat": "S",
+      "auction": [],
+      "count": 2,
+      "why": "6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt.",
+      "examples": [
+        {
+          "deal": 46,
+          "hpN": 15,
+          "hpS": 10,
+          "shapeN": {
+            "S": 3,
+            "H": 2,
+            "D": 5,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 3,
+            "D": 2,
+            "C": 6
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: 6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt."
+        },
+        {
+          "deal": 60,
+          "hpN": 17,
+          "hpS": 9,
+          "shapeN": {
+            "S": 4,
+            "H": 4,
+            "D": 2,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 1,
+            "H": 2,
+            "D": 4,
+            "C": 6
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: 6-korts ♣ uppfyller färgkvalitetskravet men 2♣ är starköppning. Alternativ spärrnivå för sexkortig klöver är inte fastställd i underlaget och loggas som ej täckt."
+        }
+      ]
+    },
+    {
+      "theme": "sang",
+      "seat": "N",
+      "auction": [
+        "S:2D",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.",
+      "examples": [
+        {
+          "deal": 55,
+          "hpN": 15,
+          "hpS": 8,
+          "shapeN": {
+            "S": 4,
+            "H": 4,
+            "D": 3,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 1,
+            "D": 6,
+            "C": 4
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27."
+        }
+      ]
+    },
+    {
+      "theme": "tvafarg",
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:1S",
+        "W:P",
+        "N:2C",
+        "E:P",
+        "S:2D",
+        "W:P"
+      ],
+      "count": 2,
+      "why": "Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19.",
+      "examples": [
+        {
+          "deal": 18,
+          "hpN": 13,
+          "hpS": 13,
+          "shapeN": {
+            "S": 3,
+            "H": 5,
+            "D": 1,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 5,
+            "H": 3,
+            "D": 3,
+            "C": 2
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19."
+        },
+        {
+          "deal": 23,
+          "hpN": 12,
+          "hpS": 18,
+          "shapeN": {
+            "S": 3,
+            "H": 5,
+            "D": 1,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 5,
+            "H": 3,
+            "D": 4,
+            "C": 1
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19."
+        }
+      ]
+    },
+    {
+      "theme": "tvafarg",
+      "seat": "N",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2H",
+        "W:P",
+        "N:3D",
+        "E:P",
+        "S:4C",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 21,
+          "hpN": 14,
+          "hpS": 15,
+          "shapeN": {
+            "S": 5,
+            "H": 2,
+            "D": 4,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 5,
+            "D": 3,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet."
+        }
+      ]
+    },
+    {
+      "theme": "tvafarg",
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:1N",
+        "W:P",
+        "N:2H",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet.",
+      "examples": [
+        {
+          "deal": 22,
+          "hpN": 15,
+          "hpS": 10,
+          "shapeN": {
+            "S": 5,
+            "H": 4,
+            "D": 1,
+            "C": 3
+          },
+          "shapeS": {
+            "S": 1,
+            "H": 4,
+            "D": 3,
+            "C": 5
+          },
+          "chosen": "3H",
+          "explanation": "10 hp · 4 kort i ♥ · Partnerns två visade färger: väljer känd minst 8-korts fit i ♥."
+        }
+      ]
+    },
+    {
+      "theme": "tvafarg",
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:1N",
+        "W:P",
+        "N:2C",
+        "E:P"
+      ],
+      "count": 1,
+      "why": "Efter 1NT-svaret är endast de beskrivna andra färgbuden med 6-9 hp och 6+ kort täckta av dokumentet.",
+      "examples": [
+        {
+          "deal": 63,
+          "hpN": 14,
+          "hpS": 10,
+          "shapeN": {
+            "S": 5,
+            "H": 2,
+            "D": 2,
+            "C": 4
+          },
+          "shapeS": {
+            "S": 2,
+            "H": 5,
+            "D": 3,
+            "C": 3
+          },
+          "chosen": "2S",
+          "explanation": "10 hp · 2 kort i ♠ · Partnerns två visade färger: visar preferens för ♠."
+        }
+      ]
+    },
+    {
+      "theme": "tvafarg",
+      "seat": "N",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2C",
+        "W:P",
+        "N:2D",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "count": 1,
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "examples": [
+        {
+          "deal": 87,
+          "hpN": 12,
+          "hpS": 11,
+          "shapeN": {
+            "S": 5,
+            "H": 2,
+            "D": 4,
+            "C": 2
+          },
+          "shapeS": {
+            "S": 3,
+            "H": 4,
+            "D": 3,
+            "C": 3
+          },
+          "chosen": "P",
+          "explanation": "Rättningsnyckeln saknar ett säkert bud här: Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet."
+        }
+      ]
+    }
+  ]
+}
