@@ -427,3 +427,26 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 - 2♠: fjärde färg, 13+ hp, utgångskrav.
 
 Regeln gäller endast den exakta sekvensen 1♦–1♥; 2♣ och är placerad före den generella svarshandslogiken. Den skapar inte automatiskt motsvarande betydelser i andra sekvenser. Varje bud kontrolleras mot sin egen tabellrad; om handen inte uppfyller raden lämnas den som ej täckt/felaktig i stället för att en annan rad antas.
+
+## Generalisering av lathund s. 15 – 1-över-1 följt av icke-reverserande tvåfärgsåterbud (2026-11-18)
+
+**Status:** Rättningsmotorn generaliserad. Den tidigare specialregeln för 1♦–1♥; 2♣ är ersatt av en gemensam regel som identifierar färgernas roller i budsekvensen.
+
+Tillämpas när:
+- Öppningen är 1 i färg.
+- Svarshanden har svarat 1 över 1 i en annan färg.
+- Öppnaren återbjuder en ny färg på 2-läget.
+- Öppnarens återbud är lägre rankat än öppningsfärgen och därmed inte reverse.
+
+Tabellens betydelser följer med färgernas roller:
+- Pass: 0–1 kort i öppningsfärgen, 3–4 i öppnarens återbudsfärg, 6–9 hp.
+- Preferens i öppningsfärgen: minst 2 kort, 6–10 hp/stp.
+- Återbud i svarsfärgen på lägsta nivå: 6+ kort, 6–10 hp.
+- 2NT: håll i den fjärde färgen, 11–12 hp.
+- Höjning av öppnarens återbudsfärg till 3-läget: minst 4-kortsstöd, 10–12 stp.
+- Höjning av öppningsfärgen till 3-läget: minst 3-kortsstöd, 11–12 stp.
+- Svarsfärgen på 3-läget: 6+ kort, 11–12 hp.
+- 3NT: håll i fjärde färgen, 13–15 hp.
+- Fjärde färg på lägsta lagliga nivå: 13+ hp, utgångskrav.
+
+Budnivån för färgbuden beräknas efter den faktiska auktionen, så fjärde färg och preferens kan hamna på olika nivåer beroende på vilka färger som öppnats och återbjudits. Regeln omfattar inte 1NT-svar, 2-över-1-svar eller reverser. Den ändrar inte andra budsekvenser.
