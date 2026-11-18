@@ -411,3 +411,19 @@ Rättningsmotorn får separat konventionsetikett `tvåfärgshand`, med budförkl
 - Faktiska hp/htp i partnerskapssummor, trumf-/fördelningspoäng, utgångskontroller och slamkontroller lämnas oförändrade. Ingen fiktiv poäng läggs till i parets sammanlagda styrka.
 - Regeln ändrar inte vem som får öppna på 11 hp; öppningsundantaget och kravet på bra 5+ färg är oförändrade.
 - Svarshandens styrka, motståndarnas bud, 1NT-/2NT-öppningar och stark 2♣-öppning påverkas inte.
+
+## Svarshandens andra bud efter 1♦–1♥; 2♣ (lathund s. 15) – implementerat 2026-11-18
+
+**Status:** Separat sekvensregel inlagd i rättningsmotorn.
+
+- Pass: 0–1 ♦, 3–4 ♣, 6–9 hp.
+- 2♦: preferens, minst 2 ♦, 6–10 hp/stp.
+- 2♥: 6+ ♥, 6–10 hp.
+- 2NT: spaderhåll, 11–12 hp.
+- 3♣: minst 4-kortsstöd i ♣, 10–12 stp.
+- 3♦: minst 3-kortsstöd i ♦, 11–12 stp.
+- 3♥: 6+ ♥, 11–12 hp.
+- 3NT: spaderhåll, 13–15 hp.
+- 2♠: fjärde färg, 13+ hp, utgångskrav.
+
+Regeln gäller endast den exakta sekvensen 1♦–1♥; 2♣ och är placerad före den generella svarshandslogiken. Den skapar inte automatiskt motsvarande betydelser i andra sekvenser. Varje bud kontrolleras mot sin egen tabellrad; om handen inte uppfyller raden lämnas den som ej täckt/felaktig i stället för att en annan rad antas.
