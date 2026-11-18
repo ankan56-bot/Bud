@@ -112,7 +112,7 @@
     var s=st_(oc),os=ob?ob[1]:null,L=h.L,hp=h.hp,exp,why,alt=[];
     var means=function(c){
       if(c==='1N')return (sourcePageRules?'6-10':'8-10')+' hp, balanserad hand med håll i motståndarnas inklivsfärg.';
-      if(c==='2N')return '11-13 hp, balanserad hand med bra håll.';
+      if(c==='2N')return sourcePageRules?'11–12 hp, balanserad hand med bra håll i motståndarnas inklivsfärg.':'11–13 hp, balanserad hand med bra håll.';
       if(c==='3N')return '14+ hp, balanserad hand med bra håll.';
       if(isBid(c)&&c[1]===s){
         var d=lv(c)-lv(oc);
@@ -163,7 +163,8 @@
     if(!sourcePageRules&&!exp&&h.bal&&hp>=8&&hp<=10&&h.stop(os)&&ok('1N',last)){
       exp='1N';why='8-10 hp, balanserad hand med håll i öppningsfärgen: 1NT.';
     }
-    if(!exp&&h.bal&&hp>=11&&hp<=13&&h.stop(os)&&ok('2N',last)){
+    var twoNtMax=sourcePageRules?12:13;
+    if(!exp&&h.bal&&hp>=11&&hp<=twoNtMax&&h.stop(os)&&ok('2N',last)){
       exp='2N';why='11-13 hp, balanserad hand med bra håll: 2NT.';
     }
     if(!exp&&h.bal&&hp>=14&&h.stop(os)&&ok('3N',last)){
