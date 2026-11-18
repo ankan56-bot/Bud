@@ -61,12 +61,12 @@
             {
               "call": "5♣",
               "next": "t01_n2",
-              "label": "1 eller 4 nyckelkort"
+              "label": "0 eller 3 nyckelkort"
             },
             {
               "call": "5♦",
               "next": "t01_n3",
-              "label": "0 eller 3 nyckelkort"
+              "label": "1 eller 4 nyckelkort"
             },
             {
               "call": "5♥",
