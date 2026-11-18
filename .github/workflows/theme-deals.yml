@@ -41,6 +41,8 @@ jobs:
         run: node --test testdata/one-one-notrump.test.js
       - name: Run weak two opening regression tests
         run: node --test testdata/weak-two.test.js
+      - name: Run engine self-consistency regression tests
+        run: node --test testdata/engine-self-consistency.test.js
       - name: Run documented overcall response tests
         run: node --test testdata/overcall-responses.test.js
       - name: Guard unresolved system gaps
