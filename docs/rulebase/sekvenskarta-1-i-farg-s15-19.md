@@ -1,15 +1,79 @@
-# Källstyrd sekvenskarta – budgivning efter 1 i färg (tryckt s. 15–19)
+# Källstyrd sekvenskarta – budgivning efter 1 i färg (tryckt s. 12–19)
 
-**Källa:** *Helan_lathunden_AI_sokbar_under_10MB 2.pdf*, kapitel 3, tryckt s. 15–19 (PDF-sidor 10–14). Kontrollerad mot sidbilderna.
+**Källa:** *Helan_lathunden_AI_sokbar_under_10MB 2.pdf*, kapitel 3, tryckt s. 12–19 (PDF-sidor 7–14). Kontrollerad mot sidbilderna.
 **Syfte:** Förbereda en säker modulgräns och sekvensbaserad implementation. Detta dokument är en källkarta, inte ett fristående regelverk.
 
 ## Käll- och implementationsprinciper
 
-1. Varje budruta hör till den exakta auktion och kolumn där den står. Färgvarianter får inte skapas genom mekaniskt färgbyte.
+1. En exempelauktion är inte automatiskt en exakt-sekvensregel. När källan anger en handtyp, en generell princip eller en familj av färgkombinationer ska färgerna tolkas efter sina roller (öppningsfärg, svarsfärg, andra visade färgen, trumffärg, objuden färg, tredje/fjärde färg). Alla varianter måste ändå vara lagliga i budordning och nivå.
 2. Tabellen på s. 15 skiljer uttryckligen mellan öppnarens återbud på entricksnivån och tvåtricksnivån. Dessa får inte blandas.
 3. Hänvisningar märkta Plus, PRO, MeraBud eller Slam är inte automatiskt del av grundprofilen.
-4. När en tabellruta är knuten till ett exempel och inte uttryckligen generaliserad ska den behållas som exempelbunden tills en motsvarande sekvens verifierats.
+4. När källan uttryckligen beskriver en generell handtyp eller säger att övriga bud följer en naturlig princip ska den generaliseras till alla lagliga färgroller som uppfyller villkoren. Enbart färgsymbolerna i exempelraden begränsar då inte regeln. Om källan däremot bara ger en specifik auktion och inte anger en generaliserbar roll ska den hållas exempelbunden.
 5. Om budordning, nivå eller budbetydelse inte kan härledas säkert ska läget lämnas EJ TÄCKT, inte fyllas med en analogi.
+
+
+
+## 0. Generella principer och färgroller – tryckt s. 12–14
+
+Dessa sidor innehåller övergripande handtyper och systemprinciper. De ska inte reduceras till de bokstavliga färgerna i exemplen.
+
+### 0A. Öppnarens handtyper och återbud efter 1-över-1 – tryckt s. 12
+
+Källan definierar fyra handtyper för öppnaren:
+- **Trumfstöd:** minst fyra kort i svarshandens bjudna färg.
+- **Tvåfärgshand:** minst 5–4 i två färger.
+- **Enfärgshand:** minst sex kort i öppningsfärgen.
+- **Balanserad hand:** jämn hand utan trumfstöd.
+
+Källan visar även styrkeintervall för återbuden. Dessa är handtypsbeskrivningar och färgrollerna ska följa den aktuella auktionen, inte låsas till exempelvis hjärter eller spader.
+
+**Generalisering:** Om öppnaren visar trumfstöd är stödfärgen svarshandens färg. Om öppnaren visar tvåfärgshand är färgerna två separata färger med minst 5–4-längd. Om öppnaren visar enfärgshand är det öppningsfärgen som har minst sex kort. Dessa rollbeskrivningar gäller oavsett vilka färger som fyller rollerna, förutsatt att återbudet är lagligt.
+
+**Styrka och nivå får inte blandas:**
+- Efter 1-över-1 visar källans exempel trumfstöd på 2-nivån 13–15 stp och på 3-nivån 16–18 stp.
+- Tvåfärgshand visas i exemplen med 12–17 hp respektive 18–19 hp beroende på återbudsnivå.
+- Enfärgshand visas med minst sex kort i öppningsfärgen; styrkan beror på återbudet.
+- Balanserad hand utan trumfstöd: 1NT 12–14 hp och 2NT 18–19 hp i exemplen.
+
+Splinterrutorna på sidan är märkta Plus och ska inte aktiveras i projektets grundprofil.
+
+### 0B. Öppnarens återbud efter 2-över-1 – tryckt s. 13
+
+Sidan ger separata rollfamiljer efter 2-över-1:
+- **Trumfstöd:** öppnaren visar stöd i svarshandens färg; exempel visar 3-nivå med 13–18 stp, krav, och 4-nivå med 19–21 stp, krav.
+- **Tvåfärgshand:** öppnaren visar en andra färg; färgrollerna bestäms av öppningsfärgen och återbudsfärgen. Exempelraderna ska inte tolkas som att just klöver/ruter/hjärter alltid krävs.
+- **Enfärgshand:** återbud i öppningsfärgen visar fortsatt längd där; källan visar minst fem kort i öppningsfärgen för vissa återbud och särskilda styrkeintervall.
+- **Balanserad hand:** 2NT visas som 12–14 hp och 3NT som 18–19 hp i de angivna exemplen.
+
+Fortsättningar som är markerade Plus, inklusive splinter, hålls utanför grundprofilen. De får inte bli aktiva bara för att en färgvariant är möjlig.
+
+### 0C. Generellt efter 2-över-1 – tryckt s. 14
+
+Detta avsnitt är uttryckligen generellt och ska implementeras som rollbaserade principer, inte som en enda bokstavlig exempelauktion:
+
+- Om paret hittar en gemensam trumffärg efter att budgivningen inletts med 2-över-1 ska paret komma till minst utgång.
+- Öppnarens stigande återbud (revers) – återbud i en färg på tvåtricksnivån som ligger högre än öppningsfärgen – lovar extra styrka: minst 16 hp och minst 5–4-fördelning. Detta är en roll-/budordningsregel; den får inte reduceras till ett specifikt färgpar.
+- Efter ett sådant stigande återbud gäller svarshandens tre styrkeintervall: svag 6–10 hp/stp, invit 11–12 hp/stp, utgång 13+ hp/stp.
+- Med svag hand kan svarshanden passa, återbjuda egen färg, bjuda sang eller preferera till öppnarens första färg.
+- Med invitstyrka kan svarshanden bjuda 2NT eller en tidigare bjuden färg på 3-nivån.
+- Med utgångsstyrka bjuder svarshanden utgång eller ett kravbud.
+- Om två färger är bjudna och svarshanden introducerar den tredje färgen är det tredje färg. Om tre färger är bjudna (öppnaren har visat tvåfärgshand) är motsvarande bud fjärde färg.
+- Tredje färg anges som kravbud med 10+ hp och naturlig färgvisning i Plus-rutan. Fjärde färg anges som utgångskrav med 13+ hp i Plus-rutan. Plus-markeringarna innebär att konventionsdelen inte automatiskt ingår i grundprofilen.
+
+**Viktig skillnad:** Den generella principen om stigande budgivning och styrkeintervall gäller som beskriven systemprincip. De specifika fortsättningsbuden i exempelrutan (t.ex. klöverhåll, fjärde färg, preferens och längdkrav) ska bara flyttas till andra färgkombinationer när samma roll, nivå och budordning finns och källans princip täcker den rollen.
+
+### 0D. Färgvariantgenerator – bindande kontrollordning
+
+För varje generaliserad sekvensfamilj ska systemet:
+1. Identifiera öppningsfärg, svarsfärg, eventuell andra visad färg, trumffärg och kvarvarande objudna färger.
+2. Bygga endast auktioner där varje bud är högre än föregående bud enligt bridgeordningen.
+3. Kontrollera om varianten är 1-över-1, 1-över-2 eller 2-över-1; en färgvariant får inte ändra detta utan att regeln uttryckligen medger det.
+4. Kontrollera om ett återbud blir hopp eller revers när färgerna byts. Om budkaraktären ändras får varianten inte ärva den gamla betydelsen.
+5. Kontrollera rondkrav, utgångskrav och om partnern redan har begränsat sin hand.
+6. Beräkna vilken färg som är den enda objudna färgen i just den auktionen innan ett sangbud får tolkas som hållvisande.
+7. Skilja mellan generell regel, exempelbunden regel och EJ TÄCKT. Saknad källinformation får inte fyllas med bridgekonventioner från allmänkunskap.
+
+En färgvariant som faller på någon av kontrollerna ska inte genereras och ska registreras som EJ TÄCKT eller ogiltig variant, inte få en approximerad budbetydelse.
 
 ## 1. Öppnarens återbud efter en-över-en – tryckt s. 15
 
@@ -187,7 +251,7 @@ Föreslagen modul: `efter-en-i-farg.js`, men den ska inte bli en ny monolit. Del
 5. `oppnarens-tredje-bud.js` – efter svagt svar/2NT-invit (s. 18).
 6. `efter-tredje-fjarde-farg.js` – fullständiga sekvensnycklar (s. 19).
 
-Modulerna ska exponera små rena funktioner som tar hela auktionen, handdata och aktuell regelprofil. En gemensam generell "färgbytare" ska inte skapa budvarianter. Regelmatchning ska ske mot exakta auktioner eller explicit verifierade sekvensfamiljer.
+Modulerna ska exponera små rena funktioner som tar hela auktionen, handdata och aktuell regelprofil. En gemensam generell "färgbytare" ska inte skapa budvarianter. Regelmatchning ska ske mot exakta auktioner eller explicit verifierade sekvensfamiljer. En sekvensfamilj ska beskrivas med färgroller och generera endast bud som är lagliga enligt budordning, nivå, hopp/revers, rondkrav och tidigare visade färger.
 
 ## 7. Nästa implementationssteg
 
