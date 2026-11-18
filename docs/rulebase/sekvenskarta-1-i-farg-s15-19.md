@@ -42,7 +42,7 @@ Svaga bud:
 - 2♥: 6+ hjärter, 6–10 hp.
 
 Invitbud:
-- 2NT: spaderhåll, 11–12 hp.
+- 2NT: i sekvensen 1♥–1♠–2♦ visar klöverhåll (den enda objudna färgen), 11–12 hp; invit, inte krav.
 - 3♣: minst fyrkortsstöd, 10–12 stp.
 - 3♦: minst trekortsstöd, 11–12 stp.
 - 3♥: minst fyrkortsstöd, 11–12 stp.
@@ -51,7 +51,7 @@ Utgång eller krav:
 - 3NT: hjärterhåll, 13–15 hp.
 - 2♠: fjärde färg, 13+ hp, utgångskrav (Plus-markering i tabellen).
 
-**Viktig sekvensregel:** Den exakta sekvensen 1♥–1♠–2♦–2NT hör till denna kolumn. 2NT betyder invit, 11–12 hp, med **spaderhåll**. Det är inte hjärterhåll. Hjärterhåll förekommer i den andra tabellen/kolumnen.
+**Viktig sekvensregel – korrigerad efter användarens kontroll:** I 1♥–1♠–2♦ har tre färger visats. 2NT visar därför håll i den enda objudna färgen, **klöver**, och är en **invit med 11–12 hp**. Det är inte krav. Regeln om krav gäller ny färg, inte sang. Hållbudet får inte mekaniskt hämtas från en annan exempelruta.
 
 ## 2. Öppnarens 1NT-återbud eller enfärgshand – tryckt s. 16
 
@@ -194,5 +194,15 @@ Modulerna ska exponera små rena funktioner som tar hela auktionen, handdata och
 1. Inventera nuvarande dirigering i `budbeslut.js` och befintliga regler i `ettoppningssvar.js`.
 2. Lägg in först de sekvenser som har uttryckligt, entydigt källstöd och inte är Plus/PRO/Splinter.
 3. Skriv positiva och negativa regressionstest för varje sekvens: rätt styrka, fel styrka, fel håll, fel längd, ej tillåten budordning och närliggande auktion som inte får matcha.
-4. Kontrollera att `1♥–1♠–2♦–2NT` matchar 11–12 hp och spaderhåll, och att samma regel inte felaktigt matchar `1♥–1♠–2♣–2NT`.
+4. Kontrollera att `1♥–1♠–2♦–2NT` matchar 11–12 hp och klöverhåll, är invit (inte krav), och att den separata sekvensen `1♥–1♠–2♣–2NT` behåller sin egen källregel.
 5. Allt som inte är entydigt verifierat lämnas EJ TÄCKT och läggs i expertfrågeloggen.
+
+
+## 8. Korrigerad generell princip för sang efter tre visade färger
+
+Användarbekräftad systemprincip:
+- När tre färger har visats och svarshanden därefter bjuder sang, visar sangbudet håll i den enda objudna färgen.
+- Sangbudet är invit, inte krav.
+- Ny färg är krav; den egenskapen får inte överföras till sangbud.
+- Denna princip ersätter tidigare felaktig notering om att sangbudet skulle vara krav.
+- Exakt styrkeintervall och budnivå ska fortfarande kontrolleras mot respektive tabell/sekvens. Den verifierade sekvensen 1♥–1♠–2♦–2NT visar 11–12 hp.
