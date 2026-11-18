@@ -1,0 +1,1650 @@
+{
+  "date": "2026-11-18",
+  "mode": "ostord",
+  "summary": {
+    "deals": 1200,
+    "themes": 12,
+    "dealsPerTheme": 100,
+    "nsDecisions": 5513,
+    "covered": 5482,
+    "uncovered": 31,
+    "verifiedCoveragePct": 99.44,
+    "uniqueUncovered": 28,
+    "motorConflicts": 11,
+    "verifiedAiSuggestions": 1,
+    "unsupportedNonPass": 0,
+    "structuralErrors": 0
+  },
+  "uncovered": [
+    {
+      "theme": "alla",
+      "deal": 3,
+      "seed": 2026111802,
+      "seat": "S",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:1D",
+        "E:P",
+        "S:1S",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H4",
+        "D12",
+        "C5",
+        "S12",
+        "D9",
+        "C12",
+        "S8",
+        "C7",
+        "S9",
+        "D5",
+        "S14",
+        "C6",
+        "C13"
+      ],
+      "hcp": 13,
+      "shape": {
+        "S": 4,
+        "H": 1,
+        "D": 3,
+        "C": 5
+      },
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "convention": "övrigt"
+    },
+    {
+      "theme": "alla",
+      "deal": 65,
+      "seed": 2026111864,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C12",
+        "S14",
+        "H3",
+        "D10",
+        "H7",
+        "H12",
+        "D6",
+        "D14",
+        "C2",
+        "H13",
+        "H14",
+        "C7",
+        "D11"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 1,
+        "H": 5,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "alla",
+      "deal": 75,
+      "seed": 2026111874,
+      "seat": "S",
+      "auction": [
+        "N:2S",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C3",
+        "D14",
+        "H14",
+        "C14",
+        "S13",
+        "C12",
+        "D3",
+        "C7",
+        "H11",
+        "D13",
+        "D11",
+        "H6",
+        "H3"
+      ],
+      "hcp": 22,
+      "shape": {
+        "S": 1,
+        "H": 4,
+        "D": 4,
+        "C": 4
+      },
+      "why": "Svar efter svag tvåa är inte täckt för detta bud eller denna hand enligt lathundens sida 27.",
+      "convention": "svag tvåa"
+    },
+    {
+      "theme": "alla",
+      "deal": 77,
+      "seed": 2026111876,
+      "seat": "N",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2H",
+        "W:P",
+        "N:3D",
+        "E:P",
+        "S:4C",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H9",
+        "S14",
+        "D8",
+        "S12",
+        "H12",
+        "C13",
+        "D13",
+        "D10",
+        "C4",
+        "D7",
+        "S2",
+        "S5",
+        "S10"
+      ],
+      "hcp": 14,
+      "shape": {
+        "S": 5,
+        "H": 2,
+        "D": 4,
+        "C": 2
+      },
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "convention": "övrigt"
+    },
+    {
+      "theme": "alla",
+      "deal": 81,
+      "seed": 2026111880,
+      "seat": "N",
+      "auction": [
+        "N:2D",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C10",
+        "C7",
+        "D4",
+        "H14",
+        "D10",
+        "H8",
+        "D3",
+        "H2",
+        "D12",
+        "S7",
+        "H6",
+        "D7",
+        "D14"
+      ],
+      "hcp": 10,
+      "shape": {
+        "S": 1,
+        "H": 4,
+        "D": 6,
+        "C": 2
+      },
+      "why": "2NT är nu Stenberg 2NT med 13+ stp enligt lathundens sida 27. Öppnarens fortsättning efter denna Stenberg-fråga behöver rättas separat; den tidigare 6-8 / 9-10 hp-stegen används inte.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "stenberg",
+      "deal": 67,
+      "seed": 2026131866,
+      "seat": "N",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S13",
+        "D3",
+        "S14",
+        "C4",
+        "D11",
+        "S10",
+        "H12",
+        "C12",
+        "S7",
+        "S4",
+        "D9",
+        "H8",
+        "D4"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 5,
+        "H": 2,
+        "D": 4,
+        "C": 2
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "stenberg",
+      "deal": 85,
+      "seed": 2026131884,
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C2",
+        "H12",
+        "D13",
+        "D6",
+        "H11",
+        "C7",
+        "S14",
+        "H13",
+        "S6",
+        "S5",
+        "S11",
+        "C11",
+        "S13"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 5,
+        "H": 3,
+        "D": 2,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "stenberg",
+      "deal": 94,
+      "seed": 2026131893,
+      "seat": "N",
+      "auction": [
+        "N:1C",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S9",
+        "S14",
+        "C5",
+        "C2",
+        "C11",
+        "D5",
+        "C14",
+        "S10",
+        "C6",
+        "H2",
+        "H3",
+        "C13",
+        "D2"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 3,
+        "H": 2,
+        "D": 2,
+        "C": 6
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "rkc",
+      "deal": 3,
+      "seed": 2026151802,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S4",
+        "H8",
+        "S6",
+        "H11",
+        "H3",
+        "H14",
+        "D11",
+        "D13",
+        "D12",
+        "H6",
+        "S13",
+        "D3",
+        "C14"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 3,
+        "H": 5,
+        "D": 4,
+        "C": 1
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 9,
+      "seed": 2026151808,
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S4",
+        "D5",
+        "H6",
+        "S11",
+        "S14",
+        "C14",
+        "S10",
+        "H5",
+        "H2",
+        "D13",
+        "H3",
+        "H9",
+        "C10"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 4,
+        "H": 5,
+        "D": 2,
+        "C": 2
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "rkc",
+      "deal": 19,
+      "seed": 2026151818,
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H4",
+        "C8",
+        "H7",
+        "S3",
+        "C14",
+        "C10",
+        "D13",
+        "S2",
+        "S12",
+        "D12",
+        "H13",
+        "C13",
+        "S13"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 4,
+        "H": 3,
+        "D": 2,
+        "C": 4
+      },
+      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 21,
+      "seed": 2026151820,
+      "seat": "S",
+      "auction": [
+        "S:1S",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S4",
+        "H6",
+        "C2",
+        "S7",
+        "D11",
+        "S10",
+        "H11",
+        "C14",
+        "S12",
+        "D9",
+        "S14",
+        "D6",
+        "D7"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 5,
+        "H": 2,
+        "D": 4,
+        "C": 2
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "rkc",
+      "deal": 37,
+      "seed": 2026151836,
+      "seat": "N",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C10",
+        "H6",
+        "C14",
+        "H11",
+        "S8",
+        "S5",
+        "S10",
+        "S14",
+        "D14",
+        "D10",
+        "H12",
+        "S11",
+        "H14"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 5,
+        "H": 4,
+        "D": 2,
+        "C": 2
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 49,
+      "seed": 2026151848,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C9",
+        "D13",
+        "S13",
+        "C12",
+        "S11",
+        "S14",
+        "D14",
+        "H5",
+        "H8",
+        "H12",
+        "C10",
+        "H10",
+        "D9"
+      ],
+      "hcp": 19,
+      "shape": {
+        "S": 3,
+        "H": 4,
+        "D": 3,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 55,
+      "seed": 2026151854,
+      "seat": "S",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H6",
+        "D3",
+        "H2",
+        "H11",
+        "C8",
+        "S5",
+        "S11",
+        "D14",
+        "S13",
+        "H3",
+        "C13",
+        "H9",
+        "S6"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 4,
+        "H": 5,
+        "D": 2,
+        "C": 2
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "rkc",
+      "deal": 61,
+      "seed": 2026151860,
+      "seat": "S",
+      "auction": [
+        "S:1C",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C11",
+        "C14",
+        "S4",
+        "H13",
+        "C10",
+        "C4",
+        "D12",
+        "H11",
+        "D7",
+        "H9",
+        "H7",
+        "C7",
+        "S11"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 2,
+        "H": 4,
+        "D": 2,
+        "C": 5
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "rkc",
+      "deal": 64,
+      "seed": 2026151863,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D14",
+        "H6",
+        "D13",
+        "S2",
+        "S14",
+        "C9",
+        "H14",
+        "H8",
+        "H3",
+        "C7",
+        "H13",
+        "D12",
+        "S12"
+      ],
+      "hcp": 22,
+      "shape": {
+        "S": 3,
+        "H": 5,
+        "D": 3,
+        "C": 2
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 76,
+      "seed": 2026151875,
+      "seat": "S",
+      "auction": [
+        "S:1D",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D12",
+        "H5",
+        "D11",
+        "H2",
+        "S6",
+        "S12",
+        "C14",
+        "D4",
+        "C7",
+        "S13",
+        "S8",
+        "D3",
+        "D8"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 4,
+        "H": 2,
+        "D": 5,
+        "C": 2
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "slam",
+      "deal": 21,
+      "seed": 2026161820,
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D5",
+        "S6",
+        "C13",
+        "H12",
+        "C8",
+        "C12",
+        "S12",
+        "D13",
+        "S2",
+        "S10",
+        "C10",
+        "S13",
+        "S14"
+      ],
+      "hcp": 19,
+      "shape": {
+        "S": 6,
+        "H": 1,
+        "D": 2,
+        "C": 4
+      },
+      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "slam",
+      "deal": 46,
+      "seed": 2026161845,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C7",
+        "H8",
+        "H14",
+        "D7",
+        "D11",
+        "H13",
+        "C8",
+        "D14",
+        "H6",
+        "H11",
+        "S3",
+        "D13",
+        "C12"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 1,
+        "H": 5,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "slam",
+      "deal": 54,
+      "seed": 2026161853,
+      "seat": "S",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H12",
+        "H5",
+        "S2",
+        "H9",
+        "D13",
+        "H2",
+        "H11",
+        "C14",
+        "S7",
+        "H6",
+        "C10",
+        "D11",
+        "S10"
+      ],
+      "hcp": 11,
+      "shape": {
+        "S": 3,
+        "H": 6,
+        "D": 2,
+        "C": 2
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "slam",
+      "deal": 70,
+      "seed": 2026161869,
+      "seat": "S",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:2N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D9",
+        "H10",
+        "C12",
+        "H2",
+        "C8",
+        "H5",
+        "H11",
+        "C5",
+        "S13",
+        "S4",
+        "H12",
+        "D10",
+        "H14"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 2,
+        "H": 6,
+        "D": 2,
+        "C": 3
+      },
+      "why": "Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.",
+      "convention": "Stenberg"
+    },
+    {
+      "theme": "trumf",
+      "deal": 69,
+      "seed": 2026181868,
+      "seat": "N",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:2D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D2",
+        "D9",
+        "D10",
+        "C12",
+        "S8",
+        "H5",
+        "S13",
+        "D3",
+        "H14",
+        "S12",
+        "S2",
+        "D14",
+        "C11"
+      ],
+      "hcp": 16,
+      "shape": {
+        "S": 4,
+        "H": 2,
+        "D": 5,
+        "C": 2
+      },
+      "why": "Fortsättningen efter denna höjning beskrivs inte i dokumentet.",
+      "convention": "trumfstöd"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 17,
+      "seed": 2026211816,
+      "seat": "N",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:1H",
+        "W:P",
+        "N:3C",
+        "E:P",
+        "S:3D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D8",
+        "C4",
+        "D14",
+        "C13",
+        "C10",
+        "S13",
+        "D4",
+        "D9",
+        "S14",
+        "D11",
+        "H11",
+        "C6",
+        "C3"
+      ],
+      "hcp": 16,
+      "shape": {
+        "S": 2,
+        "H": 1,
+        "D": 5,
+        "C": 5
+      },
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "convention": "övrigt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 19,
+      "seed": 2026211818,
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:1S",
+        "W:P",
+        "N:2D",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C11",
+        "D7",
+        "S5",
+        "C4",
+        "D10",
+        "H3",
+        "H14",
+        "H10",
+        "S4",
+        "D12",
+        "H12",
+        "D14",
+        "H2"
+      ],
+      "hcp": 13,
+      "shape": {
+        "S": 2,
+        "H": 5,
+        "D": 4,
+        "C": 2
+      },
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "convention": "övrigt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 20,
+      "seed": 2026211819,
+      "seat": "S",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:1S",
+        "E:P",
+        "S:2C",
+        "W:P",
+        "N:2D",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H7",
+        "C9",
+        "H14",
+        "H9",
+        "S6",
+        "D13",
+        "S12",
+        "S14",
+        "C10",
+        "H5",
+        "C6",
+        "H6",
+        "C12"
+      ],
+      "hcp": 15,
+      "shape": {
+        "S": 3,
+        "H": 5,
+        "D": 1,
+        "C": 4
+      },
+      "why": "Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19.",
+      "convention": "Fjärde färg"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 26,
+      "seed": 2026211825,
+      "seat": "S",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:1S",
+        "E:P",
+        "S:3C",
+        "W:P",
+        "N:3H",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C14",
+        "H11",
+        "C8",
+        "D14",
+        "C12",
+        "C5",
+        "H4",
+        "D4",
+        "S10",
+        "C6",
+        "H12",
+        "H7",
+        "H14"
+      ],
+      "hcp": 17,
+      "shape": {
+        "S": 1,
+        "H": 5,
+        "D": 2,
+        "C": 5
+      },
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "convention": "övrigt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 57,
+      "seed": 2026211856,
+      "seat": "S",
+      "auction": [
+        "N:1C",
+        "E:P",
+        "S:1D",
+        "W:P",
+        "N:3D",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C4",
+        "D6",
+        "D7",
+        "S9",
+        "S11",
+        "D2",
+        "C10",
+        "S8",
+        "C5",
+        "H4",
+        "H14",
+        "S10",
+        "D12"
+      ],
+      "hcp": 7,
+      "shape": {
+        "S": 4,
+        "H": 2,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 3♦ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (Pass). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 58,
+      "seed": 2026211857,
+      "seat": "N",
+      "auction": [
+        "N:1D",
+        "E:P",
+        "S:1H",
+        "W:P",
+        "N:2C",
+        "E:P",
+        "S:2N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D3",
+        "D5",
+        "S3",
+        "C8",
+        "C7",
+        "D14",
+        "C10",
+        "D9",
+        "C6",
+        "D11",
+        "S13",
+        "H13",
+        "S11"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 3,
+        "H": 1,
+        "D": 5,
+        "C": 4
+      },
+      "why": "Öppnarens tredje bud efter 1 i färg, svar och öppnarens återbud beskrivs inte i dokumentet.",
+      "convention": "övrigt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 60,
+      "seed": 2026211859,
+      "seat": "N",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:1S",
+        "W:P",
+        "N:2C",
+        "E:P",
+        "S:2D",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D14",
+        "C14",
+        "H4",
+        "H8",
+        "S13",
+        "C3",
+        "H2",
+        "C10",
+        "S9",
+        "H10",
+        "S3",
+        "C11",
+        "H7"
+      ],
+      "hcp": 12,
+      "shape": {
+        "S": 3,
+        "H": 5,
+        "D": 1,
+        "C": 4
+      },
+      "why": "Budet är uttryckligen inte tillåtet efter fjärde färg enligt Nordisk Standard s. 19.",
+      "convention": "Fjärde färg"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 83,
+      "seed": 2026211882,
+      "seat": "N",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:1S",
+        "E:P",
+        "S:2C",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D3",
+        "C6",
+        "D8",
+        "S11",
+        "C14",
+        "S14",
+        "H3",
+        "S12",
+        "S9",
+        "H9",
+        "C5",
+        "D5",
+        "S4"
+      ],
+      "hcp": 11,
+      "shape": {
+        "S": 5,
+        "H": 2,
+        "D": 3,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 2NT när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (ej täckt). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    }
+  ],
+  "motorConflicts": [
+    {
+      "theme": "alla",
+      "deal": 65,
+      "seed": 2026111864,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C12",
+        "S14",
+        "H3",
+        "D10",
+        "H7",
+        "H12",
+        "D6",
+        "D14",
+        "C2",
+        "H13",
+        "H14",
+        "C7",
+        "D11"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 1,
+        "H": 5,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "stenberg",
+      "deal": 85,
+      "seed": 2026131884,
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C2",
+        "H12",
+        "D13",
+        "D6",
+        "H11",
+        "C7",
+        "S14",
+        "H13",
+        "S6",
+        "S5",
+        "S11",
+        "C11",
+        "S13"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 5,
+        "H": 3,
+        "D": 2,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 3,
+      "seed": 2026151802,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "S4",
+        "H8",
+        "S6",
+        "H11",
+        "H3",
+        "H14",
+        "D11",
+        "D13",
+        "D12",
+        "H6",
+        "S13",
+        "D3",
+        "C14"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 3,
+        "H": 5,
+        "D": 4,
+        "C": 1
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 19,
+      "seed": 2026151818,
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "H4",
+        "C8",
+        "H7",
+        "S3",
+        "C14",
+        "C10",
+        "D13",
+        "S2",
+        "S12",
+        "D12",
+        "H13",
+        "C13",
+        "S13"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 4,
+        "H": 3,
+        "D": 2,
+        "C": 4
+      },
+      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 37,
+      "seed": 2026151836,
+      "seat": "N",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:2N",
+        "E:P",
+        "S:3N",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C10",
+        "H6",
+        "C14",
+        "H11",
+        "S8",
+        "S5",
+        "S10",
+        "S14",
+        "D14",
+        "D10",
+        "H12",
+        "S11",
+        "H14"
+      ],
+      "hcp": 20,
+      "shape": {
+        "S": 5,
+        "H": 4,
+        "D": 2,
+        "C": 2
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 49,
+      "seed": 2026151848,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C9",
+        "D13",
+        "S13",
+        "C12",
+        "S11",
+        "S14",
+        "D14",
+        "H5",
+        "H8",
+        "H12",
+        "C10",
+        "H10",
+        "D9"
+      ],
+      "hcp": 19,
+      "shape": {
+        "S": 3,
+        "H": 4,
+        "D": 3,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "rkc",
+      "deal": 64,
+      "seed": 2026151863,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D14",
+        "H6",
+        "D13",
+        "S2",
+        "S14",
+        "C9",
+        "H14",
+        "H8",
+        "H3",
+        "C7",
+        "H13",
+        "D12",
+        "S12"
+      ],
+      "hcp": 22,
+      "shape": {
+        "S": 3,
+        "H": 5,
+        "D": 3,
+        "C": 2
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "slam",
+      "deal": 21,
+      "seed": 2026161820,
+      "seat": "S",
+      "auction": [
+        "N:1S",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D5",
+        "S6",
+        "C13",
+        "H12",
+        "C8",
+        "C12",
+        "S12",
+        "D13",
+        "S2",
+        "S10",
+        "C10",
+        "S13",
+        "S14"
+      ],
+      "hcp": 19,
+      "shape": {
+        "S": 6,
+        "H": 1,
+        "D": 2,
+        "C": 4
+      },
+      "why": "Motorn gav förslaget 6♠ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♠). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "slam",
+      "deal": 46,
+      "seed": 2026161845,
+      "seat": "S",
+      "auction": [
+        "N:1H",
+        "E:P",
+        "S:2N",
+        "W:P",
+        "N:3N",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C7",
+        "H8",
+        "H14",
+        "D7",
+        "D11",
+        "H13",
+        "C8",
+        "D14",
+        "H6",
+        "H11",
+        "S3",
+        "D13",
+        "C12"
+      ],
+      "hcp": 18,
+      "shape": {
+        "S": 1,
+        "H": 5,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 6♥ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (4♥). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 57,
+      "seed": 2026211856,
+      "seat": "S",
+      "auction": [
+        "N:1C",
+        "E:P",
+        "S:1D",
+        "W:P",
+        "N:3D",
+        "E:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "C4",
+        "D6",
+        "D7",
+        "S9",
+        "S11",
+        "D2",
+        "C10",
+        "S8",
+        "C5",
+        "H4",
+        "H14",
+        "S10",
+        "D12"
+      ],
+      "hcp": 7,
+      "shape": {
+        "S": 4,
+        "H": 2,
+        "D": 4,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 3♦ när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (Pass). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    },
+    {
+      "theme": "tvafarg",
+      "deal": 83,
+      "seed": 2026211882,
+      "seat": "N",
+      "auction": [
+        "S:1H",
+        "W:P",
+        "N:1S",
+        "E:P",
+        "S:2C",
+        "W:P"
+      ],
+      "actualCall": "P",
+      "hand": [
+        "D3",
+        "C6",
+        "D8",
+        "S11",
+        "C14",
+        "S14",
+        "H3",
+        "S12",
+        "S9",
+        "H9",
+        "C5",
+        "D5",
+        "S4"
+      ],
+      "hcp": 11,
+      "shape": {
+        "S": 5,
+        "H": 2,
+        "D": 3,
+        "C": 3
+      },
+      "why": "Motorn gav förslaget 2NT när spelaren passar, men underkänner samma bud när det prövas som faktiskt bud (ej täckt). Intern konflikt: sekvensen lämnas för AI-/expertanalys.",
+      "convention": "motorintern konflikt"
+    }
+  ]
+}
