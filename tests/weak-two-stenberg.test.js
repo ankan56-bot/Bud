@@ -2,9 +2,19 @@
 const assert=require('node:assert/strict');
 const R=require('../rattningsmotor.js');
 
-const opener=['H8','H9','H10','H11','H12','H13','S2','S3','D3','D4','C4','C5','C6'];
 function deal(responder){
   const deck=[];for(const s of ['S','H','D','C'])for(let n=2;n<=14;n++)deck.push(s+n);
+  assert.equal(responder.length,13);
+  assert.equal(new Set(responder).size,13);
+  const unavailable=new Set(responder),opener=[];
+  function take(suit,count){
+    for(const card of deck){
+      if(card[0]===suit&&!unavailable.has(card)&&opener.filter(x=>x[0]===suit).length<count)
+        opener.push(card);
+    }
+  }
+  take('H',6);take('S',2);take('D',2);take('C',3);
+  assert.equal(opener.length,13);
   assert.equal(new Set([...opener,...responder]).size,26);
   const rest=deck.filter(c=>!opener.includes(c)&&!responder.includes(c));
   return {N:opener,E:rest.slice(0,13),S:responder,W:rest.slice(13,26)};
