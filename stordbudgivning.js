@@ -167,12 +167,12 @@
     // 3♠ = trekortsstöd max; 3♣ = fjärde färg, utgångskrav.
     // "Min/max" mappas här till 12–14 respektive 15–17 hp; detta är
     // en tydligt markerad källtolkning, inte en ny grundsystemregel.
-    if(minimum&&L.H===5&&L.D===5)
-      return {exp:'3D',alt:[],why:'5-5 i hjärter och ruter med minimum (12–14 hp): 3♦ enligt Lathundens fortsättning efter 2NT-inviten.',
-        means:function(c){return c==='3D'?'5-5-fördelning, minimum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
     if(minimum&&L.H===6&&L.D===4)
-      return {exp:'3H',alt:[],why:'6-4 i hjärter och ruter med minimum (12–14 hp): 3♥ enligt Lathundens fortsättning efter 2NT-inviten.',
-        means:function(c){return c==='3H'?'6-4-fördelning, minimum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+      return {exp:'3D',alt:[],why:'6-4 i hjärter och ruter med minimum (12–14 hp): 3♦ enligt Lathundens fortsättning efter 2NT-inviten.',
+        means:function(c){return c==='3D'?'6-4-fördelning, minimum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+    if(minimum&&L.H===5&&L.D===5)
+      return {exp:'3H',alt:[],why:'5-5 i hjärter och ruter med minimum (12–14 hp): 3♥ enligt Lathundens fortsättning efter 2NT-inviten.',
+        means:function(c){return c==='3H'?'5-5-fördelning, minimum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
     if(maximum&&L.S===3)
       return {exp:'3S',alt:[],why:'Tre spader och maximum (15–17 hp): 3♠ visar trekortsstöd; annars skulle 2♠ ha bjudits direkt.',
         means:function(c){return c==='3S'?'3-korts spaderstöd, maximum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
