@@ -37,7 +37,7 @@ assert.equal(response(twelveStp).sourceGap,false);
 
 // 14 STP plus 3+ support also matches the separate 3-level invit range;
 // the Lathund does not give priority between that and 2NT Stenberg.
-const invitOverlap=['H2','H3','H4','H5','H6','H7','S14','D13','D2','C12','C11','C10','C2'];
+const invitOverlap=['H2','H3','H4','H5','H6','H7','S14','D14','D2','C12','C11','C10','C2'];
 const invitOverlapResult=response(invitOverlap);
 assert.equal(invitOverlapResult.exp,null);
 assert.equal(invitOverlapResult.sourceGap,true);
