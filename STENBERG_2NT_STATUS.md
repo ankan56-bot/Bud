@@ -57,3 +57,13 @@ PDF:en beskriver inte svarshandens fullständiga fortsättning efter öppnarens 
 ## Tester
 
 tests/stenberg-2nt.test.js täcker hög- och lågfärg, 13 htp-gränsen, 4+ stöd, sök-högfärg-regeln, singletonvisningar, 3NT, 15+ htp utan singleton, live-läge, 100 deterministiska Stenberghänder, lågfärgsutgång och RKC-handoff.
+
+## Separat 2NT-betydelse efter inkliv – får inte blandas ihop med Stenberg
+
+- Sekvensen 1♥–1♠–2♦–2NT är ett svar på partnerns inkliv 1♠ efter motståndarnas öppning 1♥ och svar 2♦.
+- Enligt användarens uttryckliga precisering är 2NT här invitativt och visar 11–12 hp.
+- PDF:ens generella regel på s. 7 anger 11–13 hp, balanserad hand och bra håll i öppningsfärgen efter inkliv. Den lokala 11–12-gränsen är därför registrerad som användarbekräftad precisering; 13 hp lämnas för expertavstämning och får inte tyst läggas in i denna exakta gren.
+- Handen ska vara balanserad och ha bra håll i motståndarnas öppningsfärg.
+- Detta bud är aldrig Stenberg. Det får inte ärva Stenbergs utgångskrav, 4-kortsstödskrav eller återbudslogik.
+- Testfall ska täcka 11 och 12 hp med rätt handprofil samt avvisa fel styrka, obalanserad hand och saknat håll.
+
