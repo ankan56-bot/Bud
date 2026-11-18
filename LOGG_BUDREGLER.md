@@ -460,3 +460,12 @@ Budnivån för färgbuden beräknas efter den faktiska auktionen, så fjärde f�
 4NT får bara klassas som ess-/nyckelkortsfråga i dokumenterade/avtalade sekvenser med rätt kontext. Ett godtyckligt 4NT utan fastställd trumf eller avtalad sangsekvens får inte automatiskt tolkas som essfråga.
 
 **Implementeringsstatus:** Sangens fyra-ess- och kungfråga har egen svarsväg och regressionstester. Trumfens fem-nyckelkortsfråga behåller egna svarskoder. Trumfens 5NT-kungfråga hålls separat från sangens antalstabell; där färgvis fortsättning ännu inte kan avgöras entydigt markeras ej täckt i stället för att gissa. Äldre kommentarer där 5NT efter fyra ess behandlades som slutbud är ersatta.
+
+
+## Trumfens 5NT-kungfråga – korrigering 2026-11-18
+
+- Rättat turordningsfelet där svarshanden efter partnerns 5NT kunde få det vanliga RKC-svaret i stället för att hanteras som kungfråga.
+- 5NT efter trumf-RKC identifieras nu direkt som kungfråga.
+- Den färgvisa kungvisningen är fortfarande ej täckt eftersom exakt budstege inte är fastställd. Lägsta relevanta kung först; singelton/renons räknas som kung; trumffärgen får inte hoppas över.
+- Den äldre betydelsen 5NT = 3 nyckelkort och renons har tagits bort från den aktiva svarsvägen. Tre nyckelkort och renons loggas ej täckt tills ersättningsbudet är fastställt.
+- main är orörd.
