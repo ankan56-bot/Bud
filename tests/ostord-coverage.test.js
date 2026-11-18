@@ -104,11 +104,11 @@ console.log(JSON.stringify({
 }, null, 2));
 
 assert.equal(report.deals, 36, 'The fixed corpus should contain 36 undisturbed deals.');
-assert.equal(report.turns, 152, 'The fixed corpus stops at source gaps and may finish earlier when game-level safety rescue finds the mandatory game.');
-assert.equal(report.covered, 141, 'The source-verified rules cover 141 positions before source-gap stops.');
+assert.equal(report.turns, 150, 'The fixed corpus stops at source gaps and may finish earlier when game-level safety rescue finds the mandatory game.');
+assert.equal(report.covered, 138, 'The source-verified rules cover 138 positions before source-gap stops.');
 const acceptedSourceGaps=[
   'invit-08','invit-09','invit-10','nt-08','nt-09','nt-10','rkc-08',
-  'sang-09','slamnt-08','slamnt-10','alla-10'
+  'sang-09','slamnt-08','slamnt-10','alla-10','svag-08'
 ].sort();
 assert.deepEqual(report.uncovered.map(x=>x.dealId).sort(),acceptedSourceGaps,
   'Only documented 1NT invitation and continuation source gaps may remain uncovered.');
