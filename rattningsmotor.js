@@ -661,6 +661,29 @@ var Rattning = (function(){
     return {exp:exp,alt:[],why:why,means:means,conv:T_?'Blackwood 5 ess':'Fyr-essfråga utan trumf'};
   }
   function rkcKingReply(h){var kings=h.kings,exp;if(kings===0||kings===4)exp='6C';else if(kings===1)exp='6D';else if(kings===2)exp='6H';else exp='6S';return {exp:exp,alt:[],why:kings+' kungar. Svar på 5NT-kungfrågan i sang.',means:function(c){if(c==='6C')return '0 eller 4 kungar.';if(c==='6D')return '1 kung.';if(c==='6H')return '2 kungar.';if(c==='6S')return '3 kungar.';return null;},conv:'Kungfråga i sang'};}
+  // Trumfens kungfråga: visa första sidokung (eller singelton/renons)
+  // i C-D-H-ordning som ryms under trumfen. Trumfkungen är redan känd.
+  function rkcTrumpKingClose(a,p,trump){
+    var known=SU.map(function(s){
+      return s===trump || a.has(s,13) || p.has(s,13) || a.L[s]<=1 || p.L[s]<=1;
+    });
+    var all=known.every(Boolean),aces=a.aces+p.aces,hp=a.hp+p.hp;
+    var grand=all&&aces===4&&hp>=35;
+    return {exp:(grand?'7':'6')+trump,alt:[],why:grand
+      ?'Alla fyra ess och kungar (trumfkungen via RKC) är kända och paret har '+hp+' HP: storslam i trumf.'
+      :'Stanna i '+(6+trump)+'. Alla fyra ess, kungar och 35 HP är inte samtidigt bekräftade (HP '+hp+', ess '+aces+'/4).',
+      means:function(c){return c===((grand?'7':'6')+trump)?(grand?'Storslam':'Lillslam')+' i fastställd trumf.':null;},
+      conv:'Kungfråga i trumf'};
+  }
+  function rkcTrumpKingReply(h,p,trump){
+    var order=['C','D','H'];
+    for(var i=0;i<order.length;i++){
+      var s=order[i];
+      if(SU.indexOf(s)<SU.indexOf(trump) && (h.has(s,13)||h.L[s]<=1))
+        return {exp:'6'+s,alt:[],why:'Visar första sidokungen i ordningen klöver–ruter–hjärter som ryms under trumfen. '+(h.has(s,13)?'Kungen finns.':'Singelton/renons räknas som kung enligt överenskommelsen.'),means:function(c){return c==='6'+s?'Första relevanta sidokung visas.':null;},conv:'Kungfråga i trumf'};
+    }
+    return rkcTrumpKingClose(h,p,trump);
+  }
   function rkcNextStep(h,T_,r,stage){
     var exp,why;var means=function(c){if(c==='5N')return T_?'Kungfråga efter RKC-svaret.':'Kungfråga efter att alla fyra ess har bekräftats.';if(c==='6N')return 'Lillslam i sang.';if(c==='7N')return 'Storslam i sang.';if(T_&&c==='6'+T_)return 'Lillslam i trumffärgen.';if(T_&&c==='7'+T_)return 'Storslam i trumffärgen.';if(c==='P')return 'Pass.';return null;};
     if(!T_){if(stage==='kings'){var allKings=(r==='6C'&&h.kings===4)||(r==='6D'&&h.kings===3)||(r==='6H'&&h.kings===2)||(r==='6S'&&h.kings===1);exp=allKings?'7N':'6N';why=allKings?'Alla fyra ess och alla fyra kungar är bekräftade: 7NT.':'Minst en kung saknas: stanna i 6NT.';}else{var allAces=(r==='5C'&&h.aces===4)||(r==='5D'&&h.aces===3)||(r==='5H'&&h.aces===2)||(r==='5S'&&h.aces===1);exp=allAces?'5N':'6N';why=allAces?'Alla fyra ess är bekräftade: 5NT frågar efter kungarna.':'Minst ett ess saknas: stanna i 6NT.';}return {exp:exp,alt:[],why:why,means:means,conv:stage==='kings'?'Kungfråga i sang':'Fyr-essfråga utan trumf'};}
@@ -1076,7 +1099,7 @@ var Rattning = (function(){
       // och renons får inte återanvändas här.
       if(partnerKingAsk){
         return partnerTrumpAsk
-          ? NC('Trumfens 5NT-kungfråga är identifierad. Kungarna ska visas färgvis med lägsta relevanta kung först; singelton/renons räknas som kung och trumffärgen får inte hoppas över. Den exakta budstegen är inte entydigt fastställd och loggas ej täckt.','', 'Blackwood 5 ess')
+          ? rkcTrumpKingReply(h,H(st.hands[pt]),partnerTrumpAsk)
           : rkcKingReply(h);
       }
       if(!afterPartnerAsk.length)return rkcReply(h,partnerTrumpAsk);
@@ -1102,7 +1125,7 @@ var Rattning = (function(){
             means:function(c){return c==='6'+agreedTrump?'6 i fastställd trumf efter 5C/5D-svar och partnerns återgång till 5 i trumf.':null},
             conv:'Blackwood 5 ess'};
         }
-        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return rkcNextStep(h,agreedTrump,kingResponse.c,'kings');}return rkcNextStep(h,agreedTrump,response);}
+        if(isBid(b.c)||b.c==='P'){var kingAskMade=prior.slice(myAskIndex+1).some(function(x){return x.s===me&&x.c==='5N';});if(kingAskMade){var kingResponse=prior.slice(myAskIndex+1).filter(function(x){return x.s===pt&&isBid(x.c);}).slice(-1)[0];if(kingResponse)return agreedTrump?rkcTrumpKingClose(h,H(st.hands[pt]),agreedTrump):rkcNextStep(h,null,kingResponse.c,'kings');}return rkcNextStep(h,agreedTrump,response);}
       }
     }
 
