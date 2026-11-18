@@ -467,7 +467,7 @@ Budnivån för färgbuden beräknas efter den faktiska auktionen, så fjärde f�
 - Rättat turordningsfelet där svarshanden efter partnerns 5NT kunde få det vanliga RKC-svaret i stället för att hanteras som kungfråga.
 - 5NT efter trumf-RKC identifieras nu direkt som kungfråga.
 - Den färgvisa kungvisningen är fortfarande ej täckt eftersom exakt budstege inte är fastställd. Lägsta relevanta kung först; singelton/renons räknas som kung; trumffärgen får inte hoppas över.
-- Den äldre betydelsen 5NT = 3 nyckelkort och renons har tagits bort från den aktiva svarsvägen. Tre nyckelkort och renons loggas ej täckt tills ersättningsbudet är fastställt.
+- Den äldre betydelsen 5NT = 3 nyckelkort och renons är helt borttagen. Tre nyckelkort och renons använder det vanliga 5♣-svaret i RKC-tabellen; det skapar inte längre ett `ej täckt`-fall.
 - main är orörd.
 
 
@@ -518,3 +518,6 @@ Användarens förtydligande:
 - Efter visningen rekommenderar frågeställaren slutbudet 6/7 i trumf enligt samma kumulativa villkor.
 - Regressionstestet för trumfens 5NT-kungfråga uppdaterat.
 - Testkörning/CI är ännu inte verifierad; ändringen är implementerad men ska inte betraktas som testgodkänd.
+
+## Förtydligande – tre nyckelkort och renons, 2026-11-18
+Användarens beslut: specialfallet ska inte längre behandlas som ej täckt. Den gamla specialgrenen är borttagen ur både huvudmotor och exportmotor. Tre nyckelkort ger ordinarie 5♣-svar även när handen har renons. 5NT är fortsatt reserverat för kungfrågan efter RKC-svaret.
