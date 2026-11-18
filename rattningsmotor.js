@@ -640,7 +640,6 @@ var Rattning = (function(){
 
     if (T_) {
         if (kc === 0) exp = '5C';
-        else if (kc === 3 && vd) return NC('Tre nyckelkort och renons: den äldre 5NT-renonsvisningen är ersatt av parets överenskommelse att 5NT är kungfråga. Något entydigt ersättningsbud är inte fastställt; loggas ej täckt.', means, 'Blackwood 5 ess');
         else if (kc === 3) exp = '5C';
         else if (kc === 1 || kc === 4) exp = '5D';
         else if (voids.length===1) {
