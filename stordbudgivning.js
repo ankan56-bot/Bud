@@ -104,12 +104,13 @@
       return NC('1♥–1♠–2♣–2NT kräver enligt Nordisk standard s. 3: 10–12 hp, balanserad hand, exakt två hjärter och håll i spader och ruter. Handen uppfyller inte hela profilen.',means,'svar efter tvåfärgshand',false);
     }
 
-    // User-confirmed exact branch 1♥–1♠–2♦–2NT: invit, 11–12 hp.
-    // This is distinct from Stenberg and from the 2♣ branch above.
+    // Exakt sekvens 1♥–1♠–2♦–2NT:
+    // tre färger har visats; 2NT är invit 11–12 hp och visar håll i objudna ♣.
+    // Sang är invit, inte krav. Ny färg är krav enligt separat regel.
     if(opening==='1H'&&response==='1S'&&rebid==='2D'&&oh.L.H>=4&&oh.L.D>=4){
-      if(h.bal&&hp>=11&&hp<=12)
-        return {exp:'2N',alt:[],why:hp+' hp och balanserad hand: 2NT är invit efter 1♥–1♠–2♦ enligt användarens uttryckliga systemprecisering.',means:function(c){return c==='2N'?'11–12 hp, balanserad hand; naturlig 2NT-invit efter 1♥–1♠–2♦.':null},conv:'svar efter tvåfärgshand',ruleStatus:'user_confirmed'};
-      return NC('Efter 1♥–1♠–2♦ visar 2NT enligt den användarbekräftade regeln en balanserad invit med 11–12 hp. Handen uppfyller inte hela profilen.',means,'svar efter tvåfärgshand',false);
+      if(hp>=11&&hp<=12&&h.stop('C'))
+        return {exp:'2N',alt:[],why:hp+' hp och klöverhåll: 2NT är invit efter 1♥–1♠–2♦.',means:function(c){return c==='2N'?'11–12 hp och håll i den enda objudna färgen, klöver; 2NT är invit, inte krav.':null},conv:'svar efter tvåfärgshand',ruleStatus:'user_confirmed'};
+      return NC('Efter 1♥–1♠–2♦ visar 2NT en invit med 11–12 hp och håll i den enda objudna färgen, klöver. Handen uppfyller inte hela profilen.',means,'svar efter tvåfärgshand',false);
     }
 
     // D. Öppnaren har visat två färger; styrkan är ännu inte begränsad.
