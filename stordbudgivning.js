@@ -176,10 +176,10 @@
     if(maximum&&L.S===3)
       return {exp:'3S',alt:[],why:'Tre spader och maximum (15–17 hp): 3♠ visar trekortsstöd; annars skulle 2♠ ha bjudits direkt.',
         means:function(c){return c==='3S'?'3-korts spaderstöd, maximum.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
-    if(maximum)
-      return {exp:'3C',alt:[],why:'Maximum (15–17 hp) utan den särskilda trekortsspadergrenen: 3♣ är fjärde färg och utgångskrav.',
-        means:function(c){return c==='3C'?'Fjärde färg, utgångskrav.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
-    return {exp:'P',alt:[],why:'Minimum (12–14 hp) utan 5-5- eller 6-4-fördelningen: pass. 3NT är märkt Plus i Lathunden och ingår inte i grundprofilen.',
+    if(hp>=13&&hp<=17)
+      return {exp:'3C',alt:[],why:hp+' hp: fjärde färg 3♣ är utgångskrav enligt den etablerade 13+-regeln; särskilda 5-5/6-4- och 3-spadersgrenar har prövats först.',
+        means:function(c){return c==='3C'?'Fjärde färg, 13+ hp, utgångskrav.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
+    return {exp:'P',alt:[],why:'12 hp och ingen 5-5- eller 6-4-fördelning: pass med svag/minimum hand. 3NT är märkt Plus i Lathunden och ingår inte i grundprofilen.',
       means:function(c){return c==='P'?'Pass med minimum utan den beskrivna fördelningsgrenen.':null},conv:'2NT-invit',soft:true,ruleStatus:'source_interpretation'};
   }
 
