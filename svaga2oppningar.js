@@ -99,7 +99,7 @@
     }else{
       return NC('Svar efter svag tvåa: handen passar inte de uttryckligen angivna villkoren för 5+ färg eller Stenberg 2NT.');
     }
-    return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false};
+    return {exp:exp,alt:alt,why:why,means:means,conv:'svag tvåa',soft:false,sourceGap:false};
   }
   function open2w(h,oc,r){
     var o=st_(oc),hp=h.hp,exp,why,alt=[];
