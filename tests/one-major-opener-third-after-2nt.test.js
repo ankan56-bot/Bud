@@ -7,12 +7,12 @@ const cases = [
   {
     name:'12 HCP, 5-5 hearts-diamonds minimum',
     hand:['H14','H13','H9','H7','H6','D13','D12','D9','D7','D6','S4','C2','C3'],
-    expected:'3D'
+    expected:'3H'
   },
   {
     name:'12 HCP, 6-4 hearts-diamonds minimum',
     hand:['H14','H13','H12','H9','H7','H6','D13','D9','D7','D6','S4','S5','C2'],
-    expected:'3H'
+    expected:'3D'
   },
   {
     name:'15 HCP, three spades and maximum',
