@@ -176,11 +176,11 @@
 3. Hänvisningar till Plus, PRO, Bättre bud, MeraBud och Slam är inte automatiskt obligatoriska.
 4. Alla sekvenser som inte kan bedömas säkert ska sparas separat för expertgranskning.
 
-### A16. 2NT efter partnerns inkliv – lokal precisering
 
-- Exakt sekvens: 1♥–1♠–2♦–2NT.
-- Användaren har fastställt att 2NT är invit och visar 11–12 hp.
-- Nordisk Standard s. 7 anger generellt 11–13 hp, balanserad hand och bra håll i öppningsfärgen efter inkliv med 1♥/♦.
-- **Status:** Implementera den uttryckligen bekräftade 11–12-gränsen i denna sekvens. 13 hp och eventuell utvidgning till andra inklivsfärger ska hållas separat för expertavstämning; ändra inte användarens exakta sekvens genom generell färgsubstitution.
-- Detta 2NT är ett konkurrenssvar på inkliv och får aldrig klassas som Stenberg.
+### A16. Fortsättning 1♥–1♠–2♦–2NT
+
+- Användaren har fastställt att 2NT efter denna exakta sekvens är invit med 11–12 hp.
+- Detta är svarshandens andra bud efter öppnarens 2♦-återbud, inte ett svar på inkliv och inte Stenberg.
+- Nordisk standard s. 3 beskriver separat 1♥–1♠–2♣–2NT med 10–12 hp, balanserad hand, exakt två hjärter och håll i spader/ruter. Den grenen får inte mekaniskt kopieras till 2♦.
+- **Status:** 2♦-grenen är implementerad med användarens 11–12 hp och balanserad hand. Eventuella ytterligare fördelnings-/hållkrav är inte tillagda utan uttryckligt stöd.
 
