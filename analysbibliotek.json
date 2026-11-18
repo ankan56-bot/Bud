@@ -9191,7 +9191,7 @@
       "conditions": [
         "Exakt sekvens: 1♥–Pass–1♠–Pass–2♦–Pass–2NT–Pass.",
         "Svarshandens 2NT är en naturlig invit med 11–12 hp; detta intervall är användarbekräftat.",
-        "Lathundens tryckta sida 18 anger: pass svagt; 3♣ fjärde färg/utgångskrav; 3♦ 5-5 minimum; 3♥ 6-4 minimum; 3♠ tre spader maximum.",
+        "Lathundens tryckta sida 18 anger: pass svagt; 3♣ fjärde färg/utgångskrav; 3♦ 6-4 minimum; 3♥ 5-5 minimum; 3♠ tre spader maximum.",
         "För körbar logik tolkas minimum som 12–14 hp och maximum som 15–17 hp. Den numeriska uppdelningen är en mjuk källtolkning och inte en separat fastställd grundregel.",
         "3NT är märkt Plus i lathunden och ingår inte i Nordisk Standard-grenarna."
       ],
@@ -9220,12 +9220,12 @@
             {
               "call": "3♦",
               "next": "t42_invite_3d",
-              "label": "5-5 i hjärter/ruter, minimum 12–14 hp"
+              "label": "6-4 i hjärter/ruter, minimum 12–14 hp"
             },
             {
               "call": "3♥",
               "next": "t42_invite_3h",
-              "label": "6-4 i hjärter/ruter, minimum 12–14 hp"
+              "label": "5-5 i hjärter/ruter, minimum 12–14 hp"
             },
             {
               "call": "3♠",
@@ -9281,11 +9281,11 @@
             "Pass",
             "3♦"
           ],
-          "meaning": "5-5-fördelning, minimum",
-          "analysis": "Öppnaren visar 5-5 i hjärter och ruter med minimum. Runtime tolkar minimum som 12–14 hp; tolkningen är soft.",
+          "meaning": "6-4-fördelning, minimum",
+          "analysis": "Öppnaren visar 6-4 i hjärter och ruter med minimum. Runtime tolkar minimum som 12–14 hp; tolkningen är soft.",
           "branches": [],
           "handProfile": {
-            "opener": "12–14 hp, minimum, exakt 5 hjärter och 5 ruter.",
+            "opener": "12–14 hp, minimum, exakt 6 hjärter och 4 ruter.",
             "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
           },
           "soft": true,
@@ -9304,11 +9304,11 @@
             "Pass",
             "3♥"
           ],
-          "meaning": "6-4-fördelning, minimum",
-          "analysis": "Öppnaren visar 6-4 i hjärter och ruter med minimum. Runtime tolkar minimum som 12–14 hp; tolkningen är soft.",
+          "meaning": "5-5-fördelning, minimum",
+          "analysis": "Öppnaren visar 5-5 i hjärter och ruter med minimum. Runtime tolkar minimum som 12–14 hp; tolkningen är soft.",
           "branches": [],
           "handProfile": {
-            "opener": "12–14 hp, minimum, exakt 6 hjärter och 4 ruter.",
+            "opener": "12–14 hp, minimum, exakt 5 hjärter och 5 ruter.",
             "responder": "Har inviterat med naturliga 2NT, 11–12 hp efter 1♥–1♠–2♦."
           },
           "soft": true,
