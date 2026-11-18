@@ -1,5 +1,7 @@
 # Grundregler för 4NT i sang och med fastställd trumf
 
+Detta dokument är den aktiva regelprofilen för tränaren. Den ersätter äldre lokala regler, kodkommentarer och analysnoder som anger en annan betydelse för kungfrågan.
+
 ## Sang – fyra ess
 4NT frågar efter fyra ess i uttryckligen avtalade sangsekvenser.
 | Svar | Betydelse |
@@ -30,15 +32,11 @@ Saknas minst en kung stannar paret i 6NT. Endast alla fyra ess plus alla fyra ku
 | 5♥ | 2 nyckelkort utan trumfdam |
 | 5♠ | 2 nyckelkort med trumfdam |
 
-Efter nyckelkortssvaret används 5NT som kungfråga. Lägsta relevanta kung visas först och därefter nästa enligt färgordningen. Singelton/renons räknas som kung i den färgen. Om minst två kungar saknas eller inte kan säkerställas är stoppbudet 6 i trumf följt av pass. Trumffärgen får inte hoppas över på 6-nivån.
+Efter nyckelkortssvaret används 5NT som kungfråga. **5NT betyder aldrig längre 3 nyckelkort och renons.** Kungarna visas färgvis i stigande färgordning, lägsta relevanta kung först och därefter nästa enligt samma ordning. Singelton eller renons räknas som kung i den färgen. Trumffärgen får inte hoppas över i visningen. Om minst två kungar saknas eller inte kan säkerställas är stoppbudet 6 i trumf, därefter pass.
 
-## Gemensamma säkerhetsregler
+## Gemensamma regler
 - 4NT utan fastställd trumf är inte automatiskt essfråga; endast uttryckligen avtalade sekvenser omfattas.
-- Sangens 5NT-kungfråga och trumfens 5NT-kungfråga är skilda konventioner.
-- Oklara fortsättningar ska markeras ej täckta, inte fyllas med gissningar.
+- Sangens och trumfens 5NT-kungfrågor är separata: sang använder antalstabellen ovan, trumf använder färgvisning.
+- Dessa regler ersätter äldre betydelser i samtliga aktiva regler, kodkopior, analysnoder och träningsmaterial.
+- Oklara budval som inte följer av dessa regler markeras ej täckta; inga ytterligare konventioner får hittas på.
 - DDS är efterhandskontroll, inte budfacit.
-
-
-## Tillägg – trumfens 5NT-kungfråga, korrigering 2026-11-18
-
-Efter ett RKC-svar är 5NT kungfråga enligt parets senare uttryckliga överenskommelse. Den äldre källtextens betydelse 5NT = 3 nyckelkort och renons används därför inte längre i denna regelprofil. Trumfens svar på kungfrågan ska vara färgvis, lägsta relevanta kung först; singelton/renons räknas som kung i färgen och trumffärgen får inte hoppas över. Eftersom exakt budstege för färgvisningen inte är fullständigt fastställd markeras svaren ej täckta i stället för att motorn hittar på bud. Tre nyckelkort och renons saknar därmed ett automatiskt svar tills ett uttryckligt ersättningsbud har fastställts.
