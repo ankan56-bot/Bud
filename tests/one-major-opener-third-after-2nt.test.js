@@ -25,8 +25,13 @@ const cases = [
     expected:'3C'
   },
   {
-    name:'13 HCP, minimum without 5-5 or 6-4 shape',
+    name:'13 HCP, fourth suit game force from the established 13+ threshold',
     hand:['H14','H13','H9','H7','H6','D14','D9','D8','D7','S12','S9','C2','C3'],
+    expected:'3C'
+  },
+  {
+    name:'12 HCP, minimum without 5-5 or 6-4 shape',
+    hand:['H14','H13','H9','H7','H6','D14','D9','D8','D7','S11','S9','C2','C3'],
     expected:'P'
   },
   {
