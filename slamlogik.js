@@ -51,6 +51,16 @@
       for(var z=0;z<seq.length;z++)if(calls[endIndex-seq.length+1+z]!==seq[z])return false;
       return true;
     }
+    // Lathund s. 27: 4NT after a weak 2♦/2♥/2♠ opening is an ace ask
+    // with the opening suit as trump. Only the direct, uncontested sequence
+    // is activated here; other continuations are not inferred.
+    for(var wi=1;wi<callEntries.length;wi++){
+      var weakTwoOpen=callEntries[wi-1],weakTwoAsk=callEntries[wi];
+      if(/^2[DHS]$/.test(weakTwoOpen.c)&&weakTwoAsk.c==='4N'&&
+         side(weakTwoOpen.s)===sideWanted&&side(weakTwoAsk.s)===sideWanted&&
+         weakTwoOpen.s!==weakTwoAsk.s)
+        return weakTwoOpen.c[1];
+    }
     var strong2cPatterns=[
       {seq:['2C','2D','3C','3D','4N'],trump:'C'},
       {seq:['2C','2D','3H','3S','4N'],trump:'H'},
