@@ -72,12 +72,11 @@ test("two keycards and a club void are shown by 6C when clubs are below trumps",
   assert.equal(result?.exp, "6C", JSON.stringify(result));
 });
 
-test("three keycards and a void do not reuse the superseded 5NT response", () => {
+test("three keycards and a void use the ordinary 5C keycard response", () => {
   const hand = ["S14", "S13", "S10", "S9", "D14", "D10", "D9", "D8", "H10", "H9", "H8", "H7", "H6"];
   const result = responseFromSouthHand(hand);
   assert.deepEqual(Rattning.H(hand).L, { C: 0, D: 4, H: 5, S: 4 });
-  assert.equal(result?.exp, null);
-  assert.match(result?.why || "", /5NT-renonsvisningen är ersatt/i);
+  assert.equal(result?.exp, "5C", JSON.stringify(result));
 });
 
 test("two keycards and a heart void below spade trumps are shown by 6H", () => {
