@@ -46,8 +46,8 @@
   /* ––––– SVARSHANDENS ANDRA BUD EFTER ÖPPNARENS ÅTERBUD ––––– */
   function responderSecondBid(h,opening,response,rebid,openerHand){
     var first=st_(opening),resp=isBid(response)?st_(response):null;
-    var rb=isBid(rebid)?st_(rebid):null,oh=H(openerHand),hp=h.hp,L=h.L;
-    var totalHcp=hp+oh.hp,fitSuit=null,fit=0,total=0,threshold=0,game=null,invite=null;
+    var rb=isBid(rebid)?st_(rebid):null,oh=openerHand?H(openerHand):null,hp=h.hp,L=h.L;
+    var totalHcp=oh?hp+oh.hp:null,fitSuit=null,fit=0,total=0,threshold=0,game=null,invite=null;
     var means=function(c){
       if(c==='P')return 'Svagt svar: avstår från vidare budgivning.';
       if(c==='2N'||c==='3N')return 'Balanserad hand utan tillräckligt trumfstöd: invit eller utgång i sang.';
@@ -106,10 +106,18 @@
           means:function(c){return c==='2N'?'Naturlig invit i sang, 11–12 hp, balanserad hand.':null},
           conv:'invit i sang'};
       }
+      if(hp>=13){
+        return {exp:'3C',alt:[],why:hp+' hp efter 1♥–1♠–2♦: fjärde färg 3♣ är utgångskrav; 2NT är inte längre invitintervallet.',
+          means:function(c){return c==='3C'?'Fjärde färg, utgångskrav.':null},conv:'Fjärde färg'};
+      }
       if(h.bal&&hp<=10){
         return NC(hp+' hp efter 1♥–1♠–2♦: 2NT-inviten är fastställd till 11–12 hp. Denna hand ligger under intervallet; inget annat återbud är verifierat här.',means,'svar efter öppnarens återbud',true);
       }
+      if(!oh){
+        return NC('Efter 1♥–1♠–2♦ är endast 2NT med 11–12 balanserade HP eller fjärde färg med 13+ HP säkert avgörbart utan partnerns dolda hand.','', 'live',true);
+      }
     }
+    if(!oh)return NC('Denna fortsättning kräver öppnarens hand för att avgöra preferens eller färgval.','', 'svar efter öppnarens återbud',true);
 
     // D. Öppnaren har visat två färger; styrkan är ännu inte begränsad.
     if(rb&&rb!==first&&rb!=='N'&&oh.L[first]>=4&&oh.L[rb]>=4){
