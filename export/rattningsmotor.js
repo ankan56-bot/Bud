@@ -1821,7 +1821,8 @@ var Rattning = (function(){
         if(totalAces<4)return {why:'7NT kräver alla fyra ess. Paret har '+totalAces+' av fyra ess.'};
         if(totalKings<4)return {why:'7NT kräver alla fyra kungar. Paret har '+totalKings+' av fyra kungar.'};
       }else{
-        if(total<35)return {why:'Storslam i trumf kräver minst 35 gemensamma HP. Paret har '+total+'.'};
+        var grandSlamHp=a.hp+p.hp;
+        if(grandSlamHp<35)return {why:'Storslam i trumf kräver minst 35 gemensamma HP. Paret har '+grandSlamHp+'.'};
         if(totalAces<4)return {why:'Storslam i trumf kräver alla fyra ess. Paret har '+totalAces+' av fyra ess.'};
         if(totalKings<4)return {why:'Storslam i trumf kräver alla fyra kungar, inklusive trumfkungen. Paret har '+totalKings+' av fyra kungar.'};
         if(!a.has(suit,13)&&!p.has(suit,13))return {why:'Storslam i trumf kräver att trumfkungen är känd.'};
