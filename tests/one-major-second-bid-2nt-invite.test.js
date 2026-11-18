@@ -128,8 +128,8 @@ assert.equal(missingDiamondStop.stop('D'),false,'the negative case must lack a d
 
 // T40's recorded two-suit example is specific: 1♣–1♦–1♥.
 // It remains a separate 10–12 HCP balanced invitation, not a colour-swap template.
-const t40Responder=['S14','S13','S7','S2','H12','H8','H3','D10','D8','D3','C10','C8','C3'];
-const t40Opener=['C14','C13','C9','C7','D14','D9','D7','D6','H12','H9','H7','S9','S6'];
+const t40Responder=['S14','S13','S7','S2','H12','H8','H3','D13','D8','D3','C10','C8','C3'];
+const t40Opener=['C14','C13','C9','C7','D14','D9','H14','H11','H9','H7','H6','S9','S6'];
 const t40Hands=dealForResponder(t40Responder,t40Opener);
 const t40Node=R.nodeFor({hands:t40Hands,dealer:'N',bids:[
   {s:'N',c:'1C'},{s:'E',c:'P'},{s:'S',c:'1D'},{s:'W',c:'P'},
