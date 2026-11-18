@@ -30,9 +30,15 @@ Syfte: varje 2NT ska bedömas utifrån hela den faktiska budsekvensen. Ett 2NT-b
 
 - Direkt Stenberg efter 1 i färg kräver att 2NT är svarshandens omedelbara bud. Senare 2NT-bud i exempelvis 1♥–1♠–2♦–2NT går till sin egen sekvensregel.
 - 2NT efter svag tvåöppning är en separat Stenberggren; den får inte använda den tidigare 9–10 hp-inviten.
+- 2NT efter motståndarnas inkliv över vår öppning (11–12 hp) är en annan regel än 2NT som svar på partnerns inkliv (11–13 hp). Källkontexten måste följa med till svarsmotorn; intervallen får inte slås ihop.
 - Direkt 4NT efter svag tvåöppning använder öppningsfärgen som trumf. RKC-igenkänningen är avgränsad till just den direkta sekvensen, så Stayman- och andra 4NT-frågor inte fångas av misstag.
 - När en etablerad 8-korts fit når utgångsgränsen ska utgången väljas före en svagare Stenberg-/invitgren.
 - Splinter är fortsatt avstängt enligt användarens beslut.
+
+## Konkurrensbud: olika 2NT-intervall
+
+- Efter motståndarnas 1-färgsinkliv över vår öppning visar 2NT 11–12 hp, jämn hand och håll i inklivsfärgen enligt Lathunden s. 35. Vid 13+ STP och 3+ stöd används i stället överbud enligt samma tabell.
+- När partnern själv har klivit in på 1-nivån visar 2NT 11–13 hp, balanserad hand och bra håll enligt Nordisk standard s. 7. Den grenen använder inte Lathundens 11–12-gräns.
 
 ## Kvarstående källuckor
 
