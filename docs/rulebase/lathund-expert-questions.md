@@ -176,7 +176,7 @@
 3. Hänvisningar till Plus, PRO, Bättre bud, MeraBud och Slam är inte automatiskt obligatoriska.
 4. Alla sekvenser som inte kan bedömas säkert ska sparas separat för expertgranskning.
 
-### A15. 1♥–1♠–2♦–2NT och öppnarens tredje bud
+### A18. 1♥–1♠–2♦–2NT och öppnarens tredje bud
 
 - **Svarshandens bud:** Användaren har bekräftat att 2NT är en naturlig invit med 11–12 hp. Detta är inte Stenberg.
 - **Fördelning:** Runtime kräver för närvarande balanserad hand som en soft/naturlig-NT-tolkning. Lathundsrutan anger inte svarshandens exakta fördelning, så detta villkor är inte fastställt och ska kunna ändras.
