@@ -514,13 +514,13 @@ var Rattning = (function(){
     if(r==='2N'){
       var sg=h.singles().filter(function(s){return L[s]===1&&s!==o});
       if(sg.length){var s1=sg[0];exp='3'+s1;why='Singel i '+SYM[s1]+': visa den på 3-nivå.';if(sg.length>1)alt=sg.slice(1).map(function(s){return '3'+s});soft=true}
-      else if(h.htp(o)>=15){exp='3'+o;why=h.htp(o)+' htp utan singel: 3 i färgen (15+ htp).';}
+      else if(openerStrengthHtp(h,o)>=15){exp='3'+o;why=openerStrengthHtp(h,o)+' htp utan singel: 3 i färgen (15+ htp).';}
       else if(h.bal&&hp>=12&&hp<=14){exp='3N';why=hp+' hp, balanserad hand: 3NT (12-14).'}
       else return {exp:null,alt:[],why:'Handen är varken 15+ htp utan singel eller 12-14 hp balanserad; Stenbergfortsättningen är inte täckt.',means:means,conv:'Stenberg'};
       return {exp:exp,alt:alt,why:why,means:means,conv:'Stenberg',soft:soft};
     }
     if(rs===o){
-      if(lv(r)===2&&maj(o)){var t=h.htp(o);
+      if(lv(r)===2&&maj(o)){var t=openerStrengthHtp(h,o);
         if(t>=19){exp='4'+o;why=t+' htp: utgång.'}
         else if(t>=16){exp='3'+o;why=t+' htp: 3 i färgen (naturlig invit).'}
         else{exp='P';why=t+' htp: högst 15, pass.'}
@@ -533,14 +533,14 @@ var Rattning = (function(){
     var low=function(s){return lowest(s,r)};
     var sup=rs!=='N'&&L[rs]>=4;
     var side4=SU.filter(function(s){return s!==o&&L[s]>=4});
-    if(sup){var tp=h.htp(rs);
+    if(sup){var tp=openerStrengthHtp(h,rs);
       if(tp<=16){exp=low(rs);why='4+ stöd i '+SYM[rs]+' och '+tp+' htp: lägsta höjning (12-16).'}
       else if(tp<=19){exp=jump(rs,r);why=tp+' htp med stöd: enkelhopp (17-19).'}
       else if(maj(rs)){exp='4'+rs;why=tp+' htp: hopp till utgång (20+).'}
       else return {exp:null,alt:[],why:'Med 20+ htp och lågfärgsstöd ska man först undersöka 3NT; dokumentet anger inte budet.',means:means,conv:'öppnarens 2:a bud'};
       soft=false;
     }else if(L[o]>=6&&!SU.some(function(s){return s!==o&&L[s]>=4})){
-      var ownSuitHtp=h.htp(o);
+      var ownSuitHtp=openerStrengthHtp(h,o);
       if(ownSuitHtp<=16){exp=low(o);why='Egen 6+ färg utan sidofärg: '+ownSuitHtp+' htp, lägsta nivå (12-16).'}
       else if(ownSuitHtp<=19){exp=jump(o,r);why='Egen 6+ färg: '+ownSuitHtp+' htp, enkelhopp (17-19).'}
       else if(ownSuitHtp>=20){exp=maj(o)?'4'+o:NC('Dokumentet anger inte budet för denna hand.',means).exp;why='Egen 6+ högfärg, 20+ htp: utgång.'}
@@ -556,7 +556,7 @@ var Rattning = (function(){
         var x=low(s2),rev=SU.indexOf(s2)>SU.indexOf(o)&&lv(x)===2&&lv(r)===1;
         var twoSuitFit=L[o]>=5&&L[s2]>=4&&L[o]+L[s2]>=9;
         // HTP räknas för egen 6+ färg eller 5–5, inte automatiskt för 5–4.
-        var twoSuitHtp=(L[o]>=6||(L[o]>=5&&L[s2]>=5))?h.htp(o):hp;
+        var twoSuitHtp=(L[o]>=6||(L[o]>=5&&L[s2]>=5))?openerStrengthHtp(h,o):hp;
         if(rev){
           if(hp>=18){exp=x;why='Reverse (andra färgen högre än första): 18+ hp och minst 5–4 i färgerna.'}
           else if(L[o]>=5){exp=low(o);why='Utan styrka för reverse: bjud om första färgen (visar 5+ färg).'}
