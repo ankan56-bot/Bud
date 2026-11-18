@@ -156,4 +156,4 @@ const otherAuction = [
 const other = R.decideLive({seat:'S',dealer:'N',auction:otherAuction,ownHand:cases[1].hand});
 assert.equal(other.exp,null,'the 2♦ rule must not leak into 2♣');
 
-console.log('1H-1S-2D-2NT invitation boundaries: passed (after-deal and live, 10/11/12/13 HCP).');
+console.log('Two-suit 2NT invitation boundaries: passed (1H-1S-2D, 1H-1S-2C and T40 example).');
