@@ -484,9 +484,9 @@
       // Alla svar på 1 i färg går genom trumfstödets huvudmodul.
       // Den avgör mellan splinter, Stenberg och ordinarie färgsvar.
       if(!opener&&d===1)return trumfstod.responder(h,c1);
-      if(opener&&d===2&&ours[1].c==='2N')
+      if(opener&&d===2&&ours[1].c==='2N'&&trumfstod.isStenbergSequence(prior))
         return trumfstod.openerSecondBid(h,c1,ours[1].c,st.hands[pt]?H(st.hands[pt]):null);
-      if(!opener&&d===3&&ours[1].c==='2N')
+      if(!opener&&d===3&&ours[1].c==='2N'&&trumfstod.isStenbergSequence(prior))
         return trumfstod.responderContinuation(h,c1,b.c,st.hands[pt]?H(st.hands[pt]):null,
           prior,rkcTrumpFromAuction,side(me),me);
       // Efter 1♦–1♥–2♠ är 2♠ öppnarens reverse och SH ska
