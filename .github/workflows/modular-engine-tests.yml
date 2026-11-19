@@ -1,0 +1,19 @@
+name: Modular engine tests
+on:
+  push:
+    branches:
+      - work/modular-engine-foundation
+  pull_request:
+  workflow_dispatch:
+jobs:
+  core-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Test auction core
+        run: node engine/core/auction.test.js
+      - name: Test shared core
+        run: node engine/core/core.test.js
