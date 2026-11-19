@@ -41,6 +41,7 @@
     if(first==='2C') return result('responses-2c','Strong 2C opening family');
     if(['2D','2H','2S'].includes(first)) return result('responses-weak-2','Weak 2 opening family');
     if(nonPass.length===2){
+      if(isSuitOpening(first)&&second==='1N') return result('rebid-nt-response','Opening hand acts after 1NT response');
       if(isSuitOpening(first)&&isSuit(second)){
         const level=Number(second[0]), suit=second[1], openingSuit=first[1];
         if(level===1) return result('rebid-1-over-1','Opening hand acts after 1-over-1 response');
