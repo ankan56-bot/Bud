@@ -11,6 +11,9 @@ const auction = replayAuction({ dealer: 'N', calls: ['1H','X','XX','P','P','P'] 
 assert.equal(auction.valid, true); assert.equal(auction.contractText, '1HXX');
 assert.equal(replayAuction({dealer:'N',calls:['1H','X','X']}).errors[0].code, 'already-doubled');
 assert.equal(replayAuction({dealer:'N',calls:['1H','P','1D']}).errors[0].code, 'bid-not-higher');
+const wrongTurnState = replayAuction({dealer:'N',calls:[{seat:'E',call:'1H'}]});
+assert.equal(wrongTurnState.errors[0].code, 'wrong-turn');
+assert.equal(wrongTurnState.contract, null);
 assert.equal(replayAuction({dealer:'N',calls:['P','P','P','P','1C']}).errors[0].code, 'after-end');
 
 const h = normalizeHand({S:'AKQJ',H:'AKQ',D:'AK',C:'5432'});
