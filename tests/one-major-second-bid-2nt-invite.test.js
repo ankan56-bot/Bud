@@ -111,6 +111,7 @@ for (const c of twoClubCases) {
   assert.ok(h.bal,c.name+': balanced hand');
   assert.equal(h.L.H,2,c.name+': exactly two hearts');
   assert.equal(h.stop('S'),true,c.name+': spade stop');
+  assert.equal(h.stop('D'),true,c.name+': diamond stop');
   const hands=dealForResponder(c.hand,openerTwoClub);
   const bids=[
     {s:'N',c:'1H'},{s:'E',c:'P'},
