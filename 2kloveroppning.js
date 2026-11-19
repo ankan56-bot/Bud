@@ -48,10 +48,13 @@
     else if(h.bal&&hp>=25&&hp<=27){exp='3N';why=hp+' hp jämn: 3NT (25-27).'}
     else if(h.bal&&hp>=28&&hp<=29){exp='4N';why=hp+' hp jämn: 4NT (28-29 enligt Lathunden s. 24; tillägg som inte anges i Nordisk Standard).';}
     else if(h.bal){return {exp:null,alt:[],why:hp+' hp balanserad hand efter 2♣–2♦ ligger utanför de källbelagda intervallen 22–29 hp. Sekvensen lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};}
-    else{var mj=['H','S'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]||(b==='S'?1:-1)});
-      var mn=['C','D'].filter(function(s){return L[s]>=5}).sort(function(a,b){return L[b]-L[a]});
-      if(mj.length){exp='2'+mj[0];why='5+ '+SYM[mj[0]]+': 2 i högfärgen (utgångskrav).'}
-      else if(mn.length){exp='3'+mn[0];why='5+ '+SYM[mn[0]]+': 3 i lågfärgen (utgångskrav).'}
+    else{
+      var mj=['H','S'].filter(function(s){return L[s]>=5});
+      var mn=['C','D'].filter(function(s){return L[s]>=5});
+      if(mj.length===1){exp='2'+mj[0];why='5+ '+SYM[mj[0]]+': 2 i högfärgen (utgångskrav).'}
+      else if(mj.length>1)return {exp:null,alt:[],why:'Obalanserad hand har 5+ i båda högfärgerna efter 2♣–2♦. Nordisk standard anger inte prioritet mellan högfärgerna; lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};
+      else if(mn.length===1){exp='3'+mn[0];why='5+ '+SYM[mn[0]]+': 3 i lågfärgen (utgångskrav).'}
+      else if(mn.length>1)return {exp:null,alt:[],why:'Obalanserad hand har 5+ i båda lågfärgerna efter 2♣–2♦ och saknar 5-korts högfärg. Nordisk standard anger inte prioritet mellan lågfärgerna; lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};
       else return {exp:null,alt:[],why:'Obalanserad hand utan 5-korts färg: dokumentet anger inte budet.',means:means,conv:'2♣-system'}}
     return {exp:exp,alt:alt,why:why,means:means,conv:'2♣-system',soft:false};
   }
