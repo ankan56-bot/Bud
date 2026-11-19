@@ -22,6 +22,7 @@
   var rkcReply=deps.slam.rkcReply, rkcNextStep=deps.slam.rkcNextStep;
   var rkcQueenReply=deps.slam.rkcQueenReply, rkcSlamNextStep=deps.slam.rkcSlamNextStep;
   var fourAceSlamNextStep=deps.slam.fourAceSlamNextStep;
+  var stayman2NT=deps.stayman2NT;
   var ntResp=deps.sang.ntResp, ntOpener=deps.sang.ntOpener, stay2=deps.sang.stay2;
   var transfer2=deps.sang.transfer2, ntOpenerInvit=deps.sang.ntOpenerInvit;
   var ntOpener3=deps.sang.ntOpener3, ntOpener3NTChoice=deps.sang.ntOpener3NTChoice;
@@ -334,29 +335,9 @@
     }
 
     if(c1==='1N'||c1==='2N'){var k=c1==='2N'?1:0;
-      if(k===1&&!opener&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
-        var staymanOpener=H(st.hands[pt]);
-        var staymanTotal=h.hp+staymanOpener.hp;
-        var spadeFit=h.L.S+staymanOpener.L.S;
-        var spadePoints=spadeFit>=8?partnershipPoints(h,staymanOpener,'S'):0;
-        if(h.bal&&staymanTotal>=25&&spadeFit<8){
-          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+staymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 25+ hp enligt projektregeln ger 3NT framför lågfärg.',means:function(c){return c==='3N'?'Balanserad hand och 25+ gemensamma hp: 3NT.':null},conv:'2NT-Stayman',ruleStatus:'user_confirmed'};
-        }
-        if(spadeFit>=8&&spadePoints>=26){
-          return {exp:'4S',alt:[],why:'8-korts spaderfit och '+spadePoints+' gemensamma spelpoäng: utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit.':null},conv:'2NT-Stayman'};
-        }
-        return NC('Efter 2NT–3♣–3♠ når paret inte en verifierad utgångsprofil för 3NT eller 4♠; fortsatt bud lämnas ej täckt.',null,'2NT-Stayman',true);
-      }
-      if(k===1&&opener&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
-        var knownStaymanOpener=H(st.hands[pt]);
-        var knownStaymanTotal=h.hp+knownStaymanOpener.hp;
-        var knownSpadeFit=h.L.S+knownStaymanOpener.L.S;
-        var knownSpadePoints=knownSpadeFit>=8?partnershipPoints(h,knownStaymanOpener,'S'):0;
-        if(h.bal&&knownStaymanTotal>=25&&knownSpadeFit<8)
-          return {exp:'3N',alt:[],why:'Balanserad svarshand och '+knownStaymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 25+ hp enligt projektregeln ger 3NT.',means:function(c){return c==='3N'?'Balanserad hand, 25+ gemensamma hp och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman',ruleStatus:'user_confirmed'};
-        if(knownSpadeFit>=8&&knownSpadePoints>=26)
-          return {exp:'4S',alt:[],why:'8-korts spaderfit och '+knownSpadePoints+' gemensamma spelpoäng: 26+ ger utgång i spader.',means:function(c){return c==='4S'?'Utgång med 8-korts spaderfit och 26+ gemensamma spelpoäng.':null},conv:'2NT-Stayman'};
-        return NC('Efter 2NT–3♣–3♠ når paret inte 26 poäng för 3NT/4♠ eller saknar nödvändig form. Situationen lämnas ej täckt.',null,'2NT-Stayman',true);
+      if(k===1&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
+        var stayman2NTNode=stayman2NT(h,H(st.hands[pt]),opener,partnershipPoints,NC);
+        if(stayman2NTNode)return stayman2NTNode;
       }
       if(c1==='1N'&&!opener&&d===2){
         var opening=prior.filter(function(x){return x.s===pt&&isBid(x.c)&&/^1[CDHS]$/.test(x.c)})[0];
