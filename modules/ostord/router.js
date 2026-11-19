@@ -33,8 +33,10 @@
     if(nonPass.includes('4N')) return result('slam','Contextual 4NT: slam module interprets full sequence');
     // Context-specific special families are kept active through continuations.
     if(first==='1N'&&second==='2C') return result('stayman','Stayman family after 1NT');
+    if(first==='1N'&&['2S','2N','3C','3D','3H','3S','3N'].includes(second)) return result('responses-1nt','Other direct response family after 1NT');
     if(first==='1N'&&['2D','2H'].includes(second)) return result('transfer','Transfer family after 1NT');
     if(first==='2N'&&['3C','3D','3H','3S'].includes(second)) return result(second==='3C'?'stayman-2nt':'transfer-2nt','Special response family after 2NT');
+    if(first==='2N') return result('responses-2nt','Other direct response family after 2NT');
     if(isSuitOpening(first)&&second==='2N') return result('stenberg','Stenberg: direct 2NT response to 1-level suit opening only');
     if(isSuitOpening(first)&&isSuit(second)&&second[1]===first[1]&&Number(second[0])>=2)
       return result('trumfstod','Direct support response in opening suit');
