@@ -118,6 +118,24 @@
         return NC('Efter 1♥–1♠–2♦ är endast 2NT med 11–12 balanserade HP eller fjärde färg med 13+ HP säkert avgörbart utan partnerns dolda hand.','', 'live',true);
       }
     }
+    // Källbunden Nordisk Standard, sidan med öppnarens andra bud:
+    // 1♥–1♠–2♣–3♥ = 10–12 HTP och 3-korts hjärterstöd.
+    if(first==='H'&&resp==='S'&&rb==='C'&&rebid==='3H'){
+      if(L.H===3&&h.htp('H')>=10&&h.htp('H')<=12)
+        return {exp:'3H',alt:[],why:h.htp('H')+' HTP och tre hjärter efter 1♥–1♠–2♣: 3♥ visar 3-kortsstöd och invitstyrka.',
+          means:function(c){return c==='3H'?'10–12 HTP och 3-korts hjärterstöd.':null},conv:'trumfstöd/invit'};
+      return NC('Efter 1♥–1♠–2♣ är 3♥ endast verifierat med exakt tre hjärter och 10–12 HTP. Övriga händer lämnas ej täckta.',means,'svar efter öppnarens återbud',true);
+    }
+
+    // Källbunden Nordisk Standard:
+    // 1♥–1♠–2♦–3♠ = 10–12 HTP och 6+ spader.
+    if(first==='H'&&resp==='S'&&rb==='D'&&rebid==='3S'){
+      if(L.S>=6&&h.htp('S')>=10&&h.htp('S')<=12)
+        return {exp:'3S',alt:[],why:h.htp('S')+' HTP och minst sex spader efter 1♥–1♠–2♦: 3♠ är invit med lång spader.',
+          means:function(c){return c==='3S'?'10–12 HTP och 6+ spader.':null},conv:'färginvit'};
+      return NC('Efter 1♥–1♠–2♦ är 3♠ endast verifierat med 6+ spader och 10–12 HTP. Övriga händer lämnas ej täckta.',means,'svar efter öppnarens återbud',true);
+    }
+
     // Separat, källbunden gren: 1♥–1♠–2♣–2NT.
     // Denna 2NT-invit är bara täckt med 10–12 HP, balanserad hand,
     // exakt två hjärter samt håll i både spader och ruter.
@@ -164,7 +182,7 @@
     if(!minimum&&!maximum)
       return NC('Öppnarens hand ligger utanför den verifierade 12–17 hp-ramen efter 1♥–1♠–2♦.','', '2NT-invit',true);
 
-    // Lathundens tryckta sida 18: 3♦ = 5-5 min; 3♥ = 6-4 min;
+    // Lathundens tryckta sida 18: 3♦ = 6-4 min; 3♥ = 5-5 min;
     // 3♠ = trekortsstöd max; 3♣ = fjärde färg, utgångskrav.
     // "Min/max" mappas här till 12–14 respektive 15–17 hp; 11 hp räknas
     // som minimum endast efter tre pass enligt fjärdehandsregeln. Detta är
