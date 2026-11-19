@@ -76,6 +76,11 @@ assert.equal(fiveFiveMinors.exp,null,'5-5 minors without a 5-card major must not
 assert.equal(fiveFiveMinors.sourceGap,true);
 const majorAndMinor=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:1,H:5,S:2}},'2D');
 assert.equal(majorAndMinor.exp,'2H','5-card major takes precedence over 5-card minor as stated by the source structure');
+const fiveCardMinorOnly=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:0,H:4,S:4}},'2D');
+assert.equal(fiveCardMinorOnly.exp,null,'a five-card minor is not enough for the source-defined 3m rebid');
+assert.equal(fiveCardMinorOnly.sourceGap,true);
+const sixCardClub=twoClub.reb2c({hp:20,bal:false,L:{C:6,D:2,H:3,S:2}},'2D');
+assert.equal(sixCardClub.exp,'3C','a unique six-card minor meets the source requirement');
 const noFiveCardSuit=twoClub.reb2c({hp:22,bal:false,L:{C:4,D:4,H:3,S:2}},'2D');
 assert.equal(noFiveCardSuit.exp,null);
 assert.match(noFiveCardSuit.why,/utan 5-korts färg/);
