@@ -9391,8 +9391,7 @@
             "1♠",
             "Pass",
             "2♣",
-            "Pass",
-            "3♥"
+            "Pass"
           ],
           "meaning": "3♥ – invit med tre korts hjärterstöd",
           "analysis": "Svarshanden visar 10–12 HTP och exakt tre hjärter. Öppnaren har visat minst fem hjärter med 2♣-återbud. Detta är en sekvensspecifik stöd-/invitgren.",
@@ -9415,8 +9414,7 @@
             "1♠",
             "Pass",
             "2♦",
-            "Pass",
-            "3♠"
+            "Pass"
           ],
           "meaning": "3♠ – invit med sexkortsfärg",
           "analysis": "Svarshanden visar 10–12 HTP och minst sex spader. Den långa spaderfärgen gör 3♠ till en invit. Denna branch gäller bara den exakta sekvensen.",
