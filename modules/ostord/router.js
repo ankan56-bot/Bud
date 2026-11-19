@@ -47,7 +47,7 @@
       if(isSuitOpening(first)&&isSuit(second)){
         const level=Number(second[0]), suit=second[1], openingSuit=first[1];
         if(level===1) return result('rebid-1-over-1','Opening hand acts after 1-over-1 response');
-        if(level===2&&suit!==openingSuit) return result('rebid-1-over-2','Opening hand acts after 1-over-2 response');
+        if(level===2&&suit!==openingSuit) return result('rebid-2-over-1','Opening hand acts after 2-over-1 response');
         if(level===2&&suit===openingSuit) return result('trumfstod','Opening hand acts after direct trump-support response');
         if(level>=3) return result('rebid-jump-response','Opening hand acts after jump response');
       }
