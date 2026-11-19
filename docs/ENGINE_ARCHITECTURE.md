@@ -1,41 +1,48 @@
-# Modular bidding engine — architecture
+# Modular bidding engine — architecture (v2)
 
-## Goal
-Make development faster and safer by isolating bidding rules into small modules with explicit contracts and tests. This is a parallel foundation; the current trainer remains untouched until migration is deliberate.
+## Why this design
+The engine is split by responsibility, not by arbitrary line count or PDF page. Small stable primitives are shared; system meanings live in isolated rule modules; analysis never changes the official rule result.
 
-## Source of truth
-- The authoritative source is the current searchable PDF: `Helan_lathunden_AI_sokbar_under_10MB 2.pdf`.
-- Existing user-approved Nordisk Standard rules and clarifications remain binding.
-- Never infer a rule by mechanically swapping suits. Validate every color variant for auction order, level, forcing status, strength, length, reverses, jumps, and exceptions.
-- Unclear cases are marked `unresolved`; they are not silently converted into rules.
+## Layers
+- **Core primitives**: calls, auction state/legality, cards/hands, shape, raw high-card points.
+- **Rule catalog**: provenance-bearing records (source page/box, verified/interpreted/unresolved).
+- **System modules**: grouped by bidding situation (openings, responses, rebids, trump support, NT, Stayman, transfers, competitive auctions, doubles). Each module owns its rules and tests.
+- **Decision pipeline**: legal auction context -> candidate rules -> conditions -> ranked applicable rules -> decision with trace. If no verified rule applies, return uncovered; never invent a bid.
+- **Analysis layer**: missed opportunities/contract quality, and diagnostic explanations. It can suggest a complementary analysis but cannot override verified system rules.
+- **Integration adapter**: UI/current engine connection is last and deliberately thin.
 
-## Proposed layers
-1. **Core**: auction legality, seat/partnership helpers, hand parsing, point calculation.
-2. **Rule modules**: opening, responses, rebids, trump support, NT, Stayman, transfers, competitive bidding, doubles.
-3. **Source rule records**: individual rules carry source page/box, status, and tests.
-4. **Analysis**: missed game/slam, wrong contract, unexplained/uncovered sequences. Analysis may not override a verified system rule.
-5. **Integration adapter**: gradually connects new modules to the UI and existing trainer.
+## Module boundaries
+Modules should be sized around a coherent bidding situation, usually a group of related sequences—not one file per trivial helper and not one giant file. Each module exports a small interface and owns its rule IDs/tests. Shared helpers must not import system modules. System modules may depend on core only. Cross-module conventions are invoked through explicit routing/continuation, never hidden coupling.
 
-## Rule record contract
-Each rule should be small and explicit:
-- id
-- source (PDF page/section)
-- status: verified | interpreted | unresolved
-- auction pattern
-- hand conditions
-- expected bid(s)
-- meaning / what it does not promise
-- forcing status
-- priority and exclusions where needed
-- tests
+## Rule record schema
+Each rule has:
+- stable `id`
+- `source`: PDF page and box/heading
+- `status`: `verified`, `interpreted`, or `unresolved`
+- `auctionPattern` and explicit seat/turn assumptions
+- `conditions` (structured, not executable prose)
+- `bid` / allowed alternatives
+- `meaning`, `notMeaning`, and `forcing`
+- `priority`, `excludes`, and `notes` when needed
+- test cases (positive, negative, boundary, overlap)
 
-## Development workflow
-1. Extract and formalize a source section.
-2. Validate legal and color-equivalent auction variants.
-3. Implement that section in a dedicated module.
-4. Add boundary, overlap, negative, and regression tests.
-5. Run module tests, then broader regression.
-6. Only then integrate.
+## Decision safety
+- Verified system rules outrank interpreted rules.
+- Unresolved rules are never executable.
+- Conflicting verified rules are an error, not resolved by file order.
+- A decision returns rule ID, source, status, matched conditions, rejected candidates and reason.
+- No match returns `uncovered`; no fallback bidding logic may silently create a system meaning.
 
-## First foundation module
-`engine/core/auction.js` is deliberately independent of bridge-system meanings. It validates turn order, contract-bid order, doubles/redoubles, and auction termination. It must not decide what a bid means.
+## Development cadence
+Extract one section from the PDF -> formalize and validate variants -> implement a dedicated module -> positive/negative/boundary/overlap tests -> module tests -> regression -> only then integrate.
+Color variants must be checked for level, order, forcing, jump/reverse, suit length and exceptions. No mechanical suit substitution.
+
+## Current foundation
+- `engine/core/calls.js`: canonical calls and contract ranking.
+- `engine/core/auction.js`: auction legality and termination.
+- `engine/core/cards.js`: card/suit/rank constants and validation.
+- `engine/core/hand.js`: normalized hand parsing/shape/validation.
+- `engine/core/points.js`: raw HCP only.
+- `engine/core/rule-record.js`: rule record validation.
+- `engine/core/decision.js`: deterministic rule selection, conflict detection and trace.
+- HTP/trump-fit valuation is intentionally not implemented until the user's precise approved rules are formalized.
