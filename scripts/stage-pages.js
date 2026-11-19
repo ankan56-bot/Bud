@@ -16,6 +16,8 @@ const runtimeFiles = [
   "svaga2oppningar.js",
   "inkliv.js",
   "dubbling.js",
+  "svar1farg.js",
+  "aterbud1farg.js",
   "ettoppningssvar.js",
   "hogfargsbudgivning.js",
   "lagfargsbudgivning.js",
