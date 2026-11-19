@@ -185,3 +185,15 @@ Facitstatus är nu explicit:
 - source_gap eller not_covered / EJ TÄCKT
 
 Motiveringar och alternativa bud visas utan att alternativa bud automatiskt klassas som fel. Källluckor stoppar huvudlinjen i stället för att fyllas med gissningar. Ostörd-lägets motståndarpassen är träningsantaganden och redovisas separat.
+
+## 8. Aktuell modulindelning (refaktorering)
+
+Dispatcherfilen `budbeslut.js` ska endast samordna sekvenskontekst och routa till avgränsade regelmoduler. Sekvensfamiljer extraheras med injicerade beroenden så att modulerna inte får egna parallella regeldefinitioner.
+
+- `opening-decision.js`: öppningsbedömning.
+- `2kloveroppning.js` + `two-club-sequences.js`: öppning 2♣ och fortsättningssekvenser.
+- `2nt-stayman.js`: avgränsad 2NT-Staymanfortsättning.
+- `terminal-pass.js`: terminala passbeslut.
+- `sangbudgivning.js`, `trumfstod.js`, `stenberg.js`, `hogfargsbudgivning.js`, `lagfargsbudgivning.js`, `svaga2oppningar.js`, `slamlogik.js`, `inkliv.js`, `dubbling.js`: separata systemområden.
+
+Nya moduler ska kopplas i tre ställen samtidigt: motorfactory/injektion, HTML-scriptordning och Pages staging-lista. Refaktorering får inte ändra budprioritet eller regler; sekvensluckor ska fortsätta ge EJ TÄCKT.
