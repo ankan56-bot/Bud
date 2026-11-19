@@ -13,8 +13,8 @@
   const isSuit = c => /^[1-7][CDHS]$/.test(normalize(c));
   const result = (module, reason) => Object.freeze({module,reason,confidence:'sequence'});
   function classify(input){
-    const auction=Array.isArray(input)?input:(input&&input.auction)||[];
-    const calls=auction.map(normalize).filter(Boolean);
+    const auction=Array.isArray(input)?input:(input&&Array.isArray(input.auction)?input.auction:(input&&Array.isArray(input.bids)?input.bids:[]));
+    const calls=auction.map(item=>normalize(typeof item==='string'?item:(item&& (item.c||item.call||item.bid)))).filter(Boolean);
     if(!calls.length) return result('opening','No calls yet');
     if(calls.some(c=>['X','XX'].includes(c)||(!isPass(c)&&!isSuit(c)&&!isNT(c))))
       return result('out-of-scope','Interference or unsupported call; competition is paused');
