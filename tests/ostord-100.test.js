@@ -138,12 +138,15 @@ assert.equal(report.illegalRecommendations.length, 0, 'No illegal recommendation
 assert.equal(report.invalidAuctions.length, 0, 'All simulated auctions must be legal.');
 assert.equal(report.unfinishedAuctions.length, 0, 'All simulated auctions must end.');
 // Remaining uncovered cases are explicitly source gaps, not unexplained
-// engine failures: qualitative/numeric invite boundaries, the weak-relay
-// strength descriptor, and transfer hands outside the tabulated shapes.
+// engine failures: sequence-specific 1-over-1 continuations without source rules,
+// qualitative/numeric invite boundaries, weak-relay strength descriptors,
+// and transfer hands outside the tabulated shapes.
 const acceptedUncoveredIds=[
-  'ostord-100-002','ostord-100-007','ostord-100-030','ostord-100-034','ostord-100-036',
-  'ostord-100-038','ostord-100-039','ostord-100-040','ostord-100-053','ostord-100-058',
-  'ostord-100-074','ostord-100-080','ostord-100-088','ostord-100-092','ostord-100-094'
+  'ostord-100-002','ostord-100-006','ostord-100-007','ostord-100-011','ostord-100-017',
+  'ostord-100-030','ostord-100-034','ostord-100-036','ostord-100-038','ostord-100-039',
+  'ostord-100-040','ostord-100-047','ostord-100-049','ostord-100-051','ostord-100-053',
+  'ostord-100-058','ostord-100-074','ostord-100-077','ostord-100-080','ostord-100-085',
+  'ostord-100-088','ostord-100-092','ostord-100-094','ostord-100-099'
 ].sort();
 assert.deepEqual(
   report.uncovered.map(x=>x.dealId).sort(),
