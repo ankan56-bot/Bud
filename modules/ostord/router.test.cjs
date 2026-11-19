@@ -2,6 +2,8 @@ const assert=require('node:assert/strict');
 require('./router.js');
 const classify=globalThis.BudUncontestedRouter.classify;
 assert.equal(classify([]).module,'opening');
+assert.equal(classify({auction:[{s:'N',c:'1H'},{s:'S',c:'2N'}]}).module,'stenberg');
+assert.equal(classify({bids:[{c:'1N'},{c:'2C'}]}).module,'stayman');
 assert.equal(classify(['1H']).module,'responses-1-major');
 assert.equal(classify(['1C']).module,'responses-1-minor');
 assert.equal(classify(['1H','2N']).module,'stenberg');
