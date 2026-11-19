@@ -66,6 +66,16 @@ for(const hp of [20,21,30,31]){
 // Obalanced hands: 5+ major rebids at the 2-level; otherwise 5+ minor at the 3-level.
 assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:2,D:2,H:5,S:4}},'2D').exp,'2H');
 assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:5,D:4,H:2,S:2}},'2D').exp,'3C');
+// The source specifies the major/minor hierarchy but no priority between
+// two qualifying majors or between two qualifying minors. Avoid implicit tie-breaks.
+const fiveFiveMajors=twoClub.reb2c({hp:20,bal:false,L:{C:1,D:2,H:5,S:5}},'2D');
+assert.equal(fiveFiveMajors.exp,null,'5-5 majors after strong 2C must not invent a major priority');
+assert.equal(fiveFiveMajors.sourceGap,true);
+const fiveFiveMinors=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:5,H:2,S:1}},'2D');
+assert.equal(fiveFiveMinors.exp,null,'5-5 minors without a 5-card major must not invent a minor priority');
+assert.equal(fiveFiveMinors.sourceGap,true);
+const majorAndMinor=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:1,H:5,S:2}},'2D');
+assert.equal(majorAndMinor.exp,'2H','5-card major takes precedence over 5-card minor as stated by the source structure');
 const noFiveCardSuit=twoClub.reb2c({hp:22,bal:false,L:{C:4,D:4,H:3,S:2}},'2D');
 assert.equal(noFiveCardSuit.exp,null);
 assert.match(noFiveCardSuit.why,/utan 5-korts färg/);
