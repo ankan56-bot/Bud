@@ -79,8 +79,11 @@ assert.equal(majorAndMinor.exp,'2H','5-card major takes precedence over 5-card m
 const fiveCardMinorOnly=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:0,H:4,S:4}},'2D');
 assert.equal(fiveCardMinorOnly.exp,null,'a five-card minor is not enough for the source-defined 3m rebid');
 assert.equal(fiveCardMinorOnly.sourceGap,true);
-const sixCardClub=twoClub.reb2c({hp:20,bal:false,L:{C:6,D:2,H:3,S:2}},'2D');
+const sixCardClub=twoClub.reb2c({hp:20,bal:false,L:{C:6,D:2,H:3,S:2},good:s=>s==='C'},'2D');
 assert.equal(sixCardClub.exp,'3C','a unique six-card minor meets the source requirement');
+const sixCardPoorClub=twoClub.reb2c({hp:20,bal:false,L:{C:6,D:2,H:3,S:2},good:()=>false},'2D');
+assert.equal(sixCardPoorClub.exp,null,'six-card minor without the system good-suit quality is not automatically bid');
+assert.equal(sixCardPoorClub.sourceGap,true);
 const noFiveCardSuit=twoClub.reb2c({hp:22,bal:false,L:{C:4,D:4,H:3,S:2}},'2D');
 assert.equal(noFiveCardSuit.exp,null);
 assert.equal(noFiveCardSuit.sourceGap,true);
