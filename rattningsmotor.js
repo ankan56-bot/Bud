@@ -82,12 +82,16 @@ var Rattning = (function(){
     ? require('./opening-decision.js')
     : window.RattningOpeningFactory;
   var opening=openingFactory(sharedApi,{twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding});
+  var stayman2NTFactory=(typeof module!=='undefined'&&module.exports)
+    ? require('./2nt-stayman.js')
+    : window.Rattning2NTStaymanFactory;
+  var stayman2NT=stayman2NTFactory();
   var budbeslutFactory=(typeof module!=='undefined'&&module.exports)
     ? require('./budbeslut.js')
     : window.RattningBudbeslutFactory;
   var budbeslut=budbeslutFactory(sharedApi,{opening:opening,
     twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding,
-    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord
+    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord,stayman2NT:stayman2NT
   });
   var nodeForRaw=budbeslut.nodeForRaw;
 
