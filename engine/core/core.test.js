@@ -14,9 +14,9 @@ assert.equal(replayAuction({dealer:'N',calls:['1H','P','1D']}).errors[0].code, '
 assert.equal(replayAuction({dealer:'N',calls:['P','P','P','P','1C']}).errors[0].code, 'after-end');
 
 const h = normalizeHand({S:'AKQJ',H:'AKQ',D:'AK',C:'5432'});
-assert.equal(h.valid, true); assert.equal(shape(h.hand), '4-3-2-4');
+assert.equal(h.valid, true); assert.equal(shape(h.hand), '4-4-3-2');
 assert.equal(highCardPoints(h.hand), 26);
-assert.equal(isBalanced(h.hand), false);
+assert.equal(isBalanced(h.hand), true);
 assert.equal(normalizeHand({S:'AA',H:'KQJ',D:'AK',C:'5432'}).valid, false);
 assert.equal(normalizeHand({S:'AKQJ',H:'AKQ',D:'AK',C:'543'}).valid, false); // 12 cards
 assert.equal(describeDistribution(h.hand).lengths.S, 4);
