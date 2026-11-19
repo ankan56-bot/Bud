@@ -17,3 +17,5 @@ jobs:
         run: node engine/core/auction.test.js
       - name: Test shared core
         run: node engine/core/core.test.js
+      - name: Test rule registry
+        run: node engine/rules/registry.test.js
