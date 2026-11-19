@@ -200,8 +200,8 @@
 ### A20. Stark 2♣ – prioritet mellan flera femkortsfärger
 
 - **Källa:** Nordisk Standard 2012-08-22, s. 6: efter 2♣–2♦ visar öppnarens obalanserade återbud 2♥/2♠ med 5+ högfärg; 3♣/3♦ med bra 6+ lågfärg.
-- **Gap:** Källan anger inte vilken högfärg som ska väljas med 5-5 i högfärgerna, eller vilken lågfärg som ska väljas med 5-5 i lågfärgerna när ingen 5-korts högfärg finns.
-- **Beslut:** Högfärg prioriteras framför lågfärg; lågfärgsåterbud kräver 6+ kort. Inom samma kategori görs ingen mekanisk prioritering. Sådana händer markeras EJ TÄCKT.
+- **Gap:** Källan anger inte vilken högfärg som ska väljas med 5-5 i högfärgerna, eller vilken lågfärg som ska väljas med 6-6 i lågfärgerna när ingen 5-korts högfärg finns. Kvalitetsordet "bra" för lågfärgen har ingen egen definition på s. 6.
+- **Beslut:** Högfärg prioriteras framför lågfärg; lågfärgsåterbud kräver 6+ kort och använder den redan existerande projektdefinitionen för bra färg (kvalitet är en projektstolkning, inte explicit definierad på s. 6). Inom samma kategori görs ingen mekanisk prioritering. Sådana händer markeras EJ TÄCKT.
 - **Runtime/regression:** `2kloveroppning.js`, `tests/strong-2c-through-4nt.test.js`. Testar 5-5 högfärger, 5-5 lågfärger, 5-korts lågfärg (ej tillräckligt), 6-korts lågfärg samt en 5-korts högfärg tillsammans med en lågfärg.
 - **Status:** Implementerat som källgapsskydd; inga nya systemregler har skapats.
 
