@@ -6,7 +6,7 @@ assert.equal(classify(['1H']).module,'responses-1-major');
 assert.equal(classify(['1C']).module,'responses-1-minor');
 assert.equal(classify(['1H','2N']).module,'stenberg');
 assert.equal(classify(['1H','2N','3H']).module,'stenberg');
-assert.equal(classify(['1S','1N']).module,'rebid-1-over-1');
+assert.equal(classify(['1S','1N']).module,'rebid-nt-response');
 assert.equal(classify(['1S','1N','2N']).module,'responder-continuation-nt');
 assert.equal(classify(['1N']).module,'responses-1nt');
 assert.equal(classify(['1N','2C']).module,'stayman');
