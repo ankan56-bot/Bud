@@ -9362,6 +9362,76 @@
           "ruleStatus": "source_interpretation"
         }
       ]
+    },
+    {
+      "id": "T43_SVARSHANDENS_INVIT_3H_3S",
+      "title": "Ostörd budgivning – invit efter 1 över 1 och tvåfärgsåterbud",
+      "tags": [
+        "ostörd",
+        "1 över 1",
+        "invit",
+        "trumfstöd",
+        "lång färg",
+        "HTP",
+        "Nordisk Standard"
+      ],
+      "root": "t43_1h1s_2c_3h",
+      "conditions": [
+        "Källbunden till Nordisk Standard-lathundens exempel efter 1♥–1♠–2♣ och 1♥–1♠–2♦.",
+        "1♥–1♠–2♣–3♥: 10–12 HTP och exakt tre hjärter.",
+        "1♥–1♠–2♦–3♠: 10–12 HTP och minst sex spader.",
+        "HTP används enligt poängmotorns definition; dessa sekvenser får inte generaliseras till andra färgkombinationer."
+      ],
+      "nodes": [
+        {
+          "id": "t43_1h1s_2c_3h",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♣",
+            "Pass",
+            "3♥"
+          ],
+          "meaning": "3♥ – invit med tre korts hjärterstöd",
+          "analysis": "Svarshanden visar 10–12 HTP och exakt tre hjärter. Öppnaren har visat minst fem hjärter med 2♣-återbud. Detta är en sekvensspecifik stöd-/invitgren.",
+          "branches": [
+            {
+              "call": "3♥",
+              "next": null,
+              "label": "10–12 HTP, exakt 3 hjärter"
+            }
+          ],
+          "handProfile": {
+            "responder": "10–12 HTP och exakt tre hjärter; stöd i öppnarens hjärter."
+          }
+        },
+        {
+          "id": "t43_1h1s_2d_3s",
+          "sequence": [
+            "1♥",
+            "Pass",
+            "1♠",
+            "Pass",
+            "2♦",
+            "Pass",
+            "3♠"
+          ],
+          "meaning": "3♠ – invit med sexkortsfärg",
+          "analysis": "Svarshanden visar 10–12 HTP och minst sex spader. Den långa spaderfärgen gör 3♠ till en invit. Denna branch gäller bara den exakta sekvensen.",
+          "branches": [
+            {
+              "call": "3♠",
+              "next": null,
+              "label": "10–12 HTP, minst 6 spader"
+            }
+          ],
+          "handProfile": {
+            "responder": "10–12 HTP och minst sex spader; invit i egen lång färg."
+          }
+        }
+      ]
     }
   ],
   "valuationRules": {
