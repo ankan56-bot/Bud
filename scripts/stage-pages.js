@@ -25,6 +25,7 @@ const runtimeFiles = [
   "trumfstod.js",
   "opening-decision.js",
   "2nt-stayman.js",
+  "terminal-pass.js",
   "budbeslut.js",
   "rattningsrapport.js",
   "ej-tackta-logg.js",
