@@ -8,7 +8,9 @@ Detta dokument beskriver befintliga moduler på `work/undisturbed-architecture` 
 |---|---|---|
 | `hogfargsbudgivning.js` | Öppning, svar och återbud för 1♥/1♠ | Öppningar / svar / återbud (adapter) |
 | `lagfargsbudgivning.js` | Öppning, svar och återbud för 1♣/1♦ | Öppningar / svar / återbud (adapter) |
-| `ettoppningssvar.js` | Gemensamma svar på 1 i färg (`resp1`) och öppnarens andra bud (`reb1`) | **Delad fil som bör delas i svar respektive återbud**, med gemensamma hjälpfunktioner kvar |
+| `ettoppningssvar.js` | Kompatibilitetsfacade som exporterar svar och återbud | Tunn wrapper; logiken ligger i separata filer |
+| `svar1farg.js` | Svarshandens första svar efter 1 i färg (`resp1`) | Svarmodul |
+| `aterbud1farg.js` | Öppnarens andra bud efter 1 i färg (`reb1`) | Återbudsmodul |
 | `trumfstod.js` | Trumfstödssvar, öppnarens andra bud och svarshandens fortsättning; återanvänder Stenberg | Svar / återbud / fortsättning |
 | `stenberg.js` | Stenberg-responder, öppnarens återbud och svarshandens fortsättning | Specialiserat svar / återbud / fortsättning |
 | `sangbudgivning.js` | 1NT-svar, Stayman, transfer, öppnarens fortsättningar och val av utgång | Svar / återbud / specialkonvention |
@@ -46,7 +48,7 @@ Den är ännu **inte inkopplad** i den befintliga rättningsmotorn. Integrering 
 3. Kör befintliga Stenberg-, trumfstöd-, NT-, 2♣-, svaga-2-, slam-, 1-major- och ostörd 100/500-givstester.
 4. Jämför gammal och ny dispatch på samma fasta auktioner/händer. Alla skillnader ska förklaras.
 5. Aktivera ny router först när 0 oförklarade regressioner.
-6. Separera `ettoppningssvar.js` i svar/återbud endast som en fristående extraction med identiska testsvar; inga regeländringar samtidigt.
+6. `ettoppningssvar.js` är nu extraherad i `svar1farg.js` och `aterbud1farg.js`; kompatibilitetsfacaden behåller samma exports. Nästa steg är regressionstest och fortsatt uppdelning av `budbeslut.js` i familje-dispatchers.
 
 ## Status
 
@@ -55,4 +57,4 @@ Den är ännu **inte inkopplad** i den befintliga rättningsmotorn. Integrering 
 - Router regressionstest: passerar lokalt i Node.
 - CI-workflow: tillagd; körstatus ännu ej verifierad.
 - Integrering i produktens dispatcher: inte gjord.
-- Extraction av `ettoppningssvar.js`: planerad, inte gjord.
+- Extraction av `ettoppningssvar.js`: genomförd i två moduler; browser-scriptordning uppdaterad. CI-verifiering pågår.
