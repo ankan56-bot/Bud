@@ -78,10 +78,14 @@ var Rattning = (function(){
   var respAfter1NT=stord.respAfter1NT, responderSecondBid=stord.responderSecondBid;
 
   // Budregler och sekvensdirigering ligger i en separat modul.
+  var openingFactory=(typeof module!=='undefined'&&module.exports)
+    ? require('./opening-decision.js')
+    : window.RattningOpeningFactory;
+  var opening=openingFactory(sharedApi,{twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding});
   var budbeslutFactory=(typeof module!=='undefined'&&module.exports)
     ? require('./budbeslut.js')
     : window.RattningBudbeslutFactory;
-  var budbeslut=budbeslutFactory(sharedApi,{
+  var budbeslut=budbeslutFactory(sharedApi,{opening:opening,
     twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding,
     trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord
   });
