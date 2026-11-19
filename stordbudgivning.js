@@ -120,7 +120,7 @@
     }
     // Källbunden Nordisk Standard, sidan med öppnarens andra bud:
     // 1♥–1♠–2♣–3♥ = 10–12 HTP och 3-korts hjärterstöd.
-    if(first==='H'&&resp==='S'&&rb==='C'&&rebid==='3H'){
+    if(first==='H'&&resp==='S'&&rb==='C'){
       if(L.H===3&&h.htp('H')>=10&&h.htp('H')<=12)
         return {exp:'3H',alt:[],why:h.htp('H')+' HTP och tre hjärter efter 1♥–1♠–2♣: 3♥ visar 3-kortsstöd och invitstyrka.',
           means:function(c){return c==='3H'?'10–12 HTP och 3-korts hjärterstöd.':null},conv:'trumfstöd/invit'};
@@ -129,11 +129,10 @@
 
     // Källbunden Nordisk Standard:
     // 1♥–1♠–2♦–3♠ = 10–12 HTP och 6+ spader.
-    if(first==='H'&&resp==='S'&&rb==='D'&&rebid==='3S'){
+    if(first==='H'&&resp==='S'&&rb==='D'&&L.S>=6&&h.htp('S')>=10&&h.htp('S')<=12){
       if(L.S>=6&&h.htp('S')>=10&&h.htp('S')<=12)
         return {exp:'3S',alt:[],why:h.htp('S')+' HTP och minst sex spader efter 1♥–1♠–2♦: 3♠ är invit med lång spader.',
-          means:function(c){return c==='3S'?'10–12 HTP och 6+ spader.':null},conv:'färginvit'};
-      return NC('Efter 1♥–1♠–2♦ är 3♠ endast verifierat med 6+ spader och 10–12 HTP. Övriga händer lämnas ej täckta.',means,'svar efter öppnarens återbud',true);
+        means:function(c){return c==='3S'?'10–12 HTP och 6+ spader.':null},conv:'färginvit'};
     }
 
     // Separat, källbunden gren: 1♥–1♠–2♣–2NT.
