@@ -10,17 +10,20 @@ assert.strictEqual(isCompetitiveTree({ id: "T28_OVERFORING" }), false);
 const inviteTree = library.trees.find(tree => tree.id === "T42_OPPNARENS_TREDJE_BUD_EFTER_2NT_INVIT");
 assert.ok(inviteTree, "T42 opener third-bid tree must be present");
 assert.strictEqual(inviteTree.nodes.length, 6);
+const responderInviteTree = library.trees.find(tree => tree.id === "T43_SVARSHANDENS_INVIT_3H_3S");
+assert.ok(responderInviteTree, "T43 source-bound responder invit branches must be present");
+assert.strictEqual(responderInviteTree.nodes.length, 2);
 
 // Snapshot of the current baseline. Changing these numbers requires reviewing
 // the underlying data and updating this test deliberately; it is not a rule generator.
 const expected = {
-  totalTrees: 53,
+  totalTrees: 54,
   competitiveTreesExcluded: 5,
-  undisturbedTrees: 48,
-  undisturbedNodes: 327,
-  branchEntries: 338,
+  undisturbedTrees: 49,
+  undisturbedNodes: 329,
+  branchEntries: 340,
   linkedBranches: 213,
-  unlinkedBranches: 125,
+  unlinkedBranches: 127,
   nodesWithoutOutgoing: 211,
   nodesWithoutHandProfile: 27,
   invalidRootTrees: 1,
