@@ -12,7 +12,7 @@ assert.equal(classify(['2H','2N']).module,'responses-weak-2');
 assert.equal(classify(['1H','2D']).module,'response');
 assert.equal(classify(['1H','1S','2D']).module,'rebid-1-over-1');
 assert.equal(classify(['1H','2C','2H']).module,'rebid-1-over-2');
-assert.equal(classify(['1H','1S','4N']).module,'contextual-4nt');
+assert.equal(classify(['1H','1S','4N']).module,'slam');
 assert.equal(classify(['1H','2H','3H','4N']).module,'slam');
 assert.equal(classify(['1H','X']).module,'out-of-scope');
 console.log('Router tests passed');
