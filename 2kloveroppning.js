@@ -55,7 +55,7 @@
       else if(mj.length>1)return {exp:null,alt:[],why:'Obalanserad hand har 5+ i båda högfärgerna efter 2♣–2♦. Nordisk standard anger inte prioritet mellan högfärgerna; lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};
       else if(mn.length===1){exp='3'+mn[0];why='6+ '+SYM[mn[0]]+': 3 i lågfärgen (utgångskrav).'}
       else if(mn.length>1)return {exp:null,alt:[],why:'Obalanserad hand har 6+ i båda lågfärgerna efter 2♣–2♦ och saknar 5-korts högfärg. Nordisk standard anger inte prioritet mellan lågfärgerna; lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};
-      else return {exp:null,alt:[],why:'Obalanserad hand utan 5-korts färg: dokumentet anger inte budet.',means:means,conv:'2♣-system'}}
+      else return {exp:null,alt:[],why:'Obalanserad hand utan källbeskriven 5-korts högfärg eller bra 6-korts lågfärg: dokumentet anger inte budet.',means:means,conv:'2♣-system',sourceGap:true}}
     return {exp:exp,alt:alt,why:why,means:means,conv:'2♣-system',soft:false};
   }
   function resp2c2(h,rb,mine){
