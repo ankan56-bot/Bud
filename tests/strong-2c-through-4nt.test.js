@@ -63,9 +63,9 @@ for(const hp of [20,21,30,31]){
   assert.equal(r.sourceGap,true);
 }
 
-// Obalanced hands: 5+ major rebids at the 2-level; otherwise 5+ minor at the 3-level.
+// Obalanced hands: 5+ major rebids at the 2-level; otherwise good 6+ minor at the 3-level.
 assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:2,D:2,H:5,S:4}},'2D').exp,'2H');
-assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:5,D:4,H:2,S:2}},'2D').exp,'3C');
+assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:6,D:4,H:2,S:1}},'2D').exp,'3C');
 // The source specifies the major/minor hierarchy but no priority between
 // two qualifying majors or between two qualifying minors. Avoid implicit tie-breaks.
 const fiveFiveMajors=twoClub.reb2c({hp:20,bal:false,L:{C:1,D:2,H:5,S:5}},'2D');
