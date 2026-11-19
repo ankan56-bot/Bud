@@ -932,3 +932,9 @@ För körbar logik har "minimum" tolkats som 12–14 hp (11 hp endast efter tre 
 - Båda sekvenserna är egna, exakta grenar. Ingen färgsubstitution har gjorts.
 - Regressioner täcker rå rättning och livebeslut med endast egen hand och offentlig budgivning.
 - Analysbibliotek: nytt T43.
+
+
+## 2026-11-19 – Random 100-deal audit source-gap baseline
+
+- The 100-deal audit exposed additional exact 1-over-1 responder continuations not described in the checked NS source. They remain uncovered; no general color-substitution or numeric invit rule was inferred.
+- Added the newly observed deal IDs to the explicit source-gap baseline, preserving the rule that uncovered reasons must be source-specific and legal recommendations/auction validation remain zero-error.
