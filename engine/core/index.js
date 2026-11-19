@@ -6,5 +6,6 @@ module.exports = {
   hand: require('./hand'),
   points: require('./points'),
   ruleRecord: require('./rule-record'),
-  decision: require('./decision')
+  decision: require('./decision'),
+  ruleRegistry: require('../rules/registry')
 };
