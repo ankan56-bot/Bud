@@ -1,6 +1,6 @@
 /* Extracted from ettoppningssvar.js; behavior/rules unchanged. */
 (function(root,factory){
- if(typeof module!=='undefined'&&module.exports) module.exports=factory; else root.RattningFactory=factory;
+ if(typeof module!=='undefined'&&module.exports) module.exports=factory; else root.RattningAterbud1Factory=factory;
 })(typeof globalThis!=='undefined'?globalThis:this,function(api){
  var SU=api.SU, SYM=api.SYM, NAME=api.NAME, side=api.side, partner=api.partner, isBid=api.isBid,
      lv=api.lv, st_=api.st_, rk=api.rk, txt=api.txt, maj=api.maj, lowest=api.lowest,
