@@ -204,3 +204,12 @@
 - **Beslut:** Högfärg prioriteras framför lågfärg enligt budnivå/struktur, men inom samma kategori görs ingen mekanisk prioritering. Sådana händer markeras EJ TÄCKT.
 - **Runtime/regression:** `2kloveroppning.js`, `tests/strong-2c-through-4nt.test.js`. Testar 5-5 högfärger, 5-5 lågfärger samt en 5-korts högfärg tillsammans med en 5-korts lågfärg.
 - **Status:** Implementerat som källgapsskydd; inga nya systemregler har skapats.
+
+
+### A20. Stark 2♣ – prioritet mellan flera femkortsfärger
+
+- **Källa:** Nordisk Standard 2012-08-22, s. 6: efter 2♣–2♦ visar öppnarens obalanserade återbud 2♥/2♠ med 5+ högfärg; 3♣/3♦ med 5+ lågfärg.
+- **Gap:** Källan anger inte vilken högfärg som ska väljas med 5-5 i högfärgerna, eller vilken lågfärg som ska väljas med 5-5 i lågfärgerna när ingen 5-korts högfärg finns.
+- **Beslut:** Högfärg prioriteras framför lågfärg enligt budnivå/struktur, men inom samma kategori görs ingen mekanisk prioritering. Sådana händer markeras EJ TÄCKT.
+- **Runtime/regression:** `2kloveroppning.js`, `tests/strong-2c-through-4nt.test.js`. Testar 5-5 högfärger, 5-5 lågfärger samt en 5-korts högfärg tillsammans med en 5-korts lågfärg.
+- **Status:** Implementerat som källgapsskydd; inga nya systemregler har skapats.
