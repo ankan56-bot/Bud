@@ -183,7 +183,7 @@ const otherAuction = [
   {s:'S',c:'1S'}, {s:'W',c:'P'},
   {s:'N',c:'2C'}, {s:'E',c:'P'}
 ];
-const other = R.decideLive({seat:'S',dealer:'N',auction:otherAuction,ownHand:cases[1].hand});
-assert.equal(other.exp,null,'the 2♦ rule must not leak into 2♣');
+const other = R.decideLive({seat:'S',dealer:'N',auction:otherAuction,ownHand:twoClubCases[3].hand});
+assert.equal(other.exp,null,'the 2♦ 2NT invite must not leak into 2♣ when the separate 3♥ support branch is also not met');
 
 console.log('Two-suit 2NT invitation boundaries: passed (1H-1S-2D, 1H-1S-2C and T40 example).');
