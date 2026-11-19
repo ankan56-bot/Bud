@@ -42,6 +42,7 @@ function applyCall(state, raw, index = state.calls.length) {
     item.valid = false; error(state, index, 'invalid-seat', 'Unknown seat.');
   } else if (seat !== state.nextSeat) {
     item.valid = false; error(state, index, 'wrong-turn', `Expected ${state.nextSeat}; got ${seat}.`);
+    state.calls.push(item); return state;
   }
   if (!SEATS.includes(seat)) {
     state.calls.push(item); return state;
@@ -49,6 +50,7 @@ function applyCall(state, raw, index = state.calls.length) {
 
   if (!call) {
     item.valid = false; error(state, index, 'invalid-call', `Unknown call: ${String(rawCall)}.`);
+    state.calls.push(item); return state;
   } else {
     const type = callType(call);
     if (type === 'bid') {
