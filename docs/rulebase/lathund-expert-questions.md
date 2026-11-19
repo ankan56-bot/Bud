@@ -185,3 +185,13 @@
 - **Runtime:** `stordbudgivning.js` och `budbeslut.js` hanterar både efterhandsrättning och informationssäker livebedömning.
 - **Tolkning:** Lathunden skriver minimum/maximum utan att ange exakta hp-tal i rutan. Runtime använder 12–14 hp som minimum (11 hp endast efter tre pass i fjärde hand) och 15–17 hp som maximum som en mjuk tolkning; dessa intervall är inte fastställda grundregler och är markerade `soft/source_interpretation`.
 - **Regression:** `tests/one-major-second-bid-2nt-invite.test.js` och `tests/one-major-opener-third-after-2nt.test.js`.
+
+
+### A19. Svarshandens invit efter 1♥–1♠ och öppnarens tvåfärgsåterbud
+
+- **1♥–1♠–2♣–3♥:** 10–12 HTP och exakt tre hjärter.
+- **1♥–1♠–2♦–3♠:** 10–12 HTP och minst sex spader.
+- **Källa:** Nordisk Standard-lathundens avsnitt om öppnarens andra bud. Detta är sekvensspecifika regler; inga färgvarianter skapas genom substitution.
+- **Runtime:** `stordbudgivning.js`, efterhandsrättning och livebeslut.
+- **Regression:** `tests/one-major-second-bid-2nt-invite.test.js`.
+- **Status:** Implementerat och tillagt som T43 i analysbiblioteket.
