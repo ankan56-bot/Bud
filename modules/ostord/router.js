@@ -29,6 +29,8 @@
       if(isSuitOpening(first)) return result(first[1]==='H'||first[1]==='S'?'responses-1-major':'responses-1-minor','Responder after 1-level suit opening');
       return result('responses-other-opening','Responder after other opening');
     }
+    // Slam module owns every 4NT interpretation; route before convention-family shortcuts.
+    if(nonPass.includes('4N')) return result('slam','Contextual 4NT: slam module interprets full sequence');
     // Context-specific special families are kept active through continuations.
     if(first==='1N'&&second==='2C') return result('stayman','Stayman family after 1NT');
     if(first==='1N'&&['2D','2H'].includes(second)) return result('transfer','Transfer family after 1NT');
@@ -38,8 +40,6 @@
       return result('trumfstod','Direct support response in opening suit');
     if(first==='2C') return result('responses-2c','Strong 2C opening family');
     if(['2D','2H','2S'].includes(first)) return result('responses-weak-2','Weak 2 opening family');
-    // All 4NT routes to Slam; interpretation is performed against the full sequence.
-    if(nonPass.includes('4N')) return result('slam','Contextual 4NT: slam module interprets full sequence');
     if(nonPass.length===2) return result('response','Opening-specific response module');
     if(nonPass.length===3){
       const rebid=nonPass[2];
