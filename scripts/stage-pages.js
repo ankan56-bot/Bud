@@ -23,6 +23,7 @@ const runtimeFiles = [
   "lagfargsbudgivning.js",
   "stenberg.js",
   "trumfstod.js",
+  "opening-decision.js",
   "budbeslut.js",
   "rattningsrapport.js",
   "ej-tackta-logg.js",
