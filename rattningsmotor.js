@@ -82,6 +82,10 @@ var Rattning = (function(){
     ? require('./opening-decision.js')
     : window.RattningOpeningFactory;
   var opening=openingFactory(sharedApi,{twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding});
+  var terminalPassFactory=(typeof module!=='undefined'&&module.exports)
+    ? require('./terminal-pass.js')
+    : window.RattningTerminalPassFactory;
+  var terminalPass=terminalPassFactory();
   var stayman2NTFactory=(typeof module!=='undefined'&&module.exports)
     ? require('./2nt-stayman.js')
     : window.Rattning2NTStaymanFactory;
@@ -91,7 +95,7 @@ var Rattning = (function(){
     : window.RattningBudbeslutFactory;
   var budbeslut=budbeslutFactory(sharedApi,{opening:opening,
     twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding,
-    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord,stayman2NT:stayman2NT
+    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord,stayman2NT:stayman2NT,terminalPass:terminalPass
   });
   var nodeForRaw=budbeslut.nodeForRaw;
 
