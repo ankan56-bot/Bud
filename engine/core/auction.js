@@ -1,144 +1,112 @@
 'use strict';
 
-const SEATS = ['N', 'E', 'S', 'W'];
-const NEXT = { N: 'E', E: 'S', S: 'W', W: 'N' };
-const PARTNER = { N: 'S', S: 'N', E: 'W', W: 'E' };
-const SUITS = ['C', 'D', 'H', 'S', 'N'];
-const CONTRACT_RE = /^[1-7][CDHSN]$/;
+const SEATS = Object.freeze(['N', 'E', 'S', 'W']);
+const NEXT = Object.freeze({ N: 'E', E: 'S', S: 'W', W: 'N' });
+const PARTNER = Object.freeze({ N: 'S', S: 'N', E: 'W', W: 'E' });
+const { normalizeCall, callType, contractRank } = require('./calls');
 
-function isContractBid(call) {
-  return typeof call === 'string' && CONTRACT_RE.test(call);
-}
-function rank(call) {
-  if (!isContractBid(call)) return -1;
-  return Number(call[0]) * 5 + SUITS.indexOf(call[1]);
-}
 function side(seat) {
   if (seat === 'N' || seat === 'S') return 'NS';
   if (seat === 'E' || seat === 'W') return 'EW';
   return null;
 }
-function parseCall(call) {
-  if (call === 'P' || call === 'PASS') return { type: 'pass', normalized: 'P' };
-  if (call === 'X' || call === 'DBL') return { type: 'double', normalized: 'X' };
-  if (call === 'XX' || call === 'RDBL') return { type: 'redouble', normalized: 'XX' };
-  if (isContractBid(call)) return { type: 'bid', normalized: call };
-  return { type: 'invalid', normalized: call };
-}
-
-/**
- * Validate an auction without assigning system meaning to calls.
- * Input: { dealer: 'N', calls: [{seat:'N', call:'1H'}, ...] }
- * A call can also be a string if seats are inferred from dealer.
- */
-function validateAuction(input = {}) {
-  const dealer = input.dealer;
-  const calls = Array.isArray(input.calls) ? input.calls : [];
-  const errors = [];
-  if (!SEATS.includes(dealer)) {
-    errors.push({ index: -1, code: 'invalid-dealer', message: 'Dealer must be N, E, S, or W.' });
-  }
-
-  let expected = SEATS.includes(dealer) ? dealer : null;
-  let contract = null;
-  let contractSeat = null;
-  let doubled = 0;
-  let passes = 0;
-  let ended = false;
-  const normalizedCalls = [];
-
-  calls.forEach((raw, index) => {
-    const seat = typeof raw === 'string' ? expected : raw && raw.seat;
-    const rawCall = typeof raw === 'string' ? raw : raw && raw.call;
-    const parsed = parseCall(rawCall);
-    const call = parsed.normalized;
-
-    if (ended) {
-      errors.push({ index, code: 'after-end', message: 'Call made after the auction ended.' });
-      normalizedCalls.push({ index, seat, call, valid: false });
-      return;
-    }
-    if (!SEATS.includes(seat)) {
-      errors.push({ index, code: 'invalid-seat', message: 'Unknown seat.' });
-    } else if (expected && seat !== expected) {
-      errors.push({ index, code: 'wrong-turn', message: 'Expected ' + expected + ' to call, got ' + seat + '.' });
-    }
-    if (SEATS.includes(seat)) expected = NEXT[seat];
-
-    let valid = true;
-    if (parsed.type === 'invalid') {
-      valid = false;
-      errors.push({ index, code: 'invalid-call', message: 'Unknown call: ' + String(rawCall) + '.' });
-    } else if (parsed.type === 'pass') {
-      passes += 1;
-      if ((!contract && passes >= 4) || (contract && passes >= 3)) ended = true;
-    } else if (parsed.type === 'bid') {
-      if (contract && rank(call) <= rank(contract)) {
-        valid = false;
-        errors.push({ index, code: 'bid-not-higher', message: call + ' must be higher than ' + contract + '.' });
-      } else {
-        contract = call;
-        contractSeat = seat;
-        doubled = 0;
-        passes = 0;
-      }
-    } else if (parsed.type === 'double') {
-      if (!contract) {
-        valid = false;
-        errors.push({ index, code: 'double-no-contract', message: 'A double requires a contract bid.' });
-      } else if (side(seat) === side(contractSeat)) {
-        valid = false;
-        errors.push({ index, code: 'double-own-side', message: 'A side may not double its own contract.' });
-      } else if (doubled !== 0) {
-        valid = false;
-        errors.push({ index, code: 'already-doubled', message: 'The contract is already doubled or redoubled.' });
-      } else {
-        doubled = 1;
-        passes = 0;
-      }
-    } else if (parsed.type === 'redouble') {
-      if (!contract || doubled !== 1) {
-        valid = false;
-        errors.push({ index, code: 'redouble-not-doubled', message: 'A redouble requires the opponents to have doubled.' });
-      } else if (side(seat) !== side(contractSeat)) {
-        valid = false;
-        errors.push({ index, code: 'redouble-own-contract-side', message: 'Only the contract side may redouble.' });
-      } else {
-        doubled = 2;
-        passes = 0;
-      }
-    }
-
-    normalizedCalls.push({ index, seat, call, valid });
-  });
-
-  const contractText = contract
-    ? contract + (doubled === 1 ? 'X' : doubled === 2 ? 'XX' : '')
-    : null;
-
+function createAuctionState(dealer) {
   return {
-    valid: errors.length === 0,
-    ended,
     dealer,
-    nextSeat: ended ? null : expected,
-    contract,
-    contractSeat,
-    contractSide: side(contractSeat),
-    doubled,
-    contractText,
-    calls: normalizedCalls,
-    errors
+    nextSeat: SEATS.includes(dealer) ? dealer : null,
+    contract: null,
+    contractSeat: null,
+    doubleState: 0, // 0 undoubled, 1 doubled, 2 redoubled
+    passesSinceAction: 0,
+    ended: false,
+    calls: [],
+    errors: []
   };
 }
+function error(state, index, code, message) {
+  state.errors.push({ index, code, message });
+}
 
-module.exports = {
-  SEATS,
-  NEXT,
-  PARTNER,
-  SUITS,
-  isContractBid,
-  rank,
-  side,
-  parseCall,
-  validateAuction
-};
+/** Pure-ish state transition: mutates the provided state for convenient replay. */
+function applyCall(state, raw, index = state.calls.length) {
+  const seat = typeof raw === 'string' ? state.nextSeat : raw && raw.seat;
+  const rawCall = typeof raw === 'string' ? raw : raw && raw.call;
+  const call = normalizeCall(rawCall);
+  const item = { index, seat, rawCall, call, valid: true };
+
+  if (state.ended) {
+    item.valid = false; error(state, index, 'after-end', 'Call made after auction ended.');
+    state.calls.push(item); return state;
+  }
+  if (!SEATS.includes(seat)) {
+    item.valid = false; error(state, index, 'invalid-seat', 'Unknown seat.');
+  } else if (seat !== state.nextSeat) {
+    item.valid = false; error(state, index, 'wrong-turn', `Expected ${state.nextSeat}; got ${seat}.`);
+  }
+  if (!SEATS.includes(seat)) {
+    state.calls.push(item); return state;
+  }
+
+  if (!call) {
+    item.valid = false; error(state, index, 'invalid-call', `Unknown call: ${String(rawCall)}.`);
+  } else {
+    const type = callType(call);
+    if (type === 'bid') {
+      if (state.contract && contractRank(call) <= contractRank(state.contract)) {
+        item.valid = false; error(state, index, 'bid-not-higher', `${call} is not higher than ${state.contract}.`);
+      } else {
+        state.contract = call;
+        state.contractSeat = seat;
+        state.doubleState = 0;
+        state.passesSinceAction = 0;
+      }
+    } else if (type === 'double') {
+      if (!state.contract) {
+        item.valid = false; error(state, index, 'double-no-contract', 'Double requires a contract bid.');
+      } else if (state.doubleState !== 0) {
+        item.valid = false; error(state, index, 'already-doubled', 'The current contract is already doubled/redoubled.');
+      } else if (side(seat) === side(state.contractSeat)) {
+        item.valid = false; error(state, index, 'double-own-side', 'A side cannot double its own contract.');
+      } else {
+        state.doubleState = 1; state.passesSinceAction = 0;
+      }
+    } else if (type === 'redouble') {
+      if (!state.contract || state.doubleState !== 1) {
+        item.valid = false; error(state, index, 'redouble-not-doubled', 'Redouble requires the opponents to have doubled.');
+      } else if (side(seat) !== side(state.contractSeat)) {
+        item.valid = false; error(state, index, 'redouble-contract-side', 'Only the contract side may redouble.');
+      } else {
+        state.doubleState = 2; state.passesSinceAction = 0;
+      }
+    } else {
+      state.passesSinceAction += 1;
+      if ((!state.contract && state.passesSinceAction === 4) ||
+          (state.contract && state.passesSinceAction === 3)) state.ended = true;
+    }
+  }
+
+  item.valid = item.valid && !state.errors.some(e => e.index === index);
+  state.calls.push(item);
+  state.nextSeat = NEXT[seat];
+  return state;
+}
+function replayAuction(input = {}) {
+  const state = createAuctionState(input.dealer);
+  const calls = Array.isArray(input.calls) ? input.calls : [];
+  calls.forEach((raw, index) => applyCall(state, raw, index));
+  const contractText = state.contract ? state.contract + (state.doubleState === 1 ? 'X' : state.doubleState === 2 ? 'XX' : '') : null;
+  return {
+    valid: state.errors.length === 0,
+    ended: state.ended,
+    dealer: state.dealer,
+    nextSeat: state.ended ? null : state.nextSeat,
+    contract: state.contract,
+    contractSeat: state.contractSeat,
+    contractSide: side(state.contractSeat),
+    doubled: state.doubleState,
+    contractText,
+    calls: state.calls,
+    errors: state.errors
+  };
+}
+module.exports = { SEATS, NEXT, PARTNER, side, createAuctionState, applyCall, replayAuction, validateAuction: replayAuction };
