@@ -141,7 +141,7 @@ const support3H=['S14','S8','S7','S6','S5','S2','H12','H7','H4','D13','D8','C7',
 const hSupport3H=R.H(support3H);
 assert.equal(hSupport3H.L.H,3);
 assert.equal(hSupport3H.htp('H'),11,'3H fixture is 10–12 HTP');
-const opener2C=[ 'H14','H11','H9','H7','H6','C14','C9','C7','C6','S12','S9','D14','D9' ];
+const opener2C=[ 'H14','H11','H9','H8','H6','C14','C9','C6','C4','S12','S9','D14','D9' ];
 const supportHands=dealForResponder(support3H,opener2C);
 const auction3H=[{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},{s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'3H'}];
 const raw3H=R.nodeForRaw({hands:supportHands,dealer:'N',bids:auction3H},6);
@@ -155,7 +155,7 @@ const longSpades=['S14','S8','S7','S6','S5','S2','H13','H8','D8','D7','D6','C12'
 const hLongSpades=R.H(longSpades);
 assert.equal(hLongSpades.L.S,6);
 assert.equal(hLongSpades.htp('S'),11,'3S fixture is 10–12 HTP');
-const opener2D=['H14','H13','H9','H7','H6','D14','D9','D8','D7','S12','S9','C2','C3'];
+const opener2D=['H14','H12','H11','H9','H7','D14','D13','D9','D5','S12','S9','C2','C3'];
 const longSpadesHands=dealForResponder(longSpades,opener2D);
 const auction3S=[{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},{s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'3S'}];
 const raw3S=R.nodeForRaw({hands:longSpadesHands,dealer:'N',bids:auction3S},6);
