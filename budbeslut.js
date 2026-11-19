@@ -23,6 +23,7 @@
   var rkcQueenReply=deps.slam.rkcQueenReply, rkcSlamNextStep=deps.slam.rkcSlamNextStep;
   var fourAceSlamNextStep=deps.slam.fourAceSlamNextStep;
   var stayman2NT=deps.stayman2NT;
+  var terminalPass=deps.terminalPass;
   var ntResp=deps.sang.ntResp, ntOpener=deps.sang.ntOpener, stay2=deps.sang.stay2;
   var transfer2=deps.sang.transfer2, ntOpenerInvit=deps.sang.ntOpenerInvit;
   var ntOpener3=deps.sang.ntOpener3, ntOpener3NTChoice=deps.sang.ntOpener3NTChoice;
@@ -40,47 +41,8 @@
     for(var li=prior.length-1;li>=0;li--)if(isBid(prior[li].c)){lastCall=prior[li];break;}
     for(var fi=0;fi<prior.length;fi++)if(isBid(prior[fi].c)){firstCall=prior[fi];break;}
 
-    // När partnern redan har bjudit utgång är pass normalt slutbud.
-    // Rättningsmotorns separata utgångs-/slamkontroll kan fortfarande
-    // föreslå vidare bud om styrkan motiverar slam.
-    if(b.c==='P'&&lastCall&&side(lastCall.s)===side(me)){
-      var ls=st_(lastCall.c),ll=lv(lastCall.c);
-      var stayman3NTSpadeChoice=b.c==='P'&&lastCall.c==='3N'&&ours.length===4&&
-        ours[0].c==='1N'&&ours[1].c==='2C'&&ours[2].c==='2H'&&ours[3].c==='3N'&&
-        h.L.H===4&&h.L.S===4;
-      var transfer3NTGameChoice=b.c==='P'&&lastCall.c==='3N'&&ours.length===4&&
-        ours[0].c==='1N'&&
-        ((ours[1].c==='2D'&&ours[2].c==='2H')||(ours[1].c==='2H'&&ours[2].c==='2S'))&&
-        ours[3].c==='3N';
-      var partnerHasGame=((ls==='N'&&ll>=3)||(maj(ls)&&ll>=4)||(!maj(ls)&&ls!=='N'&&ll>=5))&&
-        !stayman3NTSpadeChoice&&!transfer3NTGameChoice;
-      // Undantag: efter Stayman 2♥–3NT kan 4-4-öppnaren välja 4♠ (Nordisk standard s. 4).
-      // 4NT med fastställd trumf är RKC-fråga, inte slutbud.
-      var partnerHasRkcAsk=lastCall.c==='4N'&&!!rkcTrumpFromAuction(prior,side(me));
-      var partnerHasFourAceAsk=lastCall.c==='4N'&&agreedNoTrumpAceAsk(prior,side(me));
-      var partnerHasQuantitativeInvite=lastCall.c==='4N'&&agreedQuantitativeNoTrumpInvite(prior,side(me));
-      var partnerRkcReply=/^(?:5[CDHSN]|6[CDHS])$/.test(lastCall.c)&&prior.some(function(x){return x.s===me&&x.c==='4N'})&&!!rkcTrumpFromAuction(prior,side(me));
-      var partnerFourAceReply=/^5[CDHS]$/.test(lastCall.c)&&
-        prior.some(function(x){return x.s===me&&x.c==='4N'})&&agreedNoTrumpAceAsk(prior,side(me));
-      var partnerRkcQueenAsk=lastCall.s===pt&&/^5[CDHS]$/.test(lastCall.c)&&
-        prior.some(function(x){return x.s===pt&&x.c==='4N'})&&
-        prior.some(function(x){return x.s===me&&/^5[CD]$/.test(x.c)})&&
-        !!rkcTrumpFromAuction(prior,side(me));
-      if(partnerHasGame&&lastCall.c!=='4N'&&!partnerHasRkcAsk&&!partnerHasFourAceAsk&&!partnerHasQuantitativeInvite&&!partnerRkcReply&&!partnerFourAceReply&&!partnerRkcQueenAsk)return {exp:'P',alt:[],why:'Partnern har redan bjudit utgång. Pass avslutar budgivningen om inte styrkan motiverar slam.',means:function(c){return c==='P'?'Pass efter partnerns utgångsbud.':null},conv:'slutbud'};
-    }
-
-    // Pass efter en svag tvåöppning och 2NT-fråga när öppnaren visar minimum.
-    if(b.c==='P'&&firstCall&&/^2[CDHS]$/.test(firstCall.c)&&
-       prior.some(function(x){return x.c==='2N'&&side(x.s)===side(me)})&&
-       lastCall&&lastCall.c==='3'+st_(firstCall.c)&&side(lastCall.s)===side(me)){
-      return {exp:'P',alt:[],why:'2NT-frågan har fått svaret 3 i öppningsfärgen, vilket visar minimum efter svag tvåa. Pass är slutbud utan ytterligare invitstyrka.',means:function(c){return c==='P'?'Pass efter minimumsvar på 2NT-fråga.':null},conv:'svag tvåa'};
-    }
-
-    // Efter partnerns spärröppning på 3-nivån är pass standard med en
-    // hand som inte når utgång; game-kontrollen ovan fångar starkare händer.
-    if(b.c==='P'&&firstCall&&/^3[CDHS]$/.test(firstCall.c)&&ours.length===1){
-      return {exp:'P',alt:[],why:'Partnern har spärröppnat på 3-nivån. Pass är rätt med en hand som inte når utgång.',means:function(c){return c==='P'?'Pass efter partnerns spärröppning.':null},conv:'spärr'};
-    }
+    var terminalPassNode=terminalPass({b:b,lastCall:lastCall,me:me,pt:pt,ours:ours,h:h,prior:prior,firstCall:firstCall,side:side,st_:st_,lv:lv,maj:maj,rkcTrumpFromAuction:rkcTrumpFromAuction,agreedNoTrumpAceAsk:agreedNoTrumpAceAsk,agreedQuantitativeNoTrumpInvite:agreedQuantitativeNoTrumpInvite});
+    if(terminalPassNode)return terminalPassNode;
     var opp=prior.filter(function(x){return side(x.s)!==side(me)&&x.c!=='P'});
     var iFirst=ours.length?prior.indexOf(ours[0]):-1;
     var oppBefore=opp.filter(function(x){return iFirst<0||prior.indexOf(x)<iFirst});
