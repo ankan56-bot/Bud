@@ -40,19 +40,23 @@
       return result('trumfstod','Direct support response in opening suit');
     if(first==='2C') return result('responses-2c','Strong 2C opening family');
     if(['2D','2H','2S'].includes(first)) return result('responses-weak-2','Weak 2 opening family');
-    if(nonPass.length===2) return result('response','Opening-specific response module');
+    if(nonPass.length===2){
+      if(isSuitOpening(first)&&isSuit(second)){
+        const level=Number(second[0]), suit=second[1], openingSuit=first[1];
+        if(level===1) return result('rebid-1-over-1','Opening hand acts after 1-over-1 response');
+        if(level===2&&suit!==openingSuit) return result('rebid-1-over-2','Opening hand acts after 1-over-2 response');
+        if(level===2&&suit===openingSuit) return result('trumfstod','Opening hand acts after direct trump-support response');
+        if(level>=3) return result('rebid-jump-response','Opening hand acts after jump response');
+      }
+      return result('rebid-response','Opening hand rebid module after response');
+    }
     if(nonPass.length===3){
-      const rebid=nonPass[2];
-      if(isNT(rebid)) return result('rebid-nt','Opening hand rebid in NT');
-      if(isSuit(rebid)) return result('rebid-suit','Opening hand rebid in suit');
-      return result('rebid-special','Opening hand special rebid');
+      const openerRebid=nonPass[2];
+      if(isNT(openerRebid)) return result('responder-continuation-nt','Responder continues after opener NT rebid');
+      if(isSuit(openerRebid)) return result('responder-continuation-suit','Responder continues after opener suit rebid');
+      return result('responder-continuation-special','Responder continuation after special opener rebid');
     }
-    if(nonPass.length===4){
-      const cont=nonPass[3];
-      if(isNT(cont)) return result('responder-continuation-nt','Responder continuation in NT');
-      if(isSuit(cont)) return result('responder-continuation-suit','Responder continuation in suit');
-      return result('responder-continuation-special','Responder special continuation');
-    }
+    if(nonPass.length===4) return result('opener-continuation','Opening hand continues after responder second bid');
     return result('continuation','Further auction continuation; route by full sequence and system state');
   }
   root.BudUncontestedRouter=Object.freeze({classify,normalize});
