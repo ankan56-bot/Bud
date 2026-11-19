@@ -135,6 +135,35 @@ for (const c of twoClubCases) {
 const missingDiamondStop=R.H(twoClubCases[3].hand);
 assert.equal(missingDiamondStop.stop('D'),false,'the negative case must lack a diamond stop');
 
+// Source-bound NS branches from the original lathund:
+ // 1♥–1♠–2♣–3♥ = 10–12 HTP, three-card heart support.
+const support3H=['S14','S8','S7','S6','S5','S2','H12','H7','H4','D13','D8','C7','C5'];
+const hSupport3H=R.H(support3H);
+assert.equal(hSupport3H.L.H,3);
+assert.equal(hSupport3H.htp('H'),11,'3H fixture is 10–12 HTP');
+const opener2C=[ 'H14','H11','H9','H7','H6','C14','C9','C7','C6','S12','S9','D14','D9' ];
+const supportHands=dealForResponder(support3H,opener2C);
+const auction3H=[{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},{s:'N',c:'2C'},{s:'E',c:'P'},{s:'S',c:'3H'}];
+const raw3H=R.nodeForRaw({hands:supportHands,dealer:'N',bids:auction3H},6);
+assert.equal(raw3H.exp,'3H','source 3-card heart support invit');
+const live3H=R.decideLive({seat:'S',dealer:'N',auction:auction3H.slice(0,6),ownHand:support3H});
+assert.equal(live3H.exp,'3H','live decision for source 3-card heart support invit');
+assert.equal(live3H.informationBoundary,'own_hand_and_public_auction_only');
+
+// 1♥–1♠–2♦–3♠ = 10–12 HTP, six-card spade suit.
+const longSpades=['S14','S8','S7','S6','S5','S2','H13','H8','D8','D7','D6','C12','C8'];
+const hLongSpades=R.H(longSpades);
+assert.equal(hLongSpades.L.S,6);
+assert.equal(hLongSpades.htp('S'),11,'3S fixture is 10–12 HTP');
+const opener2D=['H14','H13','H9','H7','H6','D14','D9','D8','D7','S12','S9','C2','C3'];
+const longSpadesHands=dealForResponder(longSpades,opener2D);
+const auction3S=[{s:'N',c:'1H'},{s:'E',c:'P'},{s:'S',c:'1S'},{s:'W',c:'P'},{s:'N',c:'2D'},{s:'E',c:'P'},{s:'S',c:'3S'}];
+const raw3S=R.nodeForRaw({hands:longSpadesHands,dealer:'N',bids:auction3S},6);
+assert.equal(raw3S.exp,'3S','source 6+ spade invit');
+const live3S=R.decideLive({seat:'S',dealer:'N',auction:auction3S.slice(0,6),ownHand:longSpades});
+assert.equal(live3S.exp,'3S','live decision for source 6+ spade invit');
+assert.equal(live3S.informationBoundary,'own_hand_and_public_auction_only');
+
 // T40's recorded two-suit example is specific: 1♣–1♦–1♥.
 // It remains a separate 10–12 HCP balanced invitation, not a colour-swap template.
 const t40Responder=['S14','S13','S7','S2','H12','H8','H3','D13','D8','D3','C10','C8','C3'];
