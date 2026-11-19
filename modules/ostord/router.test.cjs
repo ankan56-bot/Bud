@@ -18,7 +18,7 @@ assert.equal(classify(['2N','3C']).module,'stayman-2nt');
 assert.equal(classify(['2N','3D']).module,'transfer-2nt');
 assert.equal(classify(['1H','2H']).module,'trumfstod');
 assert.equal(classify(['1C','2C']).module,'trumfstod');
-assert.equal(classify(['1H','2D']).module,'rebid-1-over-2');
+assert.equal(classify(['1H','2D']).module,'rebid-2-over-1');
 assert.equal(classify(['1H','2C']).module,'rebid-2-over-1');
 assert.equal(classify(['1H','1S','2D']).module,'responder-continuation-suit');
 assert.equal(classify(['1H','2C','2H']).module,'responder-continuation-suit');
