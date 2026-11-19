@@ -90,7 +90,7 @@ assert.equal(sixCardPoorClub.sourceGap,true);
 const noFiveCardSuit=twoClub.reb2c({hp:22,bal:false,L:{C:4,D:4,H:3,S:2}},'2D');
 assert.equal(noFiveCardSuit.exp,null);
 assert.equal(noFiveCardSuit.sourceGap,true);
-assert.match(noFiveCardSuit.why,/utan 5-korts färg/);
+assert.match(noFiveCardSuit.why,/utan källbeskriven/);
 
 // Only the selected 2D response is handled.
 const wrongResponse=twoClub.reb2c({hp:23,bal:true,L:{}},'2H');
