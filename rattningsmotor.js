@@ -90,12 +90,16 @@ var Rattning = (function(){
     ? require('./2nt-stayman.js')
     : window.Rattning2NTStaymanFactory;
   var stayman2NT=stayman2NTFactory();
+  var twoClubSequencesFactory=(typeof module!=='undefined'&&module.exports)
+    ? require('./two-club-sequences.js')
+    : window.RattningTwoClubSequencesFactory;
+  var twoClubSequences=twoClubSequencesFactory({NC:NC,resp2c:twoClub.resp2c,reb2c:twoClub.reb2c,ntResp:sang.ntResp,resp2c2:twoClub.resp2c2,ntOpener:sang.ntOpener,openerThirdAfter2c:twoClub.openerThirdAfter2c,responderAfter2c2ntStayman:twoClub.responderAfter2c2ntStayman,responderAfter2c2ntTransfer:twoClub.responderAfter2c2ntTransfer});
   var budbeslutFactory=(typeof module!=='undefined'&&module.exports)
     ? require('./budbeslut.js')
     : window.RattningBudbeslutFactory;
   var budbeslut=budbeslutFactory(sharedApi,{opening:opening,
     twoClub:twoClub,weakTwo:weakTwo,majorBidding:majorBidding,minorBidding:minorBidding,
-    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord,stayman2NT:stayman2NT,terminalPass:terminalPass
+    trumfstod:trumfstod,overcalls:overcalls,doubles:doubles,slam:slam,sang:sang,stord:stord,stayman2NT:stayman2NT,terminalPass:terminalPass,twoClubSequences:twoClubSequences
   });
   var nodeForRaw=budbeslut.nodeForRaw;
 
