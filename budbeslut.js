@@ -355,7 +355,7 @@
         return {exp:'3H',alt:[],why:'Håll i hjärter visas med 3♥ efter 1♣–1♦–2♣–2NT. Budet är utgångskrav.',
           means:function(c){return c==='3H'?'Visar hjärterhåll; utgångskrav.':null},conv:'hållvisning',soft:false};
       }
-      if(d===4 && opener && ours[3].c==='2N' && openerShowsTwoSuits){
+      if(d===4 && opener && ours[3].c==='2N' && openerShowsTwoSuits && st.hands[pt]){
         var invitePartner=H(st.hands[pt]);
         var inviteHcp=h.hp+invitePartner.hp;
         var allStops=['C','D','H','S'].every(function(s){return h.stop(s)});
