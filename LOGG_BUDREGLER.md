@@ -922,3 +922,13 @@ För körbar logik har "minimum" tolkats som 12–14 hp (11 hp endast efter tre 
 - `budbeslut.js`: exakt sekvensroutning för öppnarens tredje bud.
 - `rattningsmotor.js`: livebeslut utan partnerns dolda hand, eftersom grenarna bygger på öppnarens egen hand och offentlig budgivning.
 - Regression: `tests/one-major-opener-third-after-2nt.test.js` täcker 5-5 min, 6-4 min, 3-spader max, fjärde färg, svag passgren och styrka utanför sekvensens intervall.
+
+
+## 2026-11-19 – Nya källbundna invitgrenar efter 1 över 1
+
+- 1♥–1♠–2♣–3♥: 10–12 HTP och exakt tre hjärter; implementerat.
+- 1♥–1♠–2♦–3♠: 10–12 HTP och minst sex spader; implementerat.
+- HTP beräknas med poängmotorns trumffärgsbaserade värdering. HP ersätts inte av HTP.
+- Båda sekvenserna är egna, exakta grenar. Ingen färgsubstitution har gjorts.
+- Regressioner täcker rå rättning och livebeslut med endast egen hand och offentlig budgivning.
+- Analysbibliotek: nytt T43.
