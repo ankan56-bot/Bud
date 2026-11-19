@@ -64,18 +64,21 @@ for(const hp of [20,21,30,31]){
 }
 
 // Obalanced hands: 5+ major rebids at the 2-level; otherwise good 6+ minor at the 3-level.
-assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:2,D:2,H:5,S:4}},'2D').exp,'2H');
+assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:2,D:2,H:5,S:4},good:s=>s==='H'},'2D').exp,'2H');
 assert.equal(twoClub.reb2c({hp:20,bal:false,L:{C:6,D:4,H:2,S:1}},'2D').exp,'3C');
 // The source specifies the major/minor hierarchy but no priority between
 // two qualifying majors or between two qualifying minors. Avoid implicit tie-breaks.
-const fiveFiveMajors=twoClub.reb2c({hp:20,bal:false,L:{C:1,D:2,H:5,S:5}},'2D');
+const fiveFiveMajors=twoClub.reb2c({hp:20,bal:false,L:{C:1,D:2,H:5,S:5},good:s=>s==='H'||s==='S'},'2D');
 assert.equal(fiveFiveMajors.exp,null,'5-5 majors after strong 2C must not invent a major priority');
 assert.equal(fiveFiveMajors.sourceGap,true);
 const fiveFiveMinors=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:5,H:2,S:1}},'2D');
 assert.equal(fiveFiveMinors.exp,null,'5-5 minors without a 5-card major are not source-defined because minors require 6+');
 assert.equal(fiveFiveMinors.sourceGap,true);
-const majorAndMinor=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:1,H:5,S:2}},'2D');
+const majorAndMinor=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:1,H:5,S:2},good:s=>s==='H'},'2D');
 assert.equal(majorAndMinor.exp,'2H','5-card major takes precedence over 5-card minor as stated by the source structure');
+const fiveCardPoorMajor=twoClub.reb2c({hp:20,bal:false,L:{C:2,D:2,H:5,S:4},good:()=>false},'2D');
+assert.equal(fiveCardPoorMajor.exp,null,'five-card major without good-suit quality is not automatically rebid');
+assert.equal(fiveCardPoorMajor.sourceGap,true);
 const fiveCardMinorOnly=twoClub.reb2c({hp:20,bal:false,L:{C:5,D:0,H:4,S:4}},'2D');
 assert.equal(fiveCardMinorOnly.exp,null,'a five-card minor is not enough for the source-defined 3m rebid');
 assert.equal(fiveCardMinorOnly.sourceGap,true);
