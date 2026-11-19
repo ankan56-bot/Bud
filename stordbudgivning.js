@@ -102,6 +102,12 @@
     // Denna gräns gäller bara denna exakta sekvens; 1♥–1♠–2♣ har en
     // separat gren med egna krav och får inte blandas ihop med denna invit.
     if(first==='H'&&resp==='S'&&rb==='D'){
+      // Källbunden: 1♥–1♠–2♦–3♠ = 10–12 HTP och 6+ spader.
+      // Prioriteras före kravet på öppnarens dolda hand eftersom handprofilen
+      // är helt avgörbar från svarshandens kort och offentlig budgivning.
+      if(L.S>=6&&h.htp('S')>=10&&h.htp('S')<=12)
+        return {exp:'3S',alt:[],why:h.htp('S')+' HTP och minst sex spader efter 1♥–1♠–2♦: 3♠ är invit med lång spader.',
+          means:function(c){return c==='3S'?'10–12 HTP och 6+ spader.':null},conv:'färginvit'};
       if(h.bal&&hp>=11&&hp<=12){
         return {exp:'2N',alt:[],why:hp+' hp och balanserad hand efter 1♥–1♠–2♦: 2NT är invit (11–12 hp).',
           means:function(c){return c==='2N'?'Naturlig invit i sang, 11–12 hp, balanserad hand.':null},
@@ -124,13 +130,6 @@
       if(L.H===3&&h.htp('H')>=10&&h.htp('H')<=12)
         return {exp:'3H',alt:[],why:h.htp('H')+' HTP och tre hjärter efter 1♥–1♠–2♣: 3♥ visar 3-kortsstöd och invitstyrka.',
           means:function(c){return c==='3H'?'10–12 HTP och 3-korts hjärterstöd.':null},conv:'trumfstöd/invit'};
-    }
-
-    // Källbunden Nordisk Standard:
-    // 1♥–1♠–2♦–3♠ = 10–12 HTP och 6+ spader.
-    if(first==='H'&&resp==='S'&&rb==='D'&&L.S>=6&&h.htp('S')>=10&&h.htp('S')<=12){
-      return {exp:'3S',alt:[],why:h.htp('S')+' HTP och minst sex spader efter 1♥–1♠–2♦: 3♠ är invit med lång spader.',
-        means:function(c){return c==='3S'?'10–12 HTP och 6+ spader.':null},conv:'färginvit'};
     }
 
     // Separat, källbunden gren: 1♥–1♠–2♣–2NT.
