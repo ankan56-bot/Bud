@@ -50,7 +50,7 @@
     else if(h.bal){return {exp:null,alt:[],why:hp+' hp balanserad hand efter 2♣–2♦ ligger utanför de källbelagda intervallen 22–29 hp. Sekvensen lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};}
     else{
       var mj=['H','S'].filter(function(s){return L[s]>=5});
-      var mn=['C','D'].filter(function(s){return L[s]>=6});
+      var mn=['C','D'].filter(function(s){return L[s]>=6&&typeof h.good==='function'&&h.good(s)});
       if(mj.length===1){exp='2'+mj[0];why='5+ '+SYM[mj[0]]+': 2 i högfärgen (utgångskrav).'}
       else if(mj.length>1)return {exp:null,alt:[],why:'Obalanserad hand har 5+ i båda högfärgerna efter 2♣–2♦. Nordisk standard anger inte prioritet mellan högfärgerna; lämnas ej täckt.',means:means,conv:'2♣-system',sourceGap:true};
       else if(mn.length===1){exp='3'+mn[0];why='6+ '+SYM[mn[0]]+': 3 i lågfärgen (utgångskrav).'}
