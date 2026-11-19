@@ -348,9 +348,10 @@
         return NC('Efter 2NT–3♣–3♠ når paret inte en verifierad utgångsprofil för 3NT eller 4♠; fortsatt bud lämnas ej täckt.',null,'2NT-Stayman',true);
       }
       if(k===1&&opener&&d===3&&ours[1].c==='3C'&&ours[2].c==='3S'){
-        var knownStaymanTotal=hp+opener.hp;
-        var knownSpadeFit=h.L.S+opener.L.S;
-        var knownSpadePoints=knownSpadeFit>=8?partnershipPoints(h,opener,'S'):0;
+        var knownStaymanOpener=H(st.hands[pt]);
+        var knownStaymanTotal=h.hp+knownStaymanOpener.hp;
+        var knownSpadeFit=h.L.S+knownStaymanOpener.L.S;
+        var knownSpadePoints=knownSpadeFit>=8?partnershipPoints(h,knownStaymanOpener,'S'):0;
         if(h.bal&&knownStaymanTotal>=25&&knownSpadeFit<8)
           return {exp:'3N',alt:[],why:'Balanserad svarshand och '+knownStaymanTotal+' gemensamma honnörspoäng efter 2NT–3♣–3♠. Ingen 8-korts spaderfit; 25+ hp enligt projektregeln ger 3NT.',means:function(c){return c==='3N'?'Balanserad hand, 25+ gemensamma hp och ingen spaderfit: 3NT.':null},conv:'2NT-Stayman',ruleStatus:'user_confirmed'};
         if(knownSpadeFit>=8&&knownSpadePoints>=26)
