@@ -27,7 +27,7 @@ function shape(hand) {
 }
 function isBalanced(hand) {
   const s = sortedLengths(hand);
-  return (s[0] <= 5 && s[2] >= 2 && s[3] >= 2) || s.join('-') === '4-3-3-3';
+  return ['4-3-3-3', '4-4-3-2', '5-3-3-2'].includes(s.join('-'));
 }
 function describeDistribution(hand) {
   const lens = lengths(hand);
