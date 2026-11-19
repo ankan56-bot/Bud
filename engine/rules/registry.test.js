@@ -1,0 +1,11 @@
+'use strict';
+const assert = require('node:assert/strict');
+const { RuleRegistry } = require('./registry');
+const rule = { id:'sample.opening.1h', source:{document:'Lathund',page:1,box:'Öppningar'}, status:'verified', auctionPattern:['?'], conditions:[], bid:'1H', meaning:'Test', forcing:'nonforcing' };
+const registry = new RuleRegistry();
+assert.equal(registry.register({id:'opening.high',rules:[rule]}).registered,true);
+assert.equal(registry.getRule(rule.id),rule);
+assert.equal(registry.audit().verified,1);
+assert.equal(registry.register({id:'opening.high',rules:[]}).registered,false);
+assert.equal(registry.register({id:'opening.other',rules:[rule]}).registered,false);
+console.log('rule registry tests passed');
