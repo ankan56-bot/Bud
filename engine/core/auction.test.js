@@ -26,7 +26,7 @@ assert.equal(doubled.contractText, '1HXX');
 
 const invalidDouble = validateAuction({ dealer: 'N', calls: ['1H', 'X', 'X'] });
 assert.equal(invalidDouble.valid, false);
-assert.equal(invalidDouble.errors.some(e => e.code === 'already-doubled'), true);
+assert.equal(invalidDouble.errors.some(e => e.code === 'double-own-side'), true);
 
 const illegalBid = validateAuction({ dealer: 'N', calls: ['1H', '1D'] });
 assert.equal(illegalBid.valid, false);
