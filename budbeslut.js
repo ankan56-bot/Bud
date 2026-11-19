@@ -11,6 +11,7 @@
   var H=api.H, handHps=api.handHps, partnershipPoints=api.partnershipPoints;
   var T=api.T, ok=api.ok, NC=api.NC;
   var twoClub=deps.twoClub, weakTwo=deps.weakTwo, trumfstod=deps.trumfstod;
+  var twoClubSequences=deps.twoClubSequences;
   var majorBidding=deps.majorBidding, minorBidding=deps.minorBidding;
   var resp2c=twoClub.resp2c, reb2c=twoClub.reb2c, resp2c2=twoClub.resp2c2, openerThirdAfter2c=twoClub.openerThirdAfter2c, responderAfter2c2ntStayman=twoClub.responderAfter2c2ntStayman, responderAfter2c2ntTransfer=twoClub.responderAfter2c2ntTransfer;
   var resp2w=weakTwo.resp2w, open2w=weakTwo.open2w;
